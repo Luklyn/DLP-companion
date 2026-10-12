@@ -219,22 +219,17 @@
         let currentTab = 'attraction';
         let apiData = [];
 
-        const URL_DISNEYLAND = "https://api.themeparks.wiki/v1/entity/dae968d5-6341-4719-8b8a-38c8c8b7b212/live";
-        const URL_ADVENTURE_WORLD = "https://api.themeparks.wiki/v1/entity/ca888437-ebb4-4d50-aed2-dce4568dbde7/live";
+        // LE BON LIEN : L'identifiant "Resort" qui englobe TOUT Disneyland Paris (les deux parcs)
+        const URL_DLP_RESORT = "https://api.themeparks.wiki/v1/entity/e8d0207f-da8a-4048-bec8-117aa946b2c2/live";
 
         async function init() {
             try {
                 // On force le rafraîchissement complet pour éviter les bugs de cache
                 const options = { cache: 'no-store' };
-                const [resDLP, resWDS] = await Promise.all([
-                    fetch(URL_DISNEYLAND, options),
-                    fetch(URL_ADVENTURE_WORLD, options)
-                ]);
+                const res = await fetch(URL_DLP_RESORT, options);
+                const data = await res.json();
                 
-                const dataDLP = await resDLP.json();
-                const dataWDS = await resWDS.json();
-                
-                apiData = [...(dataDLP.liveData || []), ...(dataWDS.liveData || [])];
+                apiData = data.liveData || [];
                 
                 let matches = 0;
                 
