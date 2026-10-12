@@ -1,25 +1,26 @@
-// Force l'installation immédiate du nouveau Service Worker
-self.addEventListener('install', (event) => {
-    self.skipWaiting();
-});
+self.addEventListener('install', (event) => self.skipWaiting());
+self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
-// Prend le contrôle de la page immédiatement après l'activation
-self.addEventListener('activate', (event) => {
-    event.waitUntil(self.clients.claim());
-});
-
-// 1. RÉCEPTION DU SIGNAL PUSH EN ARRIÈRE-PLAN
 self.addEventListener('push', (event) => {
-    // Affichage synchrone et immédiat (obligatoire pour iOS)
     const options = {
-        body: "Un de vos objectifs de temps d'attente ou de spectacle est atteint !",
-        icon: '/icon.png', // Chemin vers l'icône de votre PWA
-        badge: '/icon.png', // Petite icône monochrome pour la barre d'état (Android)
-        vibrate: [200, 100, 200] // Motif de vibration
+        body: "Une attraction a changé de statut (Panne/Réouverture), ou un temps d'attente est atteint !",
+        icon: '/icon.png',
+        badge: '/icon.png',
+        vibrate: [200, 100, 200]
     };
-    
+    event.waitUntil(self.registration.showNotification("Alerte DLP Companion", options));
+});
+
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
     event.waitUntil(
-        self.registration.showNotification("Alerte DLP Companion", options)
+        clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+            if (windowClients.length > 0) {
+                windowClients[0].postMessage({ type: 'refresh-data' }); 
+                return windowClients[0].focus();
+            }
+            if (clients.openWindow) return clients.openWindow('/');
+        })
     );
 });
 
