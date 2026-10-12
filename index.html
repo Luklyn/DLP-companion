@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Disney Companion</title>
+    
+    <!-- Lien vers le fichier Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        :root {
+            --primary: #0077CC;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --green: #2e7d32;
+            --orange: #ef6c00;
+            --red: #c62828;
+            --border: #e0e0e0;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .master-pane {
+            width: 450px;
+            background-color: var(--bg-color);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+        .detail-pane {
+            flex: 1;
+            background-color: #fff;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            padding: 20px;
+            background: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .api-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background: #e0e0e0;
+            color: var(--text-muted);
+        }
+        .api-status.live { background: #c8e6c9; color: var(--green); }
+        .tabs { display: flex; background: #fff; border-bottom: 1px solid var(--border); }
+        .tab {
+            flex: 1; padding: 15px 0; text-align: center; cursor: pointer;
+            font-weight: 500; color: var(--text-muted); border-bottom: 3px solid transparent;
+        }
+        .tab.active { color: var(--primary); border-bottom: 3px solid var(--primary); font-weight: bold; }
+        .list-container { flex: 1; overflow-y: auto; padding: 10px; }
+        
+        .card {
+            background: var(--card-bg); border-radius: 12px; padding: 16px;
+            margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .card:hover, .card.selected { border-color: var(--primary); }
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .card-title { font-size: 16px; font-weight: bold; }
+        
+        .wait-times { display: flex; gap: 15px; font-size: 14px; font-weight: 600; margin-top: 8px;}
+        .wait-normal.green { color: var(--green); }
+        .wait-normal.orange { color: var(--orange); }
+        .wait-normal.red { color: var(--red); }
+        .wait-single { color: var(--primary); }
+        .status-closed { color: var(--text-muted); font-style: italic; }
+        
+        .detail-content { width: 100%; max-width: 700px; display: none; }
+        .detail-image {
+            width: 100%; height: 350px; border-radius: 16px; margin-bottom: 24px;
+            object-fit: cover; background-color: #eee;
+        }
+        .detail-title { font-size: 32px; font-weight: 900; margin: 0 0 16px 0; }
+        .badges { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+        .badge { background: #eee; padding: 6px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+        .badge.park { background: #e3f2fd; color: #1565c0; }
+        .badge.red { background: #ffebee; color: #c62828; }
+        .badge.price { background: #fff3e0; color: #ef6c00; }
+        .detail-desc { font-size: 16px; line-height: 1.6; color: var(--text-main); }
+        .btn-menu {
+            display: inline-block; background: var(--primary); color: white;
+            padding: 14px 28px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; margin-top: 20px; text-align: center;
+        }
+
+        /* Responsive Design - Affichage Mobile */
+        .btn-back {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0;
+            margin-bottom: 15px;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .master-pane {
+                width: 100%;
+                border-right: none;
+            }
+            .detail-pane {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 100;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .btn-back {
+                display: block;
+            }
+            .detail-image {
+                height: 200px;
+            }
+            .detail-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="master-pane">
+        <div class="header">
+            <span>Disneyland Paris - Live</span>
+            <span id="api-status" class="api-status">📡 Sync...</span>
+        </div>
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('attraction')">🎢 Attractions</div>
+            <div class="tab" onclick="switchTab('restaurant')">🍔 Restos</div>
+            <div class="tab" onclick="switchTab('spectacle')">🎭 Shows</div>
+        </div>
+        <div class="list-container" id="list"></div>
+    </div>
+
+    <div class="detail-pane">
+        <div id="detail-placeholder" style="color: #666; font-size: 18px; margin-top: 20vh; text-align: center;">
+            👈 Sélectionnez un lieu dans la liste
+        </div>
+        <div id="detail-content" class="detail-content">
+            <!-- Bouton Retour affiché uniquement sur petit écran -->
+            <button id="btn-back" class="btn-back" onclick="closeDetail()">🔙 Retour à la liste</button>
+            
+            <img id="d-image" class="detail-image" src="" alt="Image">
+            <h1 class="detail-title" id="d-title">Titre</h1>
+            <div class="badges" id="d-badges"></div>
+            <div class="detail-desc" id="d-desc"></div>
+            <a href="#" target="_blank" class="btn-menu" id="d-btn">📖 Voir le Menu Officiel</a>
+        </div>
+    </div>
+
+    <script>
+        // Extraction des données brutes depuis vos Google Sheets (fichiers JSON)
+        const attractionsRaw = [{"Code":"P1MSAA01","UUID Themeparks.wiki":"a5afa85c-ee58-4f47-8626-fa4057e7d266","Nom":"Disneyland Railroad - Main Street Station","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017678_2050jan01-disneyland-railroad-main-street-station_16-9_tcm808-159598.jpg","Description":"Bienvenue à bord ! Embarquez dans un authentique train à vapeur et faites une balade autour du Parc Disneyland.","Parc":"Disneyland Park ","Land":"Main Street U.S.A - Town Square","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.870839","Coordonnées GPS (lng)":"2.778809"},{"Code":"P1DLAA01","UUID Themeparks.wiki":"03992704-698d-474b-a721-a5ac3498edb9","Nom":"Buzz Lightyear Laser Blast","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n035463_2050dec31_world_buzz-lightyear-laser-blast-attraction-front-blue-version_16-9_tcm808-157036.jpg","Description":"Décollez pour l'espace et aidez Buzz à vaincre Zurg avec votre laser dans ce pas de tir intergalactique.","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.87350","Coordonnées GPS (lng)":"2.77784"},{"Code":"P1DLAA02","UUID Themeparks.wiki":"3a1cd3f7-9c42-4f9b-90fa-dab7ba113862","Nom":"Autopia","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n021038_2022jun03_autopia_16-9_tcm808-157219.jpg","Description":"Prenez place à bord de votre petit bolide et foncez au milieu de décors à couper le souffle !","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Pour toute la famille","Taille mini":"81 cm","Coordonnées GPS (lat)":"48.873478","Coordonnées GPS (lng)":"2.778783"},{"Code":"P1DLAA03","UUID Themeparks.wiki":"ddca340c-7ba1-4f23-89eb-0d3d52c84bda","Nom":"Hyperspace Mountain","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/hd13578_2022jun29_world_star-wars-hyperspace-mountain_16-9_tcm808-162410.jpg","Description":"Au volant de votre vaisseau spatial, combattez l’Empire dans cette version intégralement revisitée d’une des attractions phares du Parc.","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Sensations fortes","Taille mini":"1,20 m","Coordonnées GPS (lat)":"48.873650","Coordonnées GPS (lng)":"2.778810"},{"Code":"P1DLAA04","UUID Themeparks.wiki":"d8d9f62a-9fa3-4aae-a568-4225afc35924","Nom":"Les Mystères Du Nautilus","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014369_2027mar15_world_attraction-nautilus_16-9_tcm808-157489.jpg","Description":"Poursuivez votre quête à travers Discoveryland et naviguez avec votre équipage jusqu’au Nautilus de Jules Verne où vous attendent les merveilles des profondeurs.","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873442","Coordonnées GPS (lng)":"2.779503"},{"Code":"P1DLAA05","UUID Themeparks.wiki":"5d10b8b2-7d34-4794-8857-76688e5864bc","Nom":"Star Tours : L'Aventure Continue","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n025560_2022mar17_world_star-tours-the-adventures-continue_16-9_tcm808-162353.jpg","Description":"Ressentez le pouvoir de la Force avec cette attraction qui vous propulsera à travers la galaxie Star Wars .","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Pour toute la famille","Taille mini":"1,02 m","Coordonnées GPS (lat)":"48.874620","Coordonnées GPS (lng)":"2.778834"},{"Code":"P1DLAA06","UUID Themeparks.wiki":"f0525c25-4ea2-49b7-aab5-150b27658fb6","Nom":"Orbitron","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017068_2027nov12_world_orbitron-machines-volantes_16-9_tcm808-157389.jpg","Description":"Pilotez votre propre vaisseau spatial et survolez Discoveryland, parmi une constellation étincelante de planètes en orbite.","Parc":"Disneyland Park ","Land":"Discoveryland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873430","Coordonnées GPS (lng)":"2.778391"},{"Code":"P1FLAA01","UUID Themeparks.wiki":"8ed1472a-4d2e-47f1-b848-353de0bc3670","Nom":"Blanche-Neige et les Sept Nains","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014348_2020feb01_blanche-neige-et-les-sept-nains-ride_16-9_tcm808-157364.jpg","Description":"Traversez le pays enchanté de Blanche-Neige dans un wagonnet de mine et découvrez comment les 7 nains l'ont aidée à vaincre la méchante reine.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873516","Coordonnées GPS (lng)":"2.775114"},{"Code":"P1FLAA02","UUID Themeparks.wiki":"594dabd8-ddc1-4835-aafa-f654e10ed2db","Nom":"Les Voyages de Pinocchio","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014349_2027jan30_les-voyages-de-pinocchio_16-9_tcm808-157397.jpg","Description":"Venez partager en compagnie de Jiminy Cricket la quête incroyable de Pinocchio pour tenter de devenir un vrai petit garçon. Une histoire qui ne vous laissera pas de bois !","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873750","Coordonnées GPS (lng)":"2.775150"},{"Code":"P1FLAA03","UUID Themeparks.wiki":"ced30c44-9b79-45de-a8c9-6347298756c1","Nom":"Le Carrousel de Lancelot","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017609_2050jan01_le-carrousel-de-lancelot_16-9_tcm808-159323.jpg","Description":"Choisissez votre monture et prenez les rênes sur le carrousel de Sir Lancelot en personne.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873836","Coordonnées GPS (lng)":"2.775960"},{"Code":"P1FLAA04","UUID Themeparks.wiki":"7c5b2c2d-1082-4e5c-b155-dc492db16e6e","Nom":"Peter Pan's Flight","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n015218_2020jul22_peter-pan-flight_16-9_tcm808-156939.jpg","Description":"Prenez les voiles à bord d’un galion magique dans le ciel étoilé de Londres, en direction du Pays Imaginaire. Une aventure qui vous mènera à la rencontre d’Indiens, de pirates et de sirènes.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874137","Coordonnées GPS (lng)":"2.775878"},{"Code":"P1FLAA05","UUID Themeparks.wiki":"46406e4a-4a02-4d30-89bc-ef1ed63c1ff9","Nom":"Dumbo the Flying Elephant","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n015383_2_2027aug31_world_dumbo-the-flying-elephant-attraction_16-9_tcm808-159779.jpg","Description":"Envolez-vous avec le célèbre Dumbo pour découvrir un panorama magique qui vous laissera sans voix.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874254","Coordonnées GPS (lng)":"2.776652"},{"Code":"P1FLAA06","UUID Themeparks.wiki":"252b9b03-f770-4979-b3b2-f4ffecc3894d","Nom":"Alice's Curious Labyrinth","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n024748_2023oct25_le-labyrinthe-dalice_16-9_tcm808-157216.jpg","Description":"Vivez votre propre aventure au Pays des Merveilles, avec toujours sur les lèvres un sourire aussi large que celui du Chat du Cheshire.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874620","Coordonnées GPS (lng)":"2.776100"},{"Code":"P1FLAA07","UUID Themeparks.wiki":"bcc5567f-f00b-4a7d-8ee6-526cc8d3d5de","Nom":"Mad Hatter's Tea Cups","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017931_2050jan01_mad-hatters-tea-cups_16-9_tcm808-159886.jpg","Description":"Rendez-vous au Pays des Merveilles pour tournoyer et virevolter autour d'une théière géante à bord d'une tasse colorée.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874310","Coordonnées GPS (lng)":"2.777095"},{"Code":"P1FLAA08","UUID Themeparks.wiki":"ce87a0fe-c644-475e-abb6-9727e05cebff","Nom":"It's a small world","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n027110_2030apr16_world_its-a-small-world-attraction-facade-clock_16-9_tcm808-256996.jpg","Description":"Prenez le large pour un voyage merveilleux à travers le monde avec cette attraction iconique qui émerveillera les petits...comme les grands ! Montez à bord d'une joyeuse croisière musicale pour toute la famille et entonnez avec des poupées du monde entier le célèbre hymne à la paix.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874742","Coordonnées GPS (lng)":"2.777850"},{"Code":"P1FLAA09","UUID Themeparks.wiki":"7ff5d512-aed5-479a-8b3d-9bd1efb4177b","Nom":"Casey Jr. – le Petit Train du Cirque","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n012765_2019may15_casey-jr-le-petit-train-du-cirque_16-9_tcm808-158938.jpg","Description":"Montez à bord du joyeux petit train du cirque tiré de l’histoire de Dumbo pour un beau voyage à la découverte des merveilles miniatures de Storybook Land.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.875200","Coordonnées GPS (lng)":"2.775400"},{"Code":"P1FLAA10","UUID Themeparks.wiki":"9056906c-0030-4951-be5e-44ac1f273491","Nom":"Le Pays des Contes de Fées","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n012757_2019may15_le-pays-des-contes-de-fees_16-9_tcm808-157162.jpg","Description":"Mettez le cap sur des paysages miniatures magiques inspirés par les grandes œuvres littéraires et les légendaires classiques Disney.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.875080","Coordonnées GPS (lng)":"2.775750"},{"Code":"P1FLAA11","UUID Themeparks.wiki":"0216ad22-bada-4303-9635-d7350a942fbc","Nom":"Disneyland Railroad - Fantasyland Station","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017691_2050jan01-disneyland-railroad-main-street-station_16-9_tcm808-159482.jpg","Description":"Bienvenue à bord ! Embarquez dans un authentique train à vapeur et faites une balade autour du Parc Disneyland.","Parc":"Disneyland Park ","Land":"Fantaisyland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.874456","Coordonnées GPS (lng)":"2.774014"},{"Code":"P1FRLAA01","UUID Themeparks.wiki":"852d957c-382e-4afb-bb74-70c9a79055df","Nom":"Big Thunder Mountain","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017800_2050jan01_big-thunder-mountain_16-9_tcm808-159426.jpg","Description":"Accrochez-vous bien, car le wagonnet de la mine s'apprête à transporter toute votre famille dans une aventure palpitante autour d'une montagne hantée...","Parc":"Disneyland Park ","Land":"Frontierland","Type":"Sensations modérées","Taille mini":"1,02 m","Coordonnées GPS (lat)":"48.871804","Coordonnées GPS (lng)":"2.774512"},{"Code":"P1FRLAA02","UUID Themeparks.wiki":"14f756d6-d6fa-4200-8b41-db84ba294fa6","Nom":"Phantom Manor","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014938_2027jul10_world_phantom-manor_16-9_tcm808-157081.jpg","Description":"Êtes-vous prêt pour le grand frisson ? Alors mettez le cap sur ce parcours mystérieux et fascinant, où fantômes et esprits vous attendent à chaque tournant.","Parc":"Disneyland Park ","Land":"Frontierland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.871630","Coordonnées GPS (lng)":"2.773531"},{"Code":"P1FRLAA03","UUID Themeparks.wiki":"323bec06-fef7-4a60-989d-e3fcf9d3db7e","Nom":"Thunder Mesa Riverboat Landing","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n012724_2019may15_thunder-mesa-riverboat-landing_16-9_tcm808-157139.jpg","Description":"Embarquez à bord d’un vieux bateau à aubes pour profiter d'une croisière paisible parmi les plus beaux paysages de l’Ouest.","Parc":"Disneyland Park ","Land":"Frontierland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.871900","Coordonnées GPS (lng)":"2.774000"},{"Code":"P1ALAA01","UUID Themeparks.wiki":"0d822af0-bf02-47a7-bc29-672d2fa4f7ab","Nom":"Pirates of the Caribbean","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014915_2027jul10_world_panoramique-pirates-of-the-caribbean_16-9_tcm808-162428.jpg","Description":"Frissonnez dans ce pillage de pirates périlleux, avec la présence inédite du Capitaine Jack Sparrow et de son équipage sans foi ni loi.","Parc":"Disneyland Park ","Land":"Adventureland","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.873523","Coordonnées GPS (lng)":"2.774287"},{"Code":"P1ALAA02","UUID Themeparks.wiki":"5d0ce227-7ad0-4402-a95b-6cf56f25a8ec","Nom":"Indiana Jones et le Temple du Péril","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017906_2050jan01_world_indiana-jones-et-le-temple-du-peril_16-9_tcm808-159553.jpg","Description":"Accrochez-vous, et attention au départ ! Ce wagonnet vous entraînera à toute allure en dessous et à travers des ruines mystérieuses au beau milieu de la jungle.","Parc":"Disneyland Park ","Land":"Adventureland","Type":"Sensations fortes","Taille mini":"1,40 m","Coordonnées GPS (lat)":"48.873269","Coordonnées GPS (lng)":"2.771960"},{"Code":"P2WPAA01","UUID Themeparks.wiki":"d2ec9363-a215-4904-b297-b66734ea9a00","Nom":"The Twilight Zone Tower of Terror","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n018360_2050jan01_the-twilight-zone-tower-of-terror_16-9_tcm808-159368.jpg","Description":"Découvrez la transformation spectaculaire de The Twilight Zone Tower of Terror et embarquez pour trois nouvelles expériences plus terrifiantes que jamais. La Machine Infernale, Les Créatures en Cage et La Cinquième Dimension vous plongent dans des univers sinistres et déroutants !","Parc":"Disney Adventure World","Land":"World Premiere Plaza","Type":"Sensations fortes","Taille mini":"1,02 m","Coordonnées GPS (lat)":"48.866798","Coordonnées GPS (lng)":"2.778811"},{"Code":"P2ACAA01","UUID Themeparks.wiki":"f710814b-232d-4469-aad7-d98b328a15b7","Nom":"Spider-Man W.E.B. Adventure","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n038491_2027jul10_world_marvel-avengers-campus-spiderman-web-attraction_16-9_tcm808-248719.jpg","Description":"Réveillez le héros qui sommeille en vous lors de cette mission pleine d'action pour neutraliser les Spider-Bots, l'incontrôlable invention de Peter Parker. Montez à bord d'un Véhicule W.E.B. SLINGER avec vos amis et famille et lancez vos propres toiles aux côtés de Spider-Man. Attrapez les robots avant qu'ils ne fassent des ravages technologiques !","Parc":"Disney Adventure World","Land":"Avenger's Campus","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.865991","Coordonnées GPS (lng)":"2.779570"},{"Code":"P2ACAA02","UUID Themeparks.wiki":"ff2e7d6f-5aaf-47b8-8695-53a66e9fe073","Nom":"Avengers Assemble: Flight Force","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/N038457_2027-07-05_SLIGHT-FORCE-ATTRACTION_1-1-min_tcm808-241292.jpg","Description":"Préparez-vous pour votre nouvelle mission ! Iron Man et Captain Marvel ont besoin de vous pour sauver le monde d’une menace intergalactique. La Terre compte sur vous !","Parc":"Disney Adventure World","Land":"Avenger's Campus","Type":"Sensations fortes","Taille mini":"1,20 m","Coordonnées GPS (lat)":"48.86240","Coordonnées GPS (lng)":"2.779227"},{"Code":"P2WOPAA01","UUID Themeparks.wiki":"f0d4b531-e291-471b-9527-00410c2bbd65","Nom":"Crush's Coaster","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n018313_2050jan01_crushs-coaster_16-9_tcm808-159058.jpg","Description":"Laissez-vous entraîner dans un tourbillon d'aventures où vous virevolterez, plongerez et lutterez contre le courant.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Sensations fortes","Taille mini":"1,07 m","Coordonnées GPS (lat)":"48.868024","Coordonnées GPS (lng)":"2.778153"},{"Code":"P2WOPAA02","UUID Themeparks.wiki":"73e1c590-ef8f-496c-bf6c-d7e7fde0c7df","Nom":"Ratatouille: L'Aventure Totalement Toquée de Rémy","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n017730_2050jan01_ratatouille-laventure-completement-toquee_16-9_tcm808-159556.jpg","Description":"Rat-petissez jusqu'à atteindre la taille de Rémy et lancez-vous dans une course-poursuite effrénée au sein d'une cuisine gigantesque.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.867521","Coordonnées GPS (lng)":"2.776293"},{"Code":"P2WOPAA03","UUID Themeparks.wiki":"15bad9c3-8378-4ac5-ab90-2f8d0ee09d26","Nom":"RC Racer","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n009616_2_2024sep01_world_rc-racer-attraction-view-no-time_16-9_tcm808-157150.JPG","Description":"Andy est d'humeur espiègle et vous emmène dans son bolide sur un circuit grande vitesse en forme de U où vous monterez jusqu’à 25 m de haut.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Sensations fortes","Taille mini":"1,20 m","Coordonnées GPS (lat)":"48.866939","Coordonnées GPS (lng)":"2.776580"},{"Code":"P2WOPAA04","UUID Themeparks.wiki":"337bce77-57bd-49c7-83d7-662f16c162ea","Nom":"Slinky Dog Zigzag Spin","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n009541_2017aug01_slinky-dog-zigzag-spin_16-9_tcm808-157068.jpg","Description":"Vos bambins sauteront de joie avec cette course bondissante sur le dos de Zigzag.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.86714","Coordonnées GPS (lng)":"2.776977"},{"Code":"P2WOPAA05","UUID Themeparks.wiki":"a10b25e2-3176-449a-a8a5-4119902887bb","Nom":"Toy Soldiers Parachute Drop","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n009531_2017aug10_toy-soldiers-parachute-drop_16-9_tcm808-157205.jpg","Description":"Rassemblez vos jeunes recrues et emmenez toute la petite troupe jusqu'à Toy Story Playland pour un saut en parachute intrépide derrière les lignes ennemies.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Sensations modérées","Taille mini":"81 cm","Coordonnées GPS (lat)":"48.867207","Coordonnées GPS (lng)":"2.777241"},{"Code":"P2WOPAA06","UUID Themeparks.wiki":"449a20d8-9bfd-4b2b-b437-38a279aa8d88","Nom":"Cars Road Trip","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n035065_2028may16_world_cars-road-trip-attraction_16-9_tcm808-221737.jpg","Description":"Faites rugir votre moteur dans cette attraction du Parc Walt Disney Studios et prenez en photo les merveilles naturelles et mécaniques de la route mythique de l’Ouest Américain.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.866416","Coordonnées GPS (lng)":"2.775056"},{"Code":"P2WOPAA07","UUID Themeparks.wiki":"d944b02c-12ce-4176-ac62-6a936f180b5c","Nom":"Cars Quatre Roues Rallye","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n005941_2028jul10_world_cars-attraction-scenery_16-9_tcm808-226416.jpg","Description":"Faites rugir votre moteur et brûlez le pavé aux côtés de Flash McQueen sur ce circuit inspiré de l'univers de Cars","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.867768","Coordonnées GPS (lng)":"2.777846"},{"Code":"P2WOPAA08","UUID Themeparks.wiki":"8e229723-51c1-4668-b956-5bc45305acd9","Nom":"Les Tapis Volants – Flying Carpets Over Agrabah","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n014973_2020jun05_flying-carpet-over-agrabah_16-9_tcm808-156930.jpg","Description":"Grimpez sur un tapis volant et envolez-vous vers le ciel d'Agrabah en tournoyant autour d'une gigantesque lampe de génie.","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.868156","Coordonnées GPS (lng)":"2.778597"},{"Code":"P2AWAA01","UUID Themeparks.wiki":"25556e4e-aa6c-41ff-b196-29967362345e","Nom":"Raiponce Tangled Spin","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n042699_2_2027dec18_world_raiponce-tangled-spin-attraction-boat_16-9_tcm808-293288.jpg","Description":"Montez à bord d’une embarcation féerique tournoyant sous un ciel illuminé de lanternes. Inspirée de la scène iconique de Raiponce, cette attraction pour toute la famille fait briller tout le charme de son histoire.","Parc":"Disney Adventure World","Land":"Adventure Way","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.866143","Coordonnées GPS (lng)":"2.776609"},{"Code":"P2WOFAA01","UUID Themeparks.wiki":"630e2675-f9fc-4984-ba83-03daf5fc89ed","Nom":"Frozen Ever After","URL image":"https://media.disneylandparis.com/d4th/fr-fr/images/n043104_2033mar13_world_frozen-ever-after-attraction-anna-elsa-olaf_16-9_tcm808-295620.jpg","Description":"Embarquez à bord d’une croisière musicale captivante au cœur de l'histoire de La Reine des Neiges.","Parc":"Disney Adventure World","Land":"World of Frozen","Type":"Pour toute la famille","Taille mini":"Pas de restriction","Coordonnées GPS (lat)":"48.863955","Coordonnées GPS (lng)":"2.773401"}];
+        
+        const restaurantsRaw = [{"Code":"P1MSRA01","UUID Themeparks.wiki":"678d76cf-6b24-40ec-a536-26c3667745e8","Nom":"The Ice Cream Company","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017651_2050jan01_the-ice-cream-compagny_16-9_tcm808-159076.jpg","Description":"Détendez-vous et offrez-vous une petite pause gourmande.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR05_ice-cream-company.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.871833","Coordonnées GPS (lng)":"2.778303"},{"Code":"P1MSRA02","UUID Themeparks.wiki":"5b3c8ce8-e773-4f4c-a508-cadde75188ce","Nom":"Market House Deli","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n009482_2017jul01_market-house-deli_16-9_tcm808-157190.jpg","Description":"Faites votre choix parmi nos sandwichs géants chauds et froids dans cette épicerie fine new-yorkaise du début du XXe siècle.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR06_market-house-deli.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.871758","Coordonnées GPS (lng)":"2.778012"},{"Code":"P1MSRA03","UUID Themeparks.wiki":"ca17a056-3f23-41d2-babb-af6b178a9456","Nom":"Walt's - An American Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N034272_2027Jun24_world_walts-an-american-restaurant_16-9_tcm808-272443.jpg","Description":"Dans un univers victorien rendant hommage à Walt Disney ainsi qu'à son œuvre, vous pourrez apprécier une cuisine américaine contemporaine et raffinée, avec des influences européennes.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR10_walts-american-restaurant.pdf","Tarif":"€€€","Type":"service à table","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.871650","Coordonnées GPS (lng)":"2.777923"},{"Code":"P1MSRA04","UUID Themeparks.wiki":"b1d843de-80b6-4ee1-bfd4-54d40f6026e7","Nom":"Cookie Kitchen","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n016422_2028mar14_cookie-kitchen_16-9_tcm808-157215.jpg","Description":"Fiez-vous à votre odorat dans Main Street, U.S.A. et accordez-vous une petite pause gourmande.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR03_cookie-kitchen.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.871922","Coordonnées GPS (lng)":"2.777763"},{"Code":"P1MSRA05","UUID Themeparks.wiki":"98e395e6-4a32-4995-98f2-ff766d86c368","Nom":"Cable Car Bake Shop","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N034033_2027jul06_world_main-street-usa_16-9_tcm808-276515.jpg","Description":"Profitez d'une pause café et savourez des pâtisseries dans cette boulangerie chaleureuse imaginée avec notre Partenaire Officiel Kiri®.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR00_cable-car-bake-shop.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.871970","Coordonnées GPS (lng)":"2.777730"},{"Code":"P1MSRA06","UUID Themeparks.wiki":"d5c26c67-691b-4250-985f-fdda5e5ac233","Nom":"Casey's Corner","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N022571_2031oct09_world_facade-du-restaurant-casey-corner-main-street-usa_16-9_tcm808-288991.jpg","Description":"Dans ce restaurant consacré au baseball, les bases sont remplies de délicieuses spécialités américaines.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR01_caseys-corner.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.872018","Coordonnées GPS (lng)":"2.777428"},{"Code":"P1MSRA07","UUID Themeparks.wiki":"5ae7196f-3096-478b-b602-b8fe49d964ea","Nom":"The Gibson Girl Ice Cream Parlour","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017873_2050jan01_the-gibson-girl-ice_cream-parlour_16-9_tcm808-159297.jpg","Description":"Promenez-vous dans Main Street, U.S.A. et entrez dans ce glacier du début du XXe siècle pour découvrir de délicieux parfums signés Carte d'Or.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR04_gibson-girl-ice-cream-parlour.pdf","Tarif":"€","Type":"à emporter","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.872073","Coordonnées GPS (lng)":"2.777587"},{"Code":"P1MSRA08","UUID Themeparks.wiki":"f47b8d8b-a5a7-4f8c-a1ef-759621a5ee81","Nom":"Victoria's Home-Style Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N042135_2030jun11_world_world-premiere_16-9_tcm808-288671.jpg","Description":"Victoria’s Home Style Restaurant, pension de famille de la fin du XIXème, propose divers mets sucrés, boissons alcoolisées ou softs.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR09_victorias-home-style-restaurant.pdf","Tarif":"€","Type":"bar","Parc":"Disneyland Park","Land":"Main Street U.S.A - Central Plaza","Coordonnées GPS (lat)":"48.872219","Coordonnées GPS (lng)":"2.777755"},{"Code":"P1MSRA09","UUID Themeparks.wiki":"5b492a0f-7c9f-4c82-b6dc-4d1be20f7b1e","Nom":"Plaza Gardens Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017985_2050jan01_world_enseigne-du-plaza-garden-restaurant_16-9_tcm808-249810.jpg","Description":"Profitez d’un buffet raffiné dans ce somptueux pavillon de loisirs dépeignant la splendeur victorienne.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1MR08_plaza-gardens-restaurant.pdf","Tarif":"€€","Type":"buffet à volonté ","Parc":"Disneyland Park","Land":"Main Street U.S.A - Central Plaza","Coordonnées GPS (lat)":"48.872612","Coordonnées GPS (lng)":"2.777755"},{"Code":"P1DLRA01","UUID Themeparks.wiki":"2683a803-03c4-48b6-9bbd-a7298400a675","Nom":"Café Hyperion","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017816_2050dec31_world_enseigne-du-restaurant-cafe-hyperion-discoveryland_16-9_tcm808-249764.jpg","Description":"Venez grignoter un bout dans ce hangar futuriste abritant le dirigeable Hyperion.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1DR01_cafe-hyperion.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Discoveryland","Coordonnées GPS (lat)":"48.873762","Coordonnées GPS (lng)":"2.778200"},{"Code":"P1FLRA01","UUID Themeparks.wiki":"616bc6d6-5a14-4d39-90c3-88f6d61e5fd6","Nom":"Auberge de Cendrillon","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017780_2050jan01_auberge-de-cendrillon_16-9_tcm808-158869.jpg","Description":"Dégustez une cuisine française raffinée dans ce cadre enchanteur et féerique.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1NR01_auberge-de-cendrillon.pdf","Tarif":"€€€","Type":"service à table","Parc":"Disneyland Park","Land":"Fantaisyland","Coordonnées GPS (lat)":"48.873627","Coordonnées GPS (lng)":"2.775596"},{"Code":"P1FLRA02","UUID Themeparks.wiki":"4a0db383-6bb7-49e2-bc1e-06997e65325f","Nom":"Pizzeria Bella Notte","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n015182_2027jul10_pizzeria-belle-note_16-9_tcm808-157259.jpg","Description":"Partagez un moment magique autour de spécialités italiennes dans cette pizzéria inspirée par le classique Disney La Belle et le Clochard.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1NR06_pizzeria-bella-notte.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Fantaisyland","Coordonnées GPS (lat)":"48.874340","Coordonnées GPS (lng)":"2.776563"},{"Code":"P1FLRA03","UUID Themeparks.wiki":"d0f981f2-9813-45a4-a623-a34380247b62","Nom":"Toad Hall Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n018035_2050jan01_toad-hall-restaurant_16-9_tcm808-159811.jpg","Description":"Attardez-vous dans cette demeure typique de la campagne anglaise.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1NR07_toad-hall-restaurant.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Fantaisyland","Coordonnées GPS (lat)":"48.874150","Coordonnées GPS (lng)":"2.774042"},{"Code":"P1FLRA04","UUID Themeparks.wiki":"e9124220-9699-4014-8e65-06cad9814a5b","Nom":"Au Chalet de la Marionnette","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017752_2050jan01_au-chalet-de-la-marionette_16-9_tcm808-158954.jpg","Description":"Découvrez les plaisirs gourmands avec une touche bavaroise dans ce restaurant de type chalet sorti tout droit du monde de Pinocchio.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1NR02_au-chalet-de-la-marionnette.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Fantaisyland","Coordonnées GPS (lat)":"48.873554","Coordonnées GPS (lng)":"2.774632"},{"Code":"P1FRLRA01","UUID Themeparks.wiki":"222aa656-ac33-457c-8193-7c625949f40e","Nom":"Silver Spur Steakhouse","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n024775_2030jul07_silver-spur-steakhouse_16-9_tcm808-159120.jpg","Description":"Enfilez vos bottes de cow-boy, relevez le menton et pénétrez dans cet établissement qui recrée le confort agréable et le charme cossu d'un club américain de la fin des années 1800.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1RR04_silver-spur-steakhouse.pdf","Tarif":"€€","Type":"service à table","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.871232","Coordonnées GPS (lng)":"2.776602"},{"Code":"P1FRLRA02","UUID Themeparks.wiki":"04123960-2968-4bea-ac47-c9aeba4ed581","Nom":"The Lucky Nugget Saloon","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n042440_2032oct14_world_unlucky-nugget_16-9_tcm808-296783.jpg","Description":"The Lucky Nugget Saloon. La rumeur évoque une réception nuptiale jamais célébrée...","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1RR03_lucky-nugget-saloon.pdf","Tarif":"€","Type":"service à table","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.871645","Coordonnées GPS (lng)":"2.776339"},{"Code":"P1FRLRA03","UUID Themeparks.wiki":"4b2f71bd-332b-478c-8cd0-8627b3ec13fc","Nom":"Cowboy Cookout Barbecue","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N041067_2031jul18_world_cowboy-cookout-barbecue_16-9_tcm808-280192.jpg","Description":"Hue ! Direction le bal populaire de musique country où vous attend une montagne de délicieuses grillades.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1RR00_cowboy-cookout-barbecue.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.871012","Coordonnées GPS (lng)":"2.773522"},{"Code":"P1FRLRA04","UUID Themeparks.wiki":"e133de74-a086-4991-9ad9-6b72368447bd","Nom":"Casa de Coco - Restaurante de Familia","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n039813_2026oct29_world_casa-de-coco-restaurant_16-9_tcm808-271685.jpg","Description":"Savourez les délicieuses saveurs de plats mexicains traditionnels avec toute votre familia.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1RR01_casa-de-coco.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.871598","Coordonnées GPS (lng)":"2.774644"},{"Code":"P1FRLRA05","UUID Themeparks.wiki":"ac95f062-776b-48d9-bc77-869a9307dac7","Nom":"Last Chance Cafe","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017916_2050jan01_last-chance-cafe_16-9_tcm808-159053.jpg","Description":"Emmenez vos petits hors-la-loi faire profil bas et déguster de savoureux plats.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1RR02_last-chance-cafe.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.871378","Coordonnées GPS (lng)":"2.776350"},{"Code":"P1ALRA01","UUID Themeparks.wiki":"8598d1c9-9693-4b10-a7a8-50077ba62a3f","Nom":"Captain Jack's - Restaurant des Pirates","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N039760_2030Oct18_world_captains-jack-restaurant-dessert_16-9_tcm808-272128.jpg","Description":"Goûtez à un assortiment de fruits de mer exotiques et à une cuisine créole sur les rives d'un spectaculaire lagon.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1AR00_captain-jacks-restaurant-pirates.pdf","Tarif":"€€€","Type":"service à table","Parc":"Disneyland Park","Land":"Adventureland","Coordonnées GPS (lat)":"48.873304","Coordonnées GPS (lng)":"2.773066"},{"Code":"P1ALRA02","UUID Themeparks.wiki":"98e16089-4a95-4565-830a-faf5f730272d","Nom":"Restaurant Hakuna Matata","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017888_2050jan01_restaurant-hakuna-matata-detail_16-9_tcm808-159162.jpg","Description":"Promenez-vous dans Adventureland, où vous pourrez dénicher des petits en-cas pour votre meute dans ce restaurant inspiré du Roi Lion.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1AR07_restaurant-hakuna-matata.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Adventureland","Coordonnées GPS (lat)":"48.872128","Coordonnées GPS (lng)":"2.774435"},{"Code":"P1ALRA03","UUID Themeparks.wiki":"c8e304bd-876d-46e2-a412-7f8bc1e73a09","Nom":"Colonel Hathi's Pizza Outpost","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017838_2050jan01_colonel-hathis-pizza-outpost_16-9_tcm808-159292.jpg","Description":"Joignez-vous au Colonel Hathi du Classique Disney Le Livre de la Jungle pour un festival de spécialités indiennes.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1AR03_colonel-hathis-pizza-outpost.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disneyland Park","Land":"Adventureland","Coordonnées GPS (lat)":"48.871849","Coordonnées GPS (lng)":"2.773611"},{"Code":"P1ALRA04","UUID Themeparks.wiki":"3a91b818-cb5f-4900-b93e-c67e25f5956d","Nom":"Restaurant Agrabah Café","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N017750_2050dec31_world_agrabah-cafe-lanternes_16-9_tcm808-158856.jpg","Description":"Marchez sur les traces d'Aladdin pour un succulent repas en plein cœur de la cité haute en couleur et très animée d'Agrabah.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P1AR06_agrabah-cafe.pdf","Tarif":"€€","Type":"buffet à volonté ","Parc":"Disneyland Park","Land":"Adventureland","Coordonnées GPS (lat)":"48.872606","Coordonnées GPS (lng)":"2.775246"},{"Code":"P2WPRA01","UUID Themeparks.wiki":"d75b7092-0bf9-4a94-bef9-2c9979b8a889","Nom":"The Hollywood Gardens Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N041974_2030jun11_world_world-premiere_16-9_tcm808-292221.jpg","Description":"Vivez l'effervescence d'une soirée inoubliable en dégustant des plats typiquement américains sous des lumières scintillantes.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2FR00_the-hollywood-gardens-restaurant.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.867581","Coordonnées GPS (lng)":"2.779426"},{"Code":"P2ACRA01","UUID Themeparks.wiki":"5f492609-5f79-4ca2-a3ca-39cdd0438739","Nom":"PYM Kitchen","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n038955_2027jul10_world_lifestyle-marvel-pym-kitchen-family_1-1_tcm808-256296.jpg","Description":"Entrez dans l’ancien laboratoire du Docteur Hank Pym...","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2AR02_pym.pdf","Tarif":"€€","Type":"buffet à volonté ","Parc":"Disney Adventure World","Land":"Avengers Campus","Coordonnées GPS (lat)":"48.866011","Coordonnées GPS (lng)":"2.779660"},{"Code":"P2ACRA02","UUID Themeparks.wiki":"7dae6b67-0da8-4cb6-8e6e-fb2c2f262a4d","Nom":"Stark Factory","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N038963_2027oct20_world_stark-_factory-avengers_campus_restaurant-1-1_tcm808-252771.jpg","Description":"Tony Stark a transformé l’ancienne usine de son père en un parfait atelier où les héros viennent travailler sur leur équipement et réparer leur armure.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2AR01_stark-factory.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disney Adventure World","Land":"Avengers Campus","Coordonnées GPS (lat)":"48.865497","Coordonnées GPS (lng)":"2.779941"},{"Code":"P2ACRA03","UUID Themeparks.wiki":"80283731-cd16-42fe-860e-28c70de9e59c","Nom":"Super Diner","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N041082_2031jul18_world_super-diner-terrasse-view_16-9_tcm808-280191.jpg","Description":"Installez-vous à la terrasse de ce diner tout droit sorti des années 50, autrefois populaire auprès des agents du S.H.I.E.L.D.","Menu":"https://media.disneylandparis.com/d4th/en-gb/images/P2AR03_super-diner.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disney Adventure World","Land":"Avengers Campus","Coordonnées GPS (lat)":"48.865764","Coordonnées GPS (lng)":"2.778482"},{"Code":"P2WOPRA01","UUID Themeparks.wiki":"6528b0e3-0e49-44f8-a2ca-b135a4d267a4","Nom":"Bistrot Chez Rémy","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n017656_2050jan01_bistrot-chez-remy_16-9_tcm808-158834.jpg","Description":"Rat-atinez-vous pour vous mettre au niveau de Rémy et régalez-vous autour d'une cuisine française dans ce bistrot parisien.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2TR02_bistrot-chez-remy.pdf","Tarif":"€€","Type":"service à table","Parc":"Disney Adventure World","Land":"Worlds of Pixar","Coordonnées GPS (lat)":"48.867374","Coordonnées GPS (lng)":"2.776208"},{"Code":"P2AWRA01","UUID Themeparks.wiki":"ff75413f-edee-4f9c-a9e8-0da580d127e2","Nom":"The Regal View Restaurant","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/hd19850_2032oct30_world_the-regal-view-restaurant-and-lounge_16-9_tcm808-290964.jpg","Description":"Savourez un repas inoubliable en compagnie des Princesses Disney.","Menu":"https://media.disneylandparis.com/d4th/en-gb/images/P2DR00_the-regal-view-restaurant-and-lounge.pdf","Tarif":"€€€","Type":"service à table","Parc":"Disney Adventure World","Land":"Adventure Way","Coordonnées GPS (lat)":"48.866058","Coordonnées GPS (lng)":"2.775864"},{"Code":"P2AWRA02","UUID Themeparks.wiki":"37588b4a-f847-4fb1-a6c0-6fabd2aa5cba","Nom":"The Regal View Lounge","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n043130_2033mar13_world_the-regal-view-lounge_16-9_tcm808-295350.jpg","Description":"Offrez-vous une parenthèse de détente dans le seul lounge au cœur des Parcs Disney.","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2DR01_the-regal-view-lounge.pdf","Tarif":"€€€","Type":"bar","Parc":"Disney Adventure World","Land":"Adventure Way","Coordonnées GPS (lat)":"48.866058","Coordonnées GPS (lng)":"2.775864"},{"Code":"P2WOFRA01","UUID Themeparks.wiki":"9ee859db-2623-4ba3-8b40-ef32972cb8ee","Nom":"Nordic Crowns Tavern","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n043180_2033mar13_world_nordic-crowns-tavern_16-9_tcm808-295092.jpg","Description":"Laissez-vous tenter par la cuisine nordique traditionnelle et partagez un moment de convivialité dans le lieu de rassemblement préféré des Arendelliens !","Menu":"https://media.disneylandparis.com/d4th/fr-fr/images/P2ER00_nordic-crowns-tavern.pdf","Tarif":"€","Type":"restauration rapide","Parc":"Disney Adventure World","Land":"World of Frozen","Coordonnées GPS (lat)":"48.864151","Coordonnées GPS (lng)":"2.774268"}];
+        
+        const showsRaw = [{"Code":"P1MSSH01","UUID Themeparks.wiki":"777518c2-1c65-48ba-94a1-e19583c44bf5","Nom":"Disney Stars On Parade","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n027586-n027588_2024dec18_world_disney-stars-on-parade_full-width-desktop_bkg-grey-F7F7F7_tcm808-229644.jpg","Description":"Rêvez au passage de Peter Pan sur son trois-mâts volant, laissez-vous porter par le délicieux vent de glace d’Elsa, ou frissonnez à l'entrée assourdissante du dragon cracheur de feu !","Type":"Parade ","Parc":"Disneyland Park","Land":"Main Street U.S.A","Coordonnées GPS (lat)":"48.872405","Coordonnées GPS (lng)":"2.777057"},{"Code":"P1MSSH02","UUID Themeparks.wiki":"7d0660a9-cc08-45c0-9ab7-2699f5369771","Nom":"Disney Tales of Magic","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N041521_5_2032Jan14_world_disney-tales-of-magic-without-drones_fullwidth-landing-page_desktop_tcm808-292796.jpg","Description":"Sentez votre cœur vibrer au rythme d'une multitude de classiques intemporels et de nouvelles histoires qui s’animent sous vos yeux ébahis.","Type":"Spectacle nocturne","Parc":"Disneyland Park","Land":"Main Street U.S.A ","Coordonnées GPS (lat)":"48.872405","Coordonnées GPS (lng)":"2.777057"},{"Code":"P1MSSH03","UUID Themeparks.wiki":"f43b0d08-6197-4da9-ae62-cff690fdbeb8","Nom":"La Célébration Halloween de Mickey","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n034379_2027sep25_world_chars-festival-halloween-disney-2020_16-9_tcm808-227750.jpg","Description":"Dans une ambiance festive et colorée, célébrez le Festival Halloween Disney.","Type":"Spectacle en exterieur","Parc":"Disneyland Park","Land":"Main Street U.S.A ","Coordonnées GPS (lat)":"48.871678","Coordonnées GPS (lng)":"2.777972"},{"Code":"P1FRLSH01","UUID Themeparks.wiki":"78abb817-4564-41e2-b0de-fa0df34664c1","Nom":"Le Roi Lion et les Rythmes de la Terre","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n031658_2026jun28_lion-king-show-cast_16-9_tcm808-225640.jpg","Description":"Revivez les moments cultes du film Le Roi Lion devant ce spectacle exclusif à Disneyland Paris !","Type":"Spectacle sur scène","Parc":"Disneyland Park","Land":"Frontierland","Coordonnées GPS (lat)":"48.870408","Coordonnées GPS (lng)":"2.772633"},{"Code":"P2WPSH01","UUID Themeparks.wiki":"0f5cce1d-69ed-4fad-9505-a1914dd150cb","Nom":"Mickey et le Magicien","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n024300_2_2023jun30_world_mickey-and-the-magician-show-dlp-30th-anniversay_16-9_tcm808-233264.jpg","Description":"Suivez Mickey dans son apprentissage de tours de magie.","Type":"Spectacle sur scène","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.867944","Coordonnées GPS (lng)":"2.778655"},{"Code":"P2WPSH02","UUID Themeparks.wiki":"f2a48cc2-4dc3-47fd-9992-0c30eeba24f0","Nom":"Stitch Live!","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n014365_2027mar15_stitch_16-9_tcm808-158820.jpg","Description":"Cowabunga ! Discutez et chantez avec l’attachant petit homme bleu.","Type":"Spectacle intéractif","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.866654","Coordonnées GPS (lng)":"2.780003"},{"Code":"P2WPSH03","UUID Themeparks.wiki":"3bdddd5f-6ec1-4143-a915-2e95b2fa275f","Nom":"Animation Academy","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n036114_2050dec31_world_animation-celebration-academy-children-drawings-audiovisuel-castmember_16-9_tcm808-227264.jpg","Description":"Rejoignez l’académie et apprenez à dessiner un personnage Disney !","Type":"Spetacle intéractif","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.867585","Coordonnées GPS (lng)":"2.778413"},{"Code":"P2WPSH04","UUID Themeparks.wiki":"72d20d9c-1f46-4866-b9b9-b428d0aaf6e8","Nom":"Together : une Aventure Musicale Pixar","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n037700_2030jul26_world_together-a-pixar-musical-adventure-show_16-9_tcm808-267370.jpg","Description":"Éveillez ensemble vos sens lors d'une aventure poétique qui vous fera voyager à travers les mondes merveilleux de Pixar.","Type":"Spectacle sur scène","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.867185","Coordonnées GPS (lng)":"2.779754"},{"Code":"P2WPSH05","UUID Themeparks.wiki":"cd486865-9d66-4860-8111-303b3f56c71f","Nom":"La Fabrique des Rêves de Minnie","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N042980_2033feb16_world_show-minnies-dream-factory_5-2_tcm808-292631.jpg","Description":"Laissez-vous transporter dans un spectacle musical immersif revisité avec Minnie et ses amis.","Type":"Spectacle sur scène","Parc":"Disney Adventure World","Land":"World Premiere","Coordonnées GPS (lat)":"48.866996","Coordonnées GPS (lng)":"2.780283"},{"Code":"P2AWSH01","UUID Themeparks.wiki":"75d60cb3-c95c-4ce2-aeb4-36e4050f14f3","Nom":"Miguel's Fiesta Latina","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/N041843_2032May11_world_disney-music-festival-miguel-fiesta-latina_16-9_tcm808-287978.jpg","Description":"Accompagné de ses mariachis, Miguel est à la recherche de nouveaux musiciens.","Type":"Spectacle en exterieur","Parc":"Disney Adventure World","Land":"Adventure Way","Coordonnées GPS (lat)":"48.866776","Coordonnées GPS (lng)":"2.777963"},{"Code":"P2AWSH02","UUID Themeparks.wiki":"943860c5-c931-4212-a387-9e5cd139179d","Nom":"La Cavalcade des Princesses Disney","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n043696_2033jul22_world_disney-princess-cavalcade_16-9_tcm808-296294.jpg","Description":"Partez à la poursuite de vos rêves comme Vaiana, Tiana, Raiponce et Raya !","Type":"Parade ","Parc":"Disney Adventure World","Land":"Adventure Way","Coordonnées GPS (lat)":"48.866776","Coordonnées GPS (lng)":"2.777963"},{"Code":"P2AWSH03","UUID Themeparks.wiki":"2c51b641-2398-4833-8e1a-346fd7fe09db","Nom":"Disney Cascade of Lights","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/hd19798_2032sep01_world_cascade-of-lights-key-visual_16-9_tcm808-291191.jpg","Description":"Assistez à un spectacle nocturne unique qui illumine Adventure Bay.","Type":"Spectacle nocturne","Parc":"Disney Adventure World","Land":"Adventure Way","Coordonnées GPS (lat)":"48.865675","Coordonnées GPS (lng)":"2.775986"},{"Code":"P2WOFSH01","UUID Themeparks.wiki":"c122d2e4-7fb7-4360-bb73-f0dc37a38179","Nom":"Célébration à Arendelle","Photo":"https://media.disneylandparis.com/d4th/fr-fr/images/n043243_2033mar13_world_daw-a-celebration-in-arendelle-show-finale_16-9_tcm808-294256.jpg","Description":"Rejoignez les habitants du royaume pour un spectacle festif inédit.","Type":"Spectacle en exterieur","Parc":"Disney Adventure World","Land":"World of Frozen","Coordonnées GPS (lat)":"48.864459","Coordonnées GPS (lng)":"2.773738"}];
+
+        // Formatage et fusion de toutes vos données
+        const localDb = [
+            ...attractionsRaw.map(item => ({
+                id: item["Code"],
+                api_id: item["UUID Themeparks.wiki"],
+                name: item["Nom"],
+                category: "attraction",
+                type: item["Type"],
+                park: item["Parc"].trim(),
+                land: item["Land"],
+                image: item["URL image"],
+                description: item["Description"],
+                minHeight: item["Taille mini"],
+                lat: parseFloat(item["Coordonnées GPS (lat)"].replace(',', '.')),
+                lng: parseFloat(item["Coordonnées GPS (lng)"].replace(',', '.'))
+            })),
+            ...restaurantsRaw.map(item => ({
+                id: item["Code"],
+                api_id: item["UUID Themeparks.wiki"],
+                name: item["Nom"],
+                category: "restaurant",
+                type: item["Type"],
+                park: item["Parc"].trim(),
+                land: item["Land"],
+                image: item["Photo"],
+                description: item["Description"],
+                menuUrl: item["Menu"],
+                price: item["Tarif"],
+                lat: parseFloat(item["Coordonnées GPS (lat)"].replace(',', '.')),
+                lng: parseFloat(item["Coordonnées GPS (lng)"].replace(',', '.'))
+            })),
+            ...showsRaw.map(item => ({
+                id: item["Code"],
+                api_id: item["UUID Themeparks.wiki"],
+                name: item["Nom"],
+                category: "spectacle",
+                type: item["Type"],
+                park: item["Parc"].trim(),
+                land: item["Land"],
+                image: item["Photo"],
+                description: item["Description"],
+                lat: parseFloat(item["Coordonnées GPS (lat)"].replace(',', '.')),
+                lng: parseFloat(item["Coordonnées GPS (lng)"].replace(',', '.'))
+            }))
+        ];
+
+        let currentTab = 'attraction';
+        let apiData = [];
+
+        // URLs de l'API avec le Proxy pour contourner le blocage du navigateur sur mobile et entreprise
+        const URL_DISNEYLAND = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://api.themeparks.wiki/v1/entity/dae968d5-6341-4719-8b8a-38c8c8b7b212/live");
+        const URL_ADVENTURE_WORLD = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://api.themeparks.wiki/v1/entity/ca888437-ebb4-4d50-aed2-dce4568dbde7/live");
+
+        async function init() {
+            try {
+                const [resDLP, resWDS] = await Promise.all([
+                    fetch(URL_DISNEYLAND),
+                    fetch(URL_ADVENTURE_WORLD)
+                ]);
+                
+                const dataDLP = await resDLP.json();
+                const dataWDS = await resWDS.json();
+                
+                apiData = [...(dataDLP.liveData || []), ...(dataWDS.liveData || [])];
+                
+                document.getElementById('api-status').innerText = "🟢 API Sync";
+                document.getElementById('api-status').classList.add('live');
+                
+                // Synchronisation UUID
+                localDb.forEach(localItem => {
+                    if (localItem.api_id) {
+                        const liveItem = apiData.find(api => api.id === localItem.api_id);
+                        if (liveItem) {
+                            localItem.status = liveItem.status;
+                            if (liveItem.queue?.STANDBY) {
+                                localItem.wait = liveItem.queue.STANDBY.waitTime;
+                            }
+                            if (liveItem.queue?.SINGLE_RIDER) {
+                                localItem.single = liveItem.queue.SINGLE_RIDER.waitTime;
+                            }
+                            if (liveItem.showtimes) {
+                                localItem.showtimes = liveItem.showtimes;
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Erreur API:", error);
+                document.getElementById('api-status').innerText = "🔴 Erreur Réseau";
+            }
+            renderList();
+        }
+
+        function getColorClass(wait) {
+            if (wait == null) return '';
+            if (wait <= 30) return 'green';
+            if (wait <= 50) return 'orange';
+            return 'red';
+        }
+
+        function switchTab(tabCategory) {
+            currentTab = tabCategory;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            renderList();
+        }
+
+        function renderList() {
+            const listEl = document.getElementById('list');
+            listEl.innerHTML = '';
+            
+            const filtered = localDb.filter(item => item.category === currentTab);
+            
+            filtered.forEach(item => {
+                let waitHtml = '';
+                
+                if (item.category === 'attraction') {
+                    if (item.status === 'OPERATING' || item.status === 'DOWN') {
+                        const color = getColorClass(item.wait);
+                        waitHtml += `<span class="wait-normal ${color}">👫 ${item.wait !== undefined ? item.wait : '--'} min</span>`;
+                        if (item.single !== undefined && item.single !== null) {
+                            waitHtml += `<span class="wait-single">👤 ${item.single} min</span>`;
+                        }
+                    } else if (item.status) {
+                        waitHtml = `<span class="status-closed">⛔ ${item.status}</span>`;
+                    }
+                } else if (item.category === 'spectacle' && item.status === 'OPERATING') {
+                    waitHtml = `<span style="color: var(--primary)">✨ Programme disponible</span>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => showDetail(item, card);
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${item.name}</div>
+                    </div>
+                    <div style="font-size: 13px; color: #666;">${item.park} • ${item.land}</div>
+                    <div class="wait-times">${waitHtml}</div>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        function showDetail(item, cardElement) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            cardElement.classList.add('selected');
+
+            document.getElementById('detail-placeholder').style.display = 'none';
+            document.getElementById('detail-content').style.display = 'block';
+
+            document.getElementById('d-title').innerText = item.name;
+            document.getElementById('d-desc').innerText = item.description || "";
+            
+            const imgEl = document.getElementById('d-image');
+            if (item.image) {
+                imgEl.src = item.image;
+                imgEl.style.display = 'block';
+            } else {
+                imgEl.style.display = 'none';
+            }
+            
+            let badgesHtml = `<div class="badge park">${item.park}</div>`;
+            badgesHtml += `<div class="badge">${item.land}</div>`;
+            if(item.type) badgesHtml += `<div class="badge">${item.type}</div>`;
+            if(item.minHeight && item.minHeight !== "Pas de restriction") {
+                badgesHtml += `<div class="badge red">📏 Min: ${item.minHeight}</div>`;
+            }
+            if(item.price) {
+                badgesHtml += `<div class="badge price">💳 Tarifs: ${item.price}</div>`;
+            }
+            document.getElementById('d-badges').innerHTML = badgesHtml;
+
+            const btn = document.getElementById('d-btn');
+            if (item.menuUrl) {
+                btn.href = item.menuUrl;
+                btn.style.display = 'inline-block';
+            } else {
+                btn.style.display = 'none';
+            }
+
+            // Gestion Mobile : On affiche le panneau détaillé en plein écran si la fenêtre est petite
+            if (window.innerWidth <= 768) {
+                document.querySelector('.detail-pane').style.display = 'flex';
+            }
+        }
+
+        function closeDetail() {
+            // Ne ferme le panneau de détail que sur petit écran pour revenir à la liste
+            if (window.innerWidth <= 768) {
+                document.querySelector('.detail-pane').style.display = 'none';
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
