@@ -284,6 +284,23 @@
             background: none; border: 0; text-align: left; color: var(--primary); font-size: 17px; font-weight: 600;
         }
 
+        /* Alertes */
+        .alert-box { margin: 0 0 24px; padding: 16px; background: var(--bg-base); border: 1px solid var(--border); border-radius: 14px; }
+        .alert-box.is-active { border-color: color-mix(in srgb, var(--primary) 45%, var(--border)); }
+        .alert-box .field { background-color: var(--bg-surface); }
+        .alert-title { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 15px; font-weight: 800; }
+        .alert-box.is-active .alert-title .icon { color: var(--primary); }
+        .alert-label { margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .alert-control { display: flex; align-items: center; gap: 10px; }
+        .alert-field { width: 96px; font-weight: 700; text-align: center; }
+        .alert-unit { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .alert-info { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--text-muted); }
+        .alert-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .btn-alert { padding: 10px 16px; border: 0; border-radius: 10px; background: var(--primary); color: var(--on-primary); font-size: 14px; font-weight: 700; transition: opacity .2s; }
+        .btn-alert:hover { opacity: .88; }
+        .btn-alert.is-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+        .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--primary); vertical-align: -1px; }
+
         /* Message temporaire (erreurs de géolocalisation, etc.) */
         .toast {
             position: fixed; left: 50%; bottom: calc(88px + var(--safe-bottom)); z-index: 200;
@@ -334,6 +351,7 @@
         <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
         <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
     </svg>
 
     <div class="master-pane">
@@ -406,6 +424,30 @@
             <h2 id="d-title" class="detail-title"></h2>
             <div id="d-status" class="detail-status status"></div>
             <ul id="d-badges" class="badges"></ul>
+
+            <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
+                <h3 id="alert-title" class="alert-title">
+                    <svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>
+                    <span id="alert-heading"></span>
+                </h3>
+                <p id="alert-label" class="alert-label"></p>
+                <div class="alert-control">
+                    <input id="alert-num" class="field alert-field" type="number" inputmode="numeric" min="5" max="180" step="5" aria-labelledby="alert-label">
+                    <select id="alert-lead" class="field alert-field" aria-labelledby="alert-label">
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                        <option value="90">90</option>
+                    </select>
+                    <span id="alert-unit" class="alert-unit">min</span>
+                </div>
+                <p id="alert-info" class="alert-info"></p>
+                <div class="alert-actions">
+                    <button id="alert-save" class="btn-alert" type="button">Activer l’alerte</button>
+                    <button id="alert-remove" class="btn-alert is-secondary" type="button" hidden>Supprimer</button>
+                </div>
+            </section>
             <p id="d-desc" class="detail-desc"></p>
             <a id="d-btn" class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">Voir le menu officiel</a>
         </article>
@@ -566,6 +608,15 @@
             desc: $('#d-desc'),
             menu: $('#d-btn'),
             toast: $('#toast'),
+            alertBox: $('#d-alert'),
+            alertHeading: $('#alert-heading'),
+            alertLabel: $('#alert-label'),
+            alertNum: $('#alert-num'),
+            alertLead: $('#alert-lead'),
+            alertUnit: $('#alert-unit'),
+            alertInfo: $('#alert-info'),
+            alertSave: $('#alert-save'),
+            alertRemove: $('#alert-remove'),
         };
 
         /* ======================================================================
@@ -743,9 +794,296 @@
                 state.ready = true;
                 els.btnRefresh.disabled = false;
                 els.btnRefresh.classList.remove('is-spinning');
+                checkAlerts();
                 render();
             }
             if (ok) loadDownSince();   // sans bloquer l'affichage
+        }
+
+        /* ======================================================================
+           Alertes : seuil d'attente (attractions) et avance sur l'horaire (spectacles)
+           ====================================================================== */
+        const ALERTS_KEY = 'dlp-alerts';
+        const dbById = new Map(db.map((item) => [item.id, item]));
+
+        // id -> { kind: 'wait', threshold, armed, firedAt, firedWait }
+        //     | { kind: 'show', lead, done: [startTime, …] }
+        const alerts = (() => {
+            try {
+                const saved = JSON.parse(localStorage.getItem(ALERTS_KEY) ?? '{}');
+                return new Map(Object.entries(saved).filter(([id, a]) =>
+                    dbById.has(id) && (a?.kind === 'wait' || a?.kind === 'show')));
+            } catch { return new Map(); }
+        })();
+
+        // --- CONFIGURATION PUSH CLOUDFLARE ---
+        // Remplacer par votre clé PUBLIQUE générée
+        const VAPID_PUBLIC_KEY = 'BF7t3wvEsIR4cELGVe5kJC3T6d3GOUIfwCdZsBMSjBxYyMwU4xBEh0aRXhjQdoTBfSR7o4M3X7fEQznEpumuTIM';
+        // Remplacer par l'URL de votre Worker Cloudflare
+        const WORKER_URL = 'https://dlp-alert-worker.jordan-sautret.workers.dev/';
+
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        async function saveAlerts() {
+            try {
+                // 1. Sauvegarde locale (pour l'interface)
+                const alertsObj = Object.fromEntries(alerts);
+                localStorage.setItem(ALERTS_KEY, JSON.stringify(alertsObj));
+                
+                // 2. Sauvegarde distante (pour le Worker quand l'app est fermée)
+                if ('serviceWorker' in navigator && 'PushManager' in window) {
+                    const registration = await navigator.serviceWorker.ready;
+                    let subscription = await registration.pushManager.getSubscription();
+                    
+                    if (!subscription) {
+                        subscription = await registration.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+                        });
+                    }
+
+                    await fetch(WORKER_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            subscription: subscription,
+                            alerts: alertsObj
+                        })
+                    }).catch(err => console.error("Échec de la synchro avec Cloudflare:", err));
+                }
+
+                return true;
+            } catch (error) {
+                console.error("Erreur de sauvegarde des alertes :", error);
+                notify('Les alertes sont sauvegardées localement mais l\'envoi en arrière-plan a échoué.');
+                return false;
+            }
+        }
+
+        const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        async function ensureNotifications() {
+            if (!('Notification' in window)) {
+                notify(isIos()
+                    ? 'Sur iPhone/iPad, ajoutez d’abord l’app à l’écran d’accueil pour recevoir des notifications.'
+                    : 'Les notifications ne sont pas prises en charge par ce navigateur.');
+                return false;
+            }
+            let permission = Notification.permission;
+            if (permission === 'default') permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+                notify('Notifications bloquées : autorisez-les dans les réglages du navigateur.');
+                return false;
+            }
+            return true;
+        }
+
+        // Passe par le service worker quand il existe (obligatoire sur Android), sinon API Notification directe
+        async function sendNotification({ title, body, tag, id }) {
+            if (!document.hidden) notify(`${title} — ${body}`);
+            if (!('Notification' in window) || Notification.permission !== 'granted') return;
+            const options = { body, tag, renotify: true, data: { id } };
+            try {
+                const reg = await navigator.serviceWorker?.getRegistration();
+                if (reg) return await reg.showNotification(title, options);
+            } catch { /* repli ci-dessous */ }
+            try { new Notification(title, options); } catch { /* indisponible */ }
+        }
+
+        const futureSessions = (item, now) => (item.live?.showtimes ?? [])
+            .map((s) => ({ key: s.startTime, start: Date.parse(s.startTime) }))
+            .filter((s) => Number.isFinite(s.start) && s.start > now)
+            .sort((a, b) => a.start - b.start);
+
+        const isBelow = (live, threshold) =>
+            live?.status === 'OPERATING' && live.wait != null && live.wait <= threshold;
+
+        // L'alerte se déclenche au franchissement du seuil, puis se réarme quand l'attente repasse au-dessus
+        function checkWaitAlert(item, a) {
+            const live = item.live;
+            if (isBelow(live, a.threshold)) {
+                if (!a.armed) return false;
+                a.armed = false;
+                a.firedAt = Date.now();
+                a.firedWait = live.wait;
+                sendNotification({
+                    title: `${item.name} : ${live.wait} min d’attente`,
+                    body: `Sous votre seuil de ${a.threshold} min, c’est le moment d’y aller !`,
+                    tag: `wait-${item.id}`, id: item.id,
+                });
+                return true;
+            }
+            if (a.armed) return false;
+            a.armed = true;      // attente au-dessus du seuil, ou attraction indisponible : on réarme
+            return true;
+        }
+
+        function checkShowAlert(item, a, now) {
+            let changed = false;
+            for (const { key, start } of futureSessions(item, now)) {
+                if (a.done.includes(key) || start - now > a.lead * 60_000) continue;
+                a.done.push(key);
+                changed = true;
+                const mins = Math.max(1, Math.round((start - now) / 60_000));
+                sendNotification({
+                    title: `${item.name} commence dans ${mins} min`,
+                    body: `Séance de ${timeFormat.format(start)} · ${item.land}`,
+                    tag: `show-${item.id}-${key}`, id: item.id,
+                });
+            }
+            const kept = a.done.filter((key) => Date.parse(key) > now - 86_400_000);
+            if (kept.length !== a.done.length) { a.done = kept; changed = true; }
+            return changed;
+        }
+
+        function checkAlerts() {
+            if (!alerts.size) return false;
+            const now = Date.now();
+            let changed = false;
+            for (const [id, a] of alerts) {
+                const item = dbById.get(id);
+                if (!item?.live) continue;
+                changed = (a.kind === 'wait' ? checkWaitAlert(item, a) : checkShowAlert(item, a, now)) || changed;
+            }
+            if (changed) saveAlerts();
+            return changed;
+        }
+
+        /* --- Interface de l'alerte dans la fiche détail --- */
+        let alertUiFor = null;   // id de la fiche dont les champs ont été initialisés
+
+        function suggestThreshold(item) {
+            const wait = item.live?.wait;
+            return wait == null ? 30 : Math.max(5, Math.round((wait * 0.7) / 5) * 5);
+        }
+
+        function alertInfo(item, a) {
+            const now = Date.now();
+            if (item.category === 'attraction') {
+                const current = item.live?.status === 'OPERATING' && item.live.wait != null
+                    ? `Attente actuelle : ${item.live.wait} min.` : 'Attraction actuellement indisponible.';
+                if (!a) return `${current} Vous serez prévenu dès que l’attente passe sous le seuil choisi.`;
+                if (a.armed) return `Alerte active : notification dès que l’attente est de ${a.threshold} min ou moins. ${current}`;
+                return `Notification envoyée à ${timeFormat.format(a.firedAt)} (${a.firedWait} min). ` +
+                       `L’alerte se réarme si l’attente repasse au-dessus de ${a.threshold} min.`;
+            }
+            const sessions = futureSessions(item, now);
+            if (!a) {
+                return sessions.length
+                    ? `Prochaine séance : ${timeFormat.format(sessions[0].start)}. Vous serez prévenu avant chaque séance.`
+                    : 'Aucune séance à venir aujourd’hui.';
+            }
+            const pending = sessions.find((s) => !a.done.includes(s.key));
+            if (pending) {
+                return `Prochaine alerte à ${timeFormat.format(pending.start - a.lead * 60_000)} ` +
+                       `pour la séance de ${timeFormat.format(pending.start)}.`;
+            }
+            return sessions.length
+                ? `Alerte envoyée pour la séance de ${timeFormat.format(sessions[0].start)}.`
+                : 'Plus de séance aujourd’hui : l’alerte reprendra à la prochaine séance.';
+        }
+
+        function renderAlertBox(item) {
+            const supported = item.category === 'attraction' || item.category === 'spectacle';
+            els.alertBox.hidden = !supported;
+            if (!supported) return;
+
+            const isWait = item.category === 'attraction';
+            const a = alerts.get(item.id);
+
+            els.alertHeading.textContent = isWait ? 'Alerte temps d’attente' : 'Alerte avant la séance';
+            els.alertLabel.textContent = isWait
+                ? 'Me prévenir dès que l’attente est inférieure ou égale à'
+                : 'Me prévenir avant chaque séance, à l’avance de';
+            els.alertNum.hidden = !isWait;
+            els.alertLead.hidden = isWait;
+            els.alertUnit.textContent = isWait ? 'min' : 'min avant le début';
+
+            if (alertUiFor !== item.id) {   // n'écrase pas une saisie en cours lors des actualisations
+                alertUiFor = item.id;
+                if (isWait) els.alertNum.value = a?.threshold ?? suggestThreshold(item);
+                else els.alertLead.value = String(a?.lead ?? 45);
+            }
+
+            els.alertBox.classList.toggle('is-active', Boolean(a));
+            els.alertSave.textContent = a ? 'Mettre à jour' : 'Activer l’alerte';
+            els.alertRemove.hidden = !a;
+            els.alertInfo.textContent = alertInfo(item, a);
+        }
+
+        async function onAlertSave() {
+            const item = selectedItem();
+            if (!item) return;
+            const isWait = item.category === 'attraction';
+
+            let threshold = null;
+            let lead = null;
+            if (isWait) {
+                threshold = Number.parseInt(els.alertNum.value, 10);
+                if (!Number.isFinite(threshold) || threshold < 5 || threshold > 180) {
+                    return notify('Saisissez un seuil entre 5 et 180 minutes.');
+                }
+            } else {
+                lead = Number.parseInt(els.alertLead.value, 10);
+            }
+
+            if (!(await ensureNotifications())) return;
+
+            const now = Date.now();
+            if (isWait) {
+                alerts.set(item.id, {
+                    kind: 'wait', threshold,
+                    armed: !isBelow(item.live, threshold),   // déjà sous le seuil : on attend la prochaine remontée
+                    firedAt: null, firedWait: null,
+                });
+            } else {
+                alerts.set(item.id, {   // les séances déjà dans la fenêtre d'alerte ne déclenchent rien
+                    kind: 'show', lead,
+                    done: futureSessions(item, now).filter((s) => s.start - now <= lead * 60_000).map((s) => s.key),
+                });
+            }
+            
+            // On attend la sauvegarde avant de confirmer à l'utilisateur
+            if (!(await saveAlerts())) {
+                alerts.delete(item.id);
+            } else {
+                notify(isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`);
+            }
+
+            renderList();
+            renderAlertBox(item);
+        }
+
+        async function onAlertRemove() {
+            const item = selectedItem();
+            if (!item || !alerts.delete(item.id)) return;
+            
+            await saveAlerts();
+            
+            notify('Alerte supprimée');
+            renderList();
+            renderAlertBox(item);
+        }
+
+        // Ouvre la fiche d'un lieu (clic sur une notification)
+        function openFromAlert(id) {
+            const item = dbById.get(id);
+            if (!item) return;
+            state.tab = item.category;
+            if (CONFIG.PARKS.some((p) => p.value === item.park)) state.park = item.park;
+            els.park.value = state.park;
+            els.tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === state.tab)));
+            openDetail(id);
         }
 
         /* ======================================================================
@@ -794,7 +1132,7 @@
             return `
                 <button type="button" class="card${selected ? ' selected' : ''}" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
                     <span class="card-head">
-                        <span class="card-title">${esc(item.name)}</span>
+                        <span class="card-title">${esc(item.name)}${alerts.has(item.id) ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : ''}</span>
                         ${dist != null ? `<span class="card-dist">${formatDistance(dist)}</span>` : ''}
                     </span>
                     ${item.type ? `<span class="card-meta">${esc(item.type)}</span>` : ''}
@@ -878,6 +1216,7 @@
             const menu = safeUrl(item.menuUrl);
             els.menu.hidden = !menu;
             if (menu) els.menu.href = menu;
+            renderAlertBox(item);
         }
 
         function openDetail(id) {
@@ -893,6 +1232,7 @@
             const previousId = state.selectedId;
             if (previousId == null) return;
             state.selectedId = null;
+            alertUiFor = null;
             els.pane.classList.remove('is-open');
             renderList();
             renderDetail();
@@ -991,6 +1331,8 @@
             });
 
             els.btnBack.addEventListener('click', closeDetail);
+            els.alertSave.addEventListener('click', onAlertSave);
+            els.alertRemove.addEventListener('click', onAlertRemove);
             els.image.addEventListener('error', () => { els.image.hidden = true; });
             els.btnRefresh.addEventListener('click', refresh);
             els.btnTheme.addEventListener('click', () =>
@@ -999,7 +1341,10 @@
             document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDetail(); });
 
             // Actualisation automatique, uniquement quand l'onglet est visible
-            setInterval(() => { if (!document.hidden) refresh(); }, CONFIG.REFRESH_MS);
+            // Avec des alertes actives, on continue d'actualiser même onglet masqué
+            setInterval(() => { if (!document.hidden || alerts.size) refresh(); }, CONFIG.REFRESH_MS);
+            // Les alertes de spectacles dépendent de l'horloge : vérification plus fréquente sur les données en cache
+            setInterval(() => { if (checkAlerts()) render(); }, 30_000);
             document.addEventListener('visibilitychange', () => {
                 const stale = !state.lastSync || Date.now() - state.lastSync.getTime() > CONFIG.REFRESH_MS / 2;
                 if (!document.hidden && stale) refresh();
@@ -1016,6 +1361,12 @@
             bindEvents();
             render();     // affiche les squelettes de chargement
             refresh();
+
+            // Ouverture depuis une notification (service worker ou lien #id)
+            navigator.serviceWorker?.addEventListener('message', (event) => {
+                if (event.data?.type === 'open-item') openFromAlert(event.data.id);
+            });
+            if (location.hash.length > 1) openFromAlert(decodeURIComponent(location.hash.slice(1)));
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
