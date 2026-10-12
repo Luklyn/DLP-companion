@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#F2F2F7">
+    <meta name="theme-color" content="#1B3A9E">
     <meta name="description" content="Temps d'attente, restaurants et spectacles de Disneyland Paris en temps réel.">
     <title>DLP Companion</title>
 
@@ -31,14 +31,18 @@
            ========================================================================== */
         :root {
             color-scheme: light;
-            --primary: #0A6BDB;
+            /* Palette Disney : bleu royal, violet château, blanc */
+            --primary: #2347C5;
             --on-primary: #FFFFFF;
-            --bg-base: #F2F2F7;
+            --purple: #6A35B5;
+            --grad-brand: linear-gradient(135deg, #1B3A9E 0%, #3F2FA3 55%, #6A35B5 100%);
+            --on-brand: #FFFFFF;
+
+            --bg-base: #F4F4FB;
             --bg-surface: #FFFFFF;
-            --nav-bg: #FFFFFF;
-            --text-main: #1C1C1E;
-            --text-muted: #636366;
-            --border: #E5E5EA;
+            --text-main: #1B1D3A;
+            --text-muted: #5F6178;
+            --border: #E3E3F0;
 
             --green: #34C759;
             --orange: #FF9500;
@@ -48,7 +52,8 @@
             --orange-text: #B25E00;
             --red-text: #D70015;
 
-            --shadow: 0 4px 14px rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 14px rgb(30 30 90 / 0.07);
+            --shadow-brand: 0 6px 20px rgb(35 40 130 / 0.28);
             --radius: 16px;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -57,18 +62,20 @@
 
         [data-theme="dark"] {
             color-scheme: dark;
-            --primary: #5AC8FA;
-            --on-primary: #0B132B;
-            --bg-base: #0B132B;
-            --bg-surface: #1C2541;
-            --nav-bg: #141B33;
-            --text-main: #F2F2F7;
-            --text-muted: #8DA0CB;
-            --border: #2A365C;
+            --primary: #8FB4FF;
+            --on-primary: #0C1230;
+            --purple: #B79CFF;
+            --grad-brand: linear-gradient(135deg, #16256F 0%, #2E2584 55%, #4B2A94 100%);
+            --bg-base: #0C1230;
+            --bg-surface: #1A2150;
+            --text-main: #F2F3FF;
+            --text-muted: #9AA7D6;
+            --border: #2B3470;
             --green-text: #34C759;
             --orange-text: #FF9F0A;
             --red-text: #FF6961;
             --shadow: 0 4px 14px rgb(0 0 0 / 0.4);
+            --shadow-brand: 0 6px 20px rgb(0 0 0 / 0.5);
         }
 
         /* ==========================================================================
@@ -114,33 +121,35 @@
         }
 
         .header {
+            position: relative; z-index: 2;
             display: flex; align-items: center; justify-content: space-between; gap: 12px;
-            padding: calc(14px + var(--safe-top)) 20px 14px;
-            background: color-mix(in srgb, var(--bg-surface) 90%, transparent);
-            -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            padding: calc(14px + var(--safe-top)) 14px 14px 20px;
+            background: var(--grad-brand); color: var(--on-brand);
+            box-shadow: var(--shadow-brand);
         }
-        .header h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.2px; }
+        .header h1 { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; letter-spacing: -0.2px; }
+        .brand-icon { fill: currentColor; stroke: none; opacity: .95; }
         .header-actions { display: flex; align-items: center; gap: 4px; }
 
         .sync {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 4px 10px; border-radius: 999px;
             font-size: 12px; font-weight: 600; white-space: nowrap;
-            background: var(--border); color: var(--text-muted);
+            background: rgb(255 255 255 / .16); color: var(--on-brand);
         }
-        .sync .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-        .sync[data-state="live"]  { background: color-mix(in srgb, var(--green) 16%, transparent); color: var(--green-text); }
-        .sync[data-state="error"] { background: color-mix(in srgb, var(--red) 14%, transparent);   color: var(--red-text); }
+        .sync .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: .8; }
+        .sync[data-state="live"] .dot  { background: #5EE08A; opacity: 1; }
+        .sync[data-state="error"] .dot { background: #FF8A80; opacity: 1; }
 
         .btn-icon {
             display: inline-grid; place-items: center;
             width: 36px; height: 36px; padding: 0;
             background: none; border: 0; border-radius: 10px;
-            color: var(--text-main); font-size: 20px;
+            color: var(--on-brand); font-size: 20px;
         }
-        .btn-icon:hover { background: var(--border); }
+        .btn-icon:hover { background: rgb(255 255 255 / .16); }
         .btn-icon:disabled { cursor: default; opacity: .6; }
+        .header :focus-visible { outline-color: #fff; }
         .is-spinning .icon { animation: spin .9s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -162,6 +171,7 @@
             background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238E8E93%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
             background-repeat: no-repeat; background-position: right 14px top 50%; background-size: 10px auto;
         }
+        .park-select:disabled { opacity: .5; cursor: not-allowed; }
         .search { position: relative; display: block; }
         .search .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
         .search .field { padding-left: 38px; }
@@ -183,7 +193,7 @@
 
         /* Liste */
         .list-container { position: relative; flex: 1; overflow-y: auto; padding: 4px 16px 16px; overscroll-behavior: contain; }
-        .group-header { margin: 20px 4px 8px; font-size: 13px; font-weight: 700; color: var(--text-muted); letter-spacing: .2px; }
+        .group-header { margin: 20px 4px 8px; font-size: 13px; font-weight: 700; color: var(--purple); letter-spacing: .2px; }
 
         .card {
             display: block; width: 100%; margin-bottom: 12px; padding: 14px 16px; text-align: left;
@@ -208,6 +218,7 @@
         .showtimes { display: block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--primary); }
         .pill { display: inline-block; margin-top: 8px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
         .pill.is-open    { background: color-mix(in srgb, var(--green) 16%, transparent); color: var(--green-text); }
+        .pill.is-down    { background: color-mix(in srgb, var(--orange) 18%, transparent); color: var(--orange-text); }
         .pill.is-closed  { background: color-mix(in srgb, var(--red) 14%, transparent);   color: var(--red-text); }
         .pill.is-missing { background: var(--border); color: var(--text-muted); }
 
@@ -218,14 +229,23 @@
         .empty { padding: 40px 20px; text-align: center; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
 
         /* Navigation basse */
-        .bottom-nav { display: flex; background: var(--nav-bg); border-top: 1px solid var(--border); padding-bottom: var(--safe-bottom); }
+        .bottom-nav {
+            position: relative; z-index: 2;
+            display: flex; gap: 4px;
+            padding: 8px 10px calc(8px + var(--safe-bottom));
+            background: var(--grad-brand);
+            box-shadow: 0 -6px 20px rgb(35 40 130 / .22);
+        }
         .nav-item {
-            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-            padding: 10px 0; background: none; border: 0;
-            color: var(--text-muted); font-size: 12px; font-weight: 600; transition: color .2s;
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+            padding: 8px 0; background: none; border: 0; border-radius: 14px;
+            color: rgb(255 255 255 / .72); font-size: 12px; font-weight: 600;
+            transition: background-color .2s, color .2s;
         }
         .nav-item .icon { width: 24px; height: 24px; }
-        .nav-item[aria-selected="true"] { color: var(--primary); }
+        .nav-item:hover { color: #fff; }
+        .nav-item:focus-visible { outline-color: #fff; }
+        .nav-item[aria-selected="true"] { background: rgb(255 255 255 / .18); color: #fff; }
 
         /* ==========================================================================
            4. Colonne droite : détail
@@ -247,13 +267,15 @@
         .detail-status .pill, .detail-status .wait, .detail-status .showtimes { margin-top: 0; }
         .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
         .badge { padding: 6px 12px; background: var(--bg-base); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; }
+        .badge.is-park { background: color-mix(in srgb, var(--primary) 12%, var(--bg-base)); border-color: color-mix(in srgb, var(--primary) 30%, var(--border)); color: var(--primary); }
+        .badge.is-land { background: color-mix(in srgb, var(--purple) 12%, var(--bg-base)); border-color: color-mix(in srgb, var(--purple) 30%, var(--border)); color: var(--purple); }
         .badge.is-warning { border-color: color-mix(in srgb, var(--red) 40%, var(--border)); color: var(--red-text); }
         .detail-desc { max-width: 65ch; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
 
         .btn-menu {
             display: block; margin-top: 30px; padding: 16px; text-align: center; text-decoration: none;
-            background: var(--primary); color: var(--on-primary); border-radius: 12px; font-weight: 700; font-size: 16px;
-            box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 35%, transparent); transition: opacity .2s;
+            background: var(--grad-brand); color: #fff; border-radius: 12px; font-weight: 700; font-size: 16px;
+            box-shadow: var(--shadow-brand); transition: opacity .2s;
         }
         .btn-menu:hover { opacity: .85; }
 
@@ -287,6 +309,12 @@
             .detail-title { font-size: 26px; }
             .detail-content { padding-bottom: 40px; }
         }
+        @media (max-width: 420px) {
+            .header { padding-left: 16px; }
+            .header h1 { font-size: 18px; }
+            .brand-icon { display: none; }
+            .sync { padding: 4px 8px; }
+        }
         @keyframes slide-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 
         @media (prefers-reduced-motion: reduce) {
@@ -302,6 +330,7 @@
         <symbol id="i-restaurant" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2 1-3.5 3.5-3.5 7 0 2 1 3 3.5 3"/></symbol>
         <symbol id="i-show" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.6-4.8 4.2L17.6 20 12 16.8 6.4 20l1.4-6.2L3 9.6 9.4 9z"/></symbol>
         <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></symbol>
         <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
         <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
@@ -309,7 +338,7 @@
 
     <div class="master-pane">
         <header class="header">
-            <h1>DLP Companion</h1>
+            <h1><svg class="icon brand-icon" aria-hidden="true"><use href="#i-sparkle"/></svg>DLP Companion</h1>
             <div class="header-actions">
                 <span id="sync-status" class="sync" data-state="loading" role="status">
                     <span class="dot" aria-hidden="true"></span>
@@ -394,7 +423,9 @@
            Configuration
            ====================================================================== */
         const CONFIG = {
-            API_URL: 'https://api.themeparks.wiki/v1/entity/e8d0207f-da8a-4048-bec8-117aa946b2c2/live',
+            API_LIVE_URL: 'https://api.themeparks.wiki/v1/entity/e8d0207f-da8a-4048-bec8-117aa946b2c2/live',
+            API_HISTORY_URL: (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/history`,
+            DOWN_RETRY_MS: 300_000,      // nouvel essai si l'heure de panne n'a pas pu être déterminée
             REFRESH_MS: 60_000,          // actualisation automatique
             FETCH_TIMEOUT_MS: 10_000,
             NEARBY_RADIUS_KM: 0.2,       // rayon du filtre « Autour de moi »
@@ -407,8 +438,10 @@
             ],
         };
 
-        const CLOSED_LABELS = { CLOSED: 'Fermé', DOWN: 'Indisponible', REFURBISHMENT: 'En réhabilitation' };
-        const THEME_COLORS = { light: '#F2F2F7', dark: '#0B132B' };
+        // Masqués par défaut (affichés avec « Lieux fermés »). Les lieux « DOWN » (panne temporaire) restent visibles.
+        const CLOSED_LABELS = { CLOSED: 'Fermé', REFURBISHMENT: 'En réhabilitation' };
+        const HIDDEN_BY_DEFAULT = new Set(Object.keys(CLOSED_LABELS));
+        const THEME_COLORS = { light: '#1B3A9E', dark: '#16256F' };
 
         /* ======================================================================
            Données locales (inchangées)
@@ -503,6 +536,7 @@
             showClosed: false,
             nearby: false,
             location: null,
+            watchId: null,
             selectedId: null,
             ready: false,
             loading: false,
@@ -538,7 +572,7 @@
            Statuts
            ====================================================================== */
         const statusOf = (item) => item.live?.status ?? null;
-        const isClosed = (item) => statusOf(item) in CLOSED_LABELS;
+        const isHiddenByDefault = (item) => HIDDEN_BY_DEFAULT.has(statusOf(item));
 
         const waitTone = (wait) => {
             if (wait == null) return '';
@@ -556,10 +590,20 @@
                 .filter((d) => !Number.isNaN(d.getTime()) && d.getTime() >= now);
         }
 
+        // apiId -> { since: Date|null, checkedAt: ms } : heure de passage en panne, lue dans l'historique de l'API
+        const downInfo = new Map();
+        const downPending = new Set();
+
+        function downHtml(item) {
+            const since = downInfo.get(item.apiId)?.since;
+            return pill(since ? `En panne depuis : ${timeFormat.format(since)}` : 'En panne', 'down');
+        }
+
         function statusHtml(item) {
             const status = statusOf(item);
 
-            if (isClosed(item)) return pill(CLOSED_LABELS[status], 'closed');
+            if (status === 'DOWN') return downHtml(item);
+            if (isHiddenByDefault(item)) return pill(CLOSED_LABELS[status], 'closed');
 
             switch (item.category) {
                 case 'attraction': {
@@ -589,6 +633,18 @@
         /* ======================================================================
            Synchronisation avec l'API temps réel
            ====================================================================== */
+        async function fetchJson(url, timeoutMs) {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+            try {
+                const res = await fetch(url, { cache: 'no-store', signal: controller.signal });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return await res.json();
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
         function applyLive(liveData) {
             const byId = new Map();
             for (const entry of liveData) {
@@ -606,8 +662,49 @@
                     single: live.queue?.SINGLE_RIDER?.waitTime ?? null,
                     showtimes: Array.isArray(live.showtimes) ? live.showtimes : [],
                 };
+                if (item.live.status !== 'DOWN') downInfo.delete(item.apiId);   // la panne est terminée
             }
             return matches;
+        }
+
+        /**
+         * Le flux « live » ne donne pas la date de début de panne. L'historique de l'API
+         * (une ligne par changement d'état, ordre chronologique) permet de la retrouver :
+         * on remonte la dernière série de lignes consécutives en statut DOWN.
+         */
+        function findDownSince(history) {
+            const rows = (history?.history ?? history?.entities?.[0]?.history ?? [])
+                .filter((row) => row?.time && !Number.isNaN(new Date(row.time).getTime()))
+                .sort((a, b) => new Date(a.time) - new Date(b.time));
+
+            if (!rows.length || rows[rows.length - 1].status !== 'DOWN') return null;
+            let i = rows.length - 1;
+            while (i > 0 && rows[i - 1].status === 'DOWN') i--;
+            return new Date(rows[i].time);
+        }
+
+        async function loadDownSince() {
+            const now = Date.now();
+            const targets = db.filter((item) => {
+                if (!item.apiId || statusOf(item) !== 'DOWN' || downPending.has(item.apiId)) return false;
+                const info = downInfo.get(item.apiId);
+                return !info || (!info.since && now - info.checkedAt > CONFIG.DOWN_RETRY_MS);
+            });
+            if (!targets.length) return;
+
+            await Promise.all(targets.map(async (item) => {
+                downPending.add(item.apiId);
+                let since = null;
+                try {
+                    since = findDownSince(await fetchJson(CONFIG.API_HISTORY_URL(item.apiId), CONFIG.FETCH_TIMEOUT_MS));
+                } catch (error) {
+                    console.warn(`Historique indisponible pour « ${item.name} » :`, error);
+                } finally {
+                    downPending.delete(item.apiId);
+                    downInfo.set(item.apiId, { since, checkedAt: Date.now() });
+                }
+            }));
+            render();
         }
 
         function setSync(mode) {
@@ -631,27 +728,24 @@
             els.btnRefresh.classList.add('is-spinning');
             if (!state.lastSync) setSync('loading');
 
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT_MS);
-
+            let ok = false;
             try {
-                const res = await fetch(CONFIG.API_URL, { cache: 'no-store', signal: controller.signal });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
+                const data = await fetchJson(CONFIG.API_LIVE_URL, CONFIG.FETCH_TIMEOUT_MS);
                 state.matches = applyLive(data.liveData ?? []);
                 state.lastSync = new Date();
                 setSync('live');
+                ok = true;
             } catch (error) {
                 console.error('Synchronisation impossible :', error);
                 setSync('error');
             } finally {
-                clearTimeout(timer);
                 state.loading = false;
                 state.ready = true;
                 els.btnRefresh.disabled = false;
                 els.btnRefresh.classList.remove('is-spinning');
                 render();
             }
+            if (ok) loadDownSince();   // sans bloquer l'affichage
         }
 
         /* ======================================================================
@@ -659,15 +753,17 @@
            ====================================================================== */
         function getVisibleEntries() {
             const query = searchKey(state.query);
+            const nearbyActive = state.nearby && state.location;
             const entries = [];
 
             for (const item of db) {
-                if (item.category !== state.tab || item.park !== state.park) continue;
-                if (!state.showClosed && isClosed(item)) continue;
+                if (item.category !== state.tab) continue;
+                if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
+                if (!state.showClosed && isHiddenByDefault(item)) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
 
                 let dist = null;
-                if (state.nearby && state.location) {
+                if (nearbyActive) {
                     if (item.lat == null || item.lng == null) continue;
                     dist = distanceKm(state.location.lat, state.location.lng, item.lat, item.lng);
                     if (dist > CONFIG.NEARBY_RADIUS_KM) continue;
@@ -677,12 +773,18 @@
             return entries;
         }
 
+        // Classement des attractions : temps d'attente décroissant, puis en panne, puis fermées
+        function waitRank(item) {
+            const live = item.live;
+            if (live?.status === 'OPERATING') return live.wait ?? 0;
+            return live?.status === 'DOWN' ? -1 : -2;
+        }
+
         function compareEntries(a, b) {
-            if (a.dist != null && b.dist != null) return a.dist - b.dist;
+            if (a.dist != null && b.dist != null) return a.dist - b.dist;   // distance croissante
             if (state.tab === 'attraction') {
-                const wa = a.item.live?.status === 'OPERATING' ? (a.item.live.wait ?? -1) : -1;
-                const wb = b.item.live?.status === 'OPERATING' ? (b.item.live.wait ?? -1) : -1;
-                if (wa !== wb) return wb - wa;   // temps d'attente décroissant
+                const diff = waitRank(b.item) - waitRank(a.item);
+                if (diff) return diff;
             }
             return a.item.name.localeCompare(b.item.name, CONFIG.LOCALE);
         }
@@ -723,8 +825,14 @@
                 groups.get(entry.item.land).push(entry);
             }
 
-            els.list.innerHTML = [...groups.keys()]
-                .sort((a, b) => a.localeCompare(b, CONFIG.LOCALE))
+            // Lands par ordre alphabétique ; avec « Autour de moi », du plus proche au plus lointain
+            const nearest = (land) => Math.min(...groups.get(land).map((e) => e.dist));
+            const lands = [...groups.keys()].sort((a, b) =>
+                state.nearby && state.location
+                    ? nearest(a) - nearest(b)
+                    : a.localeCompare(b, CONFIG.LOCALE));
+
+            els.list.innerHTML = lands
                 .map((land) => `
                     <section>
                         <h2 class="group-header">${esc(land)}</h2>
@@ -755,8 +863,8 @@
             if (image && els.image.getAttribute('src') !== image) els.image.src = image;
 
             const badges = [
-                { text: item.park },
-                { text: item.land },
+                { text: item.park, kind: 'park' },
+                { text: item.land, kind: 'land' },
                 { text: item.type },
                 item.minHeight && item.minHeight !== 'Pas de restriction'
                     ? { text: `Taille minimale : ${item.minHeight}`, warning: true } : null,
@@ -764,7 +872,7 @@
             ].filter((b) => b && b.text);
 
             els.badges.innerHTML = badges
-                .map((b) => `<li class="badge${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
+                .map((b) => `<li class="badge${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
                 .join('');
 
             const menu = safeUrl(item.menuUrl);
@@ -813,30 +921,50 @@
             try { localStorage.setItem('theme', theme); } catch { /* stockage indisponible */ }
         }
 
-        function onNearbyChange() {
-            const resetToggle = (message) => {
-                els.toggleNearby.checked = false;
-                notify(message);
-            };
+        /* « Autour de moi » : position suivie en continu pour garder les distances à jour */
+        function setNearbyUi(active) {
+            state.nearby = active;
+            els.park.disabled = active;
+            els.park.title = active ? '« Autour de moi » couvre les deux parcs' : '';
+        }
 
+        function stopNearby() {
+            if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
+            state.watchId = null;
+            state.location = null;
+            setNearbyUi(false);
+        }
+
+        function onPosition({ coords }) {
+            const previous = state.location;
+            state.location = { lat: coords.latitude, lng: coords.longitude };
+
+            const firstFix = !state.nearby;
+            if (firstFix) setNearbyUi(true);
+            const moved = !previous ||
+                distanceKm(previous.lat, previous.lng, state.location.lat, state.location.lng) > 0.015;
+            if (firstFix || moved) renderList();
+        }
+
+        function onPositionError(error) {
+            if (state.nearby && error.code === 3) return;   // délai dépassé : on garde la dernière position
+            stopNearby();
+            els.toggleNearby.checked = false;
+            notify('Autorisez la géolocalisation pour afficher les lieux proches.');
+            renderList();
+        }
+
+        function onNearbyChange() {
             if (!els.toggleNearby.checked) {
-                state.nearby = false;
-                state.location = null;
+                stopNearby();
                 return renderList();
             }
             if (!('geolocation' in navigator)) {
-                return resetToggle('La géolocalisation n’est pas disponible sur cet appareil.');
+                els.toggleNearby.checked = false;
+                return notify('La géolocalisation n’est pas disponible sur cet appareil.');
             }
-
-            navigator.geolocation.getCurrentPosition(
-                ({ coords }) => {
-                    state.location = { lat: coords.latitude, lng: coords.longitude };
-                    state.nearby = true;
-                    renderList();
-                },
-                () => resetToggle('Autorisez la géolocalisation pour afficher les lieux proches.'),
-                { enableHighAccuracy: true, timeout: 10_000, maximumAge: 30_000 }
-            );
+            state.watchId = navigator.geolocation.watchPosition(onPosition, onPositionError,
+                { enableHighAccuracy: true, timeout: 20_000, maximumAge: 15_000 });
         }
 
         function bindEvents() {
