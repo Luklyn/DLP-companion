@@ -84,13 +84,39 @@
         .card-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
         .card-title { font-size: 16px; font-weight: bold; }
         
-        .wait-times { display: flex; gap: 15px; font-size: 14px; font-weight: 600; margin-top: 8px;}
+        /* Conteneur des temps d'attente et statuts */
+        .wait-times { display: flex; gap: 15px; font-size: 14px; font-weight: 600; margin-top: 8px; flex-wrap: wrap;}
         .wait-normal.green { color: var(--green); }
         .wait-normal.orange { color: var(--orange); }
         .wait-normal.red { color: var(--red); }
         .wait-single { color: var(--primary); }
-        .status-closed { color: var(--text-muted); font-style: italic; }
         
+        /* Nouveau design des bulles pour les lieux fermés/ouverts */
+        .status-closed {
+            background-color: var(--red);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .status-open {
+            background-color: var(--green);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .status-missing {
+            background-color: #9e9e9e;
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
         .detail-content { width: 100%; max-width: 700px; display: none; }
         
         .detail-image {
@@ -98,7 +124,7 @@
             object-fit: contain; background-color: var(--bg-color);
         }
         
-        .detail-title { font-size: 32px; font-weight: 900; margin: 0 0 16px 0; }
+        .detail-title { font-size: 32px; font-weight: 900; margin: 0 0 12px 0; }
         .badges { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
         .badge { background: #eee; padding: 6px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; }
         .badge.park { background: #e3f2fd; color: #1565c0; }
@@ -153,6 +179,10 @@
             <button id="btn-back" class="btn-back" onclick="closeDetail()">🔙 Retour à la liste</button>
             <img id="d-image" class="detail-image" src="" alt="Image">
             <h1 class="detail-title" id="d-title">Titre</h1>
+            
+            <!-- Nouveau conteneur pour afficher les temps d'attente dans la vue détaillée -->
+            <div class="wait-times" id="d-wait-times" style="margin-bottom: 24px; font-size: 16px;"></div>
+            
             <div class="badges" id="d-badges"></div>
             <div class="detail-desc" id="d-desc"></div>
             <a href="#" target="_blank" class="btn-menu" id="d-btn">📖 Voir le Menu Officiel</a>
@@ -219,21 +249,17 @@
         let currentTab = 'attraction';
         let apiData = [];
 
-        // LE BON LIEN : L'identifiant "Resort" qui englobe TOUT Disneyland Paris (les deux parcs)
         const URL_DLP_RESORT = "https://api.themeparks.wiki/v1/entity/e8d0207f-da8a-4048-bec8-117aa946b2c2/live";
 
         async function init() {
             try {
-                // On force le rafraîchissement complet pour éviter les bugs de cache
                 const options = { cache: 'no-store' };
                 const res = await fetch(URL_DLP_RESORT, options);
                 const data = await res.json();
                 
                 apiData = data.liveData || [];
-                
                 let matches = 0;
                 
-                // MAPPING STRICT PAR UUID (Tel que renseigné dans le fichier Excel d'origine)
                 localDb.forEach(localItem => {
                     if (localItem.api_id) {
                         const liveItem = apiData.find(api => api.id && api.id.toLowerCase() === localItem.api_id);
@@ -270,6 +296,44 @@
             return 'red';
         }
 
+        // Fonction centralisée pour générer le statut (Temps, horaires, fermeture)
+        function getStatusHtml(item) {
+            let html = '';
+            
+            // Fermeture globale (Attraction, Restaurant, Show)
+            if (item.status === 'CLOSED' || item.status === 'DOWN' || item.status === 'REFURBISHMENT') {
+                const reason = item.status === 'REFURBISHMENT' ? 'En réhabilitation' : 'Fermé';
+                return `<span class="status-closed">${reason}</span>`;
+            }
+
+            if (item.category === 'attraction') {
+                if (item.status === 'OPERATING') {
+                    const color = getColorClass(item.wait);
+                    html += `<span class="wait-normal ${color}">Stand By: ${item.wait !== undefined ? item.wait : '--'} min</span>`;
+                    if (item.single !== undefined && item.single !== null) {
+                        html += `<span class="wait-single">Single Rider: ${item.single} min</span>`;
+                    }
+                } else if (!item.status) {
+                    html = `<span class="status-missing">Données introuvables</span>`;
+                }
+            } else if (item.category === 'spectacle') {
+                if (item.showtimes && item.showtimes.length > 0) {
+                    const times = item.showtimes.map(st => {
+                        const d = new Date(st.startTime);
+                        return d.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
+                    }).join(' • ');
+                    html = `<span style="color: var(--primary); font-weight: bold;">🕒 Prochaines séances : ${times}</span>`;
+                } else if (item.status === 'OPERATING') {
+                    html = `<span style="color: var(--primary); font-weight: bold;">✨ En cours</span>`;
+                }
+            } else if (item.category === 'restaurant') {
+                if (item.status === 'OPERATING') {
+                    html = `<span class="status-open">Ouvert</span>`;
+                }
+            }
+            return html;
+        }
+
         function switchTab(tabCategory) {
             currentTab = tabCategory;
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -284,22 +348,6 @@
             const filtered = localDb.filter(item => item.category === currentTab);
             
             filtered.forEach(item => {
-                let waitHtml = '';
-                
-                if (item.category === 'attraction') {
-                    if (item.status === 'OPERATING' || item.status === 'DOWN') {
-                        const color = getColorClass(item.wait);
-                        waitHtml += `<span class="wait-normal ${color}">👫 ${item.wait !== undefined ? item.wait : '--'} min</span>`;
-                        if (item.single !== undefined && item.single !== null) {
-                            waitHtml += `<span class="wait-single">👤 ${item.single} min</span>`;
-                        }
-                    } else if (item.status) {
-                        waitHtml = `<span class="status-closed">⛔ ${item.status}</span>`;
-                    }
-                } else if (item.category === 'spectacle' && item.status === 'OPERATING') {
-                    waitHtml = `<span style="color: var(--primary)">✨ Programme disponible</span>`;
-                }
-
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.onclick = () => showDetail(item, card);
@@ -308,7 +356,7 @@
                         <div class="card-title">${item.name}</div>
                     </div>
                     <div style="font-size: 13px; color: #666;">${item.park} • ${item.land}</div>
-                    <div class="wait-times">${waitHtml}</div>
+                    <div class="wait-times">${getStatusHtml(item)}</div>
                 `;
                 listEl.appendChild(card);
             });
@@ -323,6 +371,9 @@
 
             document.getElementById('d-title').innerText = item.name;
             document.getElementById('d-desc').innerText = item.description || "";
+            
+            // Injection des temps d'attente / statuts en grand sous le titre
+            document.getElementById('d-wait-times').innerHTML = getStatusHtml(item);
             
             const imgEl = document.getElementById('d-image');
             if (item.image) {
