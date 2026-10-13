@@ -44,6 +44,7 @@
             --text-muted: #5F6178;
             --border: #E3E3F0;
 
+            --fav: #E0245E;
             --green: #34C759;
             --orange: #FF9500;
             --red: #FF3B30;
@@ -71,6 +72,7 @@
             --text-main: #F2F3FF;
             --text-muted: #9AA7D6;
             --border: #2B3470;
+            --fav: #FF6B8E;
             --green-text: #34C759;
             --orange-text: #FF9F0A;
             --red-text: #FF6961;
@@ -176,8 +178,21 @@
         .search .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
         .search .field { padding-left: 38px; }
 
-        .toggles-row { display: flex; justify-content: space-between; gap: 16px; }
+        .toggles-row { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px 22px; }
         .toggle-group { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+
+        /* Bouton « Voir les favoris » */
+        .btn-favs {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 10px 14px;
+            background: var(--bg-base); border: 1px solid var(--border); border-radius: 10px;
+            font-size: 14px; font-weight: 700; color: var(--text-main);
+            transition: background-color .2s, border-color .2s, color .2s;
+        }
+        .btn-favs .icon { color: var(--fav); }
+        .btn-favs:hover { border-color: var(--fav); }
+        .btn-favs[aria-pressed="true"] { background: color-mix(in srgb, var(--fav) 14%, var(--bg-base)); border-color: var(--fav); color: var(--fav); }
+        .btn-favs[aria-pressed="true"] .icon { fill: currentColor; }
 
         /* Interrupteur de type iOS */
         .switch { position: relative; display: inline-block; width: 44px; height: 24px; flex: none; }
@@ -196,11 +211,22 @@
         .group-header { margin: 20px 4px 8px; font-size: 13px; font-weight: 700; color: var(--purple); letter-spacing: .2px; }
 
         .card {
-            display: block; width: 100%; margin-bottom: 12px; padding: 14px 16px; text-align: left;
+            display: block; width: 100%; margin-bottom: 0; padding: 14px 52px 14px 16px; text-align: left;
             background: var(--bg-surface); border: 2px solid transparent; border-radius: var(--radius);
             box-shadow: var(--shadow); transition: border-color .15s ease;
         }
         .card:hover, .card.selected { border-color: var(--primary); }
+        .card-wrap { position: relative; margin-bottom: 12px; }
+        .card-fav-btn {
+            position: absolute; top: 6px; right: 6px; z-index: 1;
+            display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0;
+            background: none; border: 0; border-radius: 50%;
+            color: var(--text-muted); font-size: 20px; opacity: .75;
+            transition: color .2s, background-color .2s, opacity .2s;
+        }
+        .card-fav-btn:hover { color: var(--fav); background: color-mix(in srgb, var(--fav) 12%, transparent); opacity: 1; }
+        .card-fav-btn[aria-pressed="true"] { color: var(--fav); opacity: 1; }
+        .card-fav-btn[aria-pressed="true"] .icon { fill: currentColor; }
         .card > span { display: block; }
         .card-head { display: flex !important; justify-content: space-between; align-items: baseline; gap: 8px; }
         .card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
@@ -304,6 +330,20 @@
         .alert-check input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--primary); }
         .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--primary); vertical-align: -1px; }
 
+        /* Bouton favori de la fiche détail */
+        .detail-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+        .detail-title-row .detail-title { margin-bottom: 0; }
+        .btn-fav {
+            display: inline-grid; place-items: center; flex: none;
+            width: 44px; height: 44px; padding: 0;
+            background: var(--bg-base); border: 1px solid var(--border); border-radius: 50%;
+            color: var(--text-muted); font-size: 22px;
+            transition: color .2s, border-color .2s, background-color .2s;
+        }
+        .btn-fav:hover { color: var(--fav); border-color: var(--fav); }
+        .btn-fav[aria-pressed="true"] { color: var(--fav); border-color: var(--fav); background: color-mix(in srgb, var(--fav) 12%, var(--bg-base)); }
+        .btn-fav[aria-pressed="true"] .icon { fill: currentColor; }
+
         /* Message temporaire (erreurs de géolocalisation, etc.) */
         .toast {
             position: fixed; left: 50%; bottom: calc(88px + var(--safe-bottom)); z-index: 200;
@@ -354,6 +394,7 @@
         <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
         <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-9.5-10C1.6 7.2 3.6 4.2 6.9 4.2c2 0 3.5 1 5.1 2.9 1.6-1.9 3.1-2.9 5.1-2.9 3.3 0 5.3 3 4.4 6.3C20 15.6 12 20.5 12 20.5z"/></symbol>
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
     </svg>
 
@@ -398,6 +439,11 @@
                     Autour de moi
                 </label>
             </div>
+
+            <button id="btn-favs" class="btn-favs" type="button" aria-pressed="false">
+                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+                <span id="favs-label">Voir les favoris</span>
+            </button>
         </section>
 
         <div id="list" class="list-container" role="tabpanel" aria-live="polite"></div>
@@ -424,7 +470,12 @@
                 Retour
             </button>
             <img id="d-image" class="detail-image" src="" alt="" decoding="async">
-            <h2 id="d-title" class="detail-title"></h2>
+            <div class="detail-title-row">
+                <h2 id="d-title" class="detail-title"></h2>
+                <button id="btn-fav" class="btn-fav" type="button" aria-pressed="false" aria-label="Ajouter aux favoris" title="Ajouter aux favoris">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+                </button>
+            </div>
             <div id="d-status" class="detail-status status"></div>
             <ul id="d-badges" class="badges"></ul>
 
@@ -459,7 +510,7 @@
                 </div>
             </section>
             <p id="d-desc" class="detail-desc"></p>
-            <a id="d-btn" class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">Voir le menu officiel</a>
+            <a id="d-btn" class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">Voir le menu</a>
         </article>
     </main>
 
@@ -586,6 +637,7 @@
             park: CONFIG.PARKS[0].value,
             query: '',
             showClosed: false,
+            showFavorites: false,
             nearby: false,
             location: null,
             watchId: null,
@@ -606,6 +658,9 @@
             search: $('#search'),
             toggleClosed: $('#toggle-closed'),
             toggleNearby: $('#toggle-nearby'),
+            btnFavs: $('#btn-favs'),
+            favsLabel: $('#favs-label'),
+            btnFav: $('#btn-fav'),
             tabs: document.querySelectorAll('.nav-item'),
             pane: $('#detail-pane'),
             placeholder: $('#detail-placeholder'),
@@ -820,6 +875,77 @@
            ====================================================================== */
         const ALERTS_KEY = 'dlp-alerts';
         const dbById = new Map(db.map((item) => [item.id, item]));
+
+        /* ======================================================================
+           Favoris (attractions, restaurants, spectacles) : stockés sur l'appareil
+           ====================================================================== */
+        const FAVORITES_KEY = 'dlp-favorites';
+        const favorites = (() => {
+            try {
+                const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]');
+                return new Set((Array.isArray(saved) ? saved : []).filter((id) => dbById.has(id)));
+            } catch { return new Set(); }
+        })();
+
+        function saveFavorites() {
+            try {
+                localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+                return true;
+            } catch {
+                notify('Impossible d’enregistrer les favoris sur cet appareil.');
+                return false;
+            }
+        }
+
+        const CATEGORY_LABELS = { attraction: 'Attractions', restaurant: 'Restaurants', spectacle: 'Spectacles' };
+        const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
+
+        function syncParkSelect() {
+            const locked = state.nearby || state.showFavorites;
+            els.park.disabled = locked;
+            els.park.title = state.nearby ? '« Autour de moi » couvre les deux parcs'
+                : state.showFavorites ? 'Les favoris couvrent les deux parcs' : '';
+        }
+
+        function syncTabsUi() {
+            els.tabs.forEach((t) => t.setAttribute('aria-selected', String(!state.showFavorites && t.dataset.tab === state.tab)));
+        }
+
+        function renderFavButton() {
+            const active = state.showFavorites;
+            els.btnFavs.setAttribute('aria-pressed', String(active));
+            els.favsLabel.textContent = favorites.size ? `Voir les favoris (${favorites.size})` : 'Voir les favoris';
+        }
+
+        function setShowFavorites(active) {
+            state.showFavorites = active;
+            syncParkSelect();
+            syncTabsUi();
+            renderFavButton();
+        }
+
+        function toggleFavorite(id) {
+            const item = dbById.get(id);
+            if (!item) return;
+            const wasFavorite = favorites.has(id);
+            if (wasFavorite) favorites.delete(id); else favorites.add(id);
+            if (!saveFavorites()) {   // échec d'enregistrement : on annule
+                if (wasFavorite) favorites.add(id); else favorites.delete(id);
+                return;
+            }
+            notify(wasFavorite ? `${item.name} retiré des favoris` : `${item.name} ajouté aux favoris`);
+            renderFavButton();
+            renderList();
+            renderFavDetailButton(item);
+        }
+
+        function renderFavDetailButton(item) {
+            const fav = favorites.has(item.id);
+            const label = fav ? 'Retirer des favoris' : 'Ajouter aux favoris';
+            els.btnFav.setAttribute('aria-pressed', String(fav));
+            els.btnFav.setAttribute('aria-label', label);
+            els.btnFav.title = label;
+        }
 
         // id -> { kind: 'wait', threshold, armed, firedAt, firedWait }
         //     | { kind: 'show', lead, done: [startTime, …] }
@@ -1216,10 +1342,11 @@
         function openFromAlert(id) {
             const item = dbById.get(id);
             if (!item) return;
+            if (state.showFavorites) setShowFavorites(false);
             state.tab = item.category;
             if (CONFIG.PARKS.some((p) => p.value === item.park)) state.park = item.park;
             els.park.value = state.park;
-            els.tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === state.tab)));
+            syncTabsUi();
             openDetail(id);
         }
 
@@ -1232,8 +1359,12 @@
             const entries = [];
 
             for (const item of db) {
-                if (item.category !== state.tab) continue;
-                if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
+                if (state.showFavorites) {
+                    if (!favorites.has(item.id)) continue;   // favoris : toutes catégories, les deux parcs
+                } else {
+                    if (item.category !== state.tab) continue;
+                    if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
+                }
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
 
@@ -1257,7 +1388,7 @@
 
         function compareEntries(a, b) {
             if (a.dist != null && b.dist != null) return a.dist - b.dist;   // distance croissante
-            if (state.tab === 'attraction') {
+            if (a.item.category === 'attraction' && b.item.category === 'attraction') {
                 const diff = waitRank(b.item) - waitRank(a.item);
                 if (diff) return diff;
             }
@@ -1266,15 +1397,22 @@
 
         function cardHtml({ item, dist }) {
             const selected = item.id === state.selectedId;
+            const fav = favorites.has(item.id);
             return `
+                <div class="card-wrap">
                 <button type="button" class="card${selected ? ' selected' : ''}" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
                     <span class="card-head">
                         <span class="card-title">${esc(item.name)}${(alerts.has(item.id) || alerts.has(item.id + '#status')) ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : ''}</span>
                         ${dist != null ? `<span class="card-dist">${formatDistance(dist)}</span>` : ''}
                     </span>
-                    ${item.type ? `<span class="card-meta">${esc(item.type)}</span>` : ''}
+                    ${item.type || state.showFavorites ? `<span class="card-meta">${esc([item.type, state.showFavorites ? item.park : ''].filter(Boolean).join(' · '))}</span>` : ''}
                     <span class="status">${statusHtml(item)}</span>
-                </button>`;
+                </button>
+                <button type="button" class="card-fav-btn" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
+                        aria-label="${fav ? 'Retirer' : 'Ajouter'} ${esc(item.name)} ${fav ? 'des' : 'aux'} favoris">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+                </button>
+                </div>`;
         }
 
         function renderList() {
@@ -1287,6 +1425,8 @@
             if (!entries.length) {
                 const hint = state.query
                     ? 'Aucun résultat pour cette recherche.'
+                    : state.showFavorites && !favorites.size
+                        ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
                     : state.nearby
                         ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
                         : 'Aucun lieu à afficher selon vos critères.';
@@ -1294,18 +1434,25 @@
                 return;
             }
 
+            // Favoris : regroupés par catégorie ; sinon par land
+            const groupOf = (item) => (state.showFavorites ? CATEGORY_LABELS[item.category] : item.land);
             const groups = new Map();
             for (const entry of entries) {
-                if (!groups.has(entry.item.land)) groups.set(entry.item.land, []);
-                groups.get(entry.item.land).push(entry);
+                const key = groupOf(entry.item);
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(entry);
             }
 
             // Lands par ordre alphabétique ; avec « Autour de moi », du plus proche au plus lointain
             const nearest = (land) => Math.min(...groups.get(land).map((e) => e.dist));
-            const lands = [...groups.keys()].sort((a, b) =>
-                state.nearby && state.location
-                    ? nearest(a) - nearest(b)
-                    : a.localeCompare(b, CONFIG.LOCALE));
+            const lands = [...groups.keys()].sort((a, b) => {
+                if (state.nearby && state.location) return nearest(a) - nearest(b);
+                if (state.showFavorites) {
+                    return CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === a)
+                         - CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === b);
+                }
+                return a.localeCompare(b, CONFIG.LOCALE);
+            });
 
             els.list.innerHTML = lands
                 .map((land) => `
@@ -1328,6 +1475,7 @@
             if (!item) return;
 
             els.title.textContent = item.name;
+            renderFavDetailButton(item);
             els.desc.textContent = item.description;
             els.desc.hidden = !item.description;
             els.status.innerHTML = statusHtml(item);
@@ -1401,8 +1549,7 @@
         /* « Autour de moi » : position suivie en continu pour garder les distances à jour */
         function setNearbyUi(active) {
             state.nearby = active;
-            els.park.disabled = active;
-            els.park.title = active ? '« Autour de moi » couvre les deux parcs' : '';
+            syncParkSelect();
         }
 
         function stopNearby() {
@@ -1453,16 +1600,30 @@
             els.search.addEventListener('input', () => { state.query = els.search.value; renderList(); });
             els.toggleClosed.addEventListener('change', () => { state.showClosed = els.toggleClosed.checked; renderList(); });
             els.toggleNearby.addEventListener('change', onNearbyChange);
+            els.btnFavs.addEventListener('click', () => {
+                closeDetail();
+                setShowFavorites(!state.showFavorites);
+                renderList();
+                els.list.scrollTop = 0;
+            });
+            els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
                 state.tab = tab.dataset.tab;
-                els.tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+                setShowFavorites(false);   // choisir une catégorie quitte la vue favoris
                 closeDetail();
                 renderList();
                 els.list.scrollTop = 0;
             }));
 
             els.list.addEventListener('click', (event) => {
+                const favBtn = event.target.closest('.card-fav-btn');
+                if (favBtn) {
+                    const id = favBtn.dataset.favId;
+                    toggleFavorite(id);
+                    els.list.querySelector(`.card-fav-btn[data-fav-id="${CSS.escape(id)}"]`)?.focus({ preventScroll: true });
+                    return;
+                }
                 const card = event.target.closest('.card');
                 if (card) openDetail(card.dataset.id);
             });
@@ -1498,6 +1659,7 @@
                 THEME_COLORS[document.documentElement.dataset.theme] ?? THEME_COLORS.light;
 
             bindEvents();
+            renderFavButton();
             render();     // affiche les squelettes de chargement
             refresh();
             if (alerts.size) syncAlerts();   // met à jour le serveur (alertes créées avant la dernière version comprises)
