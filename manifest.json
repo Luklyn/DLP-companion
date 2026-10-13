@@ -1,6 +1,6 @@
 {
-  "name": "Disney Companion",
-  "short_name": "Disney App",
+  "name": "DLP Companion",
+  "short_name": "DLP Companion",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f4f6f8",
