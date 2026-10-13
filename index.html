@@ -299,6 +299,9 @@
         .btn-alert { padding: 10px 16px; border: 0; border-radius: 10px; background: var(--primary); color: var(--on-primary); font-size: 14px; font-weight: 700; transition: opacity .2s; }
         .btn-alert:hover { opacity: .88; }
         .btn-alert.is-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+        .alert-toggle { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+        .alert-check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
+        .alert-check input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--primary); }
         .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--primary); vertical-align: -1px; }
 
         /* Message temporaire (erreurs de géolocalisation, etc.) */
@@ -446,7 +449,13 @@
                 <div class="alert-actions">
                     <button id="alert-save" class="btn-alert" type="button">Activer l’alerte</button>
                     <button id="alert-remove" class="btn-alert is-secondary" type="button" hidden>Supprimer</button>
-                    <button id="alert-test" class="btn-alert is-secondary" type="button">Tester les notifications</button>
+                </div>
+                <div id="alert-status-row" class="alert-toggle" hidden>
+                    <label class="alert-check">
+                        <input id="alert-status" type="checkbox">
+                        <span>Me prévenir si l’attraction tombe en panne, puis quand elle rouvre</span>
+                    </label>
+                    <p id="alert-status-info" class="alert-info" hidden></p>
                 </div>
             </section>
             <p id="d-desc" class="detail-desc"></p>
@@ -618,7 +627,9 @@
             alertInfo: $('#alert-info'),
             alertSave: $('#alert-save'),
             alertRemove: $('#alert-remove'),
-            alertTest: $('#alert-test'),
+            alertStatusRow: $('#alert-status-row'),
+            alertStatus: $('#alert-status'),
+            alertStatusInfo: $('#alert-status-info'),
         };
 
         /* ======================================================================
@@ -816,7 +827,7 @@
             try {
                 const saved = JSON.parse(localStorage.getItem(ALERTS_KEY) ?? '{}');
                 return new Map(Object.entries(saved).filter(([id, a]) =>
-                    dbById.has(id) && (a?.kind === 'wait' || a?.kind === 'show')));
+                    dbById.has(id.split('#')[0]) && ['wait', 'show', 'status'].includes(a?.kind)));
             } catch { return new Map(); }
         })();
 
@@ -874,7 +885,7 @@
         }
 
         const alertsForServer = () => Object.fromEntries([...alerts].map(([id, a]) => {
-            const item = dbById.get(id);
+            const item = dbById.get(id.split('#')[0]);
             return [id, { ...a, apiId: item?.apiId, name: item?.name, land: item?.land }];
         }));
 
@@ -909,6 +920,9 @@
                         changed = true;
                     } else if (a.kind === 'show' && r.lead === a.lead) {
                         for (const k of r.done ?? []) if (!a.done.includes(k)) { a.done.push(k); changed = true; }
+                    } else if (a.kind === 'status' && a.down !== r.down) {
+                        a.down = r.down;
+                        changed = true;
                     }
                 }
                 if (changed) { saveAlerts(); render(); }
@@ -992,14 +1006,43 @@
             return changed;
         }
 
+        // Panne (statut DOWN) puis réouverture. Une fermeture du parc remet l'alerte à zéro sans notification.
+        function checkStatusAlert(item, a) {
+            const status = item.live.status;
+            if (status === 'DOWN' && !a.down) {
+                a.down = true;
+                sendNotification({
+                    title: `${item.name} : en panne`,
+                    body: 'L’attraction est indisponible. Vous serez prévenu dès sa réouverture.',
+                    tag: `status-${item.id}`, id: item.id,
+                });
+                return true;
+            }
+            if (status === 'OPERATING' && a.down) {
+                a.down = false;
+                const wait = item.live.wait;
+                sendNotification({
+                    title: `${item.name} a rouvert`,
+                    body: typeof wait === 'number' ? `Attente actuelle : ${wait} min.` : 'L’attraction est de nouveau disponible.',
+                    tag: `status-${item.id}`, id: item.id,
+                });
+                return true;
+            }
+            if (a.down && status && status !== 'DOWN' && status !== 'OPERATING') { a.down = false; return true; }
+            return false;
+        }
+
         function checkAlerts() {
             if (!alerts.size) return false;
             const now = Date.now();
             let changed = false;
-            for (const [id, a] of alerts) {
-                const item = dbById.get(id);
+            for (const [key, a] of alerts) {
+                const item = dbById.get(key.split('#')[0]);
                 if (!item?.live) continue;
-                changed = (a.kind === 'wait' ? checkWaitAlert(item, a) : checkShowAlert(item, a, now)) || changed;
+                const result = a.kind === 'wait' ? checkWaitAlert(item, a)
+                    : a.kind === 'status' ? checkStatusAlert(item, a)
+                    : checkShowAlert(item, a, now);
+                changed = result || changed;
             }
             if (changed) saveAlerts();
             return changed;
@@ -1039,6 +1082,14 @@
                 : 'Plus de séance aujourd’hui : l’alerte reprendra à la prochaine séance.';
         }
 
+        function statusInfo(item) {
+            const status = item.live?.status;
+            if (status === 'DOWN') return 'En panne actuellement : vous serez prévenu dès sa réouverture.';
+            if (status === 'OPERATING') return 'En service actuellement : vous serez prévenu en cas de panne.';
+            if (status) return 'Actuellement fermée : l’alerte reprendra à l’ouverture.';
+            return 'Vous serez prévenu en cas de panne, puis à la réouverture.';
+        }
+
         function renderAlertBox(item) {
             const supported = item.category === 'attraction' || item.category === 'spectacle';
             els.alertBox.hidden = !supported;
@@ -1046,8 +1097,9 @@
 
             const isWait = item.category === 'attraction';
             const a = alerts.get(item.id);
+            const statusAlert = alerts.get(`${item.id}#status`);
 
-            els.alertHeading.textContent = isWait ? 'Alerte temps d’attente' : 'Alerte avant la séance';
+            els.alertHeading.textContent = isWait ? 'Alertes' : 'Alerte avant la séance';
             els.alertLabel.textContent = isWait
                 ? 'Me prévenir dès que l’attente est inférieure ou égale à'
                 : 'Me prévenir avant chaque séance, à l’avance de';
@@ -1061,7 +1113,12 @@
                 else els.alertLead.value = String(a?.lead ?? 45);
             }
 
-            els.alertBox.classList.toggle('is-active', Boolean(a));
+            els.alertStatusRow.hidden = !isWait;
+            els.alertStatus.checked = Boolean(statusAlert);
+            els.alertStatusInfo.hidden = !statusAlert;
+            els.alertStatusInfo.textContent = statusAlert ? statusInfo(item) : '';
+
+            els.alertBox.classList.toggle('is-active', Boolean(a || statusAlert));
             els.alertSave.textContent = a ? 'Mettre à jour' : 'Activer l’alerte';
             els.alertRemove.hidden = !a;
             els.alertInfo.textContent = alertInfo(item, a);
@@ -1113,18 +1170,35 @@
             renderAlertBox(item);
         }
 
-        // Envoie une vraie notification push dans 10 s, le temps de fermer l'app ou de verrouiller le téléphone
-        async function onAlertTest() {
-            if (!(await ensureNotifications())) return;
-            try {
-                const sub = await getPushSubscription({ create: true });
-                if (!sub) return notify('Les notifications en arrière-plan ne sont pas disponibles sur ce navigateur.');
-                const res = await postWorker({ action: 'test', delay: 10, subscription: sub.toJSON() });
-                if (!res.ok) throw new Error(`serveur (HTTP ${res.status})`);
-                notify('Test lancé : fermez l’app ou verrouillez le téléphone, la notification arrive dans 10 s.');
-            } catch (error) {
-                notify(`Test impossible : ${error?.message ?? error}`);
+        // Alerte « panne / réouverture » : s'applique immédiatement, sans bouton de validation
+        async function onStatusToggle() {
+            const item = selectedItem();
+            if (!item || item.category !== 'attraction') return;
+            const key = `${item.id}#status`;
+            const enable = els.alertStatus.checked;
+
+            if (enable) {
+                if (!(await ensureNotifications())) { els.alertStatus.checked = false; return; }
+                alerts.set(key, { kind: 'status', down: item.live?.status === 'DOWN' });   // déjà en panne : on prévient à la réouverture
+            } else if (!alerts.delete(key)) {
+                return;
             }
+
+            if (!saveAlerts()) {
+                alerts.delete(key);
+                els.alertStatus.checked = false;
+            } else if (enable) {
+                const label = `Alerte activée : panne et réouverture de ${item.name}`;
+                const sync = await syncAlerts({ interactive: true });
+                notify(sync.ok
+                    ? label
+                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
+            } else {
+                syncAlerts();
+                notify('Alerte panne et réouverture désactivée');
+            }
+            renderList();
+            renderAlertBox(item);
         }
 
         async function onAlertRemove() {
@@ -1195,7 +1269,7 @@
             return `
                 <button type="button" class="card${selected ? ' selected' : ''}" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
                     <span class="card-head">
-                        <span class="card-title">${esc(item.name)}${alerts.has(item.id) ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : ''}</span>
+                        <span class="card-title">${esc(item.name)}${(alerts.has(item.id) || alerts.has(item.id + '#status')) ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : ''}</span>
                         ${dist != null ? `<span class="card-dist">${formatDistance(dist)}</span>` : ''}
                     </span>
                     ${item.type ? `<span class="card-meta">${esc(item.type)}</span>` : ''}
@@ -1396,7 +1470,7 @@
             els.btnBack.addEventListener('click', closeDetail);
             els.alertSave.addEventListener('click', onAlertSave);
             els.alertRemove.addEventListener('click', onAlertRemove);
-            els.alertTest.addEventListener('click', onAlertTest);
+            els.alertStatus.addEventListener('change', onStatusToggle);
             els.image.addEventListener('error', () => { els.image.hidden = true; });
             els.btnRefresh.addEventListener('click', refresh);
             els.btnTheme.addEventListener('click', () =>
