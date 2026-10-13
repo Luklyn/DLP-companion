@@ -446,6 +446,7 @@
                 <div class="alert-actions">
                     <button id="alert-save" class="btn-alert" type="button">Activer l’alerte</button>
                     <button id="alert-remove" class="btn-alert is-secondary" type="button" hidden>Supprimer</button>
+                    <button id="alert-test" class="btn-alert is-secondary" type="button">Tester les notifications</button>
                 </div>
             </section>
             <p id="d-desc" class="detail-desc"></p>
@@ -617,6 +618,7 @@
             alertInfo: $('#alert-info'),
             alertSave: $('#alert-save'),
             alertRemove: $('#alert-remove'),
+            alertTest: $('#alert-test'),
         };
 
         /* ======================================================================
@@ -779,6 +781,7 @@
             els.btnRefresh.classList.add('is-spinning');
             if (!state.lastSync) setSync('loading');
 
+            const pulling = alerts.size ? pullServerState() : null;   // en parallèle de l'appel à l'API
             let ok = false;
             try {
                 const data = await fetchJson(CONFIG.API_LIVE_URL, CONFIG.FETCH_TIMEOUT_MS);
@@ -794,6 +797,7 @@
                 state.ready = true;
                 els.btnRefresh.disabled = false;
                 els.btnRefresh.classList.remove('is-spinning');
+                await pulling;
                 checkAlerts();
                 render();
             }
@@ -833,40 +837,82 @@
             return outputArray;
         }
 
-        async function saveAlerts() {
+        function saveAlerts() {
             try {
-                // 1. Sauvegarde locale (pour l'interface)
-                const alertsObj = Object.fromEntries(alerts);
-                localStorage.setItem(ALERTS_KEY, JSON.stringify(alertsObj));
-                
-                // 2. Sauvegarde distante (pour le Worker quand l'app est fermée)
-                if ('serviceWorker' in navigator && 'PushManager' in window) {
-                    const registration = await navigator.serviceWorker.ready;
-                    let subscription = await registration.pushManager.getSubscription();
-                    
-                    if (!subscription) {
-                        subscription = await registration.pushManager.subscribe({
-                            userVisibleOnly: true,
-                            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-                        });
-                    }
-
-                    await fetch(WORKER_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            subscription: subscription,
-                            alerts: alertsObj
-                        })
-                    }).catch(err => console.error("Échec de la synchro avec Cloudflare:", err));
-                }
-
+                localStorage.setItem(ALERTS_KEY, JSON.stringify(Object.fromEntries(alerts)));
                 return true;
-            } catch (error) {
-                console.error("Erreur de sauvegarde des alertes :", error);
-                notify('Les alertes sont sauvegardées localement mais l\'envoi en arrière-plan a échoué.');
+            } catch {
+                notify('Impossible d’enregistrer les alertes sur cet appareil.');
                 return false;
             }
+        }
+
+        /* --- Push à application fermée : abonnement + synchronisation avec le Worker --- */
+        const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window;
+        const withTimeout = (promise, ms) => Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error('délai dépassé')), ms))]);
+        const postWorker = (body, timeoutMs = 8000) => fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+            signal: AbortSignal.timeout(timeoutMs),
+        });
+
+        // Renvoie l'abonnement push de l'appareil (le crée si demandé). Un abonnement créé avec une autre clé VAPID
+        // serait rejeté par le service push (403) : on le remplace.
+        async function getPushSubscription({ create }) {
+            if (!pushSupported()) return null;
+            const reg = await withTimeout(navigator.serviceWorker.ready, 4000);
+            const key = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+            let sub = await reg.pushManager.getSubscription();
+            const current = sub?.options?.applicationServerKey;
+            if (sub && current && !(new Uint8Array(current).length === key.length && new Uint8Array(current).every((v, i) => v === key[i]))) {
+                await sub.unsubscribe();
+                sub = null;
+            }
+            if (!sub && create) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key });
+            return sub;
+        }
+
+        const alertsForServer = () => Object.fromEntries([...alerts].map(([id, a]) => {
+            const item = dbById.get(id);
+            return [id, { ...a, apiId: item?.apiId, name: item?.name, land: item?.land }];
+        }));
+
+        async function syncAlerts({ interactive = false } = {}) {
+            try {
+                const sub = await getPushSubscription({ create: interactive });
+                if (!sub) return { ok: false, reason: pushSupported() ? 'pas d’abonnement' : 'non pris en charge' };
+                const res = await postWorker({ subscription: sub.toJSON(), alerts: alertsForServer() });
+                if (!res.ok) throw new Error(`serveur (HTTP ${res.status})`);
+                return { ok: true };
+            } catch (error) {
+                console.error('Synchronisation des alertes impossible :', error);
+                return { ok: false, reason: String(error?.message ?? error) };
+            }
+        }
+
+        // Le serveur déclenche les alertes quand l'app est fermée : on récupère son état pour ne pas les rejouer en local
+        async function pullServerState() {
+            if (!alerts.size) return;
+            try {
+                const sub = await getPushSubscription({ create: false });
+                if (!sub) return;
+                const res = await postWorker({ action: 'state', subscription: sub.toJSON() }, 3000);
+                if (!res.ok) return;
+                const remote = (await res.json()).alerts ?? {};
+                let changed = false;
+                for (const [id, a] of alerts) {
+                    const r = remote[id];
+                    if (!r || r.kind !== a.kind) continue;
+                    if (a.kind === 'wait' && r.threshold === a.threshold && (a.armed !== r.armed || a.firedAt !== r.firedAt)) {
+                        Object.assign(a, { armed: r.armed, firedAt: r.firedAt, firedWait: r.firedWait });
+                        changed = true;
+                    } else if (a.kind === 'show' && r.lead === a.lead) {
+                        for (const k of r.done ?? []) if (!a.done.includes(k)) { a.done.push(k); changed = true; }
+                    }
+                }
+                if (changed) { saveAlerts(); render(); }
+            } catch { /* hors connexion : on garde l'état local */ }
         }
 
         const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -1053,23 +1099,40 @@
                 });
             }
             
-            // On attend la sauvegarde avant de confirmer à l'utilisateur
-            if (!(await saveAlerts())) {
-                alerts.delete(item.id);
+            if (saveAlerts()) {
+                const label = isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`;
+                const sync = await syncAlerts({ interactive: true });
+                notify(sync.ok
+                    ? label
+                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
             } else {
-                notify(isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`);
+                alerts.delete(item.id);
             }
 
             renderList();
             renderAlertBox(item);
         }
 
+        // Envoie une vraie notification push dans 10 s, le temps de fermer l'app ou de verrouiller le téléphone
+        async function onAlertTest() {
+            if (!(await ensureNotifications())) return;
+            try {
+                const sub = await getPushSubscription({ create: true });
+                if (!sub) return notify('Les notifications en arrière-plan ne sont pas disponibles sur ce navigateur.');
+                const res = await postWorker({ action: 'test', delay: 10, subscription: sub.toJSON() });
+                if (!res.ok) throw new Error(`serveur (HTTP ${res.status})`);
+                notify('Test lancé : fermez l’app ou verrouillez le téléphone, la notification arrive dans 10 s.');
+            } catch (error) {
+                notify(`Test impossible : ${error?.message ?? error}`);
+            }
+        }
+
         async function onAlertRemove() {
             const item = selectedItem();
             if (!item || !alerts.delete(item.id)) return;
             
-            await saveAlerts();
-            
+            saveAlerts();
+            syncAlerts();
             notify('Alerte supprimée');
             renderList();
             renderAlertBox(item);
@@ -1333,6 +1396,7 @@
             els.btnBack.addEventListener('click', closeDetail);
             els.alertSave.addEventListener('click', onAlertSave);
             els.alertRemove.addEventListener('click', onAlertRemove);
+            els.alertTest.addEventListener('click', onAlertTest);
             els.image.addEventListener('error', () => { els.image.hidden = true; });
             els.btnRefresh.addEventListener('click', refresh);
             els.btnTheme.addEventListener('click', () =>
@@ -1347,6 +1411,7 @@
             setInterval(() => { if (checkAlerts()) render(); }, 30_000);
             document.addEventListener('visibilitychange', () => {
                 const stale = !state.lastSync || Date.now() - state.lastSync.getTime() > CONFIG.REFRESH_MS / 2;
+                if (!document.hidden) pullServerState();
                 if (!document.hidden && stale) refresh();
             });
         }
@@ -1361,10 +1426,12 @@
             bindEvents();
             render();     // affiche les squelettes de chargement
             refresh();
+            if (alerts.size) syncAlerts();   // met à jour le serveur (alertes créées avant la dernière version comprises)
 
             // Ouverture depuis une notification (service worker ou lien #id)
             navigator.serviceWorker?.addEventListener('message', (event) => {
                 if (event.data?.type === 'open-item') openFromAlert(event.data.id);
+                if (event.data?.type === 'refresh-data') refresh();
             });
             if (location.hash.length > 1) openFromAlert(decodeURIComponent(location.hash.slice(1)));
 
