@@ -4,11 +4,33 @@ self.addEventListener('install', () => self.skipWaiting());
 // Prend le contrôle de la page immédiatement après l'activation
 self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
-// Gardé pour l'installation en PWA
-self.addEventListener('fetch', () => {});
-
 // Chemins relatifs à l'emplacement du site (fonctionne aussi dans un sous-dossier GitHub Pages : /mon-depot/)
 const ICON = new URL('icon.png', self.registration.scope).href;
+
+// Données des lieux : réseau d'abord (toujours la dernière version du JSON),
+// copie en cache utilisée seulement si le réseau est indisponible.
+// Le reste des requêtes (API temps réel, images, etc.) garde son comportement par défaut.
+const DATA_CACHE = 'dlp-data-v1';
+const DATA_URLS = ['attractions.json', 'restaurants.json', 'shows.json']
+    .map((file) => new URL(file, self.registration.scope).href);
+
+self.addEventListener('fetch', (event) => {
+    const { request } = event;
+    if (request.method !== 'GET' || !DATA_URLS.includes(request.url.split('?')[0])) return;
+
+    event.respondWith((async () => {
+        const cache = await caches.open(DATA_CACHE);
+        try {
+            const response = await fetch(request);
+            if (response.ok) cache.put(request, response.clone());
+            return response;
+        } catch (error) {
+            const cached = await cache.match(request);
+            if (cached) return cached;
+            throw error;
+        }
+    })());
+});
 
 // 1. RÉCEPTION D'UN PUSH (application fermée ou téléphone verrouillé)
 self.addEventListener('push', (event) => {
