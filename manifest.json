@@ -3,8 +3,8 @@
   "short_name": "DLP Companion",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f4f6f8",
-  "theme_color": "#0077CC",
+  "background_color": "#F3F2FA",
+  "theme_color": "#12163A",
   "icons": [
     {
       "src": "icon.png",
