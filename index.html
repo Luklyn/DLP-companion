@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr" data-theme="chateau">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#1B3A9E">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#12163A">
     <meta name="description" content="Temps d'attente, restaurants et spectacles de Disneyland Paris en temps réel.">
     <title>DLP Companion</title>
 
@@ -15,70 +15,50 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="DLP Companion">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
+
     <script>
-        // Appliquer le thème avant le premier rendu (évite le flash blanc en mode sombre)
-        (function () {
-            try {
-                var saved = localStorage.getItem('theme');
-                var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
-            } catch (e) { /* stockage indisponible : thème par défaut */ }
-        })();
+        // Thèmes : source unique, appliquée avant le premier rendu (évite le flash de couleurs)
+        window.DLP_THEMES = {
+            chateau:     { n: 'Soirée au château',   f: 'Thème par défaut',    ink: '#12163A', gold: '#F2B33D', on: '#12163A', acc: '#6A3FD0', bg: '#F3F2FA', g1: '#2F46D1', g2: '#6A3FD0' },
+            toystory:    { n: 'Toy Story',           f: 'Chambre d’Andy',      ink: '#1B3A7A', gold: '#FFCB05', on: '#1A1A2E', acc: '#C8231C', bg: '#EAF3FC', g1: '#2F6FC4', g2: '#1B3A7A' },
+            raiponce:    { n: 'Raiponce',            f: 'Nuit des lanternes',  ink: '#2B1B5A', gold: '#F6C945', on: '#2B1B5A', acc: '#8A2BA0', bg: '#FAF3FF', g1: '#4B2E9B', g2: '#8A2BA0' },
+            reineneiges: { n: 'La Reine des Neiges', f: 'Royaume d’Arendelle', ink: '#14315F', gold: '#9BE7FF', on: '#0E2347', acc: '#1C6FB8', bg: '#EEF8FF', g1: '#1C6FB8', g2: '#5B4BC4' },
+            ratatouille: { n: 'Ratatouille',         f: 'Bistrot de Gusteau',  ink: '#2F3A4C', gold: '#F2B134', on: '#2A2418', acc: '#B3261E', bg: '#FBF6EE', g1: '#4A5A73', g2: '#B3261E' },
+            avengers:    { n: 'Avengers',            f: 'QG des Avengers',     ink: '#101628', gold: '#F2B01E', on: '#101628', acc: '#C4161C', bg: '#F2F3F7', g1: '#1F3C88', g2: '#C4161C' },
+            roilion:     { n: 'Le Roi Lion',         f: 'Terres du Roi',       ink: '#3A1D12', gold: '#F59E1B', on: '#3A1D12', acc: '#A63A0A', bg: '#FFF4E3', g1: '#A63A0A', g2: '#3A1D12' },
+            sirene:      { n: 'La Petite Sirène',    f: 'Royaume d’Atlantica', ink: '#0B3B4F', gold: '#FF7A59', on: '#0B2A38', acc: '#7B3FA3', bg: '#EAF8F7', g1: '#0F7B8A', g2: '#7B3FA3' },
+        };
+        window.DLP_applyTheme = function (id) {
+            var themes = window.DLP_THEMES;
+            if (!themes[id]) id = 'chateau';
+            var t = themes[id], root = document.documentElement;
+            ['ink', 'gold', 'on', 'acc', 'bg', 'g1', 'g2'].forEach(function (k) { root.style.setProperty('--' + k, t[k]); });
+            root.dataset.theme = id;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.content = t.ink;
+            return id;
+        };
+        try { window.DLP_applyTheme(localStorage.getItem('dlp-theme')); }
+        catch (e) { window.DLP_applyTheme('chateau'); }
     </script>
 
     <style>
         /* ==========================================================================
-           1. Design tokens
+           1. Design tokens (les couleurs de thème sont posées par DLP_applyTheme)
            ========================================================================== */
         :root {
             color-scheme: light;
-            /* Palette Disney : bleu royal, violet château, blanc */
-            --primary: #2347C5;
-            --on-primary: #FFFFFF;
-            --purple: #6A35B5;
-            --grad-brand: linear-gradient(135deg, #1B3A9E 0%, #3F2FA3 55%, #6A35B5 100%);
-            --on-brand: #FFFFFF;
-
-            --bg-base: #F4F4FB;
-            --bg-surface: #FFFFFF;
-            --text-main: #1B1D3A;
-            --text-muted: #5F6178;
-            --border: #E3E3F0;
-
-            --fav: #E0245E;
-            --green: #34C759;
-            --orange: #FF9500;
-            --red: #FF3B30;
-            /* Variantes pour le texte : contraste AA sur fond clair */
-            --green-text: #1E8E3E;
-            --orange-text: #B25E00;
-            --red-text: #D70015;
-
-            --shadow: 0 4px 14px rgb(30 30 90 / 0.07);
-            --shadow-brand: 0 6px 20px rgb(35 40 130 / 0.28);
-            --radius: 16px;
+            --ink: #12163A; --gold: #F2B33D; --on: #12163A; --acc: #6A3FD0;
+            --bg: #F3F2FA; --g1: #2F46D1; --g2: #6A3FD0;
+            --mut: #565A76;
+            --line: #D9D8EA;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
-            --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-        }
-
-        [data-theme="dark"] {
-            color-scheme: dark;
-            --primary: #8FB4FF;
-            --on-primary: #0C1230;
-            --purple: #B79CFF;
-            --grad-brand: linear-gradient(135deg, #16256F 0%, #2E2584 55%, #4B2A94 100%);
-            --bg-base: #0C1230;
-            --bg-surface: #1A2150;
-            --text-main: #F2F3FF;
-            --text-muted: #9AA7D6;
-            --border: #2B3470;
-            --fav: #FF6B8E;
-            --green-text: #34C759;
-            --orange-text: #FF9F0A;
-            --red-text: #FF6961;
-            --shadow: 0 4px 14px rgb(0 0 0 / 0.4);
-            --shadow-brand: 0 6px 20px rgb(0 0 0 / 0.5);
+            --font: 'DM Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            --font-display: Sora, 'DM Sans', system-ui, sans-serif;
         }
 
         /* ==========================================================================
@@ -88,268 +68,228 @@
         [hidden] { display: none !important; }
 
         html, body { height: 100%; }
+        html { background: var(--bg); }
         body {
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
+            margin: 0; display: flex;
+            height: 100vh; height: 100dvh; overflow: hidden;
             font-family: var(--font);
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background: var(--bg); color: var(--ink);
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
-            transition: background-color .3s ease, color .3s ease;
         }
 
         button, input, select { font: inherit; color: inherit; }
-        button { cursor: pointer; }
+        button { cursor: pointer; border: 0; background: none; padding: 0; }
         ul { list-style: none; margin: 0; padding: 0; }
-        h1, h2 { margin: 0; }
+        h1, h2, h3, p { margin: 0; }
 
-        :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+        :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 
-        .icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor;
-                stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .icon { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
         /* ==========================================================================
-           3. Colonne gauche : en-tête, filtres, liste, navigation
+           3. Colonne gauche
            ========================================================================== */
         .master-pane {
-            display: flex; flex-direction: column;
-            width: 380px; min-width: 0;
-            background-color: var(--bg-base);
-            border-right: 1px solid var(--border);
-            z-index: 10;
+            position: relative; display: flex; flex-direction: column;
+            width: 400px; min-width: 0; flex: none;
+            background: var(--bg);
+            border-right: 1px solid var(--line);
+            overflow: hidden;
         }
 
-        .header {
-            position: relative; z-index: 2;
-            display: flex; align-items: center; justify-content: space-between; gap: 12px;
-            padding: calc(14px + var(--safe-top)) 14px 14px 20px;
-            background: var(--grad-brand); color: var(--on-brand);
-            box-shadow: var(--shadow-brand);
+        /* En-tête */
+        .hero {
+            display: flex; flex-direction: column; gap: 14px;
+            padding: calc(22px + var(--safe-top)) 20px 18px;
+            border-radius: 0 0 28px 28px; color: #fff;
+            background:
+                radial-gradient(circle at 12% 22%, #fff 0 1px, transparent 1.6px),
+                radial-gradient(circle at 78% 14%, #fff 0 1.2px, transparent 1.8px),
+                radial-gradient(circle at 92% 60%, #fff 0 1px, transparent 1.6px),
+                radial-gradient(circle at 46% 8%, var(--gold) 0 1.4px, transparent 2px),
+                var(--ink);
         }
-        .header h1 { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; letter-spacing: -0.2px; }
-        .brand-icon { fill: currentColor; stroke: none; opacity: .95; }
-        .header-actions { display: flex; align-items: center; gap: 4px; }
+        .hero :focus-visible { outline-color: #fff; }
+        .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 19px; white-space: nowrap; }
+        .hero-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 
         .sync {
             display: inline-flex; align-items: center; gap: 6px;
-            padding: 4px 10px; border-radius: 999px;
-            font-size: 12px; font-weight: 600; white-space: nowrap;
-            background: rgb(255 255 255 / .16); color: var(--on-brand);
+            min-height: 40px; padding: 0 12px; border-radius: 999px;
+            background: rgb(255 255 255 / .14); color: #fff;
+            font-size: 12px; font-weight: 700; white-space: nowrap;
         }
         .sync .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: .8; }
         .sync[data-state="live"] .dot  { background: #5EE08A; opacity: 1; }
         .sync[data-state="error"] .dot { background: #FF8A80; opacity: 1; }
-
-        .btn-icon {
-            display: inline-grid; place-items: center;
-            width: 36px; height: 36px; padding: 0;
-            background: none; border: 0; border-radius: 10px;
-            color: var(--on-brand); font-size: 20px;
-        }
-        .btn-icon:hover { background: rgb(255 255 255 / .16); }
-        .btn-icon:disabled { cursor: default; opacity: .6; }
-        .header :focus-visible { outline-color: #fff; }
+        .sync:disabled { cursor: default; }
         .is-spinning .icon { animation: spin .9s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Filtres */
-        .filters {
-            display: grid; gap: 12px;
-            padding: 14px 16px;
-            background: var(--bg-surface);
-            border-bottom: 1px solid var(--border);
+        .round {
+            display: grid; place-items: center; flex: none;
+            width: 44px; height: 44px; border-radius: 22px;
+            background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgb(0 0 0 / .2);
         }
-        .field {
-            width: 100%; padding: 11px 12px;
-            border: 1px solid var(--border); border-radius: 10px;
-            background-color: var(--bg-base); font-size: 15px; outline: none;
-        }
-        .field:focus-visible { border-color: var(--primary); outline: 2px solid var(--primary); outline-offset: 0; }
-        .park-select {
-            font-weight: 700; appearance: none; -webkit-appearance: none; padding-right: 36px;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238E8E93%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat; background-position: right 14px top 50%; background-size: 10px auto;
-        }
-        .park-select:disabled { opacity: .5; cursor: not-allowed; }
-        .search { position: relative; display: block; }
-        .search .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
-        .search .field { padding-left: 38px; }
+        .round.acc { color: var(--acc); }
+        .round.acc[aria-pressed="true"] .icon { fill: currentColor; }
+        .hero .round { background: rgb(255 255 255 / .14); color: #fff; box-shadow: none; }
 
-        .toggles-row { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px 22px; }
-        .toggle-group { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .seg { display: flex; padding: 3px; border-radius: 14px; background: rgb(255 255 255 / .12); }
+        .seg button { flex: 1; min-height: 40px; border-radius: 11px; font-weight: 700; font-size: 14px; color: #E4E6FF; }
+        .seg button[aria-pressed="true"] { background: var(--gold); color: var(--on); }
 
-        /* Bouton « Voir les favoris » */
-        .btn-favs {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 10px 14px;
-            background: var(--bg-base); border: 1px solid var(--border); border-radius: 10px;
-            font-size: 14px; font-weight: 700; color: var(--text-main);
-            transition: background-color .2s, border-color .2s, color .2s;
+        .search-field {
+            width: 100%; min-height: 46px; padding: 0 16px;
+            border: 0; border-radius: 14px; outline-offset: 2px;
+            background: rgb(255 255 255 / .14); color: #fff;
+            font: 500 16px var(--font);
+            -webkit-appearance: none; appearance: none;
         }
-        .btn-favs .icon { color: var(--fav); }
-        .btn-favs:hover { border-color: var(--fav); }
-        .btn-favs[aria-pressed="true"] { background: color-mix(in srgb, var(--fav) 14%, var(--bg-base)); border-color: var(--fav); color: var(--fav); }
-        .btn-favs[aria-pressed="true"] .icon { fill: currentColor; }
+        .search-field::placeholder { color: #C9CCF0; opacity: 1; }
+        .search-field::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
 
-        /* Interrupteur de type iOS */
-        .switch { position: relative; display: inline-block; width: 44px; height: 24px; flex: none; }
-        .switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
-        .slider { position: absolute; inset: 0; background-color: var(--border); border-radius: 24px; transition: background-color .25s; pointer-events: none; }
-        .slider::before {
-            content: ""; position: absolute; left: 3px; bottom: 3px; width: 18px; height: 18px;
-            background: #fff; border-radius: 50%; transition: transform .25s;
+        /* Puces de filtres */
+        .chips { display: flex; gap: 8px; padding: 14px 20px 4px; overflow-x: auto; scrollbar-width: none; }
+        .chips::-webkit-scrollbar { display: none; }
+        .chip {
+            flex: none; min-height: 44px; padding: 0 14px; border-radius: 22px;
+            background: #fff; border: 1.5px solid var(--line);
+            font-weight: 700; font-size: 13px;
         }
-        .switch input:checked + .slider { background-color: var(--primary); }
-        .switch input:checked + .slider::before { transform: translateX(20px); }
-        .switch input:focus-visible + .slider { outline: 2px solid var(--primary); outline-offset: 2px; }
+        .chip[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: #fff; }
 
         /* Liste */
-        .list-container { position: relative; flex: 1; overflow-y: auto; padding: 4px 16px 16px; overscroll-behavior: contain; }
-        .group-header { margin: 20px 4px 8px; font-size: 13px; font-weight: 700; color: var(--purple); letter-spacing: .2px; }
+        .list { flex: 1; overflow-y: auto; padding: 4px 20px 110px; overscroll-behavior: contain; }
+        .land { margin: 18px 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--acc); }
 
-        .card {
-            display: block; width: 100%; margin-bottom: 0; padding: 14px 52px 14px 16px; text-align: left;
-            background: var(--bg-surface); border: 2px solid transparent; border-radius: var(--radius);
-            box-shadow: var(--shadow); transition: border-color .15s ease;
+        .card { display: flex; align-items: center; margin-bottom: 10px; border-radius: 18px; background: #fff; box-shadow: 0 2px 10px rgb(30 30 90 / .06); }
+        .card.selected { box-shadow: 0 0 0 2px var(--acc), 0 2px 10px rgb(30 30 90 / .06); }
+        .main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 12px 4px 12px 12px; text-align: left; border-radius: 18px; }
+        .txt { flex: 1; min-width: 0; }
+        .ttl { display: block; font-weight: 700; font-size: 15px; line-height: 1.25; }
+        .sub { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.35; color: var(--mut); }
+        .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--acc); vertical-align: -1px; }
+
+        .heart { flex: none; display: grid; place-items: center; width: 48px; height: 48px; margin-right: 4px; color: var(--acc); }
+        .heart[aria-pressed="true"] .icon { fill: currentColor; }
+
+        /* Badge de statut (liste + détail) */
+        .badge {
+            flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            width: 66px; height: 66px; border-radius: 16px;
+            font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1; text-align: center;
         }
-        .card:hover, .card.selected { border-color: var(--primary); }
-        .card-wrap { position: relative; margin-bottom: 12px; }
-        .card-fav-btn {
-            position: absolute; top: 6px; right: 6px; z-index: 1;
-            display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0;
-            background: none; border: 0; border-radius: 50%;
-            color: var(--text-muted); font-size: 20px; opacity: .75;
-            transition: color .2s, background-color .2s, opacity .2s;
-        }
-        .card-fav-btn:hover { color: var(--fav); background: color-mix(in srgb, var(--fav) 12%, transparent); opacity: 1; }
-        .card-fav-btn[aria-pressed="true"] { color: var(--fav); opacity: 1; }
-        .card-fav-btn[aria-pressed="true"] .icon { fill: currentColor; }
-        .card > span { display: block; }
-        .card-head { display: flex !important; justify-content: space-between; align-items: baseline; gap: 8px; }
-        .card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
-        .card-dist { font-size: 12px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
-        .card-meta { margin-top: 2px; font-size: 13px; color: var(--text-muted); }
+        .badge small { margin-top: 3px; font: 700 11px var(--font); }
+        .badge.low, .badge.open { background: #DDF3E4; color: #14692E; }
+        .badge.mid, .badge.down { background: #FFE9C7; color: #8A4B00; }
+        .badge.high { background: #FFD9D6; color: #A3121F; }
+        .badge.show { background: #E6E3FA; color: #44309E; }
+        .badge.off  { background: #E8E8EF; color: var(--mut); }
+        .badge.tm { font-size: 17px; }
+        .badge.sm { font-size: 13px; }
 
-        /* Statuts (partagés entre la liste et le détail) */
-        .status:empty { display: none; }
-        .wait { display: block; margin-top: 8px; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
-        .wait .unit { font-size: 13px; font-weight: 600; color: var(--text-muted); }
-        .wait.is-low { color: var(--green-text); }
-        .wait.is-medium { color: var(--orange-text); }
-        .wait.is-high { color: var(--red-text); }
-        .wait-single { display: block; margin-top: 2px; font-size: 13px; font-weight: 600; color: var(--primary); }
-        .showtimes { display: block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--primary); }
-        .pill { display: inline-block; margin-top: 8px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
-        .pill.is-open    { background: color-mix(in srgb, var(--green) 16%, transparent); color: var(--green-text); }
-        .pill.is-down    { background: color-mix(in srgb, var(--orange) 18%, transparent); color: var(--orange-text); }
-        .pill.is-closed  { background: color-mix(in srgb, var(--red) 14%, transparent);   color: var(--red-text); }
-        .pill.is-missing { background: var(--border); color: var(--text-muted); }
-
-        /* Squelettes de chargement */
-        .skeleton { height: 92px; margin-bottom: 12px; border-radius: var(--radius); background: var(--bg-surface); opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
+        .skeleton { height: 90px; margin-bottom: 10px; border-radius: 18px; background: #fff; opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
         @keyframes pulse { 50% { opacity: .35; } }
+        .empty { padding: 40px 10px; text-align: center; color: var(--mut); line-height: 1.5; }
 
-        .empty { padding: 40px 20px; text-align: center; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
-
-        /* Navigation basse */
-        .bottom-nav {
-            position: relative; z-index: 2;
-            display: flex; gap: 4px;
-            padding: 8px 10px calc(8px + var(--safe-bottom));
-            background: var(--grad-brand);
-            box-shadow: 0 -6px 20px rgb(35 40 130 / .22);
+        /* Barre d'onglets flottante */
+        .tabs {
+            position: absolute; left: 16px; right: 16px; bottom: calc(16px + var(--safe-bottom)); z-index: 5;
+            display: flex; gap: 4px; padding: 6px; border-radius: 26px;
+            background: var(--ink); box-shadow: 0 10px 24px rgb(18 22 58 / .35);
         }
-        .nav-item {
-            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-            padding: 8px 0; background: none; border: 0; border-radius: 14px;
-            color: rgb(255 255 255 / .72); font-size: 12px; font-weight: 600;
-            transition: background-color .2s, color .2s;
+        .tabs button {
+            flex: 1; min-height: 52px; border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+            font-size: 11.5px; font-weight: 700; color: #D4D7FA;
         }
-        .nav-item .icon { width: 24px; height: 24px; }
-        .nav-item:hover { color: #fff; }
-        .nav-item:focus-visible { outline-color: #fff; }
-        .nav-item[aria-selected="true"] { background: rgb(255 255 255 / .18); color: #fff; }
+        .tabs button[aria-current="true"] { background: var(--gold); color: var(--on); }
+        .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
 
         /* ==========================================================================
-           4. Colonne droite : détail
+           4. Détail
            ========================================================================== */
-        .detail-pane {
-            flex: 1; display: flex; flex-direction: column; align-items: center;
-            padding: 40px; overflow-y: auto;
-            background-color: var(--bg-surface);
-        }
-        .detail-placeholder { margin-top: 30vh; color: var(--text-muted); font-size: 16px; font-weight: 500; }
-        .detail-content { width: 100%; max-width: 700px; }
-        .detail-image {
-            display: block; width: 100%; aspect-ratio: 16 / 9; margin-bottom: 24px;
-            object-fit: cover; border-radius: 20px; background-color: var(--bg-base); box-shadow: var(--shadow);
-        }
-        .detail-title { margin-bottom: 8px; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.15; }
-        .detail-status { margin-bottom: 20px; }
-        .detail-status .wait { font-size: 28px; }
-        .detail-status .pill, .detail-status .wait, .detail-status .showtimes { margin-top: 0; }
-        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-        .badge { padding: 6px 12px; background: var(--bg-base); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; }
-        .badge.is-park { background: color-mix(in srgb, var(--primary) 12%, var(--bg-base)); border-color: color-mix(in srgb, var(--primary) 30%, var(--border)); color: var(--primary); }
-        .badge.is-land { background: color-mix(in srgb, var(--purple) 12%, var(--bg-base)); border-color: color-mix(in srgb, var(--purple) 30%, var(--border)); color: var(--purple); }
-        .badge.is-warning { border-color: color-mix(in srgb, var(--red) 40%, var(--border)); color: var(--red-text); }
-        .detail-desc { max-width: 65ch; font-size: 17px; line-height: 1.6; color: var(--text-muted); }
+        .detail-pane { flex: 1; display: flex; flex-direction: column; align-items: center; overflow-y: auto; background: var(--bg); }
+        .detail-placeholder { margin-top: 30vh; color: var(--mut); font-size: 16px; font-weight: 500; }
+        .detail-content { width: 100%; }
 
-        .btn-menu {
-            display: block; margin-top: 30px; padding: 16px; text-align: center; text-decoration: none;
-            background: var(--grad-brand); color: #fff; border-radius: 12px; font-weight: 700; font-size: 16px;
-            box-shadow: var(--shadow-brand); transition: opacity .2s;
+        .d-hero { position: relative; height: 250px; background: linear-gradient(160deg, var(--g1), var(--g2)); }
+        .d-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .d-bar {
+            position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: calc(20px + var(--safe-top)) 20px 0;
         }
-        .btn-menu:hover { opacity: .85; }
+        .btn-back { display: none; }
 
-        .btn-back {
-            display: none; align-items: center; gap: 6px; width: 100%; margin-bottom: 12px; padding: 10px 0;
-            background: none; border: 0; text-align: left; color: var(--primary); font-size: 17px; font-weight: 600;
+        .d-sheet {
+            position: relative; z-index: 1; margin-top: -28px; padding: 24px 20px 28px;
+            display: flex; flex-direction: column; gap: 16px;
+            border-radius: 28px 28px 0 0; background: var(--bg);
         }
+        .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
+        .d-status { display: flex; align-items: center; gap: 14px; }
+        .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
+        .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 6px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); font-size: 12.5px; font-weight: 700; }
+        .pill.is-park { color: var(--g1); }
+        .pill.is-land { color: var(--acc); }
+        .pill.is-warning { color: #A3121F; }
+        .d-desc { max-width: 60ch; font-size: 16px; line-height: 1.6; color: var(--mut); }
+
+        .cta {
+            display: grid; place-items: center; width: 100%; min-height: 54px;
+            border-radius: 16px; background: var(--ink); color: #fff !important;
+            font-weight: 700; font-size: 15px; text-decoration: none; text-align: center;
+        }
+        .cta.alt { background: #fff; color: var(--ink) !important; border: 1.5px solid var(--line); }
 
         /* Alertes */
-        .alert-box { margin: 0 0 24px; padding: 16px; background: var(--bg-base); border: 1px solid var(--border); border-radius: 14px; }
-        .alert-box.is-active { border-color: color-mix(in srgb, var(--primary) 45%, var(--border)); }
-        .alert-box .field { background-color: var(--bg-surface); }
-        .alert-title { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 15px; font-weight: 800; }
-        .alert-box.is-active .alert-title .icon { color: var(--primary); }
-        .alert-label { margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .alert-box { padding: 16px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line); }
+        .alert-box.is-active { border-color: var(--acc); }
+        .alert-title { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; font-weight: 800; }
+        .alert-box.is-active .alert-title .icon { color: var(--acc); }
+        .alert-label { margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--mut); }
         .alert-control { display: flex; align-items: center; gap: 10px; }
+        .field { min-height: 44px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; font-size: 16px; }
         .alert-field { width: 96px; font-weight: 700; text-align: center; }
-        .alert-unit { font-size: 14px; font-weight: 600; color: var(--text-muted); }
-        .alert-info { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--text-muted); }
+        .alert-unit { font-size: 14px; font-weight: 600; color: var(--mut); }
+        .alert-info { margin-top: 10px; font-size: 13px; line-height: 1.45; color: var(--mut); }
         .alert-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-        .btn-alert { padding: 10px 16px; border: 0; border-radius: 10px; background: var(--primary); color: var(--on-primary); font-size: 14px; font-weight: 700; transition: opacity .2s; }
-        .btn-alert:hover { opacity: .88; }
-        .btn-alert.is-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
-        .alert-toggle { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+        .btn-alert { min-height: 44px; padding: 0 16px; border-radius: 12px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; }
+        .btn-alert.is-secondary { background: transparent; color: var(--mut); border: 1.5px solid var(--line); }
+        .alert-toggle { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
         .alert-check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
-        .alert-check input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--primary); }
-        .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--primary); vertical-align: -1px; }
+        .alert-check input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--acc); }
 
-        /* Bouton favori de la fiche détail */
-        .detail-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-        .detail-title-row .detail-title { margin-bottom: 0; }
-        .btn-fav {
-            display: inline-grid; place-items: center; flex: none;
-            width: 44px; height: 44px; padding: 0;
-            background: var(--bg-base); border: 1px solid var(--border); border-radius: 50%;
-            color: var(--text-muted); font-size: 22px;
-            transition: color .2s, border-color .2s, background-color .2s;
+        /* Sélecteur de thème */
+        .scrim { position: fixed; inset: 0; z-index: 300; background: rgb(10 12 30 / .55); }
+        .panel {
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 301;
+            width: 100%; max-width: 480px; margin: 0 auto;
+            max-height: 90dvh; overflow-y: auto;
+            padding: 20px 20px calc(28px + var(--safe-bottom));
+            border-radius: 28px 28px 0 0; background: var(--bg);
         }
-        .btn-fav:hover { color: var(--fav); border-color: var(--fav); }
-        .btn-fav[aria-pressed="true"] { color: var(--fav); border-color: var(--fav); background: color-mix(in srgb, var(--fav) 12%, var(--bg-base)); }
-        .btn-fav[aria-pressed="true"] .icon { fill: currentColor; }
+        .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .panel-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
+        .panel-head .round { box-shadow: none; }
+        .themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .th { display: flex; flex-direction: column; gap: 10px; min-height: 84px; padding: 12px; text-align: left; border-radius: 16px; background: #fff; border: 2px solid var(--line); }
+        .th[aria-pressed="true"] { border-color: var(--acc); }
+        .sw { display: flex; padding-left: 6px; }
+        .sw i { width: 24px; height: 24px; margin-left: -6px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .12); }
+        .th-n { display: block; font-weight: 700; font-size: 14px; line-height: 1.2; }
+        .th-f { display: block; margin-top: 2px; font-size: 12px; color: var(--mut); }
 
-        /* Message temporaire (erreurs de géolocalisation, etc.) */
+        /* Message temporaire */
         .toast {
-            position: fixed; left: 50%; bottom: calc(88px + var(--safe-bottom)); z-index: 200;
+            position: fixed; left: 50%; bottom: calc(100px + var(--safe-bottom)); z-index: 400;
             max-width: min(90vw, 420px); padding: 10px 16px; border-radius: 12px;
-            background: var(--text-main); color: var(--bg-base); font-size: 14px; font-weight: 600; text-align: center;
+            background: var(--ink); color: #fff; font-size: 14px; font-weight: 600; text-align: center;
             transform: translate(-50%, 8px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
         }
         .toast.show { opacity: 1; transform: translate(-50%, 0); }
@@ -357,24 +297,21 @@
         /* ==========================================================================
            5. Responsive
            ========================================================================== */
+        @media (min-width: 769px) {
+            .detail-pane { padding: 32px; background: color-mix(in srgb, var(--ink) 7%, var(--bg)); }
+            .detail-content { max-width: 560px; align-self: flex-start; overflow: hidden; border-radius: 28px; background: var(--bg); box-shadow: 0 8px 30px rgb(30 30 90 / .12); }
+            .d-bar { padding-top: 20px; justify-content: flex-end; }
+        }
         @media (max-width: 768px) {
             .master-pane { width: 100%; border-right: 0; }
             .detail-pane { display: none; }
-            .detail-pane.is-open {
-                display: flex; position: fixed; inset: 0; z-index: 100;
-                padding: calc(12px + var(--safe-top)) 20px calc(20px + var(--safe-bottom));
-                animation: slide-in .25s ease-out;
-            }
-            .btn-back { display: flex; }
-            .detail-image { border-radius: 16px; }
-            .detail-title { font-size: 26px; }
-            .detail-content { padding-bottom: 40px; }
+            .detail-pane.is-open { display: flex; position: fixed; inset: 0; z-index: 100; animation: slide-in .25s ease-out; }
+            .detail-content { min-height: 100%; background: var(--bg); }
+            .btn-back { display: grid; }
         }
-        @media (max-width: 420px) {
-            .header { padding-left: 16px; }
-            .header h1 { font-size: 18px; }
-            .brand-icon { display: none; }
-            .sync { padding: 4px 8px; }
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 17px; }
+            .sync { padding: 0 10px; }
         }
         @keyframes slide-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 
@@ -387,133 +324,131 @@
 
     <!-- Icônes (sprite SVG) -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-        <symbol id="i-attraction" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7"/><circle cx="12" cy="10" r="1.5"/><path d="M12 3v14M5 10h14M7 5l10 10M17 5L7 15M8 21l4-4 4 4"/></symbol>
+        <symbol id="i-attraction" viewBox="0 0 24 24"><path d="M19 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0zM12 3v14M5 10h14M8 21l4-4 4 4"/></symbol>
         <symbol id="i-restaurant" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2 1-3.5 3.5-3.5 7 0 2 1 3 3.5 3"/></symbol>
         <symbol id="i-show" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.6-4.8 4.2L17.6 20 12 16.8 6.4 20l1.4-6.2L3 9.6 9.4 9z"/></symbol>
-        <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
-        <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></symbol>
+        <symbol id="i-theme" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><path d="M7.5 11h.01M10 7.5h.01M14 7.5h.01"/></symbol>
         <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
-        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
-        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-9.5-10C1.6 7.2 3.6 4.2 6.9 4.2c2 0 3.5 1 5.1 2.9 1.6-1.9 3.1-2.9 5.1-2.9 3.3 0 5.3 3 4.4 6.3C20 15.6 12 20.5 12 20.5z"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
     </svg>
 
     <div class="master-pane">
-        <header class="header">
-            <h1><svg class="icon brand-icon" aria-hidden="true"><use href="#i-sparkle"/></svg>DLP Companion</h1>
-            <div class="header-actions">
-                <span id="sync-status" class="sync" data-state="loading" role="status">
-                    <span class="dot" aria-hidden="true"></span>
-                    <span id="sync-label">Synchronisation…</span>
-                </span>
-                <button id="btn-refresh" class="btn-icon" type="button" aria-label="Actualiser les données">
-                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>
-                </button>
-                <button id="btn-theme" class="btn-icon" type="button" aria-label="Changer de thème">
-                    <svg class="icon" aria-hidden="true"><use href="#i-theme"/></svg>
-                </button>
+        <header class="hero">
+            <div class="hero-top">
+                <h1>DLP Companion</h1>
+                <div class="hero-actions">
+                    <button id="btn-refresh" class="sync" type="button" data-state="loading" aria-label="Actualiser les données">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span id="sync-label" role="status">Synchronisation…</span>
+                        <svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-refresh"/></svg>
+                    </button>
+                    <button id="btn-theme" class="round" type="button" aria-label="Changer de thème">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-theme"/></svg>
+                    </button>
+                </div>
             </div>
+            <div id="park-seg" class="seg" role="group" aria-label="Parc"></div>
+            <input id="search" class="search-field" type="search" placeholder="Rechercher un lieu" aria-label="Rechercher un lieu" autocomplete="off" enterkeyhint="search">
         </header>
 
-        <section class="filters" aria-label="Filtres">
-            <select id="park-select" class="field park-select" aria-label="Parc"></select>
-
-            <label class="search">
-                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-                <input id="search" class="field" type="search" placeholder="Rechercher un lieu" autocomplete="off" enterkeyhint="search">
-            </label>
-
-            <div class="toggles-row">
-                <label class="toggle-group">
-                    <span class="switch">
-                        <input type="checkbox" id="toggle-closed" role="switch">
-                        <span class="slider"></span>
-                    </span>
-                    Lieux fermés
-                </label>
-                <label class="toggle-group">
-                    <span class="switch">
-                        <input type="checkbox" id="toggle-nearby" role="switch">
-                        <span class="slider"></span>
-                    </span>
-                    Autour de moi
-                </label>
-            </div>
-
-            <button id="btn-favs" class="btn-favs" type="button" aria-pressed="false">
-                <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
-                <span id="favs-label">Voir les favoris</span>
-            </button>
-        </section>
-
-        <div id="list" class="list-container" role="tabpanel" aria-live="polite"></div>
-
-        <div class="bottom-nav" role="tablist" aria-label="Catégories">
-            <button class="nav-item" type="button" role="tab" data-tab="attraction" aria-selected="true">
-                <svg class="icon" aria-hidden="true"><use href="#i-attraction"/></svg><span>Attractions</span>
-            </button>
-            <button class="nav-item" type="button" role="tab" data-tab="restaurant" aria-selected="false">
-                <svg class="icon" aria-hidden="true"><use href="#i-restaurant"/></svg><span>Restaurants</span>
-            </button>
-            <button class="nav-item" type="button" role="tab" data-tab="spectacle" aria-selected="false">
-                <svg class="icon" aria-hidden="true"><use href="#i-show"/></svg><span>Spectacles</span>
-            </button>
+        <div class="chips" role="group" aria-label="Filtres">
+            <button id="chip-favs" class="chip" type="button" aria-pressed="false">Favoris</button>
+            <button id="chip-nearby" class="chip" type="button" aria-pressed="false">Autour de moi</button>
+            <button id="chip-closed" class="chip" type="button" aria-pressed="false">Lieux fermés</button>
         </div>
+
+        <main id="list" class="list" aria-live="polite"></main>
+
+        <nav class="tabs" aria-label="Catégories">
+            <button type="button" data-tab="attraction" aria-current="true">
+                <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-attraction"/></svg>Attractions
+            </button>
+            <button type="button" data-tab="restaurant" aria-current="false">
+                <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-restaurant"/></svg>Restaurants
+            </button>
+            <button type="button" data-tab="spectacle" aria-current="false">
+                <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-show"/></svg>Spectacles
+            </button>
+        </nav>
     </div>
 
-    <main id="detail-pane" class="detail-pane">
+    <section id="detail-pane" class="detail-pane" aria-label="Détail du lieu">
         <p id="detail-placeholder" class="detail-placeholder">Sélectionnez un lieu pour afficher les détails</p>
 
         <article id="detail-content" class="detail-content" hidden>
-            <button id="btn-back" class="btn-back" type="button">
-                <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
-                Retour
-            </button>
-            <img id="d-image" class="detail-image" src="" alt="" decoding="async">
-            <div class="detail-title-row">
-                <h2 id="d-title" class="detail-title"></h2>
-                <button id="btn-fav" class="btn-fav" type="button" aria-pressed="false" aria-label="Ajouter aux favoris" title="Ajouter aux favoris">
-                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+            <div class="d-hero">
+                <img id="d-image" class="d-img" alt="" decoding="async">
+                <div class="d-bar">
+                    <button id="btn-back" class="round btn-back" type="button" aria-label="Retour">
+                        <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>
+                    </button>
+                    <button id="btn-fav" class="round acc" type="button" aria-pressed="false" aria-label="Ajouter aux favoris" title="Ajouter aux favoris">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-heart"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-sheet">
+                <h2 id="d-title" class="d-title"></h2>
+                <div class="d-status">
+                    <span id="d-badge"></span>
+                    <span id="d-status-text" class="status-text"></span>
+                </div>
+                <ul id="d-badges" class="pills"></ul>
+
+                <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
+                    <h3 id="alert-title" class="alert-title">
+                        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-bell"/></svg>
+                        <span id="alert-heading"></span>
+                    </h3>
+                    <p id="alert-label" class="alert-label"></p>
+                    <div class="alert-control">
+                        <input id="alert-num" class="field alert-field" type="number" inputmode="numeric" min="5" max="180" step="5" aria-labelledby="alert-label">
+                        <select id="alert-lead" class="field alert-field" aria-labelledby="alert-label">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                            <option value="60">60</option>
+                            <option value="90">90</option>
+                        </select>
+                        <span id="alert-unit" class="alert-unit">min</span>
+                    </div>
+                    <p id="alert-info" class="alert-info"></p>
+                    <div class="alert-actions">
+                        <button id="alert-save" class="btn-alert" type="button">Activer l’alerte</button>
+                        <button id="alert-remove" class="btn-alert is-secondary" type="button" hidden>Supprimer</button>
+                    </div>
+                    <div id="alert-status-row" class="alert-toggle" hidden>
+                        <label class="alert-check">
+                            <input id="alert-status" type="checkbox">
+                            <span>Me prévenir si l’attraction tombe en panne, puis quand elle rouvre</span>
+                        </label>
+                        <p id="alert-status-info" class="alert-info" hidden></p>
+                    </div>
+                </section>
+
+                <p id="d-desc" class="d-desc"></p>
+                <button id="btn-fav-cta" class="cta" type="button" aria-pressed="false">Ajouter aux favoris</button>
+                <a id="d-btn" class="cta alt" href="#" target="_blank" rel="noopener noreferrer">Voir le menu</a>
+            </div>
+        </article>
+    </section>
+
+    <div id="theme-layer" hidden>
+        <button id="theme-scrim" class="scrim" type="button" aria-label="Fermer le choix du thème"></button>
+        <section class="panel" role="dialog" aria-modal="true" aria-labelledby="theme-heading">
+            <div class="panel-head">
+                <h2 id="theme-heading">Choisir un thème</h2>
+                <button id="theme-close" class="round" type="button" aria-label="Fermer">
+                    <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
                 </button>
             </div>
-            <div id="d-status" class="detail-status status"></div>
-            <ul id="d-badges" class="badges"></ul>
-
-            <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
-                <h3 id="alert-title" class="alert-title">
-                    <svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>
-                    <span id="alert-heading"></span>
-                </h3>
-                <p id="alert-label" class="alert-label"></p>
-                <div class="alert-control">
-                    <input id="alert-num" class="field alert-field" type="number" inputmode="numeric" min="5" max="180" step="5" aria-labelledby="alert-label">
-                    <select id="alert-lead" class="field alert-field" aria-labelledby="alert-label">
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                        <option value="60">60</option>
-                        <option value="90">90</option>
-                    </select>
-                    <span id="alert-unit" class="alert-unit">min</span>
-                </div>
-                <p id="alert-info" class="alert-info"></p>
-                <div class="alert-actions">
-                    <button id="alert-save" class="btn-alert" type="button">Activer l’alerte</button>
-                    <button id="alert-remove" class="btn-alert is-secondary" type="button" hidden>Supprimer</button>
-                </div>
-                <div id="alert-status-row" class="alert-toggle" hidden>
-                    <label class="alert-check">
-                        <input id="alert-status" type="checkbox">
-                        <span>Me prévenir si l’attraction tombe en panne, puis quand elle rouvre</span>
-                    </label>
-                    <p id="alert-status-info" class="alert-info" hidden></p>
-                </div>
-            </section>
-            <p id="d-desc" class="detail-desc"></p>
-            <a id="d-btn" class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">Voir le menu</a>
-        </article>
-    </main>
+            <div id="theme-grid" class="themes"></div>
+        </section>
+    </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
@@ -538,16 +473,16 @@
             TIMEZONE: 'Europe/Paris',
             PARKS: [
                 { value: 'Disneyland Park',        label: 'Parc Disneyland' },
-                { value: 'Disney Adventure World', label: 'Disney Adventure World' },
+                { value: 'Disney Adventure World', label: 'Adventure World' },
             ],
         };
 
         // Masqués par défaut (affichés avec « Lieux fermés »). Les lieux « DOWN » (panne temporaire) restent visibles.
         const CLOSED_LABELS = { CLOSED: 'Fermé', REFURBISHMENT: 'En réhabilitation' };
         const HIDDEN_BY_DEFAULT = new Set(Object.keys(CLOSED_LABELS));
-        const THEME_COLORS = { light: '#1B3A9E', dark: '#16256F' };
+        const THEMES = window.DLP_THEMES;
+        const THEME_KEY = 'dlp-theme';
 
-        
         /* ======================================================================
            Utilitaires
            ====================================================================== */
@@ -589,27 +524,27 @@
         });
 
         /* ======================================================================
-   Données des lieux : fichiers JSON à la racine du site
-   ====================================================================== */
-const DATA_FILES = ['attractions.json', 'restaurants.json', 'shows.json'];
+           Données des lieux : fichiers JSON à la racine du site
+           ====================================================================== */
+        const DATA_FILES = ['attractions.json', 'restaurants.json', 'shows.json'];
 
-async function loadList(file) {
-    const res = await fetch(file, { cache: 'no-cache' });   // revalide auprès du serveur : une mise à jour du JSON est vue tout de suite
-    if (!res.ok) throw new Error(`${file} : HTTP ${res.status}`);
-    const data = await res.json();
-    if (!Array.isArray(data)) throw new Error(`${file} : un tableau est attendu`);
-    return data;
-}
+        async function loadList(file) {
+            const res = await fetch(file, { cache: 'no-cache' });   // revalide auprès du serveur : une mise à jour du JSON est vue tout de suite
+            if (!res.ok) throw new Error(`${file} : HTTP ${res.status}`);
+            const data = await res.json();
+            if (!Array.isArray(data)) throw new Error(`${file} : un tableau est attendu`);
+            return data;
+        }
 
-let attractionsRaw, restaurantsRaw, showsRaw;
-try {
-    [attractionsRaw, restaurantsRaw, showsRaw] = await Promise.all(DATA_FILES.map(loadList));
-} catch (error) {
-    console.error('Chargement des données impossible :', error);
-    $('#list').innerHTML = '<div class="empty">Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button></div>';
-    $('#btn-reload').addEventListener('click', () => location.reload());
-    return;
-}
+        let attractionsRaw, restaurantsRaw, showsRaw;
+        try {
+            [attractionsRaw, restaurantsRaw, showsRaw] = await Promise.all(DATA_FILES.map(loadList));
+        } catch (error) {
+            console.error('Chargement des données impossible :', error);
+            $('#list').innerHTML = '<div class="empty">Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button></div>';
+            $('#btn-reload').addEventListener('click', () => location.reload());
+            return;
+        }
 
         /* ======================================================================
            Modèle de données
@@ -668,29 +603,35 @@ try {
 
         const els = {
             list: $('#list'),
-            sync: $('#sync-status'),
+            sync: $('#btn-refresh'),
             syncLabel: $('#sync-label'),
             btnRefresh: $('#btn-refresh'),
             btnTheme: $('#btn-theme'),
-            park: $('#park-select'),
+            seg: $('#park-seg'),
+            parkBtns: [],
             search: $('#search'),
-            toggleClosed: $('#toggle-closed'),
-            toggleNearby: $('#toggle-nearby'),
-            btnFavs: $('#btn-favs'),
-            favsLabel: $('#favs-label'),
+            chipFavs: $('#chip-favs'),
+            chipNearby: $('#chip-nearby'),
+            chipClosed: $('#chip-closed'),
             btnFav: $('#btn-fav'),
-            tabs: document.querySelectorAll('.nav-item'),
+            btnFavCta: $('#btn-fav-cta'),
+            tabs: document.querySelectorAll('.tabs button'),
             pane: $('#detail-pane'),
             placeholder: $('#detail-placeholder'),
             content: $('#detail-content'),
             btnBack: $('#btn-back'),
             image: $('#d-image'),
             title: $('#d-title'),
-            status: $('#d-status'),
+            statusBadge: $('#d-badge'),
+            statusText: $('#d-status-text'),
             badges: $('#d-badges'),
             desc: $('#d-desc'),
             menu: $('#d-btn'),
             toast: $('#toast'),
+            themeLayer: $('#theme-layer'),
+            themeScrim: $('#theme-scrim'),
+            themeClose: $('#theme-close'),
+            themeGrid: $('#theme-grid'),
             alertBox: $('#d-alert'),
             alertHeading: $('#alert-heading'),
             alertLabel: $('#alert-label'),
@@ -711,14 +652,12 @@ try {
         const statusOf = (item) => item.live?.status ?? null;
         const isHiddenByDefault = (item) => HIDDEN_BY_DEFAULT.has(statusOf(item));
 
-        const waitTone = (wait) => {
-            if (wait == null) return '';
-            if (wait <= CONFIG.WAIT_THRESHOLDS.low) return 'is-low';
-            if (wait <= CONFIG.WAIT_THRESHOLDS.medium) return 'is-medium';
-            return 'is-high';
+        const waitKind = (wait) => {
+            if (wait == null) return 'off';
+            if (wait <= CONFIG.WAIT_THRESHOLDS.low) return 'low';
+            if (wait <= CONFIG.WAIT_THRESHOLDS.medium) return 'mid';
+            return 'high';
         };
-
-        const pill = (label, tone) => `<span class="pill is-${tone}">${esc(label)}</span>`;
 
         function upcomingShowtimes(item) {
             const now = Date.now();
@@ -731,40 +670,55 @@ try {
         const downInfo = new Map();
         const downPending = new Set();
 
-        function downHtml(item) {
-            const since = downInfo.get(item.apiId)?.since;
-            return pill(since ? `En panne depuis : ${timeFormat.format(since)}` : 'En panne', 'down');
-        }
-
-        function statusHtml(item) {
+        /**
+         * Modèle d'affichage d'un lieu : { kind, big, unit, text, cardExtra }
+         *  - kind : low | mid | high | open | show | down | off (couleur du badge)
+         *  - big/unit : contenu du badge ; text : libellé de la fiche ; cardExtra : complément en liste
+         */
+        function statusModel(item) {
             const status = statusOf(item);
+            const mk = (kind, big, unit = '', text = '', cardExtra = '') => ({ kind, big, unit, text, cardExtra });
 
-            if (status === 'DOWN') return downHtml(item);
-            if (isHiddenByDefault(item)) return pill(CLOSED_LABELS[status], 'closed');
+            if (status === 'DOWN') {
+                const since = downInfo.get(item.apiId)?.since;
+                return mk('down', 'Panne', '', since ? `En panne depuis : ${timeFormat.format(since)}` : 'En panne');
+            }
+            if (isHiddenByDefault(item)) {
+                return mk('off', status === 'CLOSED' ? 'Fermé' : 'Travaux', '', CLOSED_LABELS[status]);
+            }
 
             switch (item.category) {
                 case 'attraction': {
-                    if (!status) return pill('Données indisponibles', 'missing');
-                    if (status !== 'OPERATING') return '';
+                    if (!status) return mk('off', '--', '', 'Données indisponibles');
+                    if (status !== 'OPERATING') return mk('off', '--', '', 'Actuellement indisponible');
                     const { wait, single } = item.live;
-                    let html = `<span class="wait ${waitTone(wait)}">${wait ?? '--'} <span class="unit">min</span></span>`;
-                    if (single != null) html += `<span class="wait-single">Single Rider : ${single} min</span>`;
-                    return html;
+                    const singleText = single != null ? `Single Rider : ${single} min` : '';
+                    return mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min',
+                        ['Temps d’attente actuel', singleText].filter(Boolean).join(' · '), singleText);
                 }
                 case 'spectacle': {
                     const upcoming = upcomingShowtimes(item);
                     if (upcoming.length) {
                         const times = upcoming.map((d) => timeFormat.format(d)).join(' • ');
-                        return `<span class="showtimes">Prochaines séances : ${times}</span>`;
+                        return mk('show', timeFormat.format(upcoming[0]), 'séance', `Prochaines séances : ${times}`, times);
                     }
-                    if (item.live?.showtimes?.length) return pill('Plus de séance aujourd’hui', 'missing');
-                    return status === 'OPERATING' ? `<span class="showtimes">En cours</span>` : '';
+                    if (item.live?.showtimes?.length) return mk('off', 'Terminé', '', 'Plus de séance aujourd’hui');
+                    if (status === 'OPERATING') return mk('show', 'En cours', '', 'En cours');
+                    return mk('off', '--', '', 'Horaires indisponibles');
                 }
                 case 'restaurant':
-                    return status === 'OPERATING' ? pill('Ouvert', 'open') : '';
+                    return status === 'OPERATING'
+                        ? mk('open', 'Ouvert', '', 'Ouvert actuellement')
+                        : mk('off', '--', '', 'Horaires indisponibles');
                 default:
-                    return '';
+                    return mk('off', '--');
             }
+        }
+
+        function badgeHtml(m) {
+            const big = String(m.big);
+            const size = /^(\d{1,3}|--)$/.test(big) ? '' : /^\d\d:\d\d$/.test(big) ? ' tm' : ' sm';
+            return `<span class="badge ${m.kind}${size}">${esc(big)}${m.unit ? `<small>${esc(m.unit)}</small>` : ''}</span>`;
         }
 
         /* ======================================================================
@@ -848,10 +802,10 @@ try {
             els.sync.dataset.state = mode;
             if (mode === 'live') {
                 els.syncLabel.textContent = `En direct · ${timeFormat.format(state.lastSync)}`;
-                els.sync.title = `${state.matches}/${db.length} lieux synchronisés`;
+                els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Appuyez pour actualiser.`;
             } else if (mode === 'error') {
                 els.syncLabel.textContent = 'Hors connexion';
-                els.sync.title = 'Impossible de joindre le service. Appuyez sur « Actualiser » pour réessayer.';
+                els.sync.title = 'Impossible de joindre le service. Appuyez pour réessayer.';
             } else {
                 els.syncLabel.textContent = 'Synchronisation…';
                 els.sync.title = '';
@@ -918,26 +872,27 @@ try {
         const CATEGORY_LABELS = { attraction: 'Attractions', restaurant: 'Restaurants', spectacle: 'Spectacles' };
         const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
 
-        function syncParkSelect() {
-            const locked = state.nearby || state.showFavorites;
-            els.park.disabled = locked;
-            els.park.title = state.nearby ? '« Autour de moi » couvre les deux parcs'
-                : state.showFavorites ? 'Les favoris couvrent les deux parcs' : '';
+        // Synchronise l'état visuel des filtres (parcs, puces)
+        function syncFilterUi() {
+            const locked = state.nearby || state.showFavorites;   // ces modes couvrent les deux parcs
+            els.parkBtns.forEach((b) => b.setAttribute('aria-pressed', String(!locked && b.dataset.park === state.park)));
+            els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
+            els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
+            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
         }
 
         function syncTabsUi() {
-            els.tabs.forEach((t) => t.setAttribute('aria-selected', String(!state.showFavorites && t.dataset.tab === state.tab)));
+            els.tabs.forEach((t) => t.setAttribute('aria-current', String(!state.showFavorites && t.dataset.tab === state.tab)));
         }
 
         function renderFavButton() {
-            const active = state.showFavorites;
-            els.btnFavs.setAttribute('aria-pressed', String(active));
-            els.favsLabel.textContent = favorites.size ? `Voir les favoris (${favorites.size})` : 'Voir les favoris';
+            els.chipFavs.textContent = favorites.size ? `Favoris (${favorites.size})` : 'Favoris';
+            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
         }
 
         function setShowFavorites(active) {
             state.showFavorites = active;
-            syncParkSelect();
+            syncFilterUi();
             syncTabsUi();
             renderFavButton();
         }
@@ -963,6 +918,8 @@ try {
             els.btnFav.setAttribute('aria-pressed', String(fav));
             els.btnFav.setAttribute('aria-label', label);
             els.btnFav.title = label;
+            els.btnFavCta.setAttribute('aria-pressed', String(fav));
+            els.btnFavCta.textContent = label;
         }
 
         // id -> { kind: 'wait', threshold, armed, firedAt, firedWait }
@@ -1299,7 +1256,7 @@ try {
                     done: futureSessions(item, now).filter((s) => s.start - now <= lead * 60_000).map((s) => s.key),
                 });
             }
-            
+
             if (saveAlerts()) {
                 const label = isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`;
                 const sync = await syncAlerts({ interactive: true });
@@ -1348,7 +1305,7 @@ try {
         async function onAlertRemove() {
             const item = selectedItem();
             if (!item || !alerts.delete(item.id)) return;
-            
+
             saveAlerts();
             syncAlerts();
             notify('Alerte supprimée');
@@ -1363,7 +1320,7 @@ try {
             if (state.showFavorites) setShowFavorites(false);
             state.tab = item.category;
             if (CONFIG.PARKS.some((p) => p.value === item.park)) state.park = item.park;
-            els.park.value = state.park;
+            syncFilterUi();
             syncTabsUi();
             openDetail(id);
         }
@@ -1416,20 +1373,29 @@ try {
         function cardHtml({ item, dist }) {
             const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
+            const m = statusModel(item);
+            const sub = [
+                dist != null ? `à ${formatDistance(dist)}` : '',
+                m.kind === 'down' ? m.text : item.type,
+                state.showFavorites ? item.park : '',
+                m.cardExtra,
+            ].filter(Boolean).join(' · ');
+            const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
+                ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : '';
+
             return `
-                <div class="card-wrap">
-                <button type="button" class="card${selected ? ' selected' : ''}" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
-                    <span class="card-head">
-                        <span class="card-title">${esc(item.name)}${(alerts.has(item.id) || alerts.has(item.id + '#status')) ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : ''}</span>
-                        ${dist != null ? `<span class="card-dist">${formatDistance(dist)}</span>` : ''}
-                    </span>
-                    ${item.type || state.showFavorites ? `<span class="card-meta">${esc([item.type, state.showFavorites ? item.park : ''].filter(Boolean).join(' · '))}</span>` : ''}
-                    <span class="status">${statusHtml(item)}</span>
-                </button>
-                <button type="button" class="card-fav-btn" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
-                        aria-label="${fav ? 'Retirer' : 'Ajouter'} ${esc(item.name)} ${fav ? 'des' : 'aux'} favoris">
-                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
-                </button>
+                <div class="card${selected ? ' selected' : ''}">
+                    <button type="button" class="main" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
+                        ${badgeHtml(m)}
+                        <span class="txt">
+                            <span class="ttl">${esc(item.name)}${bell}</span>
+                            ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
+                        </span>
+                    </button>
+                    <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
+                            aria-label="${fav ? 'Retirer' : 'Ajouter'} ${esc(item.name)} ${fav ? 'des' : 'aux'} favoris">
+                        <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-heart"/></svg>
+                    </button>
                 </div>`;
         }
 
@@ -1447,7 +1413,7 @@ try {
                         ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
                     : state.nearby
                         ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
-                        : 'Aucun lieu à afficher selon vos critères.';
+                        : 'Aucun lieu ne correspond à ces critères.';
                 els.list.innerHTML = `<div class="empty">${hint}</div>`;
                 return;
             }
@@ -1475,7 +1441,7 @@ try {
             els.list.innerHTML = lands
                 .map((land) => `
                     <section>
-                        <h2 class="group-header">${esc(land)}</h2>
+                        <h2 class="land">${esc(land)}</h2>
                         ${groups.get(land).sort(compareEntries).map(cardHtml).join('')}
                     </section>`)
                 .join('');
@@ -1496,11 +1462,14 @@ try {
             renderFavDetailButton(item);
             els.desc.textContent = item.description;
             els.desc.hidden = !item.description;
-            els.status.innerHTML = statusHtml(item);
+
+            const m = statusModel(item);
+            els.statusBadge.innerHTML = badgeHtml(m);
+            els.statusText.textContent = m.text;
 
             const image = safeUrl(item.image);
             els.image.hidden = !image;
-            els.image.alt = item.name;
+            els.image.alt = '';
             if (image && els.image.getAttribute('src') !== image) els.image.src = image;
 
             const badges = [
@@ -1513,7 +1482,7 @@ try {
             ].filter((b) => b && b.text);
 
             els.badges.innerHTML = badges
-                .map((b) => `<li class="badge${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
+                .map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
                 .join('');
 
             const menu = safeUrl(item.menuUrl);
@@ -1539,12 +1508,47 @@ try {
             els.pane.classList.remove('is-open');
             renderList();
             renderDetail();
-            els.list.querySelector(`.card[data-id="${CSS.escape(previousId)}"]`)?.focus({ preventScroll: true });
+            els.list.querySelector(`.main[data-id="${CSS.escape(previousId)}"]`)?.focus({ preventScroll: true });
         }
 
         function render() {
             renderList();
             renderDetail();
+        }
+
+        /* ======================================================================
+           Thèmes
+           ====================================================================== */
+        const currentTheme = () => document.documentElement.dataset.theme;
+
+        function updateThemeLabel() {
+            els.btnTheme.setAttribute('aria-label', `Changer de thème (actuel : ${THEMES[currentTheme()]?.n ?? ''})`);
+        }
+
+        function setTheme(id) {
+            window.DLP_applyTheme(id);
+            try { localStorage.setItem(THEME_KEY, currentTheme()); } catch { /* stockage indisponible */ }
+            updateThemeLabel();
+        }
+
+        function renderThemes() {
+            const active = currentTheme();
+            els.themeGrid.innerHTML = Object.entries(THEMES).map(([id, t]) => `
+                <button type="button" class="th" data-theme-id="${esc(id)}" aria-pressed="${id === active}">
+                    <span class="sw"><i style="background:${t.ink}"></i><i style="background:${t.gold}"></i><i style="background:${t.acc}"></i><i style="background:${t.bg}"></i></span>
+                    <span><span class="th-n">${esc(t.n)}</span><span class="th-f">${esc(t.f)}</span></span>
+                </button>`).join('');
+        }
+
+        function openThemes() {
+            renderThemes();
+            els.themeLayer.hidden = false;
+            els.themeClose.focus();
+        }
+
+        function closeThemes() {
+            els.themeLayer.hidden = true;
+            els.btnTheme.focus({ preventScroll: true });
         }
 
         /* ======================================================================
@@ -1558,16 +1562,10 @@ try {
             toastTimer = setTimeout(() => els.toast.classList.remove('show'), 4000);
         }
 
-        function setTheme(theme) {
-            document.documentElement.dataset.theme = theme;
-            document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[theme];
-            try { localStorage.setItem('theme', theme); } catch { /* stockage indisponible */ }
-        }
-
         /* « Autour de moi » : position suivie en continu pour garder les distances à jour */
         function setNearbyUi(active) {
             state.nearby = active;
-            syncParkSelect();
+            syncFilterUi();
         }
 
         function stopNearby() {
@@ -1591,40 +1589,49 @@ try {
         function onPositionError(error) {
             if (state.nearby && error.code === 3) return;   // délai dépassé : on garde la dernière position
             stopNearby();
-            els.toggleNearby.checked = false;
             notify('Autorisez la géolocalisation pour afficher les lieux proches.');
             renderList();
         }
 
-        function onNearbyChange() {
-            if (!els.toggleNearby.checked) {
+        function onNearbyClick() {
+            if (state.watchId != null) {
                 stopNearby();
                 return renderList();
             }
             if (!('geolocation' in navigator)) {
-                els.toggleNearby.checked = false;
                 return notify('La géolocalisation n’est pas disponible sur cet appareil.');
             }
             state.watchId = navigator.geolocation.watchPosition(onPosition, onPositionError,
                 { enableHighAccuracy: true, timeout: 20_000, maximumAge: 15_000 });
+            syncFilterUi();
         }
 
         function bindEvents() {
-            els.park.innerHTML = CONFIG.PARKS
-                .map((p) => `<option value="${esc(p.value)}">${esc(p.label)}</option>`).join('');
-            els.park.value = state.park;
+            els.seg.innerHTML = CONFIG.PARKS
+                .map((p) => `<button type="button" data-park="${esc(p.value)}" aria-pressed="false">${esc(p.label)}</button>`).join('');
+            els.parkBtns = [...els.seg.querySelectorAll('button')];
+            els.parkBtns.forEach((btn) => btn.addEventListener('click', () => {
+                if (state.watchId != null || state.nearby) stopNearby();   // choisir un parc quitte « Autour de moi » et les favoris
+                if (state.showFavorites) setShowFavorites(false);
+                state.park = btn.dataset.park;
+                syncFilterUi();
+                syncTabsUi();
+                closeDetail();
+                renderList();
+            }));
 
-            els.park.addEventListener('change', () => { state.park = els.park.value; closeDetail(); renderList(); });
             els.search.addEventListener('input', () => { state.query = els.search.value; renderList(); });
-            els.toggleClosed.addEventListener('change', () => { state.showClosed = els.toggleClosed.checked; renderList(); });
-            els.toggleNearby.addEventListener('change', onNearbyChange);
-            els.btnFavs.addEventListener('click', () => {
+            els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
+            els.chipNearby.addEventListener('click', onNearbyClick);
+            els.chipFavs.addEventListener('click', () => {
                 closeDetail();
                 setShowFavorites(!state.showFavorites);
                 renderList();
                 els.list.scrollTop = 0;
             });
-            els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
+            const favFromDetail = () => { if (state.selectedId) toggleFavorite(state.selectedId); };
+            els.btnFav.addEventListener('click', favFromDetail);
+            els.btnFavCta.addEventListener('click', favFromDetail);
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
                 state.tab = tab.dataset.tab;
@@ -1635,14 +1642,14 @@ try {
             }));
 
             els.list.addEventListener('click', (event) => {
-                const favBtn = event.target.closest('.card-fav-btn');
+                const favBtn = event.target.closest('.heart');
                 if (favBtn) {
                     const id = favBtn.dataset.favId;
                     toggleFavorite(id);
-                    els.list.querySelector(`.card-fav-btn[data-fav-id="${CSS.escape(id)}"]`)?.focus({ preventScroll: true });
+                    els.list.querySelector(`.heart[data-fav-id="${CSS.escape(id)}"]`)?.focus({ preventScroll: true });
                     return;
                 }
-                const card = event.target.closest('.card');
+                const card = event.target.closest('.main');
                 if (card) openDetail(card.dataset.id);
             });
 
@@ -1652,10 +1659,22 @@ try {
             els.alertStatus.addEventListener('change', onStatusToggle);
             els.image.addEventListener('error', () => { els.image.hidden = true; });
             els.btnRefresh.addEventListener('click', refresh);
-            els.btnTheme.addEventListener('click', () =>
-                setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
 
-            document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDetail(); });
+            els.btnTheme.addEventListener('click', openThemes);
+            els.themeClose.addEventListener('click', closeThemes);
+            els.themeScrim.addEventListener('click', closeThemes);
+            els.themeGrid.addEventListener('click', (event) => {
+                const btn = event.target.closest('.th');
+                if (!btn) return;
+                setTheme(btn.dataset.themeId);
+                closeThemes();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape') return;
+                if (!els.themeLayer.hidden) return closeThemes();
+                closeDetail();
+            });
 
             // Actualisation automatique, uniquement quand l'onglet est visible
             // Avec des alertes actives, on continue d'actualiser même onglet masqué
@@ -1673,10 +1692,10 @@ try {
            Démarrage
            ====================================================================== */
         function init() {
-            document.querySelector('meta[name="theme-color"]').content =
-                THEME_COLORS[document.documentElement.dataset.theme] ?? THEME_COLORS.light;
-
             bindEvents();
+            updateThemeLabel();
+            syncFilterUi();
+            syncTabsUi();
             renderFavButton();
             render();     // affiche les squelettes de chargement
             refresh();
