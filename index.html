@@ -38,7 +38,11 @@
             ['ink', 'gold', 'on', 'acc', 'bg', 'g1', 'g2'].forEach(function (k) { root.style.setProperty('--' + k, t[k]); });
             root.dataset.theme = id;
             var meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.content = t.ink;
+            if (meta) {   // recréée : certains navigateurs ignorent la simple modification de content
+                var fresh = meta.cloneNode();
+                fresh.content = t.ink;
+                meta.replaceWith(fresh);
+            }
             return id;
         };
         try { window.DLP_applyTheme(localStorage.getItem('dlp-theme')); }
@@ -103,12 +107,7 @@
             display: flex; flex-direction: column; gap: 14px;
             padding: calc(22px + var(--safe-top)) 20px 18px;
             border-radius: 0 0 28px 28px; color: #fff;
-            background:
-                radial-gradient(circle at 12% 22%, #fff 0 1px, transparent 1.6px),
-                radial-gradient(circle at 78% 14%, #fff 0 1.2px, transparent 1.8px),
-                radial-gradient(circle at 92% 60%, #fff 0 1px, transparent 1.6px),
-                radial-gradient(circle at 46% 8%, var(--gold) 0 1.4px, transparent 2px),
-                var(--ink);
+            background: var(--ink);
         }
         .hero :focus-visible { outline-color: #fff; }
         .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
@@ -233,6 +232,16 @@
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
         .d-status { display: flex; align-items: center; gap: 14px; }
         .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
+        .d-st { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+        .sr {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 4px 10px;
+            border-radius: 10px; white-space: nowrap;
+            background: color-mix(in srgb, var(--acc) 11%, #fff);
+            border: 1px solid color-mix(in srgb, var(--acc) 30%, #fff);
+        }
+        .sr-l { font-size: 12px; font-weight: 700; color: var(--acc); }
+        .sr-t { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ink); }
+        .d-st .sr { margin-top: 0; }
         .pills { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill { padding: 6px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); font-size: 12.5px; font-weight: 700; }
         .pill.is-park { color: var(--g1); }
@@ -395,7 +404,7 @@
                 <h2 id="d-title" class="d-title"></h2>
                 <div class="d-status">
                     <span id="d-badge"></span>
-                    <span id="d-status-text" class="status-text"></span>
+                    <span class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></span>
                 </div>
                 <ul id="d-badges" class="pills"></ul>
 
@@ -624,6 +633,7 @@
             title: $('#d-title'),
             statusBadge: $('#d-badge'),
             statusText: $('#d-status-text'),
+            single: $('#d-single'),
             badges: $('#d-badges'),
             desc: $('#d-desc'),
             menu: $('#d-btn'),
@@ -692,9 +702,9 @@
                     if (!status) return mk('off', '--', '', 'Données indisponibles');
                     if (status !== 'OPERATING') return mk('off', '--', '', 'Actuellement indisponible');
                     const { wait, single } = item.live;
-                    const singleText = single != null ? `Single Rider : ${single} min` : '';
-                    return mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min',
-                        ['Temps d’attente actuel', singleText].filter(Boolean).join(' · '), singleText);
+                    const m = mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min', 'Temps d’attente actuel');
+                    if (single != null) m.single = single;
+                    return m;
                 }
                 case 'spectacle': {
                     const upcoming = upcomingShowtimes(item);
@@ -714,6 +724,10 @@
                     return mk('off', '--');
             }
         }
+
+        // Pastille « Single Rider » (liste + fiche)
+        const singleHtml = (m) => m.single == null ? ''
+            : `<span class="sr"><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
 
         function badgeHtml(m) {
             const big = String(m.big);
@@ -1390,6 +1404,7 @@
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
+                            ${singleHtml(m)}
                         </span>
                     </button>
                     <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
@@ -1466,6 +1481,7 @@
             const m = statusModel(item);
             els.statusBadge.innerHTML = badgeHtml(m);
             els.statusText.textContent = m.text;
+            els.single.innerHTML = singleHtml(m);
 
             const image = safeUrl(item.image);
             els.image.hidden = !image;
