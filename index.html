@@ -19,11 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
 
-    <!-- Librairies pour le Portefeuille (Scanner QR et Générateur QR) -->
-    <script src="https://unpkg.com/html5-qrcode" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js" defer></script>
-
     <script>
+        // Thèmes : source unique, appliquée avant le premier rendu (évite le flash de couleurs)
         window.DLP_THEMES = {
             chateau:     { n: 'Soirée au château',   f: 'Thème par défaut',    ink: '#12163A', gold: '#F2B33D', on: '#12163A', acc: '#6A3FD0', bg: '#F3F2FA', g1: '#2F46D1', g2: '#6A3FD0' },
             toystory:    { n: 'Toy Story',           f: 'Chambre d’Andy',      ink: '#1B3A7A', gold: '#FFCB05', on: '#1A1A2E', acc: '#C8231C', bg: '#EAF3FC', g1: '#2F6FC4', g2: '#1B3A7A' },
@@ -41,7 +38,7 @@
             ['ink', 'gold', 'on', 'acc', 'bg', 'g1', 'g2'].forEach(function (k) { root.style.setProperty('--' + k, t[k]); });
             root.dataset.theme = id;
             var meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) { 
+            if (meta) {   // recréée : certains navigateurs ignorent la simple modification de content
                 var fresh = meta.cloneNode();
                 fresh.content = t.ink;
                 meta.replaceWith(fresh);
@@ -54,7 +51,7 @@
 
     <style>
         /* ==========================================================================
-           1. Design tokens
+           1. Design tokens (les couleurs de thème sont posées par DLP_applyTheme)
            ========================================================================== */
         :root {
             color-scheme: light;
@@ -105,6 +102,7 @@
             overflow: hidden;
         }
 
+        /* En-tête */
         .hero {
             display: flex; flex-direction: column; gap: 14px;
             padding: calc(22px + var(--safe-top)) 20px 18px;
@@ -127,6 +125,7 @@
         .sync[data-state="error"] .dot { background: #FF8A80; opacity: 1; }
         .sync:disabled { cursor: default; }
         .is-spinning .icon { animation: spin .9s linear infinite; }
+        .sync.is-spinning .dot { animation: pulse 1s ease-in-out infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .round {
@@ -152,6 +151,7 @@
         .search-field::placeholder { color: #C9CCF0; opacity: 1; }
         .search-field::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
 
+        /* Puces de filtres */
         .chips { display: flex; gap: 8px; padding: 14px 20px 4px; overflow-x: auto; scrollbar-width: none; }
         .chips::-webkit-scrollbar { display: none; }
         .chip {
@@ -161,6 +161,7 @@
         }
         .chip[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: #fff; }
 
+        /* Liste */
         .list { flex: 1; overflow-y: auto; padding: 4px 20px 110px; overscroll-behavior: contain; }
         .land { margin: 18px 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--acc); }
 
@@ -175,6 +176,7 @@
         .heart { flex: none; display: grid; place-items: center; width: 48px; height: 48px; margin-right: 4px; color: var(--acc); }
         .heart[aria-pressed="true"] .icon { fill: currentColor; }
 
+        /* Badge de statut (liste + détail) */
         .badge {
             flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
             width: 66px; height: 66px; border-radius: 16px;
@@ -189,10 +191,22 @@
         .badge.tm { font-size: 17px; }
         .badge.sm { font-size: 13px; }
 
-        .skeleton { margin-bottom: 10px; border-radius: 18px; background: #fff; opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
+        /* Horaires de séances (liste + fiche) : séparés du type de spectacle */
+        .times { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .time {
+            padding: 2px 9px; border-radius: 8px;
+            font-family: var(--font-display); font-weight: 800; font-size: 13px; line-height: 1.5; color: #44309E;
+            background: #E6E3FA;
+        }
+        .access { display: inline-block; margin-top: 5px; padding: 2px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; line-height: 1.5; }
+        .access.resa { background: #FFE9C7; color: #8A4B00; }
+        .access.free { background: #DDF3E4; color: #14692E; }
+
+        .skeleton { height: 90px; margin-bottom: 10px; border-radius: 18px; background: #fff; opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
         @keyframes pulse { 50% { opacity: .35; } }
         .empty { padding: 40px 10px; text-align: center; color: var(--mut); line-height: 1.5; }
 
+        /* Barre d'onglets flottante */
         .tabs {
             position: absolute; left: 16px; right: 16px; bottom: calc(16px + var(--safe-bottom)); z-index: 5;
             display: flex; gap: 4px; padding: 6px; border-radius: 26px;
@@ -207,16 +221,22 @@
         .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
 
         /* ==========================================================================
-           4. Détail & Modals
+           4. Détail
            ========================================================================== */
         .detail-pane { flex: 1; display: flex; flex-direction: column; align-items: center; overflow-y: auto; background: var(--bg); }
         .detail-placeholder { margin-top: 30vh; color: var(--mut); font-size: 16px; font-weight: 500; }
         .detail-content { width: 100%; }
 
-        .d-hero { position: relative; height: 250px; background: linear-gradient(160deg, var(--g1), var(--g2)); }
-        .d-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .d-img-skeleton { position: absolute; inset: 0; background: #C9CCF0; opacity: 0.6; animation: pulse 1.4s ease-in-out infinite; border-radius: 0; }
-        
+        .d-hero { position: relative; height: 250px; background: linear-gradient(160deg, var(--g1), var(--g2)); overflow: hidden; }
+        /* L'image reste invisible tant qu'elle n'est pas entièrement chargée : plus de flash de l'image précédente */
+        .d-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s ease; }
+        .d-hero[data-img="loaded"] .d-img { opacity: 1; }
+        .d-hero[data-img="loading"]::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(100deg, transparent 25%, rgb(255 255 255 / .28) 50%, transparent 75%);
+            background-size: 200% 100%; animation: shimmer 1.3s linear infinite;
+        }
+        @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
         .d-bar {
             position: absolute; top: 0; left: 0; right: 0; z-index: 2;
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -232,12 +252,9 @@
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
         .d-status { display: flex; align-items: center; gap: 14px; }
         .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
+        .status-text.is-strong { font-size: 15px; font-weight: 700; color: var(--ink); }
         .d-st { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
-        
-        .show-info { background: #fff; padding: 16px; border-radius: 16px; border: 1.5px solid var(--line); margin-bottom: 4px; }
-        .show-type { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--acc); display: block; margin-bottom: 8px; }
-        .show-times { font-size: 14px; font-weight: 600; color: var(--mut); line-height: 1.5; }
-
+        .d-st .times { margin-top: 0; }
         .sr {
             display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 4px 10px;
             border-radius: 10px; white-space: nowrap;
@@ -255,7 +272,7 @@
         .d-desc { max-width: 60ch; font-size: 16px; line-height: 1.6; color: var(--mut); }
 
         .cta {
-            display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 54px;
+            display: grid; place-items: center; width: 100%; min-height: 54px;
             border-radius: 16px; background: var(--ink); color: #fff !important;
             font-weight: 700; font-size: 15px; text-decoration: none; text-align: center;
         }
@@ -279,8 +296,8 @@
         .alert-check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
         .alert-check input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--acc); }
 
-        /* Panels (Thème / Portefeuille) */
-        .scrim { position: fixed; inset: 0; z-index: 300; background: rgb(10 12 30 / .55); border: 0; padding: 0; width: 100%; height: 100%; cursor: pointer; }
+        /* Sélecteur de thème */
+        .scrim { position: fixed; inset: 0; z-index: 300; background: rgb(10 12 30 / .55); }
         .panel {
             position: fixed; left: 0; right: 0; bottom: 0; z-index: 301;
             width: 100%; max-width: 480px; margin: 0 auto;
@@ -288,11 +305,9 @@
             padding: 20px 20px calc(28px + var(--safe-bottom));
             border-radius: 28px 28px 0 0; background: var(--bg);
         }
-        .panel-full { max-height: 96dvh; height: 96dvh; display: flex; flex-direction: column; }
-        .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex: none; }
+        .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .panel-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
         .panel-head .round { box-shadow: none; }
-        
         .themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
         .th { display: flex; flex-direction: column; gap: 10px; min-height: 84px; padding: 12px; text-align: left; border-radius: 16px; background: #fff; border: 2px solid var(--line); }
         .th[aria-pressed="true"] { border-color: var(--acc); }
@@ -301,19 +316,75 @@
         .th-n { display: block; font-weight: 700; font-size: 14px; line-height: 1.2; }
         .th-f { display: block; margin-top: 2px; font-size: 12px; color: var(--mut); }
 
-        /* Wallet specific styles */
-        .wallet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1; }
-        .wallet-item { display: flex; align-items: center; background: #fff; border-radius: 16px; border: 1.5px solid var(--line); overflow: hidden; }
-        .wallet-item-btn { flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 16px; text-align: left; }
-        .wallet-item-text strong { font-size: 15px; color: var(--ink); }
-        .wallet-item-text small { font-size: 13px; color: var(--mut); display: block; margin-top: 4px; }
-        .wallet-item-btn .icon { color: var(--acc); }
-        .wallet-item-del { flex: none; width: 54px; height: 100%; display: grid; place-items: center; color: #A3121F; border-left: 1px solid var(--line); border-radius: 0; background: #FFF4F4; }
-        .wallet-label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--ink); }
+        /* ==========================================================================
+           4 bis. Portefeuille (billets & pass annuels)
+           ========================================================================== */
+        .wallet {
+            position: fixed; inset: 0; z-index: 200;
+            display: flex; flex-direction: column;
+            background: var(--bg); animation: slide-in .25s ease-out;
+        }
+        #scan-layer { z-index: 210; }
+        #form-layer { z-index: 220; }
+        .w-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: calc(16px + var(--safe-top)) 20px 12px; }
+        .w-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
+        .w-head .round { box-shadow: none; border: 1px solid var(--line); }
+        .w-spacer { flex: none; width: 44px; }
+        .w-body { flex: 1; width: 100%; max-width: 560px; margin: 0 auto; padding: 4px 20px 20px; overflow-y: auto; overscroll-behavior: contain; }
+        .w-foot { width: 100%; max-width: 560px; margin: 0 auto; padding: 12px 20px calc(16px + var(--safe-bottom)); }
+        .w-thumb { flex: none; display: grid; place-items: center; width: 66px; height: 66px; overflow: hidden; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
+        .w-thumb img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+        .w-del { color: var(--mut); }
+
+        .w-form { display: flex; flex-direction: column; gap: 18px; }
+        .w-preview { display: grid; place-items: center; padding: 14px; border-radius: 18px; background: #fff; border: 1px solid var(--line); }
+        .w-preview img { width: min(52vw, 200px); aspect-ratio: 1; image-rendering: pixelated; }
+        .w-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; margin: 0; padding: 0; border: 0; }
+        .w-field > span, .w-field legend { padding: 0; font-size: 14px; font-weight: 700; }
+        .w-field legend { margin-bottom: 8px; }
+        .w-field .field { width: 100%; }
+        .w-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .w-type { position: relative; display: block; }
+        .w-type input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+        .w-type span { display: grid; place-items: center; min-height: 50px; padding: 0 8px; border-radius: 14px; background: #fff; border: 2px solid var(--line); font-weight: 700; font-size: 15px; text-align: center; }
+        .w-type input:checked + span { border-color: var(--acc); background: color-mix(in srgb, var(--acc) 10%, #fff); color: var(--acc); }
+        .w-type input:focus-visible + span { outline: 2px solid var(--acc); outline-offset: 2px; }
+
+        /* Scanner */
+        .scan { overflow: hidden; background: #000; color: #fff; }
+        .scan video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .scan .w-head { position: relative; z-index: 1; background: linear-gradient(rgb(0 0 0 / .6), transparent); }
+        .scan .w-head .round { background: rgb(255 255 255 / .18); color: #fff; border: 0; }
+        .scan :focus-visible { outline-color: #fff; }
+        .scan-frame { position: relative; z-index: 1; flex: 1; display: grid; place-items: center; pointer-events: none; }
+        .scan-frame i { display: block; width: min(70vw, 320px); aspect-ratio: 1; border: 3px solid #fff; border-radius: 24px; box-shadow: 0 0 0 100vmax rgb(0 0 0 / .45); }
+        .scan-foot { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 12px 20px calc(20px + var(--safe-bottom)); text-align: center; }
+        .scan-status { font-size: 15px; font-weight: 600; text-shadow: 0 1px 4px rgb(0 0 0 / .6); }
+        .scan-foot .cta { max-width: 360px; background: rgb(255 255 255 / .2); }
+
+        /* QR en plein écran (fond blanc : meilleur contraste pour les lecteurs d'entrée) */
+        .qr-layer {
+            position: fixed; inset: 0; z-index: 230;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+            padding: calc(24px + var(--safe-top)) 16px calc(24px + var(--safe-bottom));
+            background: #fff; color: #12163A; text-align: center; animation: slide-in .25s ease-out;
+        }
+        .qr-layer :focus-visible { outline-color: #12163A; }
+        .qr-close { position: absolute; top: calc(16px + var(--safe-top)); right: 16px; background: #F0F0F6; box-shadow: none; }
+        .qr-img { width: min(92vw, calc(100dvh - 240px), 640px); height: auto; aspect-ratio: 1; image-rendering: pixelated; }
+        .qr-title { font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+        .qr-sub { margin-top: 4px; font-size: 14px; color: #565A76; }
+
+        /* Boîte de confirmation */
+        .confirm { position: fixed; inset: 0; z-index: 500; display: grid; place-items: center; padding: 20px; }
+        .confirm-scrim { position: absolute; inset: 0; background: rgb(10 12 30 / .55); }
+        .confirm-box { position: relative; width: 100%; max-width: 360px; padding: 22px 20px 18px; border-radius: 22px; background: #fff; box-shadow: 0 16px 40px rgb(10 12 30 / .35); }
+        .confirm-msg { margin-bottom: 18px; font-size: 16px; font-weight: 600; line-height: 1.45; }
+        .confirm-actions { display: flex; justify-content: flex-end; gap: 10px; }
 
         /* Message temporaire */
         .toast {
-            position: fixed; left: 50%; bottom: calc(100px + var(--safe-bottom)); z-index: 400;
+            position: fixed; left: 50%; bottom: calc(100px + var(--safe-bottom)); z-index: 600;
             max-width: min(90vw, 420px); padding: 10px 16px; border-radius: 12px;
             background: var(--ink); color: #fff; font-size: 14px; font-weight: 600; text-align: center;
             transform: translate(-50%, 8px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
@@ -335,9 +406,12 @@
             .detail-content { min-height: 100%; background: var(--bg); }
             .btn-back { display: grid; }
         }
-        @media (max-width: 400px) {
-            .hero h1 { font-size: 17px; }
-            .sync { padding: 0 10px; }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 16px; }
+            .hero-actions { gap: 6px; }
+            .hero .round { width: 40px; height: 40px; border-radius: 20px; }
+            .sync { padding: 0 10px; gap: 5px; font-size: 11.5px; }
+            .sync .icon { display: none; }
         }
         @keyframes slide-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 
@@ -354,14 +428,13 @@
         <symbol id="i-restaurant" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2 1-3.5 3.5-3.5 7 0 2 1 3 3.5 3"/></symbol>
         <symbol id="i-show" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.6-4.8 4.2L17.6 20 12 16.8 6.4 20l1.4-6.2L3 9.6 9.4 9z"/></symbol>
         <symbol id="i-theme" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><path d="M7.5 11h.01M10 7.5h.01M14 7.5h.01"/></symbol>
-        <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M21 7V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2M21 7v4c0 1.1-.9 2-2 2h-4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2zm-6 2h2"/></symbol>
         <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
         <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
         <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
-        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></symbol>
-        <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></symbol>
+        <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v2M14 11v2M14 17v2"/></symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
     </svg>
 
     <div class="master-pane">
@@ -374,8 +447,8 @@
                         <span id="sync-label" role="status">Synchronisation…</span>
                         <svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-refresh"/></svg>
                     </button>
-                    <button id="btn-wallet" class="round" type="button" aria-label="Portefeuille">
-                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-wallet"/></svg>
+                    <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
                     </button>
                     <button id="btn-theme" class="round" type="button" aria-label="Changer de thème">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-theme"/></svg>
@@ -411,8 +484,7 @@
         <p id="detail-placeholder" class="detail-placeholder">Sélectionnez un lieu pour afficher les détails</p>
 
         <article id="detail-content" class="detail-content" hidden>
-            <div class="d-hero">
-                <div id="d-img-skeleton" class="d-img-skeleton" hidden></div>
+            <div id="d-hero" class="d-hero" data-img="none">
                 <img id="d-image" class="d-img" alt="" decoding="async">
                 <div class="d-bar">
                     <button id="btn-back" class="round btn-back" type="button" aria-label="Retour">
@@ -430,12 +502,6 @@
                     <span id="d-badge"></span>
                     <span class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></span>
                 </div>
-                
-                <div id="d-show-info" class="show-info" hidden>
-                    <span class="show-type" id="d-show-type"></span>
-                    <div id="d-show-times" class="show-times"></div>
-                </div>
-
                 <ul id="d-badges" class="pills"></ul>
 
                 <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
@@ -475,7 +541,6 @@
         </article>
     </section>
 
-    <!-- Thèmes Layer -->
     <div id="theme-layer" hidden>
         <button id="theme-scrim" class="scrim" type="button" aria-label="Fermer le choix du thème"></button>
         <section class="panel" role="dialog" aria-modal="true" aria-labelledby="theme-heading">
@@ -489,54 +554,91 @@
         </section>
     </div>
 
-    <!-- Portefeuille Layer -->
-    <div id="wallet-layer" hidden>
-        <button id="wallet-scrim" class="scrim" type="button" aria-label="Fermer le portefeuille"></button>
-        <section class="panel panel-full wallet-panel" role="dialog" aria-modal="true" aria-labelledby="wallet-heading">
-            <div class="panel-head">
-                <h2 id="wallet-heading">Portefeuille</h2>
-                <button id="wallet-close" class="round" type="button" aria-label="Fermer">
-                    <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
-                </button>
-            </div>
-            
-            <div id="wallet-main" style="display:flex; flex-direction:column; flex:1; min-height:0;">
-                <ul id="wallet-list" class="wallet-list"></ul>
-                <button id="wallet-add-btn" class="cta" type="button" style="margin-top:16px; flex:none;">
-                    <svg class="icon" width="20" height="20" style="margin-right:8px;"><use href="#i-plus"/></svg> Ajouter un Billet ou Pass
-                </button>
-            </div>
+    <!-- Portefeuille : liste -->
+    <section id="wallet-layer" class="wallet" hidden role="dialog" aria-modal="true" aria-labelledby="wallet-heading">
+        <header class="w-head">
+            <button id="wallet-close" class="round" type="button" aria-label="Fermer le portefeuille">
+                <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>
+            </button>
+            <h2 id="wallet-heading">Portefeuille</h2>
+            <span class="w-spacer" aria-hidden="true"></span>
+        </header>
+        <div id="wallet-list" class="w-body"></div>
+        <div class="w-foot">
+            <button id="wallet-add" class="cta" type="button">Scanner un billet ou un pass</button>
+        </div>
+    </section>
 
-            <div id="wallet-scan" hidden style="flex:1; display:flex; flex-direction:column;">
-                <h3 style="margin-bottom:12px;">Scanner le QR Code</h3>
-                <div id="qr-reader" style="width:100%; max-width:400px; margin:0 auto 16px; border-radius:16px; overflow:hidden;"></div>
-                <button id="wallet-scan-cancel" class="cta alt" type="button" style="margin-top:auto;">Annuler</button>
-            </div>
+    <!-- Portefeuille : scanner -->
+    <section id="scan-layer" class="wallet scan" hidden role="dialog" aria-modal="true" aria-labelledby="scan-heading">
+        <video id="scan-video" playsinline muted autoplay></video>
+        <header class="w-head">
+            <button id="scan-close" class="round" type="button" aria-label="Annuler le scan">
+                <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
+            </button>
+            <h2 id="scan-heading">Scanner le QR code</h2>
+            <span class="w-spacer" aria-hidden="true"></span>
+        </header>
+        <div class="scan-frame" aria-hidden="true"><i></i></div>
+        <div class="scan-foot">
+            <p id="scan-status" class="scan-status" role="status"></p>
+            <button id="scan-import" class="cta" type="button">Importer une image</button>
+            <input id="scan-file" type="file" accept="image/*" hidden>
+        </div>
+    </section>
 
-            <div id="wallet-form" hidden style="flex:1; display:flex; flex-direction:column;">
-                <h3 style="margin-bottom:16px;">Détails du titre</h3>
-                <label class="wallet-label" for="wallet-type">Type</label>
-                <select id="wallet-type" class="field" style="width:100%; margin-bottom:16px;">
-                    <option value="Billet">Billet</option>
-                    <option value="Pass Annuel">Pass Annuel</option>
-                </select>
-                <label class="wallet-label" for="wallet-expiry">Date d'expiration</label>
-                <input type="date" id="wallet-expiry" class="field" style="width:100%; margin-bottom:24px;" required>
-                <div style="margin-top:auto; display:flex; gap:10px;">
-                    <button id="wallet-form-cancel" class="cta alt" type="button" style="flex:1;">Annuler</button>
-                    <button id="wallet-save-btn" class="cta" type="button" style="flex:1;">Enregistrer</button>
+    <!-- Portefeuille : formulaire d'import -->
+    <section id="form-layer" class="wallet" hidden role="dialog" aria-modal="true" aria-labelledby="form-heading">
+        <header class="w-head">
+            <button id="form-close" class="round" type="button" aria-label="Annuler">
+                <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>
+            </button>
+            <h2 id="form-heading">Ajouter un titre</h2>
+            <span class="w-spacer" aria-hidden="true"></span>
+        </header>
+        <form id="wallet-form" class="w-body w-form" novalidate>
+            <div class="w-preview"><img id="form-img" alt="Aperçu du QR code scanné"></div>
+            <fieldset class="w-field">
+                <legend>Type de titre</legend>
+                <div class="w-types">
+                    <label class="w-type"><input type="radio" name="w-type" value="billet" checked><span>Billet</span></label>
+                    <label class="w-type"><input type="radio" name="w-type" value="pass"><span>Pass annuel</span></label>
                 </div>
-            </div>
+            </fieldset>
+            <label class="w-field">
+                <span>Date d’expiration</span>
+                <input id="w-date" class="field" type="date" required>
+            </label>
+            <label class="w-field">
+                <span>Nom (facultatif)</span>
+                <input id="w-label" class="field" type="text" maxlength="40" placeholder="Ex. Léa, billet 2 jours" autocomplete="off">
+            </label>
+            <button type="submit" class="cta">Enregistrer dans le portefeuille</button>
+        </form>
+    </section>
 
-            <div id="wallet-show" hidden style="text-align:center; flex:1; display:flex; flex-direction:column; justify-content:center;">
-                <h3 id="wallet-show-title" style="font-size:22px;"></h3>
-                <p id="wallet-show-exp" style="color:var(--mut); margin-bottom:24px; font-size:15px; font-weight:600;"></p>
-                <div style="background:#fff; padding:16px; display:inline-block; border-radius:16px; margin:0 auto;">
-                    <canvas id="wallet-canvas"></canvas>
-                </div>
-                <button id="wallet-show-back" class="cta alt" type="button" style="margin-top:32px;">Retour</button>
+    <!-- Portefeuille : QR plein écran -->
+    <section id="qr-layer" class="qr-layer" hidden role="dialog" aria-modal="true" aria-labelledby="qr-title">
+        <button id="qr-close" class="round qr-close" type="button" aria-label="Fermer">
+            <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+        <img id="qr-img" class="qr-img" alt="QR code à présenter à l’entrée">
+        <div>
+            <h2 id="qr-title" class="qr-title"></h2>
+            <p id="qr-sub" class="qr-sub"></p>
+        </div>
+    </section>
+
+    <!-- Boîte de confirmation (sortie de l'app, suppression) -->
+    <div id="confirm-layer" class="confirm" hidden>
+        <div id="confirm-scrim" class="confirm-scrim"></div>
+        <div class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirm-msg">
+            <p id="confirm-msg" class="confirm-msg"></p>
+            <div class="confirm-actions">
+                <button id="confirm-cancel" class="btn-alert is-secondary" type="button">Annuler</button>
+                <button id="confirm-ok" class="btn-alert" type="button">Confirmer</button>
             </div>
-        </section>
+        </div>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -557,19 +659,29 @@
             REFRESH_MS: 60_000,          // actualisation automatique
             FETCH_TIMEOUT_MS: 10_000,
             NEARBY_RADIUS_KM: 0.2,       // rayon du filtre « Autour de moi »
-            WAIT_THRESHOLDS: { low: 30, medium: 50 },
+            WAIT_THRESHOLDS: { low: 30, medium: 50 },   // minutes : vert / orange / rouge
             LOCALE: 'fr-FR',
             TIMEZONE: 'Europe/Paris',
             PARKS: [
                 { value: 'Disneyland Park',        label: 'Parc Disneyland' },
                 { value: 'Disney Adventure World', label: 'Adventure World' },
             ],
+            // Bibliothèques QR chargées à la demande (scan de secours + génération de l'image du code)
+            QR_LIBS: {
+                scan: 'https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js',
+                generate: 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
+            },
         };
 
+        // Masqués par défaut (affichés avec « Lieux fermés »). Les lieux « DOWN » (panne temporaire) restent visibles.
         const CLOSED_LABELS = { CLOSED: 'Fermé', REFURBISHMENT: 'En réhabilitation' };
         const HIDDEN_BY_DEFAULT = new Set(Object.keys(CLOSED_LABELS));
         const THEMES = window.DLP_THEMES;
         const THEME_KEY = 'dlp-theme';
+
+        // Types de restauration pour lesquels une réservation est recommandée (comparés sans accents ni casse)
+        const RESERVATION_TYPES = new Set(['service a table', 'buffet a volonte']);
+        const NO_MORE_SHOWS = 'Plus de séance aujourd’hui';
 
         /* ======================================================================
            Utilitaires
@@ -580,6 +692,7 @@
         const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
 
         const str = (value) => (typeof value === 'string' ? value.trim() : '');
+        const capFirst = (value) => (value ? value.charAt(0).toLocaleUpperCase(CONFIG.LOCALE) + value.slice(1) : value);
 
         const toCoord = (value) => {
             const n = parseFloat(String(value ?? '').replace(',', '.'));
@@ -612,12 +725,12 @@
         });
 
         /* ======================================================================
-           Données des lieux
+           Données des lieux : fichiers JSON à la racine du site
            ====================================================================== */
         const DATA_FILES = ['attractions.json', 'restaurants.json', 'shows.json'];
 
         async function loadList(file) {
-            const res = await fetch(file, { cache: 'no-cache' });
+            const res = await fetch(file, { cache: 'no-cache' });   // revalide auprès du serveur : une mise à jour du JSON est vue tout de suite
             if (!res.ok) throw new Error(`${file} : HTTP ${res.status}`);
             const data = await res.json();
             if (!Array.isArray(data)) throw new Error(`${file} : un tableau est attendu`);
@@ -634,6 +747,9 @@
             return;
         }
 
+        /* ======================================================================
+           Modèle de données
+           ====================================================================== */
         const FIELDS = {
             attraction: { image: 'URL image', minHeight: 'Taille mini' },
             restaurant: { image: 'Photo', menuUrl: 'Menu', price: 'Tarif' },
@@ -642,18 +758,13 @@
 
         function normalize(raw, category) {
             const f = FIELDS[category];
-            // Formatage du type de restaurant (majuscule)
-            let typeStr = str(raw['Type']);
-            if (category === 'restaurant' && typeStr.length > 0) {
-                typeStr = typeStr.charAt(0).toUpperCase() + typeStr.slice(1);
-            }
-
+            const type = str(raw['Type']);
             return {
                 id: str(raw['Code']),
                 apiId: str(raw['UUID Themeparks.wiki']).toLowerCase() || null,
                 name: str(raw['Nom']),
                 category,
-                type: typeStr,
+                type: category === 'restaurant' ? capFirst(type) : type,   // « service à table » → « Service à table »
                 park: str(raw['Parc']),
                 land: str(raw['Land']).replace(' - Town Square', '').replace(' - Central Plaza', '') || 'Autre',
                 image: f.image ? str(raw[f.image]) : '',
@@ -663,7 +774,7 @@
                 price: f.price ? str(raw[f.price]) : '',
                 lat: toCoord(raw['Coordonnées GPS (lat)']),
                 lng: toCoord(raw['Coordonnées GPS (lng)']),
-                live: null,
+                live: null,   // { status, wait, single, showtimes } une fois synchronisé
             };
         }
 
@@ -672,10 +783,9 @@
             ...restaurantsRaw.map((raw) => normalize(raw, 'restaurant')),
             ...showsRaw.map((raw) => normalize(raw, 'spectacle')),
         ];
-        const dbById = new Map(db.map((item) => [item.id, item]));
 
         /* ======================================================================
-           État de l'application & UI Elements
+           État de l'application
            ====================================================================== */
         const state = {
             tab: 'attraction',
@@ -708,48 +818,24 @@
             chipClosed: $('#chip-closed'),
             btnFav: $('#btn-fav'),
             tabs: document.querySelectorAll('.tabs button'),
-            
             pane: $('#detail-pane'),
             placeholder: $('#detail-placeholder'),
             content: $('#detail-content'),
             btnBack: $('#btn-back'),
+            hero: $('#d-hero'),
             image: $('#d-image'),
-            imageSkeleton: $('#d-img-skeleton'),
             title: $('#d-title'),
             statusBadge: $('#d-badge'),
             statusText: $('#d-status-text'),
             single: $('#d-single'),
             badges: $('#d-badges'),
-            showInfo: $('#d-show-info'),
-            showType: $('#d-show-type'),
-            showTimes: $('#d-show-times'),
             desc: $('#d-desc'),
             menu: $('#d-btn'),
             toast: $('#toast'),
-            
             themeLayer: $('#theme-layer'),
             themeScrim: $('#theme-scrim'),
             themeClose: $('#theme-close'),
             themeGrid: $('#theme-grid'),
-            
-            walletLayer: $('#wallet-layer'),
-            walletScrim: $('#wallet-scrim'),
-            walletClose: $('#wallet-close'),
-            walletMain: $('#wallet-main'),
-            walletList: $('#wallet-list'),
-            walletAddBtn: $('#wallet-add-btn'),
-            walletScan: $('#wallet-scan'),
-            walletScanCancel: $('#wallet-scan-cancel'),
-            walletForm: $('#wallet-form'),
-            walletFormCancel: $('#wallet-form-cancel'),
-            walletType: $('#wallet-type'),
-            walletExpiry: $('#wallet-expiry'),
-            walletSaveBtn: $('#wallet-save-btn'),
-            walletShow: $('#wallet-show'),
-            walletShowTitle: $('#wallet-show-title'),
-            walletShowExp: $('#wallet-show-exp'),
-            walletShowBack: $('#wallet-show-back'),
-            
             alertBox: $('#d-alert'),
             alertHeading: $('#alert-heading'),
             alertLabel: $('#alert-label'),
@@ -762,57 +848,108 @@
             alertStatusRow: $('#alert-status-row'),
             alertStatus: $('#alert-status'),
             alertStatusInfo: $('#alert-status-info'),
+            walletLayer: $('#wallet-layer'),
+            walletList: $('#wallet-list'),
+            walletClose: $('#wallet-close'),
+            walletAdd: $('#wallet-add'),
+            scanLayer: $('#scan-layer'),
+            scanVideo: $('#scan-video'),
+            scanStatus: $('#scan-status'),
+            scanClose: $('#scan-close'),
+            scanImport: $('#scan-import'),
+            scanFile: $('#scan-file'),
+            formLayer: $('#form-layer'),
+            formClose: $('#form-close'),
+            walletForm: $('#wallet-form'),
+            formImg: $('#form-img'),
+            wDate: $('#w-date'),
+            wLabel: $('#w-label'),
+            qrLayer: $('#qr-layer'),
+            qrClose: $('#qr-close'),
+            qrImg: $('#qr-img'),
+            qrTitle: $('#qr-title'),
+            qrSub: $('#qr-sub'),
+            confirm: $('#confirm-layer'),
+            confirmScrim: $('#confirm-scrim'),
+            confirmMsg: $('#confirm-msg'),
+            confirmOk: $('#confirm-ok'),
+            confirmCancel: $('#confirm-cancel'),
         };
 
         /* ======================================================================
-           Système de Routage (Navigation History API)
+           Navigation : pile de « couches » synchronisée avec l'historique du navigateur.
+           Le geste de retour système (swipe depuis le bord) ferme la couche du dessus
+           (fiche, portefeuille, thème…) ; sur l'accueil, il demande confirmation avant de quitter.
            ====================================================================== */
-        function initHistory() {
-            if (!history.state || history.state.view !== 'home') {
-                history.replaceState({ view: 'exit' }, '');
-                history.pushState({ view: 'home' }, '');
+        const nav = { stack: [], ignore: 0, leaving: false };
+
+        function pushLayer(name, close) {
+            if (nav.stack.some((l) => l.name === name)) return;
+            nav.stack.push({ name, close });
+            history.pushState({ dlp: name }, '');
+        }
+
+        // Remplace une couche par une autre sans ajouter d'entrée d'historique (ex. scanner → formulaire)
+        function replaceLayer(from, name, close) {
+            const i = nav.stack.findIndex((l) => l.name === from);
+            if (i < 0) return pushLayer(name, close);
+            nav.stack[i] = { name, close };
+            history.replaceState({ dlp: name }, '');
+        }
+
+        // Fermeture par l'interface : ferme la couche (et celles qui la recouvrent) puis recule dans l'historique
+        function closeLayer(name) {
+            const i = nav.stack.findIndex((l) => l.name === name);
+            if (i < 0) return;
+            const removed = nav.stack.splice(i);
+            removed.reverse().forEach((l) => l.close());
+            nav.ignore++;
+            history.go(-removed.length);
+        }
+
+        function onPopState() {
+            if (nav.leaving) return;
+            if (nav.ignore > 0) { nav.ignore--; return; }
+
+            if (!els.confirm.hidden) {   // retour pendant une confirmation : on l'annule et on reste où l'on est
+                settleConfirm(false);
+                history.pushState({ dlp: nav.stack.at(-1)?.name ?? 'guard' }, '');
+                return;
             }
+            const top = nav.stack.pop();
+            if (top) { top.close(); return; }
 
-            window.addEventListener('popstate', (e) => {
-                const s = e.state;
-                if (!s) return;
+            history.pushState({ dlp: 'guard' }, '');   // accueil : on se replace sur la garde, puis on demande confirmation
+            askQuit();
+        }
 
-                if (s.view === 'exit') {
-                    if (confirm("Êtes-vous sûr de vouloir quitter l'application ?")) {
-                        history.back(); // Sortie de l'application / retour à la page précédente
-                    } else {
-                        history.pushState({ view: 'home' }, ''); // Rétablit l'état d'accueil
-                    }
-                    return;
-                }
-
-                if (s.view === 'home') {
-                    _closeDetailUI();
-                    _closeThemesUI();
-                    _closeWalletUI();
-                } else if (s.view === 'detail') {
-                    _closeThemesUI();
-                    _closeWalletUI();
-                    _openDetailUI(s.id);
-                } else if (s.view === 'themes') {
-                    _closeDetailUI();
-                    _closeWalletUI();
-                    _openThemesUI();
-                } else if (s.view === 'wallet') {
-                    _closeDetailUI();
-                    _closeThemesUI();
-                    _openWalletUI();
-                }
+        let confirmResolve = null;
+        function askConfirm({ message, ok = 'Confirmer', cancel = 'Annuler' }) {
+            settleConfirm(false);
+            return new Promise((resolve) => {
+                confirmResolve = resolve;
+                els.confirmMsg.textContent = message;
+                els.confirmOk.textContent = ok;
+                els.confirmCancel.textContent = cancel;
+                els.confirm.hidden = false;
+                els.confirmOk.focus();
             });
         }
 
-        // Action UI déclenchant un changement de route
-        function goBack() {
-            if (history.state?.view !== 'home') history.back();
+        function settleConfirm(value) {
+            if (!confirmResolve) return;
+            const resolve = confirmResolve;
+            confirmResolve = null;
+            els.confirm.hidden = true;
+            resolve(value);
         }
-        function navigateTo(view, data = {}) {
-            history.pushState({ view, ...data }, '');
-            window.dispatchEvent(new PopStateEvent('popstate', { state: { view, ...data } }));
+
+        async function askQuit() {
+            const leave = await askConfirm({ message: 'Êtes-vous sûr de vouloir quitter l’application ?', ok: 'Quitter', cancel: 'Rester' });
+            if (!leave) return;
+            nav.leaving = true;
+            history.go(-2);   // dépasse l'entrée racine et la garde : l'application se ferme
+            setTimeout(() => { try { window.close(); } catch { /* non autorisé */ } }, 300);
         }
 
         /* ======================================================================
@@ -835,12 +972,19 @@
                 .filter((d) => !Number.isNaN(d.getTime()) && d.getTime() >= now);
         }
 
+        // apiId -> { since: Date|null, checkedAt: ms } : heure de passage en panne, lue dans l'historique de l'API
         const downInfo = new Map();
         const downPending = new Set();
 
+        /**
+         * Modèle d'affichage d'un lieu : { kind, big, unit, text, times?, note?, access?, icon?, single? }
+         *  - kind : low | mid | high | open | show | down | off (couleur du badge)
+         *  - big/unit : contenu du badge ; text : libellé de la fiche
+         *  - times : horaires des prochaines séances ; note : mention sous le type ; access : accès d'un restaurant
+         */
         function statusModel(item) {
             const status = statusOf(item);
-            const mk = (kind, big, unit = '', text = '', cardExtra = '') => ({ kind, big, unit, text, cardExtra });
+            const mk = (kind, big, unit = '', text = '') => ({ kind, big, unit, text });
 
             if (status === 'DOWN') {
                 const since = downInfo.get(item.apiId)?.since;
@@ -862,37 +1006,51 @@
                 case 'spectacle': {
                     const upcoming = upcomingShowtimes(item);
                     if (upcoming.length) {
-                        const times = upcoming.map((d) => timeFormat.format(d)).join(' • ');
-                        return mk('show', timeFormat.format(upcoming[0]), 'séance', `Prochaines séances`, times);
+                        const m = mk('show', timeFormat.format(upcoming[0]), 'séance', 'Prochaines séances');
+                        m.times = upcoming.map((d) => timeFormat.format(d));
+                        return m;
                     }
-                    if (item.live?.showtimes?.length) return mk('off', 'Terminé', '', 'Plus de séance aujourd’hui');
+                    if (item.live?.showtimes?.length) {
+                        const m = mk('off', 'Terminé', '', NO_MORE_SHOWS);
+                        m.note = NO_MORE_SHOWS;
+                        return m;
+                    }
                     if (status === 'OPERATING') return mk('show', 'En cours', '', 'En cours');
                     return mk('off', '--', '', 'Horaires indisponibles');
                 }
-                case 'restaurant':
-                    if (status === 'OPERATING') {
-                        const t = item.type.toLowerCase();
-                        const text = (t.includes('service à table') || t.includes('buffet à volonté')) 
-                            ? 'Réservation recommandée' : 'Entrée libre';
-                        return mk('open', 'Ouvert', '', text);
-                    }
-                    return mk('off', '--', '', 'Horaires indisponibles');
+                case 'restaurant': {
+                    if (status !== 'OPERATING') return mk('off', '--', '', 'Horaires indisponibles');
+                    const booking = RESERVATION_TYPES.has(searchKey(item.type));
+                    const text = booking ? 'Réservation recommandée' : 'Entrée libre';
+                    const m = mk('open', '', '', text);
+                    m.icon = 'i-restaurant';
+                    m.access = { text, kind: booking ? 'resa' : 'free' };
+                    return m;
+                }
                 default:
                     return mk('off', '--');
             }
         }
 
+        // Pastille « Single Rider » (liste + fiche)
         const singleHtml = (m) => m.single == null ? ''
             : `<span class="sr"><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
 
+        // Horaires des séances, présentés sous le type de spectacle (liste + fiche)
+        const timesHtml = (m) => m.times?.length
+            ? `<span class="times">${m.times.map((t) => `<span class="time">${esc(t)}</span>`).join('')}</span>` : '';
+
         function badgeHtml(m) {
+            if (m.icon) {
+                return `<span class="badge ${m.kind}"><svg class="icon" width="30" height="30" aria-hidden="true"><use href="#${esc(m.icon)}"/></svg></span>`;
+            }
             const big = String(m.big);
             const size = /^(\d{1,3}|--)$/.test(big) ? '' : /^\d\d:\d\d$/.test(big) ? ' tm' : ' sm';
             return `<span class="badge ${m.kind}${size}">${esc(big)}${m.unit ? `<small>${esc(m.unit)}</small>` : ''}</span>`;
         }
 
         /* ======================================================================
-           Synchronisation API temps réel
+           Synchronisation avec l'API temps réel
            ====================================================================== */
         async function fetchJson(url, timeoutMs) {
             const controller = new AbortController();
@@ -923,11 +1081,16 @@
                     single: live.queue?.SINGLE_RIDER?.waitTime ?? null,
                     showtimes: Array.isArray(live.showtimes) ? live.showtimes : [],
                 };
-                if (item.live.status !== 'DOWN') downInfo.delete(item.apiId);
+                if (item.live.status !== 'DOWN') downInfo.delete(item.apiId);   // la panne est terminée
             }
             return matches;
         }
 
+        /**
+         * Le flux « live » ne donne pas la date de début de panne. L'historique de l'API
+         * (une ligne par changement d'état, ordre chronologique) permet de la retrouver :
+         * on remonte la dernière série de lignes consécutives en statut DOWN.
+         */
         function findDownSince(history) {
             const rows = (history?.history ?? history?.entities?.[0]?.history ?? [])
                 .filter((row) => row?.time && !Number.isNaN(new Date(row.time).getTime()))
@@ -960,8 +1123,7 @@
                     downInfo.set(item.apiId, { since, checkedAt: Date.now() });
                 }
             }));
-            renderList();
-            if (history.state?.view === 'detail') _openDetailUI(state.selectedId); // Re-render if open
+            render();
         }
 
         function setSync(mode) {
@@ -985,7 +1147,7 @@
             els.btnRefresh.classList.add('is-spinning');
             if (!state.lastSync) setSync('loading');
 
-            const pulling = alerts.size ? pullServerState() : null;
+            const pulling = alerts.size ? pullServerState() : null;   // en parallèle de l'appel à l'API
             let ok = false;
             try {
                 const data = await fetchJson(CONFIG.API_LIVE_URL, CONFIG.FETCH_TIMEOUT_MS);
@@ -1003,16 +1165,20 @@
                 els.btnRefresh.classList.remove('is-spinning');
                 await pulling;
                 checkAlerts();
-                renderList();
-                if (history.state?.view === 'detail') _openDetailUI(state.selectedId);
+                render();
             }
-            if (ok) loadDownSince();
+            if (ok) loadDownSince();   // sans bloquer l'affichage
         }
 
         /* ======================================================================
-           Alertes et Favoris
+           Alertes : seuil d'attente (attractions) et avance sur l'horaire (spectacles)
            ====================================================================== */
         const ALERTS_KEY = 'dlp-alerts';
+        const dbById = new Map(db.map((item) => [item.id, item]));
+
+        /* ======================================================================
+           Favoris (attractions, restaurants, spectacles) : stockés sur l'appareil
+           ====================================================================== */
         const FAVORITES_KEY = 'dlp-favorites';
         const favorites = (() => {
             try {
@@ -1031,6 +1197,59 @@
             }
         }
 
+        const CATEGORY_LABELS = { attraction: 'Attractions', restaurant: 'Restaurants', spectacle: 'Spectacles' };
+        const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
+
+        // Synchronise l'état visuel des filtres (parcs, puces)
+        function syncFilterUi() {
+            const locked = state.nearby || state.showFavorites;   // ces modes couvrent les deux parcs
+            els.parkBtns.forEach((b) => b.setAttribute('aria-pressed', String(!locked && b.dataset.park === state.park)));
+            els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
+            els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
+            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
+        }
+
+        function syncTabsUi() {
+            els.tabs.forEach((t) => t.setAttribute('aria-current', String(!state.showFavorites && t.dataset.tab === state.tab)));
+        }
+
+        function renderFavButton() {
+            els.chipFavs.textContent = favorites.size ? `Favoris (${favorites.size})` : 'Favoris';
+            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
+        }
+
+        function setShowFavorites(active) {
+            state.showFavorites = active;
+            syncFilterUi();
+            syncTabsUi();
+            renderFavButton();
+        }
+
+        function toggleFavorite(id) {
+            const item = dbById.get(id);
+            if (!item) return;
+            const wasFavorite = favorites.has(id);
+            if (wasFavorite) favorites.delete(id); else favorites.add(id);
+            if (!saveFavorites()) {   // échec d'enregistrement : on annule
+                if (wasFavorite) favorites.add(id); else favorites.delete(id);
+                return;
+            }
+            notify(wasFavorite ? `${item.name} retiré des favoris` : `${item.name} ajouté aux favoris`);
+            renderFavButton();
+            renderList();
+            renderFavDetailButton(item);
+        }
+
+        function renderFavDetailButton(item) {
+            const fav = favorites.has(item.id);
+            const label = fav ? 'Retirer des favoris' : 'Ajouter aux favoris';
+            els.btnFav.setAttribute('aria-pressed', String(fav));
+            els.btnFav.setAttribute('aria-label', label);
+            els.btnFav.title = label;
+        }
+
+        // id -> { kind: 'wait', threshold, armed, firedAt, firedWait }
+        //     | { kind: 'show', lead, done: [startTime, …] }
         const alerts = (() => {
             try {
                 const saved = JSON.parse(localStorage.getItem(ALERTS_KEY) ?? '{}');
@@ -1038,6 +1257,23 @@
                     dbById.has(id.split('#')[0]) && ['wait', 'show', 'status'].includes(a?.kind)));
             } catch { return new Map(); }
         })();
+
+        // --- CONFIGURATION PUSH CLOUDFLARE ---
+        // Remplacer par votre clé PUBLIQUE générée
+        const VAPID_PUBLIC_KEY = 'BF7t3wvEsIR4cELGVe5kJC3T6d3GOUIfwCdZsBMSjBxYyMwU4xBEh0aRXhjQdoTBfSR7o4M3X7fEQznEpumuTIM';
+        // Remplacer par l'URL de votre Worker Cloudflare
+        const WORKER_URL = 'https://dlp-alert-worker.jordan-sautret.workers.dev/';
+
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
 
         function saveAlerts() {
             try {
@@ -1049,24 +1285,18 @@
             }
         }
 
-        // (Code Cloudflare Push conservé à l'identique)
-        const VAPID_PUBLIC_KEY = 'BF7t3wvEsIR4cELGVe5kJC3T6d3GOUIfwCdZsBMSjBxYyMwU4xBEh0aRXhjQdoTBfSR7o4M3X7fEQznEpumuTIM';
-        const WORKER_URL = 'https://dlp-alert-worker.jordan-sautret.workers.dev/';
-        function urlBase64ToUint8Array(base64String) {
-            const padding = '='.repeat((4 - base64String.length % 4) % 4);
-            const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-            const outputArray = new Uint8Array(base64.length);
-            for (let i = 0; i < base64.length; ++i) { outputArray[i] = base64.charCodeAt(i); }
-            return outputArray;
-        }
-
+        /* --- Push à application fermée : abonnement + synchronisation avec le Worker --- */
         const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window;
         const withTimeout = (promise, ms) => Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error('délai dépassé')), ms))]);
         const postWorker = (body, timeoutMs = 8000) => fetch(WORKER_URL, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body), signal: AbortSignal.timeout(timeoutMs),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+            signal: AbortSignal.timeout(timeoutMs),
         });
 
+        // Renvoie l'abonnement push de l'appareil (le crée si demandé). Un abonnement créé avec une autre clé VAPID
+        // serait rejeté par le service push (403) : on le remplace.
         async function getPushSubscription({ create }) {
             if (!pushSupported()) return null;
             const reg = await withTimeout(navigator.serviceWorker.ready, 4000);
@@ -1093,9 +1323,13 @@
                 const res = await postWorker({ subscription: sub.toJSON(), alerts: alertsForServer() });
                 if (!res.ok) throw new Error(`serveur (HTTP ${res.status})`);
                 return { ok: true };
-            } catch (error) { return { ok: false, reason: String(error?.message ?? error) }; }
+            } catch (error) {
+                console.error('Synchronisation des alertes impossible :', error);
+                return { ok: false, reason: String(error?.message ?? error) };
+            }
         }
 
+        // Le serveur déclenche les alertes quand l'app est fermée : on récupère son état pour ne pas les rejouer en local
         async function pullServerState() {
             if (!alerts.size) return;
             try {
@@ -1114,29 +1348,34 @@
                     } else if (a.kind === 'show' && r.lead === a.lead) {
                         for (const k of r.done ?? []) if (!a.done.includes(k)) { a.done.push(k); changed = true; }
                     } else if (a.kind === 'status' && a.down !== r.down) {
-                        a.down = r.down; changed = true;
+                        a.down = r.down;
+                        changed = true;
                     }
                 }
-                if (changed) { saveAlerts(); renderList(); if (history.state?.view === 'detail') _openDetailUI(state.selectedId); }
-            } catch { }
+                if (changed) { saveAlerts(); render(); }
+            } catch { /* hors connexion : on garde l'état local */ }
         }
 
-        const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
         async function ensureNotifications() {
             if (!('Notification' in window)) {
-                notify(isIos() ? 'Ajoutez d’abord l’app à l’écran d’accueil.' : 'Les notifications ne sont pas prises en charge.');
+                notify(isIos()
+                    ? 'Sur iPhone/iPad, ajoutez d’abord l’app à l’écran d’accueil pour recevoir des notifications.'
+                    : 'Les notifications ne sont pas prises en charge par ce navigateur.');
                 return false;
             }
             let permission = Notification.permission;
             if (permission === 'default') permission = await Notification.requestPermission();
             if (permission !== 'granted') {
-                notify('Notifications bloquées : autorisez-les dans les réglages.');
+                notify('Notifications bloquées : autorisez-les dans les réglages du navigateur.');
                 return false;
             }
             return true;
         }
 
+        // Passe par le service worker quand il existe (obligatoire sur Android), sinon API Notification directe
         async function sendNotification({ title, body, tag, id }) {
             if (!document.hidden) notify(`${title} — ${body}`);
             if (!('Notification' in window) || Notification.permission !== 'granted') return;
@@ -1144,8 +1383,8 @@
             try {
                 const reg = await navigator.serviceWorker?.getRegistration();
                 if (reg) return await reg.showNotification(title, options);
-            } catch { }
-            try { new Notification(title, options); } catch { }
+            } catch { /* repli ci-dessous */ }
+            try { new Notification(title, options); } catch { /* indisponible */ }
         }
 
         const futureSessions = (item, now) => (item.live?.showtimes ?? [])
@@ -1153,44 +1392,67 @@
             .filter((s) => Number.isFinite(s.start) && s.start > now)
             .sort((a, b) => a.start - b.start);
 
-        const isBelow = (live, threshold) => live?.status === 'OPERATING' && live.wait != null && live.wait <= threshold;
+        const isBelow = (live, threshold) =>
+            live?.status === 'OPERATING' && live.wait != null && live.wait <= threshold;
 
+        // L'alerte se déclenche au franchissement du seuil, puis se réarme quand l'attente repasse au-dessus
         function checkWaitAlert(item, a) {
             const live = item.live;
             if (isBelow(live, a.threshold)) {
                 if (!a.armed) return false;
-                a.armed = false; a.firedAt = Date.now(); a.firedWait = live.wait;
-                sendNotification({ title: `${item.name} : ${live.wait} min`, body: `Sous votre seuil, c’est le moment !`, tag: `wait-${item.id}`, id: item.id });
+                a.armed = false;
+                a.firedAt = Date.now();
+                a.firedWait = live.wait;
+                sendNotification({
+                    title: `${item.name} : ${live.wait} min d’attente`,
+                    body: `Sous votre seuil de ${a.threshold} min, c’est le moment d’y aller !`,
+                    tag: `wait-${item.id}`, id: item.id,
+                });
                 return true;
             }
             if (a.armed) return false;
-            a.armed = true; return true;
+            a.armed = true;      // attente au-dessus du seuil, ou attraction indisponible : on réarme
+            return true;
         }
 
         function checkShowAlert(item, a, now) {
             let changed = false;
             for (const { key, start } of futureSessions(item, now)) {
                 if (a.done.includes(key) || start - now > a.lead * 60_000) continue;
-                a.done.push(key); changed = true;
+                a.done.push(key);
+                changed = true;
                 const mins = Math.max(1, Math.round((start - now) / 60_000));
-                sendNotification({ title: `${item.name} dans ${mins} min`, body: `Séance de ${timeFormat.format(start)} · ${item.land}`, tag: `show-${item.id}-${key}`, id: item.id });
+                sendNotification({
+                    title: `${item.name} commence dans ${mins} min`,
+                    body: `Séance de ${timeFormat.format(start)} · ${item.land}`,
+                    tag: `show-${item.id}-${key}`, id: item.id,
+                });
             }
             const kept = a.done.filter((key) => Date.parse(key) > now - 86_400_000);
             if (kept.length !== a.done.length) { a.done = kept; changed = true; }
             return changed;
         }
 
+        // Panne (statut DOWN) puis réouverture. Une fermeture du parc remet l'alerte à zéro sans notification.
         function checkStatusAlert(item, a) {
             const status = item.live.status;
             if (status === 'DOWN' && !a.down) {
                 a.down = true;
-                sendNotification({ title: `${item.name} : en panne`, body: 'L’attraction est indisponible.', tag: `status-${item.id}`, id: item.id });
+                sendNotification({
+                    title: `${item.name} : en panne`,
+                    body: 'L’attraction est indisponible. Vous serez prévenu dès sa réouverture.',
+                    tag: `status-${item.id}`, id: item.id,
+                });
                 return true;
             }
             if (status === 'OPERATING' && a.down) {
                 a.down = false;
                 const wait = item.live.wait;
-                sendNotification({ title: `${item.name} a rouvert`, body: typeof wait === 'number' ? `Attente : ${wait} min.` : 'L’attraction est disponible.', tag: `status-${item.id}`, id: item.id });
+                sendNotification({
+                    title: `${item.name} a rouvert`,
+                    body: typeof wait === 'number' ? `Attente actuelle : ${wait} min.` : 'L’attraction est de nouveau disponible.',
+                    tag: `status-${item.id}`, id: item.id,
+                });
                 return true;
             }
             if (a.down && status && status !== 'DOWN' && status !== 'OPERATING') { a.down = false; return true; }
@@ -1204,14 +1466,57 @@
             for (const [key, a] of alerts) {
                 const item = dbById.get(key.split('#')[0]);
                 if (!item?.live) continue;
-                const result = a.kind === 'wait' ? checkWaitAlert(item, a) : a.kind === 'status' ? checkStatusAlert(item, a) : checkShowAlert(item, a, now);
+                const result = a.kind === 'wait' ? checkWaitAlert(item, a)
+                    : a.kind === 'status' ? checkStatusAlert(item, a)
+                    : checkShowAlert(item, a, now);
                 changed = result || changed;
             }
             if (changed) saveAlerts();
             return changed;
         }
 
-        let alertUiFor = null;
+        /* --- Interface de l'alerte dans la fiche détail --- */
+        let alertUiFor = null;   // id de la fiche dont les champs ont été initialisés
+
+        function suggestThreshold(item) {
+            const wait = item.live?.wait;
+            return wait == null ? 30 : Math.max(5, Math.round((wait * 0.7) / 5) * 5);
+        }
+
+        function alertInfo(item, a) {
+            const now = Date.now();
+            if (item.category === 'attraction') {
+                const current = item.live?.status === 'OPERATING' && item.live.wait != null
+                    ? `Attente actuelle : ${item.live.wait} min.` : 'Attraction actuellement indisponible.';
+                if (!a) return `${current} Vous serez prévenu dès que l’attente passe sous le seuil choisi.`;
+                if (a.armed) return `Alerte active : notification dès que l’attente est de ${a.threshold} min ou moins. ${current}`;
+                return `Notification envoyée à ${timeFormat.format(a.firedAt)} (${a.firedWait} min). ` +
+                       `L’alerte se réarme si l’attente repasse au-dessus de ${a.threshold} min.`;
+            }
+            const sessions = futureSessions(item, now);
+            if (!a) {
+                return sessions.length
+                    ? `Prochaine séance : ${timeFormat.format(sessions[0].start)}. Vous serez prévenu avant chaque séance.`
+                    : 'Aucune séance à venir aujourd’hui.';
+            }
+            const pending = sessions.find((s) => !a.done.includes(s.key));
+            if (pending) {
+                return `Prochaine alerte à ${timeFormat.format(pending.start - a.lead * 60_000)} ` +
+                       `pour la séance de ${timeFormat.format(pending.start)}.`;
+            }
+            return sessions.length
+                ? `Alerte envoyée pour la séance de ${timeFormat.format(sessions[0].start)}.`
+                : 'Plus de séance aujourd’hui : l’alerte reprendra à la prochaine séance.';
+        }
+
+        function statusInfo(item) {
+            const status = item.live?.status;
+            if (status === 'DOWN') return 'En panne actuellement : vous serez prévenu dès sa réouverture.';
+            if (status === 'OPERATING') return 'En service actuellement : vous serez prévenu en cas de panne.';
+            if (status) return 'Actuellement fermée : l’alerte reprendra à l’ouverture.';
+            return 'Vous serez prévenu en cas de panne, puis à la réouverture.';
+        }
+
         function renderAlertBox(item) {
             const supported = item.category === 'attraction' || item.category === 'spectacle';
             els.alertBox.hidden = !supported;
@@ -1222,81 +1527,133 @@
             const statusAlert = alerts.get(`${item.id}#status`);
 
             els.alertHeading.textContent = isWait ? 'Alertes' : 'Alerte avant la séance';
-            els.alertLabel.textContent = isWait ? 'Me prévenir dès que l’attente est inférieure ou égale à' : 'Me prévenir avant chaque séance, à l’avance de';
-            els.alertNum.hidden = !isWait; els.alertLead.hidden = isWait;
+            els.alertLabel.textContent = isWait
+                ? 'Me prévenir dès que l’attente est inférieure ou égale à'
+                : 'Me prévenir avant chaque séance, à l’avance de';
+            els.alertNum.hidden = !isWait;
+            els.alertLead.hidden = isWait;
             els.alertUnit.textContent = isWait ? 'min' : 'min avant le début';
 
-            if (alertUiFor !== item.id) {
+            if (alertUiFor !== item.id) {   // n'écrase pas une saisie en cours lors des actualisations
                 alertUiFor = item.id;
-                if (isWait) els.alertNum.value = a?.threshold ?? (item.live?.wait == null ? 30 : Math.max(5, Math.round((item.live.wait * 0.7) / 5) * 5));
+                if (isWait) els.alertNum.value = a?.threshold ?? suggestThreshold(item);
                 else els.alertLead.value = String(a?.lead ?? 45);
             }
 
             els.alertStatusRow.hidden = !isWait;
             els.alertStatus.checked = Boolean(statusAlert);
             els.alertStatusInfo.hidden = !statusAlert;
-            els.alertStatusInfo.textContent = statusAlert ? (item.live?.status === 'DOWN' ? 'En panne actuellement : vous serez prévenu dès sa réouverture.' : 'En service actuellement : vous serez prévenu en cas de panne.') : '';
+            els.alertStatusInfo.textContent = statusAlert ? statusInfo(item) : '';
 
             els.alertBox.classList.toggle('is-active', Boolean(a || statusAlert));
             els.alertSave.textContent = a ? 'Mettre à jour' : 'Activer l’alerte';
             els.alertRemove.hidden = !a;
-            
-            // Alert Info logic
-            let infoText = '';
+            els.alertInfo.textContent = alertInfo(item, a);
+        }
+
+        async function onAlertSave() {
+            const item = selectedItem();
+            if (!item) return;
+            const isWait = item.category === 'attraction';
+
+            let threshold = null;
+            let lead = null;
             if (isWait) {
-                const current = item.live?.status === 'OPERATING' && item.live.wait != null ? `Attente actuelle : ${item.live.wait} min.` : 'Attraction indisponible.';
-                if (!a) infoText = `${current} Vous serez prévenu dès que l’attente passe sous le seuil.`;
-                else if (a.armed) infoText = `Alerte active (≤ ${a.threshold} min). ${current}`;
-                else infoText = `Alerte envoyée. Elle se réarme au-dessus de ${a.threshold} min.`;
-            } else {
-                const sessions = futureSessions(item, Date.now());
-                if (!a) infoText = sessions.length ? `Prochaine séance : ${timeFormat.format(sessions[0].start)}.` : 'Aucune séance à venir aujourd’hui.';
-                else {
-                    const pending = sessions.find((s) => !a.done.includes(s.key));
-                    infoText = pending ? `Prochaine alerte à ${timeFormat.format(pending.start - a.lead * 60_000)}.` : 'Plus de séance aujourd’hui.';
+                threshold = Number.parseInt(els.alertNum.value, 10);
+                if (!Number.isFinite(threshold) || threshold < 5 || threshold > 180) {
+                    return notify('Saisissez un seuil entre 5 et 180 minutes.');
                 }
+            } else {
+                lead = Number.parseInt(els.alertLead.value, 10);
             }
-            els.alertInfo.textContent = infoText;
+
+            if (!(await ensureNotifications())) return;
+
+            const now = Date.now();
+            if (isWait) {
+                alerts.set(item.id, {
+                    kind: 'wait', threshold,
+                    armed: !isBelow(item.live, threshold),   // déjà sous le seuil : on attend la prochaine remontée
+                    firedAt: null, firedWait: null,
+                });
+            } else {
+                alerts.set(item.id, {   // les séances déjà dans la fenêtre d'alerte ne déclenchent rien
+                    kind: 'show', lead,
+                    done: futureSessions(item, now).filter((s) => s.start - now <= lead * 60_000).map((s) => s.key),
+                });
+            }
+
+            if (saveAlerts()) {
+                const label = isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`;
+                const sync = await syncAlerts({ interactive: true });
+                notify(sync.ok
+                    ? label
+                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
+            } else {
+                alerts.delete(item.id);
+            }
+
+            renderList();
+            renderAlertBox(item);
+        }
+
+        // Alerte « panne / réouverture » : s'applique immédiatement, sans bouton de validation
+        async function onStatusToggle() {
+            const item = selectedItem();
+            if (!item || item.category !== 'attraction') return;
+            const key = `${item.id}#status`;
+            const enable = els.alertStatus.checked;
+
+            if (enable) {
+                if (!(await ensureNotifications())) { els.alertStatus.checked = false; return; }
+                alerts.set(key, { kind: 'status', down: item.live?.status === 'DOWN' });   // déjà en panne : on prévient à la réouverture
+            } else if (!alerts.delete(key)) {
+                return;
+            }
+
+            if (!saveAlerts()) {
+                alerts.delete(key);
+                els.alertStatus.checked = false;
+            } else if (enable) {
+                const label = `Alerte activée : panne et réouverture de ${item.name}`;
+                const sync = await syncAlerts({ interactive: true });
+                notify(sync.ok
+                    ? label
+                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
+            } else {
+                syncAlerts();
+                notify('Alerte panne et réouverture désactivée');
+            }
+            renderList();
+            renderAlertBox(item);
+        }
+
+        async function onAlertRemove() {
+            const item = selectedItem();
+            if (!item || !alerts.delete(item.id)) return;
+
+            saveAlerts();
+            syncAlerts();
+            notify('Alerte supprimée');
+            renderList();
+            renderAlertBox(item);
+        }
+
+        // Ouvre la fiche d'un lieu (clic sur une notification)
+        function openFromAlert(id) {
+            const item = dbById.get(id);
+            if (!item) return;
+            if (state.showFavorites) setShowFavorites(false);
+            state.tab = item.category;
+            if (CONFIG.PARKS.some((p) => p.value === item.park)) state.park = item.park;
+            syncFilterUi();
+            syncTabsUi();
+            openDetail(id);
         }
 
         /* ======================================================================
-           Filtres & Rendu de liste
+           Rendu de la liste
            ====================================================================== */
-        const CATEGORY_LABELS = { attraction: 'Attractions', restaurant: 'Restaurants', spectacle: 'Spectacles' };
-        const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS);
-
-        function syncFilterUi() {
-            const locked = state.nearby || state.showFavorites;
-            els.parkBtns.forEach((b) => b.setAttribute('aria-pressed', String(!locked && b.dataset.park === state.park)));
-            els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
-            els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
-            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
-            els.chipFavs.textContent = favorites.size ? `Favoris (${favorites.size})` : 'Favoris';
-        }
-
-        function syncTabsUi() {
-            els.tabs.forEach((t) => t.setAttribute('aria-current', String(!state.showFavorites && t.dataset.tab === state.tab)));
-        }
-
-        function toggleFavorite(id) {
-            const item = dbById.get(id);
-            if (!item) return;
-            const wasFavorite = favorites.has(id);
-            if (wasFavorite) favorites.delete(id); else favorites.add(id);
-            if (!saveFavorites()) {
-                if (wasFavorite) favorites.add(id); else favorites.delete(id);
-                return;
-            }
-            notify(wasFavorite ? `${item.name} retiré des favoris` : `${item.name} ajouté aux favoris`);
-            syncFilterUi();
-            renderList();
-            if (history.state?.view === 'detail' && state.selectedId === id) {
-                els.btnFav.setAttribute('aria-pressed', String(!wasFavorite));
-                els.btnFav.setAttribute('aria-label', !wasFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris');
-                els.btnFav.title = els.btnFav.getAttribute('aria-label');
-            }
-        }
-
         function getVisibleEntries() {
             const query = searchKey(state.query);
             const nearbyActive = state.nearby && state.location;
@@ -1304,10 +1661,10 @@
 
             for (const item of db) {
                 if (state.showFavorites) {
-                    if (!favorites.has(item.id)) continue;
+                    if (!favorites.has(item.id)) continue;   // favoris : toutes catégories, les deux parcs
                 } else {
                     if (item.category !== state.tab) continue;
-                    if (!nearbyActive && item.park !== state.park) continue;
+                    if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
                 }
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
@@ -1323,6 +1680,7 @@
             return entries;
         }
 
+        // Classement des attractions : temps d'attente décroissant, puis en panne, puis fermées
         function waitRank(item) {
             const live = item.live;
             if (live?.status === 'OPERATING') return live.wait ?? 0;
@@ -1330,7 +1688,7 @@
         }
 
         function compareEntries(a, b) {
-            if (a.dist != null && b.dist != null) return a.dist - b.dist;
+            if (a.dist != null && b.dist != null) return a.dist - b.dist;   // distance croissante
             if (a.item.category === 'attraction' && b.item.category === 'attraction') {
                 const diff = waitRank(b.item) - waitRank(a.item);
                 if (diff) return diff;
@@ -1339,15 +1697,18 @@
         }
 
         function cardHtml({ item, dist }) {
-            const selected = item.id === state.selectedId && history.state?.view === 'detail';
+            const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
             const m = statusModel(item);
+            // Ligne 1 : type (ou panne) ; les horaires, la mention « plus de séance » et l'accès sont sur des lignes dédiées
             const sub = [
                 dist != null ? `à ${formatDistance(dist)}` : '',
                 m.kind === 'down' ? m.text : item.type,
                 state.showFavorites ? item.park : '',
-                m.cardExtra,
             ].filter(Boolean).join(' · ');
+            const extra = timesHtml(m)
+                + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '')
+                + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
                 ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : '';
 
@@ -1358,6 +1719,7 @@
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
+                            ${extra}
                             ${singleHtml(m)}
                         </span>
                     </button>
@@ -1370,20 +1732,24 @@
 
         function renderList() {
             if (!state.ready) {
-                els.list.innerHTML = '<div class="skeleton" style="height:90px"></div>'.repeat(4);
+                els.list.innerHTML = '<div class="skeleton"></div>'.repeat(4);
                 return;
             }
 
             const entries = getVisibleEntries();
             if (!entries.length) {
-                const hint = state.query ? 'Aucun résultat pour cette recherche.'
-                    : state.showFavorites && !favorites.size ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
-                    : state.nearby ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
-                    : 'Aucun lieu ne correspond à ces critères.';
+                const hint = state.query
+                    ? 'Aucun résultat pour cette recherche.'
+                    : state.showFavorites && !favorites.size
+                        ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
+                    : state.nearby
+                        ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
+                        : 'Aucun lieu ne correspond à ces critères.';
                 els.list.innerHTML = `<div class="empty">${hint}</div>`;
                 return;
             }
 
+            // Favoris : regroupés par catégorie ; sinon par land
             const groupOf = (item) => (state.showFavorites ? CATEGORY_LABELS[item.category] : item.land);
             const groups = new Map();
             for (const entry of entries) {
@@ -1392,254 +1758,121 @@
                 groups.get(key).push(entry);
             }
 
+            // Lands par ordre alphabétique ; avec « Autour de moi », du plus proche au plus lointain
             const nearest = (land) => Math.min(...groups.get(land).map((e) => e.dist));
             const lands = [...groups.keys()].sort((a, b) => {
                 if (state.nearby && state.location) return nearest(a) - nearest(b);
                 if (state.showFavorites) {
-                    return CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === a) - CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === b);
+                    return CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === a)
+                         - CATEGORY_ORDER.findIndex((c) => CATEGORY_LABELS[c] === b);
                 }
                 return a.localeCompare(b, CONFIG.LOCALE);
             });
 
-            els.list.innerHTML = lands.map((land) => `
-                <section>
-                    <h2 class="land">${esc(land)}</h2>
-                    ${groups.get(land).sort(compareEntries).map(cardHtml).join('')}
-                </section>`).join('');
+            els.list.innerHTML = lands
+                .map((land) => `
+                    <section>
+                        <h2 class="land">${esc(land)}</h2>
+                        ${groups.get(land).sort(compareEntries).map(cardHtml).join('')}
+                    </section>`)
+                .join('');
         }
 
         /* ======================================================================
-           Détail (UI Logic)
+           Détail
            ====================================================================== */
-        function _openDetailUI(id) {
-            state.selectedId = id;
-            const item = dbById.get(id);
+        const selectedItem = () => db.find((item) => item.id === state.selectedId) ?? null;
+
+        /**
+         * Image de la fiche : elle est vidée dès que la fiche change ou se ferme, et reste invisible
+         * (squelette animé) jusqu'à son chargement complet. Aucune image précédente ne peut réapparaître.
+         */
+        let shownImage = null;
+        function setHeroImage(url) {
+            if (url === shownImage) return;   // actualisation périodique : on ne touche pas à l'image
+            shownImage = url;
+            els.image.onload = els.image.onerror = null;
+            els.image.removeAttribute('src');
+            if (!url) { els.hero.dataset.img = 'none'; return; }
+            els.hero.dataset.img = 'loading';
+            els.image.onload = () => { if (shownImage === url) els.hero.dataset.img = 'loaded'; };
+            els.image.onerror = () => { if (shownImage === url) els.hero.dataset.img = 'error'; };
+            els.image.src = url;
+        }
+
+        function renderDetail() {
+            const item = selectedItem();
             els.placeholder.hidden = Boolean(item);
             els.content.hidden = !item;
             if (!item) return;
 
-            // Reset image state for smooth loading
-            els.image.hidden = true;
-            els.image.removeAttribute('src');
-            els.imageSkeleton.hidden = false;
-
             els.title.textContent = item.name;
-            const fav = favorites.has(item.id);
-            els.btnFav.setAttribute('aria-pressed', String(fav));
-            els.btnFav.setAttribute('aria-label', fav ? 'Retirer des favoris' : 'Ajouter aux favoris');
-            els.btnFav.title = els.btnFav.getAttribute('aria-label');
-            
+            renderFavDetailButton(item);
             els.desc.textContent = item.description;
             els.desc.hidden = !item.description;
 
             const m = statusModel(item);
             els.statusBadge.innerHTML = badgeHtml(m);
             els.statusText.textContent = m.text;
-            els.single.innerHTML = singleHtml(m);
+            els.statusText.classList.toggle('is-strong', Boolean(m.access));
+            els.single.innerHTML = timesHtml(m) + singleHtml(m);
 
-            // Gérer l'affichage de l'image (via onload pour effacer le skeleton)
-            const image = safeUrl(item.image);
-            if (image) {
-                els.image.onload = () => { els.image.hidden = false; els.imageSkeleton.hidden = true; };
-                els.image.onerror = () => { els.imageSkeleton.hidden = true; };
-                els.image.src = image;
-            } else {
-                els.imageSkeleton.hidden = true;
-            }
+            setHeroImage(safeUrl(item.image));
 
-            // Gestion des Spectacles (bloc dédié)
-            if (item.category === 'spectacle') {
-                els.showInfo.hidden = false;
-                els.showType.textContent = item.type;
-                const upcoming = upcomingShowtimes(item);
-                if (upcoming.length) {
-                    els.showTimes.innerHTML = `<strong>Prochaines séances :</strong><br>${upcoming.map(d => timeFormat.format(d)).join(' • ')}`;
-                } else if (item.live?.showtimes?.length) {
-                    els.showTimes.innerHTML = `Plus de séance aujourd'hui`;
-                } else {
-                    els.showTimes.innerHTML = ``;
-                }
-            } else {
-                els.showInfo.hidden = true;
-            }
-
-            // Badges
             const badges = [
                 { text: item.park, kind: 'park' },
                 { text: item.land, kind: 'land' },
-                item.category !== 'spectacle' ? { text: item.type } : null,
-                item.minHeight && item.minHeight !== 'Pas de restriction' ? { text: `Taille minimale : ${item.minHeight}`, warning: true } : null,
+                { text: item.type },
+                item.minHeight && item.minHeight !== 'Pas de restriction'
+                    ? { text: `Taille minimale : ${item.minHeight}`, warning: true } : null,
                 item.price ? { text: `Tarifs : ${item.price}` } : null,
             ].filter((b) => b && b.text);
 
-            els.badges.innerHTML = badges.map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`).join('');
+            els.badges.innerHTML = badges
+                .map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
+                .join('');
 
             const menu = safeUrl(item.menuUrl);
             els.menu.hidden = !menu;
             if (menu) els.menu.href = menu;
-            
             renderAlertBox(item);
-            renderList(); // met à jour la sélection de la liste
+        }
 
-            els.pane.classList.add('is-open');
+        function openDetail(id) {
+            state.selectedId = id;
+            pushLayer('detail', hideDetail);   // le geste « retour » système fermera la fiche
+            renderList();
+            renderDetail();
+            els.pane.classList.add('is-open');           // visible uniquement en mobile (cf. CSS)
             els.pane.scrollTop = 0;
             els.btnBack.focus({ preventScroll: true });
         }
 
-        function _closeDetailUI() {
+        // Ferme réellement la fiche (appelée par la pile de navigation)
+        function hideDetail() {
             const previousId = state.selectedId;
+            if (previousId == null) return;
             state.selectedId = null;
             alertUiFor = null;
+            setHeroImage('');   // vide l'image : la prochaine fiche démarre sans résidu
             els.pane.classList.remove('is-open');
-            
-            // Clean up image state
-            els.image.hidden = true;
-            els.image.removeAttribute('src');
-            els.imageSkeleton.hidden = true;
-            
-            els.placeholder.hidden = false;
-            els.content.hidden = true;
-            
             renderList();
-            if (previousId) {
-                els.list.querySelector(`.main[data-id="${CSS.escape(previousId)}"]`)?.focus({ preventScroll: true });
-            }
+            renderDetail();
+            els.list.querySelector(`.main[data-id="${CSS.escape(previousId)}"]`)?.focus({ preventScroll: true });
+        }
+
+        function closeDetail() {
+            closeLayer('detail');
+            hideDetail();   // sans effet si déjà fermée
+        }
+
+        function render() {
+            renderList();
+            renderDetail();
         }
 
         /* ======================================================================
-           Portefeuille (Billet / Pass) UI Logic
-           ====================================================================== */
-        const WALLET_KEY = 'dlp-wallet';
-        let walletItems = [];
-        let html5QrcodeScanner = null;
-
-        function initWalletData() {
-            try {
-                walletItems = JSON.parse(localStorage.getItem(WALLET_KEY) ?? '[]');
-                const today = new Date();
-                today.setHours(0,0,0,0);
-                // Supprimer automatiquement ce qui est expiré
-                walletItems = walletItems.filter(t => new Date(t.expiry) >= today);
-                localStorage.setItem(WALLET_KEY, JSON.stringify(walletItems));
-            } catch { }
-        }
-
-        function renderWalletList() {
-            if (!walletItems.length) {
-                els.walletList.innerHTML = '<div class="empty">Aucun titre enregistré.</div>';
-                return;
-            }
-            els.walletList.innerHTML = walletItems.map(t => `
-                <li class="wallet-item">
-                    <button type="button" class="wallet-item-btn" data-id="${t.id}">
-                        <div class="wallet-item-text">
-                            <strong>${esc(t.type)}</strong><br>
-                            <small>Expire le ${new Date(t.expiry).toLocaleDateString(CONFIG.LOCALE)}</small>
-                        </div>
-                        <svg class="icon"><use href="#i-wallet"/></svg>
-                    </button>
-                    <button type="button" class="wallet-item-del round" data-del="${t.id}" aria-label="Supprimer">
-                        <svg class="icon"><use href="#i-trash"/></svg>
-                    </button>
-                </li>
-            `).join('');
-        }
-
-        function _openWalletUI() {
-            initWalletData();
-            renderWalletList();
-            els.walletMain.hidden = false;
-            els.walletScan.hidden = true;
-            els.walletForm.hidden = true;
-            els.walletShow.hidden = true;
-            els.walletLayer.hidden = false;
-            els.walletClose.focus();
-        }
-
-        function _closeWalletUI() {
-            if (html5QrcodeScanner) {
-                try { html5QrcodeScanner.stop(); } catch(e){}
-            }
-            els.walletLayer.hidden = true;
-            els.btnWallet.focus({ preventScroll: true });
-        }
-
-        async function startWalletScanner() {
-            els.walletMain.hidden = true;
-            els.walletScan.hidden = false;
-            html5QrcodeScanner = new Html5Qrcode("qr-reader");
-            try {
-                await html5QrcodeScanner.start(
-                    { facingMode: "environment" },
-                    { fps: 10, qrbox: { width: 250, height: 250 } },
-                    (decodedText) => {
-                        html5QrcodeScanner.stop();
-                        els.walletScan.hidden = true;
-                        openWalletForm(decodedText);
-                    },
-                    () => {}
-                );
-            } catch (err) {
-                notify("Impossible d'accéder à la caméra.");
-                els.walletScan.hidden = true;
-                els.walletMain.hidden = false;
-            }
-        }
-
-        let pendingScannedData = null;
-        function openWalletForm(data) {
-            pendingScannedData = data;
-            els.walletForm.hidden = false;
-            els.walletType.value = "Billet";
-            els.walletExpiry.value = "";
-            els.walletExpiry.focus();
-        }
-
-        function saveWalletForm() {
-            if (!els.walletExpiry.value) {
-                notify("Veuillez indiquer une date d'expiration.");
-                return;
-            }
-            walletItems.push({
-                id: Date.now(),
-                type: els.walletType.value,
-                expiry: els.walletExpiry.value,
-                data: pendingScannedData
-            });
-            localStorage.setItem(WALLET_KEY, JSON.stringify(walletItems));
-            notify("Titre ajouté au portefeuille.");
-            
-            els.walletForm.hidden = true;
-            els.walletMain.hidden = false;
-            renderWalletList();
-        }
-
-        function showWalletQR(id) {
-            const t = walletItems.find(x => x.id === parseInt(id));
-            if (!t) return;
-            els.walletMain.hidden = true;
-            els.walletShow.hidden = false;
-            els.walletShowTitle.textContent = t.type;
-            els.walletShowExp.textContent = `Expire le ${new Date(t.expiry).toLocaleDateString(CONFIG.LOCALE)}`;
-            
-            // Génération QR Code pleine page
-            new QRious({
-                element: document.getElementById('wallet-canvas'),
-                value: t.data,
-                size: 250,
-                level: 'M'
-            });
-        }
-
-        function deleteWalletItem(id) {
-            if (!confirm("Voulez-vous supprimer ce titre ?")) return;
-            walletItems = walletItems.filter(x => x.id !== parseInt(id));
-            localStorage.setItem(WALLET_KEY, JSON.stringify(walletItems));
-            renderWalletList();
-        }
-
-        /* ======================================================================
-           Thèmes UI Logic
+           Thèmes
            ====================================================================== */
         const currentTheme = () => document.documentElement.dataset.theme;
 
@@ -1649,7 +1882,7 @@
 
         function setTheme(id) {
             window.DLP_applyTheme(id);
-            try { localStorage.setItem(THEME_KEY, currentTheme()); } catch { }
+            try { localStorage.setItem(THEME_KEY, currentTheme()); } catch { /* stockage indisponible */ }
             updateThemeLabel();
         }
 
@@ -1662,15 +1895,350 @@
                 </button>`).join('');
         }
 
-        function _openThemesUI() {
+        function openThemes() {
             renderThemes();
+            pushLayer('theme', hideThemes);
             els.themeLayer.hidden = false;
             els.themeClose.focus();
         }
 
-        function _closeThemesUI() {
+        function hideThemes() {
             els.themeLayer.hidden = true;
             els.btnTheme.focus({ preventScroll: true });
+        }
+
+        const closeThemes = () => closeLayer('theme');
+
+        /* ======================================================================
+           Portefeuille : billets et pass annuels (stockés sur l'appareil)
+           ====================================================================== */
+        const WALLET_KEY = 'dlp-wallet';
+        const WALLET_TYPES = { billet: 'Billet', pass: 'Pass annuel' };
+
+        // wallet : [{ id, payload, img, type: 'billet'|'pass', expires: 'AAAA-MM-JJ', label, addedAt }]
+        let wallet = (() => {
+            try {
+                const saved = JSON.parse(localStorage.getItem(WALLET_KEY) ?? '[]');
+                return (Array.isArray(saved) ? saved : []).filter((w) =>
+                    w && typeof w.id === 'string' && typeof w.payload === 'string' &&
+                    w.type in WALLET_TYPES && /^\d{4}-\d{2}-\d{2}$/.test(w.expires ?? ''));
+            } catch { return []; }
+        })();
+
+        function saveWallet() {
+            try {
+                localStorage.setItem(WALLET_KEY, JSON.stringify(wallet));
+                return true;
+            } catch {
+                notify('Impossible d’enregistrer le portefeuille sur cet appareil (stockage plein ?).');
+                return false;
+            }
+        }
+
+        // Dates calculées dans le fuseau du parc : un titre reste valable jusqu'à la fin du jour d'expiration
+        const dayKeyFormat = new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit' });
+        const todayIso = () => dayKeyFormat.format(new Date());
+        const longDayFormat = new Intl.DateTimeFormat(CONFIG.LOCALE, { day: 'numeric', month: 'long', year: 'numeric' });
+        const formatDay = (iso) => longDayFormat.format(new Date(`${iso}T12:00:00`));
+        const daysLeft = (iso) => Math.round((Date.parse(`${iso}T00:00:00Z`) - Date.parse(`${todayIso()}T00:00:00Z`)) / 86_400_000);
+        const newId = () => (crypto.randomUUID ? crypto.randomUUID() : `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
+
+        const walletTitle = (w) => w.label || WALLET_TYPES[w.type];
+        function walletExpiryText(w) {
+            const d = daysLeft(w.expires);
+            if (d <= 0) return 'Expire aujourd’hui';
+            if (d === 1) return 'Expire demain';
+            return `Valable jusqu’au ${formatDay(w.expires)}`;
+        }
+
+        // Suppression automatique des titres dont la date de validité est dépassée
+        function purgeWallet() {
+            const today = todayIso();
+            const kept = wallet.filter((w) => w.expires >= today);
+            if (kept.length === wallet.length) return false;
+            wallet = kept;
+            saveWallet();
+            if (qrId && !wallet.some((w) => w.id === qrId)) closeLayer('wallet-qr');
+            if (!els.walletLayer.hidden) renderWallet();
+            return true;
+        }
+
+        function renderWallet() {
+            const items = [...wallet].sort((a, b) => a.expires.localeCompare(b.expires));
+            if (!items.length) {
+                els.walletList.innerHTML = '<div class="empty">Aucun billet ni pass pour le moment.<br>Scannez le QR code de votre billet ou de votre pass annuel pour le retrouver ici, même sans connexion.<br>Les titres expirés sont supprimés automatiquement.</div>';
+                return;
+            }
+            els.walletList.innerHTML = items.map((w) => `
+                <div class="card">
+                    <button type="button" class="main" data-w-open="${esc(w.id)}">
+                        <span class="w-thumb">${w.img ? `<img src="${esc(w.img)}" alt="">` : ''}</span>
+                        <span class="txt">
+                            <span class="ttl">${esc(walletTitle(w))}</span>
+                            <span class="sub">${esc(WALLET_TYPES[w.type])} · ${esc(walletExpiryText(w))}</span>
+                        </span>
+                    </button>
+                    <button type="button" class="heart w-del" data-w-del="${esc(w.id)}" aria-label="Supprimer ${esc(walletTitle(w))} du portefeuille">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-trash"/></svg>
+                    </button>
+                </div>`).join('');
+        }
+
+        function openWallet() {
+            purgeWallet();
+            renderWallet();
+            pushLayer('wallet', hideWallet);
+            els.walletLayer.hidden = false;
+            els.walletClose.focus({ preventScroll: true });
+        }
+
+        function hideWallet() {
+            els.walletLayer.hidden = true;
+            els.btnWallet.focus({ preventScroll: true });
+        }
+
+        /* --- Chargement à la demande des bibliothèques QR --- */
+        const scriptLoads = new Map();
+        function loadScript(src) {
+            if (!scriptLoads.has(src)) {
+                scriptLoads.set(src, new Promise((resolve, reject) => {
+                    const s = document.createElement('script');
+                    s.src = src;
+                    s.async = true;
+                    s.onload = resolve;
+                    s.onerror = () => { scriptLoads.delete(src); reject(new Error(`Chargement impossible : ${src}`)); };
+                    document.head.appendChild(s);
+                }));
+            }
+            return scriptLoads.get(src);
+        }
+
+        // Image PNG du QR code (fond blanc, zone de silence de 4 modules), stockée avec le titre pour l'usage hors connexion
+        async function qrToDataUrl(text) {
+            if (!window.qrcode) await loadScript(CONFIG.QR_LIBS.generate);
+            const qr = window.qrcode(0, 'M');
+            qr.addData(text);
+            qr.make();
+            const n = qr.getModuleCount();
+            const cell = Math.max(4, Math.min(12, Math.floor(900 / (n + 8))));
+            const size = (n + 8) * cell;
+            const canvas = document.createElement('canvas');
+            canvas.width = canvas.height = size;
+            const g = canvas.getContext('2d');
+            g.fillStyle = '#fff';
+            g.fillRect(0, 0, size, size);
+            g.fillStyle = '#000';
+            for (let r = 0; r < n; r++) {
+                for (let c = 0; c < n; c++) {
+                    if (qr.isDark(r, c)) g.fillRect((c + 4) * cell, (r + 4) * cell, cell, cell);
+                }
+            }
+            return canvas.toDataURL('image/png');
+        }
+
+        /* --- Scanner --- */
+        const scan = { stream: null, timer: null, detector: undefined, busy: false };
+        const scanCanvas = document.createElement('canvas');
+        const scanCtx = scanCanvas.getContext('2d', { willReadFrequently: true });
+        const setScanStatus = (text) => { els.scanStatus.textContent = text; };
+
+        // Détecteur natif quand il existe, sinon jsQR (chargé à la demande)
+        function getDetector() {
+            if (scan.detector === undefined) {
+                try { scan.detector = 'BarcodeDetector' in window ? new BarcodeDetector({ formats: ['qr_code'] }) : null; }
+                catch { scan.detector = null; }
+            }
+            return scan.detector;
+        }
+
+        async function decodeSource(source, width, height) {
+            const detector = getDetector();
+            if (detector) {
+                try {
+                    const found = await detector.detect(source);
+                    return found[0]?.rawValue || null;
+                } catch { /* détecteur indisponible : repli sur jsQR */ }
+            }
+            if (!window.jsQR) await loadScript(CONFIG.QR_LIBS.scan);
+            const scale = Math.min(1, 800 / Math.max(width, height));
+            const cw = Math.max(1, Math.round(width * scale));
+            const ch = Math.max(1, Math.round(height * scale));
+            scanCanvas.width = cw;
+            scanCanvas.height = ch;
+            scanCtx.drawImage(source, 0, 0, cw, ch);
+            const data = scanCtx.getImageData(0, 0, cw, ch);
+            return window.jsQR(data.data, cw, ch)?.data || null;
+        }
+
+        function scanLoop() {
+            scan.timer = setTimeout(async () => {
+                const video = els.scanVideo;
+                let fatal = false;
+                if (scan.stream && video.readyState >= 2 && video.videoWidth && !scan.busy) {
+                    scan.busy = true;
+                    try {
+                        const text = await decodeSource(video, video.videoWidth, video.videoHeight);
+                        if (text && scan.stream) { await onScanned(text); return; }
+                    } catch (error) {
+                        console.warn('Lecture du QR code impossible :', error);
+                        setScanStatus('Lecteur indisponible hors connexion. Importez une image du QR code.');
+                        fatal = true;
+                    } finally {
+                        scan.busy = false;
+                    }
+                }
+                if (scan.stream && !fatal) scanLoop();
+            }, 200);
+        }
+
+        async function openScan() {
+            pushLayer('wallet-scan', stopScan);
+            els.scanLayer.hidden = false;
+            els.scanClose.focus({ preventScroll: true });
+            if (!navigator.mediaDevices?.getUserMedia) {
+                setScanStatus('Caméra indisponible : importez une image du QR code.');
+                return;
+            }
+            setScanStatus('Démarrage de la caméra…');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } },
+                    audio: false,
+                });
+                if (els.scanLayer.hidden) { stream.getTracks().forEach((t) => t.stop()); return; }   // fermé pendant l'autorisation
+                scan.stream = stream;
+                els.scanVideo.srcObject = stream;
+                await els.scanVideo.play().catch(() => {});
+                setScanStatus('Placez le QR code dans le cadre');
+                scanLoop();
+            } catch (error) {
+                console.warn('Caméra indisponible :', error);
+                setScanStatus(error?.name === 'NotAllowedError'
+                    ? 'Accès à la caméra refusé : autorisez-le dans les réglages ou importez une image.'
+                    : 'Caméra indisponible : importez une image du QR code.');
+            }
+        }
+
+        function stopScan() {
+            clearTimeout(scan.timer);
+            scan.stream?.getTracks().forEach((t) => t.stop());
+            scan.stream = null;
+            scan.busy = false;
+            els.scanVideo.srcObject = null;
+            els.scanLayer.hidden = true;
+        }
+
+        let formDraft = null;   // { payload, img }
+
+        async function onScanned(text) {
+            if (wallet.some((w) => w.payload === text)) {
+                notify('Ce code est déjà dans votre portefeuille.');
+                closeLayer('wallet-scan');
+                return;
+            }
+            let img;
+            try { img = await qrToDataUrl(text); }
+            catch (error) {
+                console.error('Génération du QR code impossible :', error);
+                notify('Ce code ne peut pas être enregistré (QR code uniquement).');
+                closeLayer('wallet-scan');
+                return;
+            }
+            stopScan();
+            formDraft = { payload: text, img };
+            els.formImg.src = img;
+            els.walletForm.reset();
+            els.wDate.min = todayIso();
+            replaceLayer('wallet-scan', 'wallet-form', hideForm);   // scanner → formulaire, sans entrée d'historique en plus
+            els.formLayer.hidden = false;
+            els.wDate.focus({ preventScroll: true });
+        }
+
+        async function onScanFile() {
+            const file = els.scanFile.files?.[0];
+            els.scanFile.value = '';
+            if (!file) return;
+            setScanStatus('Analyse de l’image…');
+            try {
+                const bitmap = await createImageBitmap(file);
+                const text = await decodeSource(bitmap, bitmap.width, bitmap.height);
+                bitmap.close?.();
+                if (text) await onScanned(text);
+                else setScanStatus('Aucun QR code détecté dans cette image.');
+            } catch (error) {
+                console.warn('Image illisible :', error);
+                setScanStatus('Image illisible ou lecteur indisponible hors connexion.');
+            }
+        }
+
+        function hideForm() {
+            els.formLayer.hidden = true;
+            formDraft = null;
+        }
+
+        function onFormSubmit(event) {
+            event.preventDefault();
+            if (!formDraft) return;
+            const type = els.walletForm.elements['w-type'].value;
+            const expires = els.wDate.value;
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(expires)) return notify('Indiquez la date d’expiration du titre.');
+            if (expires < todayIso()) return notify('Cette date est déjà dépassée.');
+
+            wallet.push({
+                id: newId(), payload: formDraft.payload, img: formDraft.img,
+                type: type in WALLET_TYPES ? type : 'billet',
+                expires, label: els.wLabel.value.trim(), addedAt: Date.now(),
+            });
+            if (!saveWallet()) { wallet.pop(); return; }
+            notify('Ajouté au portefeuille');
+            renderWallet();
+            closeLayer('wallet-form');
+        }
+
+        /* --- QR en plein écran --- */
+        let qrId = null;
+        let wakeLock = null;
+        async function holdScreen() {
+            try { wakeLock = await navigator.wakeLock?.request('screen'); } catch { /* facultatif */ }
+        }
+        function releaseScreen() {
+            wakeLock?.release?.().catch(() => {});
+            wakeLock = null;
+        }
+
+        async function openQr(id) {
+            const w = wallet.find((x) => x.id === id);
+            if (!w) return;
+            if (!w.img) {   // image absente (ancien enregistrement) : régénérée puis conservée
+                try { w.img = await qrToDataUrl(w.payload); saveWallet(); }
+                catch { return notify('Impossible d’afficher ce QR code hors connexion.'); }
+            }
+            qrId = id;
+            els.qrImg.src = w.img;
+            els.qrTitle.textContent = walletTitle(w);
+            els.qrSub.textContent = `${WALLET_TYPES[w.type]} · ${walletExpiryText(w)}`;
+            pushLayer('wallet-qr', hideQr);
+            els.qrLayer.hidden = false;
+            els.qrClose.focus({ preventScroll: true });
+            holdScreen();   // garde l'écran allumé pendant le passage aux contrôles
+        }
+
+        function hideQr() {
+            els.qrLayer.hidden = true;
+            els.qrImg.removeAttribute('src');
+            qrId = null;
+            releaseScreen();
+        }
+
+        async function onWalletDelete(id) {
+            const w = wallet.find((x) => x.id === id);
+            if (!w) return;
+            const ok = await askConfirm({ message: `Supprimer « ${walletTitle(w)} » du portefeuille ?`, ok: 'Supprimer', cancel: 'Annuler' });
+            if (!ok) return;
+            wallet = wallet.filter((x) => x.id !== id);
+            saveWallet();
+            renderWallet();
+            notify('Titre supprimé');
         }
 
         /* ======================================================================
@@ -1684,6 +2252,7 @@
             toastTimer = setTimeout(() => els.toast.classList.remove('show'), 4000);
         }
 
+        /* « Autour de moi » : position suivie en continu pour garder les distances à jour */
         function setNearbyUi(active) {
             state.nearby = active;
             syncFilterUi();
@@ -1699,14 +2268,16 @@
         function onPosition({ coords }) {
             const previous = state.location;
             state.location = { lat: coords.latitude, lng: coords.longitude };
+
             const firstFix = !state.nearby;
             if (firstFix) setNearbyUi(true);
-            const moved = !previous || distanceKm(previous.lat, previous.lng, state.location.lat, state.location.lng) > 0.015;
+            const moved = !previous ||
+                distanceKm(previous.lat, previous.lng, state.location.lat, state.location.lng) > 0.015;
             if (firstFix || moved) renderList();
         }
 
         function onPositionError(error) {
-            if (state.nearby && error.code === 3) return;
+            if (state.nearby && error.code === 3) return;   // délai dépassé : on garde la dernière position
             stopNearby();
             notify('Autorisez la géolocalisation pour afficher les lieux proches.');
             renderList();
@@ -1717,20 +2288,25 @@
                 stopNearby();
                 return renderList();
             }
-            if (!('geolocation' in navigator)) { return notify('La géolocalisation n’est pas disponible sur cet appareil.'); }
-            state.watchId = navigator.geolocation.watchPosition(onPosition, onPositionError, { enableHighAccuracy: true, timeout: 20_000, maximumAge: 15_000 });
+            if (!('geolocation' in navigator)) {
+                return notify('La géolocalisation n’est pas disponible sur cet appareil.');
+            }
+            state.watchId = navigator.geolocation.watchPosition(onPosition, onPositionError,
+                { enableHighAccuracy: true, timeout: 20_000, maximumAge: 15_000 });
             syncFilterUi();
         }
 
         function bindEvents() {
-            els.seg.innerHTML = CONFIG.PARKS.map((p) => `<button type="button" data-park="${esc(p.value)}" aria-pressed="false">${esc(p.label)}</button>`).join('');
+            els.seg.innerHTML = CONFIG.PARKS
+                .map((p) => `<button type="button" data-park="${esc(p.value)}" aria-pressed="false">${esc(p.label)}</button>`).join('');
             els.parkBtns = [...els.seg.querySelectorAll('button')];
             els.parkBtns.forEach((btn) => btn.addEventListener('click', () => {
-                if (state.watchId != null || state.nearby) stopNearby();
-                if (state.showFavorites) { state.showFavorites = false; syncTabsUi(); }
+                if (state.watchId != null || state.nearby) stopNearby();   // choisir un parc quitte « Autour de moi » et les favoris
+                if (state.showFavorites) setShowFavorites(false);
                 state.park = btn.dataset.park;
                 syncFilterUi();
-                goBack(); // ferme toute modale
+                syncTabsUi();
+                closeDetail();
                 renderList();
             }));
 
@@ -1738,19 +2314,19 @@
             els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
             els.chipNearby.addEventListener('click', onNearbyClick);
             els.chipFavs.addEventListener('click', () => {
-                goBack();
-                state.showFavorites = !state.showFavorites;
-                syncFilterUi(); syncTabsUi();
-                renderList(); els.list.scrollTop = 0;
+                closeDetail();
+                setShowFavorites(!state.showFavorites);
+                renderList();
+                els.list.scrollTop = 0;
             });
             els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
                 state.tab = tab.dataset.tab;
-                if (state.showFavorites) { state.showFavorites = false; syncFilterUi(); }
-                goBack();
-                syncTabsUi();
-                renderList(); els.list.scrollTop = 0;
+                setShowFavorites(false);   // choisir une catégorie quitte la vue favoris
+                closeDetail();
+                renderList();
+                els.list.scrollTop = 0;
             }));
 
             els.list.addEventListener('click', (event) => {
@@ -1762,105 +2338,64 @@
                     return;
                 }
                 const card = event.target.closest('.main');
-                if (card) navigateTo('detail', { id: card.dataset.id });
+                if (card) openDetail(card.dataset.id);
             });
 
-            els.btnBack.addEventListener('click', goBack);
-            
-            // Événements d'alerte (inchangés, branchés directement via JS plus haut)
-            els.alertSave.addEventListener('click', async () => {
-                const item = dbById.get(state.selectedId);
-                if (!item) return;
-                const isWait = item.category === 'attraction';
-                let threshold = null; let lead = null;
-                if (isWait) {
-                    threshold = Number.parseInt(els.alertNum.value, 10);
-                    if (!Number.isFinite(threshold) || threshold < 5 || threshold > 180) return notify('Saisissez un seuil entre 5 et 180 minutes.');
-                } else lead = Number.parseInt(els.alertLead.value, 10);
-
-                if (!(await ensureNotifications())) return;
-                const now = Date.now();
-                if (isWait) alerts.set(item.id, { kind: 'wait', threshold, armed: !isBelow(item.live, threshold), firedAt: null, firedWait: null });
-                else alerts.set(item.id, { kind: 'show', lead, done: futureSessions(item, now).filter((s) => s.start - now <= lead * 60_000).map((s) => s.key) });
-                
-                if (saveAlerts()) {
-                    const label = isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`;
-                    const sync = await syncAlerts({ interactive: true });
-                    notify(sync.ok ? label : `${label}. Sans connexion serveur, l'alerte fonctionne uniquement l'app ouverte.`);
-                } else alerts.delete(item.id);
-                renderAlertBox(item);
-            });
-            els.alertRemove.addEventListener('click', () => {
-                const item = dbById.get(state.selectedId);
-                if (!item || !alerts.delete(item.id)) return;
-                saveAlerts(); syncAlerts(); notify('Alerte supprimée'); renderAlertBox(item);
-            });
-            els.alertStatus.addEventListener('change', async () => {
-                const item = dbById.get(state.selectedId);
-                if (!item || item.category !== 'attraction') return;
-                const key = `${item.id}#status`; const enable = els.alertStatus.checked;
-                if (enable) {
-                    if (!(await ensureNotifications())) { els.alertStatus.checked = false; return; }
-                    alerts.set(key, { kind: 'status', down: item.live?.status === 'DOWN' });
-                } else if (!alerts.delete(key)) return;
-
-                if (!saveAlerts()) { alerts.delete(key); els.alertStatus.checked = false; }
-                else if (enable) {
-                    const label = `Alerte activée : panne et réouverture de ${item.name}`;
-                    const sync = await syncAlerts({ interactive: true });
-                    notify(sync.ok ? label : `${label}. Sans connexion serveur, l'alerte fonctionne uniquement l'app ouverte.`);
-                } else { syncAlerts(); notify('Alerte panne et réouverture désactivée'); }
-                renderAlertBox(item);
-            });
-
+            els.btnBack.addEventListener('click', closeDetail);
+            els.alertSave.addEventListener('click', onAlertSave);
+            els.alertRemove.addEventListener('click', onAlertRemove);
+            els.alertStatus.addEventListener('change', onStatusToggle);
             els.btnRefresh.addEventListener('click', refresh);
 
-            // Thèmes
-            els.btnTheme.addEventListener('click', () => navigateTo('themes'));
-            els.themeClose.addEventListener('click', goBack);
-            els.themeScrim.addEventListener('click', goBack);
+            els.btnTheme.addEventListener('click', openThemes);
+            els.themeClose.addEventListener('click', closeThemes);
+            els.themeScrim.addEventListener('click', closeThemes);
             els.themeGrid.addEventListener('click', (event) => {
                 const btn = event.target.closest('.th');
                 if (!btn) return;
                 setTheme(btn.dataset.themeId);
-                goBack();
+                closeThemes();
             });
 
             // Portefeuille
-            els.btnWallet.addEventListener('click', () => navigateTo('wallet'));
-            els.walletClose.addEventListener('click', goBack);
-            els.walletScrim.addEventListener('click', goBack);
-            els.walletAddBtn.addEventListener('click', startWalletScanner);
-            els.walletScanCancel.addEventListener('click', () => {
-                if (html5QrcodeScanner) html5QrcodeScanner.stop();
-                els.walletScan.hidden = true;
-                els.walletMain.hidden = false;
+            els.btnWallet.addEventListener('click', openWallet);
+            els.walletClose.addEventListener('click', () => closeLayer('wallet'));
+            els.walletAdd.addEventListener('click', openScan);
+            els.walletList.addEventListener('click', (event) => {
+                const del = event.target.closest('[data-w-del]');
+                if (del) return onWalletDelete(del.dataset.wDel);
+                const open = event.target.closest('[data-w-open]');
+                if (open) openQr(open.dataset.wOpen);
             });
-            els.walletFormCancel.addEventListener('click', () => {
-                els.walletForm.hidden = true;
-                els.walletMain.hidden = false;
-            });
-            els.walletSaveBtn.addEventListener('click', saveWalletForm);
-            els.walletShowBack.addEventListener('click', () => {
-                els.walletShow.hidden = true;
-                els.walletMain.hidden = false;
-            });
-            els.walletList.addEventListener('click', (e) => {
-                const delBtn = e.target.closest('.wallet-item-del');
-                if (delBtn) { deleteWalletItem(delBtn.dataset.del); return; }
-                const itemBtn = e.target.closest('.wallet-item-btn');
-                if (itemBtn) { showWalletQR(itemBtn.dataset.id); }
-            });
+            els.scanClose.addEventListener('click', () => closeLayer('wallet-scan'));
+            els.scanImport.addEventListener('click', () => els.scanFile.click());
+            els.scanFile.addEventListener('change', onScanFile);
+            els.formClose.addEventListener('click', () => closeLayer('wallet-form'));
+            els.walletForm.addEventListener('submit', onFormSubmit);
+            els.qrClose.addEventListener('click', () => closeLayer('wallet-qr'));
+
+            // Confirmation
+            els.confirmOk.addEventListener('click', () => settleConfirm(true));
+            els.confirmCancel.addEventListener('click', () => settleConfirm(false));
+            els.confirmScrim.addEventListener('click', () => settleConfirm(false));
 
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') goBack();
+                if (event.key !== 'Escape') return;
+                if (!els.confirm.hidden) return settleConfirm(false);
+                const top = nav.stack.at(-1);
+                if (top) closeLayer(top.name);
             });
 
+            // Actualisation automatique, uniquement quand l'onglet est visible
+            // Avec des alertes actives, on continue d'actualiser même onglet masqué
             setInterval(() => { if (!document.hidden || alerts.size) refresh(); }, CONFIG.REFRESH_MS);
-            setInterval(() => { if (checkAlerts()) { renderList(); if(history.state?.view === 'detail') _openDetailUI(state.selectedId); } }, 30_000);
+            // Les alertes de spectacles dépendent de l'horloge : vérification plus fréquente sur les données en cache
+            setInterval(() => { if (checkAlerts()) render(); }, 30_000);
+            // Titres du portefeuille expirés : retirés automatiquement
+            setInterval(purgeWallet, 60_000);
             document.addEventListener('visibilitychange', () => {
                 const stale = !state.lastSync || Date.now() - state.lastSync.getTime() > CONFIG.REFRESH_MS / 2;
-                if (!document.hidden) pullServerState();
+                if (!document.hidden) { purgeWallet(); pullServerState(); }
                 if (!document.hidden && stale) refresh();
             });
         }
@@ -1869,20 +2404,27 @@
            Démarrage
            ====================================================================== */
         function init() {
-            initHistory();
+            // Historique : entrée racine + garde, pour intercepter le geste « retour » depuis l'accueil
+            history.replaceState({ dlp: 'root' }, '');
+            history.pushState({ dlp: 'guard' }, '');
+            window.addEventListener('popstate', onPopState);
+
             bindEvents();
             updateThemeLabel();
             syncFilterUi();
             syncTabsUi();
-            renderList();
+            renderFavButton();
+            purgeWallet();
+            render();     // affiche les squelettes de chargement
             refresh();
-            if (alerts.size) syncAlerts();
+            if (alerts.size) syncAlerts();   // met à jour le serveur (alertes créées avant la dernière version comprises)
 
+            // Ouverture depuis une notification (service worker ou lien #id)
             navigator.serviceWorker?.addEventListener('message', (event) => {
-                if (event.data?.type === 'open-item') navigateTo('detail', { id: event.data.id });
+                if (event.data?.type === 'open-item') openFromAlert(event.data.id);
                 if (event.data?.type === 'refresh-data') refresh();
             });
-            if (location.hash.length > 1) navigateTo('detail', { id: decodeURIComponent(location.hash.slice(1)) });
+            if (location.hash.length > 1) openFromAlert(decodeURIComponent(location.hash.slice(1)));
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
