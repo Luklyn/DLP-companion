@@ -13,14 +13,17 @@
       "parks": [
         {
           "value": "Disneyland Park",
-          "label": "Parc Disneyland"
+          "label": "Parc Disneyland",
+          "image": "https://placehold.co/120x120/12163A/FFFFFF?text=DP"
         },
         {
           "value": "Disney Adventure World",
-          "label": "Adventure World"
+          "label": "Adventure World",
+          "image": "https://placehold.co/120x120/44309E/FFFFFF?text=AW"
         }
       ],
-      "legacyStorage": true
+      "legacyStorage": true,
+      "image": "https://placehold.co/800x500/12163A/FFFFFF?text=Disneyland+Paris"
     },
     {
       "id": "parc-asterix",
@@ -28,12 +31,21 @@
       "country": "FR",
       "timezone": "Europe/Paris",
       "locale": "fr-FR",
-      "themeparksId": "6cc48df2-f126-4f28-905d-b4c2c15765f2",
+      "themeparksId": null,
       "dataPath": "data/parc-asterix/",
       "parks": [
         {
           "value": "Parc Astérix",
-          "label": "Parc Astérix"
+          "label": "Parc Astérix",
+          "image": "https://placehold.co/120x120/8A4B00/FFFFFF?text=PA"
+        }
+      ],
+      "image": "https://placehold.co/800x500/8A4B00/FFFFFF?text=Parc+Ast%C3%A9rix",
+      "events": [
+        {
+          "label": "Peur sur le Parc",
+          "until": "2026-11-08",
+          "codes": []
         }
       ]
     }
