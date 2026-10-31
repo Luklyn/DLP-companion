@@ -31,7 +31,7 @@
       "country": "FR",
       "timezone": "Europe/Paris",
       "locale": "fr-FR",
-      "themeparksId": null,
+      "themeparksId": "6cc48df2-f126-4f28-905d-b4c2c15765f2",
       "dataPath": "data/parc-asterix/",
       "parks": [
         {
