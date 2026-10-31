@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "default": "disneyland-paris",
+  "resorts": [
+    {
+      "id": "disneyland-paris",
+      "name": "Disneyland Paris",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "locale": "fr-FR",
+      "themeparksId": "e8d0207f-da8a-4048-bec8-117aa946b2c2",
+      "dataPath": "data/disneyland-paris/",
+      "parks": [
+        {
+          "value": "Disneyland Park",
+          "label": "Parc Disneyland"
+        },
+        {
+          "value": "Disney Adventure World",
+          "label": "Adventure World"
+        }
+      ],
+      "legacyStorage": true
+    },
+    {
+      "id": "parc-asterix",
+      "name": "Parc Astérix",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "locale": "fr-FR",
+      "themeparksId": null,
+      "dataPath": "data/parc-asterix/",
+      "parks": [
+        {
+          "value": "Parc Astérix",
+          "label": "Parc Astérix"
+        }
+      ]
+    }
+  ]
+}

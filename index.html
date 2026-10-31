@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#12163A">
-    <meta name="description" content="Temps d'attente, restaurants et spectacles de Disneyland Paris en temps réel.">
+    <meta name="description" content="Temps d'attente, restaurants et spectacles des parcs d'attractions en temps réel.">
     <title>DLP Companion</title>
 
     <link rel="manifest" href="manifest.json">
@@ -123,6 +123,7 @@
         .sync .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: .8; }
         .sync[data-state="live"] .dot  { background: #5EE08A; opacity: 1; }
         .sync[data-state="error"] .dot { background: #FF8A80; opacity: 1; }
+        .sync[data-state="static"] .dot { background: #FFD27A; opacity: 1; }
         .sync:disabled { cursor: default; }
         .is-spinning .icon { animation: spin .9s linear infinite; }
         .sync.is-spinning .dot { animation: pulse 1s ease-in-out infinite; }
@@ -137,6 +138,12 @@
         .round.acc[aria-pressed="true"] .icon { fill: currentColor; }
         .hero .round { background: rgb(255 255 255 / .14); color: #fff; box-shadow: none; }
 
+        .resort-select {
+            width: 100%; min-height: 40px; padding: 0 38px 0 14px; border-radius: 14px; border: 0;
+            background: rgb(255 255 255 / .12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23E4E6FF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+            color: #fff; font: 700 14px var(--font); -webkit-appearance: none; appearance: none;
+        }
+        .resort-select option { color: #12163A; background: #fff; }
         .seg { display: flex; padding: 3px; border-radius: 14px; background: rgb(255 255 255 / .12); }
         .seg button { flex: 1; min-height: 40px; border-radius: 11px; font-weight: 700; font-size: 14px; color: #E4E6FF; }
         .seg button[aria-pressed="true"] { background: var(--gold); color: var(--on); }
@@ -455,6 +462,7 @@
                     </button>
                 </div>
             </div>
+            <select id="resort-select" class="resort-select" aria-label="Choisir le parc d’attractions" hidden></select>
             <div id="park-seg" class="seg" role="group" aria-label="Parc"></div>
             <input id="search" class="search-field" type="search" placeholder="Rechercher un lieu" aria-label="Rechercher un lieu" autocomplete="off" enterkeyhint="search">
         </header>
@@ -652,20 +660,60 @@
         /* ======================================================================
            Configuration
            ====================================================================== */
+        const RESORT_KEY = 'dlp-resort';
+        const ALERTS_REMOTE_KEY = 'dlp-alerts-srv:';   // copie, au format serveur, des alertes de chaque parc
+
+        // Registre des parcs (parks.json) : un parc = une entrée, ses données sont dans son dossier
+        let registry;
+        try {
+            const res = await fetch('parks.json', { cache: 'no-cache' });
+            if (!res.ok) throw new Error(`parks.json : HTTP ${res.status}`);
+            registry = await res.json();
+            if (!Array.isArray(registry.resorts) || !registry.resorts.length) throw new Error('parks.json : aucun parc');
+        } catch (error) {
+            console.error('Chargement des parcs impossible :', error);
+            document.querySelector('#list').innerHTML = '<div class="empty">Impossible de charger la liste des parcs.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button></div>';
+            document.querySelector('#btn-reload').addEventListener('click', () => location.reload());
+            return;
+        }
+
+        const findResort = (id) => registry.resorts.find((r) => r.id === id);
+        const legacyResort = registry.resorts.find((r) => r.legacyStorage);   // parc dont les données locales/serveur n'ont pas de préfixe
+        // Identifiant « serveur » d'un lieu (notifications, alertes) → parc concerné
+        const resortOfServerId = (sid) =>
+            registry.resorts.find((r) => !r.legacyStorage && sid.startsWith(`${r.id}:`)) ?? legacyResort ?? null;
+
+        let resort = null;
+        try { resort = findResort(localStorage.getItem(RESORT_KEY)); } catch { /* stockage indisponible */ }
+        resort = resort ?? findResort(registry.default) ?? registry.resorts[0];
+        if (location.hash.length > 1) {   // ouverture depuis une notification d'un autre parc
+            const target = resortOfServerId(decodeURIComponent(location.hash.slice(1)));
+            if (target) resort = target;
+        }
+        try { localStorage.setItem(RESORT_KEY, resort.id); } catch { /* stockage indisponible */ }
+
+        const storageKey = (base) => (resort.legacyStorage ? base : `${base}:${resort.id}`);
+        const serverId = (id) => (resort.legacyStorage ? id : `${resort.id}:${id}`);
+
+        function switchResort(id, hash = '') {
+            try { localStorage.setItem(RESORT_KEY, id); } catch { /* stockage indisponible */ }
+            history.replaceState(null, '', location.pathname + location.search + (hash ? '#' + encodeURIComponent(hash) : ''));
+            location.reload();
+        }
+
         const CONFIG = {
-            API_LIVE_URL: 'https://api.themeparks.wiki/v1/entity/e8d0207f-da8a-4048-bec8-117aa946b2c2/live',
+            API_LIVE_URL: resort.themeparksId
+                ? `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(resort.themeparksId)}/live`
+                : null,   // pas d'identifiant themeparks.wiki : fiches statiques, sans temps réel
             API_HISTORY_URL: (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/history`,
             DOWN_RETRY_MS: 300_000,      // nouvel essai si l'heure de panne n'a pas pu être déterminée
             REFRESH_MS: 60_000,          // actualisation automatique
             FETCH_TIMEOUT_MS: 10_000,
             NEARBY_RADIUS_KM: 0.2,       // rayon du filtre « Autour de moi »
             WAIT_THRESHOLDS: { low: 30, medium: 50 },   // minutes : vert / orange / rouge
-            LOCALE: 'fr-FR',
-            TIMEZONE: 'Europe/Paris',
-            PARKS: [
-                { value: 'Disneyland Park',        label: 'Parc Disneyland' },
-                { value: 'Disney Adventure World', label: 'Adventure World' },
-            ],
+            LOCALE: resort.locale || 'fr-FR',
+            TIMEZONE: resort.timezone || 'Europe/Paris',
+            PARKS: resort.parks,
             // Bibliothèques QR chargées à la demande (scan de secours + génération de l'image du code)
             QR_LIBS: {
                 scan: 'https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js',
@@ -725,9 +773,10 @@
         });
 
         /* ======================================================================
-           Données des lieux : fichiers JSON à la racine du site
+           Données des lieux : fichiers JSON du dossier du parc (data/<parc>/)
            ====================================================================== */
-        const DATA_FILES = ['attractions.json', 'restaurants.json', 'shows.json'];
+        const DATA_DIR = (resort.dataPath || `data/${resort.id}/`).replace(/\/?$/, '/');
+        const DATA_FILES = ['attractions.json', 'restaurants.json', 'shows.json'].map((f) => DATA_DIR + f);
 
         async function loadList(file) {
             const res = await fetch(file, { cache: 'no-cache' });   // revalide auprès du serveur : une mise à jour du JSON est vue tout de suite
@@ -811,6 +860,7 @@
             btnTheme: $('#btn-theme'),
             btnWallet: $('#btn-wallet'),
             seg: $('#park-seg'),
+            resortSelect: $('#resort-select'),
             parkBtns: [],
             search: $('#search'),
             chipFavs: $('#chip-favs'),
@@ -1131,6 +1181,9 @@
             if (mode === 'live') {
                 els.syncLabel.textContent = `En direct · ${timeFormat.format(state.lastSync)}`;
                 els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Appuyez pour actualiser.`;
+            } else if (mode === 'static') {
+                els.syncLabel.textContent = 'Temps réel indisponible';
+                els.sync.title = 'Les temps d’attente ne sont pas disponibles pour ce parc.';
             } else if (mode === 'error') {
                 els.syncLabel.textContent = 'Hors connexion';
                 els.sync.title = 'Impossible de joindre le service. Appuyez pour réessayer.';
@@ -1141,6 +1194,12 @@
         }
 
         async function refresh() {
+            if (!CONFIG.API_LIVE_URL) {   // parc sans données temps réel
+                state.ready = true;
+                setSync('static');
+                render();
+                return;
+            }
             if (state.loading) return;
             state.loading = true;
             els.btnRefresh.disabled = true;
@@ -1173,13 +1232,13 @@
         /* ======================================================================
            Alertes : seuil d'attente (attractions) et avance sur l'horaire (spectacles)
            ====================================================================== */
-        const ALERTS_KEY = 'dlp-alerts';
+        const ALERTS_KEY = storageKey('dlp-alerts');
         const dbById = new Map(db.map((item) => [item.id, item]));
 
         /* ======================================================================
            Favoris (attractions, restaurants, spectacles) : stockés sur l'appareil
            ====================================================================== */
-        const FAVORITES_KEY = 'dlp-favorites';
+        const FAVORITES_KEY = storageKey('dlp-favorites');
         const favorites = (() => {
             try {
                 const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) ?? '[]');
@@ -1278,6 +1337,7 @@
         function saveAlerts() {
             try {
                 localStorage.setItem(ALERTS_KEY, JSON.stringify(Object.fromEntries(alerts)));
+                persistRemoteAlerts();
                 return true;
             } catch {
                 notify('Impossible d’enregistrer les alertes sur cet appareil.');
@@ -1311,10 +1371,28 @@
             return sub;
         }
 
-        const alertsForServer = () => Object.fromEntries([...alerts].map(([id, a]) => {
+        // Alertes du parc courant au format serveur (identifiants préfixés par le parc, sauf le parc historique)
+        const currentAlertsForServer = () => Object.fromEntries([...alerts].map(([id, a]) => {
             const item = dbById.get(id.split('#')[0]);
-            return [id, { ...a, apiId: item?.apiId, name: item?.name, land: item?.land }];
+            return [serverId(id), {
+                ...a, apiId: item?.apiId, name: item?.name, land: item?.land,
+                resort: resort.id, destination: resort.themeparksId ?? null,
+            }];
         }));
+
+        function persistRemoteAlerts() {
+            try { localStorage.setItem(ALERTS_REMOTE_KEY + resort.id, JSON.stringify(currentAlertsForServer())); } catch { /* stockage indisponible */ }
+        }
+
+        // Le serveur remplace l'état de l'appareil à chaque synchronisation : on y joint les alertes des autres parcs pour ne pas les effacer
+        const alertsForServer = () => {
+            const all = {};
+            for (const r of registry.resorts) {
+                if (r.id === resort.id) continue;
+                try { Object.assign(all, JSON.parse(localStorage.getItem(ALERTS_REMOTE_KEY + r.id) ?? '{}')); } catch { /* ignoré */ }
+            }
+            return Object.assign(all, currentAlertsForServer());
+        };
 
         async function syncAlerts({ interactive = false } = {}) {
             try {
@@ -1340,7 +1418,7 @@
                 const remote = (await res.json()).alerts ?? {};
                 let changed = false;
                 for (const [id, a] of alerts) {
-                    const r = remote[id];
+                    const r = remote[serverId(id)];
                     if (!r || r.kind !== a.kind) continue;
                     if (a.kind === 'wait' && r.threshold === a.threshold && (a.armed !== r.armed || a.firedAt !== r.firedAt)) {
                         Object.assign(a, { armed: r.armed, firedAt: r.firedAt, firedWait: r.firedWait });
@@ -1640,7 +1718,10 @@
         }
 
         // Ouvre la fiche d'un lieu (clic sur une notification)
-        function openFromAlert(id) {
+        function openFromAlert(rawId) {
+            const target = resortOfServerId(rawId);
+            if (target && target.id !== resort.id) return switchResort(target.id, rawId);   // lieu d'un autre parc
+            const id = !resort.legacyStorage && rawId.startsWith(`${resort.id}:`) ? rawId.slice(resort.id.length + 1) : rawId;
             const item = dbById.get(id);
             if (!item) return;
             if (state.showFavorites) setShowFavorites(false);
@@ -2297,6 +2378,14 @@
         }
 
         function bindEvents() {
+            if (registry.resorts.length > 1) {
+                els.resortSelect.innerHTML = registry.resorts
+                    .map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join('');
+                els.resortSelect.value = resort.id;
+                els.resortSelect.hidden = false;
+                els.resortSelect.addEventListener('change', () => switchResort(els.resortSelect.value));
+            }
+            els.seg.hidden = CONFIG.PARKS.length < 2;   // un seul parc : pas de sélecteur
             els.seg.innerHTML = CONFIG.PARKS
                 .map((p) => `<button type="button" data-park="${esc(p.value)}" aria-pressed="false">${esc(p.label)}</button>`).join('');
             els.parkBtns = [...els.seg.querySelectorAll('button')];
@@ -2417,6 +2506,7 @@
             purgeWallet();
             render();     // affiche les squelettes de chargement
             refresh();
+            persistRemoteAlerts();
             if (alerts.size) syncAlerts();   // met à jour le serveur (alertes créées avant la dernière version comprises)
 
             // Ouverture depuis une notification (service worker ou lien #id)

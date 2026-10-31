@@ -7,16 +7,26 @@ self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim(
 // Chemins relatifs à l'emplacement du site (fonctionne aussi dans un sous-dossier GitHub Pages : /mon-depot/)
 const ICON = new URL('icon.png', self.registration.scope).href;
 
-// Données des lieux : réseau d'abord (toujours la dernière version du JSON),
+// Données des lieux (parks.json + data/<parc>/*.json) : réseau d'abord (toujours la dernière version du JSON),
 // copie en cache utilisée seulement si le réseau est indisponible.
 // Le reste des requêtes (API temps réel, images, etc.) garde son comportement par défaut.
-const DATA_CACHE = 'dlp-data-v1';
-const DATA_URLS = ['attractions.json', 'restaurants.json', 'shows.json']
-    .map((file) => new URL(file, self.registration.scope).href);
+const DATA_CACHE = 'dlp-data-v2';
+const SCOPE_URL = new URL(self.registration.scope);
+const DATA_PATH = new RegExp('^' + SCOPE_URL.pathname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+    '(parks\\.json|data/[^/]+/(attractions|restaurants|shows)\\.json)$');
+const isDataRequest = (request) => {
+    const url = new URL(request.url);
+    return request.method === 'GET' && url.origin === SCOPE_URL.origin && DATA_PATH.test(url.pathname);
+};
+
+// Supprime les anciens caches de données (v1 : fichiers à la racine)
+self.addEventListener('activate', (event) => event.waitUntil(
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => k.startsWith('dlp-data-') && k !== DATA_CACHE).map((k) => caches.delete(k))))
+));
 
 self.addEventListener('fetch', (event) => {
     const { request } = event;
-    if (request.method !== 'GET' || !DATA_URLS.includes(request.url.split('?')[0])) return;
+    if (!isDataRequest(request)) return;
 
     event.respondWith((async () => {
         const cache = await caches.open(DATA_CACHE);
