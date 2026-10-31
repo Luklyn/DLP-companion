@@ -45,6 +45,15 @@
             }
             return id;
         };
+        // Hauteur réelle de la zone visible (mobile : barre d'URL, mode PWA, vieux WebView sans « dvh »)
+        (function () {
+            var set = function () { document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px'); };
+            set();
+            window.addEventListener('resize', set);
+            window.addEventListener('orientationchange', set);
+            window.addEventListener('pageshow', set);
+            if (window.visualViewport) window.visualViewport.addEventListener('resize', set);
+        })();
         try { window.DLP_applyTheme(localStorage.getItem('dlp-theme')); }
         catch (e) { window.DLP_applyTheme('chateau'); }
     </script>
@@ -75,7 +84,7 @@
         html { background: var(--bg); }
         body {
             margin: 0; display: flex;
-            height: 100vh; height: 100dvh; overflow: hidden;
+            height: 100vh; height: 100dvh; height: var(--app-h, 100dvh); overflow: hidden;
             font-family: var(--font);
             background: var(--bg); color: var(--ink);
             -webkit-text-size-adjust: 100%;
@@ -114,20 +123,12 @@
         .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 19px; white-space: nowrap; }
         .hero-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 
-        .sync {
-            display: inline-flex; align-items: center; gap: 6px;
-            min-height: 40px; padding: 0 12px; border-radius: 999px;
-            background: rgb(255 255 255 / .14); color: #fff;
-            font-size: 12px; font-weight: 700; white-space: nowrap;
-        }
-        .sync .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: .8; }
-        .sync[data-state="live"] .dot  { background: #5EE08A; opacity: 1; }
-        .sync[data-state="error"] .dot { background: #FF8A80; opacity: 1; }
-        .sync[data-state="static"] .dot { background: #FFD27A; opacity: 1; }
-        .sync:disabled { cursor: default; }
-        .is-spinning .icon { animation: spin .9s linear infinite; }
-        .sync.is-spinning .dot { animation: pulse 1s ease-in-out infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Statut de synchronisation (dans le menu) */
+        .sync { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+        .sync .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--mut); opacity: .7; }
+        .sync[data-state="live"] .dot   { background: #2FB863; opacity: 1; }
+        .sync[data-state="error"] .dot  { background: #E5484D; opacity: 1; }
+        .sync[data-state="static"] .dot { background: #E2A21B; opacity: 1; }
 
         .round {
             display: grid; place-items: center; flex: none;
@@ -138,25 +139,6 @@
         .round.acc[aria-pressed="true"] .icon { fill: currentColor; }
         .hero .round { background: rgb(255 255 255 / .14); color: #fff; box-shadow: none; }
 
-        .resort-select {
-            width: 100%; min-height: 40px; padding: 0 38px 0 14px; border-radius: 14px; border: 0;
-            background: rgb(255 255 255 / .12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23E4E6FF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
-            color: #fff; font: 700 14px var(--font); -webkit-appearance: none; appearance: none;
-        }
-        .resort-select option { color: #12163A; background: #fff; }
-        .seg { display: flex; padding: 3px; border-radius: 14px; background: rgb(255 255 255 / .12); }
-        .seg button { flex: 1; min-height: 40px; border-radius: 11px; font-weight: 700; font-size: 14px; color: #E4E6FF; }
-        .seg button[aria-pressed="true"] { background: var(--gold); color: var(--on); }
-
-        .search-field {
-            width: 100%; min-height: 46px; padding: 0 16px;
-            border: 0; border-radius: 14px; outline-offset: 2px;
-            background: rgb(255 255 255 / .14); color: #fff;
-            font: 500 16px var(--font);
-            -webkit-appearance: none; appearance: none;
-        }
-        .search-field::placeholder { color: #C9CCF0; opacity: 1; }
-        .search-field::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
 
         /* Puces de filtres */
         .chips { display: flex; gap: 8px; padding: 14px 20px 4px; overflow-x: auto; scrollbar-width: none; }
@@ -169,7 +151,7 @@
         .chip[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: #fff; }
 
         /* Liste */
-        .list { flex: 1; overflow-y: auto; padding: 4px 20px 110px; overscroll-behavior: contain; }
+        .list { flex: 1; overflow-y: auto; padding: 4px 20px 16px; overscroll-behavior: contain; }
         .land { margin: 18px 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--acc); }
 
         .card { display: flex; align-items: center; margin-bottom: 10px; border-radius: 18px; background: #fff; box-shadow: 0 2px 10px rgb(30 30 90 / .06); }
@@ -213,11 +195,27 @@
         @keyframes pulse { 50% { opacity: .35; } }
         .empty { padding: 40px 10px; text-align: center; color: var(--mut); line-height: 1.5; }
 
-        /* Barre d'onglets flottante */
+        /* Dock du bas : mini-tuile de parc + onglets.
+           CORRECTIF « onglets rognés » : le dock est dans le flux de la colonne (flex-shrink: 0) et non plus en
+           position: absolute. Il ne peut donc plus sortir de l'écran, et il réserve lui-même la safe area du bas. */
+        .dock {
+            position: relative; z-index: 5; flex: none;
+            display: flex; flex-direction: column; align-items: stretch; gap: 8px;
+            padding: 8px 16px calc(12px + var(--safe-bottom));
+            background: var(--bg);
+        }
+        .park-tile {
+            align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+            max-width: 100%; min-height: 36px; padding: 4px 12px 4px 4px; border-radius: 14px;
+            background: #fff; border: 1.5px solid var(--line); box-shadow: 0 2px 8px rgb(30 30 90 / .06);
+            font-size: 12.5px; font-weight: 700; text-align: left;
+        }
+        .pt-img { flex: none; width: 26px; height: 26px; border-radius: 9px; object-fit: cover; background: linear-gradient(160deg, var(--g1), var(--g2)); }
+        .pt-txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .park-tile .icon { color: var(--acc); }
         .tabs {
-            position: absolute; left: 16px; right: 16px; bottom: calc(16px + var(--safe-bottom)); z-index: 5;
             display: flex; gap: 4px; padding: 6px; border-radius: 26px;
-            background: var(--ink); box-shadow: 0 10px 24px rgb(18 22 58 / .35);
+            background: var(--ink); box-shadow: 0 10px 24px rgb(18 22 58 / .25);
         }
         .tabs button {
             flex: 1; min-height: 52px; border-radius: 20px;
@@ -226,6 +224,44 @@
         }
         .tabs button[aria-current="true"] { background: var(--gold); color: var(--on); }
         .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
+
+        /* Événement (ex. « Peur sur le Parc ») */
+        .evt {
+            display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; padding: 2px 9px; border-radius: 8px;
+            background: #2A1A3F; color: #FFC857; font-size: 12px; font-weight: 800; line-height: 1.5;
+        }
+        .evt .icon { width: 13px; height: 13px; }
+        .pill.is-event { background: #2A1A3F; border-color: #2A1A3F; color: #FFC857; display: inline-flex; align-items: center; gap: 6px; }
+        .pill.is-event .icon { width: 14px; height: 14px; }
+
+        /* Menu burger */
+        .menu-sec { padding: 14px 0; border-top: 1px solid var(--line); }
+        .panel-head + .menu-sec { border-top: 0; padding-top: 4px; }
+        .menu-h { display: flex; align-items: baseline; gap: 8px; margin: 0 0 10px; font-family: var(--font-display); font-weight: 800; font-size: 14px; }
+        .menu-h-note { font: 600 13px var(--font); color: var(--mut); }
+        .menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .menu-v { font-size: 15px; font-weight: 700; }
+
+        /* Page d'accueil : choix du parc */
+        .home {
+            position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg);
+            padding: calc(28px + var(--safe-top)) 20px calc(28px + var(--safe-bottom));
+        }
+        .home-in { width: 100%; max-width: 920px; margin: 0 auto; }
+        .home-kicker { font-size: 13px; font-weight: 700; color: var(--acc); }
+        .home h1 { margin: 4px 0 22px; font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.15; }
+        .home-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .home-tile {
+            position: relative; display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden;
+            border-radius: 26px; text-align: left; color: #fff;
+            background: linear-gradient(160deg, var(--g1), var(--g2)); box-shadow: 0 8px 24px rgb(30 30 90 / .18);
+        }
+        .home-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .home-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(10 12 30 / .78), transparent 60%); }
+        .home-tile .ht { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; }
+        .home-tile .ht-n { display: block; font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.15; }
+        .home-tile .ht-s { display: block; margin-top: 3px; font-size: 13px; font-weight: 600; opacity: .9; }
+        .home-tile[aria-current="true"] { outline: 3px solid var(--gold); outline-offset: 2px; }
 
         /* ==========================================================================
            4. Détail
@@ -252,7 +288,7 @@
         .btn-back { display: none; }
 
         .d-sheet {
-            position: relative; z-index: 1; margin-top: -28px; padding: 24px 20px 28px;
+            position: relative; z-index: 1; margin-top: -28px; padding: 24px 20px calc(28px + var(--safe-bottom));
             display: flex; flex-direction: column; gap: 16px;
             border-radius: 28px 28px 0 0; background: var(--bg);
         }
@@ -417,8 +453,6 @@
             .hero h1 { font-size: 16px; }
             .hero-actions { gap: 6px; }
             .hero .round { width: 40px; height: 40px; border-radius: 20px; }
-            .sync { padding: 0 10px; gap: 5px; font-size: 11.5px; }
-            .sync .icon { display: none; }
         }
         @keyframes slide-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 
@@ -442,29 +476,33 @@
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
         <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v2M14 11v2M14 17v2"/></symbol>
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+        <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+        <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M5 21V11a7 7 0 0 1 14 0v10l-3.5-2.5L12 21l-3.5-2.5z"/><path d="M9.5 11h.01M14.5 11h.01"/></symbol>
     </svg>
+
+    <!-- Accueil : choix du parc -->
+    <section id="home" class="home" hidden aria-labelledby="home-title">
+        <div class="home-in">
+            <p class="home-kicker">DLP Companion</p>
+            <h1 id="home-title">Choisissez votre parc</h1>
+            <div id="home-grid" class="home-grid"></div>
+        </div>
+    </section>
 
     <div class="master-pane">
         <header class="hero">
             <div class="hero-top">
                 <h1>DLP Companion</h1>
                 <div class="hero-actions">
-                    <button id="btn-refresh" class="sync" type="button" data-state="loading" aria-label="Actualiser les données">
-                        <span class="dot" aria-hidden="true"></span>
-                        <span id="sync-label" role="status">Synchronisation…</span>
-                        <svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-refresh"/></svg>
-                    </button>
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
                     </button>
-                    <button id="btn-theme" class="round" type="button" aria-label="Changer de thème">
-                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-theme"/></svg>
+                    <button id="btn-menu" class="round" type="button" aria-label="Ouvrir le menu" aria-haspopup="dialog">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-menu"/></svg>
                     </button>
                 </div>
             </div>
-            <select id="resort-select" class="resort-select" aria-label="Choisir le parc d’attractions" hidden></select>
-            <div id="park-seg" class="seg" role="group" aria-label="Parc"></div>
-            <input id="search" class="search-field" type="search" placeholder="Rechercher un lieu" aria-label="Rechercher un lieu" autocomplete="off" enterkeyhint="search">
         </header>
 
         <div class="chips" role="group" aria-label="Filtres">
@@ -475,6 +513,13 @@
 
         <main id="list" class="list" aria-live="polite"></main>
 
+        <div class="dock">
+        <!-- Mini-tuile du parc courant : un appui passe au parc suivant -->
+        <button id="park-tile" class="park-tile" type="button" hidden>
+            <img id="pt-img" class="pt-img" alt="" hidden>
+            <span id="pt-name" class="pt-txt"></span>
+            <svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-swap"/></svg>
+        </button>
         <nav class="tabs" aria-label="Catégories">
             <button type="button" data-tab="attraction" aria-current="true">
                 <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-attraction"/></svg>Attractions
@@ -486,6 +531,7 @@
                 <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-show"/></svg>Spectacles
             </button>
         </nav>
+        </div>
     </div>
 
     <section id="detail-pane" class="detail-pane" aria-label="Détail du lieu">
@@ -506,6 +552,7 @@
 
             <div class="d-sheet">
                 <h2 id="d-title" class="d-title"></h2>
+                <p id="d-desc" class="d-desc"></p>
                 <div class="d-status">
                     <span id="d-badge"></span>
                     <span class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></span>
@@ -543,22 +590,39 @@
                     </div>
                 </section>
 
-                <p id="d-desc" class="d-desc"></p>
                 <a id="d-btn" class="cta alt" href="#" target="_blank" rel="noopener noreferrer">Voir le menu</a>
             </div>
         </article>
     </section>
 
-    <div id="theme-layer" hidden>
-        <button id="theme-scrim" class="scrim" type="button" aria-label="Fermer le choix du thème"></button>
-        <section class="panel" role="dialog" aria-modal="true" aria-labelledby="theme-heading">
+    <!-- Menu burger : thème, resort, synchronisation -->
+    <div id="menu-layer" hidden>
+        <button id="menu-scrim" class="scrim" type="button" aria-label="Fermer le menu"></button>
+        <section class="panel" role="dialog" aria-modal="true" aria-labelledby="menu-heading">
             <div class="panel-head">
-                <h2 id="theme-heading">Choisir un thème</h2>
-                <button id="theme-close" class="round" type="button" aria-label="Fermer">
+                <h2 id="menu-heading">Menu</h2>
+                <button id="menu-close" class="round" type="button" aria-label="Fermer le menu">
                     <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
                 </button>
             </div>
-            <div id="theme-grid" class="themes"></div>
+            <div class="menu-sec">
+                <h3 class="menu-h">Thème <span id="menu-theme-name" class="menu-h-note"></span></h3>
+                <div id="theme-grid" class="themes"></div>
+            </div>
+            <div id="menu-resort-sec" class="menu-sec">
+                <h3 class="menu-h">Resort</h3>
+                <div class="menu-row">
+                    <span id="menu-resort-name" class="menu-v"></span>
+                    <button id="menu-switch" class="btn-alert" type="button">Changer de resort</button>
+                </div>
+            </div>
+            <div class="menu-sec">
+                <h3 class="menu-h">Synchronisation</h3>
+                <div id="sync-status" class="sync" data-state="loading" role="status">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span id="sync-label">Synchronisation…</span>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -683,20 +747,76 @@
         const resortOfServerId = (sid) =>
             registry.resorts.find((r) => !r.legacyStorage && sid.startsWith(`${r.id}:`)) ?? legacyResort ?? null;
 
-        let resort = null;
-        try { resort = findResort(localStorage.getItem(RESORT_KEY)); } catch { /* stockage indisponible */ }
-        resort = resort ?? findResort(registry.default) ?? registry.resorts[0];
-        if (location.hash.length > 1) {   // ouverture depuis une notification d'un autre parc
-            const target = resortOfServerId(decodeURIComponent(location.hash.slice(1)));
-            if (target) resort = target;
+        // Resort choisi pour cette session (l'accueil n'est affiché qu'au lancement de l'app) et dernier resort utilisé
+        const SESSION_RESORT_KEY = 'dlp-session-resort';
+        const safeGet = (store, key) => { try { return store.getItem(key); } catch { return null; } };
+        const safeSet = (store, key, value) => { try { store.setItem(key, value); } catch { /* stockage indisponible */ } };
+        const lastResort = findResort(safeGet(localStorage, RESORT_KEY)) ?? findResort(registry.default) ?? registry.resorts[0];
+
+        // Page d'accueil : une tuile (image) par parc. Renvoie le resort choisi.
+        function chooseResortOnHome() {
+            const home = document.querySelector('#home');
+            const grid = document.querySelector('#home-grid');
+            return new Promise((resolve) => {
+                grid.replaceChildren(...registry.resorts.map((r) => {
+                    const tile = document.createElement('button');
+                    tile.type = 'button';
+                    tile.className = 'home-tile';
+                    tile.dataset.resort = r.id;
+                    if (r.id === lastResort.id) tile.setAttribute('aria-current', 'true');
+                    let imgUrl = '';
+                    try { const u = new URL(r.image); if (u.protocol === 'https:' || u.protocol === 'http:') imgUrl = u.href; } catch { /* pas d'image */ }
+                    if (imgUrl) {
+                        const im = document.createElement('img');
+                        im.alt = '';
+                        im.decoding = 'async';
+                        im.addEventListener('error', () => { im.hidden = true; });   // image absente : dégradé de thème
+                        im.src = imgUrl;
+                        tile.append(im);
+                    }
+                    const txt = document.createElement('span');
+                    txt.className = 'ht';
+                    const name = document.createElement('span');
+                    name.className = 'ht-n';
+                    name.textContent = r.name;
+                    txt.append(name);
+                    const subtitle = (r.parks ?? []).map((pk) => pk.label).join(' · ');
+                    if (subtitle) {
+                        const sub = document.createElement('span');
+                        sub.className = 'ht-s';
+                        sub.textContent = subtitle;
+                        txt.append(sub);
+                    }
+                    tile.append(txt);
+                    return tile;
+                }));
+                grid.addEventListener('click', (event) => {
+                    const tile = event.target.closest('.home-tile');
+                    const chosen = tile && findResort(tile.dataset.resort);
+                    if (!chosen) return;
+                    home.hidden = true;
+                    resolve(chosen);
+                });
+                home.hidden = false;
+                home.scrollTop = 0;
+            });
         }
-        try { localStorage.setItem(RESORT_KEY, resort.id); } catch { /* stockage indisponible */ }
+
+        let resort = null;
+        if (location.hash.length > 1) {   // ouverture depuis une notification : directement sur le parc concerné
+            resort = resortOfServerId(decodeURIComponent(location.hash.slice(1)));
+        }
+        resort = resort ?? findResort(safeGet(sessionStorage, SESSION_RESORT_KEY));
+        if (!resort) resort = registry.resorts.length > 1 ? await chooseResortOnHome() : registry.resorts[0];
+        safeSet(sessionStorage, SESSION_RESORT_KEY, resort.id);
+        safeSet(localStorage, RESORT_KEY, resort.id);
 
         const storageKey = (base) => (resort.legacyStorage ? base : `${base}:${resort.id}`);
         const serverId = (id) => (resort.legacyStorage ? id : `${resort.id}:${id}`);
 
         function switchResort(id, hash = '') {
-            try { localStorage.setItem(RESORT_KEY, id); } catch { /* stockage indisponible */ }
+            safeSet(localStorage, RESORT_KEY, id);
+            safeSet(sessionStorage, SESSION_RESORT_KEY, id);
             history.replaceState(null, '', location.pathname + location.search + (hash ? '#' + encodeURIComponent(hash) : ''));
             location.reload();
         }
@@ -805,6 +925,13 @@
             spectacle:  { image: 'Photo' },
         };
 
+        // Événements (ex. « Peur sur le Parc ») : colonne « Evenement » du JSON, ou liste de codes dans parks.json (resort.events)
+        const todayKey = new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+        const ACTIVE_EVENTS = (resort.events ?? []).filter((e) => !e.until || e.until >= todayKey);
+        const eventFor = (raw, id) =>
+            str(raw['Evenement'] ?? raw['Événement'] ?? raw['Evènement'])
+            || ACTIVE_EVENTS.find((e) => (e.codes ?? []).includes(id))?.label || '';
+
         function normalize(raw, category) {
             const f = FIELDS[category];
             const type = str(raw['Type']);
@@ -815,6 +942,7 @@
                 category,
                 type: category === 'restaurant' ? capFirst(type) : type,   // « service à table » → « Service à table »
                 park: str(raw['Parc']),
+                event: eventFor(raw, str(raw['Code'])),
                 land: str(raw['Land']).replace(' - Town Square', '').replace(' - Central Plaza', '') || 'Autre',
                 image: f.image ? str(raw[f.image]) : '',
                 description: str(raw['Description']),
@@ -854,15 +982,20 @@
 
         const els = {
             list: $('#list'),
-            sync: $('#btn-refresh'),
+            sync: $('#sync-status'),
             syncLabel: $('#sync-label'),
-            btnRefresh: $('#btn-refresh'),
-            btnTheme: $('#btn-theme'),
+            btnMenu: $('#btn-menu'),
+            menuLayer: $('#menu-layer'),
+            menuScrim: $('#menu-scrim'),
+            menuClose: $('#menu-close'),
+            menuThemeName: $('#menu-theme-name'),
+            menuResortSec: $('#menu-resort-sec'),
+            menuResortName: $('#menu-resort-name'),
+            menuSwitch: $('#menu-switch'),
+            parkTile: $('#park-tile'),
+            ptImg: $('#pt-img'),
+            ptName: $('#pt-name'),
             btnWallet: $('#btn-wallet'),
-            seg: $('#park-seg'),
-            resortSelect: $('#resort-select'),
-            parkBtns: [],
-            search: $('#search'),
             chipFavs: $('#chip-favs'),
             chipNearby: $('#chip-nearby'),
             chipClosed: $('#chip-closed'),
@@ -882,9 +1015,6 @@
             desc: $('#d-desc'),
             menu: $('#d-btn'),
             toast: $('#toast'),
-            themeLayer: $('#theme-layer'),
-            themeScrim: $('#theme-scrim'),
-            themeClose: $('#theme-close'),
             themeGrid: $('#theme-grid'),
             alertBox: $('#d-alert'),
             alertHeading: $('#alert-heading'),
@@ -1179,14 +1309,16 @@
         function setSync(mode) {
             els.sync.dataset.state = mode;
             if (mode === 'live') {
-                els.syncLabel.textContent = `En direct · ${timeFormat.format(state.lastSync)}`;
-                els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Appuyez pour actualiser.`;
+                els.syncLabel.textContent = `Dernière synchronisation : ${timeFormat.format(state.lastSync)}`;
+                els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Actualisation automatique chaque minute.`;
             } else if (mode === 'static') {
-                els.syncLabel.textContent = 'Temps réel indisponible';
+                els.syncLabel.textContent = 'Temps réel indisponible pour ce parc';
                 els.sync.title = 'Les temps d’attente ne sont pas disponibles pour ce parc.';
             } else if (mode === 'error') {
-                els.syncLabel.textContent = 'Hors connexion';
-                els.sync.title = 'Impossible de joindre le service. Appuyez pour réessayer.';
+                els.syncLabel.textContent = state.lastSync
+                    ? `Hors connexion · dernière synchronisation : ${timeFormat.format(state.lastSync)}`
+                    : 'Hors connexion';
+                els.sync.title = 'Nouvel essai automatique dans une minute.';
             } else {
                 els.syncLabel.textContent = 'Synchronisation…';
                 els.sync.title = '';
@@ -1202,8 +1334,6 @@
             }
             if (state.loading) return;
             state.loading = true;
-            els.btnRefresh.disabled = true;
-            els.btnRefresh.classList.add('is-spinning');
             if (!state.lastSync) setSync('loading');
 
             const pulling = alerts.size ? pullServerState() : null;   // en parallèle de l'appel à l'API
@@ -1220,8 +1350,6 @@
             } finally {
                 state.loading = false;
                 state.ready = true;
-                els.btnRefresh.disabled = false;
-                els.btnRefresh.classList.remove('is-spinning');
                 await pulling;
                 checkAlerts();
                 render();
@@ -1262,10 +1390,25 @@
         // Synchronise l'état visuel des filtres (parcs, puces)
         function syncFilterUi() {
             const locked = state.nearby || state.showFavorites;   // ces modes couvrent les deux parcs
-            els.parkBtns.forEach((b) => b.setAttribute('aria-pressed', String(!locked && b.dataset.park === state.park)));
+            renderParkTile(locked);
             els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
             els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
             els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
+        }
+
+        // Mini-tuile du parc : image + nom du parc affiché (ou « Tous les parcs » en mode Favoris / Autour de moi)
+        function renderParkTile(locked = state.nearby || state.showFavorites) {
+            const multi = CONFIG.PARKS.length > 1;
+            els.parkTile.hidden = !multi;
+            if (!multi) return;
+            const park = CONFIG.PARKS.find((p) => p.value === state.park) ?? CONFIG.PARKS[0];
+            els.ptName.textContent = locked ? 'Tous les parcs' : park.label;
+            const img = locked ? '' : safeUrl(park.image);
+            els.ptImg.hidden = !img;
+            if (img && els.ptImg.getAttribute('src') !== img) els.ptImg.src = img;
+            els.parkTile.setAttribute('aria-label', locked
+                ? 'Afficher un parc'
+                : `Parc affiché : ${park.label}. Appuyer pour changer de parc`);
         }
 
         function syncTabsUi() {
@@ -1777,6 +1920,9 @@
             return a.item.name.localeCompare(b.item.name, CONFIG.LOCALE);
         }
 
+        const eventHtml = (item) => item.event
+            ? `<span class="evt"><svg class="icon" aria-hidden="true"><use href="#i-ghost"/></svg>${esc(item.event)}</span>` : '';
+
         function cardHtml({ item, dist }) {
             const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
@@ -1800,6 +1946,7 @@
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
+                            ${eventHtml(item)}
                             ${extra}
                             ${singleHtml(m)}
                         </span>
@@ -1901,6 +2048,7 @@
             setHeroImage(safeUrl(item.image));
 
             const badges = [
+                item.event ? { text: item.event, kind: 'event', icon: 'i-ghost' } : null,
                 { text: item.park, kind: 'park' },
                 { text: item.land, kind: 'land' },
                 { text: item.type },
@@ -1910,7 +2058,7 @@
             ].filter((b) => b && b.text);
 
             els.badges.innerHTML = badges
-                .map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${esc(b.text)}</li>`)
+                .map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${b.icon ? `<svg class="icon" aria-hidden="true"><use href="#${b.icon}"/></svg>` : ''}${esc(b.text)}</li>`)
                 .join('');
 
             const menu = safeUrl(item.menuUrl);
@@ -1958,7 +2106,7 @@
         const currentTheme = () => document.documentElement.dataset.theme;
 
         function updateThemeLabel() {
-            els.btnTheme.setAttribute('aria-label', `Changer de thème (actuel : ${THEMES[currentTheme()]?.n ?? ''})`);
+            els.menuThemeName.textContent = THEMES[currentTheme()]?.n ?? '';
         }
 
         function setTheme(id) {
@@ -1976,19 +2124,30 @@
                 </button>`).join('');
         }
 
-        function openThemes() {
+        // Menu burger (thème, resort, synchronisation)
+        function openMenu() {
             renderThemes();
-            pushLayer('theme', hideThemes);
-            els.themeLayer.hidden = false;
-            els.themeClose.focus();
+            updateThemeLabel();
+            els.menuResortName.textContent = resort.name;
+            els.menuResortSec.hidden = registry.resorts.length < 2;
+            pushLayer('menu', hideMenu);   // le geste « retour » système ferme le menu
+            els.menuLayer.hidden = false;
+            els.menuClose.focus();
         }
 
-        function hideThemes() {
-            els.themeLayer.hidden = true;
-            els.btnTheme.focus({ preventScroll: true });
+        function hideMenu() {
+            els.menuLayer.hidden = true;
+            els.btnMenu.focus({ preventScroll: true });
         }
 
-        const closeThemes = () => closeLayer('theme');
+        const closeMenu = () => closeLayer('menu');
+
+        // Retour à la page d'accueil (choix du parc) : on oublie le choix de la session puis on recharge
+        function goHome() {
+            try { sessionStorage.removeItem(SESSION_RESORT_KEY); } catch { /* stockage indisponible */ }
+            history.replaceState(null, '', location.pathname + location.search);
+            location.reload();
+        }
 
         /* ======================================================================
            Portefeuille : billets et pass annuels (stockés sur l'appareil)
@@ -2378,28 +2537,21 @@
         }
 
         function bindEvents() {
-            if (registry.resorts.length > 1) {
-                els.resortSelect.innerHTML = registry.resorts
-                    .map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join('');
-                els.resortSelect.value = resort.id;
-                els.resortSelect.hidden = false;
-                els.resortSelect.addEventListener('change', () => switchResort(els.resortSelect.value));
-            }
-            els.seg.hidden = CONFIG.PARKS.length < 2;   // un seul parc : pas de sélecteur
-            els.seg.innerHTML = CONFIG.PARKS
-                .map((p) => `<button type="button" data-park="${esc(p.value)}" aria-pressed="false">${esc(p.label)}</button>`).join('');
-            els.parkBtns = [...els.seg.querySelectorAll('button')];
-            els.parkBtns.forEach((btn) => btn.addEventListener('click', () => {
+            els.ptImg.addEventListener('error', () => { els.ptImg.hidden = true; });
+            els.parkTile.addEventListener('click', () => {
+                const locked = state.nearby || state.showFavorites;
                 if (state.watchId != null || state.nearby) stopNearby();   // choisir un parc quitte « Autour de moi » et les favoris
                 if (state.showFavorites) setShowFavorites(false);
-                state.park = btn.dataset.park;
+                if (!locked) {   // en mode « tous les parcs », le premier appui revient au parc courant ; sinon on passe au suivant
+                    const i = CONFIG.PARKS.findIndex((p) => p.value === state.park);
+                    state.park = CONFIG.PARKS[(i + 1) % CONFIG.PARKS.length].value;
+                }
                 syncFilterUi();
                 syncTabsUi();
                 closeDetail();
                 renderList();
-            }));
+            });
 
-            els.search.addEventListener('input', () => { state.query = els.search.value; renderList(); });
             els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
             els.chipNearby.addEventListener('click', onNearbyClick);
             els.chipFavs.addEventListener('click', () => {
@@ -2434,16 +2586,16 @@
             els.alertSave.addEventListener('click', onAlertSave);
             els.alertRemove.addEventListener('click', onAlertRemove);
             els.alertStatus.addEventListener('change', onStatusToggle);
-            els.btnRefresh.addEventListener('click', refresh);
 
-            els.btnTheme.addEventListener('click', openThemes);
-            els.themeClose.addEventListener('click', closeThemes);
-            els.themeScrim.addEventListener('click', closeThemes);
+            els.btnMenu.addEventListener('click', openMenu);
+            els.menuClose.addEventListener('click', closeMenu);
+            els.menuScrim.addEventListener('click', closeMenu);
+            els.menuSwitch.addEventListener('click', goHome);
             els.themeGrid.addEventListener('click', (event) => {
                 const btn = event.target.closest('.th');
                 if (!btn) return;
-                setTheme(btn.dataset.themeId);
-                closeThemes();
+                setTheme(btn.dataset.themeId);   // le menu reste ouvert : on voit le thème changer en direct
+                renderThemes();
             });
 
             // Portefeuille
