@@ -1,6 +1,6 @@
 {
-  "name": "TPC Companion",
-  "short_name": "TPC Companion",
+  "name": "Theme Parks Companion",
+  "short_name": "Theme Parks Companion",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F3F2FA",
