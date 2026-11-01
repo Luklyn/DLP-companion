@@ -14,6 +14,7 @@
         {
           "value": "Disneyland Park",
           "label": "Parc Disneyland",
+          "themeparksParkId": "dae968d5-630d-4719-8b06-3d107e944401",
           "image": "https://placehold.co/120x120/12163A/FFFFFF?text=DP",
           "info": {
             "hours": [
@@ -24,6 +25,7 @@
         {
           "value": "Disney Adventure World",
           "label": "Adventure World",
+          "themeparksParkId": "ca888437-ebb4-4d50-aed2-d227f7096968",
           "image": "https://placehold.co/120x120/44309E/FFFFFF?text=AW",
           "info": {
             "hours": [
@@ -53,6 +55,7 @@
         {
           "value": "Parc Astérix",
           "label": "Parc Astérix",
+          "themeparksParkId": "6cc48df2-f126-4f28-905d-b4c2c15765f2"
           "image": "https://placehold.co/120x120/8A4B00/FFFFFF?text=PA"
         }
       ],
