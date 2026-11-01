@@ -165,8 +165,9 @@
         }
         .card.has-bg::after {
             content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-            background: linear-gradient(90deg, rgb(255 255 255 / .9), rgb(255 255 255 / .72));
+            background: linear-gradient(90deg, rgb(255 255 255 / .7), rgb(255 255 255 / .25));
         }
+        .card.has-bg .ttl, .card.has-bg .sub { text-shadow: 0 0 6px rgb(255 255 255 / .9), 0 0 2px rgb(255 255 255 / .9); }
         .card.has-bg .main, .card.has-bg .heart { position: relative; z-index: 1; }
         .card.has-bg .sub { color: #3E4260; }
         .main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 12px 4px 12px 12px; text-align: left; border-radius: 18px; }
