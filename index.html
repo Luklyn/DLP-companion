@@ -241,6 +241,7 @@
         .info-row { display: flex; flex-direction: column; gap: 2px; }
         .info-k { font-size: 12px; font-weight: 800; color: var(--acc); }
         .info-v { color: var(--ink); }
+        .info-v em { color: var(--mut); font-style: normal; font-size: 12.5px; }
         .info-map { width: 100%; height: 170px; border: 0; border-radius: 16px; background: #E8E8EF; }
         .info-link { align-self: flex-start; font-weight: 700; color: var(--acc); }
         .fav-list { display: flex; flex-direction: column; gap: 6px; }
@@ -2135,7 +2136,10 @@
             const row = (k, v) => rows.push(`<div class="info-row"><span class="info-k">${escHtml(k)}</span><span class="info-v">${v}</span></div>`);
             if (info.address) row('Adresse', escHtml(info.address));
             const hours = Array.isArray(info.hours) ? info.hours : (info.hours ? [info.hours] : []);
-            if (hours.length) row('Horaires d’ouverture', hours.map(escHtml).join('<br>'));
+            // Horaires : texte saisi dans parks.json (secours) puis remplacé par le planning themeparks.wiki quand il est disponible
+            rows.push(`<div class="info-row" id="info-hours"${hours.length || park.themeparksParkId ? '' : ' hidden'}>
+                <span class="info-k">Horaires d’ouverture</span>
+                <span class="info-v" id="info-hours-v">${hours.map(escHtml).join('<br>') || 'Chargement…'}</span></div>`);
             const lat = toCoord(info.lat), lng = toCoord(info.lng);
             const embed = safeUrl(info.mapEmbed)
                 || (lat != null && lng != null
@@ -2145,6 +2149,60 @@
             if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="Plan du parc" loading="lazy" referrerpolicy="no-referrer"></iframe>`);
             if (link) rows.push(`<a class="info-link" href="${escHtml(link)}" target="_blank" rel="noopener noreferrer">Ouvrir dans Maps</a>`);
             els.infoBody.innerHTML = rows.join('');
+            if (park.themeparksParkId) fillSchedule(park, hours.length > 0);
+        }
+
+        /* --- Horaires automatiques (themeparks.wiki /schedule), par parc --- */
+        const SCHEDULE_TTL_MS = 15 * 60_000;
+        const scheduleCache = new Map();   // themeparksParkId -> { at, entries }
+        const SCHEDULE_LABELS = { TICKETED_EVENT: 'Événement payant', PRIVATE_EVENT: 'Événement privé', EXTRA_HOURS: 'Horaires étendus' };
+        const SCHEDULE_DAYS = 7;
+
+        async function loadSchedule(parkId) {
+            const hit = scheduleCache.get(parkId);
+            if (hit && Date.now() - hit.at < SCHEDULE_TTL_MS) return hit.entries;
+            const data = await fetchJson(`https://api.themeparks.wiki/v1/entity/${encodeURIComponent(parkId)}/schedule`, CONFIG.FETCH_TIMEOUT_MS);
+            // le planning est dans `schedule` (parc) ou `parks[].schedule` (destination)
+            const entries = (data.schedule?.length ? data.schedule : (data.parks ?? []).flatMap((x) => x.schedule ?? []))
+                .filter((e) => e?.date && e.openingTime && e.closingTime);
+            scheduleCache.set(parkId, { at: Date.now(), entries });
+            return entries;
+        }
+
+        const hourText = (iso) => timeFormat.format(new Date(iso)).replace(':', 'h');
+        const dayShift = (key, n) => { const d = new Date(`${key}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+
+        function scheduleHtml(entries) {
+            const dayFmt = new Intl.DateTimeFormat(CONFIG.LOCALE, { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+            const lines = [];
+            for (let i = 0; i < SCHEDULE_DAYS; i++) {
+                const key = dayShift(todayKey, i);
+                const day = entries.filter((e) => e.date === key && (e.type === 'OPERATING' || SCHEDULE_LABELS[e.type]))
+                    .sort((a, b) => (a.type === 'OPERATING' ? -1 : 1) - (b.type === 'OPERATING' ? -1 : 1) || a.openingTime.localeCompare(b.openingTime));
+                const label = i === 0 ? 'Aujourd’hui' : i === 1 ? 'Demain' : dayFmt.format(new Date(`${key}T12:00:00Z`));
+                if (!day.length) { if (i === 0) lines.push(`<span><b>${esc(label)}</b> : fermé</span>`); continue; }   // jours sans planning : non affichés
+                for (const e of day) {
+                    const extra = SCHEDULE_LABELS[e.type] ? ` <em>(${esc(SCHEDULE_LABELS[e.type])})</em>` : '';
+                    lines.push(`<span><b>${esc(label)}</b> : ${hourText(e.openingTime)} – ${hourText(e.closingTime)}${extra}</span>`);
+                }
+            }
+            return lines.join('<br>');
+        }
+
+        async function fillSchedule(park, hasFallback) {
+            const target = () => (state.park === park.value && !els.menuLayer.hidden ? document.querySelector('#info-hours-v') : null);
+            try {
+                const entries = await loadSchedule(park.themeparksParkId);
+                const v = target();
+                if (!v) return;
+                if (!entries.length) throw new Error('planning vide');
+                v.innerHTML = scheduleHtml(entries);
+                v.parentElement.hidden = false;
+            } catch (error) {
+                console.error('Horaires indisponibles :', error);
+                const v = target();
+                if (v && !hasFallback) v.parentElement.hidden = true;   // pas de texte de secours : on masque la ligne
+            }
         }
 
         // Favoris du parc courant, regroupés par catégorie
