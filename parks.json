@@ -70,7 +70,8 @@
   "events": [
     {
       "label": "Peur sur le Parc",
-      "field": "Peur sur le parc"
+      "field": "Peur sur le parc",
+      "until": "2026-11-08"
     }
   ]
 }
