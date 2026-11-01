@@ -6,14 +6,14 @@
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#12163A">
     <meta name="description" content="Temps d'attente, restaurants et spectacles des parcs d'attractions en temps réel.">
-    <title>TPC Companion</title>
+    <title>Theme Parks Companion</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="TPC Companion">
+    <meta name="apple-mobile-web-app-title" content="Theme Parks Companion">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,9 +112,16 @@
         }
         .hero :focus-visible { outline-color: #fff; }
         .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .hero-id { min-width: 0; }
-        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.1; white-space: nowrap; }
-        .hero-park { margin-top: 6px; font-size: 15px; font-weight: 600; color: #D4D7FA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 16px; line-height: 1.2; white-space: nowrap; color: #D4D7FA; }
+        .park-switch { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 6px; }
+        .ps-mid { text-align: center; touch-action: pan-y; }
+        .hero-park { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.12; text-wrap: balance; }
+        .ps-arrow { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 22px; background: rgb(255 255 255 / .14); color: #fff; }
+        .park-switch.is-single .ps-arrow { visibility: hidden; }
+        .ps-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+        .ps-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .35); transition: width .2s, background .2s; }
+        .ps-dots i.on { width: 20px; border-radius: 4px; background: var(--gold); }
+        .park-switch.is-single .ps-dots { display: none; }
         .hero-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 
         /* Statut de synchronisation (dans le menu) */
@@ -198,15 +205,6 @@
             padding: 8px 16px calc(12px + var(--safe-bottom));
             background: var(--bg);
         }
-        .park-tile {
-            align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
-            max-width: 100%; min-height: 36px; padding: 4px 12px 4px 4px; border-radius: 14px;
-            background: #fff; border: 1.5px solid var(--line); box-shadow: 0 2px 8px rgb(30 30 90 / .06);
-            font-size: 12.5px; font-weight: 700; text-align: left;
-        }
-        .pt-img { flex: none; width: 26px; height: 26px; border-radius: 9px; object-fit: cover; background: linear-gradient(160deg, var(--g1), var(--g2)); }
-        .pt-txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .park-tile .icon { color: var(--acc); }
         .tabs {
             display: flex; gap: 4px; padding: 6px; border-radius: 26px;
             background: var(--ink); box-shadow: 0 10px 24px rgb(18 22 58 / .25);
@@ -457,7 +455,8 @@
             .btn-back { display: grid; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 21px; }
+            .hero h1 { font-size: 15px; }
+            .hero-park { font-size: 27px; }
             .hero-actions { gap: 6px; }
             .hero .round { width: 40px; height: 40px; border-radius: 20px; }
         }
@@ -483,6 +482,7 @@
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
         <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v2M14 11v2M14 17v2"/></symbol>
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+        <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
         <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
         <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
         <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M5 21V11a7 7 0 0 1 14 0v10l-3.5-2.5L12 21l-3.5-2.5z"/><path d="M9.5 11h.01M14.5 11h.01"/></symbol>
@@ -491,7 +491,7 @@
     <!-- Accueil : choix du parc -->
     <section id="home" class="home" hidden aria-labelledby="home-title">
         <div class="home-in">
-            <p class="home-kicker">TPC Companion</p>
+            <p class="home-kicker">Theme Parks Companion</p>
             <h1 id="home-title">Choisissez votre parc</h1>
             <div id="home-grid" class="home-grid"></div>
         </div>
@@ -500,10 +500,7 @@
     <div class="master-pane">
         <header class="hero">
             <div class="hero-top">
-                <div class="hero-id">
-                    <h1>TPC Companion</h1>
-                    <p id="hero-park" class="hero-park"></p>
-                </div>
+                <h1>Theme Parks Companion</h1>
                 <div class="hero-actions">
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
@@ -512,6 +509,19 @@
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-menu"/></svg>
                     </button>
                 </div>
+            </div>
+            <!-- Nom du parc affiché, centré. Plusieurs parcs : flèches, points et balayage horizontal pour changer -->
+            <div id="park-switch" class="park-switch">
+                <button id="park-prev" class="ps-arrow" type="button" aria-label="Parc précédent">
+                    <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>
+                </button>
+                <div class="ps-mid">
+                    <p id="hero-park" class="hero-park" aria-live="polite"></p>
+                    <div id="park-dots" class="ps-dots" aria-hidden="true"></div>
+                </div>
+                <button id="park-next" class="ps-arrow" type="button" aria-label="Parc suivant">
+                    <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-next"/></svg>
+                </button>
             </div>
         </header>
 
@@ -523,12 +533,6 @@
         <main id="list" class="list" aria-live="polite"></main>
 
         <div class="dock">
-        <!-- Mini-tuile du parc courant : un appui passe au parc suivant -->
-        <button id="park-tile" class="park-tile" type="button" hidden>
-            <img id="pt-img" class="pt-img" alt="" hidden>
-            <span id="pt-name" class="pt-txt"></span>
-            <svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-swap"/></svg>
-        </button>
         <nav class="tabs" aria-label="Catégories">
             <button type="button" data-tab="attraction" aria-current="true">
                 <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-attraction"/></svg>Attractions
@@ -1014,9 +1018,10 @@
             menuHome: $('#menu-home'),
             menuHomeSec: $('#menu-home-sec'),
             heroPark: $('#hero-park'),
-            parkTile: $('#park-tile'),
-            ptImg: $('#pt-img'),
-            ptName: $('#pt-name'),
+            parkSwitch: $('#park-switch'),
+            parkDots: $('#park-dots'),
+            parkPrev: $('#park-prev'),
+            parkNext: $('#park-next'),
             btnWallet: $('#btn-wallet'),
             chipNearby: $('#chip-nearby'),
             chipClosed: $('#chip-closed'),
@@ -1416,20 +1421,32 @@
             els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
         }
 
-        // Mini-tuile du parc : image + nom du parc affiché (ou « Tous les parcs » en mode Favoris / Autour de moi)
+        // Sélecteur de parc du header : nom centré (ou nom du resort en mode « Autour de moi »), points = parcs du resort
         function renderParkTile(locked = state.nearby || state.showFavorites) {
             const multi = CONFIG.PARKS.length > 1;
-            const park = CONFIG.PARKS.find((p) => p.value === state.park) ?? CONFIG.PARKS[0];
-            els.heroPark.textContent = locked && multi ? resort.name : park.label;   // nom du parc sous le titre
-            els.parkTile.hidden = !multi;
-            if (!multi) return;
-            els.ptName.textContent = locked ? 'Tous les parcs' : park.label;
-            const img = locked ? '' : safeUrl(park.image);
-            els.ptImg.hidden = !img;
-            if (img && els.ptImg.getAttribute('src') !== img) els.ptImg.src = img;
-            els.parkTile.setAttribute('aria-label', locked
-                ? 'Afficher un parc'
-                : `Parc affiché : ${park.label}. Appuyer pour changer de parc`);
+            const idx = Math.max(0, CONFIG.PARKS.findIndex((p) => p.value === state.park));
+            const park = CONFIG.PARKS[idx];
+            els.heroPark.textContent = locked && multi ? resort.name : park.label;
+            els.parkSwitch.classList.toggle('is-single', !multi);
+            els.parkPrev.disabled = els.parkNext.disabled = !multi;
+            els.parkDots.innerHTML = multi
+                ? CONFIG.PARKS.map((_, i) => `<i class="${!locked && i === idx ? 'on' : ''}"></i>`).join('') : '';
+        }
+
+        // Change de parc (dir = -1 / +1). En mode « Autour de moi », le premier geste revient au parc courant.
+        function switchPark(dir) {
+            if (CONFIG.PARKS.length < 2) return;
+            const locked = state.nearby || state.showFavorites;
+            if (state.watchId != null || state.nearby) stopNearby();
+            if (state.showFavorites) setShowFavorites(false);
+            if (!locked) {
+                const i = CONFIG.PARKS.findIndex((p) => p.value === state.park);
+                state.park = CONFIG.PARKS[(i + dir + CONFIG.PARKS.length) % CONFIG.PARKS.length].value;
+            }
+            syncFilterUi();
+            syncTabsUi();
+            closeDetail();
+            renderList();
         }
 
         function syncTabsUi() {
@@ -2161,7 +2178,7 @@
         const SCHEDULE_TTL_MS = 15 * 60_000;
         const scheduleCache = new Map();   // themeparksParkId -> { at, entries }
         const SCHEDULE_LABELS = { TICKETED_EVENT: 'Événement payant', PRIVATE_EVENT: 'Événement privé', EXTRA_HOURS: 'Horaires étendus' };
-        const SCHEDULE_DAYS = 7;
+        const SCHEDULE_DAYS = 1;   // seul l'horaire du jour est affiché
 
         async function loadSchedule(parkId) {
             const hit = scheduleCache.get(parkId);
@@ -2645,20 +2662,17 @@
         }
 
         function bindEvents() {
-            els.ptImg.addEventListener('error', () => { els.ptImg.hidden = true; });
-            els.parkTile.addEventListener('click', () => {
-                const locked = state.nearby || state.showFavorites;
-                if (state.watchId != null || state.nearby) stopNearby();   // choisir un parc quitte « Autour de moi » et les favoris
-                if (state.showFavorites) setShowFavorites(false);
-                if (!locked) {   // en mode « tous les parcs », le premier appui revient au parc courant ; sinon on passe au suivant
-                    const i = CONFIG.PARKS.findIndex((p) => p.value === state.park);
-                    state.park = CONFIG.PARKS[(i + 1) % CONFIG.PARKS.length].value;
-                }
-                syncFilterUi();
-                syncTabsUi();
-                closeDetail();
-                renderList();
-            });
+            els.parkPrev.addEventListener('click', () => switchPark(-1));
+            els.parkNext.addEventListener('click', () => switchPark(1));
+            // Balayage horizontal sur le nom du parc
+            let swipeX = null;
+            els.parkSwitch.addEventListener('touchstart', (e) => { swipeX = e.touches[0].clientX; }, { passive: true });
+            els.parkSwitch.addEventListener('touchend', (e) => {
+                if (swipeX == null) return;
+                const dx = e.changedTouches[0].clientX - swipeX;
+                swipeX = null;
+                if (Math.abs(dx) > 50) switchPark(dx < 0 ? 1 : -1);
+            }, { passive: true });
 
             els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
             els.chipNearby.addEventListener('click', onNearbyClick);
