@@ -6,14 +6,14 @@
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#12163A">
     <meta name="description" content="Temps d'attente, restaurants et spectacles des parcs d'attractions en temps réel.">
-    <title>DLP Companion</title>
+    <title>TPC Companion</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="DLP Companion">
+    <meta name="apple-mobile-web-app-title" content="TPC Companion">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,14 +22,7 @@
     <script>
         // Thèmes : source unique, appliquée avant le premier rendu (évite le flash de couleurs)
         window.DLP_THEMES = {
-            chateau:     { n: 'Soirée au château',   f: 'Thème par défaut',    ink: '#12163A', gold: '#F2B33D', on: '#12163A', acc: '#6A3FD0', bg: '#F3F2FA', g1: '#2F46D1', g2: '#6A3FD0' },
-            toystory:    { n: 'Toy Story',           f: 'Chambre d’Andy',      ink: '#1B3A7A', gold: '#FFCB05', on: '#1A1A2E', acc: '#C8231C', bg: '#EAF3FC', g1: '#2F6FC4', g2: '#1B3A7A' },
-            raiponce:    { n: 'Raiponce',            f: 'Nuit des lanternes',  ink: '#2B1B5A', gold: '#F6C945', on: '#2B1B5A', acc: '#8A2BA0', bg: '#FAF3FF', g1: '#4B2E9B', g2: '#8A2BA0' },
-            reineneiges: { n: 'La Reine des Neiges', f: 'Royaume d’Arendelle', ink: '#14315F', gold: '#9BE7FF', on: '#0E2347', acc: '#1C6FB8', bg: '#EEF8FF', g1: '#1C6FB8', g2: '#5B4BC4' },
-            ratatouille: { n: 'Ratatouille',         f: 'Bistrot de Gusteau',  ink: '#2F3A4C', gold: '#F2B134', on: '#2A2418', acc: '#B3261E', bg: '#FBF6EE', g1: '#4A5A73', g2: '#B3261E' },
-            avengers:    { n: 'Avengers',            f: 'QG des Avengers',     ink: '#101628', gold: '#F2B01E', on: '#101628', acc: '#C4161C', bg: '#F2F3F7', g1: '#1F3C88', g2: '#C4161C' },
-            roilion:     { n: 'Le Roi Lion',         f: 'Terres du Roi',       ink: '#3A1D12', gold: '#F59E1B', on: '#3A1D12', acc: '#A63A0A', bg: '#FFF4E3', g1: '#A63A0A', g2: '#3A1D12' },
-            sirene:      { n: 'La Petite Sirène',    f: 'Royaume d’Atlantica', ink: '#0B3B4F', gold: '#FF7A59', on: '#0B2A38', acc: '#7B3FA3', bg: '#EAF8F7', g1: '#0F7B8A', g2: '#7B3FA3' },
+            chateau: { n: 'Soirée au château', f: 'Thème par défaut', ink: '#12163A', gold: '#F2B33D', on: '#12163A', acc: '#6A3FD0', bg: '#F3F2FA', g1: '#2F46D1', g2: '#6A3FD0' },
         };
         window.DLP_applyTheme = function (id) {
             var themes = window.DLP_THEMES;
@@ -54,8 +47,7 @@
             window.addEventListener('pageshow', set);
             if (window.visualViewport) window.visualViewport.addEventListener('resize', set);
         })();
-        try { window.DLP_applyTheme(localStorage.getItem('dlp-theme')); }
-        catch (e) { window.DLP_applyTheme('chateau'); }
+        window.DLP_applyTheme('chateau');   // thème unique
     </script>
 
     <style>
@@ -114,13 +106,15 @@
         /* En-tête */
         .hero {
             display: flex; flex-direction: column; gap: 14px;
-            padding: calc(22px + var(--safe-top)) 20px 18px;
+            padding: calc(30px + var(--safe-top)) 20px 28px;
             border-radius: 0 0 28px 28px; color: #fff;
             background: var(--ink);
         }
         .hero :focus-visible { outline-color: #fff; }
         .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 19px; white-space: nowrap; }
+        .hero-id { min-width: 0; }
+        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.1; white-space: nowrap; }
+        .hero-park { margin-top: 6px; font-size: 15px; font-weight: 600; color: #D4D7FA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .hero-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 
         /* Statut de synchronisation (dans le menu) */
@@ -228,10 +222,11 @@
         /* Événement (ex. « Peur sur le Parc ») */
         .evt {
             display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; padding: 2px 9px; border-radius: 8px;
-            background: #2A1A3F; color: #FFC857; font-size: 12px; font-weight: 800; line-height: 1.5;
+            background: linear-gradient(135deg, #2A1A3F, #5B2A86); color: #FFB347; border: 1px solid #FF8A1F;
+            font-size: 12px; font-weight: 800; line-height: 1.5;
         }
         .evt .icon { width: 13px; height: 13px; }
-        .pill.is-event { background: #2A1A3F; border-color: #2A1A3F; color: #FFC857; display: inline-flex; align-items: center; gap: 6px; }
+        .pill.is-event { background: linear-gradient(135deg, #2A1A3F, #5B2A86); border-color: #FF8A1F; color: #FFB347; display: inline-flex; align-items: center; gap: 6px; }
         .pill.is-event .icon { width: 14px; height: 14px; }
 
         /* Menu burger */
@@ -241,6 +236,21 @@
         .menu-h-note { font: 600 13px var(--font); color: var(--mut); }
         .menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         .menu-v { font-size: 15px; font-weight: 700; }
+
+        .info { display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.45; }
+        .info-row { display: flex; flex-direction: column; gap: 2px; }
+        .info-k { font-size: 12px; font-weight: 800; color: var(--acc); }
+        .info-v { color: var(--ink); }
+        .info-map { width: 100%; height: 170px; border: 0; border-radius: 16px; background: #E8E8EF; }
+        .info-link { align-self: flex-start; font-weight: 700; color: var(--acc); }
+        .fav-list { display: flex; flex-direction: column; gap: 6px; }
+        .fav-item {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+            min-height: 48px; padding: 6px 14px; border-radius: 14px; background: #fff; border: 1.5px solid var(--line); text-align: left;
+        }
+        .fav-name { font-weight: 700; font-size: 14.5px; line-height: 1.25; }
+        .fav-cat { flex: none; font-size: 12px; font-weight: 600; color: var(--mut); }
+        .menu-empty { font-size: 14px; color: var(--mut); line-height: 1.45; }
 
         /* Page d'accueil : choix du parc */
         .home {
@@ -293,7 +303,8 @@
             border-radius: 28px 28px 0 0; background: var(--bg);
         }
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
-        .d-status { display: flex; align-items: center; gap: 14px; }
+        .d-head { display: flex; align-items: center; gap: 14px; }
+        .d-head .badge { width: 62px; height: 62px; }
         .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
         .status-text.is-strong { font-size: 15px; font-weight: 700; color: var(--ink); }
         .d-st { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
@@ -351,13 +362,6 @@
         .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
         .panel-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 19px; }
         .panel-head .round { box-shadow: none; }
-        .themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-        .th { display: flex; flex-direction: column; gap: 10px; min-height: 84px; padding: 12px; text-align: left; border-radius: 16px; background: #fff; border: 2px solid var(--line); }
-        .th[aria-pressed="true"] { border-color: var(--acc); }
-        .sw { display: flex; padding-left: 6px; }
-        .sw i { width: 24px; height: 24px; margin-left: -6px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .12); }
-        .th-n { display: block; font-weight: 700; font-size: 14px; line-height: 1.2; }
-        .th-f { display: block; margin-top: 2px; font-size: 12px; color: var(--mut); }
 
         /* ==========================================================================
            4 bis. Portefeuille (billets & pass annuels)
@@ -450,7 +454,7 @@
             .btn-back { display: grid; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 16px; }
+            .hero h1 { font-size: 21px; }
             .hero-actions { gap: 6px; }
             .hero .round { width: 40px; height: 40px; border-radius: 20px; }
         }
@@ -484,7 +488,7 @@
     <!-- Accueil : choix du parc -->
     <section id="home" class="home" hidden aria-labelledby="home-title">
         <div class="home-in">
-            <p class="home-kicker">DLP Companion</p>
+            <p class="home-kicker">TPC Companion</p>
             <h1 id="home-title">Choisissez votre parc</h1>
             <div id="home-grid" class="home-grid"></div>
         </div>
@@ -493,7 +497,10 @@
     <div class="master-pane">
         <header class="hero">
             <div class="hero-top">
-                <h1>DLP Companion</h1>
+                <div class="hero-id">
+                    <h1>TPC Companion</h1>
+                    <p id="hero-park" class="hero-park"></p>
+                </div>
                 <div class="hero-actions">
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
@@ -506,7 +513,6 @@
         </header>
 
         <div class="chips" role="group" aria-label="Filtres">
-            <button id="chip-favs" class="chip" type="button" aria-pressed="false">Favoris</button>
             <button id="chip-nearby" class="chip" type="button" aria-pressed="false">Autour de moi</button>
             <button id="chip-closed" class="chip" type="button" aria-pressed="false">Lieux fermés</button>
         </div>
@@ -551,12 +557,12 @@
             </div>
 
             <div class="d-sheet">
-                <h2 id="d-title" class="d-title"></h2>
-                <p id="d-desc" class="d-desc"></p>
-                <div class="d-status">
+                <div class="d-head">
                     <span id="d-badge"></span>
-                    <span class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></span>
+                    <h2 id="d-title" class="d-title"></h2>
                 </div>
+                <p id="d-desc" class="d-desc"></p>
+                <div id="d-st" class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></div>
                 <ul id="d-badges" class="pills"></ul>
 
                 <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
@@ -606,15 +612,12 @@
                 </button>
             </div>
             <div class="menu-sec">
-                <h3 class="menu-h">Thème <span id="menu-theme-name" class="menu-h-note"></span></h3>
-                <div id="theme-grid" class="themes"></div>
+                <h3 class="menu-h">Infos pratiques <span id="info-park" class="menu-h-note"></span></h3>
+                <div id="info-body" class="info"></div>
             </div>
-            <div id="menu-resort-sec" class="menu-sec">
-                <h3 class="menu-h">Resort</h3>
-                <div class="menu-row">
-                    <span id="menu-resort-name" class="menu-v"></span>
-                    <button id="menu-switch" class="btn-alert" type="button">Changer de resort</button>
-                </div>
+            <div class="menu-sec">
+                <h3 class="menu-h">Favoris <span id="fav-count" class="menu-h-note"></span></h3>
+                <ul id="fav-list" class="fav-list"></ul>
             </div>
             <div class="menu-sec">
                 <h3 class="menu-h">Synchronisation</h3>
@@ -622,6 +625,9 @@
                     <span class="dot" aria-hidden="true"></span>
                     <span id="sync-label">Synchronisation…</span>
                 </div>
+            </div>
+            <div id="menu-home-sec" class="menu-sec">
+                <button id="menu-home" class="cta alt" type="button">Revenir à l’accueil</button>
             </div>
         </section>
     </div>
@@ -844,8 +850,6 @@
         // Masqués par défaut (affichés avec « Lieux fermés »). Les lieux « DOWN » (panne temporaire) restent visibles.
         const CLOSED_LABELS = { CLOSED: 'Fermé', REFURBISHMENT: 'En réhabilitation' };
         const HIDDEN_BY_DEFAULT = new Set(Object.keys(CLOSED_LABELS));
-        const THEMES = window.DLP_THEMES;
-        const THEME_KEY = 'dlp-theme';
 
         // Types de restauration pour lesquels une réservation est recommandée (comparés sans accents ni casse)
         const RESERVATION_TYPES = new Set(['service a table', 'buffet a volonte']);
@@ -927,10 +931,22 @@
 
         // Événements (ex. « Peur sur le Parc ») : colonne « Evenement » du JSON, ou liste de codes dans parks.json (resort.events)
         const todayKey = new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
-        const ACTIVE_EVENTS = (resort.events ?? []).filter((e) => !e.until || e.until >= todayKey);
-        const eventFor = (raw, id) =>
-            str(raw['Evenement'] ?? raw['Événement'] ?? raw['Evènement'])
-            || ACTIVE_EVENTS.find((e) => (e.codes ?? []).includes(id))?.label || '';
+        const ACTIVE_EVENTS = [...(registry.events ?? []), ...(resort.events ?? [])].filter((e) => !e.until || e.until >= todayKey);
+        const isTruthy = (v) => v === true || (typeof v === 'number' && v > 0) || /^(1|1\.0|true|oui|yes|x)$/i.test(String(v ?? '').trim());
+        // Cherche une colonne du JSON sans tenir compte des accents ni de la casse (« Peur sur le parc » = « Peur sur le Parc »)
+        const rawField = (raw, name) => {
+            const key = Object.keys(raw).find((k) => searchKey(k) === searchKey(name));
+            return key === undefined ? undefined : raw[key];
+        };
+        const eventFor = (raw, id) => {
+            const named = str(rawField(raw, 'Evenement'));   // colonne libre : le texte est affiché tel quel
+            if (named) return named;
+            for (const e of ACTIVE_EVENTS) {
+                if (isTruthy(rawField(raw, e.field ?? e.label))) return e.label;   // colonne 0/1 portant le nom de l'événement
+                if ((e.codes ?? []).includes(id)) return e.label;
+            }
+            return '';
+        };
 
         function normalize(raw, category) {
             const f = FIELDS[category];
@@ -988,15 +1004,17 @@
             menuLayer: $('#menu-layer'),
             menuScrim: $('#menu-scrim'),
             menuClose: $('#menu-close'),
-            menuThemeName: $('#menu-theme-name'),
-            menuResortSec: $('#menu-resort-sec'),
-            menuResortName: $('#menu-resort-name'),
-            menuSwitch: $('#menu-switch'),
+            infoPark: $('#info-park'),
+            infoBody: $('#info-body'),
+            favList: $('#fav-list'),
+            favCount: $('#fav-count'),
+            menuHome: $('#menu-home'),
+            menuHomeSec: $('#menu-home-sec'),
+            heroPark: $('#hero-park'),
             parkTile: $('#park-tile'),
             ptImg: $('#pt-img'),
             ptName: $('#pt-name'),
             btnWallet: $('#btn-wallet'),
-            chipFavs: $('#chip-favs'),
             chipNearby: $('#chip-nearby'),
             chipClosed: $('#chip-closed'),
             btnFav: $('#btn-fav'),
@@ -1010,12 +1028,12 @@
             title: $('#d-title'),
             statusBadge: $('#d-badge'),
             statusText: $('#d-status-text'),
+            stBlock: $('#d-st'),
             single: $('#d-single'),
             badges: $('#d-badges'),
             desc: $('#d-desc'),
             menu: $('#d-btn'),
             toast: $('#toast'),
-            themeGrid: $('#theme-grid'),
             alertBox: $('#d-alert'),
             alertHeading: $('#alert-heading'),
             alertLabel: $('#alert-label'),
@@ -1179,7 +1197,7 @@
                     if (!status) return mk('off', '--', '', 'Données indisponibles');
                     if (status !== 'OPERATING') return mk('off', '--', '', 'Actuellement indisponible');
                     const { wait, single } = item.live;
-                    const m = mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min', 'Temps d’attente actuel');
+                    const m = mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min', '');
                     if (single != null) m.single = single;
                     return m;
                 }
@@ -1196,10 +1214,10 @@
                         return m;
                     }
                     if (status === 'OPERATING') return mk('show', 'En cours', '', 'En cours');
-                    return mk('off', '--', '', 'Horaires indisponibles');
+                    return mk('off', '--', '', '');
                 }
                 case 'restaurant': {
-                    if (status !== 'OPERATING') return mk('off', '--', '', 'Horaires indisponibles');
+                    if (status !== 'OPERATING') return mk('off', '--', '', '');
                     const booking = RESERVATION_TYPES.has(searchKey(item.type));
                     const text = booking ? 'Réservation recommandée' : 'Entrée libre';
                     const m = mk('open', '', '', text);
@@ -1393,15 +1411,15 @@
             renderParkTile(locked);
             els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
             els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
-            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
         }
 
         // Mini-tuile du parc : image + nom du parc affiché (ou « Tous les parcs » en mode Favoris / Autour de moi)
         function renderParkTile(locked = state.nearby || state.showFavorites) {
             const multi = CONFIG.PARKS.length > 1;
+            const park = CONFIG.PARKS.find((p) => p.value === state.park) ?? CONFIG.PARKS[0];
+            els.heroPark.textContent = locked && multi ? resort.name : park.label;   // nom du parc sous le titre
             els.parkTile.hidden = !multi;
             if (!multi) return;
-            const park = CONFIG.PARKS.find((p) => p.value === state.park) ?? CONFIG.PARKS[0];
             els.ptName.textContent = locked ? 'Tous les parcs' : park.label;
             const img = locked ? '' : safeUrl(park.image);
             els.ptImg.hidden = !img;
@@ -1415,9 +1433,9 @@
             els.tabs.forEach((t) => t.setAttribute('aria-current', String(!state.showFavorites && t.dataset.tab === state.tab)));
         }
 
+        // Les favoris vivent dans le menu : on y met à jour la liste si elle est ouverte
         function renderFavButton() {
-            els.chipFavs.textContent = favorites.size ? `Favoris (${favorites.size})` : 'Favoris';
-            els.chipFavs.setAttribute('aria-pressed', String(state.showFavorites));
+            if (!els.menuLayer.hidden) renderFavList();
         }
 
         function setShowFavorites(active) {
@@ -1865,6 +1883,11 @@
             const target = resortOfServerId(rawId);
             if (target && target.id !== resort.id) return switchResort(target.id, rawId);   // lieu d'un autre parc
             const id = !resort.legacyStorage && rawId.startsWith(`${resort.id}:`) ? rawId.slice(resort.id.length + 1) : rawId;
+            showItem(id);
+        }
+
+        // Affiche la fiche d'un lieu du parc courant (bon onglet, bon parc)
+        function showItem(id) {
             const item = dbById.get(id);
             if (!item) return;
             if (state.showFavorites) setShowFavorites(false);
@@ -2044,6 +2067,8 @@
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
             els.single.innerHTML = timesHtml(m) + singleHtml(m);
+            els.statusText.hidden = !m.text;
+            els.stBlock.hidden = !m.text && !els.single.innerHTML;
 
             setHeroImage(safeUrl(item.image));
 
@@ -2100,36 +2125,56 @@
             renderDetail();
         }
 
-        /* ======================================================================
-           Thèmes
-           ====================================================================== */
-        const currentTheme = () => document.documentElement.dataset.theme;
-
-        function updateThemeLabel() {
-            els.menuThemeName.textContent = THEMES[currentTheme()]?.n ?? '';
+        // Infos pratiques du parc affiché : parks.json -> resort.info, surchargé par parks[].info
+        const escHtml = esc;
+        function renderInfo() {
+            const park = CONFIG.PARKS.find((p) => p.value === state.park) ?? CONFIG.PARKS[0];
+            const info = { ...(resort.info ?? {}), ...(park?.info ?? {}) };
+            els.infoPark.textContent = CONFIG.PARKS.length > 1 ? park.label : resort.name;
+            const rows = [];
+            const row = (k, v) => rows.push(`<div class="info-row"><span class="info-k">${escHtml(k)}</span><span class="info-v">${v}</span></div>`);
+            if (info.address) row('Adresse', escHtml(info.address));
+            const hours = Array.isArray(info.hours) ? info.hours : (info.hours ? [info.hours] : []);
+            if (hours.length) row('Horaires d’ouverture', hours.map(escHtml).join('<br>'));
+            const lat = toCoord(info.lat), lng = toCoord(info.lng);
+            const embed = safeUrl(info.mapEmbed)
+                || (lat != null && lng != null
+                    ? `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.012},${lat - 0.007},${lng + 0.012},${lat + 0.007}&layer=mapnik&marker=${lat},${lng}`
+                    : '');
+            const link = safeUrl(info.mapUrl) || (lat != null && lng != null ? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}` : '');
+            if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="Plan du parc" loading="lazy" referrerpolicy="no-referrer"></iframe>`);
+            if (link) rows.push(`<a class="info-link" href="${escHtml(link)}" target="_blank" rel="noopener noreferrer">Ouvrir dans Maps</a>`);
+            els.infoBody.innerHTML = rows.join('');
         }
 
-        function setTheme(id) {
-            window.DLP_applyTheme(id);
-            try { localStorage.setItem(THEME_KEY, currentTheme()); } catch { /* stockage indisponible */ }
-            updateThemeLabel();
+        // Favoris du parc courant, regroupés par catégorie
+        function renderFavList() {
+            const favs = [...favorites].map((id) => dbById.get(id)).filter(Boolean)
+                .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
+                    || a.name.localeCompare(b.name, CONFIG.LOCALE));
+            els.favCount.textContent = favs.length ? `(${favs.length})` : '';
+            els.favList.innerHTML = favs.length
+                ? favs.map((i) => `<li><button type="button" class="fav-item" data-open-id="${esc(i.id)}">
+                        <span class="fav-name">${esc(i.name)}</span><span class="fav-cat">${esc(CATEGORY_LABELS[i.category])}</span></button></li>`).join('')
+                : '<li class="menu-empty">Aucun favori pour le moment. Touchez le cœur d’une fiche pour l’ajouter.</li>';
         }
 
-        function renderThemes() {
-            const active = currentTheme();
-            els.themeGrid.innerHTML = Object.entries(THEMES).map(([id, t]) => `
-                <button type="button" class="th" data-theme-id="${esc(id)}" aria-pressed="${id === active}">
-                    <span class="sw"><i style="background:${t.ink}"></i><i style="background:${t.gold}"></i><i style="background:${t.acc}"></i><i style="background:${t.bg}"></i></span>
-                    <span><span class="th-n">${esc(t.n)}</span><span class="th-f">${esc(t.f)}</span></span>
-                </button>`).join('');
+        function renderMenu() {
+            renderInfo();
+            renderFavList();
+            els.menuHomeSec.hidden = registry.resorts.length < 2;
         }
 
-        // Menu burger (thème, resort, synchronisation)
+        // Ouvre la fiche d'un favori depuis le menu : la couche « menu » de l'historique devient la couche « fiche »
+        function openFavorite(id) {
+            replaceLayer('menu', 'detail', hideDetail);
+            hideMenu();
+            showItem(id);
+        }
+
+        // Menu burger (infos pratiques, favoris, synchronisation)
         function openMenu() {
-            renderThemes();
-            updateThemeLabel();
-            els.menuResortName.textContent = resort.name;
-            els.menuResortSec.hidden = registry.resorts.length < 2;
+            renderMenu();
             pushLayer('menu', hideMenu);   // le geste « retour » système ferme le menu
             els.menuLayer.hidden = false;
             els.menuClose.focus();
@@ -2554,12 +2599,6 @@
 
             els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
             els.chipNearby.addEventListener('click', onNearbyClick);
-            els.chipFavs.addEventListener('click', () => {
-                closeDetail();
-                setShowFavorites(!state.showFavorites);
-                renderList();
-                els.list.scrollTop = 0;
-            });
             els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
@@ -2590,12 +2629,10 @@
             els.btnMenu.addEventListener('click', openMenu);
             els.menuClose.addEventListener('click', closeMenu);
             els.menuScrim.addEventListener('click', closeMenu);
-            els.menuSwitch.addEventListener('click', goHome);
-            els.themeGrid.addEventListener('click', (event) => {
-                const btn = event.target.closest('.th');
-                if (!btn) return;
-                setTheme(btn.dataset.themeId);   // le menu reste ouvert : on voit le thème changer en direct
-                renderThemes();
+            els.menuHome.addEventListener('click', goHome);
+            els.favList.addEventListener('click', (event) => {
+                const btn = event.target.closest('[data-open-id]');
+                if (btn) openFavorite(btn.dataset.openId);
             });
 
             // Portefeuille
@@ -2651,7 +2688,6 @@
             window.addEventListener('popstate', onPopState);
 
             bindEvents();
-            updateThemeLabel();
             syncFilterUi();
             syncTabsUi();
             renderFavButton();
