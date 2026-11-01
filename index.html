@@ -305,6 +305,8 @@
         }
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
         .d-head { display: flex; align-items: center; gap: 14px; }
+        .d-head .d-title { flex: 1; min-width: 0; }
+        .d-head[data-cat="attraction"] #d-badge { order: 2; }   /* temps d'attente à droite du nom */
         .d-head .badge { width: 62px; height: 62px; }
         .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
         .status-text.is-strong { font-size: 15px; font-weight: 700; color: var(--ink); }
@@ -2065,6 +2067,9 @@
 
             const m = statusModel(item);
             els.statusBadge.innerHTML = badgeHtml(m);
+            // Carré à côté du nom : attractions seulement (à droite du nom) ; restaurants et spectacles : aucun
+            els.statusBadge.hidden = item.category !== 'attraction';
+            els.statusBadge.parentElement.dataset.cat = item.category;
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
             els.single.innerHTML = timesHtml(m) + singleHtml(m);
