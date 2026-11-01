@@ -14,16 +14,32 @@
         {
           "value": "Disneyland Park",
           "label": "Parc Disneyland",
-          "image": "https://placehold.co/120x120/12163A/FFFFFF?text=DP"
+          "image": "https://placehold.co/120x120/12163A/FFFFFF?text=DP",
+          "info": {
+            "hours": [
+              "À renseigner (ex. Tous les jours : 10h00 – 20h00)"
+            ]
+          }
         },
         {
           "value": "Disney Adventure World",
           "label": "Adventure World",
-          "image": "https://placehold.co/120x120/44309E/FFFFFF?text=AW"
+          "image": "https://placehold.co/120x120/44309E/FFFFFF?text=AW",
+          "info": {
+            "hours": [
+              "À renseigner (ex. Tous les jours : 10h00 – 20h00)"
+            ]
+          }
         }
       ],
       "legacyStorage": true,
-      "image": "https://placehold.co/800x500/12163A/FFFFFF?text=Disneyland+Paris"
+      "image": "https://placehold.co/800x500/12163A/FFFFFF?text=Disneyland+Paris",
+      "info": {
+        "address": "Boulevard de Parc, 77700 Coupvray, France",
+        "lat": 48.8722,
+        "lng": 2.7758
+      },
+      "events": []
     },
     {
       "id": "parc-asterix",
@@ -31,7 +47,7 @@
       "country": "FR",
       "timezone": "Europe/Paris",
       "locale": "fr-FR",
-      "themeparksId": "6cc48df2-f126-4f28-905d-b4c2c15765f2",
+      "themeparksId": null,
       "dataPath": "data/parc-asterix/",
       "parks": [
         {
@@ -41,13 +57,20 @@
         }
       ],
       "image": "https://placehold.co/800x500/8A4B00/FFFFFF?text=Parc+Ast%C3%A9rix",
-      "events": [
-        {
-          "label": "Peur sur le Parc",
-          "until": "2026-11-08",
-          "codes": []
-        }
-      ]
+      "info": {
+        "address": "D 526, 60128 Plailly, France",
+        "lat": 49.1366,
+        "lng": 2.5722,
+        "hours": [
+          "À renseigner (ex. Tous les jours : 10h00 – 18h00)"
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "label": "Peur sur le Parc",
+      "field": "Peur sur le parc"
     }
   ]
 }
