@@ -61,7 +61,7 @@ self.addEventListener('push', (event) => {
     };
 
     // Chaque push DOIT afficher une notification (obligatoire sur iOS, sous peine de perdre l'abonnement)
-    event.waitUntil(self.registration.showNotification(data.title || 'Alerte DLP Companion', options));
+    event.waitUntil(self.registration.showNotification(data.title || 'Alerte TPC Companion', options));
 });
 
 // 2. CLIC SUR LA NOTIFICATION : ouvre l'app sur la fiche concernée
