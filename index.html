@@ -157,6 +157,18 @@
 
         .card { display: flex; align-items: center; margin-bottom: 10px; border-radius: 18px; background: #fff; box-shadow: 0 2px 10px rgb(30 30 90 / .06); }
         .card.selected { box-shadow: 0 0 0 2px var(--acc), 0 2px 10px rgb(30 30 90 / .06); }
+        /* Attractions : photo en fond de tuile, légèrement floutée, voilée de blanc pour garder le texte lisible */
+        .card.has-bg { position: relative; overflow: hidden; }
+        .card-bg {
+            position: absolute; top: -10px; left: -10px; width: calc(100% + 20px); height: calc(100% + 20px);
+            object-fit: cover; filter: blur(3px) saturate(1.1); z-index: 0; pointer-events: none;
+        }
+        .card.has-bg::after {
+            content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            background: linear-gradient(90deg, rgb(255 255 255 / .9), rgb(255 255 255 / .72));
+        }
+        .card.has-bg .main, .card.has-bg .heart { position: relative; z-index: 1; }
+        .card.has-bg .sub { color: #3E4260; }
         .main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 12px 4px 12px 12px; text-align: left; border-radius: 18px; }
         .txt { flex: 1; min-width: 0; }
         .ttl { display: block; font-weight: 700; font-size: 15px; line-height: 1.25; }
@@ -1997,8 +2009,11 @@
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
                 ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : '';
 
+            const bg = item.category === 'attraction' ? safeUrl(item.image) : '';
+
             return `
-                <div class="card${selected ? ' selected' : ''}">
+                <div class="card${selected ? ' selected' : ''}${bg ? ' has-bg' : ''}">
+                    ${bg ? `<img class="card-bg" src="${esc(bg)}" alt="" loading="lazy" decoding="async">` : ''}
                     <button type="button" class="main" data-id="${esc(item.id)}"${selected ? ' aria-current="true"' : ''}>
                         ${badgeHtml(m, item)}
                         <span class="txt">
@@ -2716,7 +2731,9 @@
             // Photo de badge qui ne charge pas : on la retire, le badge de statut (dessous) reste visible.
             // « error » ne remonte pas : on l'écoute en phase de capture.
             els.list.addEventListener('error', (event) => {
-                if (event.target.matches?.('.badge.photo > img')) event.target.remove();
+                const t = event.target;
+                if (t.matches?.('.badge.photo > img')) t.remove();
+                else if (t.matches?.('.card-bg')) { t.parentElement.classList.remove('has-bg'); t.remove(); }
             }, true);
 
             els.btnBack.addEventListener('click', closeDetail);
