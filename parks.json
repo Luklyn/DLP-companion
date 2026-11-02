@@ -45,7 +45,12 @@
       "extraHoursLabel": "Extra Magic Hours",
       "icon": "castle",
       "color": "#2F46D1",
-      "iconImage": "icons/disneyland-paris.png"
+      "iconImage": "icons/disneyland-paris.png",
+      "theme": {
+        "acc": "#4F46C8",
+        "g1": "#4F46C8",
+        "g2": "#8A4FC4"
+      }
     },
     {
       "id": "parc-asterix",
@@ -74,7 +79,12 @@
       },
       "icon": "wing",
       "color": "#B45F06",
-      "iconImage": "icons/parc-asterix.png"
+      "iconImage": "icons/parc-asterix.png",
+      "theme": {
+        "acc": "#3F7A1F",
+        "g1": "#AB2B2B",
+        "g2": "#5E9A37"
+      }
     },
     {
       "id": "europa-park",
@@ -115,7 +125,12 @@
       "extraHoursLabel": "Accès anticipé aux parcs",
       "icon": "octopus",
       "color": "#1B3A8A",
-      "iconImage": "icons/europa-park.png"
+      "iconImage": "icons/europa-park.png",
+      "theme": {
+        "acc": "#264581",
+        "g1": "#264581",
+        "g2": "#6A7DA4"
+      }
     },
     {
       "id": "portaventura",
@@ -157,7 +172,12 @@
           "themeparksParkId": "91c92c4c-e079-4488-8c99-385bc81bd5d7"
         }
       ],
-      "iconImage": "icons/portaventura.png"
+      "iconImage": "icons/portaventura.png",
+      "theme": {
+        "acc": "#216197",
+        "g1": "#1C85C8",
+        "g2": "#253B90"
+      }
     }
   ],
   "events": [
