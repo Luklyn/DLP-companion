@@ -260,59 +260,42 @@
         .fav-cat { flex: none; font-size: 12px; font-weight: 600; color: var(--mut); }
         .menu-empty { font-size: 14px; color: var(--mut); line-height: 1.45; }
 
-        /* Page d'accueil : présentation + choix du parc */
-        .home {
-            position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg);
-            -webkit-overflow-scrolling: touch;
-        }
-        .home-in { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 20px calc(36px + var(--safe-bottom)); }
-        .home-hero {
-            position: relative; overflow: hidden; color: #fff;
-            background: radial-gradient(120% 90% at 85% 0%, rgb(242 179 61 / .28), transparent 55%),
-                        linear-gradient(160deg, var(--ink) 0%, #2B2F8F 55%, var(--g2) 100%);
-            padding: calc(22px + var(--safe-top)) 0 56px;
-            border-radius: 0 0 34px 34px;
-        }
-        .home-hero .home-in { padding-bottom: 0; }
-        .home-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: .01em; }
-        .home-logo { width: 38px; height: 38px; flex: none; display: block; filter: drop-shadow(0 4px 10px rgb(0 0 0 / .3)); }
-        .home h1 { margin: 30px 0 12px; max-width: 18ch; font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 7.4vw, 46px); line-height: 1.08; letter-spacing: -.01em; }
-        .home-lead { margin: 0; max-width: 52ch; font-size: 16.5px; line-height: 1.55; color: #D9DBF7; }
-        .home-cta {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; min-height: 48px; padding: 0 22px;
-            border-radius: 999px; background: var(--gold); color: var(--on); font-weight: 800; font-size: 15px; text-decoration: none;
-            box-shadow: 0 10px 24px rgb(0 0 0 / .25);
-        }
-        .home-cta .icon { width: 18px; height: 18px; transform: rotate(90deg); }
-        .home-sec { margin-top: 34px; }
-        .home-h2 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.2; }
-        .home-sub { margin: 0 0 16px; color: var(--mut); font-size: 14.5px; line-height: 1.5; }
-        .feat-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin: 0; padding: 0; list-style: none; }
-        .feat { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
-        .feat-i { flex: none; width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; color: #fff; background: linear-gradient(145deg, var(--g1), var(--g2)); }
-        .feat-i .icon { width: 22px; height: 22px; }
-        .feat-i.is-hw { background: linear-gradient(145deg, #2A1A3F, #5B2A86); color: #FFB347; }
-        .feat h3 { margin: 1px 0 3px; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
-        .feat p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--mut); }
-        .home-grid { display: grid; gap: 22px 14px; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+        /* Page d'accueil : choix du parc, avec l'état ouvert / fermé */
+        .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; }
+        .home-in { width: 100%; max-width: 560px; margin: 0 auto; padding: calc(26px + var(--safe-top)) 20px calc(28px + var(--safe-bottom)); }
+        .home-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ink); }
+        .home-logo { width: 38px; height: 38px; flex: none; display: block; }
+        .home h1 { margin: 26px 0 4px; font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.15; }
+        .home-lead { margin: 0 0 20px; font-size: 14.5px; line-height: 1.5; color: var(--mut); }
+        .home-grid { display: flex; flex-direction: column; gap: 12px; }
         .home-tile {
-            display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 4px 0; text-align: center; color: var(--ink);
-            background: none; border-radius: 18px;
+            display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; text-align: left; color: var(--ink);
+            background: #fff; border: 1.5px solid var(--line); border-radius: 22px; transition: transform .16s ease, box-shadow .16s ease;
         }
+        .home-tile:hover { box-shadow: 0 8px 20px rgb(30 30 90 / .12); }
+        .home-tile:active { transform: scale(.985); }
+        .home-tile[data-state="closed"] .app-ico { filter: grayscale(.75); opacity: .75; }
+        .home-tile[data-state="closed"] .ht-n { color: var(--mut); }
+        .home-tile[aria-current="true"] { border-color: var(--gold); }
         .app-ico {
-            position: relative; flex: none; width: 76px; height: 76px; border-radius: 22px; display: grid; place-items: center; color: #fff;
+            position: relative; flex: none; width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; color: #fff;
             background: linear-gradient(150deg, var(--rc, var(--g1)), color-mix(in srgb, var(--rc, var(--g2)) 55%, #000));
-            box-shadow: 0 8px 18px rgb(30 30 90 / .22), inset 0 1px 0 rgb(255 255 255 / .28);
-            transition: transform .16s ease;
+            box-shadow: 0 6px 14px rgb(30 30 90 / .2), inset 0 1px 0 rgb(255 255 255 / .28);
         }
-        .app-ico .icon { width: 40px; height: 40px; stroke-width: 1.7; }
-        .home-tile:hover .app-ico { transform: translateY(-2px); }
-        .home-tile:active .app-ico { transform: scale(.94); }
-        .home-tile .ht-n { display: block; font-weight: 800; font-size: 14px; line-height: 1.2; }
-        .home-tile .ht-s { display: block; margin-top: 2px; font-size: 11.5px; font-weight: 600; color: var(--mut); line-height: 1.3; }
-        .home-tile[aria-current="true"] .app-ico { outline: 3px solid var(--gold); outline-offset: 3px; }
-                .home-foot { margin: 30px 0 0; text-align: center; font-size: 12.5px; line-height: 1.5; color: var(--mut); }
-        @media (prefers-reduced-motion: reduce) { .app-ico { transition: none; } }
+        .app-ico .icon { width: 32px; height: 32px; stroke-width: 1.7; }
+        .ht { flex: 1; min-width: 0; }
+        .ht-n { display: block; font-family: var(--font-display); font-weight: 800; font-size: 17px; line-height: 1.2; }
+        .ht-parks { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+        .ht-p { display: flex; align-items: center; gap: 7px; font-size: 13px; line-height: 1.3; color: var(--mut); }
+        .ht-p .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #B8B9C9; }
+        .ht-p[data-s="open"] .dot { background: #1FA24A; box-shadow: 0 0 0 3px rgb(31 162 74 / .18); }
+        .ht-p[data-s="open"] .st { color: #14692E; font-weight: 800; }
+        .ht-p .st { margin-left: auto; flex: none; font-weight: 700; white-space: nowrap; }
+        .ht-p > span:empty:first-of-type + .st { margin-left: 0; }
+        .ht-go { flex: none; color: var(--mut); }
+        .ht-go .icon { width: 20px; height: 20px; }
+        .home-foot { margin: 22px 0 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--mut); }
+        @media (prefers-reduced-motion: reduce) { .home-tile { transition: none; } }
 
         /* ==========================================================================
            4. Détail
@@ -539,10 +522,9 @@
 
     <!-- Accueil : choix du parc -->
     <section id="home" class="home" hidden aria-labelledby="home-title">
-        <header class="home-hero">
-            <div class="home-in">
-                <div class="home-brand">
-                    <span class="home-logo" aria-hidden="true"><svg viewBox="0 0 512 512" width="100%" height="100%"><defs>
+        <div class="home-in">
+            <div class="home-brand">
+                <span class="home-logo" aria-hidden="true"><svg viewBox="0 0 512 512" width="100%" height="100%"><defs>
     <linearGradient id="tpcl-bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#12163A"/>
       <stop offset="0.55" stop-color="#2B2F8F"/>
@@ -572,34 +554,12 @@
   <!-- Étincelle -->
   <path d="M410 70l9 24 24 9-24 9-9 24-9-24-24-9 24-9z" fill="#FFFFFF" opacity=".95"/>
 </svg></span>
-                    Theme Parks Companion
-                </div>
-                <h1 id="home-title">Votre journée au parc, sans perdre une minute.</h1>
-                <p class="home-lead">Temps d’attente en direct, horaires du jour, alertes et favoris : tout ce qu’il faut pour organiser votre visite, réuni dans une seule application.</p>
-                <a class="home-cta" href="#home-parks" id="home-cta">Choisir mon parc <svg class="icon" aria-hidden="true"><use href="#i-next"/></svg></a>
+                Theme Parks Companion
             </div>
-        </header>
-        <div class="home-in">
-            <section class="home-sec" aria-labelledby="home-feat">
-                <h2 class="home-h2" id="home-feat">Ce que vous pouvez faire</h2>
-                <p class="home-sub">Les fonctions principales, pensées pour être utilisées d’une main dans la file.</p>
-                <ul class="feat-grid">
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-attraction"/></svg></span><div><h3>Temps d’attente en direct</h3><p>Consultez l’attente de chaque attraction, son statut et l’accès coupe-file quand il existe.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-bell"/></svg></span><div><h3>Alertes personnalisées</h3><p>Soyez prévenu quand une attente passe sous le seuil choisi ou qu’une attraction rouvre.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-heart"/></svg></span><div><h3>Favoris</h3><p>Gardez vos attractions, restaurants et spectacles préférés à portée de pouce.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-pin"/></svg></span><div><h3>Autour de moi</h3><p>Triez les lieux par distance pour trouver ce qui est le plus proche de vous.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-clock"/></svg></span><div><h3>Horaires et infos pratiques</h3><p>Horaires d’ouverture du jour, adresse et plan, mis à jour automatiquement.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-ticket"/></svg></span><div><h3>Portefeuille de billets</h3><p>Rangez vos billets et pass annuels pour les présenter sans chercher.</p></div></li>
-                    <li class="feat"><span class="feat-i is-hw" aria-hidden="true"><svg class="icon"><use href="#i-pumpkin"/></svg></span><div><h3>Événements du moment</h3><p>Les lieux Halloween et les événements en cours sont signalés par un badge dédié.</p></div></li>
-                    <li class="feat"><span class="feat-i" aria-hidden="true"><svg class="icon"><use href="#i-swap"/></svg></span><div><h3>Plusieurs parcs</h3><p>Passez d’un parc à l’autre en un geste, chacun avec ses propres favoris et alertes.</p></div></li>
-                </ul>
-            </section>
-            <section class="home-sec" id="home-parks" aria-labelledby="home-pick">
-                <h2 class="home-h2" id="home-pick">Choisissez votre parc</h2>
-                <p class="home-sub">Vous pourrez revenir à cet écran à tout moment depuis le menu.</p>
-                <div id="home-grid" class="home-grid"></div>
-            </section>
-            <p class="home-foot">Application indépendante, non affiliée aux parcs. Temps d’attente et horaires fournis par themeparks.wiki, à titre indicatif.</p>
+            <h1 id="home-title">Choisissez votre parc</h1>
+            <p class="home-lead">Temps d’attente, horaires et alertes en direct. Les parcs ouverts sont indiqués en vert.</p>
+            <div id="home-grid" class="home-grid"></div>
+            <p class="home-foot">Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.</p>
         </div>
     </section>
 
@@ -872,44 +832,74 @@
         const safeSet = (store, key, value) => { try { store.setItem(key, value); } catch { /* stockage indisponible */ } };
         const lastResort = findResort(safeGet(localStorage, RESORT_KEY)) ?? findResort(registry.default) ?? registry.resorts[0];
 
-        // Page d'accueil : une tuile (image) par parc. Renvoie le resort choisi.
+        // Page d'accueil : une carte par resort, avec l'état ouvert / fermé de chacun de ses parcs (planning du jour).
+        // Renvoie le resort choisi.
         function chooseResortOnHome() {
             const home = document.querySelector('#home');
             const grid = document.querySelector('#home-grid');
+            const SCHEDULE_URL = (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/schedule`;
+            const hm = (ms, tz, loc) => new Intl.DateTimeFormat(loc || 'fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(ms)).replace(':', 'h');
+            const dayKey = (tz) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+
+            // État d'un parc d'après son planning : { s: 'open' | 'closed', text }
+            function parkState(entries, tz, loc) {
+                if (!entries.length) return null;
+                const today = dayKey(tz), now = Date.now();
+                const day = entries.filter((e) => e.date === today && (e.type === 'OPERATING' || e.type === 'EXTRA_HOURS'))
+                    .map((e) => ({ o: Date.parse(e.openingTime), c: Date.parse(e.closingTime) })).filter((e) => e.o && e.c).sort((a, b) => a.o - b.o);
+                const cur = day.find((e) => now >= e.o && now <= e.c);
+                if (cur) return { s: 'open', text: 'Ouvert' };
+                const next = day.find((e) => e.o > now);
+                if (next) return { s: 'closed', text: `Ouvre ${hm(next.o, tz, loc)}` };
+                return { s: 'closed', text: 'Fermé' };
+            }
+
             return new Promise((resolve) => {
+                const tiles = new Map();   // resort.id -> { tile, rows: [{ row, st }] }
                 grid.replaceChildren(...registry.resorts.map((r) => {
                     const tile = document.createElement('button');
                     tile.type = 'button';
                     tile.className = 'home-tile';
                     tile.dataset.resort = r.id;
                     if (r.id === lastResort.id) tile.setAttribute('aria-current', 'true');
+
                     const ico = document.createElement('span');
                     ico.className = 'app-ico';
                     if (/^#[0-9a-f]{3,8}$/i.test(r.color ?? '')) ico.style.setProperty('--rc', r.color);
-                    const key = /^[a-z0-9-]+$/.test(r.icon ?? '') ? r.icon : 'wheel';
+                    const key = /^[a-z0-9-]+$/.test(r.icon ?? '') && document.querySelector(`#i-r-${r.icon}`) ? r.icon : 'wheel';
                     ico.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-r-${key}"/></svg>`;
-                    if (!document.querySelector(`#i-r-${key}`)) ico.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-r-wheel"/></svg>';
-                    tile.append(ico);
+
                     const txt = document.createElement('span');
                     txt.className = 'ht';
                     const name = document.createElement('span');
                     name.className = 'ht-n';
                     name.textContent = r.name;
-                    txt.append(name);
-                    const subtitle = (r.parks ?? []).length > 1 ? (r.parks ?? []).map((pk) => pk.label).join(' · ') : '';
-                    if (subtitle) {
-                        const sub = document.createElement('span');
-                        sub.className = 'ht-s';
-                        sub.textContent = subtitle;
-                        txt.append(sub);
-                    }
-                    tile.append(txt);
+                    const parks = document.createElement('span');
+                    parks.className = 'ht-parks';
+                    const rows = (r.parks ?? []).map((pk) => {
+                        const row = document.createElement('span');
+                        row.className = 'ht-p';
+                        const dot = document.createElement('i');
+                        dot.className = 'dot';
+                        const label = document.createElement('span');
+                        label.textContent = (r.parks.length === 1 && pk.label === r.name) ? '' : pk.label;
+                        const st = document.createElement('span');
+                        st.className = 'st';
+                        row.append(dot, label, st);
+                        parks.append(row);
+                        return { pk, row, st };
+                    });
+                    txt.append(name, parks);
+
+                    const go = document.createElement('span');
+                    go.className = 'ht-go';
+                    go.setAttribute('aria-hidden', 'true');
+                    go.innerHTML = '<svg class="icon"><use href="#i-next"/></svg>';
+                    tile.append(ico, txt, go);
+                    tiles.set(r.id, { tile, rows });
                     return tile;
                 }));
-                document.querySelector('#home-cta')?.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    document.querySelector('#home-parks')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
+
                 grid.addEventListener('click', (event) => {
                     const tile = event.target.closest('.home-tile');
                     const chosen = tile && findResort(tile.dataset.resort);
@@ -919,6 +909,39 @@
                 });
                 home.hidden = false;
                 home.scrollTop = 0;
+
+                // Planning du jour de chaque parc (en parallèle, sans bloquer l'accueil) ; les parcs ouverts passent en tête
+                const rank = (id) => ({ open: 0, unknown: 1, closed: 2 })[tiles.get(id).state ?? 'unknown'];
+                const resort0 = new Map(registry.resorts.map((r, i) => [r.id, i]));
+                const sortTiles = () => {
+                    const ordered = [...registry.resorts].sort((a, b) => rank(a.id) - rank(b.id) || resort0.get(a.id) - resort0.get(b.id));
+                    grid.replaceChildren(...ordered.map((r) => tiles.get(r.id).tile));
+                };
+                for (const r of registry.resorts) {
+                    const entry = tiles.get(r.id);
+                    Promise.all(entry.rows.map(async ({ pk, row, st }) => {
+                        if (!pk.themeparksParkId) return null;
+                        try {
+                            const ctrl = new AbortController();
+                            const timer = setTimeout(() => ctrl.abort(), 8000);
+                            const res = await fetch(SCHEDULE_URL(pk.themeparksParkId), { cache: 'no-store', signal: ctrl.signal });
+                            clearTimeout(timer);
+                            if (!res.ok) return null;
+                            const data = await res.json();
+                            const list = (data.schedule?.length ? data.schedule : (data.parks ?? []).flatMap((x) => x.schedule ?? []))
+                                .filter((e) => e?.date && e.openingTime && e.closingTime);
+                            const state = parkState(list, r.timezone || 'Europe/Paris', r.locale);
+                            if (state) { row.dataset.s = state.s; st.textContent = state.text; }
+                            return state;
+                        } catch { return null; }   // planning indisponible : pas d'indicateur
+                    })).then((states) => {
+                        const known = states.filter(Boolean);
+                        if (!known.length) return;
+                        entry.state = known.some((x) => x.s === 'open') ? 'open' : 'closed';
+                        entry.tile.dataset.state = entry.state;
+                        sortTiles();
+                    });
+                }
             });
         }
 
