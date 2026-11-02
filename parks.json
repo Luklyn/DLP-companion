@@ -203,7 +203,8 @@
           "value": "Magic Kingdom",
           "label": "Magic Kingdom",
           "image": "https://placehold.co/120x120/2F5BC4/FFFFFF?text=MK",
-          "themeparksParkId": "75ea578a-adc8-4116-a54d-dccb60765ef9"
+          "themeparksParkId": "75ea578a-adc8-4116-a54d-dccb60765ef9",
+          "hero": "images/hero/magic-kingdom.jpg"
         },
         {
           "value": "EPCOT",
