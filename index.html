@@ -1258,11 +1258,17 @@
             return 'high';
         };
 
-        function upcomingShowtimes(item) {
-            const now = Date.now();
+        // Séances du jour uniquement (jour calendaire du parc)
+        const showDayFmt = new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit' });
+        function todayShowtimes(item) {
+            const today = showDayFmt.format(new Date());
             return (item.live?.showtimes ?? [])
                 .map((s) => new Date(s.startTime))
-                .filter((d) => !Number.isNaN(d.getTime()) && d.getTime() >= now);
+                .filter((d) => !Number.isNaN(d.getTime()) && showDayFmt.format(d) === today);
+        }
+        function upcomingShowtimes(item) {
+            const now = Date.now();
+            return todayShowtimes(item).filter((d) => d.getTime() >= now);
         }
 
         // apiId -> { since: Date|null, checkedAt: ms } : heure de passage en panne, lue dans l'historique de l'API
@@ -1303,7 +1309,7 @@
                         m.times = upcoming.map((d) => timeFormat.format(d));
                         return m;
                     }
-                    if (item.live?.showtimes?.length) {
+                    if (todayShowtimes(item).length) {
                         const m = mk('off', 'Terminé', '', NO_MORE_SHOWS);
                         m.note = NO_MORE_SHOWS;
                         return m;
@@ -2035,6 +2041,8 @@
                     if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
                 }
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
+                // Spectacles : uniquement ceux qui ont au moins une séance prévue aujourd'hui (passée ou à venir)
+                if (!state.showFavorites && item.category === 'spectacle' && state.lastSync && !todayShowtimes(item).length) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
 
                 let dist = null;
