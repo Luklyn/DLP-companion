@@ -1298,7 +1298,8 @@
                     if (!status) return mk('off', '--', '', 'Données indisponibles');
                     if (status !== 'OPERATING') return mk('off', '--', '', 'Actuellement indisponible');
                     const { wait, single } = item.live;
-                    const m = mk(waitKind(wait), wait ?? '--', wait == null ? '' : 'min', '');
+                    // Ouvert (statut API) mais sans temps d'attente publié : on l'indique plutôt qu'un « -- »
+                    const m = wait == null ? mk('open', 'Ouvert', '', 'Ouvert') : mk(waitKind(wait), wait, 'min', '');
                     if (single != null) m.single = single;
                     return m;
                 }
@@ -1318,7 +1319,7 @@
                     return mk('off', '--', '', '');
                 }
                 case 'restaurant': {
-                    if (status !== 'OPERATING') return mk('off', '--', '', '');
+                    if (status && status !== 'OPERATING') return mk('off', '--', '', '');   // sans donnée live : on garde la mention déduite du type
                     const booking = RESERVATION_TYPES.has(searchKey(item.type));
                     const text = booking ? 'Réservation recommandée' : 'Entrée libre';
                     const m = mk('open', '', '', text);
