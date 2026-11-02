@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" role="img" aria-label="Theme Parks Companion">
+  <defs>
+    <linearGradient id="tpc-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12163A"/>
+      <stop offset="0.55" stop-color="#2B2F8F"/>
+      <stop offset="1" stop-color="#6A3FD0"/>
+    </linearGradient>
+    <radialGradient id="tpc-glow" cx="0.78" cy="0.12" r="0.7">
+      <stop offset="0" stop-color="#F2B33D" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#F2B33D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#tpc-bg)"/>
+  <rect width="512" height="512" rx="116" fill="url(#tpc-glow)"/>
+  <!-- Grande roue -->
+  <g fill="none" stroke="#F2B33D" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="256" cy="226" r="132" stroke-width="22"/>
+    <circle cx="256" cy="226" r="22" stroke-width="16"/>
+    <g stroke-width="9" opacity=".9">
+      <path d="M256 94v264M124 226h264M162.7 132.7l186.6 186.6M349.3 132.7L162.7 319.3"/>
+    </g>
+    <path d="M256 226L172 420M256 226l84 194M150 420h212" stroke-width="22"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="256" cy="94" r="15"/><circle cx="349.3" cy="132.7" r="15"/><circle cx="388" cy="226" r="15"/>
+    <circle cx="349.3" cy="319.3" r="15"/><circle cx="256" cy="358" r="15"/><circle cx="162.7" cy="319.3" r="15"/>
+    <circle cx="124" cy="226" r="15"/><circle cx="162.7" cy="132.7" r="15"/>
+  </g>
+  <!-- Étincelle -->
+  <path d="M410 70l9 24 24 9-24 9-9 24-9-24-24-9 24-9z" fill="#FFFFFF" opacity=".95"/>
+</svg>

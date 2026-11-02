@@ -42,7 +42,9 @@
         "lng": 2.7758
       },
       "events": [],
-      "extraHoursLabel": "Extra Magic Hours"
+      "extraHoursLabel": "Extra Magic Hours",
+      "icon": "castle",
+      "color": "#2F46D1"
     },
     {
       "id": "parc-asterix",
@@ -68,11 +70,13 @@
         "hours": [
           "À renseigner (ex. Tous les jours : 10h00 – 18h00)"
         ]
-      }
+      },
+      "icon": "menhir",
+      "color": "#B45F06"
     },
     {
       "id": "europa-park",
-      "name": "Europa-Park",
+      "name": "Europa Park",
       "country": "DE",
       "timezone": "Europe/Berlin",
       "locale": "fr-FR",
@@ -86,8 +90,8 @@
       },
       "parks": [
         {
-          "value": "Europa-Park",
-          "label": "Europa-Park",
+          "value": "Europa Park",
+          "label": "Europa Park",
           "image": "https://placehold.co/120x120/1B3A8A/FFFFFF?text=EP",
           "themeparksParkId": "639738d3-9574-4f60-ab5b-4c392901320b",
           "info": {
@@ -106,7 +110,9 @@
           }
         }
       ],
-      "extraHoursLabel": "Accès anticipé aux parcs"
+      "extraHoursLabel": "Accès anticipé aux parcs",
+      "icon": "coaster",
+      "color": "#1B3A8A"
     }
   ],
   "events": [
