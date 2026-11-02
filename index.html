@@ -1499,11 +1499,34 @@
             }
         }
 
+        /* --- Parc ouvert / fermé, d'après le planning du jour (themeparks.wiki /schedule) --- */
+        const parkOpen = new Map();   // park.value -> true | false (absent : inconnu)
+        const isParkClosed = (parkValue) => parkOpen.get(parkValue) === false;
+        function computeParkOpen(entries) {
+            if (!entries.length) return undefined;   // planning indisponible : on ne conclut pas
+            const today = showDayFmt.format(new Date());
+            const now = Date.now();
+            return entries.some((e) => e.date === today && (e.type === 'OPERATING' || e.type === 'EXTRA_HOURS')
+                && now >= Date.parse(e.openingTime) && now <= Date.parse(e.closingTime));
+        }
+        async function loadParkHours() {
+            let changed = false;
+            for (const park of CONFIG.PARKS) {
+                if (!park.themeparksParkId) continue;
+                try {
+                    const open = computeParkOpen(await loadSchedule(park.themeparksParkId));
+                    if (open !== undefined && parkOpen.get(park.value) !== open) { parkOpen.set(park.value, open); changed = true; }
+                } catch { /* horaires indisponibles : on ne masque rien */ }
+            }
+            if (changed) render();
+        }
+
         async function refresh() {
             if (!CONFIG.API_LIVE_URL) {   // parc sans données temps réel
                 state.ready = true;
                 setSync('static');
                 render();
+                loadParkHours();
                 return;
             }
             if (state.loading) return;
@@ -1529,6 +1552,7 @@
                 render();
             }
             if (ok) loadDownSince();   // sans bloquer l'affichage
+            loadParkHours();           // idem (mis en cache 15 min)
         }
 
         /* ======================================================================
@@ -2082,6 +2106,8 @@
                     if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
                 }
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
+                // Parc fermé : restaurants et spectacles masqués (visibles avec « Lieux fermés »)
+                if (!state.showClosed && !state.showFavorites && item.category !== 'attraction' && isParkClosed(item.park)) continue;
                 // Attractions : uniquement celles dont l'API fournit un statut (sinon aucune donnée exploitable)
                 if (!state.showFavorites && item.category === 'attraction' && state.lastSync && CONFIG.API_LIVE_URL && !statusOf(item)) continue;
                 // Une fois synchronisé, on ne garde que les lieux dont l'API fournit des données (statut), tous parcs confondus
@@ -2169,7 +2195,10 @@
 
             const entries = getVisibleEntries();
             if (!entries.length) {
-                const hint = state.query
+                const closedPark = !state.query && !state.showFavorites && !state.nearby && !state.showClosed && isParkClosed(state.park);
+                const hint = closedPark
+                    ? 'Le parc est actuellement fermé.<br>Touchez « Lieux fermés » pour afficher tous les lieux.'
+                    : state.query
                     ? 'Aucun résultat pour cette recherche.'
                     : state.showFavorites && !favorites.size
                         ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
