@@ -411,6 +411,10 @@
         .sr .icon { flex: none; color: var(--acc); }
         .sr-single { background: #EEF0FF; border-color: #C9CFFF; }
         .sr-single .icon, .sr-single .sr-l { color: #4B55C9; }
+        .dine-box { display: flex; flex-direction: column; width: 100%; margin-top: 4px; border: 1px solid #A9DDB9; background: #F1FAF4; border-radius: 12px; padding: 8px 12px; }
+        .dine-h { font-size: 12px; font-weight: 700; color: #14692E; margin-bottom: 4px; }
+        .dine-r { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 14px; border-top: 1px solid #D5EDDC; }
+        .dine-r b { font-family: var(--font-display); font-weight: 800; color: var(--ink); }
         .sr-dine { background: #DDF3E4; border-color: #A9DDB9; }
         .sr-dine .icon, .sr-dine .sr-l { color: #14692E; }
         .sr.vq { background: #FFF3E0; border-color: #F6CE92; }
@@ -1580,8 +1584,14 @@
         const singleHtml = (m) => m.single == null ? ''
             : `<span class="sr sr-single"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-user"/></svg><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
 
-        const diningHtml = (m) => m.dining
-            ? `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">Disponibilité</span><span class="sr-t">${esc(m.dining.text)}</span></span>` : '';
+        // Liste : simple badge « consultables » ; fiche : tableau complet (attente par taille de groupe)
+        const diningHtml = (m, full = false) => {
+            if (!m.dining) return '';
+            if (!full) return `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">Disponibilités consultables</span></span>`;
+            const fmt = (w) => w <= 0 ? 'Immédiat' : `~${w} min`;
+            return `<span class="dine-box"><span class="dine-h">Prochaines disponibilités</span>${m.dining.rows.map((r) =>
+                `<span class="dine-r"><span>${r.size} personne${r.size > 1 ? 's' : ''}</span><b>${esc(fmt(r.wait))}</b></span>`).join('')}</span>`;
+        };
 
         const vqHtml = (m) => m.vq
             ? `<span class="sr vq"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">File virtuelle</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
@@ -1650,14 +1660,13 @@
             return null;
         }
 
-        // Disponibilité à table (restaurants, API « diningAvailability ») : délai d'attente le plus court pour 2 personnes (sinon le plus court tout court)
+        // Disponibilités à table (restaurants, API « diningAvailability ») : une attente estimée par taille de groupe
         function parseDining(list) {
-            if (!Array.isArray(list) || !list.length) return null;
-            const ok = list.filter((d) => Number.isFinite(d?.waitTime));
-            if (!ok.length) return null;
-            const two = ok.find((d) => d.partySize === 2);
-            const w = two ? two.waitTime : Math.min(...ok.map((d) => d.waitTime));
-            return { text: w <= 0 ? 'Table disponible' : `Table dans ~${w} min` };
+            if (!Array.isArray(list)) return null;
+            const rows = list.filter((d) => Number.isFinite(d?.waitTime) && Number.isFinite(d?.partySize))
+                .map((d) => ({ size: d.partySize, wait: d.waitTime }))
+                .sort((x, y) => x.size - y.size);
+            return rows.length ? { rows } : null;
         }
 
         function applyLive(liveData) {
@@ -2664,7 +2673,7 @@
             els.statusBadge.parentElement.dataset.cat = item.category;
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
-            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m);
+            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m, true);
             els.statusText.hidden = !m.text;
             els.stBlock.hidden = !m.text && !els.single.innerHTML;
 
