@@ -9,7 +9,6 @@
     <title>Theme Parks Companion</title>
 
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="icon.svg">
     <link rel="icon" type="image/png" sizes="192x192" href="icon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="mobile-web-app-capable" content="yes">
@@ -295,7 +294,7 @@
         .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; }
         .home-in { width: 100%; max-width: 560px; margin: 0 auto; padding: calc(26px + var(--safe-top)) 20px calc(28px + var(--safe-bottom)); }
         .home-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ink); }
-        .home-logo { width: 38px; height: 38px; flex: none; display: block; }
+        .home-logo { width: 38px; height: 38px; flex: none; display: block; border-radius: 10px; }
         .home h1 { margin: 26px 0 6px; font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.12; }
         .home-lead { margin: 0 0 22px; font-size: 15px; line-height: 1.55; color: var(--mut); }
         .home-lead strong { color: var(--ink); }
@@ -322,6 +321,8 @@
             box-shadow: 0 6px 14px rgb(30 30 90 / .2), inset 0 1px 0 rgb(255 255 255 / .28);
         }
         .app-ico .icon { width: 32px; height: 32px; stroke-width: 1.7; }
+        .app-ico.has-img { background: none; box-shadow: 0 6px 14px rgb(30 30 90 / .2); overflow: hidden; }
+        .app-ico.has-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
         .ht { flex: 1; min-width: 0; }
         .ht-n { display: block; font-family: var(--font-display); font-weight: 800; font-size: 17px; line-height: 1.2; }
         .ht-parks { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
@@ -577,36 +578,7 @@
     <section id="home" class="home" hidden aria-labelledby="home-title">
         <div class="home-in">
             <div class="home-brand">
-                <span class="home-logo" aria-hidden="true"><svg viewBox="0 0 512 512" width="100%" height="100%"><defs>
-    <linearGradient id="tpcl-bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#12163A"/>
-      <stop offset="0.55" stop-color="#2B2F8F"/>
-      <stop offset="1" stop-color="#6A3FD0"/>
-    </linearGradient>
-    <radialGradient id="tpcl-glow" cx="0.78" cy="0.12" r="0.7">
-      <stop offset="0" stop-color="#F2B33D" stop-opacity=".2"/>
-      <stop offset="1" stop-color="#F2B33D" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="512" height="512" rx="116" fill="url(#tpcl-bg)"/>
-  <rect width="512" height="512" rx="116" fill="url(#tpcl-glow)"/>
-  <!-- Grande roue -->
-  <g fill="none" stroke="#F2B33D" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="256" cy="226" r="132" stroke-width="22"/>
-    <circle cx="256" cy="226" r="22" stroke-width="16"/>
-    <g stroke-width="9" opacity=".9">
-      <path d="M256 94v264M124 226h264M162.7 132.7l186.6 186.6M349.3 132.7L162.7 319.3"/>
-    </g>
-    <path d="M256 226L172 420M256 226l84 194M150 420h212" stroke-width="22"/>
-  </g>
-  <g fill="#FFFFFF">
-    <circle cx="256" cy="94" r="15"/><circle cx="349.3" cy="132.7" r="15"/><circle cx="388" cy="226" r="15"/>
-    <circle cx="349.3" cy="319.3" r="15"/><circle cx="256" cy="358" r="15"/><circle cx="162.7" cy="319.3" r="15"/>
-    <circle cx="124" cy="226" r="15"/><circle cx="162.7" cy="132.7" r="15"/>
-  </g>
-  <!-- Étincelle -->
-  <path d="M410 70l9 24 24 9-24 9-9 24-9-24-24-9 24-9z" fill="#FFFFFF" opacity=".95"/>
-</svg></span>
+                <img class="home-logo" src="icons/tpc-64.png" alt="" width="38" height="38">
                 Theme Parks Companion
             </div>
             <h1 id="home-title">Bienvenue&nbsp;!</h1>
@@ -950,7 +922,17 @@
                     ico.className = 'app-ico';
                     if (/^#[0-9a-f]{3,8}$/i.test(r.color ?? '')) ico.style.setProperty('--rc', r.color);
                     const key = /^[a-z0-9-]+$/.test(r.icon ?? '') && document.querySelector(`#i-r-${r.icon}`) ? r.icon : 'wheel';
-                    ico.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-r-${key}"/></svg>`;
+                    const showSymbol = () => { ico.classList.remove('has-img'); ico.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-r-${key}"/></svg>`; };
+                    if (/^icons\/[\w.-]+\.(png|webp|jpe?g)$/i.test(r.iconImage ?? '')) {
+                        // Icône illustrée du parc (carré plein) ; en cas d'échec de chargement, retour à l'icône vectorielle
+                        const img = new Image();
+                        img.alt = '';
+                        img.decoding = 'async';
+                        img.onerror = showSymbol;
+                        img.src = r.iconImage;
+                        ico.classList.add('has-img');
+                        ico.append(img);
+                    } else showSymbol();
 
                     const txt = document.createElement('span');
                     txt.className = 'ht';

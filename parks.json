@@ -44,7 +44,8 @@
       "events": [],
       "extraHoursLabel": "Extra Magic Hours",
       "icon": "castle",
-      "color": "#2F46D1"
+      "color": "#2F46D1",
+      "iconImage": "icons/disneyland-paris.png"
     },
     {
       "id": "parc-asterix",
@@ -72,7 +73,8 @@
         ]
       },
       "icon": "wing",
-      "color": "#B45F06"
+      "color": "#B45F06",
+      "iconImage": "icons/parc-asterix.png"
     },
     {
       "id": "europa-park",
@@ -112,7 +114,8 @@
       ],
       "extraHoursLabel": "Accès anticipé aux parcs",
       "icon": "octopus",
-      "color": "#1B3A8A"
+      "color": "#1B3A8A",
+      "iconImage": "icons/europa-park.png"
     },
     {
       "id": "portaventura",
@@ -153,7 +156,8 @@
           "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=CA",
           "themeparksParkId": "91c92c4c-e079-4488-8c99-385bc81bd5d7"
         }
-      ]
+      ],
+      "iconImage": "icons/portaventura.png"
     }
   ],
   "events": [
