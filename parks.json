@@ -71,7 +71,7 @@
           "À renseigner (ex. Tous les jours : 10h00 – 18h00)"
         ]
       },
-      "icon": "menhir",
+      "icon": "wing",
       "color": "#B45F06"
     },
     {
@@ -122,7 +122,7 @@
       "locale": "fr-FR",
       "themeparksId": "498b1747-cc17-4490-aee9-a45147f0f706",
       "dataPath": "data/port-aventura/",
-      "icon": "wheel",
+      "icon": "tophat",
       "color": "#D1492F",
       "noLiveData": [
         "restaurant",
