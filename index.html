@@ -411,6 +411,8 @@
         .sr .icon { flex: none; color: var(--acc); }
         .sr-single { background: #EEF0FF; border-color: #C9CFFF; }
         .sr-single .icon, .sr-single .sr-l { color: #4B55C9; }
+        .sr-dine { background: #DDF3E4; border-color: #A9DDB9; }
+        .sr-dine .icon, .sr-dine .sr-l { color: #14692E; }
         .sr.vq { background: #FFF3E0; border-color: #F6CE92; }
         .sr.vq .icon, .sr.vq .sr-l { color: #B35F0B; }
         .sr.vq { flex-wrap: wrap; white-space: normal; gap: 2px 8px; }
@@ -633,10 +635,10 @@
         <header class="hero">
             <div class="hero-top">
                 <h1 class="sr-only">Theme Parks Companion</h1>
-                <button id="btn-home" class="round" type="button" hidden aria-label="Accueil : liste des parcs" title="Accueil">
-                    <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-home"/></svg>
-                </button>
                 <div class="hero-actions">
+                    <button id="btn-home" class="round" type="button" hidden aria-label="Accueil : liste des parcs" title="Accueil">
+                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-home"/></svg>
+                    </button>
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
                     </button>
@@ -1565,6 +1567,7 @@
                     const text = booking ? 'Réservation recommandée' : 'Entrée libre';
                     const m = mk('open', '', '', text);
                     m.icon = 'i-restaurant';
+                    if (item.live?.dining) m.dining = item.live.dining;
                     m.access = { text, kind: booking ? 'resa' : 'free' };
                     return m;
                 }
@@ -1576,6 +1579,9 @@
         // Pastille « Single Rider » (liste + fiche)
         const singleHtml = (m) => m.single == null ? ''
             : `<span class="sr sr-single"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-user"/></svg><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
+
+        const diningHtml = (m) => m.dining
+            ? `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">Disponibilité</span><span class="sr-t">${esc(m.dining.text)}</span></span>` : '';
 
         const vqHtml = (m) => m.vq
             ? `<span class="sr vq"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">File virtuelle</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
@@ -1644,6 +1650,16 @@
             return null;
         }
 
+        // Disponibilité à table (restaurants, API « diningAvailability ») : délai d'attente le plus court pour 2 personnes (sinon le plus court tout court)
+        function parseDining(list) {
+            if (!Array.isArray(list) || !list.length) return null;
+            const ok = list.filter((d) => Number.isFinite(d?.waitTime));
+            if (!ok.length) return null;
+            const two = ok.find((d) => d.partySize === 2);
+            const w = two ? two.waitTime : Math.min(...ok.map((d) => d.waitTime));
+            return { text: w <= 0 ? 'Table disponible' : `Table dans ~${w} min` };
+        }
+
         function applyLive(liveData) {
             const byId = new Map();
             for (const entry of liveData) {
@@ -1660,6 +1676,7 @@
                     wait: live.queue?.STANDBY?.waitTime ?? null,
                     single: live.queue?.SINGLE_RIDER?.waitTime ?? null,
                     vq: parseVirtualQueue(live.queue),
+                    dining: parseDining(live.diningAvailability),
                     showtimes: Array.isArray(live.showtimes) ? live.showtimes : [],
                 };
                 if (item.live.status !== 'DOWN') downInfo.delete(item.apiId);   // la panne est terminée
@@ -2504,7 +2521,7 @@
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
                             ${eventHtml(item)}${hwHtml(item)}
                             ${extra}
-                            ${(m.single != null || m.vq) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}</span>` : ''}
+                            ${(m.single != null || m.vq || m.dining) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}${diningHtml(m)}</span>` : ''}
                         </span>
                     </button>
                     <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
@@ -2647,7 +2664,7 @@
             els.statusBadge.parentElement.dataset.cat = item.category;
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
-            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m);
+            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m);
             els.statusText.hidden = !m.text;
             els.stBlock.hidden = !m.text && !els.single.innerHTML;
 
