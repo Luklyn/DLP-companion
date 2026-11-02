@@ -1029,7 +1029,8 @@
             [attractionsRaw, restaurantsRaw, showsRaw] = await Promise.all(DATA_FILES.map(loadList));
         } catch (error) {
             console.error('Chargement des données impossible :', error);
-            $('#list').innerHTML = '<div class="empty">Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button></div>';
+            $('#list').innerHTML = '<div class="empty">Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button><br><br><small class="empty-detail"></small></div>';
+            $('#list .empty-detail').textContent = String(error?.message ?? error);   // fichier en cause (ex. « data/xxx/shows.json : HTTP 404 »)
             $('#btn-reload').addEventListener('click', () => location.reload());
             return;
         }
