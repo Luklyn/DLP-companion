@@ -121,7 +121,7 @@
       "timezone": "Europe/Madrid",
       "locale": "fr-FR",
       "themeparksId": "498b1747-cc17-4490-aee9-a45147f0f706",
-      "dataPath": "data/portaventura/",
+      "dataPath": "data/port-aventura/",
       "icon": "wheel",
       "color": "#D1492F",
       "noLiveData": [
