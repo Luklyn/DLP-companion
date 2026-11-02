@@ -404,6 +404,8 @@
             background: color-mix(in srgb, var(--acc) 11%, #fff);
             border: 1px solid color-mix(in srgb, var(--acc) 30%, #fff);
         }
+        .sr { margin-right: 6px; }
+        .sr.vq { flex-wrap: wrap; white-space: normal; gap: 2px 8px; }
         .sr-l { font-size: 12px; font-weight: 700; color: var(--acc); }
         .sr-t { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ink); }
         .d-st .sr { margin-top: 0; }
@@ -1527,6 +1529,7 @@
                     // Ouvert (statut API) mais sans temps d'attente publié : on l'indique plutôt qu'un « -- »
                     const m = wait == null ? mk('open', 'Ouvert', '', 'Ouvert') : mk(waitKind(wait), wait, 'min', '');
                     if (single != null) m.single = single;
+                    if (item.live.vq) m.vq = item.live.vq;
                     return m;
                 }
                 case 'spectacle': {
@@ -1561,6 +1564,9 @@
         // Pastille « Single Rider » (liste + fiche)
         const singleHtml = (m) => m.single == null ? ''
             : `<span class="sr"><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
+
+        const vqHtml = (m) => m.vq
+            ? `<span class="sr vq"><span class="sr-l">Virtual Queue</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
 
         // Horaires des séances, présentés sous le type de spectacle (liste + fiche)
         const timesHtml = (m) => m.times?.length
@@ -1604,6 +1610,28 @@
             }
         }
 
+        /**
+         * File virtuelle (Virtual Queue) : RETURN_TIME (créneau de retour) ou BOARDING_GROUP (groupes appelés).
+         * Renvoyée seulement quand elle est disponible ; la file payante (PAID_RETURN_TIME) n'est pas concernée.
+         */
+        function parseVirtualQueue(queue) {
+            const hhmm = (iso) => { const d = iso ? new Date(iso) : null; return d && !Number.isNaN(d.getTime()) ? timeFormat.format(d) : null; };
+            const rt = queue?.RETURN_TIME;
+            if (rt && rt.state === 'AVAILABLE') {
+                const start = hhmm(rt.returnStart), end = hhmm(rt.returnEnd);
+                if (!start) return { text: 'Disponible' };
+                return { text: `Retour ${start}${end && end !== start ? ` – ${end}` : ''}` };
+            }
+            const bg = queue?.BOARDING_GROUP;
+            if (bg && bg.allocationStatus === 'AVAILABLE') {
+                const a = bg.currentGroupStart, b = bg.currentGroupEnd;
+                if (a != null && b != null) return { text: `Groupes ${a}${b !== a ? ` – ${b}` : ''} appelés` };
+                const next = hhmm(bg.nextAllocationTime);
+                return { text: next ? `Prochains groupes à ${next}` : 'Disponible' };
+            }
+            return null;
+        }
+
         function applyLive(liveData) {
             const byId = new Map();
             for (const entry of liveData) {
@@ -1619,6 +1647,7 @@
                     status: live.status ?? null,
                     wait: live.queue?.STANDBY?.waitTime ?? null,
                     single: live.queue?.SINGLE_RIDER?.waitTime ?? null,
+                    vq: parseVirtualQueue(live.queue),
                     showtimes: Array.isArray(live.showtimes) ? live.showtimes : [],
                 };
                 if (item.live.status !== 'DOWN') downInfo.delete(item.apiId);   // la panne est terminée
@@ -2449,7 +2478,7 @@
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
                             ${eventHtml(item)}${hwHtml(item)}
                             ${extra}
-                            ${singleHtml(m)}
+                            ${singleHtml(m)}${vqHtml(m)}
                         </span>
                     </button>
                     <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
@@ -2569,7 +2598,7 @@
             els.statusBadge.parentElement.dataset.cat = item.category;
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
-            els.single.innerHTML = timesHtml(m) + singleHtml(m);
+            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m);
             els.statusText.hidden = !m.text;
             els.stBlock.hidden = !m.text && !els.single.innerHTML;
 
