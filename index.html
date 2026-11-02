@@ -1648,6 +1648,11 @@
             if (rt && rt.state === 'AVAILABLE') {
                 const start = hhmm(rt.returnStart), end = hhmm(rt.returnEnd);
                 if (!start) return { text: 'Disponible' };
+                const t0 = new Date(rt.returnStart).getTime(), t1 = rt.returnEnd ? new Date(rt.returnEnd).getTime() : null, now = Date.now();
+                // Créneau entièrement passé : donnée périmée, on n'affiche rien plutôt qu'un retour dans le passé
+                if ((t1 != null && t1 < now) || (t1 == null && t0 < now - 15 * 60000)) return null;
+                // Créneau déjà commencé mais pas terminé : on peut s'y présenter tout de suite
+                if (t0 <= now) return { text: end ? `Retour dès maintenant – ${end}` : 'Retour dès maintenant' };
                 return { text: `Retour ${start}${end && end !== start ? ` – ${end}` : ''}` };
             }
             const bg = queue?.BOARDING_GROUP;
