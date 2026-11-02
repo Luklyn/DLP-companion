@@ -105,8 +105,8 @@
 
         /* En-tête */
         .hero {
-            display: flex; flex-direction: column; gap: 14px;
-            padding: calc(30px + var(--safe-top)) 20px 28px;
+            display: flex; flex-direction: column; gap: 26px;
+            padding: calc(34px + var(--safe-top)) 20px 34px;
             border-radius: 0 0 28px 28px; color: #fff;
             background: var(--ink);
         }
@@ -181,13 +181,9 @@
         .badge.tm { font-size: 17px; }
         .badge.sm { font-size: 13px; }
 
-        /* Photo du lieu dans le badge (restaurants, spectacles) : le badge de statut reste dessous, en secours */
         .badge.photo { position: relative; overflow: hidden; }
-        /* Attractions : photo en fond du badge, teintée de la couleur du temps d'attente pour garder le chiffre lisible */
-        .badge.low { --bk: #DDF3E4; } .badge.mid { --bk: #FFE9C7; } .badge.high { --bk: #FFD9D6; } .badge.off { --bk: #E8E8EF; } .badge.down { --bk: #FFE9C7; }
-        .badge.tint::after { content: ""; position: absolute; inset: 0; background: var(--bk, #E8E8EF); opacity: .72; }
-        .badge.tint .bt { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
         .badge.photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .badge.low { --bk: #DDF3E4; } .badge.mid { --bk: #FFE9C7; } .badge.high { --bk: #FFD9D6; } .badge.off { --bk: #E8E8EF; } .badge.down { --bk: #FFE9C7; }
 
         /* Horaires de séances (liste + fiche) : séparés du type de spectacle */
         .times { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
@@ -240,6 +236,8 @@
         .menu-sec { padding: 14px 0; border-top: 1px solid var(--line); }
         .panel-head + .menu-sec { border-top: 0; padding-top: 4px; }
         .menu-h { display: flex; align-items: baseline; gap: 8px; margin: 0 0 10px; font-family: var(--font-display); font-weight: 800; font-size: 14px; }
+        #info-park { flex-basis: 100%; order: -1; margin-bottom: 2px; font: 800 22px/1.2 var(--font-display); color: var(--acc); }
+        .menu-h.has-park { flex-wrap: wrap; }
         .menu-h-note { font: 600 13px var(--font); color: var(--mut); }
         .menu-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         .menu-v { font-size: 15px; font-weight: 700; }
@@ -696,7 +694,7 @@
                 </button>
             </div>
             <div class="menu-sec">
-                <h3 class="menu-h">Infos pratiques <span id="info-park" class="menu-h-note"></span></h3>
+                <h3 class="menu-h has-park"><span id="info-park" class="menu-h-note"></span>Infos pratiques</h3>
                 <div id="info-body" class="info"></div>
             </div>
             <div class="menu-sec">
@@ -1341,10 +1339,10 @@
             ? `<span class="times">${m.times.map((t) => `<span class="time">${esc(t)}</span>`).join('')}</span>` : '';
 
         /**
-         * Badge carré. Si « item » est fourni (liste) et que c'est un restaurant ou un spectacle,
-         * la photo du lieu est affichée par-dessus le badge de statut, qui reste dessous en secours
-         * (photo absente ou en erreur : voir l'écouteur « error » dans bindEvents).
+         * Badge carré de statut. Restaurants et spectacles : photo du lieu par-dessus (le statut reste dessous en secours).
          */
+        // Images déjà en échec : on ne les redemande pas pendant la session
+        const failedImages = new Set();
         function badgeHtml(m, item = null) {
             let inner;
             let size = '';
@@ -1355,12 +1353,12 @@
                 size = /^(\d{1,3}|--)$/.test(big) ? '' : /^\d\d:\d\d$/.test(big) ? ' tm' : ' sm';
                 inner = `${esc(big)}${m.unit ? `<small>${esc(m.unit)}</small>` : ''}`;
             }
-            const photo = item ? safeUrl(item.image) : '';
-            const img = photo ? `<img src="${esc(photo)}" alt="" loading="lazy" decoding="async">` : '';
-            if (photo && item.category === 'attraction') {   // temps d'attente par-dessus la photo teintée
-                return `<span class="badge ${m.kind}${size} photo tint">${img}<span class="bt">${inner}</span></span>`;
-            }
-            return `<span class="badge ${m.kind}${size}${photo ? ' photo' : ''}">${inner}${img}</span>`;
+            // Photo dans le badge : restaurants et spectacles uniquement (jamais les attractions, pour garder le temps d'attente lisible).
+            // Chargement différé (seules les cartes visibles sont téléchargées), décodage asynchrone, priorité basse.
+            const photo = item && item.category !== 'attraction' ? safeUrl(item.image) : '';
+            if (!photo || failedImages.has(photo)) return `<span class="badge ${m.kind}${size}">${inner}</span>`;
+            const img = `<img src="${esc(photo)}" alt="" loading="lazy" decoding="async" fetchpriority="low" width="62" height="62">`;
+            return `<span class="badge ${m.kind}${size} photo">${inner}${img}</span>`;
         }
 
         /* ======================================================================
@@ -2185,9 +2183,11 @@
             els.image.onload = els.image.onerror = null;
             els.image.removeAttribute('src');
             if (!url) { els.hero.dataset.img = 'none'; return; }
+            if (failedImages.has(url)) { els.hero.dataset.img = 'error'; return; }   // pas de nouvelle requête vers une image déjà en échec
             els.hero.dataset.img = 'loading';
+            els.image.decoding = 'async';
             els.image.onload = () => { if (shownImage === url) els.hero.dataset.img = 'loaded'; };
-            els.image.onerror = () => { if (shownImage === url) els.hero.dataset.img = 'error'; };
+            els.image.onerror = () => { failedImages.add(url); if (shownImage === url) els.hero.dataset.img = 'error'; };
             els.image.src = url;
         }
 
@@ -2299,6 +2299,8 @@
         const SCHEDULE_TTL_MS = 15 * 60_000;
         const scheduleCache = new Map();   // themeparksParkId -> { at, entries }
         const SCHEDULE_LABELS = { TICKETED_EVENT: 'Événement payant', PRIVATE_EVENT: 'Événement privé', EXTRA_HOURS: 'Horaires étendus' };
+        // Nom officiel des horaires étendus : clé « extraHoursLabel » du parc, puis du resort (parks.json), sinon libellé générique
+        const scheduleLabel = (type, park) => (type === 'EXTRA_HOURS' ? (park?.extraHoursLabel ?? resort.extraHoursLabel ?? SCHEDULE_LABELS.EXTRA_HOURS) : SCHEDULE_LABELS[type]);
         const SCHEDULE_DAYS = 1;   // seul l'horaire du jour est affiché
 
         async function loadSchedule(parkId) {
@@ -2315,17 +2317,17 @@
         const hourText = (iso) => timeFormat.format(new Date(iso)).replace(':', 'h');
         const dayShift = (key, n) => { const d = new Date(`${key}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
-        function scheduleHtml(entries) {
+        function scheduleHtml(entries, park) {
             const dayFmt = new Intl.DateTimeFormat(CONFIG.LOCALE, { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
             const lines = [];
             for (let i = 0; i < SCHEDULE_DAYS; i++) {
                 const key = dayShift(todayKey, i);
-                const day = entries.filter((e) => e.date === key && (e.type === 'OPERATING' || SCHEDULE_LABELS[e.type]))
+                const day = entries.filter((e) => e.date === key && (e.type === 'OPERATING' || scheduleLabel(e.type, park)))
                     .sort((a, b) => (a.type === 'OPERATING' ? -1 : 1) - (b.type === 'OPERATING' ? -1 : 1) || a.openingTime.localeCompare(b.openingTime));
                 const label = i === 0 ? 'Aujourd’hui' : i === 1 ? 'Demain' : dayFmt.format(new Date(`${key}T12:00:00Z`));
                 if (!day.length) { if (i === 0) lines.push(`<span><b>${esc(label)}</b> : fermé</span>`); continue; }   // jours sans planning : non affichés
                 for (const e of day) {
-                    const extra = SCHEDULE_LABELS[e.type] ? ` <em>(${esc(SCHEDULE_LABELS[e.type])})</em>` : '';
+                    const extra = scheduleLabel(e.type, park) ? ` <em>(${esc(scheduleLabel(e.type, park))})</em>` : '';
                     lines.push(`<span><b>${esc(label)}</b> : ${hourText(e.openingTime)} – ${hourText(e.closingTime)}${extra}</span>`);
                 }
             }
@@ -2339,7 +2341,7 @@
                 const v = target();
                 if (!v) return;
                 if (!entries.length) throw new Error('planning vide');
-                v.innerHTML = scheduleHtml(entries);
+                v.innerHTML = scheduleHtml(entries, park);
                 v.parentElement.hidden = false;
             } catch (error) {
                 console.error('Horaires indisponibles :', error);
@@ -2822,7 +2824,7 @@
             // Photo de badge qui ne charge pas : on la retire, le badge de statut (dessous) reste visible.
             // « error » ne remonte pas : on l'écoute en phase de capture.
             els.list.addEventListener('error', (event) => {
-                if (event.target.matches?.('.badge.photo > img')) event.target.remove();
+                if (event.target.matches?.('.badge.photo > img')) { failedImages.add(event.target.getAttribute('src')); event.target.remove(); }
             }, true);
 
             els.btnBack.addEventListener('click', closeDetail);
