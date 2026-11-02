@@ -843,7 +843,7 @@
 
             // État d'un parc d'après son planning : { s: 'open' | 'closed', text }
             function parkState(entries, tz, loc) {
-                if (!entries.length) return null;
+                if (!entries.length) return { s: 'closed', text: 'Fermé' };   // API OK mais aucun planning : parc fermé (saisonnier)
                 const today = dayKey(tz), now = Date.now();
                 const day = entries.filter((e) => e.date === today && (e.type === 'OPERATING' || e.type === 'EXTRA_HOURS'))
                     .map((e) => ({ o: Date.parse(e.openingTime), c: Date.parse(e.closingTime) })).filter((e) => e.o && e.c).sort((a, b) => a.o - b.o);
