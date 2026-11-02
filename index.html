@@ -109,7 +109,7 @@
             display: flex; flex-direction: column; gap: 0;
             padding: calc(12px + var(--safe-top)) 16px 16px;
             border-radius: 0 0 24px 24px; color: #fff;
-            background: var(--ink);
+            background: radial-gradient(110% 130% at 100% 0%, var(--glow, transparent), transparent 62%), var(--ink);
         }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         .hero :focus-visible { outline-color: #fff; }
@@ -1092,6 +1092,19 @@
         if (!resort) resort = registry.resorts.length > 1 ? await chooseResortOnHome() : registry.resorts[0];
         safeSet(sessionStorage, SESSION_RESORT_KEY, resort.id);
         safeSet(localStorage, RESORT_KEY, resort.id);
+
+        // Personnalisation légère aux couleurs du parc (parks.json -> resort.theme) ; sans thème, couleurs par défaut de l'appli
+        (() => {
+            const t = resort.theme ?? {};
+            const ok = (v) => typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v);
+            const root = document.documentElement.style;
+            if (ok(t.acc)) root.setProperty('--acc', t.acc);
+            if (ok(t.g1)) root.setProperty('--g1', t.g1);
+            if (ok(t.g2)) {
+                root.setProperty('--g2', t.g2);
+                root.setProperty('--glow', `color-mix(in srgb, ${t.g2} 55%, transparent)`);
+            }
+        })();
 
         const storageKey = (base) => (resort.legacyStorage ? base : `${base}:${resort.id}`);
         const serverId = (id) => (resort.legacyStorage ? id : `${resort.id}:${id}`);
