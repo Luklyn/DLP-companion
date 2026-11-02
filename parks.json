@@ -41,7 +41,8 @@
         "lat": 48.8722,
         "lng": 2.7758
       },
-      "events": []
+      "events": [],
+      "extraHoursLabel": "Extra Magic Hours"
     },
     {
       "id": "parc-asterix",
@@ -104,7 +105,8 @@
             "lng": 7.7265
           }
         }
-      ]
+      ],
+      "extraHoursLabel": "Accès anticipé aux parcs"
     }
   ],
   "events": [
