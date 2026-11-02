@@ -2042,6 +2042,10 @@
                     if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
                 }
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
+                // Attractions : uniquement celles dont l'API fournit un statut (sinon aucune donnée exploitable)
+                if (!state.showFavorites && item.category === 'attraction' && state.lastSync && CONFIG.API_LIVE_URL && !statusOf(item)) continue;
+                // Une fois synchronisé, on ne garde que les lieux dont l'API fournit des données (statut), tous parcs confondus
+                if (!state.showFavorites && state.lastSync && resort.themeparksId && statusOf(item) == null) continue;
                 // Spectacles : uniquement ceux qui ont au moins une séance prévue aujourd'hui (passée ou à venir)
                 if (!state.showFavorites && item.category === 'spectacle' && state.lastSync && !todayShowtimes(item).length) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
