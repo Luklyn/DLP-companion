@@ -106,10 +106,17 @@
 
         /* En-tête */
         .hero {
+            position: relative; isolation: isolate;
             display: flex; flex-direction: column; gap: 0;
             padding: calc(12px + var(--safe-top)) 16px 16px;
             border-radius: 0 0 24px 24px; color: #fff;
             background: radial-gradient(110% 130% at 100% 0%, var(--glow, transparent), transparent 62%), var(--ink);
+        }
+        /* Raccord avec la barre d'état (Android : couleur unie = --bar, moyenne du haut du dégradé) : fondu vers le dégradé réel */
+        .hero::before {
+            content: ''; position: absolute; left: 0; right: 0; top: 0; z-index: -1; pointer-events: none;
+            height: calc(34px + var(--safe-top));
+            background: linear-gradient(180deg, var(--bar, var(--ink)) 0, color-mix(in srgb, var(--bar, var(--ink)) 45%, transparent) 45%, transparent 100%);
         }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         .hero :focus-visible { outline-color: #fff; }
@@ -1123,6 +1130,16 @@
             if (ok(t.g2)) {
                 root.setProperty('--g2', t.g2);
                 root.setProperty('--glow', `color-mix(in srgb, ${t.g2} 55%, transparent)`);
+            }
+            // Couleur de la barre d'état : moyenne du bord haut du header (encre + halo du dégradé, ~1/3 de la largeur éclairée à 55 %)
+            const hex = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
+            const ink = (getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#12163A');
+            if (ok(ink) && ok(t.g2)) {
+                const a = 0.55 * 0.34, I = hex(ink), G = hex(t.g2);
+                const bar = '#' + I.map((v, i) => Math.round(v * (1 - a) + G[i] * a).toString(16).padStart(2, '0')).join('');
+                root.setProperty('--bar', bar);
+                const meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) { const fresh = meta.cloneNode(); fresh.content = bar; meta.replaceWith(fresh); }
             }
         })();
 
