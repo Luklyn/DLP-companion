@@ -107,20 +107,31 @@
 
         /* En-tête */
         .hero {
-            display: flex; flex-direction: column; gap: 26px;
-            padding: calc(34px + var(--safe-top)) 20px 34px;
-            border-radius: 0 0 28px 28px; color: #fff;
+            display: flex; flex-direction: column; gap: 0;
+            padding: calc(12px + var(--safe-top)) 16px 16px;
+            border-radius: 0 0 24px 24px; color: #fff;
             background: var(--ink);
         }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         .hero :focus-visible { outline-color: #fff; }
-        .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .hero h1 { min-width: 0; font-family: var(--font-display); font-weight: 800; font-size: 16px; line-height: 1.2; white-space: nowrap; color: #D4D7FA; }
-        .park-switch { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 6px; }
+        .hero-top {
+            display: flex; justify-content: space-between; align-items: center; gap: 10px; max-height: 48px; margin-bottom: 10px;
+            transition: max-height .2s ease, margin .2s ease, opacity .2s ease, visibility 0s;
+        }
+        /* En-tête réduit au défilement vers le bas : seul le sélecteur de parc reste visible */
+        .hero.is-compact .hero-top { max-height: 0; margin-bottom: 0; opacity: 0; overflow: hidden; pointer-events: none; visibility: hidden; transition: max-height .2s ease, margin .2s ease, opacity .2s ease, visibility 0s .2s; }
+        .hero-back {
+            display: inline-flex; align-items: center; gap: 2px; min-height: 44px; padding: 0 14px 0 8px; border-radius: 22px;
+            background: rgb(255 255 255 / .14); color: #fff; font-weight: 700; font-size: 14px;
+        }
+        .hero-back[hidden] { display: none; }
+        .hero-actions { margin-left: auto; }
+        .park-switch { display: grid; grid-template-columns: 40px minmax(0, 1fr) 40px; align-items: center; gap: 6px; }
         .ps-mid { text-align: center; touch-action: pan-y; }
-        .hero-park { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.12; text-wrap: balance; }
-        .ps-arrow { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 22px; background: rgb(255 255 255 / .14); color: #fff; }
+        .hero-park { font-family: var(--font-display); font-weight: 800; font-size: 23px; line-height: 1.15; text-wrap: balance; }
+        .ps-arrow { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 20px; background: rgb(255 255 255 / .14); color: #fff; }
         .park-switch.is-single .ps-arrow { visibility: hidden; }
-        .ps-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+        .ps-dots { display: flex; justify-content: center; gap: 6px; margin-top: 6px; }
         .ps-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .35); transition: width .2s, background .2s; }
         .ps-dots i.on { width: 20px; border-radius: 4px; background: var(--gold); }
         .park-switch.is-single .ps-dots { display: none; }
@@ -144,13 +155,31 @@
 
 
         /* Puces de filtres */
-        .chips { display: flex; gap: 8px; padding: 14px 20px 4px; overflow-x: auto; scrollbar-width: none; }
+        .chips-wrap { position: relative; flex: none; }
+        .chips { display: flex; gap: 8px; padding: 12px 20px 4px; overflow-x: auto; scrollbar-width: none; }
         .chips::-webkit-scrollbar { display: none; }
         .chip {
             flex: none; min-height: 44px; padding: 0 14px; border-radius: 22px;
+            display: inline-flex; align-items: center; gap: 6px;
             background: #fff; border: 1.5px solid var(--line);
             font-weight: 700; font-size: 13px;
         }
+        .chip .icon { width: 17px; height: 17px; }
+        .chip:disabled { opacity: .45; }
+        .chip-sort[data-active="true"] { border-color: var(--acc); color: var(--acc); }
+        .chip[aria-pressed="true"] .icon { fill: currentColor; }
+        .chip-sort .icon { fill: none !important; }
+        .sort-pop {
+            position: absolute; z-index: 30; left: 20px; top: calc(100% - 2px); min-width: 250px; max-width: calc(100% - 40px); padding: 6px;
+            border-radius: 18px; background: #fff; border: 1px solid var(--line); box-shadow: 0 14px 34px rgb(18 22 58 / .22);
+        }
+        .sort-pop[hidden] { display: none; }
+        .sort-pop button {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 46px; padding: 0 12px;
+            border-radius: 12px; text-align: left; font-size: 14.5px; font-weight: 600;
+        }
+        .sort-pop button[aria-checked="true"] { background: color-mix(in srgb, var(--acc) 10%, #fff); color: var(--acc); font-weight: 800; }
+        .sort-pop .icon { width: 18px; height: 18px; stroke-width: 2.4; }
         .chip[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: #fff; }
 
         /* Liste */
@@ -162,10 +191,11 @@
         .main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 12px 4px 12px 12px; text-align: left; border-radius: 18px; }
         .txt { flex: 1; min-width: 0; }
         .ttl { display: block; font-weight: 700; font-size: 15px; line-height: 1.25; }
-        .sub { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.35; color: var(--mut); }
+        .sub { display: block; margin-top: 3px; font-size: 13px; line-height: 1.35; color: var(--mut); }
         .card-bell { width: .85em; height: .85em; margin-left: 6px; color: var(--acc); vertical-align: -1px; }
 
         .heart { flex: none; display: grid; place-items: center; width: 48px; height: 48px; margin-right: 4px; color: var(--acc); }
+        .heart .icon { width: 26px; height: 26px; }
         .heart[aria-pressed="true"] .icon { fill: currentColor; }
 
         /* Badge de statut (liste + détail) */
@@ -216,11 +246,12 @@
             background: var(--ink); box-shadow: 0 10px 24px rgb(18 22 58 / .25);
         }
         .tabs button {
-            flex: 1; min-height: 52px; border-radius: 20px;
+            flex: 1; min-height: 56px; border-radius: 20px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-            font-size: 11.5px; font-weight: 700; color: #D4D7FA;
+            font-size: 12.5px; font-weight: 700; color: #D4D7FA;
         }
         .tabs button[aria-current="true"] { background: var(--gold); color: var(--on); }
+        .tabs .icon { width: 24px; height: 24px; }
         .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
 
         /* Événement (ex. « Peur sur le Parc ») */
@@ -308,6 +339,8 @@
         /* L'image reste invisible tant qu'elle n'est pas entièrement chargée : plus de flash de l'image précédente */
         .d-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s ease; }
         .d-hero[data-img="loaded"] .d-img { opacity: 1; }
+        /* Pas d'image (absente ou en échec) : bandeau réduit aux couleurs du parc au lieu d'un grand aplat vide */
+        .d-hero[data-img="none"], .d-hero[data-img="error"] { height: calc(104px + var(--safe-top)); }
         .d-hero[data-img="loading"]::before {
             content: ""; position: absolute; inset: 0;
             background: linear-gradient(100deg, transparent 25%, rgb(255 255 255 / .28) 50%, transparent 75%);
@@ -361,7 +394,14 @@
         /* Alertes */
         .alert-box { padding: 16px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line); }
         .alert-box.is-active { border-color: var(--acc); }
-        .alert-title { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; font-weight: 800; }
+        .alert-box { padding: 0; }
+        .alert-title { margin: 0; font-size: 15px; font-weight: 800; }
+        .alert-head { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 0 16px; text-align: left; font-size: 15px; font-weight: 800; }
+        .alert-head .alert-sum { flex: 1; min-width: 0; font-size: 13px; font-weight: 700; color: var(--acc); text-align: right; }
+        .alert-head .chev { flex: none; width: 18px; height: 18px; color: var(--mut); transition: transform .2s ease; }
+        .alert-head[aria-expanded="true"] .chev { transform: rotate(180deg); }
+        .alert-body { padding: 0 16px 16px; }
+        .alert-body[hidden] { display: none; }
         .alert-box.is-active .alert-title .icon { color: var(--acc); }
         .alert-label { margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--mut); }
         .alert-control { display: flex; align-items: center; gap: 10px; }
@@ -373,8 +413,8 @@
         .btn-alert { min-height: 44px; padding: 0 16px; border-radius: 12px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; }
         .btn-alert.is-secondary { background: transparent; color: var(--mut); border: 1.5px solid var(--line); }
         .alert-toggle { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
-        .alert-check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
-        .alert-check input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--acc); }
+        .alert-check { display: flex; align-items: center; min-height: 44px; gap: 12px; font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
+        .alert-check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--acc); }
 
         /* Sélecteur de thème */
         .scrim { position: fixed; inset: 0; z-index: 300; background: rgb(10 12 30 / .55); }
@@ -480,8 +520,7 @@
             .btn-back { display: grid; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 15px; }
-            .hero-park { font-size: 27px; }
+            .hero-park { font-size: 22px; }
             .hero-actions { gap: 6px; }
             .hero .round { width: 40px; height: 40px; border-radius: 20px; }
         }
@@ -507,6 +546,9 @@
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7.5 2 7.5H4S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
         <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v2M14 11v2M14 17v2"/></symbol>
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+        <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+        <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
         <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
         <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
         <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
@@ -569,7 +611,10 @@
     <div class="master-pane">
         <header class="hero">
             <div class="hero-top">
-                <h1>Theme Parks Companion</h1>
+                <h1 class="sr-only">Theme Parks Companion</h1>
+                <button id="btn-home" class="hero-back" type="button" hidden aria-label="Retour à la liste des parcs">
+                    <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>Tous les parcs
+                </button>
                 <div class="hero-actions">
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
@@ -594,9 +639,18 @@
             </div>
         </header>
 
-        <div class="chips" role="group" aria-label="Filtres">
-            <button id="chip-nearby" class="chip" type="button" aria-pressed="false">Autour de moi</button>
-            <button id="chip-closed" class="chip" type="button" aria-pressed="false">Lieux fermés</button>
+        <div class="chips-wrap">
+            <div class="chips" role="group" aria-label="Tri et filtres">
+                <button id="chip-sort" class="chip chip-sort" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="sort-pop">
+                    <svg class="icon" aria-hidden="true"><use href="#i-sort"/></svg><span id="sort-label">Trier</span>
+                </button>
+                <button id="chip-fav" class="chip" type="button" aria-pressed="false">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Favoris
+                </button>
+                <button id="chip-nearby" class="chip" type="button" aria-pressed="false">Autour de moi</button>
+                <button id="chip-closed" class="chip" type="button" aria-pressed="false">Lieux fermés</button>
+            </div>
+            <div id="sort-pop" class="sort-pop" role="menu" aria-label="Trier par" hidden></div>
         </div>
 
         <main id="list" class="list" aria-live="polite"></main>
@@ -643,9 +697,14 @@
 
                 <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
                     <h3 id="alert-title" class="alert-title">
-                        <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-bell"/></svg>
-                        <span id="alert-heading"></span>
+                        <button id="alert-toggle" class="alert-head" type="button" aria-expanded="false" aria-controls="alert-body">
+                            <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-bell"/></svg>
+                            <span id="alert-heading"></span>
+                            <span id="alert-sum" class="alert-sum"></span>
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chev-d"/></svg>
+                        </button>
                     </h3>
+                    <div id="alert-body" class="alert-body" hidden>
                     <p id="alert-label" class="alert-label"></p>
                     <div class="alert-control">
                         <input id="alert-num" class="field alert-field" type="number" inputmode="numeric" min="5" max="180" step="5" aria-labelledby="alert-label">
@@ -669,6 +728,7 @@
                             <span>Me prévenir si l’attraction tombe en panne, puis quand elle rouvre</span>
                         </label>
                         <p id="alert-status-info" class="alert-info" hidden></p>
+                    </div>
                     </div>
                 </section>
 
@@ -1129,6 +1189,8 @@
             showClosed: false,
             showFavorites: false,
             nearby: false,
+            favOnly: false,
+            sort: (() => { try { return localStorage.getItem('tpc-sort') || 'zone'; } catch { return 'zone'; } })(),
             location: null,
             watchId: null,
             selectedId: null,
@@ -1160,6 +1222,15 @@
             btnWallet: $('#btn-wallet'),
             chipNearby: $('#chip-nearby'),
             chipClosed: $('#chip-closed'),
+            chipSort: $('#chip-sort'),
+            chipFav: $('#chip-fav'),
+            sortLabel: $('#sort-label'),
+            sortPop: $('#sort-pop'),
+            masterHero: document.querySelector('header.hero'),
+            btnHome: $('#btn-home'),
+            alertToggle: $('#alert-toggle'),
+            alertBody: $('#alert-body'),
+            alertSum: $('#alert-sum'),
             btnFav: $('#btn-fav'),
             tabs: document.querySelectorAll('.tabs button'),
             pane: $('#detail-pane'),
@@ -1617,6 +1688,7 @@
             renderParkTile(locked);
             els.chipNearby.setAttribute('aria-pressed', String(state.watchId != null));
             els.chipClosed.setAttribute('aria-pressed', String(state.showClosed));
+            els.chipFav.setAttribute('aria-pressed', String(state.favOnly));
         }
 
         // Sélecteur de parc du header : nom centré (ou nom du resort en mode « Autour de moi »), points = parcs du resort
@@ -1983,7 +2055,7 @@
             const a = alerts.get(item.id);
             const statusAlert = alerts.get(`${item.id}#status`);
 
-            els.alertHeading.textContent = isWait ? 'Alertes' : 'Alerte avant la séance';
+            els.alertHeading.textContent = 'Me prévenir';
             els.alertLabel.textContent = isWait
                 ? 'Me prévenir dès que l’attente est inférieure ou égale à'
                 : 'Me prévenir avant chaque séance, à l’avance de';
@@ -1993,6 +2065,7 @@
 
             if (alertUiFor !== item.id) {   // n'écrase pas une saisie en cours lors des actualisations
                 alertUiFor = item.id;
+                setAlertOpen(false);
                 if (isWait) els.alertNum.value = a?.threshold ?? suggestThreshold(item);
                 else els.alertLead.value = String(a?.lead ?? 45);
             }
@@ -2006,6 +2079,15 @@
             els.alertSave.textContent = a ? 'Mettre à jour' : 'Activer l’alerte';
             els.alertRemove.hidden = !a;
             els.alertInfo.textContent = alertInfo(item, a);
+            const parts = [];
+            if (a) parts.push(isWait ? `≤ ${a.threshold} min` : `${a.lead} min avant`);
+            if (statusAlert) parts.push('pannes');
+            els.alertSum.textContent = parts.length ? `Active · ${parts.join(' · ')}` : '';
+        }
+
+        function setAlertOpen(open) {
+            els.alertBody.hidden = !open;
+            els.alertToggle.setAttribute('aria-expanded', String(open));
         }
 
         async function onAlertSave() {
@@ -2052,6 +2134,7 @@
 
             renderList();
             renderAlertBox(item);
+            if (alerts.has(item.id)) setAlertOpen(false);
         }
 
         // Alerte « panne / réouverture » : s'applique immédiatement, sans bouton de validation
@@ -2094,6 +2177,7 @@
             notify('Alerte supprimée');
             renderList();
             renderAlertBox(item);
+            setAlertOpen(false);
         }
 
         // Ouvre la fiche d'un lieu (clic sur une notification)
@@ -2131,6 +2215,7 @@
                     if (item.category !== state.tab) continue;
                     if (!nearbyActive && item.park !== state.park) continue;   // « Autour de moi » ignore le parc choisi
                 }
+                if (state.favOnly && !state.showFavorites && !favorites.has(item.id)) continue;
                 if (!state.showClosed && isHiddenByDefault(item)) continue;
                 // Parc fermé : restaurants et spectacles masqués (visibles avec « Lieux fermés »)
                 if (!state.showClosed && !state.showFavorites && item.category !== 'attraction' && isParkClosed(item.park)) continue;
@@ -2169,6 +2254,76 @@
             return a.item.name.localeCompare(b.item.name, CONFIG.LOCALE);
         }
 
+        /* ---- Tri de la liste ---- */
+        const ALL_CATS = ['attraction', 'restaurant', 'spectacle'];
+        const SORTS = {
+            zone:      { label: 'Par zone',                short: 'Par zone',        cats: ALL_CATS },
+            wait_asc:  { label: 'Attente la plus courte',  short: 'Attente ↑',       cats: ['attraction'] },
+            wait_desc: { label: 'Attente la plus longue',  short: 'Attente ↓',       cats: ['attraction'] },
+            next:      { label: 'Prochaine séance',        short: 'Prochaine séance', cats: ['spectacle'] },
+            name:      { label: 'Nom (A → Z)',             short: 'A → Z',           cats: ALL_CATS },
+            fav:       { label: 'Favoris d’abord',         short: 'Favoris d’abord', cats: ALL_CATS },
+        };
+        const sortLocked = () => state.showFavorites || Boolean(state.nearby && state.location);
+        const sortMode = () => (SORTS[state.sort]?.cats.includes(state.tab) ? state.sort : 'zone');
+        const byName = (a, b) => a.item.name.localeCompare(b.item.name, CONFIG.LOCALE);
+        const opRank = (item) => (item.live?.status === 'OPERATING' ? 0 : item.live?.status === 'DOWN' ? 1 : 2);
+        const waitGroup = (item) => (item.live?.status === 'OPERATING' ? (item.live.wait == null ? 1 : 0) : item.live?.status === 'DOWN' ? 2 : 3);
+        const nextStart = (item) => futureSessions(item, Date.now())[0]?.start ?? Infinity;
+        function flatComparator(mode) {
+            switch (mode) {
+                // Ouvertes avec attente connue d'abord ; « Ouvert » sans attente, puis pannes, puis fermées
+                case 'wait_asc':  return (a, b) => waitGroup(a.item) - waitGroup(b.item) || (a.item.live?.wait ?? 0) - (b.item.live?.wait ?? 0) || byName(a, b);
+                case 'wait_desc': return (a, b) => waitGroup(a.item) - waitGroup(b.item) || (b.item.live?.wait ?? 0) - (a.item.live?.wait ?? 0) || byName(a, b);
+                case 'next':      return (a, b) => { const x = nextStart(a.item), y = nextStart(b.item); return x === y ? byName(a, b) : x < y ? -1 : 1; };
+                case 'fav':       return (a, b) => Number(favorites.has(b.item.id)) - Number(favorites.has(a.item.id)) || byName(a, b);
+                default:          return byName;
+            }
+        }
+        function syncSortUi() {
+            const mode = sortMode();
+            const locked = sortLocked();
+            els.chipSort.disabled = locked;
+            els.chipSort.dataset.active = String(!locked && mode !== 'zone');
+            els.sortLabel.textContent = !locked && mode !== 'zone' ? `Tri : ${SORTS[mode].short}` : 'Trier';
+            if (locked) closeSortPop();
+        }
+        function renderSortPop() {
+            const mode = sortMode();
+            els.sortPop.innerHTML = Object.entries(SORTS).filter(([, s]) => s.cats.includes(state.tab)).map(([key, s]) =>
+                `<button type="button" role="menuitemradio" data-sort="${key}" aria-checked="${key === mode}">${esc(s.label)}${key === mode ? '<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>' : ''}</button>`).join('');
+        }
+        function closeSortPop() {
+            if (els.sortPop.hidden) return false;
+            els.sortPop.hidden = true;
+            els.chipSort.setAttribute('aria-expanded', 'false');
+            return true;
+        }
+        function toggleSortPop() {
+            if (closeSortPop()) return;
+            renderSortPop();
+            els.sortPop.hidden = false;
+            els.chipSort.setAttribute('aria-expanded', 'true');
+            els.sortPop.querySelector('[aria-checked="true"]')?.focus({ preventScroll: true });
+        }
+
+        // Le Type n'est affiché sur la carte que s'il distingue le lieu : un type porté par plus de la moitié de sa catégorie est omis
+        let genericTypes = null;
+        function isGenericType(item) {
+            if (!genericTypes) {
+                genericTypes = new Set();
+                const counts = new Map(), totals = new Map();
+                for (const it of db) {
+                    if (!it.type) continue;
+                    const k = `${it.category}|${it.type}`;
+                    counts.set(k, (counts.get(k) ?? 0) + 1);
+                    totals.set(it.category, (totals.get(it.category) ?? 0) + 1);
+                }
+                for (const [k, n] of counts) if (totals.get(k.split('|')[0]) >= 8 && n / totals.get(k.split('|')[0]) > 0.5) genericTypes.add(k);
+            }
+            return genericTypes.has(`${item.category}|${item.type}`);
+        }
+
         const eventHtml = (item) => item.event
             ? `<span class="evt"><svg class="icon" aria-hidden="true"><use href="#i-ghost"/></svg>${esc(item.event)}</span>` : '';
 
@@ -2178,14 +2333,16 @@
         // Le Type n'est répété dans le sous-titre que s'il apporte une information en plus du badge
         const typeLabel = (item) => (item.halloween && /^halloween$/i.test(item.type) ? '' : item.type);
 
-        function cardHtml({ item, dist }) {
+        function cardHtml({ item, dist }, opts = {}) {
             const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
             const m = statusModel(item);
             // Ligne 1 : type (ou panne) ; les horaires, la mention « plus de séance » et l'accès sont sur des lignes dédiées
             const sub = [
                 dist != null ? `à ${formatDistance(dist)}` : '',
-                m.kind === 'down' ? m.text : typeLabel(item),
+                opts.showLand ? item.land : '',
+                m.kind === 'down' ? m.text : (isGenericType(item) ? '' : typeLabel(item)),
+                item.category === 'attraction' && item.minHeight && item.minHeight !== 'Pas de restriction' ? `dès ${item.minHeight}` : '',
                 state.showFavorites ? item.park : '',
             ].filter(Boolean).join(' · ');
             const extra = timesHtml(m)
@@ -2214,6 +2371,7 @@
         }
 
         function renderList() {
+            syncSortUi();
             if (!state.ready) {
                 els.list.innerHTML = '<div class="skeleton"></div>'.repeat(4);
                 return;
@@ -2228,10 +2386,26 @@
                     ? 'Aucun résultat pour cette recherche.'
                     : state.showFavorites && !favorites.size
                         ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
+                    : state.favOnly
+                        ? 'Aucun favori dans cette catégorie pour ce parc.<br>Touchez le cœur d’un lieu pour l’ajouter, ou désactivez le filtre Favoris.'
                     : state.nearby
                         ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
-                        : 'Aucun lieu ne correspond à ces critères.';
+                    : !state.lastSync && els.sync.dataset.state === 'error'
+                        ? 'Données en direct indisponibles.<br>Vérifiez votre connexion puis réessayez.'
+                    : state.lastSync && state.tab === 'spectacle'
+                        ? 'Aucune séance prévue aujourd’hui dans ce parc.'
+                    : state.lastSync
+                        ? 'Aucune donnée en direct pour ce parc pour le moment.'
+                        : 'Aucun lieu ne correspond à ces filtres.';
                 els.list.innerHTML = `<div class="empty">${hint}</div>`;
+                return;
+            }
+
+            // Tri autre que « Par zone » : liste à plat (la zone passe dans le sous-titre)
+            const mode = sortLocked() ? 'zone' : sortMode();
+            if (mode !== 'zone') {
+                entries.sort(flatComparator(mode));
+                els.list.innerHTML = `<section>${entries.map((entry) => cardHtml(entry, { showLand: true })).join('')}</section>`;
                 return;
             }
 
@@ -2259,7 +2433,7 @@
                 .map((land) => `
                     <section>
                         <h2 class="land">${esc(land)}</h2>
-                        ${groups.get(land).sort(compareEntries).map(cardHtml).join('')}
+                        ${groups.get(land).sort(compareEntries).map((entry) => cardHtml(entry)).join('')}
                     </section>`)
                 .join('');
         }
@@ -2314,7 +2488,7 @@
 
             const badges = [
                 item.event ? { text: item.event, kind: 'event', icon: 'i-ghost' } : null,
-                { text: item.park, kind: 'park' },
+                state.showFavorites || state.nearby ? { text: item.park, kind: 'park' } : null,
                 { text: item.land, kind: 'land' },
                 item.halloween && !/halloween/i.test(item.event) ? { text: 'Halloween', kind: 'event', icon: 'i-pumpkin' } : null,
                 { text: typeLabel(item) },
@@ -2896,6 +3070,34 @@
 
             els.chipClosed.addEventListener('click', () => { state.showClosed = !state.showClosed; syncFilterUi(); renderList(); });
             els.chipNearby.addEventListener('click', onNearbyClick);
+            els.chipFav.addEventListener('click', () => { state.favOnly = !state.favOnly; syncFilterUi(); renderList(); });
+            els.chipSort.addEventListener('click', toggleSortPop);
+            els.sortPop.addEventListener('click', (event) => {
+                const btn = event.target.closest('[data-sort]');
+                if (!btn) return;
+                state.sort = btn.dataset.sort;
+                try { localStorage.setItem('tpc-sort', state.sort); } catch { /* stockage indisponible */ }
+                closeSortPop();
+                renderList();
+                els.list.scrollTop = 0;
+                els.chipSort.focus({ preventScroll: true });
+            });
+            document.addEventListener('pointerdown', (event) => {
+                if (!els.sortPop.hidden && !event.target.closest('#sort-pop, #chip-sort')) closeSortPop();
+            });
+            els.alertToggle.addEventListener('click', () => setAlertOpen(els.alertBody.hidden));
+            els.btnHome.hidden = registry.resorts.length < 2;
+            els.btnHome.addEventListener('click', goHome);
+
+            // En-tête réduit quand on descend dans une longue liste, rétabli dès qu'on remonte
+            let lastY = 0;
+            els.list.addEventListener('scroll', () => {
+                const y = els.list.scrollTop;
+                if (els.list.scrollHeight - els.list.clientHeight < 200) { els.masterHero.classList.remove('is-compact'); lastY = y; return; }
+                if (y > 90 && y > lastY + 6) els.masterHero.classList.add('is-compact');
+                else if (y < lastY - 6 || y < 24) els.masterHero.classList.remove('is-compact');
+                lastY = y;
+            }, { passive: true });
             els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
@@ -2962,6 +3164,7 @@
 
             document.addEventListener('keydown', (event) => {
                 if (event.key !== 'Escape') return;
+                if (closeSortPop()) return els.chipSort.focus({ preventScroll: true });
                 if (!els.confirm.hidden) return settleConfirm(false);
                 const top = nav.stack.at(-1);
                 if (top) closeLayer(top.name);
