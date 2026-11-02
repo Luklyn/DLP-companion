@@ -1,0 +1,315 @@
+[
+ {
+  "Code": "resto_01",
+  "Nom": "The Old Steak House",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e0a125f3090c24163a759d949519e9c4fa74cdc3835628fe0bf972a9d1348d13.jpg",
+  "Description": "Restaurant de barbecue à l'américaine en libre-service : salades, hamburgers, travers de porc et desserts, avec musique country."
+ },
+ {
+  "Code": "resto_02",
+  "Nom": "Moll Vell",
+  "Type": "Bar",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/2696e7f241a75a70277718242a193f94b5cc2115d5b7e9298492de03f5d8c6e7.jpg",
+  "Description": "Bar à vermouth au bord du quai : tapas traditionnelles, chips et olives, parrainé par Vermouth Miró."
+ },
+ {
+  "Code": "resto_03",
+  "Nom": "The Iron Horse",
+  "Type": "Service à table",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/38440063df3df12b005432259061cfb85f178911b11136dc032fe9f60d5d0f72.jpg",
+  "Description": "Restaurant à table dans l'ambiance Far West : cuisine américaine avec salade César, hamburgers, travers de porc et steaks.",
+  "Menu": "https://cartadigital.barmanagerapp.com/site/index/show/IRONHORSE3"
+ },
+ {
+  "Code": "resto_04",
+  "Nom": "Bora Bora",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/85ca3c9f94abc2305477aea4430406883e4d7f1e6ce369b95d7ef99939a21445.jpg",
+  "Description": "Libre-service polynésien : viandes et poissons grillés au four à charbon, woks, nouilles et poke bowls, avec options végétales.",
+  "Menu": "https://www.portaventuraworld.com/p/10450_A4_Carta_Bora_Bora_2026_UK_FR"
+ },
+ {
+  "Code": "resto_05",
+  "Nom": "La Cantina",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/ef3c859d955975f3a31aadc1791af1f673c18ba415c145cab745de4124d86e92.jpg",
+  "Description": "Restaurant mexicain en libre-service : nachos, guacamole et chili con carne, animé par des mariachis pendant les repas."
+ },
+ {
+  "Code": "resto_06",
+  "Nom": "Canton",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/da0aa181c7efb2773167794266cc095f51bff4cab8c30241eb7b0f9c535ebbb5.jpg",
+  "Description": "Cuisine chinoise cuisinée au wok devant les visiteurs : nouilles, nems, salades et desserts."
+ },
+ {
+  "Code": "resto_07",
+  "Nom": "Café Saula",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/8b9d70265ed74500d6ebc761639c357d94206454560c0e048249f239275839c5.jpg",
+  "Description": "Café pour une pause rapide : cafés, viennoiseries, sandwichs, pizzas, salades et focaccias."
+ },
+ {
+  "Code": "resto_08",
+  "Nom": "La Cocina de Epi",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3b1949ebdf78ecfbc8645185cc01850924da95e4620d7760cd230c1e6b1a0597.jpg",
+  "Description": "Le restaurant d'Epi : pizzas, pâtes, hamburgers, poulet et salades pour une pause rapide en famille."
+ },
+ {
+  "Code": "resto_09",
+  "Nom": "Racó de Mar",
+  "Type": "Service à table",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/35ffdb914156b8220a301ccdfc0b21739555b4e670c920dfc1228b1ba43947f9.jpg",
+  "Description": "Restaurant à table spécialisé dans les fruits de mer et le riz, dans un décor marin et une cuisine méditerranéenne.",
+  "Menu": "https://cartadigital.barmanagerapp.com/site/index/show/RacdelMar"
+ },
+ {
+  "Code": "resto_10",
+  "Nom": "Long Branch Saloon",
+  "Type": "Bar",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e096cbe14a76f887f3a2194955e928f6a16fdc64e1ac06b7f15aef6e825e9e07.jpg",
+  "Description": "Saloon Far West : tapas, bières et boissons, avec spectacles de danse et de comédie.",
+  "Menu": "https://www.portalrest.com/index.html?data=%3DATPrNXYmYTPtZSM1ADN0ETP0NXZSRWa"
+ },
+ {
+  "Code": "resto_11",
+  "Nom": "Dagana",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/c2bf88896ffbf3065223adcdbfab7a83f5cf468c029c0d3743575406e9896aad.jpg",
+  "Description": "Snack en terrasse : hamburgers, sandwichs chauds, salades et frites, idéal après Shambhala."
+ },
+ {
+  "Code": "resto_12",
+  "Nom": "Marco Polo",
+  "Type": "Buffet à volonté",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/4231a966067401e2035126529bf07c18075a9b5f8fd94613ced077e1e0ca3db0.jpg",
+  "Description": "Buffet à volonté inspiré des saveurs du monde : salades, riz, pâtes, poissons et viandes."
+ },
+ {
+  "Code": "resto_13",
+  "Nom": "Vinosfera Tapes, Racions i Vins",
+  "Type": "Service à table",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/f6ed988c6117736ea4762a8ca3ab11119c16348371f5291ef869a51684cb47a2.jpg",
+  "Description": "Restaurant à table pour amateurs de vin : tapas comme les patatas bravas et calamars frits, parfait après Furius Baco.",
+  "Menu": "https://cartadigital.barmanagerapp.com/site/index/show/VINOSFERA"
+ },
+ {
+  "Code": "resto_14",
+  "Nom": "Jeremias' Food",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/6753cd5679ff5adf0179ae19e153c606db8ebe61b34727e8ee03149634d4df29.jpg",
+  "Description": "Libre-service à l'ambiance de mineurs du Far West : salades, pizzas et pâtes."
+ },
+ {
+  "Code": "resto_15",
+  "Nom": "Cafetería Bora Bora",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/cc42d28e15caf2976f8753db527cbd01a2bbd66f1c42a2b527194230c5433580.jpg",
+  "Description": "Cafétéria voisine du restaurant Bora Bora : milkshakes, smoothies et sorbets aux saveurs exotiques, avec options végétariennes."
+ },
+ {
+  "Code": "resto_16",
+  "Nom": "Sichuan",
+  "Type": "Restauration rapide",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/5a2447fbbcc6bc1de1d529cb6d0d5f8698a2d89f4de7acf4f25c5ed880393a1f.jpg",
+  "Description": "Libre-service inspiré de la province chinoise du Sichuan : cuisine asiatique, salades et desserts."
+ },
+ {
+  "Code": "resto_17",
+  "Nom": "Hacienda El Charro",
+  "Type": "Service à table",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/461b695b71d5758cff6af915ab6db3cef652411dc890ffc263a80c801fd957e6.jpg",
+  "Description": "Restaurant mexicain à table : nachos, fajitas, tacos, salades et desserts.",
+  "Menu": "https://cartadigital.barmanagerapp.com/site/index/show/LaHacienda2"
+ },
+ {
+  "Code": "resto_18",
+  "Nom": "Points de restauration Chine",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/a8f99e2681b9a9e76f3fedb792da2ca8aa7657d4638b39430fdf7733c37f826d.jpg",
+  "Description": "Plusieurs points de restauration rapide dans la zone chinoise : sandwichs, glaces, boissons et cafés."
+ },
+ {
+  "Code": "resto_19",
+  "Nom": "Points de restauration Far West",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/bdf68653603107f05ee2efc70e588cfac68441f83223a0f8c45e709cc2de4b35.jpg",
+  "Description": "Plusieurs points de restauration rapide à Far West : tapas, glaces, popcorn, crêpes et boissons."
+ },
+ {
+  "Code": "resto_20",
+  "Nom": "Points de restauration Mediterrània",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/c306f1ae0f0200cce7f85c53b12e229a974606745c3031fd8a1e727467f5a8d5.jpg",
+  "Description": "Plusieurs points de restauration rapide à Mediterrània : sandwichs, glaces, bières et yaourts glacés."
+ },
+ {
+  "Code": "resto_21",
+  "Nom": "Points de restauration Mexique",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3464a7d7617c2990e26d5ace107cf8d36e3ae259646b7292463cf84a2c5277a6.jpg",
+  "Description": "Plusieurs points de restauration rapide à thème mexicain : burritos, tacos, salades, glaces et boissons."
+ },
+ {
+  "Code": "resto_22",
+  "Nom": "Points de restauration Polynésie",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/404360c6f39d2dfed6718d3afd2d8828a40772b27acf4a356d1867c69862fcec.jpg",
+  "Description": "Quatre points de restauration rapide en Polynésie : glaces, collations, cafés et jus frais."
+ },
+ {
+  "Code": "resto_23",
+  "Nom": "Points de restauration SésamoAventura",
+  "Type": "À emporter",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/685e98dd4192a3230757542f202545468c9f998eae1e119d4d61da5aa36a950f.jpg",
+  "Description": "Points de restauration rapide à SésamoAventura : glaces, boissons, cafés et granités."
+ },
+ {
+  "Code": "resto_24",
+  "Nom": "El Bucanero",
+  "Type": "À emporter",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Coral Bay",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/47a074c42396046f62f944ad49634ef368789d8807c8f2f7f90a291945ee4b04.jpg",
+  "Description": "Glacier au cœur de Coral Bay : glaces, granités, gaufres, crêpes, smoothies et boissons fraîches."
+ },
+ {
+  "Code": "resto_25",
+  "Nom": "Focacceria",
+  "Type": "Restauration rapide",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Caribe Aquatic Park",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/0a99260287672f7162b8109dc8f80e7bc7f2f24865fad99a9aabdc7bd440bec3.jpg",
+  "Description": "Focaccias et saveurs napolitaines à déguster face aux plages de Caribe Aquatic Park."
+ },
+ {
+  "Code": "resto_26",
+  "Nom": "La Cabaña",
+  "Type": "À emporter",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Caribe Aquatic Park",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3d8f36f14d746d85f4992a60bddd6cb0e4c5e5aa00924aeda134eceef7a05b42.jpg",
+  "Description": "Cabanon inspiré des chalets nord-américains : sandwichs, boissons et glaces pour une pause rapide."
+ },
+ {
+  "Code": "resto_27",
+  "Nom": "Reggae Café",
+  "Type": "Restauration rapide",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Caribe Aquatic Park",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/14fa067940aff7b134e5257e6cd75915260bef714a12cd59ae074f803e2dc6f3.jpg",
+  "Description": "Libre-service détendu après la baignade : pâtes, salades, poulet, fish & chips et desserts."
+ },
+ {
+  "Code": "resto_28",
+  "Nom": "The Surfer",
+  "Type": "Restauration rapide",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Caribe Aquatic Park",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/b5a7d683ffb1636f56de74d7103638f93f7c585b0fa564ba66e67d44bbc18ed5.jpg",
+  "Description": "Snack de plage : hamburgers, hot-dogs et salades pour recharger les batteries après la baignade."
+ },
+ {
+  "Code": "resto_29",
+  "Nom": "Finish Line",
+  "Type": "À emporter",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/a72804f1bed8bdb92a7ceff98e6f126cd828e003e0583bb480b5ea75c3c7eab9.jpg",
+  "Description": "Sandwichs, snacks, glaces et boissons entre deux attractions à Ferrari Land."
+ },
+ {
+  "Code": "resto_30",
+  "Nom": "Ice Cream Box",
+  "Type": "À emporter",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/65ef011c3d0df5b35f3b50153d5342ffb55c6d365fc2348d3fcb8c5c1ae62fe8.jpg",
+  "Description": "Glacier italien : glaces, granités, gaufres, crêpes et cafés pour une pause rapide."
+ },
+ {
+  "Code": "resto_31",
+  "Nom": "Paddock",
+  "Type": "Restauration rapide",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/2cb0b0abf1cbf58922a3241fcc257f92697c198b043933470494cfa5b5e44cc2.jpg",
+  "Description": "Hamburgers, hot-dogs et desserts pour une pause rapide à Ferrari Land."
+ },
+ {
+  "Code": "resto_32",
+  "Nom": "Pit Lane",
+  "Type": "Restauration rapide",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/a19dd3acfba7c35f2f26410f4bbf3f49353268770eca9c2d69194e58ce19608e.jpg",
+  "Description": "Restaurant rapide décoré de souvenirs de pilotes Ferrari : salades, hamburgers et pizzas."
+ },
+ {
+  "Code": "resto_33",
+  "Nom": "Trattoria Maranello",
+  "Type": "Service à table",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e90722224adb742dae29c1f02ff726e15088f101c02c40e5d3106bfb9ee060af.jpg",
+  "Description": "Trattoria inspirée du restaurant préféré des pilotes de F1 à Maranello : pizzas, pâtes et risottos, avec vue sur Red Force.",
+  "Menu": "https://cartadigital.barmanagerapp.com/site/index/show/RISTORANTECAVALLINO"
+ },
+ {
+  "Code": "resto_34",
+  "Nom": "Stop & Go",
+  "Type": "À emporter",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3a7cce7d3b117f568094cdc296991c33d292205fc53bf21df671947af695ce36.jpg",
+  "Description": "Halte rapide pour se désaltérer et grignoter avant de repartir explorer Ferrari Land."
+ }
+]

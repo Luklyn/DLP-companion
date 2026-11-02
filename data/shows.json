@@ -1,0 +1,380 @@
+[
+ {
+  "Code": "show_01",
+  "Nom": "México Lindo",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3869693d39b3395fea960a9dc4f209f90d23f746f4b16eb26239e979a268d987.jpg",
+  "Description": "Spectacle festif de danses traditionnelles : musique, danse et traditions des régions mexicaines, avec des costumes aux broderies authentiques."
+ },
+ {
+  "Code": "show_02",
+  "Nom": "FiestAventura",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/1b5e3c6897a87f0ce307845d43d1cfe450ec918001c4a1b20e726f9dfa1f9e14.png",
+  "Description": "Spectacle de fin de journée sur le lac de Mediterrània : drones, musique, jeux d'eau et feux d'artifice. Haute saison, de juin à septembre."
+ },
+ {
+  "Code": "show_03",
+  "Nom": "PortAventura Parade",
+  "Type": "Parade",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/60803b9ad8a289b5c77cae348659c3cc57979a4c03ff77e6c26e7f9e5d3c6dfb.jpg",
+  "Description": "Défilé de chars en fin de journée sur l'avenue Mediterrània, avec les personnages du parc et plus de 50 artistes."
+ },
+ {
+  "Code": "show_04",
+  "Nom": "Can Can Express",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/eb1cf1be46212bae756f472ad1b113ac6c193317e414f392b3b453348d4b4351.jpg",
+  "Description": "Comédie musicale du Far West : un magnat du rail menace de détruire le saloon, entre musique, humour et duel au pistolet."
+ },
+ {
+  "Code": "show_05",
+  "Nom": "Un Viaje Fascinante",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/5d81e0378c83599180cd4f6acdc63e51140df0ad8f2e163fe97b13003bbeea35.jpg",
+  "Description": "Voyage à travers tous les mondes du parc."
+ },
+ {
+  "Code": "show_06",
+  "Nom": "Magic Bubble",
+  "Type": "Enfants",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/227f00667f2eaecdd07f2fc7888935f17c9bb76bc4cbd83abf43e04646fa5c68.jpg",
+  "Description": "Spectacle de bulles géantes présenté par une alchimiste, au Templo Mágico. 20 à 30 min."
+ },
+ {
+  "Code": "show_07",
+  "Nom": "Pareos en Bora Bora",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e54e5dcabab73dc570c98c324177c1178cfd9204c7640630da601cc7d74e8502.jpg",
+  "Description": "Des danseurs apprennent à nouer le pareo polynésien, un seul tissu aux mille façons de le porter."
+ },
+ {
+  "Code": "show_08",
+  "Nom": "Aloha Tahití",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/5d624a312bb675c887311ded7559cb5d3c72b4bdfd469b33176ed04089fb513b.jpg",
+  "Description": "Spectacle polynésien : danses ethniques et musique ancestrale vers les plages de Tahiti."
+ },
+ {
+  "Code": "show_09",
+  "Nom": "Sesame Street® SummerFest",
+  "Type": "Enfants",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/11ce1ac52316ed11ae9ed6fb752ddd4b1507888a3c6c176cddc9dc64a4f58c7f.jpg",
+  "Description": "Fête estivale avec Bert, Ernie et leurs amis : danses, sauts et rires. Du 27 juin au 5 septembre 2026."
+ },
+ {
+  "Code": "show_10",
+  "Nom": "Noches de Fuego en Tahití",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/6b2dd71f3c715d474ffff56cc8f0dece7885bf8ccdd633e2c1fdbad7adc025d2.png",
+  "Description": "Feux et danses polynésiennes au coucher du soleil, avec jongleries enflammées et acrobaties. Haute saison."
+ },
+ {
+  "Code": "show_11",
+  "Nom": "West Gold Frenzy",
+  "Type": "Spectacle",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/9dad71ca978de0a10dd2581a0690adaeb60aa57f1827d5be38f40311f4ae3829.jpg",
+  "Description": "Dans la ville poussiéreuse de Penitence, un adjoint maladroit déjoue un braquage et devient le héros inattendu."
+ },
+ {
+  "Code": "show_12",
+  "Nom": "Easter Party",
+  "Type": "Pâques",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/6b7eb3c1e82be811cc827fa18cec83dc11401c36e7a7d249be1814d1e92fd42c.jpg",
+  "Description": "Spectacle de printemps avec les personnages de Sesame Street : musique, chant et danse. 20 à 30 min."
+ },
+ {
+  "Code": "show_13",
+  "Nom": "Resurrection",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/2857efb5f5d87d0a2da346fdb8d4e099103ffd8cfd11e7dddaf2006e842acb2c.jpg",
+  "Description": "Spectacle mystère d'Halloween : le scientifique William Lockwood tente de ramener sa fille à la vie. 20 à 30 min. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_14",
+  "Nom": "Halloween Magic Bubble",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3d78857c4ce017084d2c2c2ee853e420ecd053923f7503ce73d9ec4306d674ab.jpg",
+  "Description": "Spectacle familial où un alchimiste crée des bulles de toutes tailles, certaines géantes de 2 m. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_15",
+  "Nom": "El Día de los Muertos",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/d536145bd0c5d0c9034b658977cb69e1095d70f0192ae36d82c783fa71cd870c.jpg",
+  "Description": "À La Cantina, danseurs et chanteur live font revivre les rythmes de la fête des morts. Accès réservé aux clients de l'offre repas."
+ },
+ {
+  "Code": "show_16",
+  "Nom": "El Carnicero de Penitence",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/60bf0ada435ba46d467bb461e303eb1e0e39ba5e4aac4e0bafb260c52426fd18.jpg",
+  "Description": "Attraction d'horreur : échappez au boucher de Penitence. 12 min. Dès 12 ans accompagné, 14 ans seul. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_17",
+  "Nom": "Halloween Factory",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/226090617bf0227711c93a79fb743f74a2586ce022f8ed81c3a4196b192313d5.jpg",
+  "Description": "Spectacle musical mystérieux au Gran Teatro Imperial : danseurs, acrobates, chants et effets spéciaux. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_18",
+  "Nom": "Angkor, la Leyenda del Rey Caníbal",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/d69a6b0f684a72e1b74a4dee9f3fa30dc5f33543a7088c41b2195649ad140c30.jpg",
+  "Description": "Passage d'horreur au temple d'Angkor face au roi cannibale Rajakarn. 20 à 30 min. Dès 12 ans accompagné, 14 ans seul."
+ },
+ {
+  "Code": "show_19",
+  "Nom": "Horror en el Lago",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/525e02ef6a94354d54b427fe150d8ebc7871f7eb37e841a64fa4c2ca0e94fe07.jpg",
+  "Description": "Spectacle sur le lac : feu, pyrotechnie, musique et créatures squelettiques surgies des eaux. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_20",
+  "Nom": "Cuidemos el Planeta",
+  "Type": "Enfants",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/81a57c66a2518671a38d92ea3c3fa39929c7138d7db3753339ba5a3874aa3c3c.jpg",
+  "Description": "Spectacle éducatif avec Oscar le grincheux : réduire, réutiliser, recycler."
+ },
+ {
+  "Code": "show_21",
+  "Nom": "1,2,3… ¡Ya es Halloween!",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/d04e43047ff3f723e47e6e478eb83bc83856f4d9cf65f4df5f779ed7280cbd45.jpg",
+  "Description": "Spectacle musical pour les tout-petits avec le Comte Draco et les personnages de SésamoAventura. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_22",
+  "Nom": "La Isla Maldita",
+  "Type": "Halloween",
+  "Parc": "Caribe Aquatic Park",
+  "Land": "Caribe Aquatic Park",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/2de70b78a7328ed8a02bbfba298cee5f1e1c48ec9821dea907e3d791c3696474.jpg",
+  "Description": "Passage d'épouvante : des pirates fantômes veulent faire de vous leur plus précieux trésor. Dès 12 ans accompagné, 14 ans seul. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_23",
+  "Nom": "La Maldición del Emperador",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/022e676cd90414a4c65539eeb13202c31dad696b468140ab2830b40d99dc772f.jpg",
+  "Description": "Un empereur trahi patrouille le parc avec ses gardes, au son des gongs et des flûtes. Déconseillé aux moins de 12 ans."
+ },
+ {
+  "Code": "show_24",
+  "Nom": "La Muerte Viva",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/b1331d3aa90efb65a02f1e60397d6cccbf27237bbc977c4c523f3d512342b593.jpg",
+  "Description": "Passage d'épouvante dans une hacienda mexicaine en pleine fête des Morts. Dès 12 ans accompagné, 14 ans seul. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_25",
+  "Nom": "REC® Experience",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Polynésie",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e61040026b0354275867a6baf1cc5883329a6708b54f3bffd0c4d9e7758040a6.jpg",
+  "Description": "Passage d'épouvante inspiré des scènes les plus terrifiantes de la saga REC. Dès 12 ans accompagné, 14 ans seul."
+ },
+ {
+  "Code": "show_26",
+  "Nom": "Truco o Trato",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/3a4bb885c0deae74f57cc78b87f1eced25c4b4cb96f2c7706eb76a56bc2b8bdc.jpg",
+  "Description": "Le grand maître de la magie chinoise est un passionné d’Halloween et il a préparé sa demeure pour que les familles y vivent une expérience effroyablement amusante."
+ },
+ {
+  "Code": "show_27",
+  "Nom": "West Blood Frenzy",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/f8488a3b1d459e6ff451c52b830cb245509a71bc677f8cc2c78f059df42d32a7.jpg",
+  "Description": "Deux sœurs apportent à Penitence une potion contre les monstres, mais des visiteurs mal intentionnés s'y intéressent. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_28",
+  "Nom": "Halloween Parade",
+  "Type": "Halloween",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/b41f2f4a24131270323cd7df96a4509edff10cb5706379d931226da3c92a1a53.jpg",
+  "Description": "Défilé effrayant et festif avec chars thématiques et chorégraphie finale, qui clôt la saison Halloween. Du 19/09 au 15/11/2026."
+ },
+ {
+  "Code": "show_29",
+  "Nom": "Bubble Magic Christmas",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/9639cb31b822ae3ed2d903ea443042d28bbb070ddeb21951adca60fff0e1a5aa.jpg",
+  "Description": "Spectacle familial où un alchimiste crée des bulles résistantes au froid pendant Noël."
+ },
+ {
+  "Code": "show_30",
+  "Nom": "El bosque encantado",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/faf3e685e11e5d1a3289ee4fb6d2725c31f90acf70ecf543701db6fb7e911a5e.jpg",
+  "Description": "Un sentier secret mène à la maison du Père Noël dans une forêt enchantée de gnomes, magiciens et fées."
+ },
+ {
+  "Code": "show_31",
+  "Nom": "Circo de Navidad",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/e8cc8ad758c41153d938a4d8d1908f3776f3d14a47bc9b00818969bd22543418.jpg",
+  "Description": "Une jeune fille qui rêve d'être artiste découvre la magie du cirque et ravive l'esprit des fêtes. Gran Teatro Imperial."
+ },
+ {
+  "Code": "show_32",
+  "Nom": "Christmas Parade",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/7836e299c7a2b746d423a7adc997aada1826637fb6dab50edff47fc5f167e8e1.jpg",
+  "Description": "Défilé de fin de journée sur la Mediterrània : chars décorés, personnages et danseurs."
+ },
+ {
+  "Code": "show_33",
+  "Nom": "Christmas Time",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Far West",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/8adfeef1cb5eb890dedab163d23d32f98ef3d1d5b4d78c40ef6111ef3a33f044.jpg",
+  "Description": "Spectacle de Noël version Far West : danses spectaculaires et chant live par une chorale, au Long Branch Saloon."
+ },
+ {
+  "Code": "show_34",
+  "Nom": "Gran fiesta de Navidad",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Mexique",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/ee09bf9fdc022c7c2554cf835d9e327a111ac650ee73f0e805f8b328d62f062f.jpg",
+  "Description": "Fête de Noël mexicaine à La Cantina : danses, musiques traditionnelles et animations pour les enfants."
+ },
+ {
+  "Code": "show_35",
+  "Nom": "La llegada de los emisarios reales",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/2c52028f0d947273d12b92156688a1c39fb5552394d8a89552851180293e5f4b.jpg",
+  "Description": "Feux d'artifice, flyboard et danse sur l'eau, sur le lac, pour clore la journée."
+ },
+ {
+  "Code": "show_36",
+  "Nom": "Ya es Navidad en SésamoAventura",
+  "Type": "Noël",
+  "Parc": "PortAventura Park",
+  "Land": "SésamoAventura",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/52ea268f0dcb4bf0846b0d00ab6c5264038e658cbe236697e8ccb458d9cea1d1.jpg",
+  "Description": "Une ville de Noël décorée où Elmo, Grover et Ernie font danser les enfants au théâtre."
+ },
+ {
+  "Code": "show_37",
+  "Nom": "Carnival Parade",
+  "Type": "Carnaval",
+  "Parc": "PortAventura Park",
+  "Land": "Mediterrània",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/9e52325a41c0b755db4ba6287c81a3238d9c71fee158730e2fe02e7497f77ebf.jpg",
+  "Description": "Défilé festif : acrobates, batucadas, personnages masqués et échassiers."
+ },
+ {
+  "Code": "show_38",
+  "Nom": "Carnival Magic Bubble",
+  "Type": "Carnaval",
+  "Parc": "PortAventura Park",
+  "Land": "Chine",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/f36832bfd3d36e1900fdbab67901afebb2eacdc74af6c632918635bbf3f62e0c.jpg",
+  "Description": "Bulles géantes créées par une alchimiste avec seulement de l'eau et du savon."
+ },
+ {
+  "Code": "show_39",
+  "Nom": "Animation de rue du Carnaval",
+  "Type": "Carnaval",
+  "Parc": "PortAventura Park",
+  "Land": "Tout le parc",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/a778ffc8caf52847fb224e6da6f0009cf605f56ea1e25dffaecb852a3f2c4480.jpg",
+  "Description": "Animations de rue dansantes avec percussions et défilés dans tout le parc, pendant les horaires d'ouverture."
+ },
+ {
+  "Code": "show_40",
+  "Nom": "Born to Race – Acrobatic Show",
+  "Type": "Spectacle",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/93a21dac3ba4681232bbc1d08b17b720268baa00e5f9830d4f46859d3169c989.jpg",
+  "Description": "Spectacle acrobatique mêlant musique et basket : le parcours d'un passionné devenu pilote officiel de la Scuderia Ferrari."
+ },
+ {
+  "Code": "show_41",
+  "Nom": "Rondó Veneziano",
+  "Type": "Spectacle",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/33f9674b9b3e2d5323f5ae79a3fef4d6422d2448cb170f93a953417ae87d161f.jpg",
+  "Description": "Spectacle d'époque inspiré de l'Italie du XVIIIe siècle : danses, musique classique, perruques extravagantes et joute."
+ },
+ {
+  "Code": "show_42",
+  "Nom": "Folklore Italiano",
+  "Type": "Spectacle",
+  "Parc": "Ferrari Land",
+  "Land": "Ferrari Land",
+  "Photo": "https://media.portaventuraworld.com/mediaManager/image/a19dd3acfba7c35f2f26410f4bbf3f49353268770eca9c2d69194e58ce19608e.jpg",
+  "Description": "Folklore italien : musique, costumes traditionnels et reconstitution des coutumes de la moisson."
+ }
+]
