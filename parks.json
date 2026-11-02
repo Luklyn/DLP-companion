@@ -178,6 +178,82 @@
         "g1": "#1C85C8",
         "g2": "#253B90"
       }
+    },
+    {
+      "id": "walt-disney-world",
+      "name": "Walt Disney World",
+      "country": "US",
+      "continent": "Amérique du Nord",
+      "timezone": "America/New_York",
+      "locale": "fr-FR",
+      "themeparksId": "e957da41-3552-4cf6-b636-5babc5cbc4e5",
+      "dataPath": "data/walt-disney-world/",
+      "icon": "fireworks",
+      "color": "#2F5BC4",
+      "iconImage": "icons/walt-disney-world.png",
+      "extraHoursLabel": "Horaires étendus",
+      "image": "https://placehold.co/800x500/2F5BC4/FFFFFF?text=Walt+Disney+World",
+      "info": {
+        "address": "Walt Disney World Resort, Lake Buena Vista, Floride 32830, États-Unis",
+        "lat": 28.3852,
+        "lng": -81.5639
+      },
+      "parks": [
+        {
+          "value": "Magic Kingdom",
+          "label": "Magic Kingdom",
+          "image": "https://placehold.co/120x120/2F5BC4/FFFFFF?text=MK",
+          "themeparksParkId": "75ea578a-adc8-4116-a54d-dccb60765ef9"
+        },
+        {
+          "value": "EPCOT",
+          "label": "EPCOT",
+          "image": "https://placehold.co/120x120/1F8A8A/FFFFFF?text=EP",
+          "themeparksParkId": "47f90d2c-e191-4239-a466-5892ef59a88b"
+        },
+        {
+          "value": "Disney's Hollywood Studios",
+          "label": "Hollywood Studios",
+          "image": "https://placehold.co/120x120/B0223B/FFFFFF?text=HS",
+          "themeparksParkId": "288747d1-8b4f-4a64-867e-ea7c9b27bad8"
+        },
+        {
+          "value": "Disney's Animal Kingdom",
+          "label": "Animal Kingdom",
+          "image": "https://placehold.co/120x120/3F7A1F/FFFFFF?text=AK",
+          "themeparksParkId": "1c84a229-8862-4648-9c71-378ddd2c7693"
+        },
+        {
+          "value": "Disney's Typhoon Lagoon",
+          "label": "Typhoon Lagoon",
+          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=TL",
+          "themeparksParkId": "b070cbc5-feaa-4b87-a8c1-f94cca037a18"
+        },
+        {
+          "value": "Disney's Blizzard Beach",
+          "label": "Blizzard Beach",
+          "image": "https://placehold.co/120x120/3A8DD9/FFFFFF?text=BB",
+          "themeparksParkId": "ead53ea5-22e5-4095-9a83-8c29300d7c63"
+        },
+        {
+          "value": "Disney Springs",
+          "label": "Disney Springs",
+          "image": "https://placehold.co/120x120/7A4FC4/FFFFFF?text=DS"
+        },
+        {
+          "value": "Resorts Disney",
+          "label": "Hôtels et golfs",
+          "image": "https://placehold.co/120x120/8A6D3B/FFFFFF?text=RS"
+        }
+      ],
+      "theme": {
+        "acc": "#2F5BC4",
+        "g1": "#2F5BC4",
+        "g2": "#36A3C7"
+      },
+      "noLiveData": [
+        "restaurant"
+      ]
     }
   ],
   "events": [
