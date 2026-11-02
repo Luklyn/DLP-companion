@@ -68,6 +68,43 @@
           "À renseigner (ex. Tous les jours : 10h00 – 18h00)"
         ]
       }
+    },
+    {
+      "id": "europa-park",
+      "name": "Europa-Park",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "locale": "fr-FR",
+      "themeparksId": "85e3b542-af91-4f8a-8d28-445868a7c8fd",
+      "dataPath": "data/europa-park/",
+      "image": "https://placehold.co/800x500/1B3A8A/FFFFFF?text=Europa-Park",
+      "info": {
+        "address": "Europa-Park-Straße 2, 77977 Rust, Allemagne",
+        "lat": 48.2661,
+        "lng": 7.7219
+      },
+      "parks": [
+        {
+          "value": "Europa-Park",
+          "label": "Europa-Park",
+          "image": "https://placehold.co/120x120/1B3A8A/FFFFFF?text=EP",
+          "themeparksParkId": "639738d3-9574-4f60-ab5b-4c392901320b",
+          "info": {
+            "lat": 48.2661,
+            "lng": 7.7219
+          }
+        },
+        {
+          "value": "Rulantica",
+          "label": "Rulantica",
+          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=RU",
+          "themeparksParkId": "58392c29-d79d-49e4-9c35-0100d417d24e",
+          "info": {
+            "lat": 48.2688,
+            "lng": 7.7265
+          }
+        }
+      ]
     }
   ],
   "events": [
