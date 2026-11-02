@@ -113,6 +113,47 @@
       "extraHoursLabel": "Accès anticipé aux parcs",
       "icon": "coaster",
       "color": "#1B3A8A"
+    },
+    {
+      "id": "portaventura",
+      "name": "PortAventura World",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "locale": "fr-FR",
+      "themeparksId": "498b1747-cc17-4490-aee9-a45147f0f706",
+      "dataPath": "data/portaventura/",
+      "icon": "wheel",
+      "color": "#D1492F",
+      "noLiveData": [
+        "restaurant",
+        "spectacle"
+      ],
+      "image": "https://placehold.co/800x500/D1492F/FFFFFF?text=PortAventura+World",
+      "info": {
+        "address": "Av. Pere Molas, km 2, 43480 Vila-seca, Tarragone, Espagne",
+        "lat": 41.0875,
+        "lng": 1.1575
+      },
+      "parks": [
+        {
+          "value": "PortAventura Park",
+          "label": "PortAventura Park",
+          "image": "https://placehold.co/120x120/D1492F/FFFFFF?text=PA",
+          "themeparksParkId": "32608bdc-b3fa-478e-a8c0-9dde197a4212"
+        },
+        {
+          "value": "Ferrari Land",
+          "label": "Ferrari Land",
+          "image": "https://placehold.co/120x120/B00020/FFFFFF?text=FL",
+          "themeparksParkId": "d06d91b8-7702-42c3-a8af-7d0161d471bf"
+        },
+        {
+          "value": "Caribe Aquatic Park",
+          "label": "Caribe Aquatic Park",
+          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=CA",
+          "themeparksParkId": "91c92c4c-e079-4488-8c99-385bc81bd5d7"
+        }
+      ]
     }
   ],
   "events": [

@@ -1302,9 +1302,27 @@
          *  - big/unit : contenu du badge ; text : libellé de la fiche
          *  - times : horaires des prochaines séances ; note : mention sous le type ; access : accès d'un restaurant
          */
+        // Catégories absentes de l'API pour ce resort (parks.json : "noLiveData": ["restaurant", "spectacle"]) :
+        // les lieux restent affichés, avec la mention que l'état d'ouverture / les horaires ne sont pas connus.
+        const noLive = (item) => Array.isArray(resort.noLiveData) && resort.noLiveData.includes(item.category);
+
         function statusModel(item) {
             const status = statusOf(item);
             const mk = (kind, big, unit = '', text = '') => ({ kind, big, unit, text });
+
+            if (noLive(item)) {
+                if (item.category === 'restaurant') {
+                    const booking = RESERVATION_TYPES.has(searchKey(item.type));
+                    const m = mk('off', '', '', 'État d’ouverture non connu');
+                    m.icon = 'i-restaurant';
+                    m.note = m.text;
+                    m.access = { text: booking ? 'Réservation recommandée' : 'Entrée libre', kind: booking ? 'resa' : 'free' };
+                    return m;
+                }
+                const m = mk('off', '--', '', 'Horaires des séances non connus');
+                m.note = m.text;
+                return m;
+            }
 
             if (status === 'DOWN') {
                 const since = downInfo.get(item.apiId)?.since;
@@ -2066,9 +2084,9 @@
                 // Attractions : uniquement celles dont l'API fournit un statut (sinon aucune donnée exploitable)
                 if (!state.showFavorites && item.category === 'attraction' && state.lastSync && CONFIG.API_LIVE_URL && !statusOf(item)) continue;
                 // Une fois synchronisé, on ne garde que les lieux dont l'API fournit des données (statut), tous parcs confondus
-                if (!state.showFavorites && state.lastSync && resort.themeparksId && statusOf(item) == null) continue;
+                if (!state.showFavorites && state.lastSync && resort.themeparksId && !noLive(item) && statusOf(item) == null) continue;
                 // Spectacles : uniquement ceux qui ont au moins une séance prévue aujourd'hui (passée ou à venir)
-                if (!state.showFavorites && item.category === 'spectacle' && state.lastSync && !todayShowtimes(item).length) continue;
+                if (!state.showFavorites && item.category === 'spectacle' && state.lastSync && !noLive(item) && !todayShowtimes(item).length) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
 
                 let dist = null;
