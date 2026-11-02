@@ -123,7 +123,7 @@
             display: inline-flex; align-items: center; gap: 2px; min-height: 44px; padding: 0 14px 0 8px; border-radius: 22px;
             background: rgb(255 255 255 / .14); color: #fff; font-weight: 700; font-size: 14px;
         }
-        .hero-back[hidden] { display: none; }
+        .hero-back[hidden], #btn-home[hidden] { display: none; }
         .hero-actions { margin-left: auto; }
         .park-switch { display: grid; grid-template-columns: 40px minmax(0, 1fr) 40px; align-items: center; gap: 6px; }
         .ps-mid { text-align: center; touch-action: pan-y; }
@@ -351,6 +351,8 @@
         .ht-p .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #B8B9C9; }
         .ht-p[data-s="open"] .dot { background: #1FA24A; box-shadow: 0 0 0 3px rgb(31 162 74 / .18); }
         .ht-p[data-s="open"] .st { color: #14692E; font-weight: 800; }
+        .ht-p[data-s="check"] .dot { background: #F08A24; box-shadow: 0 0 0 3px rgb(240 138 36 / .2); }
+        .ht-p[data-s="check"] .st { color: #B35F0B; font-weight: 800; }
         .ht-p .st { margin-left: auto; flex: none; font-weight: 700; white-space: nowrap; }
         .ht-p > span:empty:first-of-type + .st { margin-left: 0; }
         .ht-go { flex: none; color: var(--mut); }
@@ -405,6 +407,12 @@
             border: 1px solid color-mix(in srgb, var(--acc) 30%, #fff);
         }
         .sr { margin-right: 6px; }
+        .srs { display: flex; flex-wrap: wrap; gap: 4px 0; margin-top: 2px; }
+        .sr .icon { flex: none; color: var(--acc); }
+        .sr-single { background: #EEF0FF; border-color: #C9CFFF; }
+        .sr-single .icon, .sr-single .sr-l { color: #4B55C9; }
+        .sr.vq { background: #FFF3E0; border-color: #F6CE92; }
+        .sr.vq .icon, .sr.vq .sr-l { color: #B35F0B; }
         .sr.vq { flex-wrap: wrap; white-space: normal; gap: 2px 8px; }
         .sr-l { font-size: 12px; font-weight: 700; color: var(--acc); }
         .sr-t { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ink); }
@@ -583,6 +591,8 @@
         <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
         <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
         <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.7-5.6 7-5.6s6.2 1.8 7 5.6"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11.2 12 4l8.5 7.2"/><path d="M5.8 9.8V20h12.4V9.8"/><path d="M10 20v-5.2h4V20"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.2"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></symbol>
         <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
         <symbol id="i-r-octopus" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 6.5c-4 0-6.4 2.7-6.4 6.2 0 2.5 1.2 4 2.4 4.8h8c1.2-.8 2.4-2.3 2.4-4.8 0-3.5-2.4-6.2-6.4-6.2z"/><path d="M6.2 11.4h11.6v1.3H6.2z" style="fill:var(--rc,#1B3A8A)" stroke="none"/><circle cx="9.4" cy="14" r="1.1" style="fill:var(--rc,#1B3A8A)" stroke="none"/><circle cx="14.6" cy="14" r="1.1" style="fill:var(--rc,#1B3A8A)" stroke="none"/><path d="M6.6 8.2C4.6 7.8 3.4 6.4 3.2 3.8 4.8 4.8 6.2 5.2 7.4 5.4zM17.4 8.2c2-.4 3.2-1.8 3.4-4.4-1.6 1-3 1.4-4.2 1.6z" fill="currentColor" stroke="none"/><path fill="none" stroke-width="2" d="M7.5 15.5c-1 2.6-3.2 3.2-3.2 5M10.4 16.5c-.4 2.2-1.6 3.4-1.6 4.5M13.6 16.5c.4 2.2 1.6 3.4 1.6 4.5M16.5 15.5c1 2.6 3.2 3.2 3.2 5"/></symbol>
         <symbol id="i-r-tophat" viewBox="0 0 24 24"><path d="M2.5 21.5h19" stroke-width="1.7"/><path d="M7 21V8a5 5 0 0 1 10 0v13" stroke-width="2.6" fill="none"/><rect x="5.2" y="12.5" width="3.6" height="4.6" rx="1.2" fill="currentColor" stroke="none"/></symbol>
@@ -623,15 +633,15 @@
         <header class="hero">
             <div class="hero-top">
                 <h1 class="sr-only">Theme Parks Companion</h1>
-                <button id="btn-home" class="hero-back" type="button" hidden aria-label="Retour à la liste des parcs">
-                    <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>Tous les parcs
+                <button id="btn-home" class="round" type="button" hidden aria-label="Accueil : liste des parcs" title="Accueil">
+                    <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-home"/></svg>
                 </button>
                 <div class="hero-actions">
                     <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
                     </button>
-                    <button id="btn-menu" class="round" type="button" aria-label="Ouvrir le menu" aria-haspopup="dialog">
-                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-menu"/></svg>
+                    <button id="btn-menu" class="round" type="button" aria-label="Ouvrir les infos" title="Infos" aria-haspopup="dialog">
+                        <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-info"/></svg>
                     </button>
                 </div>
             </div>
@@ -750,11 +760,11 @@
 
     <!-- Menu burger : thème, resort, synchronisation -->
     <div id="menu-layer" hidden>
-        <button id="menu-scrim" class="scrim" type="button" aria-label="Fermer le menu"></button>
+        <button id="menu-scrim" class="scrim" type="button" aria-label="Fermer les infos"></button>
         <section class="panel" role="dialog" aria-modal="true" aria-labelledby="menu-heading">
             <div class="panel-head">
-                <h2 id="menu-heading">Menu</h2>
-                <button id="menu-close" class="round" type="button" aria-label="Fermer le menu">
+                <h2 id="menu-heading">Infos</h2>
+                <button id="menu-close" class="round" type="button" aria-label="Fermer les infos">
                     <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
                 </button>
             </div>
@@ -981,6 +991,7 @@
                         label.textContent = (r.parks.length === 1 && pk.label === r.name) ? '' : pk.label;
                         const st = document.createElement('span');
                         st.className = 'st';
+                        if (!pk.themeparksParkId) { row.dataset.s = 'check'; st.textContent = 'Consulter les horaires'; }   // pas de planning dans l'API
                         row.append(dot, label, st);
                         parks.append(row);
                         return { pk, row, st };
@@ -1054,7 +1065,7 @@
                     const nOpen = registry.resorts.filter((r) => tiles.get(r.id).state === 'open').length;
                     const box = document.querySelector('#home-summary');
                     box.hidden = nOpen === 0;
-                    document.querySelector('#home-summary-txt').textContent = nOpen === 1 ? '1 destination ouverte aujourd’hui' : `${nOpen} destinations ouvertes aujourd’hui`;
+                    document.querySelector('#home-summary-txt').textContent = nOpen === 1 ? '1 destination ouverte actuellement' : `${nOpen} destinations ouvertes actuellement`;
                 };
                 renderChips();
                 layout();
@@ -1564,10 +1575,10 @@
 
         // Pastille « Single Rider » (liste + fiche)
         const singleHtml = (m) => m.single == null ? ''
-            : `<span class="sr"><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
+            : `<span class="sr sr-single"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-user"/></svg><span class="sr-l">Single Rider</span><span class="sr-t">${esc(m.single)} min</span></span>`;
 
         const vqHtml = (m) => m.vq
-            ? `<span class="sr vq"><span class="sr-l">Virtual Queue</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
+            ? `<span class="sr vq"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">File virtuelle</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
 
         // Horaires des séances, présentés sous le type de spectacle (liste + fiche)
         const timesHtml = (m) => m.times?.length
@@ -2493,7 +2504,7 @@
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
                             ${eventHtml(item)}${hwHtml(item)}
                             ${extra}
-                            ${singleHtml(m)}${vqHtml(m)}
+                            ${(m.single != null || m.vq) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}</span>` : ''}
                         </span>
                     </button>
                     <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
