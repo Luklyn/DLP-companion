@@ -1480,7 +1480,7 @@
 
         const safeUrl = (value) => {
             try {
-                const url = new URL(value);
+                const url = new URL(value, location.href);
                 return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
             } catch { return ''; }
         };
