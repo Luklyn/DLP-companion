@@ -206,7 +206,7 @@
            CORRECTIF « onglets rognés » : le dock est dans le flux de la colonne (flex-shrink: 0) et non plus en
            position: absolute. Il ne peut donc plus sortir de l'écran, et il réserve lui-même la safe area du bas. */
         .dock {
-            position: relative; z-index: 5; flex: none;
+            position: relative; z-index: 5; flex: none; --dock-h: calc(72px + var(--safe-bottom));
             padding: 8px 6px calc(8px + var(--safe-bottom));
             background: var(--ink);
             box-shadow: 0 -4px 14px rgb(18 22 58 / .18);
@@ -219,12 +219,17 @@
             transition: color .18s ease;
         }
         .tabs button[hidden] { display: none; }
-        /* Bosse arrondie au-dessus de l'onglet sélectionné uniquement ; l'icône et le libellé passent en jaune */
-        .tabs button[aria-current="true"]::before {
-            content: ""; position: absolute; left: 50%; bottom: calc(100% + 7px); width: 68px; height: 11px; transform: translateX(-50%);
+        .home-sheet h3 { margin: 18px 0 6px; font-size: 14px; font-weight: 800; color: var(--acc); }
+        .home-sheet p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
+        /* Bosse arrondie unique, au-dessus de l'onglet sélectionné : elle glisse d'un onglet à l'autre (placée par JS via --bx) */
+        .dock-bump {
+            position: absolute; left: 0; top: -10px; width: 68px; height: 11px; pointer-events: none;
+            transform: translateX(var(--bx, 0px));
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 11' preserveAspectRatio='none'%3E%3Cpath d='M0 11C10 11 13 7.5 18 4.2C23 1 28 0 34 0S45 1 50 4.2C55 7.5 58 11 68 11Z' fill='%2312163A'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
-            filter: drop-shadow(0 -2px 2px rgb(18 22 58 / .12)); pointer-events: none;
+            filter: drop-shadow(0 -2px 2px rgb(18 22 58 / .12)); opacity: 0;
         }
+        .dock-bump.is-on { opacity: 1; }
+        .dock-bump.is-ready { transition: transform .3s cubic-bezier(.3, .7, .2, 1), opacity .2s ease; }
         .tabs button[aria-current="true"] { color: var(--gold); }
         .tabs .icon { width: 24px; height: 24px; }
         .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
@@ -257,7 +262,11 @@
         .menu-empty { font-size: 14px; color: var(--mut); line-height: 1.45; }
 
         /* Page d'accueil : choix du parc, avec l'état ouvert / fermé */
-        .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; }
+        .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; }
+        .home[hidden] { display: none; }
+        .home-in { flex: 1 0 auto; }
+        .home > .dock { position: sticky; bottom: 0; z-index: 5; margin-top: auto; }
+        .home .tabs { max-width: 420px; }
         .home-hero {
             position: relative; overflow: hidden; color: #fff; border-radius: 0 0 28px 28px;
             background: var(--ink);
@@ -363,6 +372,9 @@
             display: flex; flex-direction: column; gap: 16px;
             border-radius: 28px 28px 0 0; background: var(--bg);
         }
+        #menu-layer .panel, #home-info-layer .panel {
+            z-index: 4; bottom: calc(72px + var(--safe-bottom) - 1px); max-height: calc(90dvh - 72px - var(--safe-bottom)); padding-bottom: 24px;
+        }
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
         .d-head { display: flex; align-items: center; gap: 14px; }
         .d-head .d-title { flex: 1; min-width: 0; }
@@ -434,6 +446,8 @@
 
         /* Sélecteur de thème */
         .scrim { position: fixed; inset: 0; z-index: 300; background: rgb(10 12 30 / .55); }
+        /* Menu Infos et fiche d'infos de l'accueil : sous le footer, qui reste visible et utilisable */
+        #menu-scrim, #home-info-scrim { z-index: 4; }
         .panel {
             position: fixed; left: 0; right: 0; bottom: 0; z-index: 301;
             width: 100%; max-width: 480px; margin: 0 auto;
@@ -544,6 +558,7 @@
         }
         @media (min-width: 769px) {
             .panel { top: 50%; bottom: auto; transform: translateY(-50%); max-height: 86vh; border-radius: 28px; padding-bottom: 28px; box-shadow: 0 24px 60px rgb(10 12 30 / .4); }
+            #menu-layer .panel, #home-info-layer .panel { bottom: auto; max-height: 86vh; padding-bottom: 28px; }
         }
         /* Souris : retour visuel au survol */
         @media (hover: hover) {
@@ -621,6 +636,41 @@
             <div id="home-grid" class="home-grid"></div>
             <p class="home-foot">Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.</p>
         </div>
+
+        <div class="dock">
+            <i class="dock-bump" aria-hidden="true"></i>
+            <nav class="tabs" aria-label="Navigation">
+                <button type="button" id="home-tab-home" aria-current="true">
+                    <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-home"/></svg>Accueil
+                </button>
+                <button type="button" id="home-tab-wallet">
+                    <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-ticket"/></svg>Billets
+                </button>
+                <button type="button" id="home-tab-info" aria-haspopup="dialog">
+                    <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-info"/></svg>Infos
+                </button>
+            </nav>
+        </div>
+
+        <div id="home-info-layer" hidden>
+            <button id="home-info-scrim" class="scrim" type="button" aria-label="Fermer les infos"></button>
+            <section class="panel home-sheet" role="dialog" aria-modal="true" aria-labelledby="home-info-heading">
+                <div class="panel-head">
+                    <h2 id="home-info-heading">Infos</h2>
+                    <button id="home-info-close" class="round" type="button" aria-label="Fermer les infos">
+                        <svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-close"/></svg>
+                    </button>
+                </div>
+                <h3>À propos</h3>
+                <p>Theme Parks Companion affiche les temps d’attente, les horaires et les alertes en direct des parcs à thème, pour préparer votre journée.</p>
+                <h3>Données</h3>
+                <p>Temps d’attente et horaires : themeparks.wiki, à titre indicatif. Ils peuvent différer de l’information officielle du parc.</p>
+                <h3>Indépendance</h3>
+                <p>Application indépendante, non affiliée aux parcs ni à leurs exploitants.</p>
+                <h3>Billets et pass</h3>
+                <p>L’onglet Billets ouvre votre portefeuille : billets et pass annuels, enregistrés uniquement sur cet appareil.</p>
+            </section>
+        </div>
     </section>
 
     <div class="master-pane">
@@ -662,6 +712,7 @@
         <main id="list" class="list" aria-live="polite"></main>
 
         <div class="dock">
+        <i class="dock-bump" aria-hidden="true"></i>
         <nav class="tabs" aria-label="Navigation">
             <button type="button" id="tab-home" data-act="home" aria-label="Accueil : liste des parcs" hidden>
                 <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-home"/></svg>Accueil
@@ -894,9 +945,31 @@
 
         // Resort choisi pour cette session (l'accueil n'est affiché qu'au lancement de l'app) et dernier resort utilisé
         const SESSION_RESORT_KEY = 'dlp-session-resort';
+        const OPEN_LAYER_KEY = 'dlp-open-layer';   // écran à ouvrir au démarrage (ex. portefeuille demandé depuis l'accueil)
         const safeGet = (store, key) => { try { return store.getItem(key); } catch { return null; } };
         const safeSet = (store, key, value) => { try { store.setItem(key, value); } catch { /* stockage indisponible */ } };
         const lastResort = findResort(safeGet(localStorage, RESORT_KEY)) ?? findResort(registry.default) ?? registry.resorts[0];
+
+        // Bosse du footer : se place au-dessus de l'onglet sélectionné (aria-current) de chaque footer et glisse d'un onglet à l'autre
+        function placeBump(dock) {
+            const bump = dock.querySelector('.dock-bump');
+            const cur = dock.querySelector('.tabs button[aria-current="true"]');
+            if (!bump) return;
+            const d = dock.getBoundingClientRect(), b = cur?.getBoundingClientRect();
+            if (!b || !b.width || !d.width) { bump.classList.remove('is-on'); return; }
+            bump.style.setProperty('--bx', `${Math.round(b.left + b.width / 2 - d.left - bump.offsetWidth / 2)}px`);
+            bump.classList.add('is-on');
+            requestAnimationFrame(() => bump.classList.add('is-ready'));
+        }
+        const placeAllBumps = () => document.querySelectorAll('.dock').forEach(placeBump);
+        const watchDocks = () => {
+            document.querySelectorAll('.dock').forEach((d) => {
+                new ResizeObserver(() => placeBump(d)).observe(d);
+                d.addEventListener('click', (e) => { if (e.target.closest('button')) { try { navigator.vibrate?.(8); } catch { /* non pris en charge */ } } });
+            });
+            document.fonts?.ready.then(placeAllBumps);
+        };
+        watchDocks();
 
         // Page d'accueil : une carte par resort, avec l'état ouvert / fermé de chacun de ses parcs (planning du jour).
         // Renvoie le resort choisi.
@@ -1011,6 +1084,27 @@
                 });
                 home.hidden = false;
                 home.scrollTop = 0;
+                placeAllBumps();
+
+                // Footer de l'accueil : Billets ouvre le portefeuille (dans le dernier parc visité), Infos une fiche générale
+                const infoLayer = document.querySelector('#home-info-layer');
+                const hTabs = { home: document.querySelector('#home-tab-home'), info: document.querySelector('#home-tab-info') };
+                const hDock = home.querySelector('.dock');
+                const setInfo = (open) => {
+                    infoLayer.hidden = !open;
+                    hTabs.info.setAttribute('aria-current', String(open));
+                    hTabs.home.setAttribute('aria-current', String(!open));
+                    placeBump(hDock);
+                };
+                hTabs.info.addEventListener('click', () => setInfo(infoLayer.hidden));
+                hTabs.home.addEventListener('click', () => { setInfo(false); home.scrollTo({ top: 0, behavior: 'smooth' }); });
+                document.querySelector('#home-info-close').addEventListener('click', () => setInfo(false));
+                document.querySelector('#home-info-scrim').addEventListener('click', () => setInfo(false));
+                document.querySelector('#home-tab-wallet').addEventListener('click', () => {
+                    safeSet(sessionStorage, OPEN_LAYER_KEY, 'wallet');
+                    home.hidden = true;
+                    resolve(lastResort);
+                });
 
                 // Planning du jour de chaque parc (en parallèle, sans bloquer l'accueil) ; les parcs ouverts passent en tête
                 const rank = (id) => ({ open: 0, unknown: 1, closed: 2 })[tiles.get(id).state ?? 'unknown'];
@@ -1352,7 +1446,7 @@
             alertBody: $('#alert-body'),
             alertSum: $('#alert-sum'),
             btnFav: $('#btn-fav'),
-            tabs: document.querySelectorAll('.tabs button[data-tab]'),
+            tabs: document.querySelectorAll('.master-pane .tabs button[data-tab]'),
             pane: $('#detail-pane'),
             placeholder: $('#detail-placeholder'),
             content: $('#detail-content'),
@@ -2016,7 +2110,10 @@
         }
 
         function syncTabsUi() {
-            els.tabs.forEach((t) => t.setAttribute('aria-current', String(!state.showFavorites && t.dataset.tab === state.tab)));
+            const infoOpen = !els.menuLayer.hidden;
+            els.tabs.forEach((t) => t.setAttribute('aria-current', String(!infoOpen && !state.showFavorites && t.dataset.tab === state.tab)));
+            els.btnMenu.setAttribute('aria-current', String(infoOpen));
+            placeBump(els.btnMenu.closest('.dock'));
         }
 
         // Les favoris vivent dans le menu : on y met à jour la liste si elle est ouverte
@@ -2959,11 +3056,13 @@
             renderMenu();
             pushLayer('menu', hideMenu);   // le geste « retour » système ferme le menu
             els.menuLayer.hidden = false;
+            syncTabsUi();
             els.menuClose.focus();
         }
 
         function hideMenu() {
             els.menuLayer.hidden = true;
+            syncTabsUi();
             els.btnMenu.focus({ preventScroll: true });
         }
 
@@ -3049,6 +3148,14 @@
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-trash"/></svg>
                     </button>
                 </div>`).join('');
+        }
+
+        function openWallet() {
+            purgeWallet();
+            renderWallet();
+            pushLayer('wallet', hideWallet);
+            els.walletLayer.hidden = false;
+            els.walletClose.focus({ preventScroll: true });
         }
 
         function hideWallet() {
@@ -3392,6 +3499,7 @@
             els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
+                if (!els.menuLayer.hidden) closeMenu();
                 state.tab = tab.dataset.tab;
                 setShowFavorites(false);   // choisir une catégorie quitte la vue favoris
                 closeDetail();
@@ -3422,7 +3530,7 @@
             els.alertRemove.addEventListener('click', onAlertRemove);
             els.alertStatus.addEventListener('change', onStatusToggle);
 
-            els.btnMenu.addEventListener('click', openMenu);
+            els.btnMenu.addEventListener('click', () => (els.menuLayer.hidden ? openMenu() : closeMenu()));
             els.menuClose.addEventListener('click', closeMenu);
             els.menuScrim.addEventListener('click', closeMenu);
             els.menuWallet.addEventListener('click', openWalletFromMenu);
@@ -3495,6 +3603,8 @@
                 if (event.data?.type === 'refresh-data') refresh();
             });
             if (location.hash.length > 1) openFromAlert(decodeURIComponent(location.hash.slice(1)));
+            if (safeGet(sessionStorage, OPEN_LAYER_KEY) === 'wallet') openWallet();
+            try { sessionStorage.removeItem(OPEN_LAYER_KEY); } catch { /* stockage indisponible */ }
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
