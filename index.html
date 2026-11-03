@@ -258,6 +258,12 @@
         .info-v { color: var(--ink); }
         .info-v em { color: var(--mut); font-style: normal; font-size: 12.5px; }
         .info-map { width: 100%; height: 170px; border: 0; border-radius: 16px; background: #E8E8EF; }
+        .fold summary { display: flex; align-items: center; gap: 8px; min-height: 44px; list-style: none; cursor: pointer; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
+        .fold summary::-webkit-details-marker { display: none; }
+        .fold summary .chev { margin-left: auto; width: 18px; height: 18px; color: var(--acc); transition: transform .2s ease; }
+        .fold[open] summary .chev { transform: rotate(90deg); }
+        .fold .info { padding-top: 4px; }
+        .u-low { color: #14692E; } .u-norm { color: #5B2FC0; } .u-high { color: #A31F1F; }
         .info-link { align-self: flex-start; font-weight: 700; color: var(--acc); }
         .menu-empty { font-size: 14px; color: var(--mut); line-height: 1.45; }
 
@@ -837,6 +843,31 @@
             <div class="menu-sec">
                 <h3 class="menu-h has-park"><span id="info-park" class="menu-h-note"></span>Infos pratiques</h3>
                 <div id="info-body" class="info"></div>
+            </div>
+            <div id="menu-usual-sec" class="menu-sec">
+                <details class="fold">
+                <summary><span>Indication d’attente</span><svg class="icon chev" aria-hidden="true"><use href="#i-next"/></svg></summary>
+                <div class="info">
+                    <p class="info-v">Sous le temps d’attente d’une attraction, une pastille la compare à l’habitude :
+                        <strong class="u-low">moins</strong>, <strong class="u-norm">habituelle</strong> ou <strong class="u-high">plus</strong> d’attente, avec l’écart en minutes.</p>
+                    <div class="info-row">
+                        <span class="info-k">Comment c’est calculé</span>
+                        <span class="info-v">L’attente affichée en ce moment (file standard uniquement) est comparée à l’attente moyenne de la même heure, à plus ou moins une heure, sur les 6 derniers jours. Cette moyenne tient compte de la durée pendant laquelle chaque temps d’attente est resté affiché.</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Seuils</span>
+                        <span class="info-v">« Plus » ou « moins » apparaît à partir de 25 % d’écart et d’au moins 5 minutes. En dessous, l’attente est jugée habituelle.</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Quand il n’y en a pas</span>
+                        <span class="info-v">Attraction fermée ou en panne, sans temps d’attente publié, ou historique insuffisant sur cette plage horaire (moins de 90 minutes de données, ou attente habituelle inférieure à 5 minutes).</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Données</span>
+                        <span class="info-v">Historique de themeparks.wiki, téléchargé une fois par jour et conservé sur votre appareil. À titre indicatif.</span>
+                    </div>
+                </div>
+                </details>
             </div>
             <div class="menu-sec">
                 <button id="menu-wallet" class="cta alt" type="button">
@@ -3116,6 +3147,7 @@
 
         function renderMenu() {
             renderInfo();
+            $('#menu-usual-sec').hidden = !CONFIG.API_LIVE_URL;   // sans temps réel, pas d'indication d'attente
         }
 
         // Ouvre le portefeuille depuis le menu : la couche « menu » de l'historique devient la couche « portefeuille »
