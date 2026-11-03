@@ -526,6 +526,34 @@
             .detail-content { max-width: 560px; align-self: flex-start; overflow: hidden; border-radius: 28px; background: var(--bg); box-shadow: 0 8px 30px rgb(30 30 90 / .12); }
             .d-bar { padding-top: 20px; justify-content: flex-end; }
         }
+        /* Ordinateur (dlp-companion.fr) : liste plus large, fiche centrée et plus grande, accueil en deux colonnes */
+        @media (min-width: 1000px) {
+            .master-pane { width: 460px; }
+            .detail-pane { padding: 40px; }
+            .detail-content { max-width: 780px; align-self: center; }
+            .d-hero { height: 320px; }
+            .detail-placeholder { margin-top: 0; align-self: center; font-size: 17px; }
+            .home-hero-in, .home-in { max-width: 1080px; padding-left: 32px; padding-right: 32px; }
+            .home-chips { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+            .home h1 { font-size: 40px; }
+            .home-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+            .home-grid > .home-cont { grid-column: 1 / -1; margin-bottom: -4px; }
+            .home-grid > .home-cont:not(:first-child) { margin-top: 12px; }
+        }
+        @media (min-width: 769px) {
+            .panel { top: 50%; bottom: auto; transform: translateY(-50%); max-height: 86vh; border-radius: 28px; padding-bottom: 28px; box-shadow: 0 24px 60px rgb(10 12 30 / .4); }
+        }
+        /* Souris : retour visuel au survol */
+        @media (hover: hover) {
+            .card, .home-tile, .chip, .home-chips button, .round, .ps-arrow, .tabs button, .heart { cursor: pointer; }
+            .card:hover { box-shadow: 0 6px 18px rgb(30 30 90 / .12); transform: translateY(-1px); }
+            .card { transition: box-shadow .15s ease, transform .15s ease; }
+            .home-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgb(30 30 90 / .14); }
+            .chip:hover, .home-chips button:not([aria-pressed="true"]):hover { border-color: var(--acc); }
+            .hero .round:hover, .hero .ps-arrow:hover { background: rgb(255 255 255 / .26); }
+            .tabs button:not([aria-current="true"]):hover { background: rgb(255 255 255 / .1); color: #fff; }
+            .heart:hover { transform: scale(1.1); }
+        }
         @media (max-width: 768px) {
             .master-pane { width: 100%; border-right: 0; }
             .detail-pane { display: none; }

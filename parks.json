@@ -15,7 +15,6 @@
           "value": "Disneyland Park",
           "label": "Parc Disneyland",
           "themeparksParkId": "dae968d5-630d-4719-8b06-3d107e944401",
-          "image": "https://placehold.co/120x120/12163A/FFFFFF?text=DP",
           "info": {
             "hours": [
               "À renseigner (ex. Tous les jours : 10h00 – 20h00)"
@@ -26,7 +25,6 @@
           "value": "Disney Adventure World",
           "label": "Adventure World",
           "themeparksParkId": "ca888437-ebb4-4d50-aed2-d227f7096968",
-          "image": "https://placehold.co/120x120/44309E/FFFFFF?text=AW",
           "info": {
             "hours": [
               "À renseigner (ex. Tous les jours : 10h00 – 20h00)"
@@ -35,7 +33,6 @@
         }
       ],
       "legacyStorage": true,
-      "image": "https://placehold.co/800x500/12163A/FFFFFF?text=Disneyland+Paris",
       "info": {
         "address": "Boulevard de Parc, 77700 Coupvray, France",
         "lat": 48.8722,
@@ -64,11 +61,9 @@
         {
           "value": "Parc Astérix",
           "label": "Parc Astérix",
-          "themeparksParkId": "6cc48df2-f126-4f28-905d-b4c2c15765f2",
-          "image": "https://placehold.co/120x120/8A4B00/FFFFFF?text=PA"
+          "themeparksParkId": "6cc48df2-f126-4f28-905d-b4c2c15765f2"
         }
       ],
-      "image": "https://placehold.co/800x500/8A4B00/FFFFFF?text=Parc+Ast%C3%A9rix",
       "info": {
         "address": "D 526, 60128 Plailly, France",
         "lat": 49.1366,
@@ -94,7 +89,6 @@
       "locale": "fr-FR",
       "themeparksId": "85e3b542-af91-4f8a-8d28-445868a7c8fd",
       "dataPath": "data/europa-park/",
-      "image": "https://placehold.co/800x500/1B3A8A/FFFFFF?text=Europa-Park",
       "info": {
         "address": "Europa-Park-Straße 2, 77977 Rust, Allemagne",
         "lat": 48.2661,
@@ -104,7 +98,6 @@
         {
           "value": "Europa Park",
           "label": "Europa Park",
-          "image": "https://placehold.co/120x120/1B3A8A/FFFFFF?text=EP",
           "themeparksParkId": "639738d3-9574-4f60-ab5b-4c392901320b",
           "info": {
             "lat": 48.2661,
@@ -114,7 +107,6 @@
         {
           "value": "Rulantica",
           "label": "Rulantica",
-          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=RU",
           "themeparksParkId": "58392c29-d79d-49e4-9c35-0100d417d24e",
           "info": {
             "lat": 48.2688,
@@ -146,7 +138,6 @@
         "restaurant",
         "spectacle"
       ],
-      "image": "https://placehold.co/800x500/D1492F/FFFFFF?text=PortAventura+World",
       "info": {
         "address": "Av. Pere Molas, km 2, 43480 Vila-seca, Tarragone, Espagne",
         "lat": 41.0875,
@@ -156,19 +147,16 @@
         {
           "value": "PortAventura Park",
           "label": "PortAventura Park",
-          "image": "https://placehold.co/120x120/D1492F/FFFFFF?text=PA",
           "themeparksParkId": "32608bdc-b3fa-478e-a8c0-9dde197a4212"
         },
         {
           "value": "Ferrari Land",
           "label": "Ferrari Land",
-          "image": "https://placehold.co/120x120/B00020/FFFFFF?text=FL",
           "themeparksParkId": "d06d91b8-7702-42c3-a8af-7d0161d471bf"
         },
         {
           "value": "Caribe Aquatic Park",
           "label": "Caribe Aquatic Park",
-          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=CA",
           "themeparksParkId": "91c92c4c-e079-4488-8c99-385bc81bd5d7"
         }
       ],
@@ -192,7 +180,6 @@
       "color": "#2F5BC4",
       "iconImage": "icons/walt-disney-world.png",
       "extraHoursLabel": "Horaires étendus",
-      "image": "https://placehold.co/800x500/2F5BC4/FFFFFF?text=Walt+Disney+World",
       "info": {
         "address": "Walt Disney World Resort, Lake Buena Vista, Floride 32830, États-Unis",
         "lat": 28.3852,
@@ -202,49 +189,40 @@
         {
           "value": "Magic Kingdom",
           "label": "Magic Kingdom",
-          "image": "https://placehold.co/120x120/2F5BC4/FFFFFF?text=MK",
-          "themeparksParkId": "75ea578a-adc8-4116-a54d-dccb60765ef9",
-          "hero": "images/hero/magic-kingdom.jpg"
+          "themeparksParkId": "75ea578a-adc8-4116-a54d-dccb60765ef9"
         },
         {
           "value": "EPCOT",
           "label": "EPCOT",
-          "image": "https://placehold.co/120x120/1F8A8A/FFFFFF?text=EP",
           "themeparksParkId": "47f90d2c-e191-4239-a466-5892ef59a88b"
         },
         {
           "value": "Disney's Hollywood Studios",
           "label": "Hollywood Studios",
-          "image": "https://placehold.co/120x120/B0223B/FFFFFF?text=HS",
           "themeparksParkId": "288747d1-8b4f-4a64-867e-ea7c9b27bad8"
         },
         {
           "value": "Disney's Animal Kingdom",
           "label": "Animal Kingdom",
-          "image": "https://placehold.co/120x120/3F7A1F/FFFFFF?text=AK",
           "themeparksParkId": "1c84a229-8862-4648-9c71-378ddd2c7693"
         },
         {
           "value": "Disney's Typhoon Lagoon",
           "label": "Typhoon Lagoon",
-          "image": "https://placehold.co/120x120/0E7C86/FFFFFF?text=TL",
           "themeparksParkId": "b070cbc5-feaa-4b87-a8c1-f94cca037a18"
         },
         {
           "value": "Disney's Blizzard Beach",
           "label": "Blizzard Beach",
-          "image": "https://placehold.co/120x120/3A8DD9/FFFFFF?text=BB",
           "themeparksParkId": "ead53ea5-22e5-4095-9a83-8c29300d7c63"
         },
         {
           "value": "Disney Springs",
-          "label": "Disney Springs",
-          "image": "https://placehold.co/120x120/7A4FC4/FFFFFF?text=DS"
+          "label": "Disney Springs"
         },
         {
           "value": "Resorts Disney",
-          "label": "Hôtels et golfs",
-          "image": "https://placehold.co/120x120/8A6D3B/FFFFFF?text=RS"
+          "label": "Hôtels et golfs"
         }
       ],
       "theme": {
