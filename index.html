@@ -288,7 +288,6 @@
         .home-summary { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 14px; border-radius: 20px; background: rgb(255 255 255 / .12); font-size: 13.5px; font-weight: 700; }
         .home-summary[hidden] { display: none; }
         .home-summary .dot { width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; box-shadow: 0 0 0 3px rgb(61 220 132 / .25); }
-        .home-sec { margin: 0 0 12px; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--acc); }
         .home-chips { display: flex; gap: 8px; margin: 0 -20px 14px; padding: 0 20px; overflow-x: auto; scrollbar-width: none; }
         .home-chips::-webkit-scrollbar { display: none; }
         .home-chips[hidden] { display: none; }
@@ -296,6 +295,10 @@
         .home-chips button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
         .home-cont { margin: 10px 0 -2px; font-family: var(--font-display); font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--acc); }
         .home-cont:first-child { margin-top: 0; }
+        .home-cont button { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; text-align: left; }
+        .home-cont .cnt { font-weight: 700; color: var(--mut); letter-spacing: 0; }
+        .home-cont .chev { margin-left: auto; width: 18px; height: 18px; transition: transform .18s ease; transform: rotate(90deg); }
+        .home-cont button[aria-expanded="false"] .chev { transform: none; }
         .home-grid { display: flex; flex-direction: column; gap: 12px; }
         .home-tile {
             display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; text-align: left; color: var(--ink);
@@ -315,6 +318,9 @@
         .app-ico.has-img { background: none; box-shadow: 0 6px 14px rgb(30 30 90 / .2); overflow: hidden; }
         .app-ico.has-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
         .ht { flex: 1; min-width: 0; }
+        .ht-n.has-st { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .ht-n.has-st .ht-p { flex: none; margin-left: auto; font-family: var(--font), sans-serif; }
+        .ht-n.has-st .ht-p .st { margin-left: 0; }
         .ht-n { display: block; font-family: var(--font-display); font-weight: 800; font-size: 17px; line-height: 1.2; }
         .ht-parks { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
         .ht-p { display: flex; align-items: center; gap: 7px; font-size: 13px; line-height: 1.3; color: var(--mut); }
@@ -617,7 +623,6 @@
         </div>
         <div class="home-in">
             <div id="home-continents" class="home-chips" role="group" aria-label="Filtrer par continent" hidden></div>
-            <h2 class="home-sec">Vos parcs</h2>
             <div id="home-grid" class="home-grid"></div>
             <p class="home-foot">Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.</p>
         </div>
@@ -976,21 +981,34 @@
                     name.textContent = r.name;
                     const parks = document.createElement('span');
                     parks.className = 'ht-parks';
+                    // Destination à un seul parc du même nom : son état se place en face du nom, aligné sur ceux des autres cartes
+                    const single = (r.parks ?? []).length === 1 && r.parks[0].label === r.name;
                     const rows = (r.parks ?? []).map((pk) => {
                         const row = document.createElement('span');
                         row.className = 'ht-p';
                         const dot = document.createElement('i');
                         dot.className = 'dot';
-                        const label = document.createElement('span');
-                        label.textContent = (r.parks.length === 1 && pk.label === r.name) ? '' : pk.label;
                         const st = document.createElement('span');
                         st.className = 'st';
                         if (!pk.themeparksParkId) { row.dataset.s = 'check'; st.textContent = 'Consulter les horaires'; }   // pas de planning dans l'API
-                        row.append(dot, label, st);
-                        parks.append(row);
+                        if (single) {
+                            row.append(dot, st);
+                        } else {
+                            const label = document.createElement('span');
+                            label.textContent = pk.label;
+                            row.append(dot, label, st);
+                        }
+                        if (!single) parks.append(row);
                         return { pk, row, st };
                     });
-                    txt.append(name, parks);
+                    if (single) {
+                        const nm = document.createElement('span');
+                        nm.className = 'ht-nt';
+                        nm.textContent = r.name;
+                        name.classList.add('has-st');
+                        name.replaceChildren(nm, rows[0].row);
+                        txt.append(name);
+                    } else txt.append(name, parks);
 
                     const go = document.createElement('span');
                     go.className = 'ht-go';
@@ -1037,20 +1055,50 @@
                     renderChips();
                     layout();
                 });
-                // Disposition : par continent (titres si plusieurs), parcs ouverts en tête dans chaque continent
+                // Continents repliés (mémorisés sur l'appareil)
+                const FOLD_KEY = 'tpc-home-collapsed';
+                let collapsed = new Set();
+                try { collapsed = new Set(JSON.parse(safeGet(localStorage, FOLD_KEY) ?? '[]')); } catch { /* valeur illisible */ }
+                grid.addEventListener('click', (event) => {
+                    const b = event.target.closest('[data-fold]');
+                    if (!b) return;
+                    const c = b.dataset.fold;
+                    if (collapsed.has(c)) collapsed.delete(c); else collapsed.add(c);
+                    safeSet(localStorage, FOLD_KEY, JSON.stringify([...collapsed]));
+                    layout();
+                    grid.querySelector(`[data-fold="${CSS.escape(c)}"]`)?.focus();
+                });
+                // Disposition : par continent (titres dépliables si plusieurs), parcs ouverts en tête dans chaque continent
                 const layout = () => {
                     const nodes = [];
                     for (const c of present) {
                         if (filter !== 'all' && filter !== c) continue;
-                        if (present.length > 1 && filter === 'all') {
+                        const list = registry.resorts.filter((r) => continentOf(r) === c)
+                            .sort((x, y) => rank(x.id) - rank(y.id) || resort0.get(x.id) - resort0.get(y.id));
+                        const foldable = present.length > 1 && filter === 'all';
+                        if (foldable) {
+                            const open = !collapsed.has(c);
                             const h = document.createElement('h2');
                             h.className = 'home-cont';
-                            h.textContent = c;
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.dataset.fold = c;
+                            btn.setAttribute('aria-expanded', String(open));
+                            const label = document.createElement('span');
+                            label.textContent = c;
+                            const cnt = document.createElement('span');
+                            cnt.className = 'cnt';
+                            cnt.textContent = String(list.length);
+                            const chev = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                            chev.setAttribute('class', 'icon chev');
+                            chev.setAttribute('aria-hidden', 'true');
+                            chev.innerHTML = '<use href="#i-next"/>';
+                            btn.append(label, cnt, chev);
+                            h.append(btn);
                             nodes.push(h);
+                            if (!open) continue;
                         }
-                        nodes.push(...registry.resorts.filter((r) => continentOf(r) === c)
-                            .sort((x, y) => rank(x.id) - rank(y.id) || resort0.get(x.id) - resort0.get(y.id))
-                            .map((r) => tiles.get(r.id).tile));
+                        nodes.push(...list.map((r) => tiles.get(r.id).tile));
                     }
                     grid.replaceChildren(...nodes);
                 };
