@@ -306,14 +306,32 @@
         .home-cont button[aria-expanded="false"] .chev { transform: none; }
         .home-grid { display: flex; flex-direction: column; gap: 12px; }
         .home-tile {
-            display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; text-align: left; color: var(--ink);
-            background: linear-gradient(100deg, color-mix(in srgb, var(--rc, #fff) 11%, #fff), #fff 58%); border: 1.5px solid color-mix(in srgb, var(--rc, var(--line)) 18%, var(--line)); border-radius: 22px; box-shadow: 0 2px 10px rgb(30 30 90 / .06); transition: transform .16s ease, box-shadow .16s ease;
+            position: relative; isolation: isolate; display: flex; align-items: center; gap: 14px; width: 100%; padding: 15.5px; text-align: left; color: var(--ink);
+            border-radius: 22px; transition: transform .16s ease;
         }
-        .home-tile:hover { box-shadow: 0 8px 20px rgb(30 30 90 / .12); }
+        /* Fond de la carte sur un pseudo-élément : il peut s'effacer pendant que l'icône glisse (repli / dépli) */
+        .home-tile::before {
+            content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+            background: linear-gradient(100deg, color-mix(in srgb, var(--rc, #fff) 11%, #fff), #fff 58%); border: 1.5px solid color-mix(in srgb, var(--rc, var(--line)) 18%, var(--line));
+            box-shadow: 0 2px 10px rgb(30 30 90 / .06); transition: box-shadow .16s ease;
+        }
+        .home-tile:hover::before { box-shadow: 0 8px 20px rgb(30 30 90 / .12); }
         .home-tile:active { transform: scale(.985); }
+        /* Continent replié : seule l'icône du parc reste, en pastille d'état */
+        .home-mini { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px; padding: 4px 2px 8px; }
+        .home-tile.is-mini { width: auto; padding: 0; gap: 0; border-radius: 18px; }
+        .home-tile.is-mini::before { opacity: 0; }
+        .home-tile.is-mini .ht, .home-tile.is-mini .ht-go { display: none; }
+        .home-tile.is-mini::after {
+            content: ""; position: absolute; right: -3px; top: -3px; width: 13px; height: 13px; border-radius: 50%; display: none;
+            background: #B8B9C9; border: 2.5px solid var(--bg);
+        }
+        .home-tile.is-mini[data-state]::after { display: block; }
+        .home-tile.is-mini[data-state="open"]::after { background: #1FA24A; }
+        .home-tile.is-mini[aria-current="true"] .app-ico { outline: 2px solid var(--gold); outline-offset: 3px; }
         .home-tile[data-state="closed"] .app-ico { filter: grayscale(.75); opacity: .75; }
         .home-tile[data-state="closed"] .ht-n { color: var(--mut); }
-        .home-tile[aria-current="true"] { border-color: var(--gold); }
+        .home-tile[aria-current="true"]::before { border-color: var(--gold); }
         .app-ico {
             position: relative; flex: none; width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; color: #fff;
             background: linear-gradient(150deg, var(--rc, var(--g1)), color-mix(in srgb, var(--rc, var(--g2)) 55%, #000));
@@ -339,7 +357,7 @@
         .ht-go { flex: none; color: var(--mut); }
         .ht-go .icon { width: 20px; height: 20px; }
         .home-foot { margin: 24px 0 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--mut); }
-        @media (prefers-reduced-motion: reduce) { .home-tile { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { .home-tile, .home-tile::before { transition: none; } }
 
         /* ==========================================================================
            4. Détail
@@ -372,6 +390,11 @@
             display: flex; flex-direction: column; gap: 16px;
             border-radius: 28px 28px 0 0; background: var(--bg);
         }
+        /* Portefeuille ouvert depuis l'accueil : page au-dessus de la liste, sous le footer de l'accueil */
+        #home #wallet-layer { z-index: 4; bottom: calc(72px + var(--safe-bottom)); }
+        .home-mode #scan-layer { z-index: 510; }
+        .home-mode #form-layer { z-index: 520; }
+        .home-mode #qr-layer { z-index: 530; }
         #menu-layer .panel, #home-info-layer .panel {
             z-index: 4; bottom: calc(72px + var(--safe-bottom) - 1px); max-height: calc(90dvh - 72px - var(--safe-bottom)); padding-bottom: 24px;
         }
@@ -565,7 +588,8 @@
             .card, .home-tile, .chip, .home-chips button, .round, .ps-arrow, .tabs button, .heart { cursor: pointer; }
             .card:hover { box-shadow: 0 6px 18px rgb(30 30 90 / .12); transform: translateY(-1px); }
             .card { transition: box-shadow .15s ease, transform .15s ease; }
-            .home-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgb(30 30 90 / .14); }
+            .home-tile:hover { transform: translateY(-2px); }
+            .home-tile:hover::before { box-shadow: 0 8px 22px rgb(30 30 90 / .14); }
             .chip:hover, .home-chips button:not([aria-pressed="true"]):hover { border-color: var(--acc); }
             .hero .round:hover, .hero .ps-arrow:hover { background: rgb(255 255 255 / .26); }
             .tabs button:not([aria-current="true"]):hover { color: #fff; }
@@ -1005,6 +1029,7 @@
             }
 
             return new Promise((resolve) => {
+                let resolved = false;   // vrai dès que l'appli a démarré (choix d'un parc ou ouverture du portefeuille) : l'accueil peut rester affiché dessous
                 const tiles = new Map();   // resort.id -> { tile, rows: [{ row, st }] }
                 grid.replaceChildren(...registry.resorts.map((r) => {
                     const tile = document.createElement('button');
@@ -1079,7 +1104,9 @@
                     const tile = event.target.closest('.home-tile');
                     const chosen = tile && findResort(tile.dataset.resort);
                     if (!chosen) return;
+                    if (resolved) { document.dispatchEvent(new CustomEvent('tpc-choose', { detail: chosen.id })); return; }
                     home.hidden = true;
+                    resolved = true;
                     resolve(chosen);
                 });
                 home.hidden = false;
@@ -1096,13 +1123,17 @@
                     hTabs.home.setAttribute('aria-current', String(!open));
                     placeBump(hDock);
                 };
-                hTabs.info.addEventListener('click', () => setInfo(infoLayer.hidden));
-                hTabs.home.addEventListener('click', () => { setInfo(false); home.scrollTo({ top: 0, behavior: 'smooth' }); });
+                const closeWalletIfOpen = () => document.dispatchEvent(new Event('tpc-close-wallet'));
+                hTabs.info.addEventListener('click', () => { closeWalletIfOpen(); setInfo(infoLayer.hidden); });
+                hTabs.home.addEventListener('click', () => { closeWalletIfOpen(); setInfo(false); home.scrollTo({ top: 0, behavior: 'smooth' }); });
                 document.querySelector('#home-info-close').addEventListener('click', () => setInfo(false));
                 document.querySelector('#home-info-scrim').addEventListener('click', () => setInfo(false));
                 document.querySelector('#home-tab-wallet').addEventListener('click', () => {
-                    safeSet(sessionStorage, OPEN_LAYER_KEY, 'wallet');
-                    home.hidden = true;
+                    setInfo(false);
+                    if (resolved) { document.dispatchEvent(new Event('tpc-open-wallet')); return; }
+                    // L'appli démarre (dans le dernier parc visité) pendant que l'accueil reste affiché ; le portefeuille s'ouvre par-dessus
+                    safeSet(sessionStorage, OPEN_LAYER_KEY, 'wallet-home');
+                    resolved = true;
                     resolve(lastResort);
                 });
 
@@ -1143,24 +1174,63 @@
                     if (collapsed.has(c)) collapsed.delete(c); else collapsed.add(c);
                     safeSet(localStorage, FOLD_KEY, JSON.stringify([...collapsed]));
                     layout();
-                    grid.querySelector(`[data-fold="${CSS.escape(c)}"]`)?.focus();
+                    const nb = grid.querySelector(`[data-fold="${CSS.escape(c)}"]`);
+                    nb?.focus({ preventScroll: true });
+                    const isOpen = !collapsed.has(c);
+                    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        nb?.querySelector('.chev')?.animate([{ transform: isOpen ? 'none' : 'rotate(90deg)' }, { transform: isOpen ? 'rotate(90deg)' : 'none' }], { duration: 260, easing: EASE });
+                    }
                 });
-                // Disposition : par continent (titres dépliables si plusieurs), parcs ouverts en tête dans chaque continent
+                // Disposition : par continent (titres dépliables si plusieurs), parcs ouverts en tête dans chaque continent.
+                // Un continent replié garde les icônes de ses parcs en rangée ; les tuiles passent de l'un à l'autre avec une animation (FLIP).
+                const REDUCED = matchMedia('(prefers-reduced-motion: reduce)');
+                const EASE = 'cubic-bezier(.3, .7, .2, 1)';
+                const animateLayout = (before) => {
+                    if (REDUCED.matches || !before.size) return;
+                    for (const [id, { tile }] of tiles) {
+                        const was = before.get(id);
+                        if (!was || !tile.isConnected) continue;
+                        const ico = tile.querySelector('.app-ico');
+                        const nowTile = tile.getBoundingClientRect(), nowIco = ico.getBoundingClientRect();
+                        const mini = tile.classList.contains('is-mini');
+                        const opts = { duration: 380, easing: EASE };
+                        if (mini === was.mini) {   // même forme : la tuile glisse à sa nouvelle place
+                            const dy = was.tile.top - nowTile.top, dx = was.tile.left - nowTile.left;
+                            if (dx || dy) tile.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }], opts);
+                            continue;
+                        }
+                        // Forme différente : l'icône glisse, le fond de la carte et le texte apparaissent / s'effacent
+                        ico.animate([{ transform: `translate(${was.ico.left - nowIco.left}px, ${was.ico.top - nowIco.top}px)` }, { transform: 'none' }], opts);
+                        try { tile.animate([{ opacity: mini ? 1 : 0 }, { opacity: mini ? 0 : 1 }], { ...opts, duration: 260, pseudoElement: '::before' }); } catch { /* non pris en charge */ }
+                        if (!mini) tile.querySelectorAll('.ht, .ht-go').forEach((el) => el.animate([{ opacity: 0, transform: 'translateX(-8px)' }, { opacity: 1, transform: 'none' }], { duration: 280, delay: 110, easing: EASE, fill: 'backwards' }));
+                    }
+                };
                 const layout = () => {
+                    // Positions avant le changement (pour l'animation)
+                    const before = new Map();
+                    for (const [id, { tile }] of tiles) {
+                        if (!tile.isConnected) continue;
+                        before.set(id, { mini: tile.classList.contains('is-mini'), tile: tile.getBoundingClientRect(), ico: tile.querySelector('.app-ico').getBoundingClientRect() });
+                    }
                     const nodes = [];
                     for (const c of present) {
                         if (filter !== 'all' && filter !== c) continue;
                         const list = registry.resorts.filter((r) => continentOf(r) === c)
                             .sort((x, y) => rank(x.id) - rank(y.id) || resort0.get(x.id) - resort0.get(y.id));
                         const foldable = present.length > 1 && filter === 'all';
+                        const folded = foldable && collapsed.has(c);
+                        for (const r of list) {
+                            const t = tiles.get(r.id).tile;
+                            t.classList.toggle('is-mini', folded);
+                            if (folded) t.setAttribute('aria-label', r.name); else t.removeAttribute('aria-label');
+                        }
                         if (foldable) {
-                            const open = !collapsed.has(c);
                             const h = document.createElement('h2');
                             h.className = 'home-cont';
                             const btn = document.createElement('button');
                             btn.type = 'button';
                             btn.dataset.fold = c;
-                            btn.setAttribute('aria-expanded', String(open));
+                            btn.setAttribute('aria-expanded', String(!folded));
                             const label = document.createElement('span');
                             label.textContent = c;
                             const cnt = document.createElement('span');
@@ -1173,11 +1243,18 @@
                             btn.append(label, cnt, chev);
                             h.append(btn);
                             nodes.push(h);
-                            if (!open) continue;
                         }
-                        nodes.push(...list.map((r) => tiles.get(r.id).tile));
+                        if (folded) {
+                            const row = document.createElement('div');
+                            row.className = 'home-mini';
+                            row.append(...list.map((r) => tiles.get(r.id).tile));
+                            nodes.push(row);
+                        } else {
+                            nodes.push(...list.map((r) => tiles.get(r.id).tile));
+                        }
                     }
                     grid.replaceChildren(...nodes);
+                    animateLayout(before);
                 };
                 const sortTiles = layout;
                 const updateSummary = () => {
@@ -2110,7 +2187,7 @@
         }
 
         function syncTabsUi() {
-            const infoOpen = !els.menuLayer.hidden;
+            const infoOpen = !els.menuLayer.hidden || (!els.walletLayer.hidden && !homeMode);
             els.tabs.forEach((t) => t.setAttribute('aria-current', String(!infoOpen && !state.showFavorites && t.dataset.tab === state.tab)));
             els.btnMenu.setAttribute('aria-current', String(infoOpen));
             placeBump(els.btnMenu.closest('.dock'));
@@ -3150,16 +3227,32 @@
                 </div>`).join('');
         }
 
+        // Portefeuille ouvert depuis l'accueil : l'accueil reste affiché dessous, avec son footer (onglet Billets actif)
+        const homeEl = document.querySelector('#home');
+        let homeMode = false;
+        function syncHomeDock() {
+            const dock = homeEl.querySelector('.dock');
+            const infoOpen = !homeEl.querySelector('#home-info-layer').hidden;
+            const w = !els.walletLayer.hidden;
+            homeEl.querySelector('#home-tab-home').setAttribute('aria-current', String(!w && !infoOpen));
+            homeEl.querySelector('#home-tab-wallet').setAttribute('aria-current', String(w));
+            homeEl.querySelector('#home-tab-info').setAttribute('aria-current', String(infoOpen && !w));
+            placeBump(dock);
+        }
+
         function openWallet() {
             purgeWallet();
             renderWallet();
             pushLayer('wallet', hideWallet);
             els.walletLayer.hidden = false;
+            if (homeMode) syncHomeDock(); else syncTabsUi();
             els.walletClose.focus({ preventScroll: true });
         }
 
         function hideWallet() {
             els.walletLayer.hidden = true;
+            if (homeMode) { syncHomeDock(); homeEl.querySelector('#home-tab-wallet').focus({ preventScroll: true }); return; }
+            syncTabsUi();
             els.btnMenu.focus({ preventScroll: true });
         }
 
@@ -3603,7 +3696,22 @@
                 if (event.data?.type === 'refresh-data') refresh();
             });
             if (location.hash.length > 1) openFromAlert(decodeURIComponent(location.hash.slice(1)));
-            if (safeGet(sessionStorage, OPEN_LAYER_KEY) === 'wallet') openWallet();
+            if (safeGet(sessionStorage, OPEN_LAYER_KEY) === 'wallet-home') {
+                homeMode = true;
+                document.body.classList.add('home-mode');
+                homeEl.append(els.walletLayer);
+                openWallet();
+            }
+            document.addEventListener('tpc-open-wallet', () => { if (homeMode && els.walletLayer.hidden) openWallet(); });
+            document.addEventListener('tpc-close-wallet', () => { if (!els.walletLayer.hidden) closeLayer('wallet'); });
+            document.addEventListener('tpc-choose', (event) => {   // parc choisi sur l'accueil resté affiché
+                if (event.detail !== resort.id) { switchResort(event.detail); return; }
+                if (!els.walletLayer.hidden) closeLayer('wallet');
+                homeMode = false;
+                document.body.classList.remove('home-mode');
+                document.body.append(els.walletLayer);
+                homeEl.hidden = true;
+            });
             try { sessionStorage.removeItem(OPEN_LAYER_KEY); } catch { /* stockage indisponible */ }
 
             if ('serviceWorker' in navigator) {
