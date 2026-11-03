@@ -1707,6 +1707,114 @@
             return rows.length ? { rows } : null;
         }
 
+        /**
+         * « Attente habituelle » : on lit l'historique brut de l'API themeparks.wiki (une ligne à chaque
+         * changement, file standby uniquement) pour chaque parc et chacun des 6 jours précédents, puis on en tire,
+         * par attraction et par heure locale, l'attente moyenne pondérée par la durée. L'attente actuelle est
+         * comparée à celle de la même heure (± 1 h). Résultat mis en cache pour la journée.
+         */
+        const USUAL = { DAYS: 6, MIN_DAYS: 3, MIN_MINUTES: 90, MIN_BASE: 5, MIN_GAP: 5, RATIO: 0.25 };
+        const usualData = new Map();   // apiId -> { s: minutes×attente par heure, m: minutes par heure }
+        let usualBusy = false, usualDay = null;
+
+        const parkDay = (d = new Date()) => new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE }).format(d);
+        const tzFmt = new Intl.DateTimeFormat('en-US', {
+            timeZone: CONFIG.TIMEZONE, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric',
+            hour: 'numeric', minute: 'numeric', second: 'numeric',
+        });
+        function tzOffsetMs(t) {   // décalage UTC → heure locale du parc, en ms
+            const o = Object.fromEntries(tzFmt.formatToParts(t).map((x) => [x.type, +x.value]));
+            return Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute, o.second) - Math.floor(t / 1000) * 1000;
+        }
+
+        // Ajoute à acc les intervalles OPERATING avec attente standby d'un historique d'une journée
+        function accumulateDay(entity, dayStart, dayEnd, acc) {
+            const sb = (r) => (r?.status === 'OPERATING' ? r.queue?.STANDBY?.waitTime : null);
+            const steps = [];
+            if (entity.opening) steps.push({ t: dayStart, w: sb(entity.opening) });
+            for (const r of entity.history ?? []) steps.push({ t: new Date(r.time).getTime(), w: sb(r) });
+            const off = tzOffsetMs(dayStart + 12 * 36e5);
+            for (let k = 0; k < steps.length; k++) {
+                const { t, w } = steps[k];
+                if (!Number.isFinite(w)) continue;
+                let from = Math.max(t, dayStart);
+                const end = Math.min(k + 1 < steps.length ? steps[k + 1].t : from + 36e5, dayEnd);
+                while (from < end) {
+                    const local = from + off;
+                    const hour = Math.floor(local / 36e5);
+                    const upto = Math.min(end, (hour + 1) * 36e5 - off);
+                    const mins = (upto - from) / 6e4, h = ((hour % 24) + 24) % 24;
+                    acc.s[h] += mins * w; acc.m[h] += mins;
+                    from = upto;
+                }
+            }
+            return acc;
+        }
+
+        async function loadPark(park, today) {
+            const key = `tpc-usual2-${park.themeparksParkId}`;
+            try {
+                const c = JSON.parse(safeGet(localStorage, key) ?? 'null');
+                if (c?.day === today) return c.data;
+            } catch {}
+            const results = await Promise.all(Array.from({ length: USUAL.DAYS }, (_, i) => {
+                const date = parkDay(new Date(Date.now() - (i + 1) * 864e5));
+                const url = `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(park.themeparksParkId)}/history?date=${date}`;
+                return fetchJson(url, 45_000).then((d) => d, () => null);
+            }));
+            const data = {}, days = results.filter(Boolean);
+            if (days.length < USUAL.MIN_DAYS) throw new Error('historique insuffisant');
+            for (const d of days) {
+                const start = new Date(`${d.range?.from ?? ''}T00:00:00Z`).getTime();
+                if (!Number.isFinite(start)) continue;
+                const dayStart = start - tzOffsetMs(start + 12 * 36e5), dayEnd = dayStart + 864e5;
+                for (const e of d.entities ?? []) {
+                    if (!e?.id) continue;
+                    const acc = (data[String(e.id).toLowerCase()] ??= { s: Array(24).fill(0), m: Array(24).fill(0) });
+                    accumulateDay(e, dayStart, dayEnd, acc);
+                }
+            }
+            for (const v of Object.values(data)) { v.s = v.s.map(Math.round); v.m = v.m.map(Math.round); }
+            safeSet(localStorage, key, JSON.stringify({ day: today, data }));
+            return data;
+        }
+
+        async function loadUsual() {
+            const today = parkDay();
+            if (usualBusy || usualDay === today) return;
+            usualBusy = true;
+            let failed = false;
+            for (const park of CONFIG.PARKS ?? []) {
+                if (!park.themeparksParkId) continue;
+                try {
+                    for (const [id, v] of Object.entries(await loadPark(park, today))) usualData.set(id, v);
+                    render();
+                } catch (error) {
+                    failed = true;
+                    console.warn('Attente habituelle indisponible :', error);
+                }
+            }
+            usualDay = failed ? null : today;
+            usualBusy = false;
+        }
+
+        // 'low' | 'normal' | 'high' selon l'attente actuelle et celle de la même heure (± 1 h) les jours précédents
+        function usualKind(item) {
+            const wait = item.live?.wait, v = usualData.get(item.apiId);
+            if (!v || !Number.isFinite(wait)) return null;
+            const h = Math.floor((Date.now() + tzOffsetMs(Date.now())) / 36e5) % 24;
+            let s = 0, m = 0;
+            for (const k of [h - 1, h, h + 1]) { const i = (k + 24) % 24; s += v.s[i]; m += v.m[i]; }
+            if (m < USUAL.MIN_MINUTES) return null;
+            const base = s / m;
+            if (base < USUAL.MIN_BASE) return null;
+            if (wait - base >= USUAL.MIN_GAP && wait >= base * (1 + USUAL.RATIO)) return 'high';
+            if (base - wait >= USUAL.MIN_GAP && wait <= base * (1 - USUAL.RATIO)) return 'low';
+            return 'normal';
+        }
+
+        const USUAL_TEXT = { low: 'Moins d’attente que d’habitude', normal: 'Attente habituelle', high: 'Plus d’attente que d’habitude' };
+
         function applyLive(liveData) {
             const byId = new Map();
             for (const entry of liveData) {
@@ -1842,7 +1950,7 @@
                 checkAlerts();
                 render();
             }
-            if (ok) loadDownSince();   // sans bloquer l'affichage
+            if (ok) { loadDownSince(); loadUsual(); }   // sans bloquer l'affichage
             loadParkHours();           // idem (mis en cache 15 min)
         }
 
@@ -2540,6 +2648,9 @@
         // Le Type n'est répété dans le sous-titre que s'il apporte une information en plus du badge
         const typeLabel = (item) => (item.halloween && /^halloween$/i.test(item.type) ? '' : item.type);
 
+        // Attraction ouverte avec une attente publiée : situation par rapport aux 7 derniers jours
+        const usualText = (item) => (item.category === 'attraction' ? USUAL_TEXT[usualKind(item)] ?? '' : '');
+
         function cardHtml({ item, dist }, opts = {}) {
             const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
@@ -2548,7 +2659,7 @@
             const sub = [
                 dist != null ? `à ${formatDistance(dist)}` : '',
                 opts.showLand ? item.land : '',
-                m.kind === 'down' ? m.text : (isGenericType(item) ? '' : typeLabel(item)),
+                m.kind === 'down' ? m.text : (usualText(item) || (isGenericType(item) ? '' : typeLabel(item))),
                 item.category === 'attraction' && item.minHeight && item.minHeight !== 'Pas de restriction' ? `dès ${item.minHeight}` : '',
                 state.showFavorites ? item.park : '',
             ].filter(Boolean).join(' · ');
