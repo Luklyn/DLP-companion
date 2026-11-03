@@ -583,6 +583,7 @@
     "Code": "show_007",
     "UUID Themeparks.wiki": "40737d3d-0ff6-4a9e-a050-beb87bf90120",
     "Nom": "Meet Cinderella and a Visiting Princess at Princess Fairytale Hall",
+    "Photo": "images/walt-disney-world/meet-visiting-princesses-at-princess-fairytale-hall.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -594,6 +595,7 @@
     "Code": "show_009",
     "UUID Themeparks.wiki": "cf4b2ba4-3626-4de7-9d07-abe8a65b1665",
     "Nom": "Meet Princess Tiana and a Visiting Princess at Princess Fairytale Hall",
+    "Photo": "images/walt-disney-world/meet-cinderella-and-princess-tiana-at-princess-fairytale-hall.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -989,5 +991,17 @@
     "Description": "Concerts de groupes pop-rock pendant le festival EPCOT International Flower & Garden Festival (événement saisonnier).",
     "Coordonnées GPS (lat)": 28.36831,
     "Coordonnées GPS (lng)": -81.549428
+  },
+  {
+    "Code": "show_037",
+    "UUID Themeparks.wiki": "f13be6e2-40fd-46d2-895f-eef97bf65d3b",
+    "Nom": "Disney Holidays in Hollywood at Disney Jollywood Nights",
+    "Photo": "images/walt-disney-world/disney-holidays-in-hollywood-at-disney-jollywood-nights.webp",
+    "Type": "Spectacle",
+    "Parc": "Disney's Hollywood Studios",
+    "Land": "",
+    "Description": "",
+    "Coordonnées GPS (lat)": 28.358916,
+    "Coordonnées GPS (lng)": -81.559599
   }
 ]
