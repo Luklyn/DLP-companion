@@ -259,8 +259,8 @@
         /* Page d'accueil : choix du parc, avec l'état ouvert / fermé */
         .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; }
         .home-hero {
-            position: sticky; top: 0; z-index: 3; overflow: hidden; color: #fff; border-radius: 0 0 28px 28px;
-            background: var(--ink); box-shadow: 0 6px 18px rgb(18 22 58 / .18);
+            position: relative; overflow: hidden; color: #fff; border-radius: 0 0 28px 28px;
+            background: var(--ink);
         }
         /* Petites étoiles décoratives */
         .home-hero::before {
@@ -281,7 +281,10 @@
         .home-summary { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 14px; border-radius: 20px; background: rgb(255 255 255 / .12); font-size: 13.5px; font-weight: 700; }
         .home-summary[hidden] { display: none; }
         .home-summary .dot { width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; box-shadow: 0 0 0 3px rgb(61 220 132 / .25); }
-        .home-chips { display: flex; gap: 8px; margin: 0 -20px 14px; padding: 0 20px; overflow-x: auto; scrollbar-width: none; }
+        .home-chips {
+            position: sticky; top: var(--safe-top); z-index: 3; display: flex; gap: 8px; margin: -8px -20px 6px; padding: 8px 20px 10px;
+            overflow-x: auto; scrollbar-width: none; background: var(--bg);
+        }
         .home-chips::-webkit-scrollbar { display: none; }
         .home-chips[hidden] { display: none; }
         .home-chips button { flex: none; min-height: 44px; padding: 0 16px; border-radius: 22px; background: #fff; border: 1.5px solid var(--line); font-weight: 700; font-size: 13.5px; }
