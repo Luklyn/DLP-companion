@@ -1799,7 +1799,7 @@
             usualBusy = false;
         }
 
-        // 'low' | 'normal' | 'high' selon l'attente actuelle et celle de la même heure (± 1 h) les jours précédents
+        // { kind: 'low' | 'normal' | 'high', gap: écart en minutes } selon l'attente actuelle et celle de la même heure (± 1 h) les jours précédents
         function usualKind(item) {
             const wait = item.live?.wait, v = usualData.get(item.apiId);
             if (!v || !Number.isFinite(wait)) return null;
@@ -1809,12 +1809,14 @@
             if (m < USUAL.MIN_MINUTES) return null;
             const base = s / m;
             if (base < USUAL.MIN_BASE) return null;
-            if (wait - base >= USUAL.MIN_GAP && wait >= base * (1 + USUAL.RATIO)) return 'high';
-            if (base - wait >= USUAL.MIN_GAP && wait <= base * (1 - USUAL.RATIO)) return 'low';
-            return 'normal';
+            const gap = Math.round(wait - base);
+            if (wait - base >= USUAL.MIN_GAP && wait >= base * (1 + USUAL.RATIO)) return { kind: 'high', gap };
+            if (base - wait >= USUAL.MIN_GAP && wait <= base * (1 - USUAL.RATIO)) return { kind: 'low', gap };
+            return { kind: 'normal', gap };
         }
 
-        const USUAL_TEXT = { low: 'Moins d’attente que d’habitude', normal: 'Attente habituelle', high: 'Plus d’attente que d’habitude' };
+        const usualLabel = ({ kind, gap }) => kind === 'low' ? `${-gap} min de moins que d’habitude`
+            : kind === 'high' ? `${gap} min de plus que d’habitude` : 'Attente habituelle';
 
         function applyLive(liveData) {
             const byId = new Map();
@@ -2661,9 +2663,9 @@
                 m.kind === 'down' ? m.text : (usualKind(item) ? '' : (isGenericType(item) ? '' : typeLabel(item))),
                 state.showFavorites ? item.park : '',
             ].filter(Boolean).join(' · ');
-            const uk = m.kind === 'down' ? null : usualKind(item);
+            const uk = m.kind === 'down' ? null : usualKind(item);   // { kind, gap } ou null
             const extra = timesHtml(m)
-                + (uk ? `<span class="usual ${uk}">${USUAL_TEXT[uk]}</span>` : '')
+                + (uk ? `<span class="usual ${uk.kind}">${usualLabel(uk)}</span>` : '')
                 + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '')
                 + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
