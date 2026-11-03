@@ -612,18 +612,6 @@
     "Coordonnées GPS (lng)": "2.775416"
   },
   {
-    "Code": "P1MA01",
-    "UUID Themeparks.wiki": "0d9296c0-a76c-4578-b0f9-2ff4b4e385b5",
-    "Nom": "Disneyland Railroad Main Street Station",
-    "URL image": "",
-    "Description": "",
-    "Type": "",
-    "Parc": "Disneyland Park",
-    "Land": "",
-    "Coordonnées GPS (lat)": "48.870821",
-    "Coordonnées GPS (lng)": "2.779071"
-  },
-  {
     "Code": "P1DA10",
     "UUID Themeparks.wiki": "351af0dc-cd77-45f5-b6c2-a59e871b5a43",
     "Nom": "Disneyland Railroad Discoveryland Station",
