@@ -24,18 +24,6 @@
     "Coordonnées GPS (lng)": "2,777057"
   },
   {
-    "Code": "P1MSSH03",
-    "UUID Themeparks.wiki": "f43b0d08-6197-4da9-ae62-cff690fdbeb8",
-    "Nom": "La Célébration Halloween de Mickey",
-    "Photo": "https://media.disneylandparis.com/d4th/fr-fr/images/n034379_2027sep25_world_chars-festival-halloween-disney-2020_16-9_tcm808-227750.jpg",
-    "Description": "Dans une ambiance festive et colorée, célébrez le Festival Halloween Disney sur fond de musique entraînante avec la Célébration Halloween de Mickey ! Depuis leurs chars, les Personnages Disney en tenue automnale rivalisent de malice pour faire de ce défilé un moment inoubliable !",
-    "Type": "Spectacle en exterieur",
-    "Parc": "Disneyland Park",
-    "Land": "Main Street U.S.A ",
-    "Coordonnées GPS (lat)": "48,871678",
-    "Coordonnées GPS (lng)": "2,777972"
-  },
-  {
     "Code": "P1FRLSH01",
     "UUID Themeparks.wiki": "78abb817-4564-41e2-b0de-fa0df34664c1",
     "Nom": "Le Roi Lion et les Rythmes de la Terre",
@@ -106,18 +94,6 @@
     "Land": "World Premiere",
     "Coordonnées GPS (lat)": "48,866996",
     "Coordonnées GPS (lng)": "2,780283"
-  },
-  {
-    "Code": "P2AWSH01",
-    "UUID Themeparks.wiki": "75d60cb3-c95c-4ce2-aeb4-36e4050f14f3",
-    "Nom": "Miguel's Fiesta Latina",
-    "Photo": "https://media.disneylandparis.com/d4th/fr-fr/images/N041843_2032May11_world_disney-music-festival-miguel-fiesta-latina_16-9_tcm808-287978.jpg",
-    "Description": "Accompagné de ses mariachis, Miguel est à la recherche de nouveaux musiciens pour élargir sa chaleureuse troupe à Adventure Way. Soyez inspirés et prêts à rejoindre le rythme pour vivre un moment festif et mémorable !​",
-    "Type": "Spectacle en exterieur",
-    "Parc": "Disney Adventure World",
-    "Land": "Adventure Way",
-    "Coordonnées GPS (lat)": "48,866776",
-    "Coordonnées GPS (lng)": "2,777963"
   },
   {
     "Code": "P2AWSH02",
