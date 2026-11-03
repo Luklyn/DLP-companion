@@ -202,6 +202,10 @@
         .access { display: inline-block; margin-top: 5px; padding: 2px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; line-height: 1.5; }
         .access.resa { background: #FFE9C7; color: #8A4B00; }
         .access.free { background: #DDF3E4; color: #14692E; }
+        .usual { display: inline-block; margin-top: 5px; padding: 2px 9px; border-radius: 8px; font-size: 12px; font-weight: 700; line-height: 1.5; }
+        .usual.low { background: #DDF3E4; color: #14692E; }
+        .usual.normal { background: #ECE5FB; color: #5B2FC0; }
+        .usual.high { background: #FDE2E2; color: #A31F1F; }
 
         .skeleton { height: 90px; margin-bottom: 10px; border-radius: 18px; background: #fff; opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
         @keyframes pulse { 50% { opacity: .35; } }
@@ -2649,8 +2653,6 @@
         const typeLabel = (item) => (item.halloween && /^halloween$/i.test(item.type) ? '' : item.type);
 
         // Attraction ouverte avec une attente publiée : situation par rapport aux 7 derniers jours
-        const usualText = (item) => (item.category === 'attraction' ? USUAL_TEXT[usualKind(item)] ?? '' : '');
-
         function cardHtml({ item, dist }, opts = {}) {
             const selected = item.id === state.selectedId;
             const fav = favorites.has(item.id);
@@ -2659,11 +2661,12 @@
             const sub = [
                 dist != null ? `à ${formatDistance(dist)}` : '',
                 opts.showLand ? item.land : '',
-                m.kind === 'down' ? m.text : (usualText(item) || (isGenericType(item) ? '' : typeLabel(item))),
-                item.category === 'attraction' && item.minHeight && item.minHeight !== 'Pas de restriction' ? `dès ${item.minHeight}` : '',
+                m.kind === 'down' ? m.text : (usualKind(item) ? '' : (isGenericType(item) ? '' : typeLabel(item))),
                 state.showFavorites ? item.park : '',
             ].filter(Boolean).join(' · ');
+            const uk = m.kind === 'down' ? null : usualKind(item);
             const extra = timesHtml(m)
+                + (uk ? `<span class="usual ${uk}">${USUAL_TEXT[uk]}</span>` : '')
                 + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '')
                 + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
