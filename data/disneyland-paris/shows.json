@@ -154,5 +154,297 @@
     "Land": "World of Frozen",
     "Coordonnées GPS (lat)": "48,864459",
     "Coordonnées GPS (lng)": "2,773738"
+  },
+  {
+    "Code": "P1GS57",
+    "UUID Themeparks.wiki": "33abfdae-8cbc-4d10-bde7-5a72d3ba3e12",
+    "Nom": "Reserved viewing area: Mickey's Dazzling Christmas Parade!",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.868720",
+    "Coordonnées GPS (lng)": "2.781826"
+  },
+  {
+    "Code": "P1GS93",
+    "UUID Themeparks.wiki": "ef579f04-406a-475d-87aa-2461f57c4d48",
+    "Nom": "Disney Princess Musical Memories",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG67",
+    "UUID Themeparks.wiki": "527ffe57-4dfe-4e04-86ea-cbce360d5b21",
+    "Nom": "Meet a Character from Zootropolis",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG59",
+    "UUID Themeparks.wiki": "7e06d0ca-d0b2-46ab-a2c0-081ba2e4f6d5",
+    "Nom": "Meet a Toy Story Character",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG05",
+    "UUID Themeparks.wiki": "72b05d4f-bf6e-48dd-a170-750685271b31",
+    "Nom": "Meet Donald Duck or his friends",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG21",
+    "UUID Themeparks.wiki": "47c9613d-563a-45a9-9592-3021e72f0d13",
+    "Nom": "An Encounter with Captain Hook",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG86",
+    "UUID Themeparks.wiki": "80b13f61-d9ad-4193-90b2-53a8f2c12d5a",
+    "Nom": "Meet Minnie or her friends across Europe",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P2RV00",
+    "UUID Themeparks.wiki": "652558c2-9f2d-488c-8e1b-57c284e3e836",
+    "Nom": "Reserved Viewing Area : Disney Cascade of Lights",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.865527",
+    "Coordonnées GPS (lng)": "2.775931"
+  },
+  {
+    "Code": "ENDPAP07",
+    "UUID Themeparks.wiki": "c07e4a0d-341c-480f-a4ea-ae7609a5eec7",
+    "Nom": "Disney Performing Arts Programme",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.874057",
+    "Coordonnées GPS (lng)": "2.778097"
+  },
+  {
+    "Code": "P1RV00",
+    "UUID Themeparks.wiki": "4e9e9271-1962-4fad-9f73-9370954018cf",
+    "Nom": "Reserved viewing area: Disney Tales of Magic",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.872163",
+    "Coordonnées GPS (lng)": "2.776491"
+  },
+  {
+    "Code": "P1MG65",
+    "UUID Themeparks.wiki": "91d21453-03cc-4567-ac68-f5ef988d21db",
+    "Nom": "Mysterious Meeting",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG71",
+    "UUID Themeparks.wiki": "6d70e95a-12a4-4eae-ba41-82669245a536",
+    "Nom": "Meet Mickey",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "P1M115",
+    "UUID Themeparks.wiki": "44eff9fa-cd05-4a00-89b3-e6cec4682636",
+    "Nom": "Meet Mickey Mouse",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG33",
+    "UUID Themeparks.wiki": "a3bb8c37-68ef-401f-b43c-5838bb79ca9d",
+    "Nom": "Spider-Man Heroic Encounter",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "heroicWelcome",
+    "UUID Themeparks.wiki": "08e247d6-21c9-4682-91f5-6e0fa6f93ed4",
+    "Nom": "Heroic Welcome",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.865306",
+    "Coordonnées GPS (lng)": "2.779259"
+  },
+  {
+    "Code": "P1RV01",
+    "UUID Themeparks.wiki": "435401f8-b158-4e2b-b3e1-d824d75570fc",
+    "Nom": "Reserved viewing area: Disney Stars on Parade",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": "",
+    "Coordonnées GPS (lat)": "48.872724",
+    "Coordonnées GPS (lng)": "2.777022"
+  },
+  {
+    "Code": "P2MG43",
+    "UUID Themeparks.wiki": "968f5038-37d2-4fa4-9f34-9364c137bd2b",
+    "Nom": "MARVEL Super Hero Heroic Encounter",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG66",
+    "UUID Themeparks.wiki": "9d20895f-b80c-48c1-8e74-0e153b762b37",
+    "Nom": "Rencontre Royale",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
+  },
+  {
+    "Code": "P1M116",
+    "UUID Themeparks.wiki": "14924bd7-ffbf-47ee-a96e-2d5bd3fb5f25",
+    "Nom": "Princess Pavilion: A Royal Invitation",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1M134",
+    "UUID Themeparks.wiki": "70af9b14-8009-4ae2-a8db-1cefa8297be5",
+    "Nom": "Dr. Facilier Encounter",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG77",
+    "UUID Themeparks.wiki": "b1b4a657-792a-40c4-a230-a1aba54543c0",
+    "Nom": "Meet Chip and Dale",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG78",
+    "UUID Themeparks.wiki": "947a2cff-af23-4150-894e-78ce30adbcb2",
+    "Nom": "Meet Daisy and Donald",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG80",
+    "UUID Themeparks.wiki": "87cfd100-48a3-4de7-a888-84016863f17f",
+    "Nom": "Meet Stitch",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG81",
+    "UUID Themeparks.wiki": "20cfe5a4-8dab-4196-87c9-997740806d51",
+    "Nom": "Meet a goofy skeleton or his friend",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG22",
+    "UUID Themeparks.wiki": "ecdccf64-f17e-4a13-9867-bac7d2c22f14",
+    "Nom": "An Encounter with Jafar",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG19",
+    "UUID Themeparks.wiki": "9838fa59-5f33-4818-b260-49c764564564",
+    "Nom": "Meet Jack Skellington and Sally (from Tim Burton’s The Nightmare Before Christmas ©Disney)",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P1MG23",
+    "UUID Themeparks.wiki": "91dcdddf-7d7b-4429-a144-2ffb61d6c3ed",
+    "Nom": "An Encounter with the Queen of Hearts or with your friends from Wonderland",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disneyland Park",
+    "Land": ""
+  },
+  {
+    "Code": "P2MG18",
+    "UUID Themeparks.wiki": "fd060f6e-9f6c-4d8b-9730-245dbd6a097a",
+    "Nom": "Meet Jessie",
+    "Photo": "",
+    "Description": "",
+    "Type": "",
+    "Parc": "Disney Adventure World",
+    "Land": ""
   }
 ]
