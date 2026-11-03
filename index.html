@@ -94,14 +94,6 @@
         }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
         .hero :focus-visible { outline-color: #fff; }
-        .hero-top {
-            display: flex; justify-content: space-between; align-items: center; gap: 10px; max-height: 48px; margin-bottom: 10px;
-            transition: max-height .2s ease, margin .2s ease, opacity .2s ease, visibility 0s;
-        }
-        /* En-tête réduit au défilement vers le bas : seul le sélecteur de parc reste visible */
-        .hero.is-compact .hero-top { max-height: 0; margin-bottom: 0; opacity: 0; overflow: hidden; pointer-events: none; visibility: hidden; transition: max-height .2s ease, margin .2s ease, opacity .2s ease, visibility 0s .2s; }
-        #btn-home[hidden] { display: none; }
-        .hero-actions { margin-left: auto; }
         .park-switch { display: grid; grid-template-columns: 40px minmax(0, 1fr) 40px; align-items: center; gap: 6px; }
         .ps-mid { text-align: center; touch-action: pan-y; }
         .hero-park { font-family: var(--font-display); font-weight: 800; font-size: 23px; line-height: 1.15; text-wrap: balance; }
@@ -111,11 +103,10 @@
         .ps-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .35); transition: width .2s, background .2s; }
         .ps-dots i.on { width: 20px; border-radius: 4px; background: var(--gold); }
         .park-switch.is-single .ps-dots { display: none; }
-        .hero-actions { display: flex; align-items: center; gap: 8px; flex: none; }
 
         /* Statut de synchronisation (dans le menu) */
-        .sync { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
-        .sync .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--mut); opacity: .7; }
+        .sync { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 3px; font-size: 12px; font-weight: 500; line-height: 1.3; color: rgb(255 255 255 / .68); }
+        .sync .dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: rgb(255 255 255 / .5); }
         .sync[data-state="live"] .dot   { background: #2FB863; opacity: 1; }
         .sync[data-state="error"] .dot  { background: #E5484D; opacity: 1; }
         .sync[data-state="static"] .dot { background: #E2A21B; opacity: 1; }
@@ -216,20 +207,28 @@
            position: absolute. Il ne peut donc plus sortir de l'écran, et il réserve lui-même la safe area du bas. */
         .dock {
             position: relative; z-index: 5; flex: none;
-            padding: 8px 10px calc(8px + var(--safe-bottom));
-            background: var(--ink); border-radius: 26px 26px 0 0;
-            box-shadow: 0 -6px 22px rgb(18 22 58 / .22);
+            padding: 8px 6px calc(8px + var(--safe-bottom));
+            background: var(--ink);
+            box-shadow: 0 -4px 14px rgb(18 22 58 / .18);
         }
-        .tabs { display: flex; gap: 2px; max-width: 560px; margin: 0 auto; }
+        .tabs { display: flex; gap: 2px; max-width: 640px; margin: 0 auto; }
         .tabs button {
-            flex: 1; min-height: 56px; border-radius: 18px; padding: 6px 4px;
+            position: relative; flex: 1; min-width: 0; min-height: 56px; border-radius: 18px; padding: 6px 2px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-            font-size: 12.5px; font-weight: 700; letter-spacing: .005em; color: #BFC3F0;
-            transition: background .18s ease, color .18s ease;
+            font-size: 11.5px; font-weight: 700; letter-spacing: 0; color: #BFC3F0;
+            transition: color .18s ease;
         }
-        .tabs button[aria-current="true"] { background: var(--gold); color: var(--on); }
+        .tabs button[hidden] { display: none; }
+        /* Bosse arrondie au-dessus de l'onglet sélectionné uniquement ; l'icône et le libellé passent en jaune */
+        .tabs button[aria-current="true"]::before {
+            content: ""; position: absolute; left: 50%; bottom: calc(100% + 7px); width: 68px; height: 11px; transform: translateX(-50%);
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 11' preserveAspectRatio='none'%3E%3Cpath d='M0 11C10 11 13 7.5 18 4.2C23 1 28 0 34 0S45 1 50 4.2C55 7.5 58 11 68 11Z' fill='%2312163A'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+            filter: drop-shadow(0 -2px 2px rgb(18 22 58 / .12)); pointer-events: none;
+        }
+        .tabs button[aria-current="true"] { color: var(--gold); }
         .tabs .icon { width: 24px; height: 24px; }
         .tabs :focus-visible { outline-color: var(--gold); outline-offset: -2px; }
+        #menu-wallet { display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         /* Événement (ex. « Peur sur le Parc ») */
         .evt {
@@ -255,13 +254,6 @@
         .info-v em { color: var(--mut); font-style: normal; font-size: 12.5px; }
         .info-map { width: 100%; height: 170px; border: 0; border-radius: 16px; background: #E8E8EF; }
         .info-link { align-self: flex-start; font-weight: 700; color: var(--acc); }
-        .fav-list { display: flex; flex-direction: column; gap: 6px; }
-        .fav-item {
-            display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
-            min-height: 48px; padding: 6px 14px; border-radius: 14px; background: #fff; border: 1.5px solid var(--line); text-align: left;
-        }
-        .fav-name { font-weight: 700; font-size: 14.5px; line-height: 1.25; }
-        .fav-cat { flex: none; font-size: 12px; font-weight: 600; color: var(--mut); }
         .menu-empty { font-size: 14px; color: var(--mut); line-height: 1.45; }
 
         /* Page d'accueil : choix du parc, avec l'état ouvert / fermé */
@@ -558,7 +550,7 @@
             .home-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgb(30 30 90 / .14); }
             .chip:hover, .home-chips button:not([aria-pressed="true"]):hover { border-color: var(--acc); }
             .hero .round:hover, .hero .ps-arrow:hover { background: rgb(255 255 255 / .26); }
-            .tabs button:not([aria-current="true"]):hover { background: rgb(255 255 255 / .1); color: #fff; }
+            .tabs button:not([aria-current="true"]):hover { color: #fff; }
             .heart:hover { transform: scale(1.1); }
         }
         @media (max-width: 768px) {
@@ -570,7 +562,6 @@
         }
         @media (max-width: 480px) {
             .hero-park { font-size: 22px; }
-            .hero-actions { gap: 6px; }
             .hero .round { width: 40px; height: 40px; border-radius: 20px; }
         }
         @keyframes slide-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -631,20 +622,7 @@
 
     <div class="master-pane">
         <header class="hero">
-            <div class="hero-top">
-                <h1 class="sr-only">Theme Parks Companion</h1>
-                <div class="hero-actions">
-                    <button id="btn-home" class="round" type="button" hidden aria-label="Accueil : liste des parcs" title="Accueil">
-                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-home"/></svg>
-                    </button>
-                    <button id="btn-wallet" class="round" type="button" aria-label="Ouvrir le portefeuille (billets et pass annuels)">
-                        <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-ticket"/></svg>
-                    </button>
-                    <button id="btn-menu" class="round" type="button" aria-label="Ouvrir les infos" title="Infos" aria-haspopup="dialog">
-                        <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-info"/></svg>
-                    </button>
-                </div>
-            </div>
+            <h1 class="sr-only">Theme Parks Companion</h1>
             <!-- Nom du parc affiché, centré. Plusieurs parcs : flèches, points et balayage horizontal pour changer -->
             <div id="park-switch" class="park-switch">
                 <button id="park-prev" class="ps-arrow" type="button" aria-label="Parc précédent">
@@ -652,6 +630,10 @@
                 </button>
                 <div class="ps-mid">
                     <p id="hero-park" class="hero-park" aria-live="polite"></p>
+                    <div id="sync-status" class="sync" data-state="loading" role="status">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span id="sync-label">Synchronisation…</span>
+                    </div>
                     <div id="park-dots" class="ps-dots" aria-hidden="true"></div>
                 </div>
                 <button id="park-next" class="ps-arrow" type="button" aria-label="Parc suivant">
@@ -677,7 +659,10 @@
         <main id="list" class="list" aria-live="polite"></main>
 
         <div class="dock">
-        <nav class="tabs" aria-label="Catégories">
+        <nav class="tabs" aria-label="Navigation">
+            <button type="button" id="tab-home" data-act="home" aria-label="Accueil : liste des parcs" hidden>
+                <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-home"/></svg>Accueil
+            </button>
             <button type="button" data-tab="attraction" aria-current="true">
                 <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-attraction"/></svg>Attractions
             </button>
@@ -686,6 +671,9 @@
             </button>
             <button type="button" data-tab="spectacle" aria-current="false">
                 <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-show"/></svg>Spectacles
+            </button>
+            <button type="button" id="tab-info" data-act="info" aria-haspopup="dialog">
+                <svg class="icon" width="24" height="24" stroke-width="2" aria-hidden="true"><use href="#i-info"/></svg>Infos
             </button>
         </nav>
         </div>
@@ -773,18 +761,9 @@
                 <div id="info-body" class="info"></div>
             </div>
             <div class="menu-sec">
-                <h3 class="menu-h">Favoris <span id="fav-count" class="menu-h-note"></span></h3>
-                <ul id="fav-list" class="fav-list"></ul>
-            </div>
-            <div class="menu-sec">
-                <h3 class="menu-h">Synchronisation</h3>
-                <div id="sync-status" class="sync" data-state="loading" role="status">
-                    <span class="dot" aria-hidden="true"></span>
-                    <span id="sync-label">Synchronisation…</span>
-                </div>
-            </div>
-            <div id="menu-home-sec" class="menu-sec">
-                <button id="menu-home" class="cta alt" type="button">Revenir à l’accueil</button>
+                <button id="menu-wallet" class="cta alt" type="button">
+                    <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-ticket"/></svg>Billets et pass annuels
+                </button>
             </div>
         </section>
     </div>
@@ -1347,35 +1326,30 @@
             list: $('#list'),
             sync: $('#sync-status'),
             syncLabel: $('#sync-label'),
-            btnMenu: $('#btn-menu'),
+            btnMenu: $('#tab-info'),
             menuLayer: $('#menu-layer'),
             menuScrim: $('#menu-scrim'),
             menuClose: $('#menu-close'),
             infoPark: $('#info-park'),
             infoBody: $('#info-body'),
-            favList: $('#fav-list'),
-            favCount: $('#fav-count'),
-            menuHome: $('#menu-home'),
-            menuHomeSec: $('#menu-home-sec'),
             heroPark: $('#hero-park'),
             parkSwitch: $('#park-switch'),
             parkDots: $('#park-dots'),
             parkPrev: $('#park-prev'),
             parkNext: $('#park-next'),
-            btnWallet: $('#btn-wallet'),
+            menuWallet: $('#menu-wallet'),
             chipNearby: $('#chip-nearby'),
             chipClosed: $('#chip-closed'),
             chipSort: $('#chip-sort'),
             chipFav: $('#chip-fav'),
             sortLabel: $('#sort-label'),
             sortPop: $('#sort-pop'),
-            masterHero: document.querySelector('header.hero'),
-            btnHome: $('#btn-home'),
+            btnHome: $('#tab-home'),
             alertToggle: $('#alert-toggle'),
             alertBody: $('#alert-body'),
             alertSum: $('#alert-sum'),
             btnFav: $('#btn-fav'),
-            tabs: document.querySelectorAll('.tabs button'),
+            tabs: document.querySelectorAll('.tabs button[data-tab]'),
             pane: $('#detail-pane'),
             placeholder: $('#detail-placeholder'),
             content: $('#detail-content'),
@@ -1885,14 +1859,14 @@
         function setSync(mode) {
             els.sync.dataset.state = mode;
             if (mode === 'live') {
-                els.syncLabel.textContent = `Dernière synchronisation : ${timeFormat.format(state.lastSync)}`;
+                els.syncLabel.textContent = `Synchro ${timeFormat.format(state.lastSync)}`;
                 els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Actualisation automatique chaque minute.`;
             } else if (mode === 'static') {
-                els.syncLabel.textContent = 'Temps réel indisponible pour ce parc';
+                els.syncLabel.textContent = 'Temps réel indisponible';
                 els.sync.title = 'Les temps d’attente ne sont pas disponibles pour ce parc.';
             } else if (mode === 'error') {
                 els.syncLabel.textContent = state.lastSync
-                    ? `Hors connexion · dernière synchronisation : ${timeFormat.format(state.lastSync)}`
+                    ? `Hors connexion · synchro ${timeFormat.format(state.lastSync)}`
                     : 'Hors connexion';
                 els.sync.title = 'Nouvel essai automatique dans une minute.';
             } else {
@@ -2044,7 +2018,6 @@
 
         // Les favoris vivent dans le menu : on y met à jour la liste si elle est ouverte
         function renderFavButton() {
-            if (!els.menuLayer.hidden) renderFavList();
         }
 
         function setShowFavorites(active) {
@@ -2964,32 +2937,21 @@
             }
         }
 
-        // Favoris du parc courant, regroupés par catégorie
-        function renderFavList() {
-            const favs = [...favorites].map((id) => dbById.get(id)).filter(Boolean)
-                .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
-                    || a.name.localeCompare(b.name, CONFIG.LOCALE));
-            els.favCount.textContent = favs.length ? `(${favs.length})` : '';
-            els.favList.innerHTML = favs.length
-                ? favs.map((i) => `<li><button type="button" class="fav-item" data-open-id="${esc(i.id)}">
-                        <span class="fav-name">${esc(i.name)}</span><span class="fav-cat">${esc(CATEGORY_LABELS[i.category])}</span></button></li>`).join('')
-                : '<li class="menu-empty">Aucun favori pour le moment. Touchez le cœur d’une fiche pour l’ajouter.</li>';
-        }
-
         function renderMenu() {
             renderInfo();
-            renderFavList();
-            els.menuHomeSec.hidden = registry.resorts.length < 2;
         }
 
-        // Ouvre la fiche d'un favori depuis le menu : la couche « menu » de l'historique devient la couche « fiche »
-        function openFavorite(id) {
-            replaceLayer('menu', 'detail', hideDetail);
+        // Ouvre le portefeuille depuis le menu : la couche « menu » de l'historique devient la couche « portefeuille »
+        function openWalletFromMenu() {
+            purgeWallet();
+            renderWallet();
+            replaceLayer('menu', 'wallet', hideWallet);
             hideMenu();
-            showItem(id);
+            els.walletLayer.hidden = false;
+            els.walletClose.focus({ preventScroll: true });
         }
 
-        // Menu burger (infos pratiques, favoris, synchronisation)
+        // Menu Infos (infos pratiques, portefeuille)
         function openMenu() {
             renderMenu();
             pushLayer('menu', hideMenu);   // le geste « retour » système ferme le menu
@@ -3086,17 +3048,9 @@
                 </div>`).join('');
         }
 
-        function openWallet() {
-            purgeWallet();
-            renderWallet();
-            pushLayer('wallet', hideWallet);
-            els.walletLayer.hidden = false;
-            els.walletClose.focus({ preventScroll: true });
-        }
-
         function hideWallet() {
             els.walletLayer.hidden = true;
-            els.btnWallet.focus({ preventScroll: true });
+            els.btnMenu.focus({ preventScroll: true });
         }
 
         /* --- Chargement à la demande des bibliothèques QR --- */
@@ -3432,24 +3386,6 @@
             els.btnHome.hidden = registry.resorts.length < 2;
             els.btnHome.addEventListener('click', goHome);
 
-            // En-tête réduit quand on descend dans une longue liste, rétabli dès qu'on remonte.
-            // Garde-fous contre le « saut » : changer la hauteur de l'en-tête modifie la hauteur de la liste (et donc la position
-            // de défilement, surtout en bas de liste), ce qui relançait la bascule en boucle. On ignore donc les défilements
-            // provoqués par la transition, on ne bascule pas à proximité du bas, et la liste doit être nettement plus longue que l'écran.
-            let lastY = 0, lockUntil = 0;
-            const HEADER_DELTA = 60;   // ≈ hauteur gagnée quand l'en-tête se réduit
-            els.list.addEventListener('scroll', () => {
-                const y = els.list.scrollTop;
-                if (performance.now() < lockUntil) { lastY = y; return; }
-                const room = els.list.scrollHeight - els.list.clientHeight;
-                const compact = els.masterHero.classList.contains('is-compact');
-                const set = (value) => { els.masterHero.classList.toggle('is-compact', value); lockUntil = performance.now() + 450; lastY = els.list.scrollTop; };
-                if (room < 320 + HEADER_DELTA) { if (compact) set(false); else lastY = y; return; }
-                const nearBottom = room - y < HEADER_DELTA + 120;
-                if (!compact && y > 90 && y > lastY + 6 && !nearBottom) set(true);
-                else if (compact && (y < 24 || (y < lastY - 10 && !nearBottom))) set(false);
-                else lastY = y;
-            }, { passive: true });
             els.btnFav.addEventListener('click', () => { if (state.selectedId) toggleFavorite(state.selectedId); });
 
             els.tabs.forEach((tab) => tab.addEventListener('click', () => {
@@ -3486,14 +3422,9 @@
             els.btnMenu.addEventListener('click', openMenu);
             els.menuClose.addEventListener('click', closeMenu);
             els.menuScrim.addEventListener('click', closeMenu);
-            els.menuHome.addEventListener('click', goHome);
-            els.favList.addEventListener('click', (event) => {
-                const btn = event.target.closest('[data-open-id]');
-                if (btn) openFavorite(btn.dataset.openId);
-            });
+            els.menuWallet.addEventListener('click', openWalletFromMenu);
 
             // Portefeuille
-            els.btnWallet.addEventListener('click', openWallet);
             els.walletClose.addEventListener('click', () => closeLayer('wallet'));
             els.walletAdd.addEventListener('click', openScan);
             els.walletList.addEventListener('click', (event) => {
