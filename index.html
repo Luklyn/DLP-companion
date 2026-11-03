@@ -259,8 +259,8 @@
         /* Page d'accueil : choix du parc, avec l'état ouvert / fermé */
         .home { position: fixed; inset: 0; z-index: 500; overflow-y: auto; background: var(--bg); -webkit-overflow-scrolling: touch; }
         .home-hero {
-            position: relative; overflow: hidden; color: #fff; border-radius: 0 0 28px 28px;
-            background: var(--ink);
+            position: sticky; top: 0; z-index: 3; overflow: hidden; color: #fff; border-radius: 0 0 28px 28px;
+            background: var(--ink); box-shadow: 0 6px 18px rgb(18 22 58 / .18);
         }
         /* Petites étoiles décoratives */
         .home-hero::before {
