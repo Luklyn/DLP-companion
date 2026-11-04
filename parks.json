@@ -258,7 +258,11 @@
         "g1": "#7B4FD0",
         "g2": "#3FB7A0"
       },
-      "iconImage": "icons/walibi-rhone-alpes.png"
+      "iconImage": "icons/walibi-rhone-alpes.png",
+      "noLiveData": [
+        "restaurant",
+        "spectacle"
+      ]
     }
   ],
   "events": [
