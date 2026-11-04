@@ -194,33 +194,5 @@
         "Land":"Les Vikings",
         "Coordonnées GPS (lat)":"49.131358,",
         "Coordonnées GPS (lng)":2.572059
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "Photo":null,
-        "Description":null,
-        "Menu":null,
-        "Tarif":null,
-        "Type":null,
-        "Parc":null,
-        "Land":null,
-        "Coordonnées GPS (lat)":null,
-        "Coordonnées GPS (lng)":null
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "Photo":null,
-        "Description":null,
-        "Menu":null,
-        "Tarif":null,
-        "Type":null,
-        "Parc":null,
-        "Land":null,
-        "Coordonnées GPS (lat)":"",
-        "Coordonnées GPS (lng)":null
     }
 ]

@@ -7,7 +7,9 @@
   "Parc": "Europa Park",
   "Land": "Forêt Enchantée Grimm",
   "Coordonnées GPS (lat)": 48.2641196,
-  "Coordonnées GPS (lng)": 7.72277733
+  "Coordonnées GPS (lng)": 7.72277733,
+  "Description": "Deux sketches plébiscités du grand humoriste suisse Emil Steinberger : chez nous dans le Cinéma de la Forêt Enchantée !",
+  "Photo": "images/europa-park/12minutes-rire-emil.webp"
  },
  {
   "Code": "shows_4",
@@ -90,7 +92,8 @@
   "Land": "Irlande",
   "Description": "Les deux compères jonglent à tout-va avec les massues et offrent une déferlante de gags : un spectacle désopilant et haut en couleurs pour petits et grands !",
   "Coordonnées GPS (lat)": 48.266027,
-  "Coordonnées GPS (lng)": 7.723724
+  "Coordonnées GPS (lng)": 7.723724,
+  "Photo": "images/europa-park/duo-tip-top.webp"
  },
  {
   "Code": "shows_51",
@@ -173,7 +176,8 @@
   "Land": "Magic cinéma",
   "Description": "Au Magic Cinéma 4D, un spectacle de 30 minutes vous attend du 1er au 4 novembre : Reiner Meutsch viendra présenter son tour du monde effectué dans le cadre de l’opération « FLY & HELP » (en allemand uniquement).",
   "Coordonnées GPS (lat)": 48.267815,
-  "Coordonnées GPS (lng)": 7.721358
+  "Coordonnées GPS (lng)": 7.721358,
+  "Photo": "images/europa-park/magic-cinema.webp"
  },
  {
   "Code": "shows_1",
@@ -376,7 +380,8 @@
   "Land": "Surf Fjørd",
   "Description": "Spectacle du soir de la fête des lumières nordique : lumières, effets spéciaux et acrobaties aériennes au-dessus de l'eau. Du 11/01 au 19/03/2027 (nom du show 2027 non confirmé).",
   "Coordonnées GPS (lat)": 48.26051108,
-  "Coordonnées GPS (lng)": 7.74025994
+  "Coordonnées GPS (lng)": 7.74025994,
+  "Photo": "images/europa-park/nordlys.webp"
  },
  {
   "Code": "shows_101",

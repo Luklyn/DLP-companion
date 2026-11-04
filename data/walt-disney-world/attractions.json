@@ -9,7 +9,8 @@
     "Land": "Adventureland",
     "Description": "Chasse au trésor interactive sur smartphone à travers Adventureland et ses décors de pirates.",
     "Coordonnées GPS (lat)": 28.4183725,
-    "Coordonnées GPS (lng)": -81.584669
+    "Coordonnées GPS (lng)": -81.584669,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_002",
@@ -21,7 +22,8 @@
     "Land": "Adventureland",
     "Description": "Croisière humoristique en bateau à travers des rivières tropicales et leurs animaux animatroniques.",
     "Coordonnées GPS (lat)": 28.41797818,
-    "Coordonnées GPS (lng)": -81.5834393157
+    "Coordonnées GPS (lng)": -81.5834393157,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_003",
@@ -33,7 +35,8 @@
     "Land": "Adventureland",
     "Description": "Croisière en bateau à travers des scènes de pirates et de batailles, l'inspiration du film.",
     "Coordonnées GPS (lat)": 28.4179699235,
-    "Coordonnées GPS (lng)": -81.5842252029
+    "Coordonnées GPS (lng)": -81.5842252029,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_004",
@@ -45,7 +48,8 @@
     "Land": "Adventureland",
     "Description": "Visite à pied de la maison dans l'arbre de la famille Robinson suisse.",
     "Coordonnées GPS (lat)": 28.4184325517,
-    "Coordonnées GPS (lng)": -81.5827982677
+    "Coordonnées GPS (lng)": -81.5827982677,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_005",
@@ -57,7 +61,8 @@
     "Land": "Adventureland",
     "Description": "Tapis volants qui s'élèvent et s'abaissent autour d'un grand chameau cracheur.",
     "Coordonnées GPS (lat)": 28.41843,
-    "Coordonnées GPS (lng)": -81.583472
+    "Coordonnées GPS (lng)": -81.583472,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_006",
@@ -69,7 +74,8 @@
     "Land": "Adventureland",
     "Description": "Spectacle de oiseaux exotiques audio-animatroniques chantants, dans un décor tropical.",
     "Coordonnées GPS (lat)": 28.4182264646,
-    "Coordonnées GPS (lng)": -81.583738382
+    "Coordonnées GPS (lng)": -81.583738382,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_007",
@@ -81,7 +87,8 @@
     "Land": "Fantasyland",
     "Description": "Croisière en bateau à travers les enfants chantant du monde entier, l'un des classiques de Disney.",
     "Coordonnées GPS (lat)": 28.4204816402,
-    "Coordonnées GPS (lng)": -81.5820392026
+    "Coordonnées GPS (lng)": -81.5820392026,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_008",
@@ -93,7 +100,8 @@
     "Land": "Fantasyland",
     "Description": "Aire de jeux aquatique pour enfants sur le thème du train de Dumbo.",
     "Coordonnées GPS (lat)": 28.4209221723,
-    "Coordonnées GPS (lng)": -81.5786757124
+    "Coordonnées GPS (lng)": -81.5786757124,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_009",
@@ -105,7 +113,8 @@
     "Land": "Fantasyland",
     "Description": "Château de Cendrillon, symbole du parc et lieu de nombreuses rencontres et restaurants.",
     "Coordonnées GPS (lat)": 28.4194549043,
-    "Coordonnées GPS (lng)": -81.5811809
+    "Coordonnées GPS (lng)": -81.5811809,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_010",
@@ -117,7 +126,8 @@
     "Land": "Fantasyland",
     "Description": "Manège de Dumbo, avec une file d'attente interactive et un espace de jeu couvert.",
     "Coordonnées GPS (lat)": 28.420509033,
-    "Coordonnées GPS (lng)": -81.5789473057
+    "Coordonnées GPS (lng)": -81.5789473057,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_011",
@@ -129,7 +139,8 @@
     "Land": "Fantasyland",
     "Description": "Spectacle interactif dans la maison de Maurice, où les visiteurs jouent les personnages de La Belle et la Bête.",
     "Coordonnées GPS (lat)": 28.4209906,
-    "Coordonnées GPS (lng)": -81.58093
+    "Coordonnées GPS (lng)": -81.58093,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_012",
@@ -141,7 +152,8 @@
     "Land": "Fantasyland",
     "Description": "Tasses tournantes inspirées d'Alice au pays des merveilles.",
     "Coordonnées GPS (lat)": 28.4200230397,
-    "Coordonnées GPS (lng)": -81.5798248916
+    "Coordonnées GPS (lng)": -81.5798248916,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_013",
@@ -153,7 +165,8 @@
     "Land": "Fantasyland",
     "Description": "Film 3D avec effets spéciaux, où Donald traverse les grands classiques Disney.",
     "Coordonnées GPS (lat)": 28.4200304909,
-    "Coordonnées GPS (lng)": -81.5814839853
+    "Coordonnées GPS (lng)": -81.5814839853,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_014",
@@ -165,7 +178,8 @@
     "Land": "Fantasyland",
     "Description": "Vol en galion volant au-dessus de Londres et du Pays Imaginaire. L'une des attractions les plus demandées de Fantasyland.",
     "Coordonnées GPS (lat)": 28.4202640272,
-    "Coordonnées GPS (lng)": -81.5818916811
+    "Coordonnées GPS (lng)": -81.5818916811,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_015",
@@ -177,7 +191,8 @@
     "Land": "Fantasyland",
     "Description": "Carrousel ancien avec chevaux sculptés, face au château de Cendrillon.",
     "Coordonnées GPS (lat)": 28.420169,
-    "Coordonnées GPS (lng)": -81.581255
+    "Coordonnées GPS (lng)": -81.581255,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_016",
@@ -215,7 +230,8 @@
     "Land": "Fantasyland",
     "Description": "Parcours doux dans le monde du Winnie l'ourson, entre Heffalumps et jours venteux.",
     "Coordonnées GPS (lat)": 28.420212,
-    "Coordonnées GPS (lng)": -81.580266
+    "Coordonnées GPS (lng)": -81.580266,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_019",
@@ -227,7 +243,8 @@
     "Land": "Fantasyland",
     "Description": "Parcours en coquillage dans l'univers de La Petite Sirène, avec Ariel et Sébastien.",
     "Coordonnées GPS (lat)": 28.4211203226,
-    "Coordonnées GPS (lng)": -81.5799752427
+    "Coordonnées GPS (lng)": -81.5799752427,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_020",
@@ -239,7 +256,8 @@
     "Land": "Fantasyland",
     "Description": "Gare de Fantasyland du train à vapeur qui fait le tour du parc.",
     "Coordonnées GPS (lat)": 28.420934,
-    "Coordonnées GPS (lng)": -81.578368
+    "Coordonnées GPS (lng)": -81.578368,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_021",
@@ -264,7 +282,8 @@
     "Land": "Frontierland",
     "Description": "Spectacle musical country avec des ours audio-animatroniques, entièrement rénové.",
     "Coordonnées GPS (lat)": 28.4187861348,
-    "Coordonnées GPS (lng)": -81.5837222887
+    "Coordonnées GPS (lng)": -81.5837222887,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_023",
@@ -289,7 +308,8 @@
     "Land": "Liberty Square",
     "Description": "Visite d'un manoir hanté avec des fantômes, en véhicule à passages tournants.",
     "Coordonnées GPS (lat)": 28.4202,
-    "Coordonnées GPS (lng)": -81.58288
+    "Coordonnées GPS (lng)": -81.58288,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_025",
@@ -301,7 +321,8 @@
     "Land": "Liberty Square",
     "Description": "Spectacle audio-animatronique présentant les présidents des États-Unis.",
     "Coordonnées GPS (lat)": 28.4194484171,
-    "Coordonnées GPS (lng)": -81.5823248578
+    "Coordonnées GPS (lng)": -81.5823248578,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_026",
@@ -313,7 +334,8 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Voitures d'époque, tramways et omnibus tirés par des chevaux qui parcourent Main Street.",
     "Coordonnées GPS (lat)": 28.4168698711,
-    "Coordonnées GPS (lng)": -81.5815081252
+    "Coordonnées GPS (lng)": -81.5815081252,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_027",
@@ -325,7 +347,8 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Gare de Main Street du train à vapeur qui fait le tour du parc, avec arrêts à Frontierland et Fantasyland.",
     "Coordonnées GPS (lat)": 28.416543,
-    "Coordonnées GPS (lng)": -81.581204
+    "Coordonnées GPS (lng)": -81.581204,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_028",
@@ -337,7 +360,8 @@
     "Land": "Tomorrowland",
     "Description": "Fusées tournantes en hauteur au-dessus de Tomorrowland.",
     "Coordonnées GPS (lat)": 28.4184926179,
-    "Coordonnées GPS (lng)": -81.5789887902
+    "Coordonnées GPS (lng)": -81.5789887902,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_029",
@@ -349,7 +373,8 @@
     "Land": "Tomorrowland",
     "Description": "Parcours interactif dans lequel on tire au laser sur des cibles pour battre l'empereur Zurg.",
     "Coordonnées GPS (lat)": 28.4182868839,
-    "Coordonnées GPS (lng)": -81.5794086456
+    "Coordonnées GPS (lng)": -81.5794086456,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_030",
@@ -361,7 +386,8 @@
     "Land": "Tomorrowland",
     "Description": "Spectacle de stand-up interactif où les monstres collectent les rires du public.",
     "Coordonnées GPS (lat)": 28.4183977566,
-    "Coordonnées GPS (lng)": -81.5797358751
+    "Coordonnées GPS (lng)": -81.5797358751,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_031",
@@ -399,7 +425,8 @@
     "Land": "Tomorrowland",
     "Description": "Petit train aérien silencieux qui survole Tomorrowland et traverse plusieurs attractions.",
     "Coordonnées GPS (lat)": 28.418155,
-    "Coordonnées GPS (lng)": -81.579033
+    "Coordonnées GPS (lng)": -81.579033,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_034",
@@ -424,7 +451,8 @@
     "Land": "Tomorrowland",
     "Description": "Théâtre tournant qui raconte un siècle de progrès technologique à travers une famille audio-animatronique.",
     "Coordonnées GPS (lat)": 28.4180310951,
-    "Coordonnées GPS (lng)": -81.5790083064
+    "Coordonnées GPS (lng)": -81.5790083064,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_036",
@@ -452,27 +480,27 @@
     "Code": "att_038",
     "UUID Themeparks.wiki": "9053240b-7f7f-44fe-970b-bd7956cd5d4f",
     "Nom": "Project Tomorrow: Inventing the Wonders of the Future",
-    "URL image": "images/walt-disney-world/project-tomorrow-inventing-the-wonders-of-the-future.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/spaceship-earth/Project-Tomorrow-Inventing-the-Wonders-of-the-Future-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Celebration",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/spaceship-earth/Project-Tomorrow-Inventing-the-Wonders-of-the-Future-16x9.jpg",
     "Description": "Espace interactif sur l'innovation de demain, au pied de Spaceship Earth.",
     "Coordonnées GPS (lat)": 28.37476,
-    "Coordonnées GPS (lng)": -81.549401
+    "Coordonnées GPS (lng)": -81.549401,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_039",
     "UUID Themeparks.wiki": "480fde8f-fe58-4bfb-b3ab-052a39d4db7c",
     "Nom": "Spaceship Earth",
-    "URL image": "images/walt-disney-world/spaceship-earth.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/spaceship-earth/Spaceship-Earth-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Celebration",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/spaceship-earth/Spaceship-Earth-16x9.jpg",
     "Description": "Voyage dans la sphère géodésique emblématique, à travers l'histoire de la communication.",
     "Coordonnées GPS (lat)": 28.375583,
-    "Coordonnées GPS (lng)": -81.549401
+    "Coordonnées GPS (lng)": -81.549401,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_040",
@@ -484,17 +512,17 @@
     "Land": "World Discovery",
     "Description": "Zone d'entraînement interactive à l'extérieur de Mission: SPACE.",
     "Coordonnées GPS (lat)": 28.374185,
-    "Coordonnées GPS (lng)": -81.547072
+    "Coordonnées GPS (lng)": -81.547072,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_041",
     "UUID Themeparks.wiki": "e3549451-b284-453d-9c31-e3b1207abd79",
     "Nom": "Guardians of the Galaxy: Cosmic Rewind",
-    "URL image": "images/walt-disney-world/guardians-of-the-galaxy-cosmic-rewind.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/guardians-of-the-galaxy-cosmic-rewind/0426ZO_0083KP_R2_xak-16x9.jpg",
     "Type": "Sensations fortes",
     "Parc": "EPCOT",
     "Land": "World Discovery",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/guardians-of-the-galaxy-cosmic-rewind/0426ZO_0083KP_R2_xak-16x9.jpg",
     "Description": "Montagnes russes à lancement tournantes dans le noir au rythme de musique rock, premières du genre.",
     "Taille mini": "1,07 m",
     "Coordonnées GPS (lat)": 28.3749021961781,
@@ -510,7 +538,8 @@
     "Land": "World Discovery",
     "Description": "Salle interactive du pavillon Imagination, avec jeux sonores et visuels.",
     "Coordonnées GPS (lat)": 28.372774,
-    "Coordonnées GPS (lng)": -81.551121
+    "Coordonnées GPS (lng)": -81.551121,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_043",
@@ -522,7 +551,8 @@
     "Land": "World Discovery",
     "Description": "Parcours en nacelle avec Figment et le professeur Nigel dans le pavillon Imagination.",
     "Coordonnées GPS (lat)": 28.372994,
-    "Coordonnées GPS (lng)": -81.551401
+    "Coordonnées GPS (lng)": -81.551401,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_044",
@@ -541,11 +571,10 @@
     "Code": "att_045",
     "UUID Themeparks.wiki": "37ae57c5-feaf-4e47-8f27-4b385be200f0",
     "Nom": "Test Track",
-    "URL image": "images/walt-disney-world/test-track.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/test-track/0926ZL_07796OK_xak-16x9.jpg",
     "Type": "Sensations fortes",
     "Parc": "EPCOT",
     "Land": "World Discovery",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/test-track/0926ZL_07796OK_xak-16x9.jpg",
     "Description": "Voiture d'essai conçue par le joueur, avec une ligne droite finale à grande vitesse.",
     "Taille mini": "1,02 m",
     "Coordonnées GPS (lat)": 28.373228,
@@ -561,7 +590,8 @@
     "Land": "World Nature",
     "Description": "Film sur la nature et l'environnement de la Terre, en grand écran.",
     "Coordonnées GPS (lat)": 28.374301,
-    "Coordonnées GPS (lng)": -81.552138
+    "Coordonnées GPS (lng)": -81.552138,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_047",
@@ -572,7 +602,9 @@
     "Land": "World Nature",
     "Description": "Espace dédié aux requins sur le thème de Némo dans le pavillon The Seas.",
     "Coordonnées GPS (lat)": 28.375099,
-    "Coordonnées GPS (lng)": -81.551245451
+    "Coordonnées GPS (lng)": -81.551245451,
+    "Taille mini": "Pas de restriction",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/1600/900/75/dam/wdpro-assets/parks-and-tickets/attractions/epcot/bruces-shark-world/bruces-shark-world-01.jpg"
   },
   {
     "Code": "att_048",
@@ -584,20 +616,21 @@
     "Land": "World Nature",
     "Description": "Cinéma 4D diffusant des courts métrages Disney et Pixar.",
     "Coordonnées GPS (lat)": 28.37263,
-    "Coordonnées GPS (lng)": -81.55115
+    "Coordonnées GPS (lng)": -81.55115,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_049",
     "UUID Themeparks.wiki": "dae68dee-dfba-4128-b594-6aa12add1070",
     "Nom": "Journey of Water, Inspired by Moana",
-    "URL image": "images/walt-disney-world/journey-of-water-inspired-by-moana.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/moana-journey-of-water/0809ZN_1863AS-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Nature",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/moana-journey-of-water/0809ZN_1863AS-16x9.jpg",
     "Description": "Parcours à pied autour de l'eau, inspiré de Vaiana.",
     "Coordonnées GPS (lat)": 28.374691,
-    "Coordonnées GPS (lng)": -81.550378
+    "Coordonnées GPS (lng)": -81.550378,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_050",
@@ -609,20 +642,21 @@
     "Land": "World Nature",
     "Description": "Croisière à travers des serres où poussent les cultures du futur.",
     "Coordonnées GPS (lat)": 28.374245,
-    "Coordonnées GPS (lng)": -81.552301
+    "Coordonnées GPS (lng)": -81.552301,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_051",
     "UUID Themeparks.wiki": "f3bb21e6-e843-4c31-834f-b87f60c2ab3e",
     "Nom": "Living with the Land – Glimmering Greenhouses",
-    "URL image": "images/walt-disney-world/living-with-the-land-glimmering-greenhouses.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/living-with-the-land/1212ZN_0125AFN_JB_R1-3-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Nature",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/living-with-the-land/1212ZN_0125AFN_JB_R1-3-16x9.jpg",
     "Description": "Visite guidée de serres expérimentales, en complément de Living with the Land.",
     "Coordonnées GPS (lat)": 28.374245,
-    "Coordonnées GPS (lng)": -81.552301
+    "Coordonnées GPS (lng)": -81.552301,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_052",
@@ -633,7 +667,9 @@
     "Land": "World Nature",
     "Description": "Aquarium géant du pavillon The Seas.",
     "Coordonnées GPS (lat)": 28.375098,
-    "Coordonnées GPS (lng)": -81.551211
+    "Coordonnées GPS (lng)": -81.551211,
+    "Taille mini": "Pas de restriction",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/1600/900/75/dam/wdpro-assets/gallery/attractions/epcot/sea-base/seabase-gallery01.jpg"
   },
   {
     "Code": "att_053",
@@ -652,14 +688,14 @@
     "Code": "att_054",
     "UUID Themeparks.wiki": "fb076275-0570-4d62-b2a9-4d6515130fa3",
     "Nom": "The Seas with Nemo & Friends",
-    "URL image": "images/walt-disney-world/the-seas-with-nemo-and-friends.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/the-sea-with-nemo-and-friends/240824WS-300219-1-s-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Nature",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/the-sea-with-nemo-and-friends/240824WS-300219-1-s-1-16x9.jpg",
     "Description": "Voyage en véhicule marin à travers l'océan avec Nemo, suivi de l'aquarium géant The Seas.",
     "Coordonnées GPS (lat)": 28.374904,
-    "Coordonnées GPS (lng)": -81.550852
+    "Coordonnées GPS (lng)": -81.550852,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_055",
@@ -671,7 +707,8 @@
     "Land": "World Nature",
     "Description": "Rencontre interactive avec Crush la tortue, qui dialogue en direct avec le public.",
     "Coordonnées GPS (lat)": 28.375255,
-    "Coordonnées GPS (lng)": -81.551047
+    "Coordonnées GPS (lng)": -81.551047,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_056",
@@ -683,7 +720,8 @@
     "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/epcot/kidcot/kidcot-fun-stops/american-adventure-kidcot-sign-16x9-16x9.jpg",
     "Description": "Ateliers de dessin pour enfants dans chaque pavillon du World Showcase.",
     "Coordonnées GPS (lat)": 28.36806,
-    "Coordonnées GPS (lng)": -81.547068
+    "Coordonnées GPS (lng)": -81.547068,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_057",
@@ -706,7 +744,8 @@
     "Land": "World Showcase – Chine",
     "Description": "Film panoramique à 360° sur les paysages de Chine.",
     "Coordonnées GPS (lat)": 28.369791,
-    "Coordonnées GPS (lng)": -81.546381
+    "Coordonnées GPS (lng)": -81.546381,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_059",
@@ -718,7 +757,8 @@
     "Land": "World Showcase – France",
     "Description": "Projection chantée de La Belle et la Bête au Palais du Cinéma.",
     "Coordonnées GPS (lat)": 28.368864,
-    "Coordonnées GPS (lng)": -81.552978
+    "Coordonnées GPS (lng)": -81.552978,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_060",
@@ -730,7 +770,8 @@
     "Land": "World Showcase – France",
     "Description": "Film panoramique sur la France dans le pavillon français.",
     "Coordonnées GPS (lat)": 28.368864,
-    "Coordonnées GPS (lng)": -81.552978
+    "Coordonnées GPS (lng)": -81.552978,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_061",
@@ -747,14 +788,14 @@
     "Code": "att_062",
     "UUID Themeparks.wiki": "1e735ffb-4868-47f1-b2cd-2ac1156cd5f0",
     "Nom": "Remy's Ratatouille Adventure",
-    "URL image": "images/walt-disney-world/remy-s-ratatouille-adventure.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/remy-s-ratatouille-adventure/0629ZP_1967CM_xak-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Showcase – France",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/remy-s-ratatouille-adventure/0629ZP_1967CM_xak-1-16x9.jpg",
     "Description": "Parcours en 4D, rétrécis à la taille d'un rat, dans la cuisine du restaurant Gusteau.",
     "Coordonnées GPS (lat)": 28.36825,
-    "Coordonnées GPS (lng)": -81.553097
+    "Coordonnées GPS (lng)": -81.553097,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_063",
@@ -766,7 +807,8 @@
     "Land": "World Showcase – Italie",
     "Description": "Exposition d'art italien dans le pavillon.",
     "Coordonnées GPS (lat)": 28.368236,
-    "Coordonnées GPS (lng)": -81.551612
+    "Coordonnées GPS (lng)": -81.551612,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_064",
@@ -783,27 +825,27 @@
     "Code": "att_065",
     "UUID Themeparks.wiki": "0f40274d-420a-425a-9377-29fd6e49484f",
     "Nom": "House of the Whispering Willows",
-    "URL image": "images/walt-disney-world/house-of-the-whispering-willows.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/house-of-the-whispering-willows/House-of-the-Whispering-Willows-16x9.jpg",
     "Type": "Rencontre / Expérience",
     "Parc": "EPCOT",
     "Land": "World Showcase – Japon",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/house-of-the-whispering-willows/House-of-the-Whispering-Willows-16x9.jpg",
     "Description": "Exposition dans le pavillon du Japon.",
     "Coordonnées GPS (lat)": 28.36999,
-    "Coordonnées GPS (lng)": -81.546334
+    "Coordonnées GPS (lng)": -81.546334,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_066",
     "UUID Themeparks.wiki": "22f48b73-01df-460e-8969-9eb2b4ae836c",
     "Nom": "Gran Fiesta Tour Starring The Three Caballeros",
-    "URL image": "images/walt-disney-world/gran-fiesta-tour-starring-the-three-caballeros.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/gran-fiesta-tour/240824WS-_5880-1-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "EPCOT",
     "Land": "World Showcase – Mexique",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/gran-fiesta-tour/240824WS-_5880-1-1-16x9.jpg",
     "Description": "Croisière en bateau dans le pavillon du Mexique avec les Trois Caballeros.",
     "Coordonnées GPS (lat)": 28.371649,
-    "Coordonnées GPS (lng)": -81.547368
+    "Coordonnées GPS (lng)": -81.547368,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_067",
@@ -826,7 +868,8 @@
     "Land": "World Showcase – Norvège",
     "Description": "Parcours en bateau dans le royaume d'Arendelle avec Elsa, Anna et Olaf.",
     "Coordonnées GPS (lat)": 28.370745,
-    "Coordonnées GPS (lng)": -81.54653
+    "Coordonnées GPS (lng)": -81.54653,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_069",
@@ -838,7 +881,8 @@
     "Land": "World Showcase – Norvège",
     "Description": "Exposition dans une reproduction d'une église en bois norvégienne.",
     "Coordonnées GPS (lat)": 28.370621,
-    "Coordonnées GPS (lng)": -81.546971
+    "Coordonnées GPS (lng)": -81.546971,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_070",
@@ -850,7 +894,8 @@
     "Land": "World Showcase – États-Unis",
     "Description": "Exposition sur l'histoire des États-Unis.",
     "Coordonnées GPS (lat)": 28.367517,
-    "Coordonnées GPS (lng)": -81.549469
+    "Coordonnées GPS (lng)": -81.549469,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_071",
@@ -862,7 +907,8 @@
     "Land": "World Showcase – États-Unis",
     "Description": "Spectacle audio-animatronique sur l'histoire américaine dans le pavillon des États-Unis.",
     "Coordonnées GPS (lat)": 28.367517,
-    "Coordonnées GPS (lng)": -81.549446
+    "Coordonnées GPS (lng)": -81.549446,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_072",
@@ -874,7 +920,8 @@
     "Land": "Animation Courtyard",
     "Description": "Rencontre ou spectacle d'animation devant les visiteurs.",
     "Coordonnées GPS (lat)": 28.357934,
-    "Coordonnées GPS (lng)": -81.561054
+    "Coordonnées GPS (lng)": -81.561054,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_073",
@@ -886,7 +933,8 @@
     "Land": "Animation Courtyard",
     "Description": "Rencontre avec Olaf, qui apprend aux visiteurs à dessiner.",
     "Coordonnées GPS (lat)": 28.357934,
-    "Coordonnées GPS (lng)": -81.561054
+    "Coordonnées GPS (lng)": -81.561054,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_074",
@@ -898,7 +946,8 @@
     "Land": "Animation Courtyard",
     "Description": "Court métrage en salle réunissant les personnages Disney sur écran géant.",
     "Coordonnées GPS (lat)": 28.357934,
-    "Coordonnées GPS (lng)": -81.561054
+    "Coordonnées GPS (lng)": -81.561054,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_075",
@@ -945,17 +994,17 @@
     "Land": "Hollywood Boulevard",
     "Description": "Train fou dans un dessin animé de Mickey et Minnie, avec une attraction 4D.",
     "Coordonnées GPS (lat)": 28.3566783801,
-    "Coordonnées GPS (lng)": -81.5605667783
+    "Coordonnées GPS (lng)": -81.5605667783,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_079",
     "UUID Themeparks.wiki": "34c4916b-989b-4ff1-a7e3-a6a846a3484f",
     "Nom": "Millennium Falcon: Smugglers Run",
-    "URL image": "images/walt-disney-world/millennium-falcon-smugglers-run.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/smugglers-run/smugglers-run-mando-grogu-16x9.jpg",
     "Type": "Sensations modérées",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Star Wars: Galaxy's Edge",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/smugglers-run/smugglers-run-mando-grogu-16x9.jpg",
     "Description": "Pilotez le Faucon Millenium lors d'une mission de contrebande, en équipes de trois.",
     "Taille mini": "0,97 m",
     "Coordonnées GPS (lat)": 28.353889,
@@ -978,11 +1027,10 @@
     "Code": "att_081",
     "UUID Themeparks.wiki": "e516f303-e82d-4fd3-8fbf-8e6ab624cf89",
     "Nom": "Rock 'n' Roller Coaster Starring The Muppets",
-    "URL image": "images/walt-disney-world/rock-n-roller-coaster-starring-the-muppets.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/rock-n-roller-coaster-starring-the-muppets/RnR-muppets-16x9.jpg",
     "Type": "Sensations fortes",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Sunset Boulevard",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/rock-n-roller-coaster-starring-the-muppets/RnR-muppets-16x9.jpg",
     "Description": "Montagnes russes à lancement rapide dans le noir, au son du rock des Muppets.",
     "Taille mini": "1,22 m",
     "Coordonnées GPS (lat)": 28.359712,
@@ -1005,11 +1053,10 @@
     "Code": "att_083",
     "UUID Themeparks.wiki": "d56506e2-6ad3-443a-8065-fea37987248d",
     "Nom": "Alien Swirling Saucers",
-    "URL image": "images/walt-disney-world/alien-swirling-saucers.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/alien-saucer-swirl/240824WS-_3839-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Toy Story Land",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/alien-saucer-swirl/240824WS-_3839-1-16x9.jpg",
     "Description": "Soucoupes tournantes sur le thème des petits extraterrestres verts.",
     "Taille mini": "0,81 m",
     "Coordonnées GPS (lat)": 28.355385,
@@ -1038,20 +1085,21 @@
     "Land": "Toy Story Land",
     "Description": "Parcours 4D de jeux de fête foraine à tirer, avec Woody, Buzz et leurs amis.",
     "Coordonnées GPS (lat)": 28.356404,
-    "Coordonnées GPS (lng)": -81.561894
+    "Coordonnées GPS (lng)": -81.561894,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_086",
     "UUID Themeparks.wiki": "e7976e25-4322-4587-8ded-fb1d9dcbb83c",
     "Nom": "Gorilla Falls Exploration Trail",
-    "URL image": "images/walt-disney-world/gorilla-falls-exploration-trail.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/gorilla-falls-exploration-trail/DAK22-Gorillas0223-4909-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Africa",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/gorilla-falls-exploration-trail/DAK22-Gorillas0223-4909-16x9.jpg",
     "Description": "Sentier de découverte des gorilles et des animaux africains.",
     "Coordonnées GPS (lat)": 28.359954,
-    "Coordonnées GPS (lng)": -81.592149
+    "Coordonnées GPS (lng)": -81.592149,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_087",
@@ -1063,7 +1111,8 @@
     "Land": "Africa",
     "Description": "Safari en camion sur une savane de 40 hectares avec des animaux en liberté.",
     "Coordonnées GPS (lat)": 28.359331,
-    "Coordonnées GPS (lng)": -81.59228
+    "Coordonnées GPS (lng)": -81.59228,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_088",
@@ -1075,7 +1124,8 @@
     "Land": "Africa",
     "Description": "Petit train qui relie Harambe à Rafiki's Planet Watch.",
     "Coordonnées GPS (lat)": 28.3598097347,
-    "Coordonnées GPS (lng)": -81.5914175464
+    "Coordonnées GPS (lng)": -81.5914175464,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_089",
@@ -1113,20 +1163,21 @@
     "Land": "Asia",
     "Description": "Sentier à pied avec tigres et chauves-souris, dans les ruines d'un palais.",
     "Coordonnées GPS (lat)": 28.359379,
-    "Coordonnées GPS (lng)": -81.589019
+    "Coordonnées GPS (lng)": -81.589019,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_092",
     "UUID Themeparks.wiki": "4d27b0d7-2b0a-4569-90fa-e79f117ec7ef",
     "Nom": "Discovery Island Trails",
-    "URL image": "images/walt-disney-world/discovery-island-trails.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/discovery-trail/240824WS-308784-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Discovery Island",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/discovery-trail/240824WS-308784-1-16x9.jpg",
     "Description": "Sentiers à pied autour de l'Arbre de Vie, avec des animaux.",
     "Coordonnées GPS (lat)": 28.3581032852655,
-    "Coordonnées GPS (lng)": -81.5911151562868
+    "Coordonnées GPS (lng)": -81.5911151562868,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_093",
@@ -1138,20 +1189,21 @@
     "Land": "Discovery Island",
     "Description": "Arbre géant sculpté de plus de 300 animaux, symbole du parc.",
     "Coordonnées GPS (lat)": 28.357994,
-    "Coordonnées GPS (lng)": -81.590597
+    "Coordonnées GPS (lng)": -81.590597,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_094",
     "UUID Themeparks.wiki": "1b15c77b-0311-4171-8e59-7f38e6d60754",
     "Nom": "Zootopia: Better Zoogether!",
-    "URL image": "images/walt-disney-world/zootopia-better-zoogether.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/zootopia-better-zoogether/4853600_Zootopia_BETTER_TOGETHER_Key_Visual_jrod_16x9-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Discovery Island",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/zootopia-better-zoogether/4853600_Zootopia_BETTER_TOGETHER_Key_Visual_jrod_16x9-16x9.jpg",
     "Description": "Spectacle musical avec Judy Hopps et Nick Wilde.",
     "Coordonnées GPS (lat)": 28.357488,
-    "Coordonnées GPS (lng)": -81.590118
+    "Coordonnées GPS (lng)": -81.590118,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_095",
@@ -1163,7 +1215,8 @@
     "Land": "Oasis",
     "Description": "Sentier à l'entrée du parc avec animaux et jardins.",
     "Coordonnées GPS (lat)": 28.355965,
-    "Coordonnées GPS (lng)": -81.59014
+    "Coordonnées GPS (lng)": -81.59014,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_096",
@@ -1182,27 +1235,27 @@
     "Code": "att_097",
     "UUID Themeparks.wiki": "7a5af3b7-9bc1-4962-92d0-3ea9c9ce35f0",
     "Nom": "Na'vi River Journey",
-    "URL image": "images/walt-disney-world/na-vi-river-journey.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/navi-river-journey/240824WS-_8751-1-1-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Pandora",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/navi-river-journey/240824WS-_8751-1-1-16x9.jpg",
     "Description": "Croisière nocturne en bateau dans la jungle bioluminescente de Pandora.",
     "Coordonnées GPS (lat)": 28.355257,
-    "Coordonnées GPS (lng)": -81.591641
+    "Coordonnées GPS (lng)": -81.591641,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_098",
     "UUID Themeparks.wiki": "6fbe6d02-4057-43bb-80a3-047b1e8a50ca",
     "Nom": "Animal Care at Conservation Station",
-    "URL image": "images/walt-disney-world/animal-care-at-conservation-station.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/entertainment/animal-care-at-conservation-station/Newt_-Emperor_Cast-Member-Animal-Keeper-Marietta-Cox-Holding-Newt_DAK-Conservation-Station_April-2025-16x9.jpg",
     "Type": "Pour toute la famille",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Rafiki's Planet Watch",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/entertainment/animal-care-at-conservation-station/Newt_-Emperor_Cast-Member-Animal-Keeper-Marietta-Cox-Holding-Newt_DAK-Conservation-Station_April-2025-16x9.jpg",
     "Description": "Visite de l'espace vétérinaire et des soins animaliers.",
     "Coordonnées GPS (lat)": 28.36533,
-    "Coordonnées GPS (lng)": -81.58872
+    "Coordonnées GPS (lng)": -81.58872,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_099",
@@ -1213,33 +1266,35 @@
     "Land": "Rafiki's Planet Watch",
     "Description": "Aire de jeux et expériences inspirées de la série Bluey.",
     "Coordonnées GPS (lat)": 28.36533,
-    "Coordonnées GPS (lng)": -81.58872
+    "Coordonnées GPS (lng)": -81.58872,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/bluey-wild-world.webp"
   },
   {
     "Code": "att_100",
     "UUID Themeparks.wiki": "91237556-7557-4b18-88a8-581254de96c6",
     "Nom": "Jumping Junction",
-    "URL image": "images/walt-disney-world/jumping-junction.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/jumping-junction/Kangaroos_Wallabies_LM-40-16x9.jpg",
     "Type": "Pour les enfants",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Rafiki's Planet Watch",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/attractions/jumping-junction/Kangaroos_Wallabies_LM-40-16x9.jpg",
     "Description": "Espace de jeux pour enfants.",
     "Coordonnées GPS (lat)": 28.365346,
-    "Coordonnées GPS (lng)": -81.588852
+    "Coordonnées GPS (lng)": -81.588852,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_101",
     "UUID Themeparks.wiki": "6ef1b126-5b0b-46a1-8608-4fcf98ab92c8",
     "Nom": "Wilderness Explorers",
-    "URL image": "images/walt-disney-world/wilderness-explorers.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/wilderness-explorers/240824WS-_6726-1-16x9.jpg",
     "Type": "Pour les enfants",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Tout le parc",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/wilderness-explorers/240824WS-_6726-1-16x9.jpg",
     "Description": "Programme de chasse aux badges pour jeunes explorateurs, dans tout le parc.",
     "Coordonnées GPS (lat)": 28.356682,
-    "Coordonnées GPS (lng)": -81.590292
+    "Coordonnées GPS (lng)": -81.590292,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_102",
@@ -1251,18 +1306,21 @@
     "Land": "Typhoon Lagoon",
     "Description": "Petits toboggans pour enfants dans la baie.",
     "Coordonnées GPS (lat)": 28.365402,
-    "Coordonnées GPS (lng)": -81.529838
+    "Coordonnées GPS (lng)": -81.529838,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_103",
     "UUID Themeparks.wiki": "5327448f-463d-4567-8c5d-f1a169f4c14f",
     "Nom": "Castaway Creek",
-    "Type": "Toboggan aquatique",
+    "Type": "Pour toute la famille",
     "Parc": "Disney's Typhoon Lagoon",
     "Land": "Typhoon Lagoon",
     "Description": "Rivière lente en bouée qui fait le tour du parc aquatique.",
     "Coordonnées GPS (lat)": 28.3660367345,
-    "Coordonnées GPS (lng)": -81.5287544578
+    "Coordonnées GPS (lng)": -81.5287544578,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/castaway-creek-gallery00.webp"
   },
   {
     "Code": "att_104",
@@ -1286,7 +1344,9 @@
     "Land": "Typhoon Lagoon",
     "Description": "Toboggan en bouée collective pour toute la famille.",
     "Coordonnées GPS (lat)": 28.3657380338,
-    "Coordonnées GPS (lng)": -81.5305508673
+    "Coordonnées GPS (lng)": -81.5305508673,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/gang-plank-falls-01.webp"
   },
   {
     "Code": "att_106",
@@ -1311,7 +1371,8 @@
     "Land": "Typhoon Lagoon",
     "Description": "Toboggan en bouée pour une descente tranquille.",
     "Coordonnées GPS (lat)": 28.3654943759,
-    "Coordonnées GPS (lng)": -81.5305106342
+    "Coordonnées GPS (lng)": -81.5305106342,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_108",
@@ -1323,7 +1384,8 @@
     "Land": "Typhoon Lagoon",
     "Description": "Espace aquatique réservé aux jeunes enfants.",
     "Coordonnées GPS (lat)": 28.36507,
-    "Coordonnées GPS (lng)": -81.530505
+    "Coordonnées GPS (lng)": -81.530505,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_109",
@@ -1335,7 +1397,8 @@
     "Land": "Typhoon Lagoon",
     "Description": "Toboggan en bouée avec des virages serrés.",
     "Coordonnées GPS (lat)": 28.3656245494,
-    "Coordonnées GPS (lng)": -81.530521363
+    "Coordonnées GPS (lng)": -81.530521363,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_110",
@@ -1373,7 +1436,8 @@
     "Land": "Typhoon Lagoon",
     "Description": "Grande piscine à vagues parmi les plus grandes du monde.",
     "Coordonnées GPS (lat)": 28.3659144638,
-    "Coordonnées GPS (lng)": -81.5299641145
+    "Coordonnées GPS (lng)": -81.5299641145,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_113",
@@ -1398,7 +1462,8 @@
     "Land": "Blizzard Beach",
     "Description": "Rivière lente en bouée qui fait le tour du parc.",
     "Coordonnées GPS (lat)": 28.3513399635,
-    "Coordonnées GPS (lng)": -81.5736767258
+    "Coordonnées GPS (lng)": -81.5736767258,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_115",
@@ -1422,7 +1487,9 @@
     "Land": "Blizzard Beach",
     "Description": "Piscine à vagues douces et plage de la station de ski fondu.",
     "Coordonnées GPS (lat)": 28.3513855054,
-    "Coordonnées GPS (lng)": -81.5745799793
+    "Coordonnées GPS (lng)": -81.5745799793,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/melt-away-bay.webp"
   },
   {
     "Code": "att_117",
@@ -1434,7 +1501,8 @@
     "Land": "Blizzard Beach",
     "Description": "Trois pistes de toboggan en bouée à descente rapide.",
     "Coordonnées GPS (lat)": 28.351462,
-    "Coordonnées GPS (lng)": -81.576098
+    "Coordonnées GPS (lng)": -81.576098,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_118",
@@ -1445,7 +1513,9 @@
     "Land": "Blizzard Beach",
     "Description": "Parcours d'obstacles pour enfants, sur le thème de la patrouille de ski.",
     "Coordonnées GPS (lat)": 28.352258,
-    "Coordonnées GPS (lng)": -81.575348
+    "Coordonnées GPS (lng)": -81.575348,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/ski-patrol-training-camp.webp"
   },
   {
     "Code": "att_119",
@@ -1457,7 +1527,8 @@
     "Description": "Toboggan rapide avec plusieurs bosses de neige.",
     "Taille mini": "1,22 m",
     "Coordonnées GPS (lat)": 28.3518728427,
-    "Coordonnées GPS (lng)": -81.5757836401
+    "Coordonnées GPS (lng)": -81.5757836401,
+    "URL image": "images/walt-disney-world/slush-gusher.webp"
   },
   {
     "Code": "att_120",
@@ -1469,7 +1540,8 @@
     "Land": "Blizzard Beach",
     "Description": "Toboggans à bosses sur tapis, dans la montagne enneigée.",
     "Coordonnées GPS (lat)": 28.3514397089,
-    "Coordonnées GPS (lng)": -81.5756890923
+    "Coordonnées GPS (lng)": -81.5756890923,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_121",
@@ -1494,7 +1566,8 @@
     "Land": "Blizzard Beach",
     "Description": "Rafting collectif en bouée sur une longue piste.",
     "Coordonnées GPS (lat)": 28.351967,
-    "Coordonnées GPS (lng)": -81.575911
+    "Coordonnées GPS (lng)": -81.575911,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_123",
@@ -1506,7 +1579,8 @@
     "Land": "Blizzard Beach",
     "Description": "Espace aquatique pour les jeunes enfants.",
     "Coordonnées GPS (lat)": 28.3529402305,
-    "Coordonnées GPS (lng)": -81.5745699406
+    "Coordonnées GPS (lng)": -81.5745699406,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_124",
@@ -1517,20 +1591,22 @@
     "Land": "Blizzard Beach",
     "Description": "Course en toboggan sur tapis, plusieurs pistes en parallèle.",
     "Coordonnées GPS (lat)": 28.351715,
-    "Coordonnées GPS (lng)": -81.575773
+    "Coordonnées GPS (lng)": -81.575773,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/toboggan-racers.webp"
   },
   {
     "Code": "att_125",
     "UUID Themeparks.wiki": "7b5f10e4-2b9e-45bc-a0f9-2aeccde3511e",
     "Nom": "Disney PhotoPass® Studio",
-    "URL image": "images/walt-disney-world/disney-photopass-studio.webp",
+    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/guest-services/photopass/experience/DS23-Marketing-Photographer-0913-6862-Edit-16x9.jpg",
     "Type": "Rencontre / Expérience",
     "Parc": "Disney Springs",
     "Land": "Marketplace",
-    "URL image": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/guest-services/photopass/experience/DS23-Marketing-Photographer-0913-6862-Edit-16x9.jpg",
     "Description": "Studio photo avec les professionnels Disney PhotoPass.",
     "Coordonnées GPS (lat)": 28.3719593528654,
-    "Coordonnées GPS (lng)": -81.514506718637
+    "Coordonnées GPS (lng)": -81.514506718637,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_126",
@@ -1541,7 +1617,9 @@
     "Land": "Marketplace",
     "Description": "Carrousel dans la zone Marketplace de Disney Springs.",
     "Coordonnées GPS (lat)": 28.372854,
-    "Coordonnées GPS (lng)": -81.514925
+    "Coordonnées GPS (lng)": -81.514925,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/marketplace-carousel.webp"
   },
   {
     "Code": "att_127",
@@ -1563,7 +1641,9 @@
     "Land": "The Landing",
     "Description": "Ballon captif qui monte à 120 m au-dessus de Disney Springs.",
     "Coordonnées GPS (lat)": 28.370954,
-    "Coordonnées GPS (lng)": -81.519473
+    "Coordonnées GPS (lng)": -81.519473,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/aerophile-the-world-leader-in-balloon-flight.webp"
   },
   {
     "Code": "att_129",
@@ -1575,7 +1655,8 @@
     "Land": "The Landing",
     "Description": "Espace de jeux et de réalité virtuelle dans le quartier du Landing.",
     "Coordonnées GPS (lat)": 28.3704643761067,
-    "Coordonnées GPS (lng)": -81.5220148949035
+    "Coordonnées GPS (lng)": -81.5220148949035,
+    "Taille mini": "Pas de restriction"
   },
   {
     "Code": "att_130",
@@ -1586,6 +1667,8 @@
     "Land": "The Landing",
     "Description": "Balade en voiture amphibie d'époque sur le lac de Disney Springs.",
     "Coordonnées GPS (lat)": 28.37167,
-    "Coordonnées GPS (lng)": -81.517986
+    "Coordonnées GPS (lng)": -81.517986,
+    "Taille mini": "Pas de restriction",
+    "URL image": "images/walt-disney-world/vintage-amphicar-tours.webp"
   }
 ]

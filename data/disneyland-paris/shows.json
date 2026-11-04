@@ -185,7 +185,7 @@
     "Code": "P2MG66",
     "UUID Themeparks.wiki": "9d20895f-b80c-48c1-8e74-0e153b762b37",
     "Nom": "Rencontre Royale",
-    "Photo": "",
+    "Photo": "images/disneyland-paris/rencontre-royale.webp",
     "Description": "Rendez-vous au Château d’Arendelle pour rencontrer Anna et Elsa*, en exclusivité dans le nouveau monde de La Reine des Neiges. En famille ou entre amis, vivez un moment unique plein d'émotions qui réchauffera votre cœur à tout jamais.",
     "Type": "Rencontre personnage",
     "Parc": "Disney Adventure World",
@@ -194,7 +194,7 @@
   {
     "Code": "P1M116",
     "UUID Themeparks.wiki": "14924bd7-ffbf-47ee-a96e-2d5bd3fb5f25",
-    "Nom": "Princess Pavilion: A Royal Invitation",
+    "Nom": "Pavillon Des Princesses : Une Invitation Royale",
     "Photo": "images/disneyland-paris/pavillon-des-princesses.webp",
     "Description": "Gravez à jamais un moment féérique avec une Princesse Disney au cœur de Fantasyland. Cendrillon, Ariel, Aurore, Belle... quel Personnage allez-vous rencontrer ?",
     "Type": "Rencontre personnage",

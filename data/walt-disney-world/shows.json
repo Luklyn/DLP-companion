@@ -32,7 +32,8 @@
     "Land": "Seven Seas Lagoon",
     "Description": "Parade nautique lumineuse sur le lac, visible depuis les hôtels.",
     "Coordonnées GPS (lat)": 28.409698,
-    "Coordonnées GPS (lng)": -81.571398
+    "Coordonnées GPS (lng)": -81.571398,
+    "Photo": "images/walt-disney-world/electrical-water-pageant-gallery01.webp"
   },
   {
     "Code": "show_029",
@@ -43,7 +44,8 @@
     "Land": "World Celebration",
     "Description": "Spectacle de percussion et d'acrobatie par des agents d'entretien musiciens.",
     "Coordonnées GPS (lat)": 28.3732336499128,
-    "Coordonnées GPS (lng)": -81.5501600577662
+    "Coordonnées GPS (lng)": -81.5501600577662,
+    "Photo": "images/walt-disney-world/jammitors.webp"
   },
   {
     "Code": "show_032",
@@ -54,7 +56,8 @@
     "Land": "World Showcase Lagoon",
     "Description": "Spectacle nocturne sur la lagune du World Showcase : feux d'artifice, jeux d'eau et musique.",
     "Coordonnées GPS (lat)": 28.3697559273453,
-    "Coordonnées GPS (lng)": -81.5471178955173
+    "Coordonnées GPS (lng)": -81.5471178955173,
+    "Photo": "images/walt-disney-world/luminous-the-symphony-of-us.webp"
   },
   {
     "Code": "show_039",
@@ -65,7 +68,8 @@
     "Land": "World Showcase – Espagne",
     "Description": "Artiste comique jongleur sur la place du pavillon espagnol.",
     "Coordonnées GPS (lat)": 28.36787,
-    "Coordonnées GPS (lng)": -81.548184
+    "Coordonnées GPS (lng)": -81.548184,
+    "Photo": "images/walt-disney-world/sergio.webp"
   },
   {
     "Code": "show_041",
@@ -76,7 +80,8 @@
     "Land": "World Showcase – Italie",
     "Description": "Troupe d'acrobates dans le style de la commedia dell'arte.",
     "Coordonnées GPS (lat)": 28.367875,
-    "Coordonnées GPS (lng)": -81.54822
+    "Coordonnées GPS (lng)": -81.54822,
+    "Photo": "images/walt-disney-world/acrobatico.webp"
   },
   {
     "Code": "show_042",
@@ -98,7 +103,8 @@
     "Land": "World Showcase – Royaume-Uni",
     "Description": "Groupe de rock britannique sur la scène du pavillon.",
     "Coordonnées GPS (lat)": 28.370535,
-    "Coordonnées GPS (lng)": -81.55249
+    "Coordonnées GPS (lng)": -81.55249,
+    "Photo": "images/walt-disney-world/command-performance.webp"
   },
   {
     "Code": "show_052",
@@ -169,7 +175,8 @@
     "Land": "Star Wars: Galaxy's Edge",
     "Description": "Patrouille du Premier Ordre, qui cherche des résistants dans le quartier.",
     "Coordonnées GPS (lat)": 28.354335,
-    "Coordonnées GPS (lng)": -81.562562
+    "Coordonnées GPS (lng)": -81.562562,
+    "Photo": "images/walt-disney-world/first-order-searches-for-the-resistance.webp"
   },
   {
     "Code": "show_066",
@@ -216,7 +223,8 @@
     "Land": "Africa",
     "Description": "Comédie musicale dans l'univers du Roi Lion, avec acrobates et chants.",
     "Coordonnées GPS (lat)": 28.35811,
-    "Coordonnées GPS (lng)": -81.592643
+    "Coordonnées GPS (lng)": -81.592643,
+    "Photo": "images/walt-disney-world/festival-of-the-lion-king.webp"
   },
   {
     "Code": "show_076",
@@ -227,7 +235,8 @@
     "Land": "Discovery Island",
     "Description": "Rencontre de rapaces et oiseaux exotiques avec des soigneurs.",
     "Coordonnées GPS (lat)": 28.357339,
-    "Coordonnées GPS (lng)": -81.590462
+    "Coordonnées GPS (lng)": -81.590462,
+    "Photo": "images/walt-disney-world/animal-encounters-winged-encounters-the-kingdom-takes-flight.webp"
   },
   {
     "Code": "show_079",
@@ -238,7 +247,8 @@
     "Land": "Discovery Island",
     "Description": "Spectacle d'oiseaux en vol.",
     "Coordonnées GPS (lat)": 28.358791,
-    "Coordonnées GPS (lng)": -81.590061
+    "Coordonnées GPS (lng)": -81.590061,
+    "Photo": "images/walt-disney-world/feathered-friends-in-flight.webp"
   },
   {
     "Code": "show_080",
@@ -249,7 +259,8 @@
     "Land": "Discovery Island",
     "Description": "Comédie musicale avec marionnettes et acrobates sur le thème du Monde de Nemo.",
     "Coordonnées GPS (lat)": 28.357401,
-    "Coordonnées GPS (lng)": -81.587455
+    "Coordonnées GPS (lng)": -81.587455,
+    "Photo": "images/walt-disney-world/finding-nemo-the-big-blue-and-beyond.webp"
   },
   {
     "Code": "show_083",
@@ -260,7 +271,8 @@
     "Land": "Discovery Island",
     "Description": "Projections sur l'Arbre de Vie qui s'anime.",
     "Coordonnées GPS (lat)": 28.357994,
-    "Coordonnées GPS (lng)": -81.590597
+    "Coordonnées GPS (lng)": -81.590597,
+    "Photo": "images/walt-disney-world/tree-of-life-awakenings.webp"
   },
   {
     "Code": "show_087",
@@ -271,7 +283,8 @@
     "Land": "Disney Springs",
     "Description": "Spectacle du Cirque du Soleil sur l'histoire de l'animation Disney, au théâtre de Disney Springs.",
     "Coordonnées GPS (lat)": 28.370719,
-    "Coordonnées GPS (lng)": -81.522536
+    "Coordonnées GPS (lng)": -81.522536,
+    "Photo": "images/walt-disney-world/drawn-to-life-presented-by-cirque-du-soleil-and-disney.webp"
   },
   {
     "Code": "show_016",
@@ -373,7 +386,8 @@
     "Land": "EPCOT Entrée",
     "Description": "Rencontre avec Pluto, devant l'entrée principale du parc.",
     "Coordonnées GPS (lat)": 28.375567,
-    "Coordonnées GPS (lng)": -81.549695
+    "Coordonnées GPS (lng)": -81.549695,
+    "Photo": "images/walt-disney-world/meet-pluto-near-epcot-main-entrance.webp"
   },
   {
     "Code": "show_030",
@@ -384,7 +398,8 @@
     "Land": "World Celebration",
     "Description": "Rencontre avec les amis de Mickey, à la sortie de Spaceship Earth.",
     "Coordonnées GPS (lat)": 28.373898,
-    "Coordonnées GPS (lng)": -81.549914
+    "Coordonnées GPS (lng)": -81.549914,
+    "Photo": "images/walt-disney-world/meet-beloved-disney-pals-at-mickey-and-friends.webp"
   },
   {
     "Code": "show_031",
@@ -395,7 +410,8 @@
     "Land": "World Discovery",
     "Description": "Rencontre avec Figment, le dragon pourpre de l'Imagination.",
     "Coordonnées GPS (lat)": 28.372769,
-    "Coordonnées GPS (lng)": -81.55128
+    "Coordonnées GPS (lng)": -81.55128,
+    "Photo": "images/walt-disney-world/meet-figment-inside-imageworks.webp"
   },
   {
     "Code": "show_033",
@@ -406,7 +422,8 @@
     "Land": "World Showcase Plaza",
     "Description": "Rencontre avec Asha, héroïne du film Wish.",
     "Coordonnées GPS (lat)": 28.3718773852161,
-    "Coordonnées GPS (lng)": -81.5488533162313
+    "Coordonnées GPS (lng)": -81.5488533162313,
+    "Photo": "images/walt-disney-world/meet-asha-near-world-showcase-plaza.webp"
   },
   {
     "Code": "show_038",
@@ -417,7 +434,8 @@
     "Land": "World Showcase – Chine",
     "Description": "Rencontre avec Mulan dans le pavillon de la Chine.",
     "Coordonnées GPS (lat)": 28.3698563364835,
-    "Coordonnées GPS (lng)": -81.5461904203374
+    "Coordonnées GPS (lng)": -81.5461904203374,
+    "Photo": "images/walt-disney-world/meet-the-legendary-warrior-in-china.webp"
   },
   {
     "Code": "show_040",
@@ -439,7 +457,8 @@
     "Land": "World Showcase – Mexique",
     "Description": "Rencontre avec l'un des Trois Caballeros dans le pavillon du Mexique.",
     "Coordonnées GPS (lat)": 28.371185,
-    "Coordonnées GPS (lng)": -81.547297
+    "Coordonnées GPS (lng)": -81.547297,
+    "Photo": "images/walt-disney-world/meet-one-of-the-three-caballeros-in-mexico.webp"
   },
   {
     "Code": "show_048",
@@ -450,7 +469,8 @@
     "Land": "World Showcase – Norvège",
     "Description": "Rencontre avec Anna et Elsa de La Reine des neiges.",
     "Coordonnées GPS (lat)": 28.37097,
-    "Coordonnées GPS (lng)": -81.547134
+    "Coordonnées GPS (lng)": -81.547134,
+    "Photo": "images/walt-disney-world/meet-anna-and-elsa-at-royal-sommerhus.webp"
   },
   {
     "Code": "show_053",
@@ -461,7 +481,8 @@
     "Land": "Animation Courtyard",
     "Description": "Rencontre avec Ariel, la petite sirène.",
     "Coordonnées GPS (lat)": 28.356945,
-    "Coordonnées GPS (lng)": -81.560998
+    "Coordonnées GPS (lng)": -81.560998,
+    "Photo": "images/walt-disney-world/meet-ariel-at-walt-disney-presents.webp"
   },
   {
     "Code": "show_059",
@@ -544,7 +565,8 @@
     "Land": "Discovery Island",
     "Description": "Rencontre avec Kevin, l'oiseau de Là-haut.",
     "Coordonnées GPS (lat)": 28.355542,
-    "Coordonnées GPS (lng)": -81.590079
+    "Coordonnées GPS (lng)": -81.590079,
+    "Photo": "images/walt-disney-world/adventures-with-kevin-on-discovery-island.webp"
   },
   {
     "Code": "show_081",
@@ -555,7 +577,8 @@
     "Land": "Discovery Island",
     "Description": "Rencontres avec les personnages Disney devant le poste d'exploration.",
     "Coordonnées GPS (lat)": 28.357972,
-    "Coordonnées GPS (lng)": -81.589796
+    "Coordonnées GPS (lng)": -81.589796,
+    "Photo": "images/walt-disney-world/meet-favorite-disney-pals-at-adventurers-outpost.webp"
   },
   {
     "Code": "show_082",
@@ -566,7 +589,8 @@
     "Land": "Discovery Island",
     "Description": "Rencontre avec Vaiana.",
     "Coordonnées GPS (lat)": 28.357086,
-    "Coordonnées GPS (lng)": -81.589374
+    "Coordonnées GPS (lng)": -81.589374,
+    "Photo": "images/walt-disney-world/meet-moana-at-character-landing.webp"
   },
   {
     "Code": "show_085",
@@ -577,7 +601,8 @@
     "Land": "Discovery Island",
     "Description": "Lieu de rencontre pour la journée Zoogether.",
     "Coordonnées GPS (lat)": 28.357425,
-    "Coordonnées GPS (lng)": -81.590153
+    "Coordonnées GPS (lng)": -81.590153,
+    "Photo": "images/walt-disney-world/zoogether-day-gathering-spot.webp"
   },
   {
     "Code": "show_007",
@@ -612,7 +637,8 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Rencontre avec Mickey en magicien.",
     "Coordonnées GPS (lat)": 28.416727,
-    "Coordonnées GPS (lng)": -81.580746
+    "Coordonnées GPS (lng)": -81.580746,
+    "Photo": "images/walt-disney-world/mickey-mouse-and-minnie-mouse-at-town-square-theater.webp"
   },
   {
     "Code": "show_055",
@@ -670,7 +696,8 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Pianiste jouant du ragtime et de la musique d'époque.",
     "Coordonnées GPS (lat)": 28.418112,
-    "Coordonnées GPS (lng)": -81.581421
+    "Coordonnées GPS (lng)": -81.581421,
+    "Photo": "images/walt-disney-world/casey-s-corner-pianist.webp"
   },
   {
     "Code": "show_022",
@@ -693,7 +720,8 @@
     "Land": "World Showcase – Allemagne",
     "Description": "Musique bavaroise sur la place du pavillon allemand.",
     "Coordonnées GPS (lat)": 28.368651,
-    "Coordonnées GPS (lng)": -81.546584
+    "Coordonnées GPS (lng)": -81.546584,
+    "Photo": "images/walt-disney-world/entertainment-at-germany-gazebo.webp"
   },
   {
     "Code": "show_037",
@@ -704,7 +732,8 @@
     "Land": "World Showcase – Canada",
     "Description": "Groupe de musique canadienne sur la scène du Moulin canadien.",
     "Coordonnées GPS (lat)": 28.371202,
-    "Coordonnées GPS (lng)": -81.551509
+    "Coordonnées GPS (lng)": -81.551509,
+    "Photo": "images/walt-disney-world/entertainment-at-canada-mill-stage.webp"
   },
   {
     "Code": "show_050",
@@ -715,7 +744,8 @@
     "Land": "World Showcase – Royaume-Uni",
     "Description": "Musiciens de pub britannique.",
     "Coordonnées GPS (lat)": 28.370467,
-    "Coordonnées GPS (lng)": -81.551677
+    "Coordonnées GPS (lng)": -81.551677,
+    "Photo": "images/walt-disney-world/rose-and-crown-pub-musician.webp"
   },
   {
     "Code": "show_051",
@@ -726,7 +756,8 @@
     "Land": "World Showcase – États-Unis",
     "Description": "Chœur a cappella à la Rotonde de l'American Adventure.",
     "Coordonnées GPS (lat)": 28.367595,
-    "Coordonnées GPS (lng)": -81.549387
+    "Coordonnées GPS (lng)": -81.549387,
+    "Photo": "images/walt-disney-world/voices-of-liberty.webp"
   },
   {
     "Code": "show_069",
@@ -749,7 +780,8 @@
     "Land": "Africa",
     "Description": "Groupe de rue animé avec percussions, dans le village africain de Harambe.",
     "Coordonnées GPS (lat)": 28.35873,
-    "Coordonnées GPS (lng)": -81.591951
+    "Coordonnées GPS (lng)": -81.591951,
+    "Photo": "images/walt-disney-world/harambe-village-street-band-burudika.webp"
   },
   {
     "Code": "show_074",
@@ -760,7 +792,8 @@
     "Land": "Africa",
     "Description": "Percussionnistes dans le village de Harambe.",
     "Coordonnées GPS (lat)": 28.35873,
-    "Coordonnées GPS (lng)": -81.591928
+    "Coordonnées GPS (lng)": -81.591928,
+    "Photo": "images/walt-disney-world/tam-tam-drummers-of-harambe.webp"
   },
   {
     "Code": "show_084",
@@ -771,7 +804,8 @@
     "Land": "Discovery Island",
     "Description": "Groupe de rue avec musiciens sur échasses et danseurs.",
     "Coordonnées GPS (lat)": 28.357122,
-    "Coordonnées GPS (lng)": -81.589667
+    "Coordonnées GPS (lng)": -81.589667,
+    "Photo": "images/walt-disney-world/viva-gaia-street-band.webp"
   },
   {
     "Code": "show_017",

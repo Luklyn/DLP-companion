@@ -100,7 +100,8 @@
     "Description": "Petit restaurant rapide de Fantasyland, avec hot-dogs et snacks.",
     "Menu": "https://www.disneyworld.eu/dining/magic-kingdom/friars-nook/menus/breakfast/",
     "Coordonnées GPS (lat)": 28.42016512,
-    "Coordonnées GPS (lng)": -81.5807196587
+    "Coordonnées GPS (lng)": -81.5807196587,
+    "Photo": "images/walt-disney-world/the-friar-s-nook.webp"
   },
   {
     "Code": "resto_009",
@@ -136,7 +137,8 @@
     "Land": "Frontierland",
     "Description": "Ancien saloon transformé en restaurant rapide.",
     "Coordonnées GPS (lat)": 28.4189329813,
-    "Coordonnées GPS (lng)": -81.5829262845
+    "Coordonnées GPS (lng)": -81.5829262845,
+    "Menu": "https://www.disneyworld.eu/dining/magic-kingdom/diamond-horseshoe/menus/"
   },
   {
     "Code": "resto_012",
@@ -198,7 +200,8 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Confiserie de Main Street, avec bonbons et sucreries.",
     "Coordonnées GPS (lat)": 28.417116,
-    "Coordonnées GPS (lng)": -81.581023
+    "Coordonnées GPS (lng)": -81.581023,
+    "Menu": "https://www.disneyworld.eu/dining/magic-kingdom/diamond-horseshoe/menus"
   },
   {
     "Code": "resto_017",
@@ -435,7 +438,8 @@
     "Land": "World Showcase – Allemagne",
     "Description": "Boutique de caramels et de pommes d'amour.",
     "Coordonnées GPS (lat)": 28.368364,
-    "Coordonnées GPS (lng)": -81.546953
+    "Coordonnées GPS (lng)": -81.546953,
+    "Menu": "https://www.disneyworld.eu/shops/karamell-kuche/menus"
   },
   {
     "Code": "resto_036",
@@ -537,7 +541,8 @@
     "Land": "World Showcase – France",
     "Description": "Bar à vins français du pavillon.",
     "Coordonnées GPS (lat)": 28.369018,
-    "Coordonnées GPS (lng)": -81.552363
+    "Coordonnées GPS (lng)": -81.552363,
+    "Menu": "https://www.disneyworld.eu/dining/epcot/les-vins-des-chefs-de-france/menus"
   },
   {
     "Code": "resto_044",
@@ -674,7 +679,8 @@
     "Land": "World Showcase – Maroc",
     "Description": "Restaurant à tapas d'inspiration méditerranéenne, face à la lagune.",
     "Coordonnées GPS (lat)": 28.368468,
-    "Coordonnées GPS (lng)": -81.551645
+    "Coordonnées GPS (lng)": -81.551645,
+    "Menu": "https://www.disneyworld.eu/dining/epcot/spice-road-table-bar/menus"
   },
   {
     "Code": "resto_055",
@@ -711,7 +717,8 @@
     "Land": "World Showcase – Mexique",
     "Description": "Bar à tequila dans le pavillon du Mexique.",
     "Coordonnées GPS (lat)": 28.37158,
-    "Coordonnées GPS (lng)": -81.547299
+    "Coordonnées GPS (lng)": -81.547299,
+    "Menu": "https://www.disneyworld.eu/dining/epcot/cava-del-tequila/menus"
   },
   {
     "Code": "resto_058",
@@ -786,7 +793,8 @@
     "Land": "World Showcase – Royaume-Uni",
     "Description": "Chariot de bières britanniques.",
     "Coordonnées GPS (lat)": 28.370601,
-    "Coordonnées GPS (lng)": -81.551648
+    "Coordonnées GPS (lng)": -81.551648,
+    "Menu": "https://www.disneyworld.eu/dining/epcot/uk-beer-cart/menus"
   },
   {
     "Code": "resto_064",
@@ -938,7 +946,9 @@
     "Land": "Echo Lake",
     "Description": "Bar situé au restaurant 50's Prime Time Café.",
     "Coordonnées GPS (lat)": 28.357482,
-    "Coordonnées GPS (lng)": -81.558808
+    "Coordonnées GPS (lng)": -81.558808,
+    "Menu": "https://www.disneyworld.eu/dining/hollywood-studios/tune-in-lounge/menus",
+    "Photo": "images/walt-disney-world/tune-in-lounge.webp"
   },
   {
     "Code": "resto_076",
@@ -1025,7 +1035,9 @@
     "Land": "Star Wars: Galaxy's Edge",
     "Description": "Bar de la galaxie lointaine servant des boissons exotiques.",
     "Coordonnées GPS (lat)": 28.354095,
-    "Coordonnées GPS (lng)": -81.562075
+    "Coordonnées GPS (lng)": -81.562075,
+    "Menu": "https://www.disneyworld.eu/dining/hollywood-studios/ogas-cantina/menus",
+    "Photo": "images/walt-disney-world/oga-s-cantina-at-the-walt-disney-world-resort.webp"
   },
   {
     "Code": "resto_083",
@@ -1137,7 +1149,9 @@
     "Land": "Africa",
     "Description": "Comptoir de desserts.",
     "Coordonnées GPS (lat)": 28.359071,
-    "Coordonnées GPS (lng)": -81.591605
+    "Coordonnées GPS (lng)": -81.591605,
+    "Menu": "https://www.disneyworld.eu/shops/animal-kingdom/zuris-sweet-shop/menus",
+    "Photo": "images/walt-disney-world/zuri-s-sweets-shop.webp"
   },
   {
     "Code": "resto_092",
@@ -1160,7 +1174,9 @@
     "Land": "Asia",
     "Description": "Bar asiatique.",
     "Coordonnées GPS (lat)": 28.35874,
-    "Coordonnées GPS (lng)": -81.590306
+    "Coordonnées GPS (lng)": -81.590306,
+    "Menu": "https://www.disneyworld.eu/dining/animal-kingdom/warung-outpost/menus",
+    "Photo": "images/walt-disney-world/warung-outpost.webp"
   },
   {
     "Code": "resto_094",
@@ -1171,7 +1187,9 @@
     "Land": "Asia",
     "Description": "Comptoir de boissons et snacks asiatiques.",
     "Coordonnées GPS (lat)": 28.358803,
-    "Coordonnées GPS (lng)": -81.5893
+    "Coordonnées GPS (lng)": -81.5893,
+    "Menu": "https://www.disneyworld.eu/dining/animal-kingdom/quality-beverages/menus",
+    "Photo": "images/walt-disney-world/yak-and-yeti-quality-beverages.webp"
   },
   {
     "Code": "resto_095",
@@ -1220,7 +1238,9 @@
     "Land": "Discovery Island",
     "Description": "Bar à cocktails.",
     "Coordonnées GPS (lat)": 28.356719,
-    "Coordonnées GPS (lng)": -81.591487
+    "Coordonnées GPS (lng)": -81.591487,
+    "Menu": "https://www.disneyworld.eu/dining/animal-kingdom/nomad-lounge/menus",
+    "Photo": "images/walt-disney-world/nomad-lounge-2.webp"
   },
   {
     "Code": "resto_099",
@@ -1309,7 +1329,9 @@
     "Land": "Typhoon Lagoon",
     "Description": "Boissons glacées.",
     "Coordonnées GPS (lat)": 28.3661513,
-    "Coordonnées GPS (lng)": -81.5288741
+    "Coordonnées GPS (lng)": -81.5288741,
+    "Menu": "https://www.disneyworld.eu/dining/typhoon-lagoon/lets-go-slurpin/menus",
+    "Photo": "images/walt-disney-world/let-s-go-slurpin.webp"
   },
   {
     "Code": "resto_106",
@@ -1359,7 +1381,9 @@
     "Land": "Blizzard Beach",
     "Description": "Boissons glacées.",
     "Coordonnées GPS (lat)": 28.3523550694,
-    "Coordonnées GPS (lng)": -81.5736693497
+    "Coordonnées GPS (lng)": -81.5736693497,
+    "Menu": "https://disneyworld.eu/dining/blizzard-beach/frostbite-freddy/menus",
+    "Photo": "images/walt-disney-world/frostbite-freddy-s-frozen-refreshments.webp"
   },
   {
     "Code": "resto_110",
@@ -1473,7 +1497,9 @@
     "Land": "Disney Springs",
     "Description": "Bar à margaritas.",
     "Coordonnées GPS (lat)": 28.372128,
-    "Coordonnées GPS (lng)": -81.514895
+    "Coordonnées GPS (lng)": -81.514895,
+    "Menu": "https://www.disneyworld.eu/dining/disney-springs/dockside-margaritas/menus",
+    "Photo": "images/walt-disney-world/dockside-margaritas.webp"
   },
   {
     "Code": "resto_119",
@@ -1521,7 +1547,9 @@
     "Land": "Disney Springs",
     "Description": "Confiserie.",
     "Coordonnées GPS (lat)": 28.372798,
-    "Coordonnées GPS (lng)": -81.515258
+    "Coordonnées GPS (lng)": -81.515258,
+    "Menu": "https://www.disneyworld.eu/shops/disney-springs/goofys-candy-company/menus",
+    "Photo": "images/walt-disney-world/goofy-s-candy-company.webp"
   },
   {
     "Code": "resto_123",
@@ -1708,7 +1736,9 @@
     "Land": "Disney Springs",
     "Description": "Bar d'aventure.",
     "Coordonnées GPS (lat)": 28.369886,
-    "Coordonnées GPS (lng)": -81.518875
+    "Coordonnées GPS (lng)": -81.518875,
+    "Menu": "https://www.disneysprings.com/dining/stargazers-bar/menus",
+    "Photo": "images/walt-disney-world/stargazers-bar.webp"
   },
   {
     "Code": "resto_138",
@@ -1872,7 +1902,8 @@
     "Description": "Pâtisserie et restaurant.",
     "Menu": "https://www.disneyworld.eu/dining/boardwalk/cake-bake-shop-restaurant/menus/dinner/",
     "Coordonnées GPS (lat)": 28.368078,
-    "Coordonnées GPS (lng)": -81.555412
+    "Coordonnées GPS (lng)": -81.555412,
+    "Land": "BoardWalk"
   },
   {
     "Code": "resto_151",
@@ -1883,7 +1914,9 @@
     "Land": "All-Star Movies Resort",
     "Description": "Bar de piscine.",
     "Coordonnées GPS (lat)": 28.3359755,
-    "Coordonnées GPS (lng)": -81.5725132
+    "Coordonnées GPS (lng)": -81.5725132,
+    "Menu": "https://www.disneyworld.eu/dining/all-star-movies-resort/silver-screen-spirits-pool-bar/menus",
+    "Photo": "images/walt-disney-world/silver-screen-spirits-pool-bar.webp"
   },
   {
     "Code": "resto_152",
@@ -2069,7 +2102,9 @@
     "Land": "Animal Kingdom Lodge – Kidani Village",
     "Description": "Restaurant indo-africain avec vue sur la savane.",
     "Coordonnées GPS (lat)": 28.354084,
-    "Coordonnées GPS (lng)": -81.605423
+    "Coordonnées GPS (lng)": -81.605423,
+    "Menu": "https://www.disneyworld.eu/dining/animal-kingdom-villas-kidani/sanaa-lounge/menus/",
+    "Photo": "images/walt-disney-world/sanaa-lounge.webp"
   },
   {
     "Code": "resto_167",
@@ -2142,7 +2177,9 @@
     "Land": "Beach Club Resort",
     "Description": "Bar à vins du Beach Club.",
     "Coordonnées GPS (lat)": 28.371124,
-    "Coordonnées GPS (lng)": -81.556873
+    "Coordonnées GPS (lng)": -81.556873,
+    "Menu": "https://www.disneyworld.eu/dining/yacht-club-resort/marthas-vineyard/menus/",
+    "Photo": "images/walt-disney-world/martha-s-vineyard.webp"
   },
   {
     "Code": "resto_173",
@@ -2178,7 +2215,9 @@
     "Land": "BoardWalk",
     "Description": "Stand de corn dogs.",
     "Coordonnées GPS (lat)": 28.36729968828043,
-    "Coordonnées GPS (lng)": -81.55592880217934
+    "Coordonnées GPS (lng)": -81.55592880217934,
+    "Menu": "https://www.disneyworld.eu/dining/boardwalk/blue-ribbon-corn-dog/menus",
+    "Photo": "images/walt-disney-world/blue-ribbon-corn-dogs.webp"
   },
   {
     "Code": "resto_176",
@@ -2202,7 +2241,8 @@
     "Land": "BoardWalk",
     "Description": "Bar à margaritas.",
     "Coordonnées GPS (lat)": 28.367514,
-    "Coordonnées GPS (lng)": -81.555786
+    "Coordonnées GPS (lng)": -81.555786,
+    "Menu": "https://www.disneyworld.eu/dining/boardwalk/boardwalk-joes-marvelous-margaritas/menus"
   },
   {
     "Code": "resto_178",
@@ -2351,7 +2391,9 @@
     "Land": "Contemporary Resort",
     "Description": "Bar de piscine du Contemporary.",
     "Coordonnées GPS (lat)": 28.416144,
-    "Coordonnées GPS (lng)": -81.572738
+    "Coordonnées GPS (lng)": -81.572738,
+    "Menu": "https://www.disneyworld.eu/dining/contemporary-resort/cove-bar/menus",
+    "Photo": "images/walt-disney-world/cove-bar.webp"
   },
   {
     "Code": "resto_190",
@@ -2362,7 +2404,9 @@
     "Land": "Contemporary Resort",
     "Description": "Bar à cocktails au sommet du Contemporary.",
     "Coordonnées GPS (lat)": 28.4146306412,
-    "Coordonnées GPS (lng)": -81.5742234757
+    "Coordonnées GPS (lng)": -81.5742234757,
+    "Menu": "https://www.disneyworld.eu/dining/contemporary-resort/outer-rim/menus",
+    "Photo": "images/walt-disney-world/outer-rim.webp"
   },
   {
     "Code": "resto_191",
@@ -2386,7 +2430,9 @@
     "Land": "Contemporary Resort",
     "Description": "Steakhouse du Contemporary Resort.",
     "Coordonnées GPS (lat)": 28.4151476659,
-    "Coordonnées GPS (lng)": -81.5742420209
+    "Coordonnées GPS (lng)": -81.5742420209,
+    "Menu": "https://www.disneyworld.eu/dining/contemporary-resort/steakhouse-71-lounge/menus",
+    "Photo": "images/walt-disney-world/steakhouse-71-lounge.webp"
   },
   {
     "Code": "resto_193",
@@ -2444,7 +2490,7 @@
     "Parc": "Resorts Disney",
     "Land": "Coronado Springs Resort",
     "Description": "Bar de piscine.",
-    "Menu": "https://www.disneyworld.eu/dining/coronado-springs-resort/laguna-bar/menus/lounge/",
+    "Menu": "https://www.disneyworld.eu/dining/coronado-springs-resort/laguna-bar/menus",
     "Coordonnées GPS (lat)": 28.3629813346,
     "Coordonnées GPS (lng)": -81.5730631901
   },
@@ -2495,7 +2541,9 @@
     "Land": "Coronado Springs Resort",
     "Description": "Bar et restaurant au bord de la lagune.",
     "Coordonnées GPS (lat)": 28.364134,
-    "Coordonnées GPS (lng)": -81.573972
+    "Coordonnées GPS (lng)": -81.573972,
+    "Menu": "https://www.disneyworld.eu/dining/coronado-springs-resort/three-bridges/menus",
+    "Photo": "images/walt-disney-world/three-bridges-bar-and-grill-at-villa-del-lago-2.webp"
   },
   {
     "Code": "resto_202",
@@ -2544,7 +2592,9 @@
     "Land": "Fort Wilderness",
     "Description": "Dîner-spectacle western de Fort Wilderness, avec chants, danses et poulet frit.",
     "Coordonnées GPS (lat)": 28.4116269693,
-    "Coordonnées GPS (lng)": -81.5615860177
+    "Coordonnées GPS (lng)": -81.5615860177,
+    "Menu": "https://www.disneyworld.eu/dining/cabins-at-fort-wilderness-resort/hoop-dee-doo-musical-revue/menus",
+    "Photo": "images/walt-disney-world/hoop-dee-doo-musical-revue.webp"
   },
   {
     "Code": "resto_206",
@@ -2555,7 +2605,9 @@
     "Land": "Fort Wilderness",
     "Description": "Snack-bar de Fort Wilderness.",
     "Coordonnées GPS (lat)": 28.405861,
-    "Coordonnées GPS (lng)": -81.557358
+    "Coordonnées GPS (lng)": -81.557358,
+    "Menu": "https://www.disneyworld.eu/dining/cabins-at-fort-wilderness-resort/meadow-snack-bar/menus",
+    "Photo": "images/walt-disney-world/meadow-snack-bar.webp"
   },
   {
     "Code": "resto_207",
@@ -2652,7 +2704,9 @@
     "Land": "Grand Floridian Resort",
     "Description": "Bar de piscine.",
     "Coordonnées GPS (lat)": 28.4115090854,
-    "Coordonnées GPS (lng)": -81.5862777829
+    "Coordonnées GPS (lng)": -81.5862777829,
+    "Menu": "https://www.disneyworld.eu/dining/grand-floridian-resort-and-spa/courtyard-pool-bar/menus",
+    "Photo": "images/walt-disney-world/courtyard-pool-bar.webp"
   },
   {
     "Code": "resto_215",
@@ -2688,7 +2742,8 @@
     "Land": "Grand Floridian Resort",
     "Description": "Bar thématique de La Belle et la Bête.",
     "Coordonnées GPS (lat)": 28.4109564,
-    "Coordonnées GPS (lng)": -81.5873311
+    "Coordonnées GPS (lng)": -81.5873311,
+    "Menu": "https://www.disneyworld.eu/pt-br/dining/grand-floridian-resort-and-spa/enchanted-rose-lounge/menus"
   },
   {
     "Code": "resto_218",
@@ -2802,7 +2857,8 @@
     "Land": "Old Key West Resort",
     "Description": "Restaurant de style Key West.",
     "Coordonnées GPS (lat)": 28.375145,
-    "Coordonnées GPS (lng)": -81.533394
+    "Coordonnées GPS (lng)": -81.533394,
+    "Menu": "https://www.disneyworld.eu/dining/old-key-west-resort/olivias-cafe-to-go/menus"
   },
   {
     "Code": "resto_227",
@@ -2838,7 +2894,8 @@
     "Land": "Polynesian Village Resort",
     "Description": "Bar de piscine du Polynesian.",
     "Coordonnées GPS (lat)": 28.4064911465,
-    "Coordonnées GPS (lng)": -81.5850712698
+    "Coordonnées GPS (lng)": -81.5850712698,
+    "Menu": "https://www.disneyworld.eu/dining/polynesian-resort/barefoot-pool-bar/menus"
   },
   {
     "Code": "resto_230",
@@ -2875,7 +2932,8 @@
     "Land": "Polynesian Village Resort",
     "Description": "Version à emporter du Kona Cafe.",
     "Coordonnées GPS (lat)": 28.4054838494,
-    "Coordonnées GPS (lng)": -81.5855294466
+    "Coordonnées GPS (lng)": -81.5855294466,
+    "Menu": "https://www.disneyworld.eu/dining/polynesian-resort/kona-cafe/menus"
   },
   {
     "Code": "resto_233",
@@ -2922,7 +2980,8 @@
     "Land": "Polynesian Village Resort",
     "Description": "Bar tiki.",
     "Coordonnées GPS (lat)": 28.40598728567829,
-    "Coordonnées GPS (lng)": -81.58537053964982
+    "Coordonnées GPS (lng)": -81.58537053964982,
+    "Menu": "https://www.disneyworld.eu/dining/polynesian-resort/trader-sams-tiki-terrace/menus"
   },
   {
     "Code": "resto_237",
@@ -2958,7 +3017,9 @@
     "Land": "Port Orleans French Quarter",
     "Description": "Bar de piscine.",
     "Coordonnées GPS (lat)": 28.38084,
-    "Coordonnées GPS (lng)": -81.53603
+    "Coordonnées GPS (lng)": -81.53603,
+    "Menu": "https://www.disneyworld.eu/dining/port-orleans-resort-french-quarter/mardi-grogs/menus",
+    "Photo": "images/walt-disney-world/mardi-grogs.webp"
   },
   {
     "Code": "resto_240",
@@ -3019,7 +3080,9 @@
     "Land": "Port Orleans Riverside",
     "Description": "Bar du Riverside.",
     "Coordonnées GPS (lat)": 28.3864920741,
-    "Coordonnées GPS (lng)": -81.536900307
+    "Coordonnées GPS (lng)": -81.536900307,
+    "Menu": "https://www.disneyworld.eu/dining/port-orleans-resort-riverside/river-roost/menus",
+    "Photo": "images/walt-disney-world/river-roost.webp"
   },
   {
     "Code": "resto_245",
@@ -3069,7 +3132,8 @@
     "Land": "Resorts Disney (Pop Century / Art of Animation)",
     "Description": "Bar de piscine.",
     "Coordonnées GPS (lat)": 28.3507275,
-    "Coordonnées GPS (lng)": -81.5434268
+    "Coordonnées GPS (lng)": -81.5434268,
+    "Menu": "https://www.disneyworld.eu/dining/pop-century-resort/petals-pool-bar/menus"
   },
   {
     "Code": "resto_249",
@@ -3194,7 +3258,8 @@
     "Land": "Saratoga Springs Resort",
     "Description": "Restaurant sur le thème des courses de chevaux.",
     "Coordonnées GPS (lat)": 28.375821,
-    "Coordonnées GPS (lng)": -81.522835
+    "Coordonnées GPS (lng)": -81.522835,
+    "Menu": "https://www.disneyworld.eu/dining/saratoga-springs-resort-and-spa/turf-club-lounge/"
   },
   {
     "Code": "resto_259",
@@ -3378,7 +3443,8 @@
     "Land": "Wilderness Lodge",
     "Description": "Bar en terrasse du lodge.",
     "Coordonnées GPS (lat)": 28.409426,
-    "Coordonnées GPS (lng)": -81.571064
+    "Coordonnées GPS (lng)": -81.571064,
+    "Menu": "https://www.disneyworld.eu/dining/wilderness-lodge-resort/geyser-point/menus"
   },
   {
     "Code": "resto_274",
@@ -3440,7 +3506,8 @@
     "Land": "Yacht Club Resort",
     "Description": "Restaurant du Yacht Club avec petit-déjeuner et dîner.",
     "Coordonnées GPS (lat)": 28.370979,
-    "Coordonnées GPS (lng)": -81.558418
+    "Coordonnées GPS (lng)": -81.558418,
+    "Menu": "https://www.disneyworld.eu/dining/yacht-club-resort/ale-and-compass-lounge/menus"
   },
   {
     "Code": "resto_279",

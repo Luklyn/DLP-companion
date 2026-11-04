@@ -479,31 +479,5 @@
         "Taille mini":"50 cm",
         "Coordonnées GPS (lat)":"49.132096",
         "Coordonnées GPS (lng)":2.57124
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "URL image":null,
-        "Description":null,
-        "Parc":null,
-        "Land":null,
-        "Type":null,
-        "Taille mini":null,
-        "Coordonnées GPS (lat)":null,
-        "Coordonnées GPS (lng)":null
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "URL image":null,
-        "Description":null,
-        "Parc":null,
-        "Land":null,
-        "Type":null,
-        "Taille mini":null,
-        "Coordonnées GPS (lat)":"",
-        "Coordonnées GPS (lng)":null
     }
 ]

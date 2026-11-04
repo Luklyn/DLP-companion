@@ -284,31 +284,5 @@
         "Coordonnées GPS (lat)":"49.132992",
         "Coordonnées GPS (lng)":2.568148,
         "Peur sur le parc":1.0
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "Photo":null,
-        "Description":null,
-        "Type":null,
-        "Parc":null,
-        "Land":null,
-        "Coordonnées GPS (lat)":null,
-        "Coordonnées GPS (lng)":null,
-        "Peur sur le parc":null
-    },
-    {
-        "Code":null,
-        "UUID Themeparks.wiki":null,
-        "Nom":null,
-        "Photo":null,
-        "Description":null,
-        "Type":null,
-        "Parc":null,
-        "Land":null,
-        "Coordonnées GPS (lat)":"",
-        "Coordonnées GPS (lng)":null,
-        "Peur sur le parc":null
     }
 ]
