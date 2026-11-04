@@ -3161,10 +3161,10 @@
             const lat = toCoord(info.lat), lng = toCoord(info.lng);
             const embed = safeUrl(info.mapEmbed)
                 || (lat != null && lng != null
-                    ? `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.012},${lat - 0.007},${lng + 0.012},${lat + 0.007}&layer=mapnik&marker=${lat},${lng}`
+                    ? `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`
                     : '');
             const link = safeUrl(info.mapUrl) || (lat != null && lng != null ? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}` : '');
-            if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="Plan du parc" loading="lazy" referrerpolicy="no-referrer"></iframe>`);
+            if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="Plan du parc" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>`);
             if (link) rows.push(`<a class="info-link" href="${escHtml(link)}" target="_blank" rel="noopener noreferrer">Ouvrir dans Maps</a>`);
             els.infoBody.innerHTML = rows.join('');
             if (park.themeparksParkId) fillSchedule(park, hours.length > 0);
