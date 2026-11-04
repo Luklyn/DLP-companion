@@ -252,12 +252,13 @@
         "lng": 5.57
       },
       "icon": "fireworks",
-      "color": "#D6342C",
+      "color": "#6A4FD0",
       "theme": {
-        "acc": "#C0392B",
-        "g1": "#C0392B",
-        "g2": "#F08A24"
-      }
+        "acc": "#6A4FD0",
+        "g1": "#7B4FD0",
+        "g2": "#3FB7A0"
+      },
+      "iconImage": "icons/walibi-rhone-alpes.png"
     }
   ],
   "events": [
