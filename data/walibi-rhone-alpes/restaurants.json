@@ -1,0 +1,104 @@
+[
+  {
+    "Code": "rest_la-buche-glacee",
+    "Nom": "La bûche glacée",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Explorer Adventure",
+    "Photo": "images/walibi-rhone-alpes/la-buche-glacee.webp",
+    "Description": "Venez déguster une glace ou un granité au kiosque La Bûche Glacée, situé à côté du Generator, à Walibi Rhône-Alpes, idéal pour le goûter."
+  },
+  {
+    "Code": "rest_wild-rock-cafe",
+    "Nom": "Wild Rock Café",
+    "Type": "Sandwicherie",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Explorer Adventure",
+    "Photo": "images/walibi-rhone-alpes/wild-rock-cafe.webp",
+    "Description": "Le restaurant Wild Rock Café à Walibi Rhône-Alpes propose plusieurs sandwichs, granités, glaces italiennes, gaufres, ainsi que des boissons chaudes et fraîches pour une pause gourmande."
+  },
+  {
+    "Code": "rest_quai-38",
+    "Nom": "Quai 38",
+    "Type": "Restauration classique",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Festival City",
+    "Photo": "images/walibi-rhone-alpes/quai-38.webp",
+    "Description": "Embarquez dans l'univers de la Nouvelle Orléans et régalez vous avec les plats savoureux à bord du bateau typique de Louisiane accosté sur l'étang de Festival City à Walibi Rhône-Alpes.",
+    "Horaires": "11:45-14:00"
+  },
+  {
+    "Code": "rest_jazz-sugar-club",
+    "Nom": "Jazz sugar club",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Festival City",
+    "Photo": "images/walibi-rhone-alpes/jazz-sugar-club.webp",
+    "Description": "Rendez-vous au Jazz Sugar Club, au coeur de Festival City à Walibi Rhône-Alpes pour déguster un délicieux déjeuner ou savourer un goûter : gaufres, crêpes, barbe à papa et plein d'autres gourmandises.",
+    "Menu": "https://www.walibi.fr/content/dam/wra/pdf/carte-restaurant-jazz-sugar-club.pdf"
+  },
+  {
+    "Code": "rest_le-kiosque-on-air",
+    "Nom": "Le Kiosque On Air",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Exotic Island",
+    "Photo": "images/walibi-rhone-alpes/le-kiosque-on-air.webp",
+    "Description": "Le Kiosque On Air est un kiosque sucré à Walibi, situé en face de la Coccinelle, idéal pour se rafraîchir avec des boissons fraiches, granités ou encore des glaces italiennes."
+  },
+  {
+    "Code": "rest_golden-burger",
+    "Nom": "Golden Burger",
+    "Type": "Restauration rapide",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Explorer Adventure",
+    "Photo": "images/walibi-rhone-alpes/golden-burger.webp",
+    "Description": "Le plus grand restaurant Fast-Food du parc Walibi Rhône-Alpes vous accueille dans une thématique aventuriers et chercheurs d'or ! Toute la famille pourra y déguster, à toute heure, des burgers, wings ou pépites de fromage."
+  },
+  {
+    "Code": "rest_chez-marie-laveau",
+    "Nom": "Chez Marie Laveau",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Festival City",
+    "Photo": "images/walibi-rhone-alpes/chez-marie-laveau.webp",
+    "Description": "Découvrez notre point de restauration \"Chez Marie Laveau\" avec un choix varié de plats pour reprendre des forces pendant votre journée à Walibi Rhône-Alpes."
+  },
+  {
+    "Code": "rest_stardocks-cafe",
+    "Nom": "StarDocks Café",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Festival City",
+    "Photo": "images/walibi-rhone-alpes/stardocks-cafe.webp",
+    "Description": "Venez prendre un délicieux petit déjeuner ou un goûter au StarDocks Café, dans ce kiosque situé dans l'univers Festival City du parc Walibi Rhône-Alpes."
+  },
+  {
+    "Code": "rest_louisie-yan",
+    "Nom": "Louisie Yan",
+    "Type": "Sandwicherie",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Festival City",
+    "Photo": "images/walibi-rhone-alpes/louisie-yan.webp",
+    "Description": "Venez découvrir notre carte aux spécialités de la nouvelle Orléans au cœur de Festival City à Walibi Rhône-Alpes, pour le bonheur de vos papilles.",
+    "Menu": "https://www.walibi.fr/content/dam/wra/pdf/restaurant-walibi-louisie-yan.pdf"
+  },
+  {
+    "Code": "rest_tiki-fruits",
+    "Nom": "Tiki Fruits",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Exotic Island",
+    "Photo": "images/walibi-rhone-alpes/tiki-fruits.webp",
+    "Description": "Tiki Fruits, le nouveau point de restauration de l'univers Exotic Island ! Venez déguster de délicieuses gourmandises fruitées à Walibi Rhône-Alpes dans ce bar à fruits !"
+  },
+  {
+    "Code": "rest_tiki-aglagla",
+    "Nom": "Tiki Aglagla",
+    "Type": "Kiosque",
+    "Parc": "Walibi Rhône-Alpes",
+    "Land": "Exotic Island",
+    "Photo": "images/walibi-rhone-alpes/tiki-aglagla.webp",
+    "Description": "Le kiosque Tiki Aglagla est idéal pour vous rafraichir avec des glaces, des granités et des boissons fraiches, pendant la saison estivale à Walibi Rhône-Alpes."
+  }
+]

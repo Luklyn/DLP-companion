@@ -230,6 +230,34 @@
         "g1": "#2F5BC4",
         "g2": "#36A3C7"
       }
+    },
+    {
+      "id": "walibi-rhone-alpes",
+      "name": "Walibi Rhône-Alpes",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "locale": "fr-FR",
+      "themeparksId": "f9497403-adf3-4409-bd79-bb5b54000e45",
+      "dataPath": "data/walibi-rhone-alpes/",
+      "parks": [
+        {
+          "value": "Walibi Rhône-Alpes",
+          "label": "Walibi Rhône-Alpes",
+          "themeparksParkId": "28aee1df-1d05-4f53-bbf5-08f7aabff3a1"
+        }
+      ],
+      "info": {
+        "address": "Les Avenières Veyrins-Thuellin, 38630, France",
+        "lat": 45.6213,
+        "lng": 5.57
+      },
+      "icon": "fireworks",
+      "color": "#D6342C",
+      "theme": {
+        "acc": "#C0392B",
+        "g1": "#C0392B",
+        "g2": "#F08A24"
+      }
     }
   ],
   "events": [
