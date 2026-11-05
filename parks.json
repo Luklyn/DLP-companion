@@ -286,6 +286,7 @@
       },
       "icon": "castle",
       "color": "#2E7D5B",
+      "iconImage": "icons/alton-towers-resort.png",
       "theme": {
         "acc": "#2E7D5B",
         "g1": "#2E7D5B",
