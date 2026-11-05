@@ -473,13 +473,26 @@
         .d-hero[data-cat="spectacle"] .d-eyebrow { color: #D9CFFF; }
         .d-intro .d-title { margin: 6px 0 0; color: #fff; font-size: 30px; line-height: 1.07; text-wrap: balance; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         /* Encart temps d'attente / état, à cheval sur le bandeau */
-        .d-wait { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 22px; background: var(--card); box-shadow: 0 10px 30px rgb(18 22 58 / .16); }
+        .d-wait { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px; padding: 16px 18px; border-radius: 22px; background: var(--card); box-shadow: 0 10px 30px rgb(18 22 58 / .16); }
         .d-wait .badge { flex: none; width: 88px; height: auto; min-height: 72px; background: none !important; font-size: 50px; line-height: 1; }
         .d-wait .badge small { font-size: 12px; margin-top: 4px; color: var(--mut); }
         .d-wait .badge .icon { width: 44px; height: 44px; }
-        .d-wait .d-st { flex: 1; min-width: 0; }
-        .d-wait[data-solo="1"] { padding: 14px 18px; }
-        .d-wait .status-text { font-size: 15px; font-weight: 700; color: var(--ink); }
+        .d-wait .d-st { flex: 1; min-width: 150px; gap: 8px; }
+        .d-wait .status-text { font-size: 13.5px; font-weight: 500; line-height: 1.35; color: var(--mut); }
+        .d-wait .status-text.is-strong { font-size: 14px; font-weight: 700; color: var(--ink); }
+        .d-wait .menu-in { flex: none; width: auto; min-height: 46px; padding: 0 16px; gap: 8px; display: inline-flex; background: #B4491F; border-radius: 14px; font-size: 14px; }
+        .d-wait .menu-in[hidden] { display: none; }
+        .d-wait .d-st > * { max-width: 100%; }
+        .state-chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+        .state-chip::before { content: ""; flex: none; width: 9px; height: 9px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent); }
+        .state-chip.is-open { background: #DDF3E4; color: #14692E; }
+        .state-chip.is-closed { background: #FFD9D6; color: #A3121F; }
+        .state-chip.is-unknown { background: #E8E8EF; color: var(--mut); }
+        :root[data-theme="dark"] .state-chip.is-open { background: #12301F; color: #86E3A6; }
+        :root[data-theme="dark"] .state-chip.is-closed { background: #401619; color: #FF9F99; }
+        :root[data-theme="dark"] .state-chip.is-unknown { background: #23264A; }
+        .meter { display: block; width: 100%; height: 7px; border-radius: 4px; background: color-mix(in srgb, var(--mut) 20%, transparent); overflow: hidden; }
+        .meter i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #35B26A, #F2B33D 55%, #E4572E); background-size: var(--full, 100%) 100%; }
         .d-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px; }
         .d-tile { padding: 12px; border-radius: 16px; background: var(--card); min-width: 0; }
         .d-tile.is-warning b { color: #A3121F; }
@@ -717,6 +730,7 @@
         <symbol id="i-restaurant" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2 1-3.5 3.5-3.5 7 0 2 1 3 3.5 3"/></symbol>
         <symbol id="i-show" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.6-4.8 4.2L17.6 20 12 16.8 6.4 20l1.4-6.2L3 9.6 9.4 9z"/></symbol>
         <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/></symbol>
         <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
         <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
         <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
@@ -892,7 +906,13 @@
             <div class="d-sheet">
                 <div id="d-wait" class="d-wait">
                     <span id="d-badge"></span>
-                    <div id="d-st" class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></div>
+                    <div id="d-st" class="d-st">
+                        <span id="d-chip" class="state-chip" hidden></span>
+                        <span id="d-status-text" class="status-text"></span>
+                        <span id="d-meter" class="meter" role="img" hidden><i></i></span>
+                        <span id="d-single"></span>
+                    </div>
+                    <a id="d-btn" class="cta menu-in" href="#" target="_blank" rel="noopener noreferrer"><svg class="icon" width="18" height="18" stroke-width="2" aria-hidden="true"><use href="#i-menu"/></svg><span id="d-btn-text">Voir le menu</span></a>
                 </div>
                 <div id="d-tiles" class="d-tiles"></div>
                 <ul id="d-badges" class="pills"></ul>
@@ -938,7 +958,6 @@
                 <a id="d-go" class="cta go" href="#" target="_blank" rel="noopener noreferrer" hidden>
                     <span class="go-in"><svg class="icon" width="20" height="20" stroke-width="2" aria-hidden="true"><use href="#i-pin"/></svg><span id="d-go-text">Y aller</span></span>
                 </a>
-                <a id="d-btn" class="cta alt" href="#" target="_blank" rel="noopener noreferrer">Voir le menu</a>
             </div>
         </article>
     </section>
@@ -1747,6 +1766,8 @@
             title: $('#d-title'),
             statusBadge: $('#d-badge'),
             wait: $('#d-wait'),
+            chip: $('#d-chip'),
+            meter: $('#d-meter'),
             eyebrow: $('#d-eyebrow'),
             tiles: $('#d-tiles'),
             statusText: $('#d-status-text'),
@@ -3155,16 +3176,43 @@
             els.desc.hidden = !item.description;
 
             const m = statusModel(item);
-            els.statusBadge.innerHTML = badgeHtml(m);
-            // Carré à côté du nom : attractions seulement (à droite du nom) ; restaurants et spectacles : aucun
-            els.statusBadge.hidden = item.category !== 'attraction';
-            els.statusText.textContent = m.text;
+            const cat = item.category;
+            const st = statusOf(item);
+            const fem = cat === 'attraction';
+            // État d'ouverture : open / closed / unknown (voyant vert ou rouge)
+            let state = 'unknown';
+            if (cat === 'attraction') state = m.kind === 'down' || (m.kind === 'off' && (m.big !== '--')) ? 'closed' : (['low', 'mid', 'high', 'open'].includes(m.kind) ? 'open' : 'unknown');
+            else if (cat === 'restaurant') state = noLive(item) ? 'unknown' : (m.kind === 'open' ? 'open' : (st ? 'closed' : 'unknown'));
+            const chipText = { open: fem ? L('Ouverte', 'Open') : L('Ouvert', 'Open'), closed: m.kind === 'down' ? L('En panne', 'Down') : (fem ? L('Fermée', 'Closed') : L('Fermé', 'Closed')), unknown: L('Statut inconnu', 'Status unknown') }[state];
+            const hasChip = cat !== 'spectacle';
+            els.chip.hidden = !hasChip;
+            els.chip.className = `state-chip is-${state}`;
+            els.chip.textContent = hasChip ? chipText : '';
+
+            // Gauche : attraction = temps d'attente en grand (ou horloge s'il n'y en a pas) ; restaurant = rien
+            const numeric = cat === 'attraction' && ['low', 'mid', 'high'].includes(m.kind);
+            els.statusBadge.hidden = cat !== 'attraction';
+            els.statusBadge.innerHTML = numeric ? badgeHtml(m)
+                : `<span class="badge off"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>`;
+
+            // Texte sous le voyant : écart à l'habituel pour une attraction avec attente, sinon texte de statut
+            const uk = cat === 'attraction' && numeric ? usualKind(item) : null;
+            const text = uk ? usualLabel(uk) : (cat === 'attraction' && numeric ? L('Temps d’attente actuel', 'Current wait') : m.text);
+            els.statusText.textContent = text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
+            els.statusText.hidden = !text || (hasChip && text === chipText);
+
+            // Barre de progression de l'attente (échelle 0 – 90 min)
+            els.meter.hidden = !numeric;
+            if (numeric) {
+                const w = Number(item.live.wait);
+                els.meter.firstElementChild.style.width = `${Math.max(4, Math.min(100, (w / 90) * 100))}%`;
+                els.meter.firstElementChild.style.setProperty('--full', `${(100 / Math.max(4, Math.min(100, (w / 90) * 100))) * 100}%`);
+                els.meter.setAttribute('aria-label', L(`${w} minutes d’attente sur 90`, `${w} minute wait out of 90`));
+            }
             els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m, true);
-            els.statusText.hidden = !m.text;
-            els.stBlock.hidden = !m.text && !els.single.innerHTML;
-            els.wait.hidden = els.statusBadge.hidden && els.stBlock.hidden;
-            els.wait.dataset.solo = els.statusBadge.hidden ? '1' : '0';
+            els.stBlock.hidden = false;
+            els.wait.hidden = cat === 'spectacle' && !text && !els.single.innerHTML;
 
             setHeroArt(item.category);
 
@@ -3203,6 +3251,7 @@
 
             const menu = item.menuUrl ? safeUrl(item.menuUrl) : '';
             els.menu.hidden = !menu;
+            $('#d-btn-text').textContent = L('Voir le menu', 'View menu');
             if (menu) els.menu.href = menu;
             renderAlertBox(item);
         }
