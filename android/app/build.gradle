@@ -11,8 +11,8 @@ android {
         minSdk 24
         targetSdk 34
         // En CI, GitHub fournit le numéro de version (VERSION_CODE / VERSION_NAME)
-        versionCode (System.getenv('VERSION_CODE') ?: '2').toInteger()
-        versionName System.getenv('VERSION_NAME') ?: '1.1'
+        versionCode = (System.getenv('VERSION_CODE') ?: '2').toInteger()
+        versionName = (System.getenv('VERSION_NAME') ?: '1.1')
         // Adresse du site chargé par l'application (modifiable ici, une seule fois)
         buildConfigField "String", "START_URL", "\"https://dlp-companion.fr/\""
         // Fichier qui annonce la dernière version de l'APK (voir LISEZMOI)
