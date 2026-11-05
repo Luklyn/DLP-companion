@@ -1,0 +1,42 @@
+[
+  {
+    "Code": "4707",
+    "UUID Themeparks.wiki": "b6ce0d8b-8b13-4a66-8f22-f6ec67f3ba08",
+    "Nom": "Alton Ancestors (Towers Street)",
+    "Parc": "Alton Towers",
+    "Coordonnées GPS (lat)": 52.990077,
+    "Coordonnées GPS (lng)": -1.892463
+  },
+  {
+    "Code": "6208",
+    "UUID Themeparks.wiki": "548969c4-00bd-416a-93dc-4556f4757144",
+    "Nom": "Bing Live",
+    "Parc": "Alton Towers",
+    "Coordonnées GPS (lat)": 52.989997,
+    "Coordonnées GPS (lng)": -1.894198
+  },
+  {
+    "Code": "29255",
+    "UUID Themeparks.wiki": "92f6b9df-3fd2-4944-ab8e-839b1cd7d60c",
+    "Nom": "Bluey Live",
+    "Parc": "Alton Towers",
+    "Coordonnées GPS (lat)": 52.989877,
+    "Coordonnées GPS (lng)": -1.893929
+  },
+  {
+    "Code": "6209",
+    "UUID Themeparks.wiki": "9425e7ca-67e7-49bf-bbe4-a6483f9941f7",
+    "Nom": "Hey Duggee Live: The Map Badge",
+    "Parc": "Alton Towers",
+    "Coordonnées GPS (lat)": 52.9898,
+    "Coordonnées GPS (lng)": -1.894402
+  },
+  {
+    "Code": "6276",
+    "UUID Themeparks.wiki": "a7439633-d54f-4ab0-aa34-d4e712e3f0bf",
+    "Nom": "Teletubbies Big Band Live Show",
+    "Parc": "Alton Towers",
+    "Coordonnées GPS (lat)": 52.989619,
+    "Coordonnées GPS (lng)": -1.894002
+  }
+]

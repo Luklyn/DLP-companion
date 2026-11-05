@@ -263,6 +263,34 @@
         "restaurant",
         "spectacle"
       ]
+    },
+    {
+      "id": "alton-towers-resort",
+      "name": "Alton Towers Resort",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "locale": "fr-FR",
+      "themeparksId": "8e6bf2ae-77ac-403d-8e10-d7cd9b6c05d7",
+      "dataPath": "data/alton-towers-resort/",
+      "parks": [
+        {
+          "value": "Alton Towers",
+          "label": "Alton Towers",
+          "themeparksParkId": "0d8ea921-37b1-4a9a-b8ef-5b45afea847b"
+        }
+      ],
+      "info": {
+        "address": "Alton, Staffordshire ST10 4DB, Royaume-Uni",
+        "lat": 52.9931,
+        "lng": -1.8947
+      },
+      "icon": "castle",
+      "color": "#2E7D5B",
+      "theme": {
+        "acc": "#2E7D5B",
+        "g1": "#2E7D5B",
+        "g2": "#7A4FB0"
+      }
     }
   ],
   "events": [
