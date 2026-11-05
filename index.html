@@ -2011,8 +2011,9 @@
                         return m;
                     }
                     if (todayShowtimes(item).length) {
-                        const m = mk('off', L('Terminé', 'Done'), '', NO_MORE_SHOWS);
-                        m.note = NO_MORE_SHOWS;
+                        // Section « Spectacles terminés » : pas de mention répétée dans la liste (la fiche garde le texte)
+                        const m = mk('off', '', '', NO_MORE_SHOWS);
+                        m.icon = 'i-show';
                         return m;
                     }
                     if (status === 'OPERATING') return mk('show', L('En cours', 'Now'), '', L('En cours', 'In progress'));
