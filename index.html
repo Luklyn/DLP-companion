@@ -1927,7 +1927,9 @@
         /* ======================================================================
            Statuts
            ====================================================================== */
-        const statusOf = (item) => item.live?.status ?? null;
+        const parkOpen = new Map();   // park.value -> true | false (absent : inconnu)
+        // Parc fermé d'après son planning du jour : tous ses lieux sont considérés comme fermés, même si l'API temps réel les annonce ouverts
+        const statusOf = (item) => (parkOpen.get(item.park) === false ? 'CLOSED' : (item.live?.status ?? null));
         const isHiddenByDefault = (item) => HIDDEN_BY_DEFAULT.has(statusOf(item));
 
         const waitKind = (wait) => {
@@ -2316,7 +2318,6 @@
         }
 
         /* --- Parc ouvert / fermé, d'après le planning du jour (themeparks.wiki /schedule) --- */
-        const parkOpen = new Map();   // park.value -> true | false (absent : inconnu)
         const isParkClosed = (parkValue) => parkOpen.get(parkValue) === false;
         function computeParkOpen(entries) {
             if (!entries.length) return undefined;   // planning indisponible : on ne conclut pas
@@ -3121,7 +3122,7 @@
                 return;
             }
 
-            const entries = getVisibleEntries();
+            let entries = getVisibleEntries();
             if (!entries.length) {
                 const closedPark = !state.query && !state.showFavorites && !state.nearby && !state.showClosed && isParkClosed(state.park);
                 const hint = closedPark
@@ -3145,11 +3146,22 @@
                 return;
             }
 
+            // Spectacles dont toutes les séances du jour sont passées : rangés à part, sous ceux qui ont encore des séances
+            const endedShow = (item) => item.category === 'spectacle' && !noLive(item) && todayShowtimes(item).length > 0 && !upcomingShowtimes(item).length;
+            let endedHtml = '';
+            if (state.tab === 'spectacle' && !state.showFavorites && !sortLocked()) {
+                const ended = entries.filter((e) => endedShow(e.item));
+                if (ended.length) {
+                    entries = entries.filter((e) => !endedShow(e.item));
+                    endedHtml = `<section><h2 class="land">${L('Spectacles terminés', 'Finished shows')}</h2>${ended.sort((a, b) => byName(a, b)).map((entry) => cardHtml(entry, { showLand: true })).join('')}</section>`;
+                }
+            }
+
             // Tri autre que « Par zone » : liste à plat (la zone passe dans le sous-titre)
             const mode = sortLocked() ? 'zone' : sortMode();
             if (mode !== 'zone') {
                 entries.sort(flatComparator(mode));
-                paintList(`<section>${entries.map((entry) => cardHtml(entry, { showLand: true })).join('')}</section>`);
+                paintList((entries.length ? `<section>${entries.map((entry) => cardHtml(entry, { showLand: true })).join('')}</section>` : '') + endedHtml);
                 return;
             }
 
@@ -3179,7 +3191,7 @@
                         <h2 class="land">${esc(land)}</h2>
                         ${groups.get(land).sort(compareEntries).map((entry) => cardHtml(entry)).join('')}
                     </section>`)
-                .join(''));
+                .join('') + endedHtml);
         }
 
         /* ======================================================================
