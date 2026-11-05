@@ -29,7 +29,8 @@ jobs:
 
       - name: Vérifier la clé de signature
         if: env.HAS_KEY != 'true'
-        run: echo "::warning::Secrets de signature absents (KEYSTORE_BASE64…) : compilation ignorée. Voir android/LISEZMOI.txt."
+        run: |
+          echo "::warning::Secrets de signature absents, compilation ignorée. Voir android/LISEZMOI.txt."
 
       - uses: actions/setup-java@v4
         if: env.HAS_KEY == 'true'
