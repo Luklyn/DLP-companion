@@ -491,8 +491,18 @@
         :root[data-theme="dark"] .state-chip.is-open { background: #12301F; color: #86E3A6; }
         :root[data-theme="dark"] .state-chip.is-closed { background: #401619; color: #FF9F99; }
         :root[data-theme="dark"] .state-chip.is-unknown { background: #23264A; }
-        .meter { display: block; width: 100%; height: 7px; border-radius: 4px; background: color-mix(in srgb, var(--mut) 20%, transparent); overflow: hidden; }
-        .meter i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #35B26A, #F2B33D 55%, #E4572E); background-size: var(--full, 100%) 100%; }
+        /* Jauge « est-ce le bon moment ? » : du vert (bon moment) au rouge (à éviter), le curseur indique la situation actuelle */
+        .meter { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+        .meter .verdict { font-size: 14px; font-weight: 800; line-height: 1.25; }
+        .meter .verdict.is-good { color: #14692E; }
+        .meter .verdict.is-mid { color: #8A4B00; }
+        .meter .verdict.is-bad { color: #A3121F; }
+        :root[data-theme="dark"] .meter .verdict.is-good { color: #86E3A6; }
+        :root[data-theme="dark"] .meter .verdict.is-mid { color: #F5C26B; }
+        :root[data-theme="dark"] .meter .verdict.is-bad { color: #FF9F99; }
+        .meter .track { position: relative; display: block; height: 8px; margin: 3px 7px; border-radius: 4px; background: linear-gradient(90deg, #35B26A, #F2B33D 55%, #E4572E); }
+        .meter .track u { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: #fff; border: 3px solid var(--ink); box-sizing: border-box; box-shadow: 0 1px 4px rgb(0 0 0 / .3); text-decoration: none; }
+        .meter .scale { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--mut); }
         .d-tiles { display: flex; flex-wrap: wrap; gap: 10px; }
         .d-tile { flex: 1 1 auto; max-width: 100%; padding: 12px; border-radius: 16px; background: var(--card); }   /* largeur = contenu : un mot n'est jamais coupé, la tuile passe à la ligne si besoin */
         .d-tile.is-warning b { color: #A3121F; }
@@ -909,7 +919,7 @@
                     <div id="d-st" class="d-st">
                         <span id="d-chip" class="state-chip" hidden></span>
                         <span id="d-status-text" class="status-text"></span>
-                        <span id="d-meter" class="meter" role="img" hidden><i></i></span>
+                        <span id="d-meter" class="meter" role="img" hidden><b id="d-verdict" class="verdict"></b><i class="track"><u></u></i><small class="scale"><span id="d-sc-l"></span><span id="d-sc-r"></span></small></span>
                         <span id="d-single"></span>
                     </div>
                     <a id="d-btn" class="cta menu-in" href="#" target="_blank" rel="noopener noreferrer"><svg class="icon" width="18" height="18" stroke-width="2" aria-hidden="true"><use href="#i-menu"/></svg><span id="d-btn-text">Voir le menu</span></a>
@@ -3197,18 +3207,29 @@
 
             // Texte sous le voyant : écart à l'habituel pour une attraction avec attente, sinon texte de statut
             const uk = cat === 'attraction' && numeric ? usualKind(item) : null;
-            const text = uk ? usualLabel(uk) : (cat === 'attraction' && numeric ? L('Temps d’attente actuel', 'Current wait') : m.text);
+            const text = uk ? usualLabel(uk) : (cat === 'attraction' && numeric ? '' : m.text);
             els.statusText.textContent = text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
             els.statusText.hidden = !text || (hasChip && text === chipText);
 
-            // Barre de progression de l'attente (échelle 0 – 90 min)
+            // Jauge « bon moment pour y aller ? » : attente absolue (10 min = très bon, 70 min = à éviter) combinée,
+            // quand l'historique existe, à l'écart avec l'attente habituelle à cette heure
             els.meter.hidden = !numeric;
             if (numeric) {
                 const w = Number(item.live.wait);
-                els.meter.firstElementChild.style.width = `${Math.max(4, Math.min(100, (w / 90) * 100))}%`;
-                els.meter.firstElementChild.style.setProperty('--full', `${(100 / Math.max(4, Math.min(100, (w / 90) * 100))) * 100}%`);
-                els.meter.setAttribute('aria-label', L(`${w} minutes d’attente sur 90`, `${w} minute wait out of 90`));
+                const clamp01 = (v) => Math.max(0, Math.min(1, v));
+                let score = clamp01((w - 10) / 60);
+                const base = uk ? w - uk.gap : 0;
+                if (uk && base > 0) score = 0.5 * score + 0.5 * clamp01((w / base - 0.6) / 0.8);
+                const [cls, label] = score < 0.34 ? ['is-good', L('Bon moment pour y aller', 'Good time to go')]
+                    : score < 0.67 ? ['is-mid', L('Attente moyenne', 'Average wait')] : ['is-bad', L('Mieux vaut attendre', 'Better to wait')];
+                const verdict = $('#d-verdict');
+                verdict.textContent = label;
+                verdict.className = `verdict ${cls}`;
+                $('#d-sc-l').textContent = L('Bon moment', 'Good');
+                $('#d-sc-r').textContent = L('À éviter', 'Avoid');
+                els.meter.querySelector('u').style.left = `${Math.round(score * 100)}%`;
+                els.meter.setAttribute('aria-label', `${label} (${w} min)`);
             }
             els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m, true);
             els.stBlock.hidden = false;
