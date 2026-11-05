@@ -71,6 +71,8 @@ jobs:
           python3 - <<'PY'
           import json, os
           notes = os.environ.get("NOTES", "").strip()
+          if not notes and os.path.exists("android/NOTES_DE_VERSION.txt"):
+              notes = open("android/NOTES_DE_VERSION.txt", encoding="utf-8").read().strip()
           json.dump({
               "versionCode": int(os.environ["VERSION_CODE"]),
               "versionName": os.environ["VERSION_NAME"],
