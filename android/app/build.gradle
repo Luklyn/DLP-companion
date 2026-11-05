@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'fr.dlpcompanion.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "fr.dlpcompanion.app"
+        minSdk 24
+        targetSdk 34
+        // En CI, GitHub fournit le numéro de version (VERSION_CODE / VERSION_NAME)
+        versionCode (System.getenv('VERSION_CODE') ?: '2').toInteger()
+        versionName System.getenv('VERSION_NAME') ?: '1.1'
+        // Adresse du site chargé par l'application (modifiable ici, une seule fois)
+        buildConfigField "String", "START_URL", "\"https://dlp-companion.fr/\""
+        // Fichier qui annonce la dernière version de l'APK (voir LISEZMOI)
+        buildConfigField "String", "VERSION_URL", "\"https://dlp-companion.fr/app/version.json\""
+        buildConfigField "String", "HOST", "\"dlp-companion.fr\""
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    // Signature : en CI via les secrets GitHub ; en local, Android Studio (Generate Signed APK) reste utilisable
+    signingConfigs {
+        release {
+            if (System.getenv('KEYSTORE_FILE')) {
+                storeFile file(System.getenv('KEYSTORE_FILE'))
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEY_ALIAS')
+                keyPassword System.getenv('KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (System.getenv('KEYSTORE_FILE')) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Aligne toutes les versions de Kotlin (évite les classes en double kotlin-stdlib / jdk7 / jdk8)
+    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.22')
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+}

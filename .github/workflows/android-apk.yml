@@ -1,0 +1,85 @@
+name: Android APK
+
+# Compile, signe et publie l'APK à chaque modification du dossier android/ (ou à la demande).
+on:
+  push:
+    branches: [main]
+    paths: ['android/**']
+  workflow_dispatch:
+    inputs:
+      notes:
+        description: "Notes de version affichées dans la fenêtre de mise à jour"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vérifier la clé de signature
+        if: env.HAS_KEY != 'true'
+        run: echo "::warning::Secrets de signature absents (KEYSTORE_BASE64…) : compilation ignorée. Voir android/LISEZMOI.txt."
+
+      - uses: actions/setup-java@v4
+        if: env.HAS_KEY == 'true'
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        if: env.HAS_KEY == 'true'
+        with:
+          gradle-version: '8.7'
+
+      - name: Compiler et signer l'APK
+        if: env.HAS_KEY == 'true'
+        working-directory: android
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/release.jks"
+          export KEYSTORE_FILE="$RUNNER_TEMP/release.jks"
+          export VERSION_CODE=$((100 + ${{ github.run_number }}))
+          export VERSION_NAME="1.$VERSION_CODE"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          gradle --no-daemon assembleRelease
+          rm -f "$RUNNER_TEMP/release.jks"
+
+      - name: Publier l'APK et version.json
+        if: env.HAS_KEY == 'true'
+        env:
+          NOTES: ${{ github.event.inputs.notes }}
+        run: |
+          APK=$(ls android/app/build/outputs/apk/release/*.apk | head -1)
+          mkdir -p app
+          cp "$APK" app/theme-parks-companion.apk
+          python3 - <<'PY'
+          import json, os
+          notes = os.environ.get("NOTES", "").strip()
+          json.dump({
+              "versionCode": int(os.environ["VERSION_CODE"]),
+              "versionName": os.environ["VERSION_NAME"],
+              "url": "https://dlp-companion.fr/app/theme-parks-companion.apk",
+              "notes": notes,
+          }, open("app/version.json", "w"), ensure_ascii=False, indent=2)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/theme-parks-companion.apk app/version.json
+          git commit -m "APK Android $VERSION_NAME (build automatique)"
+          git pull --rebase origin main
+          git push

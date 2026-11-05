@@ -1,0 +1,53 @@
+THEME PARKS COMPANION – projet Android Studio
+=============================================
+
+Cette application est une enveloppe (WebView) qui affiche https://dlp-companion.fr.
+Le contenu (temps d'attente, fiches…) se met donc à jour tout seul : inutile de
+recompiler l'APK quand vous modifiez le site.
+
+COMPILER L'APK
+1. Installez Android Studio (version récente, Koala 2024.1 ou plus).
+2. Fichier > Ouvrir… et choisissez CE dossier (celui qui contient settings.gradle).
+3. Attendez la fin de la synchronisation Gradle (le premier lancement télécharge
+   Gradle 8.7 et le SDK Android 34 : acceptez les propositions d'installation).
+4. Menu Build > Build App Bundle(s) / APK(s) > Build APK(s).
+   L'APK de test est créé dans app/build/outputs/apk/debug/app-debug.apk
+   (le lien « locate » en bas à droite ouvre le dossier).
+5. Pour tester : branchez un téléphone (débogage USB activé) et cliquez sur ▶ Run.
+
+APK SIGNÉ (pour partager / publier)
+Build > Generate Signed App Bundle / APK… > APK > créez une clé (gardez-la précieusement)
+> choisissez « release ».
+
+PERSONNALISER
+- Adresse du site : app/build.gradle (START_URL et HOST).
+- Nom : app/src/main/res/values/strings.xml
+- Identifiant : fr.dlpcompanion.app (namespace + applicationId dans app/build.gradle)
+- Icône : app/src/main/res/drawable-nodpi/ic_launcher_art.png (+ couleur de fond dans colors.xml)
+- Version : versionCode / versionName dans app/build.gradle
+
+COMPORTEMENT
+- Les liens du site restent dans l'appli ; les autres (Plans, Google Maps, menus externes) s'ouvrent à l'extérieur.
+- Géolocalisation et caméra (QR) : autorisations demandées au premier usage.
+- Pas de connexion : écran « Pas de connexion » avec bouton Réessayer.
+- Bouton retour : revient à la page précédente, puis quitte.
+
+METTRE A JOUR L'APPLI (prévenir les utilisateurs)
+Au lancement, l'appli lit https://dlp-companion.fr/app/version.json. Si "versionCode" y est
+plus grand que celui de l'APK installée, elle propose « Mettre à jour ».
+Pour sortir une nouvelle version :
+1. Dans app/build.gradle, augmentez versionCode (2 -> 3 -> 4…) et changez versionName.
+2. Générez l'APK signé avec LA MÊME CLE (.jks) qu'avant.
+3. Copiez-le dans le dépôt : app/theme-parks-companion.apk
+4. Modifiez app/version.json (versionCode identique, notes facultatives) et publiez.
+Les APK déjà installées AVANT la version 2 n'ont pas cette vérification : elles doivent être
+réinstallées une fois à la main.
+
+COMPILATION AUTOMATIQUE (GitHub Actions)
+Ce dossier est aussi compilé par GitHub : voir .github/workflows/android-apk.yml à la racine du dépôt.
+À chaque modification de android/ sur la branche main (ou via l'onglet Actions > Android APK > Run workflow),
+GitHub compile l'APK, le signe, incrémente le numéro de version et publie
+app/theme-parks-companion.apk + app/version.json. Le numéro de version est donné par GitHub :
+inutile de modifier versionCode à la main.
+Secrets à créer une seule fois (dépôt GitHub > Settings > Secrets and variables > Actions) :
+KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD.
