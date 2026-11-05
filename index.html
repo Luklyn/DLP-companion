@@ -451,7 +451,7 @@
         .detail-content { width: 100%; }
 
         /* Bandeau généré (aucune photo) : dégradé aux couleurs du parc, ou teinte propre au type de lieu, motif et pictogramme tracés */
-        .d-hero { position: relative; height: calc(210px + var(--safe-top)); background: linear-gradient(160deg, var(--g1), var(--g2)); overflow: hidden; color: #fff; }
+        .d-hero { position: relative; height: calc(250px + var(--safe-top)); background: linear-gradient(160deg, var(--g1), var(--g2)); overflow: hidden; color: #fff; }
         .d-hero[data-cat="restaurant"] { background: linear-gradient(160deg, #5A1F12, #B4491F 60%, #E8892F); }
         .d-hero[data-cat="spectacle"] { background: linear-gradient(160deg, #1E1B4B, #4B3BB0 60%, #8A4FC4); }
         .d-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
@@ -463,10 +463,28 @@
         .btn-back { display: none; }
 
         .d-sheet {
-            position: relative; z-index: 1; margin-top: -28px; padding: 24px 20px calc(28px + var(--safe-bottom));
+            position: relative; z-index: 1; margin-top: -64px; padding: 0 16px calc(28px + var(--safe-bottom));
             display: flex; flex-direction: column; gap: 16px;
-            border-radius: 28px 28px 0 0; background: var(--bg);
         }
+        /* Titre dans le bandeau coloré */
+        .d-intro { position: absolute; left: 20px; right: 20px; bottom: 84px; z-index: 1; }
+        .d-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #F2B33D; }
+        .d-hero[data-cat="restaurant"] .d-eyebrow { color: #FFE2A8; }
+        .d-hero[data-cat="spectacle"] .d-eyebrow { color: #D9CFFF; }
+        .d-intro .d-title { margin: 6px 0 0; color: #fff; font-size: 30px; line-height: 1.07; text-wrap: balance; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        /* Encart temps d'attente / état, à cheval sur le bandeau */
+        .d-wait { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 22px; background: var(--card); box-shadow: 0 10px 30px rgb(18 22 58 / .16); }
+        .d-wait .badge { flex: none; width: 88px; height: auto; min-height: 72px; background: none !important; font-size: 50px; line-height: 1; }
+        .d-wait .badge small { font-size: 12px; margin-top: 4px; color: var(--mut); }
+        .d-wait .badge .icon { width: 44px; height: 44px; }
+        .d-wait .d-st { flex: 1; min-width: 0; }
+        .d-wait[data-solo="1"] { padding: 14px 18px; }
+        .d-wait .status-text { font-size: 15px; font-weight: 700; color: var(--ink); }
+        .d-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px; }
+        .d-tile { padding: 12px; border-radius: 16px; background: var(--card); min-width: 0; }
+        .d-tile.is-warning b { color: #A3121F; }
+        .d-tile span { display: block; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--mut); }
+        .d-tile b { display: block; margin-top: 4px; font-size: 16px; line-height: 1.25; overflow-wrap: anywhere; }
         /* Portefeuille ouvert depuis l'accueil : page au-dessus de la liste, sous le footer de l'accueil */
         #home #wallet-layer { z-index: 4; bottom: calc(72px + var(--safe-bottom)); }
         .home-mode #scan-layer { z-index: 510; }
@@ -476,10 +494,6 @@
             z-index: 4; bottom: calc(72px + var(--safe-bottom) - 1px); max-height: calc(90dvh - 72px - var(--safe-bottom)); padding-bottom: 24px;
         }
         .d-title { font-family: var(--font-display); font-weight: 800; font-size: 25px; line-height: 1.15; }
-        .d-head { display: flex; align-items: center; gap: 14px; }
-        .d-head .d-title { flex: 1; min-width: 0; }
-        .d-head[data-cat="attraction"] #d-badge { order: 2; }   /* temps d'attente à droite du nom */
-        .d-head .badge { width: 62px; height: 62px; }
         .status-text { font-size: 14px; line-height: 1.4; color: var(--mut); }
         .status-text.is-strong { font-size: 15px; font-weight: 700; color: var(--ink); }
         .d-st { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
@@ -517,6 +531,7 @@
             border-radius: 16px; background: var(--navy); color: #fff !important;
             font-weight: 700; font-size: 15px; text-decoration: none; text-align: center;
         }
+        .cta[hidden] { display: none; }
         .cta.alt { background: var(--card); color: var(--ink) !important; border: 1.5px solid var(--line); }
 
         /* Alertes */
@@ -647,7 +662,9 @@
             .master-pane { width: 460px; }
             .detail-pane { padding: 40px; }
             .detail-content { max-width: 780px; align-self: center; }
-            .d-hero { height: 260px; }
+            .d-hero { height: 300px; }
+            .d-intro .d-title { font-size: 36px; }
+            .d-sheet { padding-left: 0; padding-right: 0; }
             .detail-placeholder { margin-top: 0; align-self: center; font-size: 17px; }
             .home-hero-in, .home-in { max-width: 1080px; padding-left: 32px; padding-right: 32px; }
             .home-chips { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
@@ -855,6 +872,10 @@
         <article id="detail-content" class="detail-content" hidden>
             <div id="d-hero" class="d-hero" data-cat="attraction">
                 <svg id="d-art" class="d-art" viewBox="0 0 390 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+                <div class="d-intro">
+                    <div id="d-eyebrow" class="d-eyebrow"></div>
+                    <h2 id="d-title" class="d-title"></h2>
+                </div>
                 <div class="d-bar">
                     <button id="btn-back" class="round btn-back" type="button" aria-label="Retour">
                         <svg class="icon" width="22" height="22" stroke-width="2" aria-hidden="true"><use href="#i-back"/></svg>
@@ -866,13 +887,13 @@
             </div>
 
             <div class="d-sheet">
-                <div class="d-head">
+                <div id="d-wait" class="d-wait">
                     <span id="d-badge"></span>
-                    <h2 id="d-title" class="d-title"></h2>
+                    <div id="d-st" class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></div>
                 </div>
-                <p id="d-desc" class="d-desc"></p>
-                <div id="d-st" class="d-st"><span id="d-status-text" class="status-text"></span><span id="d-single"></span></div>
+                <div id="d-tiles" class="d-tiles"></div>
                 <ul id="d-badges" class="pills"></ul>
+                <p id="d-desc" class="d-desc"></p>
 
                 <section id="d-alert" class="alert-box" hidden aria-labelledby="alert-heading">
                     <h3 id="alert-title" class="alert-title">
@@ -1719,6 +1740,9 @@
             art: $('#d-art'),
             title: $('#d-title'),
             statusBadge: $('#d-badge'),
+            wait: $('#d-wait'),
+            eyebrow: $('#d-eyebrow'),
+            tiles: $('#d-tiles'),
             statusText: $('#d-status-text'),
             stBlock: $('#d-st'),
             single: $('#d-single'),
@@ -3098,8 +3122,8 @@
         /** Bandeau de la fiche : motif et pictogramme dessinés selon le type de lieu (pas d'image à charger). */
         const HERO_ART = {
             attraction: `<path d="M-10 215C60 215 70 120 130 120S190 215 250 215 305 160 340 132 385 125 400 145" fill="none" stroke="#F2B33D" stroke-width="3.5" stroke-linecap="round" stroke-opacity=".9"/><path d="M-10 227C60 227 70 132 130 132S190 227 250 227 305 172 340 144 385 137 400 157" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-opacity=".35" stroke-dasharray="2 7"/><g stroke="#fff" stroke-opacity=".22" stroke-width="1.5"><path d="M130 132V260M250 227V260M70 175V260M190 175V260"/></g>`,
-            restaurant: `<g fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(262 78) scale(2.6)"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M8 3v6"/><path d="M18 21V3c-2.2 1.2-3.5 4-3.5 7.5 0 1.6.9 2.5 2 2.5h1.5"/></g>`,
-            spectacle: `<g fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(255 74) scale(2.8)"><path d="M12 3l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L12 15.6 7 18.4l1.1-5.6L4 8.9l5.6-.7z"/></g><path d="M0 235Q100 195 200 235T400 235V260H0z" fill="#fff" fill-opacity=".10"/>`,
+            restaurant: `<g fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(236 24) scale(6)"><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M8 3v6"/><path d="M18 21V3c-2.2 1.2-3.5 4-3.5 7.5 0 1.6.9 2.5 2 2.5h1.5"/></g>`,
+            spectacle: `<g fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(226 22) scale(6.5)"><path d="M12 3l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L12 15.6 7 18.4l1.1-5.6L4 8.9l5.6-.7z"/></g><path d="M0 235Q100 195 200 235T400 235V260H0z" fill="#fff" fill-opacity=".10"/>`,
         };
         const HERO_RINGS = '<g fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="1.5"><circle cx="320" cy="110" r="60"/><circle cx="320" cy="110" r="100"/><circle cx="320" cy="110" r="140"/><circle cx="320" cy="110" r="180"/><circle cx="320" cy="110" r="220"/></g><g fill="#F2B33D"><path d="M58 70l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="M200 44l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" opacity=".7"/></g>';
         let shownHero = null;
@@ -3117,6 +3141,7 @@
             if (!item) return;
 
             els.title.textContent = item.name;
+            els.eyebrow.textContent = [item.land, item.park].filter((v, i, a) => v && a.indexOf(v) === i && v !== 'Autre').join(' · ');
             renderFavDetailButton(item);
             els.desc.textContent = item.description;
             els.desc.hidden = !item.description;
@@ -3125,31 +3150,39 @@
             els.statusBadge.innerHTML = badgeHtml(m);
             // Carré à côté du nom : attractions seulement (à droite du nom) ; restaurants et spectacles : aucun
             els.statusBadge.hidden = item.category !== 'attraction';
-            els.statusBadge.parentElement.dataset.cat = item.category;
             els.statusText.textContent = m.text;
             els.statusText.classList.toggle('is-strong', Boolean(m.access));
             els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m, true);
             els.statusText.hidden = !m.text;
             els.stBlock.hidden = !m.text && !els.single.innerHTML;
+            els.wait.hidden = els.statusBadge.hidden && els.stBlock.hidden;
+            els.wait.dataset.solo = els.statusBadge.hidden ? '1' : '0';
 
             setHeroArt(item.category);
+
+            const tiles = [
+                item.minHeight ? { label: L('Taille mini', 'Min. height'), value: item.minHeight, warning: item.minHeight !== 'Pas de restriction' } : null,
+                { label: L('Type', 'Type'), value: typeLabel(item) },
+                item.land && item.land !== 'Autre' ? { label: L('Zone', 'Area'), value: item.land } : null,
+                item.price ? { label: L('Tarifs', 'Prices'), value: item.price } : null,
+            ].filter((t) => t && t.value);
+            els.tiles.hidden = !tiles.length;
+            els.tiles.innerHTML = tiles
+                .map((t) => `<div class="d-tile${t.warning ? ' is-warning' : ''}"><span>${esc(t.label)}</span><b>${esc(t.value)}</b></div>`)
+                .join('');
 
             const badges = [
                 item.event ? { text: item.event, kind: 'event', icon: 'i-ghost' } : null,
                 state.showFavorites || state.nearby ? { text: item.park, kind: 'park' } : null,
-                { text: item.land, kind: 'land' },
                 item.halloween && !/halloween/i.test(item.event) ? { text: 'Halloween', kind: 'event', icon: 'i-pumpkin' } : null,
-                { text: typeLabel(item) },
-                item.minHeight && item.minHeight !== 'Pas de restriction'
-                    ? { text: `${L('Taille minimale', 'Minimum height')} : ${item.minHeight}`, warning: true } : null,
-                item.price ? { text: `${L('Tarifs', 'Prices')} : ${item.price}` } : null,
             ].filter((b) => b && b.text);
+            els.badges.hidden = !badges.length;
 
             els.badges.innerHTML = badges
                 .map((b) => `<li class="pill${b.kind ? ` is-${b.kind}` : ''}${b.warning ? ' is-warning' : ''}">${b.icon ? `<svg class="icon" aria-hidden="true"><use href="#${b.icon}"/></svg>` : ''}${esc(b.text)}</li>`)
                 .join('');
 
-            const menu = safeUrl(item.menuUrl);
+            const menu = item.menuUrl ? safeUrl(item.menuUrl) : '';
             els.menu.hidden = !menu;
             if (menu) els.menu.href = menu;
             renderAlertBox(item);
