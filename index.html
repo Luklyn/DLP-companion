@@ -6,6 +6,7 @@
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#12163A">
     <script>try{var t=localStorage.getItem("tpc-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
+    <script>(function(){var l;try{l=localStorage.getItem("tpc-lang")}catch(e){}if(l!=="fr"&&l!=="en")l=/^fr/i.test(navigator.language||"")?"fr":"en";window.LANG=l;document.documentElement.lang=l;window.L=function(fr,en){return l==="en"?en:fr};window.LOC=function(c){return l==="en"?(/^en/i.test(c||"")?c:"en-GB"):(c||"fr-FR")};window.HSEP=function(t){return l==="fr"?t.replace(":","h"):t}})();</script>
     <meta name="description" content="Temps d'attente, restaurants et spectacles des parcs d'attractions en temps réel.">
     <title>Theme Parks Companion</title>
 
@@ -155,6 +156,14 @@
         :root[data-theme="dark"] .app-ico.has-img, :root[data-theme="dark"] .app-ico { box-shadow: 0 6px 14px rgb(0 0 0 / .45); }
         :root[data-theme="dark"] .card, :root[data-theme="dark"] .home-tile::before { box-shadow: 0 2px 10px rgb(0 0 0 / .35); }
         :root[data-theme="dark"] .dock { box-shadow: 0 -4px 14px rgb(0 0 0 / .45); }
+
+        /* Sélecteur de langue (accueil, à côté de l'interrupteur de thème) */
+        .lang-switch { display: flex; flex: none; margin-left: auto; height: 32px; padding: 3px; gap: 2px; border-radius: 16px; background: rgb(255 255 255 / .16); border: 1px solid rgb(255 255 255 / .22); }
+        .lang-switch + .theme-switch { margin-left: 8px; }
+        .lang-switch button { min-width: 30px; padding: 0 8px; border: 0; border-radius: 13px; background: transparent; color: rgb(255 255 255 / .85); font: inherit; font-size: 12px; font-weight: 800; letter-spacing: .02em; cursor: pointer; }
+        .lang-switch button[aria-pressed="true"] { background: var(--gold); color: var(--on); }
+        @media (max-width: 340px) { .lang-switch button { min-width: 26px; padding: 0 6px; } .home-brand { gap: 8px; } .theme-switch { width: 52px; } .lang-switch + .theme-switch { margin-left: 6px; } }
+        .lang-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
 
         /* Interrupteur clair / sombre (accueil, en haut à droite) */
         .theme-switch {
@@ -728,6 +737,10 @@
                 <div class="home-brand">
                     <img class="home-logo" src="icons/tpc-64.png" alt="" width="38" height="38">
                     Theme Parks Companion
+                    <div id="lang-switch" class="lang-switch" role="group" aria-label="Langue">
+                        <button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button>
+                        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+                    </div>
                     <button id="theme-switch" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Mode sombre">
                         <span class="knob" aria-hidden="true">
                             <svg class="icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -1089,7 +1102,7 @@
             if (!Array.isArray(registry.resorts) || !registry.resorts.length) throw new Error('parks.json : aucun parc');
         } catch (error) {
             console.error('Chargement des parcs impossible :', error);
-            document.querySelector('#list').innerHTML = '<div class="empty">Impossible de charger la liste des parcs.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button></div>';
+            document.querySelector('#list').innerHTML = '<div class="empty">' + L('Impossible de charger la liste des parcs.<br>Vérifiez votre connexion puis réessayez.', 'Unable to load the list of parks.<br>Check your connection and try again.') + '<br><br><button type="button" class="btn-alert" id="btn-reload">' + L('Réessayer', 'Retry') + '</button></div>';
             document.querySelector('#btn-reload').addEventListener('click', () => location.reload());
             return;
         }
@@ -1160,7 +1173,7 @@
             for (const c of clocks) {
                 const off = tzOffsetMin(c.tz, now);
                 if (off == null || paris == null || off === paris) { c.el.hidden = true; continue; }   // même heure que Paris : rien à afficher
-                c.el.textContent = `Heure locale : ${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now)}`;
+                c.el.textContent = `${L('Heure locale', 'Local time')} : ${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now)}`;
                 c.el.hidden = false;
             }
         }
@@ -1169,7 +1182,7 @@
             const el = document.createElement('span');
             el.className = 'ht-tz';
             el.hidden = true;
-            clocks.add({ el, tz: r.timezone, locale: r.locale || 'fr-FR' });
+            clocks.add({ el, tz: r.timezone, locale: LOC(r.locale) });
             paintClocks();
             return el;
         }
@@ -1182,6 +1195,8 @@
             const grid = document.querySelector('#home-grid');
             // Continent d'un resort : champ « continent » de parks.json, sinon déduit du code pays (ISO)
             const CONTINENTS = ['Europe', 'Amérique du Nord', 'Amérique du Sud', 'Asie', 'Océanie', 'Afrique', 'Autres'];
+            const CONT_EN = { 'Amérique du Nord': 'North America', 'Amérique du Sud': 'South America', 'Asie': 'Asia', 'Océanie': 'Oceania', 'Afrique': 'Africa', 'Autres': 'Other' };
+            const contLabel = (c) => (LANG === 'en' ? CONT_EN[c] ?? c : c);
             const COUNTRY_CONTINENT = {};
             const addCountries = (continent, codes) => codes.split(' ').forEach((c) => { COUNTRY_CONTINENT[c] = continent; });
             addCountries('Europe', 'FR DE ES IT GB UK NL BE CH AT DK SE NO FI PL CZ PT IE HU GR TR');
@@ -1192,20 +1207,20 @@
             addCountries('Afrique', 'ZA EG MA TN');
             const continentOf = (r) => (CONTINENTS.includes(r.continent) ? r.continent : COUNTRY_CONTINENT[String(r.country ?? '').toUpperCase()] ?? 'Autres');
             const SCHEDULE_URL = (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/schedule`;
-            const hm = (ms, tz, loc) => new Intl.DateTimeFormat(loc || 'fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(ms)).replace(':', 'h');
+            const hm = (ms, tz, loc) => HSEP(new Intl.DateTimeFormat(LOC(loc), { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(ms)));
             const dayKey = (tz) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
             // État d'un parc d'après son planning : { s: 'open' | 'closed', text }
             function parkState(entries, tz, loc) {
-                if (!entries.length) return { s: 'closed', text: 'Fermé' };   // API OK mais aucun planning : parc fermé (saisonnier)
+                if (!entries.length) return { s: 'closed', text: L('Fermé', 'Closed') };   // API OK mais aucun planning : parc fermé (saisonnier)
                 const today = dayKey(tz), now = Date.now();
                 const day = entries.filter((e) => e.date === today && (e.type === 'OPERATING' || e.type === 'EXTRA_HOURS'))
                     .map((e) => ({ o: Date.parse(e.openingTime), c: Date.parse(e.closingTime) })).filter((e) => e.o && e.c).sort((a, b) => a.o - b.o);
                 const cur = day.find((e) => now >= e.o && now <= e.c);
-                if (cur) return { s: 'open', text: 'Ouvert' };
+                if (cur) return { s: 'open', text: L('Ouvert', 'Open') };
                 const next = day.find((e) => e.o > now);
                 if (next) return { s: 'closed', text: `Ouvre ${hm(next.o, tz, loc)}` };
-                return { s: 'closed', text: 'Fermé' };
+                return { s: 'closed', text: L('Fermé', 'Closed') };
             }
 
             return new Promise((resolve) => {
@@ -1251,7 +1266,7 @@
                         dot.className = 'dot';
                         const st = document.createElement('span');
                         st.className = 'st';
-                        if (!pk.themeparksParkId) { row.dataset.s = 'check'; st.textContent = 'Consulter les horaires'; }   // pas de planning dans l'API
+                        if (!pk.themeparksParkId) { row.dataset.s = 'check'; st.textContent = L('Consulter les horaires', 'Check hours'); }   // pas de planning dans l'API
                         if (single) {
                             row.append(dot, st);
                         } else {
@@ -1333,7 +1348,7 @@
                         const b = document.createElement('button');
                         b.type = 'button';
                         b.dataset.continent = c;
-                        b.textContent = c === 'all' ? 'Tous' : c;
+                        b.textContent = c === 'all' ? L('Tous', 'All') : contLabel(c);
                         b.setAttribute('aria-pressed', String(c === filter));
                         return b;
                     }));
@@ -1414,7 +1429,7 @@
                             btn.dataset.fold = c;
                             btn.setAttribute('aria-expanded', String(!folded));
                             const label = document.createElement('span');
-                            label.textContent = c;
+                            label.textContent = contLabel(c);
                             const cnt = document.createElement('span');
                             cnt.className = 'cnt';
                             cnt.textContent = String(list.length);
@@ -1443,7 +1458,7 @@
                     const nOpen = registry.resorts.filter((r) => tiles.get(r.id).state === 'open').length;
                     const box = document.querySelector('#home-summary');
                     box.hidden = nOpen === 0;
-                    document.querySelector('#home-summary-txt').textContent = nOpen === 1 ? '1 destination ouverte actuellement' : `${nOpen} destinations ouvertes actuellement`;
+                    document.querySelector('#home-summary-txt').textContent = nOpen === 1 ? L('1 destination ouverte actuellement', '1 destination open now') : L(`${nOpen} destinations ouvertes actuellement`, `${nOpen} destinations open now`);
                 };
                 renderChips();
                 layout();
@@ -1515,7 +1530,7 @@
             FETCH_TIMEOUT_MS: 10_000,
             NEARBY_RADIUS_KM: 0.2,       // rayon du filtre « Autour de moi »
             WAIT_THRESHOLDS: { low: 30, medium: 50 },   // minutes : vert / orange / rouge
-            LOCALE: resort.locale || 'fr-FR',
+            LOCALE: LOC(resort.locale),
             TIMEZONE: resort.timezone || 'Europe/Paris',
             PARKS: resort.parks,
             // Bibliothèques QR chargées à la demande (scan de secours + génération de l'image du code)
@@ -1526,12 +1541,12 @@
         };
 
         // Masqués par défaut (affichés avec « Lieux fermés »). Les lieux « DOWN » (panne temporaire) restent visibles.
-        const CLOSED_LABELS = { CLOSED: 'Fermé', REFURBISHMENT: 'En réhabilitation' };
+        const CLOSED_LABELS = { CLOSED: L('Fermé', 'Closed'), REFURBISHMENT: L('En réhabilitation', 'Under refurbishment') };
         const HIDDEN_BY_DEFAULT = new Set(Object.keys(CLOSED_LABELS));
 
         // Types de restauration pour lesquels une réservation est recommandée (comparés sans accents ni casse)
         const RESERVATION_TYPES = new Set(['service a table', 'buffet a volonte']);
-        const NO_MORE_SHOWS = 'Plus de séance aujourd’hui';
+        const NO_MORE_SHOWS = L('Plus de séance aujourd’hui', 'No more showtimes today');
 
         /* ======================================================================
            Utilitaires
@@ -1593,7 +1608,7 @@
             [attractionsRaw, restaurantsRaw, showsRaw] = await Promise.all(DATA_FILES.map(loadList));
         } catch (error) {
             console.error('Chargement des données impossible :', error);
-            $('#list').innerHTML = '<div class="empty">Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.<br><br><button type="button" class="btn-alert" id="btn-reload">Réessayer</button><br><br><small class="empty-detail"></small></div>';
+            $('#list').innerHTML = '<div class="empty">' + L('Impossible de charger la liste des lieux.<br>Vérifiez votre connexion puis réessayez.', 'Unable to load the list of places.<br>Check your connection and try again.') + '<br><br><button type="button" class="btn-alert" id="btn-reload">' + L('Réessayer', 'Retry') + '</button><br><br><small class="empty-detail"></small></div>';
             $('#list .empty-detail').textContent = String(error?.message ?? error);   // fichier en cause (ex. « data/xxx/shows.json : HTTP 404 »)
             $('#btn-reload').addEventListener('click', () => location.reload());
             return;
@@ -1813,7 +1828,7 @@
         }
 
         let confirmResolve = null;
-        function askConfirm({ message, ok = 'Confirmer', cancel = 'Annuler' }) {
+        function askConfirm({ message, ok = L('Confirmer', 'Confirm'), cancel = L('Annuler', 'Cancel') }) {
             settleConfirm(false);
             return new Promise((resolve) => {
                 confirmResolve = resolve;
@@ -1880,13 +1895,13 @@
             if (noLive(item)) {
                 if (item.category === 'restaurant') {
                     const booking = RESERVATION_TYPES.has(searchKey(item.type));
-                    const m = mk('off', '', '', 'État d’ouverture non connu');
+                    const m = mk('off', '', '', L('État d’ouverture non connu', 'Opening status unknown'));
                     m.icon = 'i-restaurant';
                     m.note = m.text;
-                    m.access = { text: booking ? 'Réservation recommandée' : 'Entrée libre', kind: booking ? 'resa' : 'free' };
+                    m.access = { text: booking ? L('Réservation recommandée', 'Reservation recommended') : L('Entrée libre', 'Walk-ins welcome'), kind: booking ? 'resa' : 'free' };
                     return m;
                 }
-                const m = mk('off', '--', '', 'Horaires des séances non connus');
+                const m = mk('off', '--', '', L('Horaires des séances non connus', 'Showtimes unknown'));
                 m.note = m.text;
                 return m;
             }
@@ -1896,16 +1911,16 @@
                 return mk('down', 'Panne', '', since ? `En panne depuis : ${timeFormat.format(since)}` : 'En panne');
             }
             if (isHiddenByDefault(item)) {
-                return mk('off', status === 'CLOSED' ? 'Fermé' : 'Travaux', '', CLOSED_LABELS[status]);
+                return mk('off', status === 'CLOSED' ? L('Fermé', 'Closed') : L('Travaux', 'Refurb'), '', CLOSED_LABELS[status]);
             }
 
             switch (item.category) {
                 case 'attraction': {
-                    if (!status) return mk('off', '--', '', 'Données indisponibles');
-                    if (status !== 'OPERATING') return mk('off', '--', '', 'Actuellement indisponible');
+                    if (!status) return mk('off', '--', '', L('Données indisponibles', 'Data unavailable'));
+                    if (status !== 'OPERATING') return mk('off', '--', '', L('Actuellement indisponible', 'Currently unavailable'));
                     const { wait, single } = item.live;
                     // Ouvert (statut API) mais sans temps d'attente publié : on l'indique plutôt qu'un « -- »
-                    const m = wait == null ? mk('open', 'Ouvert', '', 'Ouvert') : mk(waitKind(wait), wait, 'min', '');
+                    const m = wait == null ? mk('open', L('Ouvert', 'Open'), '', L('Ouvert', 'Open')) : mk(waitKind(wait), wait, 'min', '');
                     if (single != null) m.single = single;
                     if (item.live.vq) m.vq = item.live.vq;
                     return m;
@@ -1913,22 +1928,22 @@
                 case 'spectacle': {
                     const upcoming = upcomingShowtimes(item);
                     if (upcoming.length) {
-                        const m = mk('show', timeFormat.format(upcoming[0]), 'séance', 'Prochaines séances');
+                        const m = mk('show', timeFormat.format(upcoming[0]), L('séance', 'show'), L('Prochaines séances', 'Upcoming showtimes'));
                         m.times = upcoming.map((d) => timeFormat.format(d));
                         return m;
                     }
                     if (todayShowtimes(item).length) {
-                        const m = mk('off', 'Terminé', '', NO_MORE_SHOWS);
+                        const m = mk('off', L('Terminé', 'Done'), '', NO_MORE_SHOWS);
                         m.note = NO_MORE_SHOWS;
                         return m;
                     }
-                    if (status === 'OPERATING') return mk('show', 'En cours', '', 'En cours');
+                    if (status === 'OPERATING') return mk('show', L('En cours', 'Now'), '', L('En cours', 'In progress'));
                     return mk('off', '--', '', '');
                 }
                 case 'restaurant': {
                     if (status && status !== 'OPERATING') return mk('off', '--', '', '');   // sans donnée live : on garde la mention déduite du type
                     const booking = RESERVATION_TYPES.has(searchKey(item.type));
-                    const text = booking ? 'Réservation recommandée' : 'Entrée libre';
+                    const text = booking ? L('Réservation recommandée', 'Reservation recommended') : L('Entrée libre', 'Walk-ins welcome');
                     const m = mk('open', '', '', text);
                     m.icon = 'i-restaurant';
                     if (item.live?.dining) m.dining = item.live.dining;
@@ -1947,14 +1962,14 @@
         // Liste : simple badge « consultables » ; fiche : tableau complet (attente par taille de groupe)
         const diningHtml = (m, full = false) => {
             if (!m.dining) return '';
-            if (!full) return `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">Disponibilités consultables</span></span>`;
-            const fmt = (w) => w <= 0 ? 'Immédiat' : `~${w} min`;
-            return `<span class="dine-box"><span class="dine-h">Prochaines disponibilités</span>${m.dining.rows.map((r) =>
-                `<span class="dine-r"><span>${r.size} personne${r.size > 1 ? 's' : ''}</span><b>${esc(fmt(r.wait))}</b></span>`).join('')}</span>`;
+            if (!full) return `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">${L('Disponibilités consultables', 'Availability listed')}</span></span>`;
+            const fmt = (w) => w <= 0 ? L('Immédiat', 'Immediate') : `~${w} min`;
+            return `<span class="dine-box"><span class="dine-h">${L('Prochaines disponibilités', 'Next availability')}</span>${m.dining.rows.map((r) =>
+                `<span class="dine-r"><span>${r.size} ${L(r.size > 1 ? 'personnes' : 'personne', r.size > 1 ? 'people' : 'person')}</span><b>${esc(fmt(r.wait))}</b></span>`).join('')}</span>`;
         };
 
         const vqHtml = (m) => m.vq
-            ? `<span class="sr vq"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">File virtuelle</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
+            ? `<span class="sr vq"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">${L('File virtuelle', 'Virtual queue')}</span><span class="sr-t">${esc(m.vq.text)}</span></span>` : '';
 
         // Horaires des séances, présentés sous le type de spectacle (liste + fiche)
         const timesHtml = (m) => m.times?.length
@@ -2012,15 +2027,15 @@
                 // Créneau entièrement passé : donnée périmée, on n'affiche rien plutôt qu'un retour dans le passé
                 if ((t1 != null && t1 < now) || (t1 == null && t0 < now - 15 * 60000)) return null;
                 // Créneau déjà commencé mais pas terminé : on peut s'y présenter tout de suite
-                if (t0 <= now) return { text: end ? `Retour dès maintenant – ${end}` : 'Retour dès maintenant' };
-                return { text: `Retour ${start}${end && end !== start ? ` – ${end}` : ''}` };
+                if (t0 <= now) return { text: end ? L(`Retour dès maintenant – ${end}`, `Return now – ${end}`) : L('Retour dès maintenant', 'Return now') };
+                return { text: `${L('Retour', 'Return')} ${start}${end && end !== start ? ` – ${end}` : ''}` };
             }
             const bg = queue?.BOARDING_GROUP;
             if (bg && bg.allocationStatus === 'AVAILABLE') {
                 const a = bg.currentGroupStart, b = bg.currentGroupEnd;
-                if (a != null && b != null) return { text: `Groupes ${a}${b !== a ? ` – ${b}` : ''} appelés` };
+                if (a != null && b != null) return { text: L(`Groupes ${a}${b !== a ? ` – ${b}` : ''} appelés`, `Groups ${a}${b !== a ? ` – ${b}` : ''} called`) };
                 const next = hhmm(bg.nextAllocationTime);
-                return { text: next ? `Prochains groupes à ${next}` : 'Disponible' };
+                return { text: next ? L(`Prochains groupes à ${next}`, `Next groups at ${next}`) : L('Disponible', 'Available') };
             }
             return null;
         }
@@ -2141,8 +2156,8 @@
             return { kind: 'normal', gap };
         }
 
-        const usualLabel = ({ kind, gap }) => kind === 'low' ? `${-gap} min de moins que d’habitude`
-            : kind === 'high' ? `${gap} min de plus que d’habitude` : 'Attente habituelle';
+        const usualLabel = ({ kind, gap }) => kind === 'low' ? L(`${-gap} min de moins que d’habitude`, `${-gap} min less than usual`)
+            : kind === 'high' ? L(`${gap} min de plus que d’habitude`, `${gap} min more than usual`) : L('Attente habituelle', 'Usual wait');
 
         function applyLive(liveData) {
             const byId = new Map();
@@ -2211,18 +2226,18 @@
         function setSync(mode) {
             els.sync.dataset.state = mode;
             if (mode === 'live') {
-                els.syncLabel.textContent = `Synchro ${timeFormat.format(state.lastSync)}`;
-                els.sync.title = `${state.matches}/${db.length} lieux synchronisés. Actualisation automatique chaque minute.`;
+                els.syncLabel.textContent = `${L('Synchro', 'Synced')} ${timeFormat.format(state.lastSync)}`;
+                els.sync.title = L(`${state.matches}/${db.length} lieux synchronisés. Actualisation automatique chaque minute.`, `${state.matches}/${db.length} places synced. Automatic refresh every minute.`);
             } else if (mode === 'static') {
-                els.syncLabel.textContent = 'Temps réel indisponible';
-                els.sync.title = 'Les temps d’attente ne sont pas disponibles pour ce parc.';
+                els.syncLabel.textContent = L('Temps réel indisponible', 'Live data unavailable');
+                els.sync.title = L('Les temps d’attente ne sont pas disponibles pour ce parc.', 'Wait times are not available for this park.');
             } else if (mode === 'error') {
                 els.syncLabel.textContent = state.lastSync
-                    ? `Hors connexion · synchro ${timeFormat.format(state.lastSync)}`
-                    : 'Hors connexion';
-                els.sync.title = 'Nouvel essai automatique dans une minute.';
+                    ? L(`Hors connexion · synchro ${timeFormat.format(state.lastSync)}`, `Offline · synced ${timeFormat.format(state.lastSync)}`)
+                    : L('Hors connexion', 'Offline');
+                els.sync.title = L('Nouvel essai automatique dans une minute.', 'Automatic retry in one minute.');
             } else {
-                els.syncLabel.textContent = 'Synchronisation…';
+                els.syncLabel.textContent = L('Synchronisation…', 'Syncing…');
                 els.sync.title = '';
             }
         }
@@ -2319,7 +2334,7 @@
                 localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
                 return true;
             } catch {
-                notify('Impossible d’enregistrer les favoris sur cet appareil.');
+                notify(L('Impossible d’enregistrer les favoris sur cet appareil.', 'Unable to save favorites on this device.'));
                 return false;
             }
         }
@@ -2391,7 +2406,7 @@
                 if (wasFavorite) favorites.add(id); else favorites.delete(id);
                 return;
             }
-            notify(wasFavorite ? `${item.name} retiré des favoris` : `${item.name} ajouté aux favoris`);
+            notify(wasFavorite ? L(`${item.name} retiré des favoris`, `${item.name} removed from favorites`) : L(`${item.name} ajouté aux favoris`, `${item.name} added to favorites`));
             renderFavButton();
             renderList();
             renderFavDetailButton(item);
@@ -2399,7 +2414,7 @@
 
         function renderFavDetailButton(item) {
             const fav = favorites.has(item.id);
-            const label = fav ? 'Retirer des favoris' : 'Ajouter aux favoris';
+            const label = fav ? L('Retirer des favoris', 'Remove from favorites') : L('Ajouter aux favoris', 'Add to favorites');
             els.btnFav.setAttribute('aria-pressed', String(fav));
             els.btnFav.setAttribute('aria-label', label);
             els.btnFav.title = label;
@@ -2438,7 +2453,7 @@
                 persistRemoteAlerts();
                 return true;
             } catch {
-                notify('Impossible d’enregistrer les alertes sur cet appareil.');
+                notify(L('Impossible d’enregistrer les alertes sur cet appareil.', 'Unable to save alerts on this device.'));
                 return false;
             }
         }
@@ -2495,7 +2510,7 @@
         async function syncAlerts({ interactive = false } = {}) {
             try {
                 const sub = await getPushSubscription({ create: interactive });
-                if (!sub) return { ok: false, reason: pushSupported() ? 'pas d’abonnement' : 'non pris en charge' };
+                if (!sub) return { ok: false, reason: pushSupported() ? L('pas d’abonnement', 'no subscription') : L('non pris en charge', 'not supported') };
                 const res = await postWorker({ subscription: sub.toJSON(), alerts: alertsForServer() });
                 if (!res.ok) throw new Error(`serveur (HTTP ${res.status})`);
                 return { ok: true };
@@ -2538,14 +2553,14 @@
         async function ensureNotifications() {
             if (!('Notification' in window)) {
                 notify(isIos()
-                    ? 'Sur iPhone/iPad, ajoutez d’abord l’app à l’écran d’accueil pour recevoir des notifications.'
-                    : 'Les notifications ne sont pas prises en charge par ce navigateur.');
+                    ? L('Sur iPhone/iPad, ajoutez d’abord l’app à l’écran d’accueil pour recevoir des notifications.', 'On iPhone/iPad, first add the app to your home screen to receive notifications.')
+                    : L('Les notifications ne sont pas prises en charge par ce navigateur.', 'Notifications are not supported by this browser.'));
                 return false;
             }
             let permission = Notification.permission;
             if (permission === 'default') permission = await Notification.requestPermission();
             if (permission !== 'granted') {
-                notify('Notifications bloquées : autorisez-les dans les réglages du navigateur.');
+                notify(L('Notifications bloquées : autorisez-les dans les réglages du navigateur.', 'Notifications are blocked: allow them in your browser settings.'));
                 return false;
             }
             return true;
@@ -2580,8 +2595,8 @@
                 a.firedAt = Date.now();
                 a.firedWait = live.wait;
                 sendNotification({
-                    title: `${item.name} : ${live.wait} min d’attente`,
-                    body: `Sous votre seuil de ${a.threshold} min, c’est le moment d’y aller !`,
+                    title: L(`${item.name} : ${live.wait} min d’attente`, `${item.name}: ${live.wait} min wait`),
+                    body: L(`Sous votre seuil de ${a.threshold} min, c’est le moment d’y aller !`, `Below your ${a.threshold} min threshold: time to go!`),
                     tag: `wait-${item.id}`, id: item.id,
                 });
                 return true;
@@ -2600,7 +2615,7 @@
                 const mins = Math.max(1, Math.round((start - now) / 60_000));
                 sendNotification({
                     title: `${item.name} commence dans ${mins} min`,
-                    body: `Séance de ${timeFormat.format(start)} · ${item.land}`,
+                    body: L(`Séance de ${timeFormat.format(start)} · ${item.land}`, `Show at ${timeFormat.format(start)} · ${item.land}`),
                     tag: `show-${item.id}-${key}`, id: item.id,
                 });
             }
@@ -2616,7 +2631,7 @@
                 a.down = true;
                 sendNotification({
                     title: `${item.name} : en panne`,
-                    body: 'L’attraction est indisponible. Vous serez prévenu dès sa réouverture.',
+                    body: L('L’attraction est indisponible. Vous serez prévenu dès sa réouverture.', 'The ride is unavailable. You will be notified when it reopens.'),
                     tag: `status-${item.id}`, id: item.id,
                 });
                 return true;
@@ -2626,7 +2641,7 @@
                 const wait = item.live.wait;
                 sendNotification({
                     title: `${item.name} a rouvert`,
-                    body: typeof wait === 'number' ? `Attente actuelle : ${wait} min.` : 'L’attraction est de nouveau disponible.',
+                    body: typeof wait === 'number' ? L(`Attente actuelle : ${wait} min.`, `Current wait: ${wait} min.`) : L('L’attraction est de nouveau disponible.', 'The ride is available again.'),
                     tag: `status-${item.id}`, id: item.id,
                 });
                 return true;
@@ -2663,34 +2678,32 @@
             const now = Date.now();
             if (item.category === 'attraction') {
                 const current = item.live?.status === 'OPERATING' && item.live.wait != null
-                    ? `Attente actuelle : ${item.live.wait} min.` : 'Attraction actuellement indisponible.';
-                if (!a) return `${current} Vous serez prévenu dès que l’attente passe sous le seuil choisi.`;
-                if (a.armed) return `Alerte active : notification dès que l’attente est de ${a.threshold} min ou moins. ${current}`;
-                return `Notification envoyée à ${timeFormat.format(a.firedAt)} (${a.firedWait} min). ` +
-                       `L’alerte se réarme si l’attente repasse au-dessus de ${a.threshold} min.`;
+                    ? L(`Attente actuelle : ${item.live.wait} min.`, `Current wait: ${item.live.wait} min.`) : L('Attraction actuellement indisponible.', 'Ride currently unavailable.');
+                if (!a) return L(`${current} Vous serez prévenu dès que l’attente passe sous le seuil choisi.`, `${current} You will be notified as soon as the wait drops below your threshold.`);
+                if (a.armed) return L(`Alerte active : notification dès que l’attente est de ${a.threshold} min ou moins. ${current}`, `Alert on: notification as soon as the wait is ${a.threshold} min or less. ${current}`);
+                return L(`Notification envoyée à ${timeFormat.format(a.firedAt)} (${a.firedWait} min). L’alerte se réarme si l’attente repasse au-dessus de ${a.threshold} min.`, `Notification sent at ${timeFormat.format(a.firedAt)} (${a.firedWait} min). The alert re-arms if the wait goes back above ${a.threshold} min.`);
             }
             const sessions = futureSessions(item, now);
             if (!a) {
                 return sessions.length
-                    ? `Prochaine séance : ${timeFormat.format(sessions[0].start)}. Vous serez prévenu avant chaque séance.`
-                    : 'Aucune séance à venir aujourd’hui.';
+                    ? L(`Prochaine séance : ${timeFormat.format(sessions[0].start)}. Vous serez prévenu avant chaque séance.`, `Next show: ${timeFormat.format(sessions[0].start)}. You will be notified before each show.`)
+                    : L('Aucune séance à venir aujourd’hui.', 'No more shows today.');
             }
             const pending = sessions.find((s) => !a.done.includes(s.key));
             if (pending) {
-                return `Prochaine alerte à ${timeFormat.format(pending.start - a.lead * 60_000)} ` +
-                       `pour la séance de ${timeFormat.format(pending.start)}.`;
+                return L(`Prochaine alerte à ${timeFormat.format(pending.start - a.lead * 60_000)} pour la séance de ${timeFormat.format(pending.start)}.`, `Next alert at ${timeFormat.format(pending.start - a.lead * 60_000)} for the ${timeFormat.format(pending.start)} show.`);
             }
             return sessions.length
-                ? `Alerte envoyée pour la séance de ${timeFormat.format(sessions[0].start)}.`
-                : 'Plus de séance aujourd’hui : l’alerte reprendra à la prochaine séance.';
+                ? L(`Alerte envoyée pour la séance de ${timeFormat.format(sessions[0].start)}.`, `Alert sent for the ${timeFormat.format(sessions[0].start)} show.`)
+                : L('Plus de séance aujourd’hui : l’alerte reprendra à la prochaine séance.', 'No more shows today: the alert will resume at the next show.');
         }
 
         function statusInfo(item) {
             const status = item.live?.status;
-            if (status === 'DOWN') return 'En panne actuellement : vous serez prévenu dès sa réouverture.';
-            if (status === 'OPERATING') return 'En service actuellement : vous serez prévenu en cas de panne.';
-            if (status) return 'Actuellement fermée : l’alerte reprendra à l’ouverture.';
-            return 'Vous serez prévenu en cas de panne, puis à la réouverture.';
+            if (status === 'DOWN') return L('En panne actuellement : vous serez prévenu dès sa réouverture.', 'Currently down: you will be notified when it reopens.');
+            if (status === 'OPERATING') return L('En service actuellement : vous serez prévenu en cas de panne.', 'Currently running: you will be notified if it breaks down.');
+            if (status) return L('Actuellement fermée : l’alerte reprendra à l’ouverture.', 'Currently closed: the alert will resume when it opens.');
+            return L('Vous serez prévenu en cas de panne, puis à la réouverture.', 'You will be notified if it breaks down, then when it reopens.');
         }
 
         function renderAlertBox(item) {
@@ -2702,13 +2715,13 @@
             const a = alerts.get(item.id);
             const statusAlert = alerts.get(`${item.id}#status`);
 
-            els.alertHeading.textContent = 'Me prévenir';
+            els.alertHeading.textContent = L('Me prévenir', 'Notify me');
             els.alertLabel.textContent = isWait
-                ? 'Me prévenir dès que l’attente est inférieure ou égale à'
-                : 'Me prévenir avant chaque séance, à l’avance de';
+                ? L('Me prévenir dès que l’attente est inférieure ou égale à', 'Notify me as soon as the wait is at or below')
+                : L('Me prévenir avant chaque séance, à l’avance de', 'Notify me before each show, in advance by');
             els.alertNum.hidden = !isWait;
             els.alertLead.hidden = isWait;
-            els.alertUnit.textContent = isWait ? 'min' : 'min avant le début';
+            els.alertUnit.textContent = isWait ? 'min' : L('min avant le début', 'min before start');
 
             if (alertUiFor !== item.id) {   // n'écrase pas une saisie en cours lors des actualisations
                 alertUiFor = item.id;
@@ -2723,7 +2736,7 @@
             els.alertStatusInfo.textContent = statusAlert ? statusInfo(item) : '';
 
             els.alertBox.classList.toggle('is-active', Boolean(a || statusAlert));
-            els.alertSave.textContent = a ? 'Mettre à jour' : 'Activer l’alerte';
+            els.alertSave.textContent = a ? L('Mettre à jour', 'Update') : L('Activer l’alerte', 'Turn on alert');
             els.alertRemove.hidden = !a;
             els.alertInfo.textContent = alertInfo(item, a);
             const parts = [];
@@ -2747,7 +2760,7 @@
             if (isWait) {
                 threshold = Number.parseInt(els.alertNum.value, 10);
                 if (!Number.isFinite(threshold) || threshold < 5 || threshold > 180) {
-                    return notify('Saisissez un seuil entre 5 et 180 minutes.');
+                    return notify(L('Saisissez un seuil entre 5 et 180 minutes.', 'Enter a threshold between 5 and 180 minutes.'));
                 }
             } else {
                 lead = Number.parseInt(els.alertLead.value, 10);
@@ -2770,11 +2783,11 @@
             }
 
             if (saveAlerts()) {
-                const label = isWait ? `Alerte activée : ${item.name} ≤ ${threshold} min` : `Alerte activée : ${lead} min avant chaque séance`;
+                const label = isWait ? L(`Alerte activée : ${item.name} ≤ ${threshold} min`, `Alert on: ${item.name} ≤ ${threshold} min`) : L(`Alerte activée : ${lead} min avant chaque séance`, `Alert on: ${lead} min before each show`);
                 const sync = await syncAlerts({ interactive: true });
                 notify(sync.ok
                     ? label
-                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
+                    : L(`${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`, `${label}. Note: without a connection to the alert server (${sync.reason}), it will only work while the app is open.`));
             } else {
                 alerts.delete(item.id);
             }
@@ -2802,14 +2815,14 @@
                 alerts.delete(key);
                 els.alertStatus.checked = false;
             } else if (enable) {
-                const label = `Alerte activée : panne et réouverture de ${item.name}`;
+                const label = L(`Alerte activée : panne et réouverture de ${item.name}`, `Alert on: breakdown and reopening of ${item.name}`);
                 const sync = await syncAlerts({ interactive: true });
                 notify(sync.ok
                     ? label
-                    : `${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`);
+                    : L(`${label}. Attention : sans connexion au serveur d’alertes (${sync.reason}), elle ne fonctionnera que l’application ouverte.`, `${label}. Note: without a connection to the alert server (${sync.reason}), it will only work while the app is open.`));
             } else {
                 syncAlerts();
-                notify('Alerte panne et réouverture désactivée');
+                notify(L('Alerte panne et réouverture désactivée', 'Breakdown and reopening alert turned off'));
             }
             renderList();
             renderAlertBox(item);
@@ -2821,7 +2834,7 @@
 
             saveAlerts();
             syncAlerts();
-            notify('Alerte supprimée');
+            notify(L('Alerte supprimée', 'Alert deleted'));
             renderList();
             renderAlertBox(item);
             setAlertOpen(false);
@@ -2904,12 +2917,12 @@
         /* ---- Tri de la liste ---- */
         const ALL_CATS = ['attraction', 'restaurant', 'spectacle'];
         const SORTS = {
-            zone:      { label: 'Par zone',                short: 'Par zone',        cats: ALL_CATS },
-            wait_asc:  { label: 'Attente la plus courte',  short: 'Attente ↑',       cats: ['attraction'] },
-            wait_desc: { label: 'Attente la plus longue',  short: 'Attente ↓',       cats: ['attraction'] },
-            next:      { label: 'Prochaine séance',        short: 'Prochaine séance', cats: ['spectacle'] },
-            name:      { label: 'Nom (A → Z)',             short: 'A → Z',           cats: ALL_CATS },
-            fav:       { label: 'Favoris d’abord',         short: 'Favoris d’abord', cats: ALL_CATS },
+            zone:      { label: L('Par zone', 'By area'),                short: L('Par zone', 'By area'),        cats: ALL_CATS },
+            wait_asc:  { label: L('Attente la plus courte', 'Shortest wait'),  short: L('Attente ↑', 'Wait ↑'),       cats: ['attraction'] },
+            wait_desc: { label: L('Attente la plus longue', 'Longest wait'),  short: L('Attente ↓', 'Wait ↓'),       cats: ['attraction'] },
+            next:      { label: L('Prochaine séance', 'Next show'),        short: L('Prochaine séance', 'Next show'), cats: ['spectacle'] },
+            name:      { label: L('Nom (A → Z)', 'Name (A → Z)'),             short: 'A → Z',           cats: ALL_CATS },
+            fav:       { label: L('Favoris d’abord', 'Favorites first'),         short: L('Favoris d’abord', 'Favorites first'), cats: ALL_CATS },
         };
         const sortLocked = () => state.showFavorites || Boolean(state.nearby && state.location);
         const sortMode = () => (SORTS[state.sort]?.cats.includes(state.tab) ? state.sort : 'zone');
@@ -2931,7 +2944,7 @@
             const locked = sortLocked();
             els.chipSort.disabled = locked;
             els.chipSort.dataset.active = String(!locked && mode !== 'zone');
-            els.sortLabel.textContent = !locked && mode !== 'zone' ? `Tri : ${SORTS[mode].short}` : 'Trier';
+            els.sortLabel.textContent = !locked && mode !== 'zone' ? `${L('Tri', 'Sort')} : ${SORTS[mode].short}` : L('Trier', 'Sort');
             if (locked) closeSortPop();
         }
         function renderSortPop() {
@@ -2986,7 +2999,7 @@
             const m = statusModel(item);
             // Ligne 1 : type (ou panne) ; les horaires, la mention « plus de séance » et l'accès sont sur des lignes dédiées
             const sub = [
-                dist != null ? `à ${formatDistance(dist)}` : '',
+                dist != null ? L(`à ${formatDistance(dist)}`, `${formatDistance(dist)} away`) : '',
                 opts.showLand ? item.land : '',
                 m.kind === 'down' ? m.text : (usualKind(item) ? '' : (isGenericType(item) ? '' : typeLabel(item))),
                 state.showFavorites ? item.park : '',
@@ -2997,7 +3010,7 @@
                 + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '')
                 + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
-                ? '<svg class="icon card-bell" role="img" aria-label="Alerte active"><use href="#i-bell"/></svg>' : '';
+                ? '<svg class="icon card-bell" role="img" aria-label="' + L('Alerte active', 'Alert on') + '"><use href="#i-bell"/></svg>' : '';
 
             return `
                 <div class="card${selected ? ' selected' : ''}">
@@ -3012,7 +3025,7 @@
                         </span>
                     </button>
                     <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
-                            aria-label="${fav ? 'Retirer' : 'Ajouter'} ${esc(item.name)} ${fav ? 'des' : 'aux'} favoris">
+                            aria-label="${esc(fav ? L(`Retirer ${item.name} des favoris`, `Remove ${item.name} from favorites`) : L(`Ajouter ${item.name} aux favoris`, `Add ${item.name} to favorites`))}">
                         <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-heart"/></svg>
                     </button>
                 </div>`;
@@ -3052,22 +3065,22 @@
             if (!entries.length) {
                 const closedPark = !state.query && !state.showFavorites && !state.nearby && !state.showClosed && isParkClosed(state.park);
                 const hint = closedPark
-                    ? 'Le parc est actuellement fermé.<br>Touchez « Lieux fermés » pour afficher tous les lieux.'
+                    ? L('Le parc est actuellement fermé.<br>Touchez « Lieux fermés » pour afficher tous les lieux.', 'The park is currently closed.<br>Tap “Closed places” to show every place.')
                     : state.query
-                    ? 'Aucun résultat pour cette recherche.'
+                    ? L('Aucun résultat pour cette recherche.', 'No results for this search.')
                     : state.showFavorites && !favorites.size
-                        ? 'Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.'
+                        ? L('Aucun favori pour le moment.<br>Ouvrez la fiche d’un lieu et touchez le cœur pour l’ajouter.', 'No favorites yet.<br>Open a place and tap the heart to add it.')
                     : state.favOnly
-                        ? 'Aucun favori dans cette catégorie pour ce parc.<br>Touchez le cœur d’un lieu pour l’ajouter, ou désactivez le filtre Favoris.'
+                        ? L('Aucun favori dans cette catégorie pour ce parc.<br>Touchez le cœur d’un lieu pour l’ajouter, ou désactivez le filtre Favoris.', 'No favorites in this category for this park.<br>Tap the heart on a place to add it, or turn off the Favorites filter.')
                     : state.nearby
-                        ? `Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`
+                        ? L(`Aucun lieu dans un rayon de ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`, `No places within ${Math.round(CONFIG.NEARBY_RADIUS_KM * 1000)} m.`)
                     : !state.lastSync && els.sync.dataset.state === 'error'
-                        ? 'Données en direct indisponibles.<br>Vérifiez votre connexion puis réessayez.'
+                        ? L('Données en direct indisponibles.<br>Vérifiez votre connexion puis réessayez.', 'Live data unavailable.<br>Check your connection and try again.')
                     : state.lastSync && state.tab === 'spectacle'
-                        ? 'Aucune séance prévue aujourd’hui dans ce parc.'
+                        ? L('Aucune séance prévue aujourd’hui dans ce parc.', 'No shows scheduled today in this park.')
                     : state.lastSync
-                        ? 'Aucune donnée en direct pour ce parc pour le moment.'
-                        : 'Aucun lieu ne correspond à ces filtres.';
+                        ? L('Aucune donnée en direct pour ce parc pour le moment.', 'No live data for this park right now.')
+                        : L('Aucun lieu ne correspond à ces filtres.', 'No places match these filters.');
                 els.list.innerHTML = `<div class="empty">${hint}</div>`;
                 return;
             }
@@ -3164,8 +3177,8 @@
                 item.halloween && !/halloween/i.test(item.event) ? { text: 'Halloween', kind: 'event', icon: 'i-pumpkin' } : null,
                 { text: typeLabel(item) },
                 item.minHeight && item.minHeight !== 'Pas de restriction'
-                    ? { text: `Taille minimale : ${item.minHeight}`, warning: true } : null,
-                item.price ? { text: `Tarifs : ${item.price}` } : null,
+                    ? { text: `${L('Taille minimale', 'Minimum height')} : ${item.minHeight}`, warning: true } : null,
+                item.price ? { text: `${L('Tarifs', 'Prices')} : ${item.price}` } : null,
             ].filter((b) => b && b.text);
 
             els.badges.innerHTML = badges
@@ -3219,20 +3232,20 @@
             els.infoPark.textContent = CONFIG.PARKS.length > 1 ? park.label : resort.name;
             const rows = [];
             const row = (k, v) => rows.push(`<div class="info-row"><span class="info-k">${escHtml(k)}</span><span class="info-v">${v}</span></div>`);
-            if (info.address) row('Adresse', escHtml(info.address));
+            if (info.address) row(L('Adresse', 'Address'), escHtml(info.address));
             const hours = Array.isArray(info.hours) ? info.hours : (info.hours ? [info.hours] : []);
             // Horaires : texte saisi dans parks.json (secours) puis remplacé par le planning themeparks.wiki quand il est disponible
             rows.push(`<div class="info-row" id="info-hours"${hours.length || park.themeparksParkId ? '' : ' hidden'}>
-                <span class="info-k">Horaires d’ouverture</span>
-                <span class="info-v" id="info-hours-v">${hours.map(escHtml).join('<br>') || 'Chargement…'}</span></div>`);
+                <span class="info-k">${L('Horaires d’ouverture', 'Opening hours')}</span>
+                <span class="info-v" id="info-hours-v">${hours.map(escHtml).join('<br>') || L('Chargement…', 'Loading…')}</span></div>`);
             const lat = toCoord(info.lat), lng = toCoord(info.lng);
             const embed = safeUrl(info.mapEmbed)
                 || (lat != null && lng != null
                     ? `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`
                     : '');
             const link = safeUrl(info.mapUrl) || (lat != null && lng != null ? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}` : '');
-            if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="Plan du parc" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>`);
-            if (link) rows.push(`<a class="info-link" href="${escHtml(link)}" target="_blank" rel="noopener noreferrer">Ouvrir dans Maps</a>`);
+            if (embed) rows.push(`<iframe class="info-map" src="${escHtml(embed)}" title="${L('Plan du parc', 'Park map')}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>`);
+            if (link) rows.push(`<a class="info-link" href="${escHtml(link)}" target="_blank" rel="noopener noreferrer">${L('Ouvrir dans Maps', 'Open in Maps')}</a>`);
             els.infoBody.innerHTML = rows.join('');
             if (park.themeparksParkId) fillSchedule(park, hours.length > 0);
         }
@@ -3240,7 +3253,7 @@
         /* --- Horaires automatiques (themeparks.wiki /schedule), par parc --- */
         const SCHEDULE_TTL_MS = 15 * 60_000;
         const scheduleCache = new Map();   // themeparksParkId -> { at, entries }
-        const SCHEDULE_LABELS = { TICKETED_EVENT: 'Événement payant', PRIVATE_EVENT: 'Événement privé', EXTRA_HOURS: 'Horaires étendus' };
+        const SCHEDULE_LABELS = { TICKETED_EVENT: L('Événement payant', 'Ticketed event'), PRIVATE_EVENT: L('Événement privé', 'Private event'), EXTRA_HOURS: L('Horaires étendus', 'Extended hours') };
         // Nom officiel des horaires étendus : clé « extraHoursLabel » du parc, puis du resort (parks.json), sinon libellé générique
         const scheduleLabel = (type, park) => (type === 'EXTRA_HOURS' ? (park?.extraHoursLabel ?? resort.extraHoursLabel ?? SCHEDULE_LABELS.EXTRA_HOURS) : SCHEDULE_LABELS[type]);
         const SCHEDULE_DAYS = 1;   // seul l'horaire du jour est affiché
@@ -3256,7 +3269,7 @@
             return entries;
         }
 
-        const hourText = (iso) => timeFormat.format(new Date(iso)).replace(':', 'h');
+        const hourText = (iso) => HSEP(timeFormat.format(new Date(iso)));
         const dayShift = (key, n) => { const d = new Date(`${key}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
         function scheduleHtml(entries, park) {
@@ -3266,8 +3279,8 @@
                 const key = dayShift(todayKey, i);
                 const day = entries.filter((e) => e.date === key && (e.type === 'OPERATING' || scheduleLabel(e.type, park)))
                     .sort((a, b) => (a.type === 'OPERATING' ? -1 : 1) - (b.type === 'OPERATING' ? -1 : 1) || a.openingTime.localeCompare(b.openingTime));
-                const label = i === 0 ? 'Aujourd’hui' : i === 1 ? 'Demain' : dayFmt.format(new Date(`${key}T12:00:00Z`));
-                if (!day.length) { if (i === 0) lines.push(`<span><b>${esc(label)}</b> : fermé</span>`); continue; }   // jours sans planning : non affichés
+                const label = i === 0 ? L('Aujourd’hui', 'Today') : i === 1 ? L('Demain', 'Tomorrow') : dayFmt.format(new Date(`${key}T12:00:00Z`));
+                if (!day.length) { if (i === 0) lines.push(`<span><b>${esc(label)}</b> : ${L('fermé', 'closed')}</span>`); continue; }   // jours sans planning : non affichés
                 for (const e of day) {
                     const extra = scheduleLabel(e.type, park) ? ` <em>(${esc(scheduleLabel(e.type, park))})</em>` : '';
                     lines.push(`<span><b>${esc(label)}</b> : ${hourText(e.openingTime)} – ${hourText(e.closingTime)}${extra}</span>`);
@@ -3335,7 +3348,7 @@
            Portefeuille : billets et pass annuels (stockés sur l'appareil)
            ====================================================================== */
         const WALLET_KEY = 'dlp-wallet';
-        const WALLET_TYPES = { billet: 'Billet', pass: 'Pass annuel' };
+        const WALLET_TYPES = { billet: L('Billet', 'Ticket'), pass: L('Pass annuel', 'Annual pass') };
 
         // wallet : [{ id, payload, img, type: 'billet'|'pass', expires: 'AAAA-MM-JJ', label, addedAt }]
         let wallet = (() => {
@@ -3352,7 +3365,7 @@
                 localStorage.setItem(WALLET_KEY, JSON.stringify(wallet));
                 return true;
             } catch {
-                notify('Impossible d’enregistrer le portefeuille sur cet appareil (stockage plein ?).');
+                notify(L('Impossible d’enregistrer le portefeuille sur cet appareil (stockage plein ?).', 'Unable to save the wallet on this device (storage full?).'));
                 return false;
             }
         }
@@ -3368,9 +3381,9 @@
         const walletTitle = (w) => w.label || WALLET_TYPES[w.type];
         function walletExpiryText(w) {
             const d = daysLeft(w.expires);
-            if (d <= 0) return 'Expire aujourd’hui';
-            if (d === 1) return 'Expire demain';
-            return `Valable jusqu’au ${formatDay(w.expires)}`;
+            if (d <= 0) return L('Expire aujourd’hui', 'Expires today');
+            if (d === 1) return L('Expire demain', 'Expires tomorrow');
+            return L(`Valable jusqu’au ${formatDay(w.expires)}`, `Valid until ${formatDay(w.expires)}`);
         }
 
         // Suppression automatique des titres dont la date de validité est dépassée
@@ -3388,7 +3401,7 @@
         function renderWallet() {
             const items = [...wallet].sort((a, b) => a.expires.localeCompare(b.expires));
             if (!items.length) {
-                els.walletList.innerHTML = '<div class="empty">Aucun billet ni pass pour le moment.<br>Scannez le QR code de votre billet ou de votre pass annuel pour le retrouver ici, même sans connexion.<br>Les titres expirés sont supprimés automatiquement.</div>';
+                els.walletList.innerHTML = '<div class="empty">' + L('Aucun billet ni pass pour le moment.<br>Scannez le QR code de votre billet ou de votre pass annuel pour le retrouver ici, même sans connexion.<br>Les titres expirés sont supprimés automatiquement.', 'No tickets or passes yet.<br>Scan the QR code of your ticket or annual pass to find it here, even offline.<br>Expired items are deleted automatically.') + '</div>';
                 return;
             }
             els.walletList.innerHTML = items.map((w) => `
@@ -3400,7 +3413,7 @@
                             <span class="sub">${esc(WALLET_TYPES[w.type])} · ${esc(walletExpiryText(w))}</span>
                         </span>
                     </button>
-                    <button type="button" class="heart w-del" data-w-del="${esc(w.id)}" aria-label="Supprimer ${esc(walletTitle(w))} du portefeuille">
+                    <button type="button" class="heart w-del" data-w-del="${esc(w.id)}" aria-label="${esc(L(`Supprimer ${walletTitle(w)} du portefeuille`, `Delete ${walletTitle(w)} from the wallet`))}">
                         <svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-trash"/></svg>
                     </button>
                 </div>`).join('');
@@ -3519,7 +3532,7 @@
                         if (text && scan.stream) { await onScanned(text); return; }
                     } catch (error) {
                         console.warn('Lecture du QR code impossible :', error);
-                        setScanStatus('Lecteur indisponible hors connexion. Importez une image du QR code.');
+                        setScanStatus(L('Lecteur indisponible hors connexion. Importez une image du QR code.', 'Scanner unavailable offline. Import an image of the QR code.'));
                         fatal = true;
                     } finally {
                         scan.busy = false;
@@ -3534,10 +3547,10 @@
             els.scanLayer.hidden = false;
             els.scanClose.focus({ preventScroll: true });
             if (!navigator.mediaDevices?.getUserMedia) {
-                setScanStatus('Caméra indisponible : importez une image du QR code.');
+                setScanStatus(L('Caméra indisponible : importez une image du QR code.', 'Camera unavailable: import an image of the QR code.'));
                 return;
             }
-            setScanStatus('Démarrage de la caméra…');
+            setScanStatus(L('Démarrage de la caméra…', 'Starting the camera…'));
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } },
@@ -3547,13 +3560,13 @@
                 scan.stream = stream;
                 els.scanVideo.srcObject = stream;
                 await els.scanVideo.play().catch(() => {});
-                setScanStatus('Placez le QR code dans le cadre');
+                setScanStatus(L('Placez le QR code dans le cadre', 'Place the QR code inside the frame'));
                 scanLoop();
             } catch (error) {
                 console.warn('Caméra indisponible :', error);
                 setScanStatus(error?.name === 'NotAllowedError'
-                    ? 'Accès à la caméra refusé : autorisez-le dans les réglages ou importez une image.'
-                    : 'Caméra indisponible : importez une image du QR code.');
+                    ? L('Accès à la caméra refusé : autorisez-le dans les réglages ou importez une image.', 'Camera access denied: allow it in your settings or import an image.')
+                    : L('Caméra indisponible : importez une image du QR code.', 'Camera unavailable: import an image of the QR code.'));
             }
         }
 
@@ -3570,7 +3583,7 @@
 
         async function onScanned(text) {
             if (wallet.some((w) => w.payload === text)) {
-                notify('Ce code est déjà dans votre portefeuille.');
+                notify(L('Ce code est déjà dans votre portefeuille.', 'This code is already in your wallet.'));
                 closeLayer('wallet-scan');
                 return;
             }
@@ -3578,7 +3591,7 @@
             try { img = await qrToDataUrl(text); }
             catch (error) {
                 console.error('Génération du QR code impossible :', error);
-                notify('Ce code ne peut pas être enregistré (QR code uniquement).');
+                notify(L('Ce code ne peut pas être enregistré (QR code uniquement).', 'This code cannot be saved (QR codes only).'));
                 closeLayer('wallet-scan');
                 return;
             }
@@ -3596,16 +3609,16 @@
             const file = els.scanFile.files?.[0];
             els.scanFile.value = '';
             if (!file) return;
-            setScanStatus('Analyse de l’image…');
+            setScanStatus(L('Analyse de l’image…', 'Analyzing the image…'));
             try {
                 const bitmap = await createImageBitmap(file);
                 const text = await decodeSource(bitmap, bitmap.width, bitmap.height);
                 bitmap.close?.();
                 if (text) await onScanned(text);
-                else setScanStatus('Aucun QR code détecté dans cette image.');
+                else setScanStatus(L('Aucun QR code détecté dans cette image.', 'No QR code found in this image.'));
             } catch (error) {
                 console.warn('Image illisible :', error);
-                setScanStatus('Image illisible ou lecteur indisponible hors connexion.');
+                setScanStatus(L('Image illisible ou lecteur indisponible hors connexion.', 'Unreadable image, or scanner unavailable offline.'));
             }
         }
 
@@ -3619,8 +3632,8 @@
             if (!formDraft) return;
             const type = els.walletForm.elements['w-type'].value;
             const expires = els.wDate.value;
-            if (!/^\d{4}-\d{2}-\d{2}$/.test(expires)) return notify('Indiquez la date d’expiration du titre.');
-            if (expires < todayIso()) return notify('Cette date est déjà dépassée.');
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(expires)) return notify(L('Indiquez la date d’expiration du titre.', 'Enter the expiry date.'));
+            if (expires < todayIso()) return notify(L('Cette date est déjà dépassée.', 'This date has already passed.'));
 
             wallet.push({
                 id: newId(), payload: formDraft.payload, img: formDraft.img,
@@ -3628,7 +3641,7 @@
                 expires, label: els.wLabel.value.trim(), addedAt: Date.now(),
             });
             if (!saveWallet()) { wallet.pop(); return; }
-            notify('Ajouté au portefeuille');
+            notify(L('Ajouté au portefeuille', 'Added to wallet'));
             renderWallet();
             closeLayer('wallet-form');
         }
@@ -3649,7 +3662,7 @@
             if (!w) return;
             if (!w.img) {   // image absente (ancien enregistrement) : régénérée puis conservée
                 try { w.img = await qrToDataUrl(w.payload); saveWallet(); }
-                catch { return notify('Impossible d’afficher ce QR code hors connexion.'); }
+                catch { return notify(L('Impossible d’afficher ce QR code hors connexion.', 'Unable to display this QR code offline.')); }
             }
             qrId = id;
             els.qrImg.src = w.img;
@@ -3671,12 +3684,12 @@
         async function onWalletDelete(id) {
             const w = wallet.find((x) => x.id === id);
             if (!w) return;
-            const ok = await askConfirm({ message: `Supprimer « ${walletTitle(w)} » du portefeuille ?`, ok: 'Supprimer', cancel: 'Annuler' });
+            const ok = await askConfirm({ message: L(`Supprimer « ${walletTitle(w)} » du portefeuille ?`, `Delete “${walletTitle(w)}” from the wallet?`), ok: L('Supprimer', 'Delete'), cancel: L('Annuler', 'Cancel') });
             if (!ok) return;
             wallet = wallet.filter((x) => x.id !== id);
             saveWallet();
             renderWallet();
-            notify('Titre supprimé');
+            notify(L('Titre supprimé', 'Deleted'));
         }
 
         /* ======================================================================
@@ -3717,7 +3730,7 @@
         function onPositionError(error) {
             if (state.nearby && error.code === 3) return;   // délai dépassé : on garde la dernière position
             stopNearby();
-            notify('Autorisez la géolocalisation pour afficher les lieux proches.');
+            notify(L('Autorisez la géolocalisation pour afficher les lieux proches.', 'Allow location access to show nearby places.'));
             renderList();
         }
 
@@ -3727,7 +3740,7 @@
                 return renderList();
             }
             if (!('geolocation' in navigator)) {
-                return notify('La géolocalisation n’est pas disponible sur cet appareil.');
+                return notify(L('La géolocalisation n’est pas disponible sur cet appareil.', 'Location is not available on this device.'));
             }
             state.watchId = navigator.geolocation.watchPosition(onPosition, onPositionError,
                 { enableHighAccuracy: true, timeout: 20_000, maximumAge: 15_000 });
@@ -3906,6 +3919,48 @@
     })();
     </script>
     <script>
+        /* Langue : sélecteur FR/EN (choix mémorisé) ; en anglais, les textes fixes de la page sont traduits ici,
+           les messages construits par le code passent par L(fr, en). Les noms et descriptions des lieux restent inchangés. */
+        (function i18n() {
+            const sw = document.getElementById('lang-switch');
+            sw?.querySelectorAll('button').forEach((b) => {
+                b.setAttribute('aria-pressed', String(b.dataset.lang === LANG));
+                b.addEventListener('click', () => {
+                    if (b.dataset.lang === LANG) return;
+                    try { localStorage.setItem('tpc-lang', b.dataset.lang); } catch { /* stockage indisponible */ }
+                    location.reload();
+                });
+            });
+            if (LANG !== 'en') return;
+            const DOM = {"Mode sombre": "Dark mode", "Temps d’attente, horaires et alertes en direct pour préparer votre journée. <strong>Choisissez un parc</strong> pour commencer.": "Live wait times, opening hours and alerts to plan your day. <strong>Choose a park</strong> to get started.", "Filtrer par continent": "Filter by continent", "Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.": "Independent app, not affiliated with the parks. Data from themeparks.wiki, for information only.", "Navigation": "Navigation", "Accueil": "Home", "Billets": "Tickets", "Infos": "Info", "Fermer les infos": "Close info", "À propos": "About", "Theme Parks Companion affiche les temps d’attente, les horaires et les alertes en direct des parcs à thème, pour préparer votre journée.": "Theme Parks Companion shows live wait times, opening hours and alerts for theme parks, to help you plan your day.", "Données": "Data", "Temps d’attente et horaires : themeparks.wiki, à titre indicatif. Ils peuvent différer de l’information officielle du parc.": "Wait times and hours: themeparks.wiki, for information only. They may differ from the park’s official information.", "Indépendance": "Independence", "Application indépendante, non affiliée aux parcs ni à leurs exploitants.": "Independent app, not affiliated with the parks or their operators.", "Billets et pass": "Tickets and passes", "L’onglet Billets ouvre votre portefeuille : billets et pass annuels, enregistrés uniquement sur cet appareil.": "The Tickets tab opens your wallet: tickets and annual passes, stored only on this device.", "Installer l’appli sur l’écran d’accueil": "Add the app to your home screen", "Parc précédent": "Previous park", "Parc suivant": "Next park", "Synchronisation…": "Syncing…", "Tri et filtres": "Sort and filters", "Trier": "Sort", "Favoris": "Favorites", "Autour de moi": "Near me", "Lieux fermés": "Closed places", "Trier par": "Sort by", "Accueil : liste des parcs": "Home: list of parks", "Attractions": "Rides", "Restaurants": "Restaurants", "Spectacles": "Shows", "Détail du lieu": "Place details", "Sélectionnez un lieu pour afficher les détails": "Select a place to see its details", "Retour": "Back", "Ajouter aux favoris": "Add to favorites", "Activer l’alerte": "Turn on alert", "Supprimer": "Delete", "Me prévenir si l’attraction tombe en panne, puis quand elle rouvre": "Notify me if the ride breaks down, then when it reopens", "Voir le menu": "View menu", "Infos pratiques": "Practical info", "Indication d’attente": "Wait-time indicator", "Sous le temps d’attente d’une attraction, une pastille la compare à l’habitude : <strong class=\"u-low\">moins</strong>, <strong class=\"u-norm\">habituelle</strong> ou <strong class=\"u-high\">plus</strong> d’attente, avec l’écart en minutes.": "Under a ride’s wait time, a badge compares it with the usual wait: <strong class=\"u-low\">shorter</strong>, <strong class=\"u-norm\">usual</strong> or <strong class=\"u-high\">longer</strong>, with the difference in minutes.", "Comment c’est calculé": "How it’s calculated", "L’attente affichée en ce moment (file standard uniquement) est comparée à l’attente moyenne de la même heure, à plus ou moins une heure, sur les 6 derniers jours. Cette moyenne tient compte de la durée pendant laquelle chaque temps d’attente est resté affiché.": "The wait shown right now (standard queue only) is compared with the average wait at the same time of day, give or take an hour, over the last 6 days. This average is weighted by how long each wait time stayed displayed.", "Seuils": "Thresholds", "« Plus » ou « moins » apparaît à partir de 25 % d’écart et d’au moins 5 minutes. En dessous, l’attente est jugée habituelle.": "“Longer” or “shorter” appears from a 25% difference and at least 5 minutes. Below that, the wait is considered usual.", "Quand il n’y en a pas": "When there isn’t one", "Attraction fermée ou en panne, sans temps d’attente publié, ou historique insuffisant sur cette plage horaire (moins de 90 minutes de données, ou attente habituelle inférieure à 5 minutes).": "Ride closed or down, no published wait time, or not enough history for that time slot (less than 90 minutes of data, or a usual wait under 5 minutes).", "Historique de themeparks.wiki, téléchargé une fois par jour et conservé sur votre appareil. À titre indicatif.": "History from themeparks.wiki, downloaded once a day and kept on your device. For information only.", "Billets et pass annuels": "Tickets and annual passes", "Fermer le portefeuille": "Close wallet", "Portefeuille": "Wallet", "Scanner un billet ou un pass": "Scan a ticket or pass", "Annuler le scan": "Cancel scan", "Scanner le QR code": "Scan the QR code", "Importer une image": "Import an image", "Annuler": "Cancel", "Ajouter un titre": "Add a ticket or pass", "Aperçu du QR code scanné": "Preview of the scanned QR code", "Type de titre": "Type", "Billet": "Ticket", "Pass annuel": "Annual pass", "Date d’expiration": "Expiry date", "Nom (facultatif)": "Name (optional)", "Ex. Léa, billet 2 jours": "E.g. Lea, 2-day ticket", "Enregistrer dans le portefeuille": "Save to wallet", "Fermer": "Close", "QR code à présenter à l’entrée": "QR code to show at the entrance", "Confirmer": "Confirm", "Langue": "Language", "moins": "shorter", "habituelle": "usual", "plus": "longer", "<em>Bienvenue</em>&nbsp;!": "<em>Welcome</em>!", "Ajoute l'appli à ton écran d'accueil": "Add the app to your home screen", "Ne plus afficher": "Don’t show again"};
+            const norm = (t) => t.replace(/\s+/g, ' ').trim();
+            // 1) éléments à contenu mixte (texte + <strong>, <em>…)
+            document.querySelectorAll('body *').forEach((el) => {
+                if (['SCRIPT', 'STYLE', 'svg', 'SVG'].includes(el.tagName) || !el.children.length) return;
+                if (![...el.children].every((c) => ['STRONG', 'B', 'EM', 'BR'].includes(c.tagName))) return;
+                const en = DOM[norm(el.innerHTML)];
+                if (en) el.innerHTML = en;
+            });
+            // 2) nœuds de texte
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            const nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach((n) => {
+                if (n.parentElement?.closest('script, style')) return;
+                const key = norm(n.nodeValue);
+                const en = key && DOM[key];
+                if (en) n.nodeValue = n.nodeValue.replace(key.length ? n.nodeValue.trim() : '', en);
+            });
+            // 3) attributs
+            document.querySelectorAll('[aria-label], [title], [placeholder], [alt]').forEach((el) => {
+                for (const a of ['aria-label', 'title', 'placeholder', 'alt']) {
+                    const v = el.getAttribute(a);
+                    if (v && DOM[norm(v)]) el.setAttribute(a, DOM[norm(v)]);
+                }
+            });
+        })();
+    </script>
+    <script>
         /* Guide d'installation : vidéo adaptée à l'appareil (iPhone/iPad ou Android), masquable définitivement */
         (function installGuide() {
             const KEY = 'tpc-install-guide-hidden';
@@ -3922,16 +3977,17 @@
             const video = document.getElementById('igVideo');
             const os = isIOS ? 'ios' : 'android';
             document.getElementById('igSub').textContent = isIOS
-                ? 'Sur iPhone et iPad : trois gestes dans Safari.'
-                : 'Sur Android : trois gestes dans Chrome.';
+                ? L('Sur iPhone et iPad : trois gestes dans Safari.', 'On iPhone and iPad: three taps in Safari.')
+                : L('Sur Android : trois gestes dans Chrome.', 'On Android: three taps in Chrome.');
             if (isIOS && /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua)) {
                 const note = document.getElementById('igNote');
-                note.textContent = "Ouvre d'abord ce site dans Safari : c'est là que l'option « Sur l'écran d'accueil » est proposée.";
+                note.textContent = L("Ouvre d'abord ce site dans Safari : c'est là que l'option « Sur l'écran d'accueil » est proposée.", 'Open this site in Safari first: that is where the “Add to Home Screen” option is offered.');
                 note.hidden = false;
             }
-            video.poster = `videos/install-${os}.webp`;
+            const vsuf = LANG === 'en' ? '-en' : '';
+            video.poster = `videos/install-${os}${vsuf}.webp`;
             const open = () => {
-                if (!video.getAttribute('src')) video.src = `videos/install-${os}.mp4`;
+                if (!video.getAttribute('src')) video.src = `videos/install-${os}${vsuf}.mp4`;
                 box.hidden = false;
                 video.play().catch(() => {});
             };
