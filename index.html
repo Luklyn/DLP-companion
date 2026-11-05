@@ -2218,6 +2218,7 @@
 
         // { kind: 'low' | 'normal' | 'high', gap: écart en minutes } selon l'attente actuelle et celle de la même heure (± 1 h) les jours précédents
         function usualKind(item) {
+            if (item.category !== 'attraction' || statusOf(item) !== 'OPERATING') return null;   // « attente habituelle » : attractions ouvertes uniquement (pas de spectacles, ni de lieux fermés)
             const wait = item.live?.wait, v = usualData.get(item.apiId);
             if (!v || !Number.isFinite(wait)) return null;
             const h = Math.floor((Date.now() + tzOffsetMs(Date.now())) / 36e5) % 24;
