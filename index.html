@@ -503,6 +503,27 @@
         .meter .track { position: relative; display: block; height: 8px; margin: 3px 7px; border-radius: 4px; background: linear-gradient(90deg, #35B26A, #F2B33D 55%, #E4572E); }
         .meter .track u { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: #fff; border: 3px solid var(--ink); box-sizing: border-box; box-shadow: 0 1px 4px rgb(0 0 0 / .3); text-decoration: none; }
         .meter .scale { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--mut); }
+        /* Disponibilités restaurant : une tuile par taille de groupe */
+        .d-dining { padding: 14px 16px 16px; border-radius: 20px; background: var(--card); }
+        .dn-head { display: flex; align-items: center; gap: 10px; }
+        .dn-ico { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: #DDF3E4; color: #14692E; }
+        .dn-ico .icon { width: 18px; height: 18px; }
+        .dn-head h3 { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.2; }
+        .dn-head p { margin: 1px 0 0; font-size: 12px; color: var(--mut); }
+        .dn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-top: 12px; }
+        .dn-tile { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 14px; background: var(--bg); border: 1.5px solid transparent; }
+        .dn-size { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--mut); }
+        .dn-size .icon { width: 14px; height: 14px; }
+        .dn-time { font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.1; }
+        .dn-time small { font-family: var(--font); font-size: 12px; font-weight: 700; margin-left: 2px; }
+        .dn-tile.is-now { background: #DDF3E4; border-color: #A9DDB9; color: #14692E; }
+        .dn-tile.is-soon { background: #FFF3E0; border-color: #F6CE92; color: #8A4B00; }
+        .dn-tile.is-late { background: #FFD9D6; border-color: #F2B0AB; color: #A3121F; }
+        .dn-tile.is-now .dn-size, .dn-tile.is-soon .dn-size, .dn-tile.is-late .dn-size { color: inherit; opacity: .85; }
+        :root[data-theme="dark"] .dn-ico { background: #12301F; color: #86E3A6; }
+        :root[data-theme="dark"] .dn-tile.is-now { background: #12301F; border-color: #1F5A39; color: #86E3A6; }
+        :root[data-theme="dark"] .dn-tile.is-soon { background: #3A2A0C; border-color: #6B4C14; color: #F5C26B; }
+        :root[data-theme="dark"] .dn-tile.is-late { background: #401619; border-color: #7A2A2F; color: #FF9F99; }
         .d-tiles { display: flex; flex-wrap: wrap; gap: 10px; }
         .d-tile { flex: 1 1 auto; max-width: 100%; padding: 12px; border-radius: 16px; background: var(--card); }   /* largeur = contenu : un mot n'est jamais coupé, la tuile passe à la ligne si besoin */
         .d-tile.is-warning b { color: #A3121F; }
@@ -924,6 +945,7 @@
                     </div>
                     <a id="d-btn" class="cta menu-in" href="#" target="_blank" rel="noopener noreferrer"><svg class="icon" width="18" height="18" stroke-width="2" aria-hidden="true"><use href="#i-menu"/></svg><span id="d-btn-text">Voir le menu</span></a>
                 </div>
+                <section id="d-dining" class="d-dining" aria-labelledby="d-dining-h" hidden></section>
                 <div id="d-tiles" class="d-tiles"></div>
                 <ul id="d-badges" class="pills"></ul>
                 <p id="d-desc" class="d-desc"></p>
@@ -2016,9 +2038,15 @@
         const diningHtml = (m, full = false) => {
             if (!m.dining) return '';
             if (!full) return `<span class="sr sr-dine"><svg class="icon" width="14" height="14" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-l">${L('Disponibilités consultables', 'Availability listed')}</span></span>`;
-            const fmt = (w) => w <= 0 ? L('Immédiat', 'Immediate') : `~${w} min`;
-            return `<span class="dine-box"><span class="dine-h">${L('Prochaines disponibilités', 'Next availability')}</span>${m.dining.rows.map((r) =>
-                `<span class="dine-r"><span>${r.size} ${L(r.size > 1 ? 'personnes' : 'personne', r.size > 1 ? 'people' : 'person')}</span><b>${esc(fmt(r.wait))}</b></span>`).join('')}</span>`;
+            const clock = '<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>';
+            const user = '<svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>';
+            const tiles = m.dining.rows.map((r) => {
+                const cls = r.wait <= 0 ? 'is-now' : r.wait <= 30 ? 'is-soon' : 'is-late';
+                const time = r.wait <= 0 ? esc(L('Immédiat', 'Now')) : `${r.wait}<small>min</small>`;
+                const who = `${r.size} ${L('pers.', 'ppl')}`;
+                return `<div class="dn-tile ${cls}" role="listitem"><span class="dn-size">${user}${esc(who)}</span><span class="dn-time">${time}</span></div>`;
+            }).join('');
+            return `<div class="dn-head"><span class="dn-ico">${clock}</span><div><h3 id="d-dining-h">${L('Prochaines disponibilités', 'Next availability')}</h3><p>${L('Attente estimée selon la taille du groupe', 'Estimated wait by party size')}</p></div></div><div class="dn-grid" role="list">${tiles}</div>`;
         };
 
         const vqHtml = (m) => m.vq
@@ -3231,7 +3259,11 @@
                 els.meter.querySelector('u').style.left = `${Math.round(score * 100)}%`;
                 els.meter.setAttribute('aria-label', `${label} (${w} min)`);
             }
-            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m) + diningHtml(m, true);
+            els.single.innerHTML = timesHtml(m) + singleHtml(m) + vqHtml(m);
+            const dining = diningHtml(m, true);
+            const dEl = $('#d-dining');
+            dEl.innerHTML = dining;
+            dEl.hidden = !dining;
             els.stBlock.hidden = false;
             els.wait.hidden = cat === 'spectacle' && !text && !els.single.innerHTML;
 
