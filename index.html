@@ -3168,7 +3168,7 @@
             els.statusText.hidden = !m.text;
             els.stBlock.hidden = !m.text && !els.single.innerHTML;
 
-            setHeroImage(safeUrl(item.image));
+            setHeroImage(safeUrl(item.image) || `images/${resort.id}/default.webp`);   // image générique du parc quand la fiche n'en a pas
 
             const badges = [
                 item.event ? { text: item.event, kind: 'event', icon: 'i-ghost' } : null,
