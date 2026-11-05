@@ -778,6 +778,9 @@
                 <p>Application indépendante, non affiliée aux parcs ni à leurs exploitants.</p>
                 <h3>Billets et pass</h3>
                 <p>L’onglet Billets ouvre votre portefeuille : billets et pass annuels, enregistrés uniquement sur cet appareil.</p>
+                <button class="cta alt" type="button" data-install-guide hidden>
+                    <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-ticket"/></svg>Installer l’appli sur l’écran d’accueil
+                </button>
             </section>
         </div>
     </section>
@@ -947,6 +950,11 @@
                     </div>
                 </div>
                 </details>
+            </div>
+            <div class="menu-sec" data-install-sec hidden>
+                <button class="cta alt" type="button" data-install-guide hidden>
+                    <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-ticket"/></svg>Installer l’appli sur l’écran d’accueil
+                </button>
             </div>
             <div class="menu-sec">
                 <button id="menu-wallet" class="cta alt" type="button">
@@ -3907,7 +3915,8 @@
             const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
             let hidden = false;
             try { hidden = localStorage.getItem(KEY) === '1' || sessionStorage.getItem(KEY) === '1'; } catch { /* stockage indisponible */ }
-            if (standalone || hidden || !(isIOS || isAndroid)) return;
+            const supported = !standalone && (isIOS || isAndroid);
+            if (!supported) return;
 
             const box = document.getElementById('installGuide');
             const video = document.getElementById('igVideo');
@@ -3921,7 +3930,11 @@
                 note.hidden = false;
             }
             video.poster = `videos/install-${os}.webp`;
-            video.src = `videos/install-${os}.mp4`;
+            const open = () => {
+                if (!video.getAttribute('src')) video.src = `videos/install-${os}.mp4`;
+                box.hidden = false;
+                video.play().catch(() => {});
+            };
             const close = (forever) => {
                 try { (forever ? localStorage : sessionStorage).setItem(KEY, '1'); } catch { /* stockage indisponible */ }
                 video.pause();
@@ -3930,7 +3943,10 @@
             document.getElementById('igNever').addEventListener('click', () => close(true));
             document.getElementById('igClose').addEventListener('click', () => close(false));
             box.querySelector('.ig-scrim').addEventListener('click', () => close(false));
-            setTimeout(() => { box.hidden = false; video.play().catch(() => {}); }, 2500);
+            // Boutons « Installer l'appli » des panneaux Infos : toujours disponibles sur mobile, même après « Ne plus afficher »
+            document.querySelectorAll('[data-install-guide]').forEach((b) => { b.hidden = false; b.addEventListener('click', open); });
+            document.querySelectorAll('[data-install-sec]').forEach((x) => { x.hidden = false; });
+            if (!hidden) setTimeout(open, 2500);
         })();
     </script>
 </body>
