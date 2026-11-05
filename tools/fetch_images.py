@@ -2,6 +2,7 @@
 import io, json, os, sys
 import requests
 from PIL import Image
+Image.MAX_IMAGE_PIXELS = None   # certaines photos source sont énormes
 
 resort = sys.argv[1] if len(sys.argv) > 1 else 'alton-towers-resort'
 src = json.load(open(f'data/{resort}/image-sources.json', encoding='utf-8'))
