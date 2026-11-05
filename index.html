@@ -1122,7 +1122,7 @@
             for (const c of clocks) {
                 const off = tzOffsetMin(c.tz, now);
                 if (off == null || paris == null || off === paris) { c.el.hidden = true; continue; }   // même heure que Paris : rien à afficher
-                c.el.textContent = `Heure locale : ${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now).replace(':', '.')}`;
+                c.el.textContent = `Heure locale : ${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now)}`;
                 c.el.hidden = false;
             }
         }
@@ -1726,7 +1726,7 @@
         /* ======================================================================
            Navigation : pile de « couches » synchronisée avec l'historique du navigateur.
            Le geste de retour système (swipe depuis le bord) ferme la couche du dessus
-           (fiche, portefeuille, thème…) ; sur l'accueil, il demande confirmation avant de quitter.
+           (fiche, portefeuille, thème…) ; sans couche ouverte, il ramène à l'accueil depuis un parc.
            ====================================================================== */
         const nav = { stack: [], ignore: 0, leaving: false };
 
@@ -1766,8 +1766,12 @@
             const top = nav.stack.pop();
             if (top) { top.close(); return; }
 
-            history.pushState({ dlp: 'guard' }, '');   // accueil : on se replace sur la garde, puis on demande confirmation
-            askQuit();
+            // Plus aucune couche ouverte : retour depuis la fiche d'un parc -> accueil (choix du parc) ;
+            // depuis l'accueil (ou une appli à parc unique) -> on laisse le système fermer l'application, sans confirmation.
+            if (!homeMode && registry.resorts.length > 1) { goHome(); return; }
+            nav.leaving = true;
+            history.go(-1);
+            setTimeout(() => { try { window.close(); } catch { /* non autorisé */ } }, 300);
         }
 
         let confirmResolve = null;
@@ -1789,14 +1793,6 @@
             confirmResolve = null;
             els.confirm.hidden = true;
             resolve(value);
-        }
-
-        async function askQuit() {
-            const leave = await askConfirm({ message: 'Êtes-vous sûr de vouloir quitter l’application ?', ok: 'Quitter', cancel: 'Rester' });
-            if (!leave) return;
-            nav.leaving = true;
-            history.go(-2);   // dépasse l'entrée racine et la garde : l'application se ferme
-            setTimeout(() => { try { window.close(); } catch { /* non autorisé */ } }, 300);
         }
 
         /* ======================================================================
