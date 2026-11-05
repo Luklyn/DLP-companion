@@ -1122,10 +1122,7 @@
             for (const c of clocks) {
                 const off = tzOffsetMin(c.tz, now);
                 if (off == null || paris == null || off === paris) { c.el.hidden = true; continue; }   // même heure que Paris : rien à afficher
-                const d = (off - paris) / 60;
-                const gap = `${d > 0 ? '+' : '−'}${Math.abs(d) % 1 ? Math.abs(d).toFixed(1).replace('.', ',') : Math.abs(d)} h`;
-                c.el.textContent = `${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now)} · ${gap}`;
-                c.el.title = 'Heure locale (écart avec Paris)';
+                c.el.textContent = `Heure locale : ${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now).replace(':', '.')}`;
                 c.el.hidden = false;
             }
         }
