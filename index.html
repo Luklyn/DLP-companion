@@ -4131,7 +4131,16 @@
             const vsuf = LANG === 'en' ? '-en' : '';
             video.poster = `videos/install-${os}${vsuf}.webp`;
             const open = () => {
-                if (!video.getAttribute('src')) video.src = `videos/install-${os}${vsuf}.mp4`;
+                const key = (isAndroid && apkReady) ? 'apk' : os;
+                const src = `videos/install-${key}${vsuf}.mp4`;
+                if (video.getAttribute('src') !== src) { video.poster = `videos/install-${key}${vsuf}.webp`; video.src = src; }
+                if (isAndroid && apkReady) {
+                    document.getElementById('igTitle').textContent = L('Installe l’appli Android', 'Install the Android app');
+                    document.getElementById('igSub').textContent = L('Télécharge l’APK, puis installe-le : cinq gestes.', 'Download the APK, then install it: five taps.');
+                    const note = document.getElementById('igNote');
+                    note.textContent = L('Les avertissements de Chrome et d’Android sont normaux : l’appli ne vient pas du Play Store.', 'The Chrome and Android warnings are normal: the app does not come from the Play Store.');
+                    note.hidden = false;
+                }
                 box.hidden = false;
                 video.play().catch(() => {});
             };
@@ -4146,7 +4155,7 @@
             // Boutons « Installer l'appli » des panneaux Infos : toujours disponibles sur mobile, même après « Ne plus afficher »
             document.querySelectorAll('[data-install-guide]').forEach((b) => {
                 b.hidden = false;
-                b.addEventListener('click', () => (isAndroid && apkReady ? downloadApk() : open()));
+                b.addEventListener('click', () => { if (isAndroid && apkReady) downloadApk(); open(); });
             });
             document.querySelectorAll('[data-install-sec]').forEach((x) => { x.hidden = false; });
             if (isAndroid) {
@@ -4157,7 +4166,8 @@
                         document.querySelectorAll('[data-install-guide]').forEach((b) => {
                             b.lastChild.textContent = L('Télécharger l’appli Android (APK)', 'Download the Android app (APK)');
                         });
-                    } else if (!hidden) setTimeout(open, 1500);
+                    }
+                    if (!hidden) setTimeout(open, 1500);
                 }).catch(() => { if (!hidden) setTimeout(open, 1500); });
             } else if (!hidden) setTimeout(open, 2500);
         })();
