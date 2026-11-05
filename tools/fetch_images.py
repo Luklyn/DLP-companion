@@ -13,9 +13,14 @@ for path, url in src.items():
     if os.path.exists(path):
         continue
     try:
-        r = requests.get(url, headers=H, timeout=40)
-        r.raise_for_status()
-        im = Image.open(io.BytesIO(r.content)).convert('RGB')
+        try:
+            r = requests.get(url, headers=H, timeout=60)
+            r.raise_for_status()
+            im = Image.open(io.BytesIO(r.content)).convert('RGB')
+        except Exception:      # photo source illisible/énorme : on demande une version redimensionnée au serveur
+            r = requests.get(url + '?width=1200&quality=85', headers=H, timeout=60)
+            r.raise_for_status()
+            im = Image.open(io.BytesIO(r.content)).convert('RGB')
         if im.width > 800:
             im = im.resize((800, round(im.height * 800 / im.width)))
         os.makedirs(os.path.dirname(path), exist_ok=True)
