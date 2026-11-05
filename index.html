@@ -4101,8 +4101,21 @@
             const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
             let hidden = false;
             try { hidden = localStorage.getItem(KEY) === '1' || sessionStorage.getItem(KEY) === '1'; } catch { /* stockage indisponible */ }
-            const supported = !standalone && (isIOS || isAndroid);
+            const inApp = /TPCApp/.test(ua); // application Android native : rien à installer
+            const supported = !standalone && !inApp && (isIOS || isAndroid);
             if (!supported) return;
+
+            // Android : le bouton « Installer l'appli » télécharge l'APK s'il est publié (sinon : guide vidéo)
+            const APK = 'app/theme-parks-companion.apk';
+            let apkReady = false;
+            const downloadApk = () => {
+                const a = document.createElement('a');
+                a.href = APK;
+                a.download = 'Theme-Parks-Companion.apk';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            };
 
             const box = document.getElementById('installGuide');
             const video = document.getElementById('igVideo');
@@ -4131,9 +4144,22 @@
             document.getElementById('igClose').addEventListener('click', () => close(false));
             box.querySelector('.ig-scrim').addEventListener('click', () => close(false));
             // Boutons « Installer l'appli » des panneaux Infos : toujours disponibles sur mobile, même après « Ne plus afficher »
-            document.querySelectorAll('[data-install-guide]').forEach((b) => { b.hidden = false; b.addEventListener('click', open); });
+            document.querySelectorAll('[data-install-guide]').forEach((b) => {
+                b.hidden = false;
+                b.addEventListener('click', () => (isAndroid && apkReady ? downloadApk() : open()));
+            });
             document.querySelectorAll('[data-install-sec]').forEach((x) => { x.hidden = false; });
-            if (!hidden) setTimeout(open, 2500);
+            if (isAndroid) {
+                fetch(APK, { method: 'HEAD', cache: 'no-store' }).then((r) => {
+                    const type = r.headers.get('content-type') || '';
+                    apkReady = r.ok && !/text\/html/i.test(type);
+                    if (apkReady) {
+                        document.querySelectorAll('[data-install-guide]').forEach((b) => {
+                            b.lastChild.textContent = L('Télécharger l’appli Android (APK)', 'Download the Android app (APK)');
+                        });
+                    } else if (!hidden) setTimeout(open, 1500);
+                }).catch(() => { if (!hidden) setTimeout(open, 1500); });
+            } else if (!hidden) setTimeout(open, 2500);
         })();
     </script>
 </body>
