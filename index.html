@@ -21,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
 
+
     <script>
         // Hauteur réelle de la zone visible (mobile : barre d'URL, mode PWA, vieux WebView sans « dvh »)
         (function () {
@@ -49,6 +50,20 @@
             --font: 'DM Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             --font-display: Sora, 'DM Sans', system-ui, sans-serif;
         }
+
+
+        /* Guide d'installation sur l'écran d'accueil */
+        .ig { position: fixed; inset: 0; z-index: 600; display: grid; place-items: center; padding: 16px; }
+        .ig-scrim { position: absolute; inset: 0; background: rgb(10 12 30 / .6); }
+        .ig-box { position: relative; width: 100%; max-width: 380px; max-height: calc(100dvh - 32px); overflow: auto; padding: 18px 18px 14px; border-radius: 24px; background: var(--card); color: var(--ink); box-shadow: 0 16px 40px rgb(10 12 30 / .4); }
+        .ig-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+        .ig-sub { margin: 0 0 12px; font-size: 14px; color: var(--mut); line-height: 1.4; }
+        .ig-video { display: block; width: 100%; max-width: 260px; aspect-ratio: 9 / 16; margin: 0 auto 12px; border-radius: 16px; background: #12163A; object-fit: cover; }
+        .ig-note { margin: 0 0 12px; padding: 8px 10px; border-radius: 10px; background: rgb(242 179 61 / .18); font-size: 13px; line-height: 1.4; }
+        .ig-actions { display: flex; gap: 10px; }
+        .ig-actions button { flex: 1; min-height: 44px; border: 0; border-radius: 14px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+        .ig-later { background: var(--g2); color: #fff; }
+        .ig-never { background: transparent; color: var(--mut); border: 1px solid var(--line) !important; }
 
         /* ==========================================================================
            2. Base
@@ -1029,6 +1044,21 @@
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <div class="ig" id="installGuide" hidden role="dialog" aria-modal="true" aria-labelledby="igTitle">
+        <div class="ig-scrim"></div>
+        <div class="ig-box">
+            <h2 class="ig-title" id="igTitle">Ajoute l'appli à ton écran d'accueil</h2>
+            <p class="ig-sub" id="igSub"></p>
+            <video class="ig-video" id="igVideo" muted loop playsinline preload="none"></video>
+            <p class="ig-note" id="igNote" hidden></p>
+            <div class="ig-actions">
+                <button type="button" class="ig-never" id="igNever">Ne plus afficher</button>
+                <button type="button" class="ig-later" id="igClose">Fermer</button>
+            </div>
+        </div>
+
+    </div>
 
     <noscript>Cette application nécessite JavaScript.</noscript>
 
@@ -3862,8 +3892,46 @@
             }
         }
 
+
+
         init();
     })();
+    </script>
+    <script>
+        /* Guide d'installation : vidéo adaptée à l'appareil (iPhone/iPad ou Android), masquable définitivement */
+        (function installGuide() {
+            const KEY = 'tpc-install-guide-hidden';
+            const ua = navigator.userAgent || '';
+            const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isAndroid = /Android/i.test(ua);
+            const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+            let hidden = false;
+            try { hidden = localStorage.getItem(KEY) === '1' || sessionStorage.getItem(KEY) === '1'; } catch { /* stockage indisponible */ }
+            if (standalone || hidden || !(isIOS || isAndroid)) return;
+
+            const box = document.getElementById('installGuide');
+            const video = document.getElementById('igVideo');
+            const os = isIOS ? 'ios' : 'android';
+            document.getElementById('igSub').textContent = isIOS
+                ? 'Sur iPhone et iPad : trois gestes dans Safari.'
+                : 'Sur Android : trois gestes dans Chrome.';
+            if (isIOS && /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua)) {
+                const note = document.getElementById('igNote');
+                note.textContent = "Ouvre d'abord ce site dans Safari : c'est là que l'option « Sur l'écran d'accueil » est proposée.";
+                note.hidden = false;
+            }
+            video.poster = `videos/install-${os}.webp`;
+            video.src = `videos/install-${os}.mp4`;
+            const close = (forever) => {
+                try { (forever ? localStorage : sessionStorage).setItem(KEY, '1'); } catch { /* stockage indisponible */ }
+                video.pause();
+                box.hidden = true;
+            };
+            document.getElementById('igNever').addEventListener('click', () => close(true));
+            document.getElementById('igClose').addEventListener('click', () => close(false));
+            box.querySelector('.ig-scrim').addEventListener('click', () => close(false));
+            setTimeout(() => { box.hidden = false; video.play().catch(() => {}); }, 2500);
+        })();
     </script>
 </body>
 </html>
