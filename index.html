@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#12163A">
     <script>try{var t=localStorage.getItem("tpc-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
-    <script>(function(){var l;try{l=localStorage.getItem("tpc-lang")}catch(e){}if(l!=="fr"&&l!=="en")l=/^fr/i.test(navigator.language||"")?"fr":"en";window.LANG=l;document.documentElement.lang=l;window.L=function(fr,en){return l==="en"?en:fr};window.LOC=function(c){return l==="en"?(/^en/i.test(c||"")?c:"en-GB"):(c||"fr-FR")};window.HSEP=function(t){return l==="fr"?t.replace(":","h"):t}})();</script>
+    <script>(function(){var l="fr";window.LANG=l;document.documentElement.lang=l;window.L=function(fr){return fr};window.LOC=function(c){return c||"fr-FR"};window.HSEP=function(t){return t.replace(":","h")}})();</script>
     <meta name="description" content="Temps d'attente, restaurants et spectacles des parcs d'attractions en temps réel.">
     <title>Theme Parks Companion</title>
 
@@ -158,12 +158,7 @@
         :root[data-theme="dark"] .dock { box-shadow: 0 -4px 14px rgb(0 0 0 / .45); }
 
         /* Sélecteur de langue (accueil, à côté de l'interrupteur de thème) */
-        .lang-switch { display: flex; flex: none; margin-left: auto; height: 32px; padding: 3px; gap: 2px; border-radius: 16px; background: rgb(255 255 255 / .16); border: 1px solid rgb(255 255 255 / .22); }
-        .lang-switch + .theme-switch { margin-left: 8px; }
-        .lang-switch button { min-width: 30px; padding: 0 8px; border: 0; border-radius: 13px; background: transparent; color: rgb(255 255 255 / .85); font: inherit; font-size: 12px; font-weight: 800; letter-spacing: .02em; cursor: pointer; }
-        .lang-switch button[aria-pressed="true"] { background: var(--gold); color: var(--on); }
-        @media (max-width: 340px) { .lang-switch button { min-width: 26px; padding: 0 6px; } .home-brand { gap: 8px; } .theme-switch { width: 52px; } .lang-switch + .theme-switch { margin-left: 6px; } }
-        .lang-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+        @media (max-width: 340px) { .home-brand { gap: 8px; } .theme-switch { width: 52px; } }
 
         /* Interrupteur clair / sombre (accueil, en haut à droite) */
         .theme-switch {
@@ -793,10 +788,6 @@
                 <div class="home-brand">
                     <img class="home-logo" src="icons/tpc-64.png" alt="" width="38" height="38">
                     Theme Parks Companion
-                    <div id="lang-switch" class="lang-switch" role="group" aria-label="Langue">
-                        <button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button>
-                        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
-                    </div>
                     <button id="theme-switch" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Mode sombre">
                         <span class="knob" aria-hidden="true">
                             <svg class="icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -1264,8 +1255,7 @@
             const grid = document.querySelector('#home-grid');
             // Continent d'un resort : champ « continent » de parks.json, sinon déduit du code pays (ISO)
             const CONTINENTS = ['Europe', 'Amérique du Nord', 'Amérique du Sud', 'Asie', 'Océanie', 'Afrique', 'Autres'];
-            const CONT_EN = { 'Amérique du Nord': 'North America', 'Amérique du Sud': 'South America', 'Asie': 'Asia', 'Océanie': 'Oceania', 'Afrique': 'Africa', 'Autres': 'Other' };
-            const contLabel = (c) => (LANG === 'en' ? CONT_EN[c] ?? c : c);
+            const contLabel = (c) => c;
             const COUNTRY_CONTINENT = {};
             const addCountries = (continent, codes) => codes.split(' ').forEach((c) => { COUNTRY_CONTINENT[c] = continent; });
             addCountries('Europe', 'FR DE ES IT GB UK NL BE CH AT DK SE NO FI PL CZ PT IE HU GR TR');
@@ -4050,48 +4040,6 @@
     })();
     </script>
     <script>
-        /* Langue : sélecteur FR/EN (choix mémorisé) ; en anglais, les textes fixes de la page sont traduits ici,
-           les messages construits par le code passent par L(fr, en). Les noms et descriptions des lieux restent inchangés. */
-        (function i18n() {
-            const sw = document.getElementById('lang-switch');
-            sw?.querySelectorAll('button').forEach((b) => {
-                b.setAttribute('aria-pressed', String(b.dataset.lang === LANG));
-                b.addEventListener('click', () => {
-                    if (b.dataset.lang === LANG) return;
-                    try { localStorage.setItem('tpc-lang', b.dataset.lang); } catch { /* stockage indisponible */ }
-                    location.reload();
-                });
-            });
-            if (LANG !== 'en') return;
-            const DOM = {"Mode sombre": "Dark mode", "Temps d’attente, horaires et alertes en direct pour préparer votre journée. <strong>Choisissez un parc</strong> pour commencer.": "Live wait times, opening hours and alerts to plan your day. <strong>Choose a park</strong> to get started.", "Filtrer par continent": "Filter by continent", "Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.": "Independent app, not affiliated with the parks. Data from themeparks.wiki, for information only.", "Navigation": "Navigation", "Accueil": "Home", "Billets": "Tickets", "Infos": "Info", "Fermer les infos": "Close info", "À propos": "About", "Theme Parks Companion affiche les temps d’attente, les horaires et les alertes en direct des parcs à thème, pour préparer votre journée.": "Theme Parks Companion shows live wait times, opening hours and alerts for theme parks, to help you plan your day.", "Données": "Data", "Temps d’attente et horaires : themeparks.wiki, à titre indicatif. Ils peuvent différer de l’information officielle du parc.": "Wait times and hours: themeparks.wiki, for information only. They may differ from the park’s official information.", "Indépendance": "Independence", "Application indépendante, non affiliée aux parcs ni à leurs exploitants.": "Independent app, not affiliated with the parks or their operators.", "Billets et pass": "Tickets and passes", "L’onglet Billets ouvre votre portefeuille : billets et pass annuels, enregistrés uniquement sur cet appareil.": "The Tickets tab opens your wallet: tickets and annual passes, stored only on this device.", "Installer l’appli sur l’écran d’accueil": "Add the app to your home screen", "Parc précédent": "Previous park", "Parc suivant": "Next park", "Synchronisation…": "Syncing…", "Tri et filtres": "Sort and filters", "Trier": "Sort", "Favoris": "Favorites", "Autour de moi": "Near me", "Lieux fermés": "Closed places", "Trier par": "Sort by", "Accueil : liste des parcs": "Home: list of parks", "Attractions": "Rides", "Restaurants": "Restaurants", "Spectacles": "Shows", "Détail du lieu": "Place details", "Sélectionnez un lieu pour afficher les détails": "Select a place to see its details", "Retour": "Back", "Ajouter aux favoris": "Add to favorites", "Activer l’alerte": "Turn on alert", "Supprimer": "Delete", "Me prévenir si l’attraction tombe en panne, puis quand elle rouvre": "Notify me if the ride breaks down, then when it reopens", "Voir le menu": "View menu", "Infos pratiques": "Practical info", "Indication d’attente": "Wait-time indicator", "Sous le temps d’attente d’une attraction, une pastille la compare à l’habitude : <strong class=\"u-low\">moins</strong>, <strong class=\"u-norm\">habituelle</strong> ou <strong class=\"u-high\">plus</strong> d’attente, avec l’écart en minutes.": "Under a ride’s wait time, a badge compares it with the usual wait: <strong class=\"u-low\">shorter</strong>, <strong class=\"u-norm\">usual</strong> or <strong class=\"u-high\">longer</strong>, with the difference in minutes.", "Comment c’est calculé": "How it’s calculated", "L’attente affichée en ce moment (file standard uniquement) est comparée à l’attente moyenne de la même heure, à plus ou moins une heure, sur les 6 derniers jours. Cette moyenne tient compte de la durée pendant laquelle chaque temps d’attente est resté affiché.": "The wait shown right now (standard queue only) is compared with the average wait at the same time of day, give or take an hour, over the last 6 days. This average is weighted by how long each wait time stayed displayed.", "Seuils": "Thresholds", "« Plus » ou « moins » apparaît à partir de 25 % d’écart et d’au moins 5 minutes. En dessous, l’attente est jugée habituelle.": "“Longer” or “shorter” appears from a 25% difference and at least 5 minutes. Below that, the wait is considered usual.", "Quand il n’y en a pas": "When there isn’t one", "Attraction fermée ou en panne, sans temps d’attente publié, ou historique insuffisant sur cette plage horaire (moins de 90 minutes de données, ou attente habituelle inférieure à 5 minutes).": "Ride closed or down, no published wait time, or not enough history for that time slot (less than 90 minutes of data, or a usual wait under 5 minutes).", "Historique de themeparks.wiki, téléchargé une fois par jour et conservé sur votre appareil. À titre indicatif.": "History from themeparks.wiki, downloaded once a day and kept on your device. For information only.", "Billets et pass annuels": "Tickets and annual passes", "Fermer le portefeuille": "Close wallet", "Portefeuille": "Wallet", "Scanner un billet ou un pass": "Scan a ticket or pass", "Annuler le scan": "Cancel scan", "Scanner le QR code": "Scan the QR code", "Importer une image": "Import an image", "Annuler": "Cancel", "Ajouter un titre": "Add a ticket or pass", "Aperçu du QR code scanné": "Preview of the scanned QR code", "Type de titre": "Type", "Billet": "Ticket", "Pass annuel": "Annual pass", "Date d’expiration": "Expiry date", "Nom (facultatif)": "Name (optional)", "Ex. Léa, billet 2 jours": "E.g. Lea, 2-day ticket", "Enregistrer dans le portefeuille": "Save to wallet", "Fermer": "Close", "QR code à présenter à l’entrée": "QR code to show at the entrance", "Confirmer": "Confirm", "Langue": "Language", "moins": "shorter", "habituelle": "usual", "plus": "longer", "<em>Bienvenue</em>&nbsp;!": "<em>Welcome</em>!", "Ajoute l'appli à ton écran d'accueil": "Add the app to your home screen", "Ne plus afficher": "Don’t show again"};
-            const norm = (t) => t.replace(/\s+/g, ' ').trim();
-            // 1) éléments à contenu mixte (texte + <strong>, <em>…)
-            document.querySelectorAll('body *').forEach((el) => {
-                if (['SCRIPT', 'STYLE', 'svg', 'SVG'].includes(el.tagName) || !el.children.length) return;
-                if (![...el.children].every((c) => ['STRONG', 'B', 'EM', 'BR'].includes(c.tagName))) return;
-                const en = DOM[norm(el.innerHTML)];
-                if (en) el.innerHTML = en;
-            });
-            // 2) nœuds de texte
-            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-            const nodes = [];
-            while (walker.nextNode()) nodes.push(walker.currentNode);
-            nodes.forEach((n) => {
-                if (n.parentElement?.closest('script, style')) return;
-                const key = norm(n.nodeValue);
-                const en = key && DOM[key];
-                if (en) n.nodeValue = n.nodeValue.replace(key.length ? n.nodeValue.trim() : '', en);
-            });
-            // 3) attributs
-            document.querySelectorAll('[aria-label], [title], [placeholder], [alt]').forEach((el) => {
-                for (const a of ['aria-label', 'title', 'placeholder', 'alt']) {
-                    const v = el.getAttribute(a);
-                    if (v && DOM[norm(v)]) el.setAttribute(a, DOM[norm(v)]);
-                }
-            });
-        })();
-    </script>
-    <script>
         /* Guide d'installation : vidéo adaptée à l'appareil (iPhone/iPad ou Android), masquable définitivement */
         (function installGuide() {
             const KEY = 'tpc-install-guide-hidden';
@@ -4128,7 +4076,7 @@
                 note.textContent = L("Ouvre d'abord ce site dans Safari : c'est là que l'option « Sur l'écran d'accueil » est proposée.", 'Open this site in Safari first: that is where the “Add to Home Screen” option is offered.');
                 note.hidden = false;
             }
-            const vsuf = LANG === 'en' ? '-en' : '';
+            const vsuf = '';
             video.poster = `videos/install-${os}${vsuf}.webp`;
             const open = () => {
                 const key = (isAndroid && apkReady) ? 'apk' : os;
