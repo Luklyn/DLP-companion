@@ -406,6 +406,7 @@
         .ht-n.has-st .ht-p { flex: none; margin-left: auto; font-family: var(--font), sans-serif; }
         .ht-n.has-st .ht-p .st { margin-left: 0; }
         .ht-n { display: block; font-family: var(--font-display); font-weight: 800; font-size: 17px; line-height: 1.2; }
+        .ht-tz { display: block; margin-top: 2px; font-size: 11.5px; line-height: 1.2; color: var(--mut); opacity: .85; font-variant-numeric: tabular-nums; }
         .ht-parks { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
         .ht-p { display: flex; align-items: center; gap: 7px; font-size: 13px; line-height: 1.3; color: var(--mut); }
         .ht-p .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #B8B9C9; }
@@ -1106,6 +1107,39 @@
             });
         })();
 
+        // Heure locale d'une destination (accueil) : affichée seulement si son fuseau a un décalage différent de Paris
+        const tzOffsetMin = (tz, date) => {
+            try {
+                const p = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })
+                    .formatToParts(date).map((x) => [x.type, +x.value]));
+                return (Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - Math.floor(date.getTime() / 1000) * 1000) / 60000;
+            } catch { return null; }
+        };
+        const clocks = new Set();
+        function paintClocks() {
+            const now = new Date();
+            const paris = tzOffsetMin('Europe/Paris', now);
+            for (const c of clocks) {
+                const off = tzOffsetMin(c.tz, now);
+                if (off == null || paris == null || off === paris) { c.el.hidden = true; continue; }   // même heure que Paris : rien à afficher
+                const d = (off - paris) / 60;
+                const gap = `${d > 0 ? '+' : '−'}${Math.abs(d) % 1 ? Math.abs(d).toFixed(1).replace('.', ',') : Math.abs(d)} h`;
+                c.el.textContent = `${new Intl.DateTimeFormat(c.locale, { hour: '2-digit', minute: '2-digit', timeZone: c.tz }).format(now)} · ${gap}`;
+                c.el.title = 'Heure locale (écart avec Paris)';
+                c.el.hidden = false;
+            }
+        }
+        function localClock(r) {
+            if (!r.timezone) return null;
+            const el = document.createElement('span');
+            el.className = 'ht-tz';
+            el.hidden = true;
+            clocks.add({ el, tz: r.timezone, locale: r.locale || 'fr-FR' });
+            paintClocks();
+            return el;
+        }
+        setInterval(paintClocks, 30_000);
+
         // Page d'accueil : une carte par resort, avec l'état ouvert / fermé de chacun de ses parcs (planning du jour).
         // Renvoie le resort choisi.
         function chooseResortOnHome() {
@@ -1201,6 +1235,8 @@
                         name.replaceChildren(nm, rows[0].row);
                         txt.append(name);
                     } else txt.append(name, parks);
+                    const clock = localClock(r);   // heure locale, seulement si le fuseau diffère de Paris
+                    if (clock) name.after(clock);
 
                     const go = document.createElement('span');
                     go.className = 'ht-go';
