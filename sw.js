@@ -9,9 +9,8 @@ const ICON = new URL('icon.png', self.registration.scope).href;
 
 // Données des lieux (parks.json + data/<parc>/*.json) : réseau d'abord (toujours la dernière version du JSON),
 // copie en cache utilisée seulement si le réseau est indisponible.
-// Le reste des requêtes (API temps réel, images, etc.) garde son comportement par défaut.
+// Le reste des requêtes (API temps réel, etc.) garde son comportement par défaut.
 const DATA_CACHE = 'dlp-data-v2';
-const IMG_CACHE = 'dlp-img-v1';
 const SCOPE_URL = new URL(self.registration.scope);
 const DATA_PATH = new RegExp('^' + SCOPE_URL.pathname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
     '(parks\\.json|data/[^/]+/(attractions|restaurants|shows)\\.json)$');
@@ -22,24 +21,12 @@ const isDataRequest = (request) => {
 
 // Supprime les anciens caches de données (v1 : fichiers à la racine)
 self.addEventListener('activate', (event) => event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => (k.startsWith('dlp-data-') && k !== DATA_CACHE)).map((k) => caches.delete(k))))
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => (k.startsWith('dlp-data-') && k !== DATA_CACHE) || k.startsWith('dlp-img-')).map((k) => caches.delete(k))))
 ));
 
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     const reqUrl = new URL(request.url);
-    if (request.method === 'GET' && reqUrl.origin === self.location.origin && /\/images\/.+\.webp$/.test(reqUrl.pathname)) {
-        // Photos : cache-first, mises en cache au fur et à mesure qu'on les consulte (pas de précache).
-        event.respondWith((async () => {
-            const cache = await caches.open(IMG_CACHE);
-            const hit = await cache.match(request);
-            if (hit) return hit;
-            const response = await fetch(request);
-            if (response.ok) cache.put(request, response.clone());
-            return response;
-        })());
-        return;
-    }
     if (!isDataRequest(request)) return;
 
     event.respondWith((async () => {

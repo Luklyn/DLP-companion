@@ -3,7 +3,6 @@
     "Code": "show_004",
     "UUID Themeparks.wiki": "22b78ed9-a692-47cb-b6a4-6d1224ff67e3",
     "Nom": "Happily Ever After",
-    "Photo": "images/walt-disney-world/happily-ever-after.webp",
     "Type": "Spectacle",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -15,7 +14,6 @@
     "Code": "show_010",
     "UUID Themeparks.wiki": "4c31b3ad-5dc9-437f-ac1a-0fdff36a2818",
     "Nom": "Mickey's Magical Friendship Faire",
-    "Photo": "images/walt-disney-world/mickey-s-magical-friendship-faire.webp",
     "Type": "Spectacle",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -32,8 +30,7 @@
     "Land": "Seven Seas Lagoon",
     "Description": "Parade nautique lumineuse sur le lac, visible depuis les hôtels.",
     "Coordonnées GPS (lat)": 28.409698,
-    "Coordonnées GPS (lng)": -81.571398,
-    "Photo": "images/walt-disney-world/electrical-water-pageant-gallery01.webp"
+    "Coordonnées GPS (lng)": -81.571398
   },
   {
     "Code": "show_029",
@@ -44,8 +41,7 @@
     "Land": "World Celebration",
     "Description": "Spectacle de percussion et d'acrobatie par des agents d'entretien musiciens.",
     "Coordonnées GPS (lat)": 28.3732336499128,
-    "Coordonnées GPS (lng)": -81.5501600577662,
-    "Photo": "images/walt-disney-world/jammitors.webp"
+    "Coordonnées GPS (lng)": -81.5501600577662
   },
   {
     "Code": "show_032",
@@ -56,8 +52,7 @@
     "Land": "World Showcase Lagoon",
     "Description": "Spectacle nocturne sur la lagune du World Showcase : feux d'artifice, jeux d'eau et musique.",
     "Coordonnées GPS (lat)": 28.3697559273453,
-    "Coordonnées GPS (lng)": -81.5471178955173,
-    "Photo": "images/walt-disney-world/luminous-the-symphony-of-us.webp"
+    "Coordonnées GPS (lng)": -81.5471178955173
   },
   {
     "Code": "show_039",
@@ -68,8 +63,7 @@
     "Land": "World Showcase – Espagne",
     "Description": "Artiste comique jongleur sur la place du pavillon espagnol.",
     "Coordonnées GPS (lat)": 28.36787,
-    "Coordonnées GPS (lng)": -81.548184,
-    "Photo": "images/walt-disney-world/sergio.webp"
+    "Coordonnées GPS (lng)": -81.548184
   },
   {
     "Code": "show_041",
@@ -80,8 +74,7 @@
     "Land": "World Showcase – Italie",
     "Description": "Troupe d'acrobates dans le style de la commedia dell'arte.",
     "Coordonnées GPS (lat)": 28.367875,
-    "Coordonnées GPS (lng)": -81.54822,
-    "Photo": "images/walt-disney-world/acrobatico.webp"
+    "Coordonnées GPS (lng)": -81.54822
   },
   {
     "Code": "show_042",
@@ -103,14 +96,12 @@
     "Land": "World Showcase – Royaume-Uni",
     "Description": "Groupe de rock britannique sur la scène du pavillon.",
     "Coordonnées GPS (lat)": 28.370535,
-    "Coordonnées GPS (lng)": -81.55249,
-    "Photo": "images/walt-disney-world/command-performance.webp"
+    "Coordonnées GPS (lng)": -81.55249
   },
   {
     "Code": "show_052",
     "UUID Themeparks.wiki": "1bbce25c-36eb-4d16-9216-4a1bbd46932b",
     "Nom": "Disney Jr. Mickey Mouse Clubhouse Live!",
-    "Photo": "images/walt-disney-world/disney-jr-mickey-mouse-clubhouse-live.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Animation Courtyard",
@@ -122,7 +113,6 @@
     "Code": "show_054",
     "UUID Themeparks.wiki": "a7763ca6-bca3-4e78-b75c-22886aa06bec",
     "Nom": "The Little Mermaid – A Musical Adventure",
-    "Photo": "images/walt-disney-world/the-little-mermaid-a-musical-adventure.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Animation Courtyard",
@@ -134,7 +124,6 @@
     "Code": "show_056",
     "UUID Themeparks.wiki": "7357772c-6b11-4a8d-af97-05a1bb45f001",
     "Nom": "Indiana Jones™ Epic Stunt Spectacular!",
-    "Photo": "images/walt-disney-world/indiana-jones-epic-stunt-spectacular.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Echo Lake",
@@ -146,7 +135,6 @@
     "Code": "show_058",
     "UUID Themeparks.wiki": "d91a0e9a-8652-4036-822f-e7b12b381273",
     "Nom": "For the First Time in Forever: A Frozen Sing-Along Celebration",
-    "Photo": "images/walt-disney-world/for-the-first-time-in-forever-a-frozen-sing-along-celebration.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Hollywood Boulevard",
@@ -158,7 +146,6 @@
     "Code": "show_061",
     "UUID Themeparks.wiki": "b1ed574f-40f2-4132-a1ee-893a276633c8",
     "Nom": "Wonderful World of Animation",
-    "Photo": "images/walt-disney-world/wonderful-world-of-animation.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Hollywood Boulevard",
@@ -175,14 +162,12 @@
     "Land": "Star Wars: Galaxy's Edge",
     "Description": "Patrouille du Premier Ordre, qui cherche des résistants dans le quartier.",
     "Coordonnées GPS (lat)": 28.354335,
-    "Coordonnées GPS (lng)": -81.562562,
-    "Photo": "images/walt-disney-world/first-order-searches-for-the-resistance.webp"
+    "Coordonnées GPS (lng)": -81.562562
   },
   {
     "Code": "show_066",
     "UUID Themeparks.wiki": "375197ac-27ac-41f7-bd93-f4e9b9fc4d5d",
     "Nom": "Beauty and the Beast – Live on Stage",
-    "Photo": "images/walt-disney-world/beauty-and-the-beast-live-on-stage.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Sunset Boulevard",
@@ -194,7 +179,6 @@
     "Code": "show_067",
     "UUID Themeparks.wiki": "69cb35f2-c58e-4b44-88c9-ea0cc720e075",
     "Nom": "Disney Villains: Unfairly Ever After",
-    "Photo": "images/walt-disney-world/disney-villains-unfairly-ever-after.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Sunset Boulevard",
@@ -206,7 +190,6 @@
     "Code": "show_068",
     "UUID Themeparks.wiki": "42328c39-76ab-4f03-b862-4206c8d9f7bb",
     "Nom": "Fantasmic!",
-    "Photo": "images/walt-disney-world/fantasmic.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Sunset Boulevard",
@@ -223,8 +206,7 @@
     "Land": "Africa",
     "Description": "Comédie musicale dans l'univers du Roi Lion, avec acrobates et chants.",
     "Coordonnées GPS (lat)": 28.35811,
-    "Coordonnées GPS (lng)": -81.592643,
-    "Photo": "images/walt-disney-world/festival-of-the-lion-king.webp"
+    "Coordonnées GPS (lng)": -81.592643
   },
   {
     "Code": "show_076",
@@ -235,8 +217,7 @@
     "Land": "Discovery Island",
     "Description": "Rencontre de rapaces et oiseaux exotiques avec des soigneurs.",
     "Coordonnées GPS (lat)": 28.357339,
-    "Coordonnées GPS (lng)": -81.590462,
-    "Photo": "images/walt-disney-world/animal-encounters-winged-encounters-the-kingdom-takes-flight.webp"
+    "Coordonnées GPS (lng)": -81.590462
   },
   {
     "Code": "show_079",
@@ -247,8 +228,7 @@
     "Land": "Discovery Island",
     "Description": "Spectacle d'oiseaux en vol.",
     "Coordonnées GPS (lat)": 28.358791,
-    "Coordonnées GPS (lng)": -81.590061,
-    "Photo": "images/walt-disney-world/feathered-friends-in-flight.webp"
+    "Coordonnées GPS (lng)": -81.590061
   },
   {
     "Code": "show_080",
@@ -259,8 +239,7 @@
     "Land": "Discovery Island",
     "Description": "Comédie musicale avec marionnettes et acrobates sur le thème du Monde de Nemo.",
     "Coordonnées GPS (lat)": 28.357401,
-    "Coordonnées GPS (lng)": -81.587455,
-    "Photo": "images/walt-disney-world/finding-nemo-the-big-blue-and-beyond.webp"
+    "Coordonnées GPS (lng)": -81.587455
   },
   {
     "Code": "show_083",
@@ -271,8 +250,7 @@
     "Land": "Discovery Island",
     "Description": "Projections sur l'Arbre de Vie qui s'anime.",
     "Coordonnées GPS (lat)": 28.357994,
-    "Coordonnées GPS (lng)": -81.590597,
-    "Photo": "images/walt-disney-world/tree-of-life-awakenings.webp"
+    "Coordonnées GPS (lng)": -81.590597
   },
   {
     "Code": "show_087",
@@ -283,8 +261,7 @@
     "Land": "Disney Springs",
     "Description": "Spectacle du Cirque du Soleil sur l'histoire de l'animation Disney, au théâtre de Disney Springs.",
     "Coordonnées GPS (lat)": 28.370719,
-    "Coordonnées GPS (lng)": -81.522536,
-    "Photo": "images/walt-disney-world/drawn-to-life-presented-by-cirque-du-soleil-and-disney.webp"
+    "Coordonnées GPS (lng)": -81.522536
   },
   {
     "Code": "show_016",
@@ -345,7 +322,6 @@
     "Code": "show_006",
     "UUID Themeparks.wiki": "012a211b-4c91-451c-8a0e-5e3ab398eda8",
     "Nom": "Meet Ariel at Her Grotto",
-    "Photo": "images/walt-disney-world/meet-ariel-at-her-grotto.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -357,7 +333,6 @@
     "Code": "show_024",
     "UUID Themeparks.wiki": "166f2985-7b27-4eff-a8b3-29c3448ba198",
     "Nom": "Meet Daring Disney Pals as Circus Stars at Pete's Silly Sideshow",
-    "Photo": "images/walt-disney-world/meet-daring-disney-pals-as-circus-stars-at-pete-s-silly-sideshow.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Storybook Circus",
@@ -369,7 +344,6 @@
     "Code": "show_025",
     "UUID Themeparks.wiki": "b5d6d1d1-e960-4c8f-a8a4-b9748b386b64",
     "Nom": "Meet Dashing Disney Pals as Circus Stars at Pete's Silly Sideshow",
-    "Photo": "images/walt-disney-world/meet-dashing-disney-pals-as-circus-stars-at-pete-s-silly-sideshow.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Storybook Circus",
@@ -386,8 +360,7 @@
     "Land": "EPCOT Entrée",
     "Description": "Rencontre avec Pluto, devant l'entrée principale du parc.",
     "Coordonnées GPS (lat)": 28.375567,
-    "Coordonnées GPS (lng)": -81.549695,
-    "Photo": "images/walt-disney-world/meet-pluto-near-epcot-main-entrance.webp"
+    "Coordonnées GPS (lng)": -81.549695
   },
   {
     "Code": "show_030",
@@ -398,8 +371,7 @@
     "Land": "World Celebration",
     "Description": "Rencontre avec les amis de Mickey, à la sortie de Spaceship Earth.",
     "Coordonnées GPS (lat)": 28.373898,
-    "Coordonnées GPS (lng)": -81.549914,
-    "Photo": "images/walt-disney-world/meet-beloved-disney-pals-at-mickey-and-friends.webp"
+    "Coordonnées GPS (lng)": -81.549914
   },
   {
     "Code": "show_031",
@@ -410,8 +382,7 @@
     "Land": "World Discovery",
     "Description": "Rencontre avec Figment, le dragon pourpre de l'Imagination.",
     "Coordonnées GPS (lat)": 28.372769,
-    "Coordonnées GPS (lng)": -81.55128,
-    "Photo": "images/walt-disney-world/meet-figment-inside-imageworks.webp"
+    "Coordonnées GPS (lng)": -81.55128
   },
   {
     "Code": "show_033",
@@ -422,8 +393,7 @@
     "Land": "World Showcase Plaza",
     "Description": "Rencontre avec Asha, héroïne du film Wish.",
     "Coordonnées GPS (lat)": 28.3718773852161,
-    "Coordonnées GPS (lng)": -81.5488533162313,
-    "Photo": "images/walt-disney-world/meet-asha-near-world-showcase-plaza.webp"
+    "Coordonnées GPS (lng)": -81.5488533162313
   },
   {
     "Code": "show_038",
@@ -434,8 +404,7 @@
     "Land": "World Showcase – Chine",
     "Description": "Rencontre avec Mulan dans le pavillon de la Chine.",
     "Coordonnées GPS (lat)": 28.3698563364835,
-    "Coordonnées GPS (lng)": -81.5461904203374,
-    "Photo": "images/walt-disney-world/meet-the-legendary-warrior-in-china.webp"
+    "Coordonnées GPS (lng)": -81.5461904203374
   },
   {
     "Code": "show_040",
@@ -457,8 +426,7 @@
     "Land": "World Showcase – Mexique",
     "Description": "Rencontre avec l'un des Trois Caballeros dans le pavillon du Mexique.",
     "Coordonnées GPS (lat)": 28.371185,
-    "Coordonnées GPS (lng)": -81.547297,
-    "Photo": "images/walt-disney-world/meet-one-of-the-three-caballeros-in-mexico.webp"
+    "Coordonnées GPS (lng)": -81.547297
   },
   {
     "Code": "show_048",
@@ -469,8 +437,7 @@
     "Land": "World Showcase – Norvège",
     "Description": "Rencontre avec Anna et Elsa de La Reine des neiges.",
     "Coordonnées GPS (lat)": 28.37097,
-    "Coordonnées GPS (lng)": -81.547134,
-    "Photo": "images/walt-disney-world/meet-anna-and-elsa-at-royal-sommerhus.webp"
+    "Coordonnées GPS (lng)": -81.547134
   },
   {
     "Code": "show_053",
@@ -481,14 +448,12 @@
     "Land": "Animation Courtyard",
     "Description": "Rencontre avec Ariel, la petite sirène.",
     "Coordonnées GPS (lat)": 28.356945,
-    "Coordonnées GPS (lng)": -81.560998,
-    "Photo": "images/walt-disney-world/meet-ariel-at-walt-disney-presents.webp"
+    "Coordonnées GPS (lng)": -81.560998
   },
   {
     "Code": "show_059",
     "UUID Themeparks.wiki": "02861a9b-584d-47d5-a8d0-98e05c3b5dce",
     "Nom": "Meet Disney Stars at Red Carpet Dreams",
-    "Photo": "images/walt-disney-world/meet-disney-stars-at-red-carpet-dreams.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Hollywood Boulevard",
@@ -500,7 +465,6 @@
     "Code": "show_060",
     "UUID Themeparks.wiki": "27f9fc86-2341-4bf4-8cbf-67fc16a841f1",
     "Nom": "Meet Olaf at Celebrity Spotlight",
-    "Photo": "images/walt-disney-world/meet-olaf-at-celebrity-spotlight.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Hollywood Boulevard",
@@ -512,7 +476,6 @@
     "Code": "show_062",
     "UUID Themeparks.wiki": "79860074-658f-49bc-8c1b-624af8b4718e",
     "Nom": "Meet Edna Mode at the Edna Mode Experience",
-    "Photo": "images/walt-disney-world/meet-edna-mode-at-the-edna-mode-experience.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Pixar Place",
@@ -524,7 +487,6 @@
     "Code": "show_063",
     "UUID Themeparks.wiki": "0e7426d1-7406-4e7c-9da6-ac6c126211c6",
     "Nom": "Meet Joy at Pixar Plaza",
-    "Photo": "images/walt-disney-world/meet-joy-at-pixar-plaza.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Pixar Place",
@@ -536,7 +498,6 @@
     "Code": "show_064",
     "UUID Themeparks.wiki": "eb325677-d32a-41ec-b2c9-e1ab91bade02",
     "Nom": "Meet Pixar Pals at Pixar Plaza",
-    "Photo": "images/walt-disney-world/meet-pixar-pals-at-pixar-plaza.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Pixar Place",
@@ -548,7 +509,6 @@
     "Code": "show_070",
     "UUID Themeparks.wiki": "eea07a8d-30e0-42d8-9c47-58cc038801e8",
     "Nom": "Meet the Toys in Toy Story Land",
-    "Photo": "images/walt-disney-world/meet-the-toys-in-toy-story-land.webp",
     "Type": "Rencontre",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Toy Story Land",
@@ -565,8 +525,7 @@
     "Land": "Discovery Island",
     "Description": "Rencontre avec Kevin, l'oiseau de Là-haut.",
     "Coordonnées GPS (lat)": 28.355542,
-    "Coordonnées GPS (lng)": -81.590079,
-    "Photo": "images/walt-disney-world/adventures-with-kevin-on-discovery-island.webp"
+    "Coordonnées GPS (lng)": -81.590079
   },
   {
     "Code": "show_081",
@@ -577,8 +536,7 @@
     "Land": "Discovery Island",
     "Description": "Rencontres avec les personnages Disney devant le poste d'exploration.",
     "Coordonnées GPS (lat)": 28.357972,
-    "Coordonnées GPS (lng)": -81.589796,
-    "Photo": "images/walt-disney-world/meet-favorite-disney-pals-at-adventurers-outpost.webp"
+    "Coordonnées GPS (lng)": -81.589796
   },
   {
     "Code": "show_082",
@@ -589,8 +547,7 @@
     "Land": "Discovery Island",
     "Description": "Rencontre avec Vaiana.",
     "Coordonnées GPS (lat)": 28.357086,
-    "Coordonnées GPS (lng)": -81.589374,
-    "Photo": "images/walt-disney-world/meet-moana-at-character-landing.webp"
+    "Coordonnées GPS (lng)": -81.589374
   },
   {
     "Code": "show_085",
@@ -601,14 +558,12 @@
     "Land": "Discovery Island",
     "Description": "Lieu de rencontre pour la journée Zoogether.",
     "Coordonnées GPS (lat)": 28.357425,
-    "Coordonnées GPS (lng)": -81.590153,
-    "Photo": "images/walt-disney-world/zoogether-day-gathering-spot.webp"
+    "Coordonnées GPS (lng)": -81.590153
   },
   {
     "Code": "show_007",
     "UUID Themeparks.wiki": "40737d3d-0ff6-4a9e-a050-beb87bf90120",
     "Nom": "Meet Cinderella and a Visiting Princess at Princess Fairytale Hall",
-    "Photo": "images/walt-disney-world/meet-visiting-princesses-at-princess-fairytale-hall.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -620,7 +575,6 @@
     "Code": "show_009",
     "UUID Themeparks.wiki": "cf4b2ba4-3626-4de7-9d07-abe8a65b1665",
     "Nom": "Meet Princess Tiana and a Visiting Princess at Princess Fairytale Hall",
-    "Photo": "images/walt-disney-world/meet-cinderella-and-princess-tiana-at-princess-fairytale-hall.webp",
     "Type": "Rencontre",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -637,8 +591,7 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Rencontre avec Mickey en magicien.",
     "Coordonnées GPS (lat)": 28.416727,
-    "Coordonnées GPS (lng)": -81.580746,
-    "Photo": "images/walt-disney-world/mickey-mouse-and-minnie-mouse-at-town-square-theater.webp"
+    "Coordonnées GPS (lng)": -81.580746
   },
   {
     "Code": "show_055",
@@ -655,7 +608,6 @@
     "Code": "show_002",
     "UUID Themeparks.wiki": "ee56b2f3-fd49-4a29-ae1a-2d321549a633",
     "Nom": "Disney Festival of Fantasy Parade",
-    "Photo": "images/walt-disney-world/disney-festival-of-fantasy-parade.webp",
     "Type": "Parade",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
@@ -667,7 +619,6 @@
     "Code": "show_014",
     "UUID Themeparks.wiki": "f819079e-644e-4fce-bda3-26b899ac7027",
     "Nom": "Disney Adventure Friends Cavalcade",
-    "Photo": "images/walt-disney-world/disney-adventure-friends-cavalcade.webp",
     "Type": "Parade",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
@@ -679,7 +630,6 @@
     "Code": "show_015",
     "UUID Themeparks.wiki": "d69261dc-62b8-434c-83bd-93649b43c408",
     "Nom": "Disney Starlight: Dream the Night Away",
-    "Photo": "images/walt-disney-world/disney-starlight-dream-the-night-away.webp",
     "Type": "Parade",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
@@ -696,14 +646,12 @@
     "Land": "Main Street, U.S.A.",
     "Description": "Pianiste jouant du ragtime et de la musique d'époque.",
     "Coordonnées GPS (lat)": 28.418112,
-    "Coordonnées GPS (lng)": -81.581421,
-    "Photo": "images/walt-disney-world/casey-s-corner-pianist.webp"
+    "Coordonnées GPS (lng)": -81.581421
   },
   {
     "Code": "show_022",
     "UUID Themeparks.wiki": "1eee22e8-1d0a-4809-a42b-df3ae55c69d5",
     "Nom": "The Dapper Dans",
-    "Photo": "images/walt-disney-world/the-dapper-dans.webp",
     "Type": "Musique",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
@@ -720,8 +668,7 @@
     "Land": "World Showcase – Allemagne",
     "Description": "Musique bavaroise sur la place du pavillon allemand.",
     "Coordonnées GPS (lat)": 28.368651,
-    "Coordonnées GPS (lng)": -81.546584,
-    "Photo": "images/walt-disney-world/entertainment-at-germany-gazebo.webp"
+    "Coordonnées GPS (lng)": -81.546584
   },
   {
     "Code": "show_037",
@@ -732,8 +679,7 @@
     "Land": "World Showcase – Canada",
     "Description": "Groupe de musique canadienne sur la scène du Moulin canadien.",
     "Coordonnées GPS (lat)": 28.371202,
-    "Coordonnées GPS (lng)": -81.551509,
-    "Photo": "images/walt-disney-world/entertainment-at-canada-mill-stage.webp"
+    "Coordonnées GPS (lng)": -81.551509
   },
   {
     "Code": "show_050",
@@ -744,8 +690,7 @@
     "Land": "World Showcase – Royaume-Uni",
     "Description": "Musiciens de pub britannique.",
     "Coordonnées GPS (lat)": 28.370467,
-    "Coordonnées GPS (lng)": -81.551677,
-    "Photo": "images/walt-disney-world/rose-and-crown-pub-musician.webp"
+    "Coordonnées GPS (lng)": -81.551677
   },
   {
     "Code": "show_051",
@@ -756,14 +701,12 @@
     "Land": "World Showcase – États-Unis",
     "Description": "Chœur a cappella à la Rotonde de l'American Adventure.",
     "Coordonnées GPS (lat)": 28.367595,
-    "Coordonnées GPS (lng)": -81.549387,
-    "Photo": "images/walt-disney-world/voices-of-liberty.webp"
+    "Coordonnées GPS (lng)": -81.549387
   },
   {
     "Code": "show_069",
     "UUID Themeparks.wiki": "bc2c2ffe-3cf0-4e75-a408-bf5e86515c4c",
     "Nom": "Green Army Drum Corps",
-    "Photo": "images/walt-disney-world/green-army-drum-corps.webp",
     "Type": "Musique",
     "Parc": "Disney's Hollywood Studios",
     "Land": "Toy Story Land",
@@ -780,8 +723,7 @@
     "Land": "Africa",
     "Description": "Groupe de rue animé avec percussions, dans le village africain de Harambe.",
     "Coordonnées GPS (lat)": 28.35873,
-    "Coordonnées GPS (lng)": -81.591951,
-    "Photo": "images/walt-disney-world/harambe-village-street-band-burudika.webp"
+    "Coordonnées GPS (lng)": -81.591951
   },
   {
     "Code": "show_074",
@@ -792,8 +734,7 @@
     "Land": "Africa",
     "Description": "Percussionnistes dans le village de Harambe.",
     "Coordonnées GPS (lat)": 28.35873,
-    "Coordonnées GPS (lng)": -81.591928,
-    "Photo": "images/walt-disney-world/tam-tam-drummers-of-harambe.webp"
+    "Coordonnées GPS (lng)": -81.591928
   },
   {
     "Code": "show_084",
@@ -804,8 +745,7 @@
     "Land": "Discovery Island",
     "Description": "Groupe de rue avec musiciens sur échasses et danseurs.",
     "Coordonnées GPS (lat)": 28.357122,
-    "Coordonnées GPS (lng)": -81.589667,
-    "Photo": "images/walt-disney-world/viva-gaia-street-band.webp"
+    "Coordonnées GPS (lng)": -81.589667
   },
   {
     "Code": "show_017",
@@ -880,7 +820,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Adventureland",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Spectacle de pirates autour de Jack Sparrow pendant la soirée Mickey's Not-So-Scary Halloween Party.",
     "Coordonnées GPS (lat)": 28.418256,
     "Coordonnées GPS (lng)": -81.584366
@@ -892,7 +831,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Feux d'artifice et projections sur le château pendant Mickey's Not-So-Scary Halloween Party (événement payant).",
     "Coordonnées GPS (lat)": 28.419507,
     "Coordonnées GPS (lng)": -81.581177
@@ -915,7 +853,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Fantasyland",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Rencontres de personnages en costumes d'Halloween pendant la soirée Mickey's Not-So-Scary Halloween Party.",
     "Coordonnées GPS (lat)": 28.421297,
     "Coordonnées GPS (lng)": -81.578933
@@ -927,7 +864,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Liberty Square",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Quatuor vocal de fantômes lors de la soirée Mickey's Not-So-Scary Halloween Party (événement payant).",
     "Coordonnées GPS (lat)": 28.418951,
     "Coordonnées GPS (lng)": -81.583354
@@ -939,7 +875,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Soirée dansante avec DJ pendant Mickey's Not-So-Scary Halloween Party (événement payant).",
     "Coordonnées GPS (lat)": 28.418309,
     "Coordonnées GPS (lng)": -81.5785519
@@ -951,7 +886,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Rencontre avec Jack Skellington et Sally pendant la soirée Mickey's Not-So-Scary Halloween Party.",
     "Coordonnées GPS (lat)": 28.416808,
     "Coordonnées GPS (lng)": -81.580815
@@ -963,7 +897,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Rencontre avec Mickey et Minnie en costumes d'Halloween pendant la soirée.",
     "Coordonnées GPS (lat)": 28.416727,
     "Coordonnées GPS (lng)": -81.580746
@@ -975,7 +908,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Main Street, U.S.A.",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Parade d'Halloween avec personnages Disney, comprise dans la soirée Mickey's Not-So-Scary Halloween Party.",
     "Coordonnées GPS (lat)": 28.4168668,
     "Coordonnées GPS (lng)": -81.5812
@@ -987,7 +919,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Tomorrowland",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Spectacle de Stitch masqué, pendant la soirée Mickey's Not-So-Scary Halloween Party.",
     "Coordonnées GPS (lat)": 28.41828,
     "Coordonnées GPS (lng)": -81.57864
@@ -999,7 +930,6 @@
     "Type": "Halloween",
     "Parc": "Magic Kingdom",
     "Land": "Tout le parc",
-    "Photo": "https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/vision-dam/digital/parks-platform/parks-global-assets/disney-world/events/halloween/entertainment/0926ZO_2526RW_R2_xak-16x9.jpg",
     "Description": "Rencontres de personnages pendant la soirée d'Halloween.",
     "Coordonnées GPS (lat)": 28.416808,
     "Coordonnées GPS (lng)": -81.580815
@@ -1030,7 +960,6 @@
     "Code": "show_037",
     "UUID Themeparks.wiki": "f13be6e2-40fd-46d2-895f-eef97bf65d3b",
     "Nom": "Disney Holidays in Hollywood at Disney Jollywood Nights",
-    "Photo": "images/walt-disney-world/disney-holidays-in-hollywood-at-disney-jollywood-nights.webp",
     "Type": "Spectacle",
     "Parc": "Disney's Hollywood Studios",
     "Land": "",

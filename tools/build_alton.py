@@ -4,9 +4,9 @@ import openpyxl
 
 SRC = sys.argv[1]
 OUT = 'data/alton-towers-resort/'
-ORDER = {'attractions': ['Code', 'UUID Themeparks.wiki', 'Nom', 'URL image', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
-         'restaurants': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Photo', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
-         'shows': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Photo', 'Description', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)']}
+ORDER = {'attractions': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
+         'restaurants': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
+         'shows': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)']}
 SHEET = {'attractions': 'Attractions', 'restaurants': 'Restaurants', 'shows': 'Spectacles'}
 
 
@@ -16,11 +16,9 @@ def slug(s):
 
 
 wb = openpyxl.load_workbook(SRC)
-sources, used = {}, set()
 for kind, sheet in SHEET.items():
     ws = wb[sheet]
     head = [c.value for c in ws[1]]
-    img = 'URL image' if kind == 'attractions' else 'Photo'
     out = []
     for r in range(2, ws.max_row + 1):
         row = {h: ws.cell(r, i + 1).value for i, h in enumerate(head) if h}
@@ -32,16 +30,6 @@ for kind, sheet in SHEET.items():
             if v is None or str(v).strip() == '':
                 continue
             e[k] = str(v).strip() if isinstance(v, str) else v
-        u = e.get(img)
-        if u and u.startswith('http'):
-            base = slug(e['Nom']); n, name = 2, base
-            while name in used:
-                name, n = f'{base}-{n}', n + 1
-            used.add(name)
-            sources[f'images/alton-towers-resort/{name}.webp'] = u
-            e[img] = f'images/alton-towers-resort/{name}.webp'
         out.append(e)
     json.dump(out, open(OUT + kind + '.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
     print(kind, len(out))
-json.dump(sources, open(OUT + 'image-sources.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-print('images à télécharger :', len(sources))
