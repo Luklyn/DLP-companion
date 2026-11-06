@@ -292,6 +292,34 @@
         "g1": "#2E7D5B",
         "g2": "#7A4FB0"
       }
+    },
+    {
+      "id": "toverland",
+      "name": "Toverland",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "locale": "fr-FR",
+      "themeparksId": "c11ad942-8f5d-4642-862c-30d8b7a414e3",
+      "dataPath": "data/toverland/",
+      "parks": [
+        {
+          "value": "Attractiepark Toverland",
+          "label": "Toverland",
+          "themeparksParkId": "f4bd1a23-44f0-444b-a91c-8d24f6ec5b1f"
+        }
+      ],
+      "info": {
+        "address": "Sevenum, Limbourg, Pays-Bas",
+        "lat": 51.3982,
+        "lng": 5.9838
+      },
+      "icon": "castle",
+      "color": "#6B3FA0",
+      "theme": {
+        "acc": "#6B3FA0",
+        "g1": "#6B3FA0",
+        "g2": "#2FA3A0"
+      }
     }
   ],
   "events": [

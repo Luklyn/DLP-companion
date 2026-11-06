@@ -1,9 +1,14 @@
-"""Construit data/alton-towers-resort/*.json depuis le tableau Excel complété (à relancer si le tableau change)."""
+"""Construit data/<parc>/*.json depuis le tableau Excel complété (à relancer si le tableau change).
+Usage : python tools/build_park.py tableau.xlsx data/<parc>/"""
 import json, re, sys, unicodedata
 import openpyxl
 
 SRC = sys.argv[1]
-OUT = 'data/alton-towers-resort/'
+OUT = sys.argv[2] if len(sys.argv) > 2 else 'data/alton-towers-resort/'
+if not OUT.endswith('/'):
+    OUT += '/'
+import os
+os.makedirs(OUT, exist_ok=True)
 ORDER = {'attractions': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
          'restaurants': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'],
          'shows': ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)']}

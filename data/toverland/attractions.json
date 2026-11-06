@@ -1,0 +1,397 @@
+[
+  {
+    "Code": "14",
+    "UUID Themeparks.wiki": "0e9f14f0-bdbb-425a-97de-d55a59bc7298",
+    "Nom": "Alpenrutsche",
+    "Description": "Vous connaissez probablement les sommets enneigés des montagnes autrichiennes. La descente en luge est encore plus amusante, mais vous n'avez jamais fait l'expérience d'une luge qui s'emballe comme celle-là. Et quand vous pensez suivre le bon chemin, voilà que la luge change tout à coup de direction. Il n'y a qu'une chose à faire : mettre les bras en l'air et rire !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397745,
+    "Coordonnées GPS (lng)": 5.985583
+  },
+  {
+    "Code": "26",
+    "UUID Themeparks.wiki": "5fb8c8cd-1154-4df3-86aa-2085650e3b06",
+    "Nom": "Arthur’s Tournament Training",
+    "Description": "Jeune, aventurier et combatif, mais avec un cœur d'or. Bien sûr, devenir roi du monde mythique d'Avalon n'arrive pas comme ça ! Nous recherchons des chevaliers forts, courageux et aguerris. Ce n'est qu'à force de s'entraîner, de jouer et d’escalader que tu deviendras le roi du pays enchanté. Alors amuse-toi et mets ton agilité à l'épreuve en franchissant divers obstacles.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.400666,
+    "Coordonnées GPS (lng)": 5.9844
+  },
+  {
+    "Code": "8",
+    "UUID Themeparks.wiki": "cbb6038c-8f4d-4243-9636-a9dd2fb53592",
+    "Nom": "Booster Bike",
+    "Description": "Des montagnes russes passionnantes pour le lancement Accrochez-vous bien, car c'est parti. En quelques secondes, vous passerez de 0 à 73 km/h sur des collines et dans des virages serrés. Vous êtes même sur une vraie moto ! Vous osez lever les mains en l'air dans les virages ? Quand pouvez-vous visiter Booster Bike ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397983,
+    "Coordonnées GPS (lng)": 5.985235
+  },
+  {
+    "Code": "5",
+    "UUID Themeparks.wiki": "16422fe4-abbf-4128-bb8d-fd22bc5f71e1",
+    "Nom": "Coco Bolo",
+    "Description": "Le nid de Coco Bolo se trouve au sommet d'un arbre de la Magische Vallei. C'est un oiseau assez étrange, mais avec une tête joyeuse. Vous vous demandez ce qu'il voit depuis là-haut ? Grimpez le long du joli tronc d'arbre, mais faites attention que Coco ne vous voie pas !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.398861,
+    "Coordonnées GPS (lng)": 5.984972
+  },
+  {
+    "Code": "7",
+    "UUID Themeparks.wiki": "1374eec4-9bad-49e5-8314-12031f44fb90",
+    "Nom": "Djengu River",
+    "Description": "Défiez les eaux tumultueuses de la rivière tourbillonnante qui coule au cœur de la Magische Vallei. Vous vous retrouverez bientôt dans des rapides et attention aux cascades ! Même les habitants de cette région, les Dwervels, ont remarqué votre arrivée et vous éclaboussent avec le plus grand plaisir. Qui saura rester le plus au sec ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.398222,
+    "Coordonnées GPS (lng)": 5.98425
+  },
+  {
+    "Code": "25",
+    "UUID Themeparks.wiki": "a7517e28-f35e-4591-aef4-37531a2634ed",
+    "Nom": "Djinn",
+    "Description": "Ces chaises volantes orientales ne sont pas ordinaires, elles sont enchantées ! Prenez place, seul ou à deux, et vivez un voyage inoubliable dans les airs. Haut dans le ciel, vous survolez le marché oriental rempli de marchandises. Alors c'est ça, voler !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396218,
+    "Coordonnées GPS (lng)": 5.986876
+  },
+  {
+    "Code": "68",
+    "UUID Themeparks.wiki": "8fad9674-9a6c-4469-8e5d-38501dde74fc",
+    "Nom": "Dragonwatch",
+    "Description": "En tant que « dragonwatcher » héroïque, laissez-vous hisser à près de 20 mètres et regardez attentivement autour de vous. Vous repérez des dragons autour d'Avalon ? Alors envoyez-les dans cet endroit, car ici, tous les dragons sont soignés avec amour. Du moins si vous avez le temps, car vous plongerez plusieurs fois dans les profondeurs.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.40109,
+    "Coordonnées GPS (lng)": 5.983764
+  },
+  {
+    "Code": "18",
+    "UUID Themeparks.wiki": "0d9292cd-04a7-4a21-b7d9-b4880e62a2e1",
+    "Nom": "Drakenslangen",
+    "Description": "Préparez-vous à une descente pleine d’éclaboussures Quel suspense ! Votre aventure commence au sommet du Land van Toos. Installez-vous dans votre propre barque et mettez-vous à l'aise. Préparez-vous à de grosses vagues et à une descente fulgurante ! Arriverez-vous à rester sec jusqu’en bas ou serez-vous éclaboussé ? Quand pouvez-vous visiter Drakenslangen ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396714,
+    "Coordonnées GPS (lng)": 5.986835
+  },
+  {
+    "Code": "27",
+    "UUID Themeparks.wiki": "d3fa9c47-ed91-409b-8ec8-7f7070a8f634",
+    "Nom": "Dwaalhof",
+    "Description": "Dehors dans le Tovertuin se trouve un labyrinthe plein de coins secrets et de chemins inattendus. Au moment où vous pensez avoir retrouvé votre chemin, un nouveau sentier vous emmène un peu plus loin dans votre exploration. Dans le Dwaalhof, vous pouvez errer à votre aise sans que personne ne vous voie. Et tout à coup, vous vous retrouverez à nouveau là où vous avez commencé !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396419,
+    "Coordonnées GPS (lng)": 5.985627
+  },
+  {
+    "Code": "3",
+    "UUID Themeparks.wiki": "39760670-7929-4f29-a7bd-83a5d12f5302",
+    "Nom": "Dwervelwind",
+    "Description": "Allez-vous avancer, reculer ou bien...? Tel un véritable tourbillon, vous tournez sur les montagnes russes. Bien que vous ne sachiez presque plus ce qui devant ou derrière, vous continuez à avancer. On a presque l'impression de voler en apesanteur dans le ciel. Et ce n'est pas tout, car vous entendez également des sons entraînants et enchanteurs. Encore un tour !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.399056,
+    "Coordonnées GPS (lng)": 5.98575
+  },
+  {
+    "Code": "13",
+    "UUID Themeparks.wiki": "a4de6cfd-3014-475b-868c-822ef7d84bf5",
+    "Nom": "Expedition Zork",
+    "Description": "Rivière sauvage rafraîchissante sur un tronc d'arbre Partez à l'aventure dans un tronc d'arbre Montez avec votre groupe dans l'un des troncs d'arbres et partez à l'aventure à travers les plus hauts sommets montagneux, les vallées profondes et les cascades gigantesques.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.39745,
+    "Coordonnées GPS (lng)": 5.985219
+  },
+  {
+    "Code": "9",
+    "UUID Themeparks.wiki": "83329a41-eb4e-4aa2-a6fd-9e0c35d66b8f",
+    "Nom": "Exploria Magica",
+    "Description": "Vous le remarquez dans tout : Port Laguna est une ville portuaire enchanteresse ! Grâce à Exploria Magica, vous pouvez vraiment donner vie aux vitrines et faire des découvertes extraordinaires. Essayez et découvrez votre propre magie. Voici comment fonctionne Exploria Magica : C'est ici que commence votre exploration.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397819,
+    "Coordonnées GPS (lng)": 5.982412
+  },
+  {
+    "Code": "28",
+    "UUID Themeparks.wiki": "21cae14c-0cb9-45f1-b8c1-728370b85e83",
+    "Nom": "Fort Boreas",
+    "Description": "Toboggans, tubes et ponts étroits. Une fois entré dans Fort Boreas, vous ne pourrez plus sortir ! Le Dwervel Boreas garde sa forteresse en bois au péril de sa vie. Pouvez-vous trouver votre chemin vers l’un des toboggans passionnants ? Quel est l'itinéraire le plus rapide pour se rendre à Fort Boreas et quel est le temps d'attente actuel ? Téléchargez l'application Toverland.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.398861,
+    "Coordonnées GPS (lng)": 5.984528
+  },
+  {
+    "Code": "1",
+    "UUID Themeparks.wiki": "21190381-a474-4f80-a46c-bbceabde91d5",
+    "Nom": "Fēnix",
+    "Description": "Le vol promet d'être palpitant : de 40 mètres de haut, vous descendez à 95km/h et faites trois loopings avec les jambes dans le vide ! C'est comme si vous voliez. Tous les 777 ans, le mythique Fēnix renaît de ses cendres. Vous en êtes aujourd’hui le témoin.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.400281,
+    "Coordonnées GPS (lng)": 5.984197
+  },
+  {
+    "Code": "69",
+    "UUID Themeparks.wiki": "3998a6ae-5f60-405a-b33e-d0b9b1a58f45",
+    "Nom": "Garden Tour",
+    "Description": "Un circuit à travers le luxuriant jardin de plantes aromatiques de Merlin Bienvenue dans le jardin de Merlin l’Enchanteur. En plus de tous ses sortilèges, le célèbre sorcier s'occupe ici des plantes les plus insolites et les plus fantastiques. Bien sûr, cela nécessite une visite guidée !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.401138,
+    "Coordonnées GPS (lng)": 5.984524
+  },
+  {
+    "Code": "70",
+    "UUID Themeparks.wiki": "a5a0b261-a6ac-49e9-a970-baf07e4f0f6f",
+    "Nom": "Jumping Juna",
+    "Description": "Juna, la licorne toujours joyeuse donne une fête costumée ! Le Dragon Sparky est assez espiègle pour y participer, alors montez sur son dos et rejoignez-le pour un tour festif le long des bannières flottantes. Vous vous rendrez vite compte qu'il ne s'agit pas d'un carrousel ordinaire.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.400851,
+    "Coordonnées GPS (lng)": 5.984034
+  },
+  {
+    "Code": "29",
+    "UUID Themeparks.wiki": "7bca1828-045e-486f-88ec-d2d12e449ef0",
+    "Nom": "Karussell",
+    "Description": "Les belles lumières et le son authentique de l'orgue du Karussell vous feront remonter le temps ! Choisirez-vous un cheval à bascule, le carrosse ou la nacelle qui tourne ? L'espace d'un instant, vous retrouvez l'ambiance des fêtes foraines d'antan. Vous venez faire un tour avec nous ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397774,
+    "Coordonnées GPS (lng)": 5.985916
+  },
+  {
+    "Code": "30",
+    "UUID Themeparks.wiki": "727cb293-339b-40e2-a9b3-36824d96d5b3",
+    "Nom": "Kletterabenteuer",
+    "Description": "Wunderwald est un endroit où vous pouvez découvrir toutes sortes de choses. Vous vivrez des moments de plaisir sans précédent dans les trois tours gigantesques. Bien au-dessus des cimes des arbres et des stubes autrichiens, vous grimpez d'un côté à l'autre de cette forêt enchantée via des ponts de corde, des montagnes russes et des filets.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397608,
+    "Coordonnées GPS (lng)": 5.985522
+  },
+  {
+    "Code": "24",
+    "UUID Themeparks.wiki": "c3fae277-fcde-4ef6-8adc-c256c79c976e",
+    "Nom": "Klokhuis",
+    "Description": "La chenille affamée dévore tout sur son passage Cette espiègle chenille verte adore les pommes sucrées ! Elle se tortille et tourne autour de la pomme, et quand vous ne regardez pas, elle la croque en cachette ! La Klokhuis est un mini-circuit, spécialement pour les tout-petits.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396565,
+    "Coordonnées GPS (lng)": 5.986209
+  },
+  {
+    "Code": "71",
+    "UUID Themeparks.wiki": "b63cc977-f85a-4735-9f12-2205b9453489",
+    "Nom": "Little Dragons",
+    "Description": "Un nid de dragon sûr pour les tout-petits Rassemblement des tout petits dragons ! L'environnement de jeu sûr et doux de Little Dragons les incite à s’amuser pendant un moment. Idéal pour les bébés et les tout petits. Grimper, escalader, sentir et glisser, tout est possible. En tant que parent, surveillez-les de près.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Type": "Service à table",
+    "Coordonnées GPS (lat)": 51.400978,
+    "Coordonnées GPS (lng)": 5.984759
+  },
+  {
+    "Code": "2",
+    "UUID Themeparks.wiki": "60c5b950-e8e1-4fe2-8c1d-8f97962d4688",
+    "Nom": "Merlin's Quest",
+    "Description": "Mystérieuse croisière sur les eaux d'Avalon Cette promenade en bateau pour toute la famille semble se dérouler paisiblement jusqu'à ce que, soudain, Fēnix passe en trombe. Avant de pénétrer dans un mystérieux réseau de grottes, vous rencontrerez des visages inhabituels. Le gardien finit par vous laisser entrer.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.399661,
+    "Coordonnées GPS (lng)": 5.985984
+  },
+  {
+    "Code": "86",
+    "UUID Themeparks.wiki": "c6641f9b-5107-4f94-a4e6-f784e27c4589",
+    "Nom": "Morrels BOEderij",
+    "Parc": "Attractiepark Toverland",
+    "Coordonnées GPS (lat)": 51.396017,
+    "Coordonnées GPS (lng)": 5.986697
+  },
+  {
+    "Code": "20",
+    "UUID Themeparks.wiki": "02c9209d-f42a-4392-bdf3-26d051539c02",
+    "Nom": "Morrels Truckjes",
+    "Parc": "Attractiepark Toverland",
+    "Coordonnées GPS (lat)": 51.3968,
+    "Coordonnées GPS (lng)": 5.986686
+  },
+  {
+    "Code": "10",
+    "UUID Themeparks.wiki": "fdf642f2-57b5-47e4-a736-b898f60177c7",
+    "Nom": "Paarden van Ithaka",
+    "Description": "Partez pour une randonnée aventureuse le long des dunes et des ponts anciens jusqu'à Troie. Saisissez les rênes et partez au petit trot à travers le paysage sauvage. Les chevaux y sont habitués, cette Île grecque est leur terre natale. Cependant, ils ont besoin d'un compagnon pour leur voyage, alors rejoignez-les ! Quand pouvez-vous visiter Paarden van Ithaka ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397199,
+    "Coordonnées GPS (lng)": 5.983984
+  },
+  {
+    "Code": "67",
+    "UUID Themeparks.wiki": "070306fe-c840-41a2-a261-2363373d6e53",
+    "Nom": "Pixarus",
+    "Description": "Vous serez mis sens dessus dessous grâce à vos talents de magicien Avez-vous toujours rêvé d'apprendre à voler ? Alors saisissez cette opportunité à deux mains ! Littéralement, car c'est vous qui avez le contrôle. Vous décidez vous-même quand vous faites des loopings. Avec Merlin l’Enchanteur comme professeur, vous maîtriserez le vol en un rien de temps.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.39995,
+    "Coordonnées GPS (lng)": 5.985218
+  },
+  {
+    "Code": "11",
+    "UUID Themeparks.wiki": "a257829e-3645-4a6c-bbe3-a9aedd21cd76",
+    "Nom": "Scorpios",
+    "Description": "Avec le robuste bateau à bascule Scorpios, les guerriers grecs bravent les vagues déchaînées. À votre tour ! La houle des vagues crée rapidement une inclinaison de pas moins de 75 degrés ! Osez-vous encore lever les mains en l'air ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397154,
+    "Coordonnées GPS (lng)": 5.98368
+  },
+  {
+    "Code": "32",
+    "UUID Themeparks.wiki": "053caa72-8ffd-443f-b037-d3bbeed7c062",
+    "Nom": "Sim sa la Klim",
+    "Description": "Avez-vous déjà vu un dôme oriental aussi coloré ? Le Sim sa la Klim est une attraction unique, car il s'agit à la fois d'un château gonflable, d'un mur d'escalade et d'un toboggan ! Ici, vous pouvez dépenser toute votre énergie et grimper et escalader. Encore et encore !",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396073,
+    "Coordonnées GPS (lng)": 5.986429
+  },
+  {
+    "Code": "72",
+    "UUID Themeparks.wiki": "b7731131-bce9-4970-898a-fd97692f1f41",
+    "Nom": "Sparky's Splash Dock",
+    "Description": "Une zone de stockage pleine d'aventures aquatiques Depuis que le dragon Sparky a élu domicile ici, la zone de stockage de la vaisselle sale est devenue une aire de jeux d’aventures aquatiques ! Le cours d'eau commence au puits et passe par divers obstacles dans la zone, en passant devant des tonneaux et des casseroles. Vous pouvez tous les bouger à votre guise.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.400422,
+    "Coordonnées GPS (lng)": 5.984645
+  },
+  {
+    "Code": "74",
+    "UUID Themeparks.wiki": "9e12ad08-aa2f-4379-9079-ee1b18602ce8",
+    "Nom": "Speelkasteel",
+    "Description": "Un château coloré amusant pour les petits Grimper, escalader, ramper et glisser. L'amusement est sans fin dans le Château de jeu coloré. Grimpez dans l'une des tours et découvrez tous les obstacles que vous rencontrerez. Par exemple, avez-vous vu le toboggan familial géant ou le toboggan à rouleaux ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396742,
+    "Coordonnées GPS (lng)": 5.986004
+  },
+  {
+    "Code": "21",
+    "UUID Themeparks.wiki": "78396afd-6f9b-4d58-b2ac-e9a7a4adc6de",
+    "Nom": "Theekopjes",
+    "Description": "Valsez et tournez dans des jolies tasses C'est l'heure du thé ! Prenez place dans l'une des tasses de thé colorées. Lorsque la musique commence, c’est l’heure de tourner. Sous le regard de la grande théière au centre, les tasses dansent joyeusement autour d'elle.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396596,
+    "Coordonnées GPS (lng)": 5.986615
+  },
+  {
+    "Code": "6",
+    "UUID Themeparks.wiki": "ee97756a-5f98-400d-87cb-f0844cd3e86a",
+    "Nom": "Tolly Molly",
+    "Description": "Laissez-vous emporter par les créatures aquatiques mythiques Quand Dwervel Molly souffle dans sa corne magique, il se passe quelque chose de spécial ! Des créatures aquatiques fantastiques s'animent gracieusement et nagent tranquillement en rond. Montez également sur le dos de l'une des créatures et faites un tour dans cet extraordinaire carrousel aquatique.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.398743,
+    "Coordonnées GPS (lng)": 5.98474
+  },
+  {
+    "Code": "19",
+    "UUID Themeparks.wiki": "97cc99a1-6769-4c8a-992c-086c8350e0bd",
+    "Nom": "Toos-Express",
+    "Description": "Le monde fantastique de Toos à une vitesse fulgurante Embarquez car ce train coloré semble tout à fait inoffensif, mais il fonce sur des collines rapides et des virages serrés. La cloche sonne aussi joyeusement. N'hésitez pas à lever les mains en l'air et à sourire jusqu'aux oreilles ! Des montagnes russes idéales pour les petits. Quand pouvez-vous visiter Toos-Express ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396885,
+    "Coordonnées GPS (lng)": 5.986291
+  },
+  {
+    "Code": "75",
+    "UUID Themeparks.wiki": "1de76212-8cae-4e2f-bcf5-a587773b4532",
+    "Nom": "Tovertuin",
+    "Description": "Explorez l'oasis de verdure pleine de jeux Cette oasis de verdure vous invite à jouer dehors ! Retirez-vous à l'ombre des arbres ou jouez au soleil ! Partez à l'aventure et découvrez toutes sortes de choses : un téléphérique, une petite aire de jeux aquatique des toupies, des trampolines et un trampoline aérien gigantesque. Qui peut y faire les plus grands sauts ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396118,
+    "Coordonnées GPS (lng)": 5.985916
+  },
+  {
+    "Code": "12",
+    "UUID Themeparks.wiki": "7eebd9b6-b093-4330-a81e-f6fd5e8943e7",
+    "Nom": "Troy",
+    "Description": "Une aventure record dans la Grèce antique Lorsque vous entrez dans le monde thématique d'Ithaque, vous ne pouvez pas éviter Troie. Avec ses 1077 mètres de piste, ses 35 mètres de hauteur et sa vitesse de 90 km/h, ce géant de bois est le plus long, le plus haut et le plus rapide de tout le Benelux ! Prenez place dans les chars et partez à la conquête de la victoire.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.39692,
+    "Coordonnées GPS (lng)": 5.982768
+  },
+  {
+    "Code": "17",
+    "UUID Themeparks.wiki": "c0f5f8e9-c490-4e9b-846f-13163fea54ea",
+    "Nom": "Villa Fiasko",
+    "Description": "L'inventeur Maximus Müller a ouvert les portes de sa maison, alors n'hésitez pas à entrer. Et comme on peut s'y attendre de la part de cet inventeur fou : rien ici n'est ce qu'il paraît être. L'escalier bouge et le sol se met à tourner, et ce n'est que le début.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.39726,
+    "Coordonnées GPS (lng)": 5.986484
+  },
+  {
+    "Code": "23",
+    "UUID Themeparks.wiki": "2f4a7274-d722-4bcf-b7bb-f2d6bde0f647",
+    "Nom": "Villa Toverhoed",
+    "Description": "Y a-t-il un vrai sorcier ou une vraie sorcière qui se cache en vous ? Tu le découvriras par toi-même dans la Villa Toverhoed ! Tenez fermement votre baguette et commencez votre voyage. D'un coup de baguette, vous donnerez vie aux objets. Quel est l'itinéraire le plus rapide pour se rendre à Villa Toverhoed et quel est le temps d'attente actuel ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.396714,
+    "Coordonnées GPS (lng)": 5.986383
+  },
+  {
+    "Code": "22",
+    "UUID Themeparks.wiki": "493122b6-9da7-48e3-b357-f89a26a85ff8",
+    "Nom": "Vliegend Tapijt",
+    "Description": "Toos et Morrel partent en voyage et choisissent un moyen de transport magique. Ils prennent le tapis volant pour se rendre d'un point A à un point B. Les plus petits aventuriers peuvent se joindre à eux dans les airs, mais très vite le tapis redescend et redescend encore ! Peut-être que les mains se lèveront en l'air. Quand pouvez-vous visiter Vliegend Tapijt ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.3965,
+    "Coordonnées GPS (lng)": 5.986522
+  },
+  {
+    "Code": "4",
+    "UUID Themeparks.wiki": "b6cefdb2-6469-44f8-9101-3c4b08883dcc",
+    "Nom": "Waku Waku",
+    "Description": "Parviendrez-vous à traverser sans vous mouiller ? Au bord de Katara - Fountain of Magic, bravez les eaux enchanteresses de Waku Waku. Garderez-vous l’équilibre et atteindrez-vous l’autre côté sans vous mouiller ? Ou bien vous lancerez-vous à fond dans les plaisirs de l'eau ? Quel est l'itinéraire le plus rapide pour se rendre à Waku Waku et quel est le temps d'attente actuel ?",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.398583,
+    "Coordonnées GPS (lng)": 5.985889
+  },
+  {
+    "Code": "73",
+    "UUID Themeparks.wiki": "7b49d529-c713-4708-931d-7cb38d95a383",
+    "Nom": "Waterdwarf Alley",
+    "Parc": "Attractiepark Toverland",
+    "Coordonnées GPS (lat)": 51.400344,
+    "Coordonnées GPS (lng)": 5.985483
+  },
+  {
+    "Code": "15",
+    "UUID Themeparks.wiki": "e8f6a862-00f0-4d6f-afa2-4253e0f0189b",
+    "Nom": "Wirbelbaum",
+    "Description": "Prenez place dans un panier, sur les branches du géant Wirbelbaum. En tournant, vous montez de plus en plus haut. Jusqu'à ce que vous atteigniez une hauteur de treize mètres à Wunderwald. Du moins si vous avez le temps, car vous pouvez décider vous-même du degré d'aventure de votre escalade dans les arbres.",
+    "Parc": "Attractiepark Toverland",
+    "Land": "van Toos",
+    "Coordonnées GPS (lat)": 51.397501,
+    "Coordonnées GPS (lng)": 5.986334
+  }
+]
