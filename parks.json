@@ -319,7 +319,8 @@
         "acc": "#6B3FA0",
         "g1": "#6B3FA0",
         "g2": "#2FA3A0"
-      }
+      },
+      "iconImage": "icons/toverland.png"
     }
   ],
   "events": [
