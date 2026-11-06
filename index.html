@@ -2590,20 +2590,24 @@
                 if (!res.ok) return;
                 const remote = (await res.json()).alerts ?? {};
                 let changed = false;
-                for (const [id, a] of alerts) {
+                let ended = false;
+                for (const [id, a] of [...alerts]) {
                     const r = remote[serverId(id)];
                     if (!r || r.kind !== a.kind) continue;
                     if (a.kind === 'wait' && r.threshold === a.threshold && (a.armed !== r.armed || a.firedAt !== r.firedAt)) {
                         Object.assign(a, { armed: r.armed, firedAt: r.firedAt, firedWait: r.firedWait });
                         changed = true;
+                        if (a.firedAt) { alerts.delete(id); ended = true; }   // déclenchée pendant que l'app était fermée
                     } else if (a.kind === 'show' && r.lead === a.lead) {
                         for (const k of r.done ?? []) if (!a.done.includes(k)) { a.done.push(k); changed = true; }
                     } else if (a.kind === 'status' && a.down !== r.down) {
-                        a.down = r.down;
+                        if (a.down && !r.down) { alerts.delete(id); ended = true; }   // réouverture notifiée par le serveur
+                        else a.down = r.down;
                         changed = true;
                     }
                 }
                 if (changed) { saveAlerts(); render(); }
+                if (ended) syncAlerts();
             } catch { /* hors connexion : on garde l'état local */ }
         }
 
@@ -2698,6 +2702,7 @@
             }
             if (status === 'OPERATING' && a.down) {
                 a.down = false;
+                a.ended = true;
                 const wait = item.live.wait;
                 sendNotification({
                     title: `${item.name} a rouvert`,
@@ -2713,7 +2718,7 @@
         function checkAlerts() {
             if (!alerts.size) return false;
             const now = Date.now();
-            let changed = false;
+            let changed = false, ended = false;
             for (const [key, a] of alerts) {
                 const item = dbById.get(key.split('#')[0]);
                 if (!item?.live) continue;
@@ -2721,10 +2726,32 @@
                     : a.kind === 'status' ? checkStatusAlert(item, a)
                     : checkShowAlert(item, a, now);
                 changed = result || changed;
+                // Alerte terminée (notification envoyée / attraction rouverte) : elle libère son emplacement
+                if ((a.kind === 'wait' && a.firedAt) || (a.kind === 'status' && a.ended)) { alerts.delete(key); ended = true; }
             }
             if (changed) saveAlerts();
+            if (ended) syncAlerts();
             return changed;
         }
+
+        /* --- Limite : 1 alerte d'attente + 1 alerte de panne actives en même temps (tous parcs confondus) --- */
+        // Renvoie le nom de l'attraction qui occupe déjà l'emplacement (hors alerte `exceptKey`), ou null s'il est libre
+        function slotTakenBy(kind, exceptKey) {
+            for (const [key, a] of alerts) {
+                if (a.kind === kind && key !== exceptKey) return dbById.get(key.split('#')[0])?.name ?? '…';
+            }
+            for (const r of registry.resorts) {
+                if (r.id === resort.id) continue;
+                try {
+                    const stored = JSON.parse(localStorage.getItem(ALERTS_REMOTE_KEY + r.id) ?? '{}');
+                    for (const v of Object.values(stored)) if (v?.kind === kind) return v.name ?? r.name ?? '…';
+                } catch { /* ignoré */ }
+            }
+            return null;
+        }
+        const slotMessage = (kind, name) => kind === 'wait'
+            ? L(`Une alerte d’attente est déjà active (${name}). Vous ne pouvez en avoir qu’une à la fois : supprimez-la ou attendez qu’elle se déclenche.`, `A wait alert is already active (${name}). Only one at a time: delete it or wait until it fires.`)
+            : L(`Une alerte de panne est déjà active (${name}). Vous ne pouvez en avoir qu’une à la fois : désactivez-la ou attendez la réouverture de l’attraction.`, `A breakdown alert is already active (${name}). Only one at a time: turn it off or wait for the ride to reopen.`);
 
         /* --- Interface de l'alerte dans la fiche détail --- */
         let alertUiFor = null;   // id de la fiche dont les champs ont été initialisés
@@ -2826,6 +2853,10 @@
                 lead = Number.parseInt(els.alertLead.value, 10);
             }
 
+            if (isWait) {
+                const taken = slotTakenBy('wait', item.id);
+                if (taken) return notify(slotMessage('wait', taken));
+            }
             if (!(await ensureNotifications())) return;
 
             const now = Date.now();
@@ -2865,6 +2896,8 @@
             const enable = els.alertStatus.checked;
 
             if (enable) {
+                const taken = slotTakenBy('status', key);
+                if (taken) { els.alertStatus.checked = false; return notify(slotMessage('status', taken)); }
                 if (!(await ensureNotifications())) { els.alertStatus.checked = false; return; }
                 alerts.set(key, { kind: 'status', down: item.live?.status === 'DOWN' });   // déjà en panne : on prévient à la réouverture
             } else if (!alerts.delete(key)) {
