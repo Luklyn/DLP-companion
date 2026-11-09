@@ -410,7 +410,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.87327,
     "Coordonnées GPS (lng)": 2.7781,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Discoveryland"
   },
   {
     "Code": "P1NR00",
@@ -420,7 +422,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.874138,
     "Coordonnées GPS (lng)": 2.775522,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Fantasyland"
   },
   {
     "Code": "P1NR04",
@@ -430,16 +434,18 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.874474,
     "Coordonnées GPS (lng)": 2.77489,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Fantasyland"
   },
   {
     "Code": "P1DR03",
     "UUID Themeparks.wiki": "69ab4a1d-725e-4bdc-8284-7c076001b523",
     "Nom": "Rocket Café",
     "Description": "Régalez-vous avec des gaufres, boissons fraîches et autres snacks salés et sucrés galactiques, inspirés de l'univers Faites une pause goûter d'une autre galaxie ! Croquez dans une gauffre à l'effigie de Dark Vador, et dégustez un sablé Boba Fett fourré au chocolat et autres snacks, glaces et boissons !",
-    "Type": "À emporter",
+    "Type": "A emporter",
     "Parc": "Disneyland Park",
-    "Land": "Voir la galerie",
+    "Land": "Discoveryland",
     "Coordonnées GPS (lat)": 48.87435811100483,
     "Coordonnées GPS (lng)": 2.7796104146805023,
     "Statut inconnu": "oui"
@@ -452,7 +458,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.870677,
     "Coordonnées GPS (lng)": 2.7722850000000108,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Frontierland"
   },
   {
     "Code": "P1GR46",
@@ -462,7 +470,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.87168,
     "Coordonnées GPS (lng)": 2.774965,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Frontierland"
   },
   {
     "Code": "P1NR05",
@@ -472,7 +482,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.874859,
     "Coordonnées GPS (lng)": 2.775106,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Fantasyland"
   },
   {
     "Code": "P2PR05",
@@ -482,7 +494,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.86552376119522,
     "Coordonnées GPS (lng)": 2.778975069522857,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Avengers Campus"
   },
   {
     "Code": "P2TR00",
@@ -492,17 +506,21 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.867224,
     "Coordonnées GPS (lng)": 2.779329,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "World Premiere"
   },
   {
     "Code": "P2DR03",
     "UUID Themeparks.wiki": "b346283b-5b8a-4d9f-b0ae-445ad2a13853",
-    "Nom": "Café Luminosity*",
+    "Nom": "Café Luminosity",
     "Description": "NOUVEAU ! Ressourcez-vous en famille ou entre amis sur la terrasse de ce charmant pavillon avec vue sur le lac et dégustez de savoureux encas entre deux aventures.<br /><br /><em>*Café Luminosité​<br /></em>",
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.865352,
     "Coordonnées GPS (lng)": 2.776632,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventure Way"
   },
   {
     "Code": "P2DR02",
@@ -512,7 +530,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.865765,
     "Coordonnées GPS (lng)": 2.773667,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventure Way"
   },
   {
     "Code": "P2VK00",
@@ -522,7 +542,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.866625,
     "Coordonnées GPS (lng)": 2.775209,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Worlds of Pixar"
   },
   {
     "Code": "P2FR02",
@@ -532,7 +554,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.867534,
     "Coordonnées GPS (lng)": 2.779616,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "World Premiere"
   },
   {
     "Code": "P1AR01",
@@ -542,7 +566,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.872371,
     "Coordonnées GPS (lng)": 2.77452,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventureland"
   },
   {
     "Code": "P1AR05",
@@ -552,7 +578,9 @@
     "Parc": "Disneyland Park",
     "Coordonnées GPS (lat)": 48.871928,
     "Coordonnées GPS (lng)": 2.773866,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventureland"
   },
   {
     "Code": "P2BR02",
@@ -562,7 +590,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.86570196868203,
     "Coordonnées GPS (lng)": 2.778419852256775,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Avengers Campus"
   },
   {
     "Code": "P2DR06",
@@ -572,7 +602,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.866132,
     "Coordonnées GPS (lng)": 2.774056,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventure Way"
   },
   {
     "Code": "P2DR05",
@@ -582,7 +614,9 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.866209,
     "Coordonnées GPS (lng)": 2.774238,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventure Way"
   },
   {
     "Code": "P2DR04",
@@ -592,6 +626,8 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.86628,
     "Coordonnées GPS (lng)": 2.774413,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Type": "A emporter",
+    "Land": "Adventure Way"
   }
 ]
