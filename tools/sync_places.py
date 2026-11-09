@@ -205,6 +205,8 @@ def sync_resort(resort, site_cfg, args, log):
     ents, _, _, info = api_client.fetch_entities(dest, dest, log)
     parent_names = api_client.resolve_parent_names(ents) if len(resort.get('parks') or []) > 1 else {}
     new = find_new(resort, ents, existing, ignored)
+    if args.kinds:
+        new = {k: (v if k in args.kinds else []) for k, v in new.items()}
     flat = [e for k in KINDS for e in new[k]]
     if args.baseline:      # état de référence : les lieux actuels de l'API qui ne sont pas dans les données sont volontairement absents
         ids = sorted(ignored | {e['id'].lower() for e in flat})
@@ -339,11 +341,13 @@ def main(argv=None):
     ap.add_argument('--resort', help='ne traiter que cette destination (id de parks.json)')
     ap.add_argument('--dry-run', action='store_true', help='ne pas écrire les fichiers de données')
     ap.add_argument('--no-web', action='store_true', help='ne pas consulter les sites des parcs')
+    ap.add_argument('--kinds', default='', help='limiter à certaines catégories : attractions,restaurants,shows')
     ap.add_argument('--baseline', action='store_true', help='à lancer une fois : enregistre les lieux actuels de l’API absents des données comme « ignorés » (data/<parc>/ignored.json)')
     ap.add_argument('--check-names', action='store_true', help='comparer aussi les noms des lieux connus avec ceux du site (même sans nouveau lieu)')
     ap.add_argument('--browser', action='store_true', help='utiliser le navigateur intégré (sites en JavaScript)')
     ap.add_argument('--report', default='sync_report.md', help='fichier du rapport (écrit seulement s’il y a des ajouts)')
     args = ap.parse_args(argv)
+    args.kinds = {k.strip() for k in args.kinds.split(',') if k.strip()}
     log = Log(print)
     parks = read_json(os.path.join(ROOT, 'parks.json'))
     sites = read_json(os.path.join(IMP, 'sites.json'), {})
