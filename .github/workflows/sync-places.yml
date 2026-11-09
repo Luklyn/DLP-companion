@@ -20,6 +20,10 @@ on:
         description: "Limiter aux catégories (ex. shows ou attractions,restaurants) - facultatif"
         type: string
         default: ''
+      extra:
+        description: "Options supplémentaires de tools/sync_places.py (ex. --inspect)"
+        type: string
+        default: ''
       baseline:
         description: "À lancer UNE fois : les lieux actuels de l'API absents de l'appli sont considérés comme volontairement exclus"
         type: boolean
@@ -61,6 +65,7 @@ jobs:
           if [ "${{ inputs.baseline }}" = "true" ]; then ARGS="--baseline"; fi
           if [ -n "${{ inputs.resort }}" ]; then ARGS="$ARGS --resort ${{ inputs.resort }}"; fi
           if [ -n "${{ inputs.kinds }}" ]; then ARGS="$ARGS --kinds ${{ inputs.kinds }}"; fi
+          if [ -n "${{ inputs.extra }}" ]; then ARGS="$ARGS ${{ inputs.extra }}"; fi
           python tools/sync_places.py $ARGS --report sync_report.md
 
       - name: Ouvrir ou mettre à jour la pull request

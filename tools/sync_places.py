@@ -314,6 +314,35 @@ def build_entry(kind, e, park, pg, mappings, notes):
     return out, missing
 
 
+def inspect_resort(resort, ents, existing, parent_names, site_cfg, log):
+    """Diagnostic : lieux de l'API absents des données (avec leur parent) et dossiers du sitemap, pour régler les filtres."""
+    from collections import Counter
+    from urllib.parse import urlparse
+    known = {str(r.get(UUID, '')).lower() for k in KINDS for r in existing[k]}
+    log('--- Lieux de l\'API absents des données (restaurants / spectacles) ---')
+    for e in ents:
+        if e['kind'] in ('restaurants', 'shows') and e['id'].lower() not in known:
+            log(f'  {e["kind"][:4]} | live={int(bool(e["live"]))} | {e["externalId"]} | parent={parent_names.get(e.get("parentId"), e.get("parentId"))} | {e["name"]}')
+    cfg = site_cfg or {}
+    if cfg.get('site') and cfg.get('sitemap_prefixes'):
+        pu = urlparse(cfg['site'])
+        urls = sitemap_urls(f'{pu.scheme}://{pu.netloc}')
+        for kind, prefix in cfg['sitemap_prefixes'].items():
+            if kind == 'attractions':
+                continue
+            folders = Counter()
+            for u in urls:
+                path = urlparse(u).path
+                if path.startswith(prefix):
+                    rest = path[len(prefix):].strip('/').split('/')
+                    folders[rest[0] if len(rest) > 1 else '(page de liste)'] += 1
+            log(f'--- Sitemap {prefix} : ' + ', '.join(f'{k}={n}' for k, n in folders.most_common()))
+            for u in urls:
+                path = urlparse(u).path
+                if path.startswith(prefix) and len(path[len(prefix):].strip('/').split('/')) > 1 and kind == 'restaurants':
+                    log('    ' + path)
+
+
 def sync_resort(resort, site_cfg, args, log):
     rid = resort['id']
     path = resort['dataPath']
@@ -326,7 +355,10 @@ def sync_resort(resort, site_cfg, args, log):
     log(f'── {resort["name"]} ({rid})')
     ents, _, _, info = api_client.fetch_entities(dest, dest, log)
     parent_names = api_client.resolve_parent_names(ents) if len(resort.get('parks') or []) > 1 else {}
-    new = find_new(resort, ents, existing, ignored)
+    if args.inspect:
+        inspect_resort(resort, ents, existing, parent_names, site_cfg, log)
+        return None
+    new = find_new(resort, ents, existing, ignored if not args.include_ignored else set())
     if args.kinds:
         new = {k: (v if k in args.kinds else []) for k, v in new.items()}
     flat = [e for k in KINDS for e in new[k]]
@@ -466,6 +498,8 @@ def main(argv=None):
     ap.add_argument('--resort', help='ne traiter que cette destination (id de parks.json)')
     ap.add_argument('--dry-run', action='store_true', help='ne pas écrire les fichiers de données')
     ap.add_argument('--no-web', action='store_true', help='ne pas consulter les sites des parcs')
+    ap.add_argument('--inspect', action='store_true', help='diagnostic : affiche les lieux de l’API absents des données et les dossiers du sitemap')
+    ap.add_argument('--include-ignored', action='store_true', help='tenir compte aussi des lieux listés dans ignored.json')
     ap.add_argument('--kinds', default='', help='limiter à certaines catégories : attractions,restaurants,shows')
     ap.add_argument('--baseline', action='store_true', help='à lancer une fois : enregistre les lieux actuels de l’API absents des données comme « ignorés » (data/<parc>/ignored.json)')
     ap.add_argument('--check-names', action='store_true', help='comparer aussi les noms des lieux connus avec ceux du site (même sans nouveau lieu)')
