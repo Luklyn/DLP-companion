@@ -218,7 +218,8 @@
     "Parc": "Disney Adventure World",
     "Coordonnées GPS (lat)": 48.86872,
     "Coordonnées GPS (lng)": 2.781826,
-    "Land": "Avengers Campus"
+    "Land": "Avengers Campus",
+    "Type": "Spectacle de rue"
   },
   {
     "Code": "P1MG69",
@@ -305,7 +306,8 @@
     "Nom": "La Chorale de Noël d’Arendelle",
     "Description": "Les habitants du royaume raffolent des chants de Noël ! Rendez-vous dans le nouveau Monde de <em>La Reine des Neiges</em> pour joindre votre voix à celle de La Chorale de Noël d’Arendelle, et, qui sait, quelques invités royaux pourraient se joindre à vous...",
     "Parc": "Disney Adventure World",
-    "Land": "World of Frozen"
+    "Land": "World of Frozen",
+    "Type": "Spectacle de rue"
   },
   {
     "Code": "P2GS79",
