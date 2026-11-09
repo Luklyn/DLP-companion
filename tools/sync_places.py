@@ -284,6 +284,16 @@ def pair_by_elimination(new_ents, mt, fiches, claimed, used_fi):
     return paired
 
 
+GENERIC_NAME = re.compile(r'(?i)^(se restaurer|divertissements|spectacles disney|restaurants?|manger)\b|parades et rencontres')
+MEET_API = re.compile(r'(?i)^(meet|rencontre)\b')
+
+
+def is_listing_url(url):
+    """Page de liste (ex. /restaurants/manger-a-disneyland-paris, /divertissements/parc-disneyland) : pas une fiche."""
+    from urllib.parse import urlparse
+    return len([x for x in urlparse(url or '').path.split('/') if x]) < 4
+
+
 def build_entry(kind, e, park, pg, mappings, notes):
     """Fiche JSON d'un lieu : données de l'API + ce que la page du site a réellement donné."""
     types = {k.lower(): v for k, v in (mappings.get('types') or {}).items()}
@@ -292,6 +302,9 @@ def build_entry(kind, e, park, pg, mappings, notes):
     missing = []
     if pg:
         name = clean_name(pg.get('name'))
+        if name and GENERIC_NAME.search(name):      # titre de page de liste, pas le nom du lieu : on garde le nom de l'API
+            notes.append(f'nom de la page trop générique (« {name} ») : nom de l’API conservé')
+            name = ''
         if name and len(name) <= 90:
             row['Nom'] = name
         land = clean_name(pg.get('land'))
@@ -316,7 +329,7 @@ def build_entry(kind, e, park, pg, mappings, notes):
             missing.append(col)
     if not e['live']:
         row[NOSTATUS] = 'oui'
-    if kind == 'shows' and not row.get('Type') and (re.match(r'(?i)(meet|rencontre)', e['name']) or re.match(r'P\dMG', str(e['externalId']))):
+    if kind == 'shows' and (MEET_API.match(e['name']) or re.match(r'P\dMG', str(e['externalId']))):
         row['Type'] = 'Rencontre avec un personnage'
     out = {k: row[k] for k in ORDER[kind] if row.get(k) not in (None, '')}
     return out, missing
@@ -446,7 +459,7 @@ def sync_resort(resort, site_cfg, args, log):
             continue
         pg = None
         notes = []
-        if kind in strict and not (ei in mt and mt[ei][0] in pages):
+        if kind in strict and not (ei in mt and mt[ei][0] in pages and not is_listing_url(pages[mt[ei][0]].get('url'))):
             result['skipped'].append((kind, e['name'], 'aucune page correspondante dans la liste du site (parcs uniquement)'))
             continue
         if ei in mt and mt[ei][0] in pages:
