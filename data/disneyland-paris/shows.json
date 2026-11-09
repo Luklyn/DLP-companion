@@ -191,5 +191,191 @@
     "Type": "Rencontre personnage",
     "Parc": "Disney Adventure World",
     "Land": "Worlds of Pixar"
+  },
+  {
+    "Code": "P1MG20",
+    "UUID Themeparks.wiki": "71d8eebe-92db-41af-88c9-287709ebb216",
+    "Nom": "Rencontre avec Baloo",
+    "Description": "Baloo a élu domicile près du Restaurant Hakuna Matata. En voilà un qui sait se satisfaire du nécessaire... Rappelez-vous : un peu d'eau fraîche et de verdure, quelques rayons de miel et de soleil. Joignez-vous à lui pour fredonner « Il en faut peu pour être heureux ! »<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland"
+  },
+  {
+    "Code": "P2MG75",
+    "UUID Themeparks.wiki": "812b20df-4a8e-4e98-a6ba-5e27e33ea156",
+    "Nom": "Rencontre avec Tigrou",
+    "Description": "Le service PhotoPass peut être modifié, retardé ou supprimé sans préavis, notamment en cas de conditions climatiques défavorables ou conditions de sécurité insuffisantes. Débordant d’énergie, Tigrou fait un bond à Gazebo Garden, prêt pour une nouvelle aventure à Disney Adventure World !",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disney Adventure World",
+    "Land": "Adventure Way"
+  },
+  {
+    "Code": "P2GS63",
+    "UUID Themeparks.wiki": "27cafc7d-b0dc-4531-98e0-9fe2ab675ef5",
+    "Nom": "Doctor Strange : Mystères Mystiques",
+    "Description": "La nuit tombée, le toit de Marvel Avengers Campus devient la scène d'une bataille épique. Doctor Strange et la Sorcière Rouge doivent combiner leurs pouvoirs pour contrer la menace mystique identifiée par F.R.I.D.A.Y. Cette alliance suffira-t-elle à sauver le Campus ?",
+    "Parc": "Disney Adventure World",
+    "Coordonnées GPS (lat)": 48.86872,
+    "Coordonnées GPS (lng)": 2.781826,
+    "Land": "Avengers Campus",
+    "Type": "Spectacle de rue"
+  },
+  {
+    "Code": "P1MG69",
+    "UUID Themeparks.wiki": "45a6e9b4-a8de-4a32-9efb-1eb650e232e5",
+    "Nom": "Rencontre avec un Personnage d’Aladdin",
+    "Description": "Dirigez-vous vers la Lampe Magique près du Agrabah Café Restaurant et faites un vœu, le temps d'une photo inoubliable avec un Personnage Disney !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland"
+  },
+  {
+    "Code": "P1MG64",
+    "UUID Themeparks.wiki": "308ac872-98a0-4f4e-b730-1d8377487f9e",
+    "Nom": "Rencontre avec Monsieur Jack (de L’Étrange Noël de Monsieur Jack de Tim Burton ©Disney)",
+    "Description": "Rejoignez Jack Skellington à <em>Critter Coral</em> et célébrez Noël en compagnie du Roi des Citrouilles en personne !<br /><br />Pour profiter de cette expérience, vous devez rejoindre la <a href=\"https://www.disneylandparis.com/fr-fr/faq/parcs-a-theme/file-attente-virtuelle\" target=\"_self\">file d'attente virtuelle</a>, disponible dans l'Application Mobile Disneyland Paris le…",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Statut inconnu": "oui",
+    "Land": "Frontierland"
+  },
+  {
+    "Code": "P1MG62",
+    "UUID Themeparks.wiki": "f922f2c3-347d-4cfc-a0af-4478a56404cd",
+    "Nom": "Rencontre avec Dingo",
+    "Description": "Passez un moment adorablement comique avec Dingo : toujours aussi loufoque, il est persuadé d’être… le Père Noël ! Rendez-vous au Big Thunder Mountain Gazebo dans Frontierland !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland"
+  },
+  {
+    "Code": "P1MG59",
+    "UUID Themeparks.wiki": "822617d1-b63f-4a22-9f20-5cd77002eeb6",
+    "Nom": "Rencontre avec Winnie l'Ourson",
+    "Description": "C’est Noël ! Passez un moment aussi doux que le miel en compagnie de l'adorable Winnie l'Ourson près de <em>Boarding House</em> dans l’atmosphère joyeusement festive de Main Street, U.S.A. !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.<br />Présence d'un photographe Disney PhotoPass™<br />Sujet à disponibilité",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1MG24",
+    "UUID Themeparks.wiki": "6ae88707-01d8-4edc-a214-79dd0ddfe04a",
+    "Nom": "Rencontre avec le Père Noël",
+    "Description": "Le Père Noël vous ouvre les portes de son atelier à <em>Disney Clothiers</em>, sur Main Street, U.S.A., pour une rencontre chaleureuse et pleine de magie.",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1GS97",
+    "UUID Themeparks.wiki": "c33ca364-5b9b-45f9-813e-8d0f820fdd18",
+    "Nom": "Les Vœux Magiques de la Princesse Aurore",
+    "Description": "Rejoignez la Princesse Aurore, le Prince Philippe et les trois bonnes fées cour pour un moment magique dans La Cour du Château de la Belle au Bois Dormant.",
+    "Parc": "Disneyland Park",
+    "Coordonnées GPS (lat)": 48.86872,
+    "Coordonnées GPS (lng)": 2.781826,
+    "Type": "Spectacle de rue",
+    "Land": "Fantasyland"
+  },
+  {
+    "Code": "P1GS95",
+    "UUID Themeparks.wiki": "000d0808-5322-4e37-81b4-1ede6118007e",
+    "Nom": "Les Princesses Disney célèbrent les Fêtes de Fin d'Année",
+    "Description": "Les Princesses Disney vous attendent devant le Château de la Belle au Bois Dormant pour célébrer la période la plus chaleureuse de l'année. Un moment festif à ne pas manquer !",
+    "Parc": "Disneyland Park",
+    "Coordonnées GPS (lat)": 48.86872,
+    "Coordonnées GPS (lng)": 2.781826,
+    "Type": "Spectacle de rue",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1GS32",
+    "UUID Themeparks.wiki": "00e5085b-f054-4d69-ade7-b38aa0fd1baa",
+    "Nom": "Spectacle musical Chantons Noël !",
+    "Description": "Laissez-vous emporter par l’esprit de Noël avec le spectacle Chantons Noël ! à Videopolis, à Discoveryland. Chantez en chœur avec Mickey, Minnie, Donald, Daisy, Dingo!",
+    "Parc": "Disneyland Park",
+    "Coordonnées GPS (lat)": 48.86872,
+    "Coordonnées GPS (lng)": 2.781826,
+    "Type": "Spectacle sur scène",
+    "Land": "Discoveryland"
+  },
+  {
+    "Code": "P2GS80",
+    "UUID Themeparks.wiki": "fac316ef-3349-452c-b69e-775d8cb90d42",
+    "Nom": "La Chorale de Noël d’Arendelle",
+    "Description": "Les habitants du royaume raffolent des chants de Noël ! Rendez-vous dans le nouveau Monde de <em>La Reine des Neiges</em> pour joindre votre voix à celle de La Chorale de Noël d’Arendelle, et, qui sait, quelques invités royaux pourraient se joindre à vous...",
+    "Parc": "Disney Adventure World",
+    "Land": "World of Frozen",
+    "Type": "Spectacle de rue"
+  },
+  {
+    "Code": "P2GS79",
+    "UUID Themeparks.wiki": "fd48752c-80dc-4993-aff2-3d6ea33593e4",
+    "Nom": "Libérez la Féérie de Noël avec Elsa et Anna",
+    "Description": "Alors que Noël s’installe à Arendelle, Elsa et Anna vous invitent à prendre part à leur cérémonie traditionnelle sur le lagon.",
+    "Parc": "Disney Adventure World",
+    "Type": "Spectacle de rue",
+    "Land": "World of Frozen"
+  },
+  {
+    "Code": "P1MG60",
+    "UUID Themeparks.wiki": "fb4a3ee7-888e-49eb-869f-26ec176edeed",
+    "Nom": "Rencontre avec Stitch",
+    "Description": "Consultez la liste des Spectacles, Parades, Feux d'artifice et Rencontres avec les Personnages à ne pas manquer lors de votre visite à Disneyland Paris.",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Discoveryland"
+  },
+  {
+    "Code": "P1GS84",
+    "UUID Themeparks.wiki": "3a9a0b6f-e83c-458d-b376-49898759d44e",
+    "Nom": "La Magie de l’Illumination du Sapin de Noël",
+    "Description": "Mickey et ses amis vous donnent rendez-vous à la nuit tombée pour un moment enchanteur au son du chœur de Noël. Le spectacle peut être modifié, retardé ou supprimé sans préavis, notamment en cas de conditions climatiques défavorables ou conditions de sécurité insuffisantes.",
+    "Parc": "Disneyland Park",
+    "Statut inconnu": "oui",
+    "Type": "Spectacle de rue",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1GS57",
+    "UUID Themeparks.wiki": "33abfdae-8cbc-4d10-bde7-5a72d3ba3e12",
+    "Nom": "Mickey et sa Parade Etincelante de Noël !",
+    "Description": "Ressentez une ambiance des plus festives dans le Parc Disneyland avec cette parade aussi magique qu’entraînante – et deux fois plutôt qu’une ! À la nuit tombée, venez saluer Mickey et ses amis, les princesses Disney et le Père Noël qui paradent le long de Main Street, U.S.A.",
+    "Parc": "Disneyland Park",
+    "Coordonnées GPS (lat)": 48.86872,
+    "Coordonnées GPS (lng)": 2.781826,
+    "Type": "Parade",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1MG05",
+    "UUID Themeparks.wiki": "72b05d4f-bf6e-48dd-a170-750685271b31",
+    "Nom": "Rencontre avec Donald",
+    "Description": "Donald a revêtu sa plus belle tenue de fête et vous attend à Casey’s Corner ! Rejoignez-le pour une rencontre joyeuse et chaleureuse, et immortalisez un précieux souvenir de Noël.<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.<br /><br />Présence d'un photographe Disney PhotoPass™<br />Sujet à disponibilité",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street U.S.A"
+  },
+  {
+    "Code": "P1M115",
+    "UUID Themeparks.wiki": "44eff9fa-cd05-4a00-89b3-e6cec4682636",
+    "Nom": "Rencontre avec Mickey",
+    "Description": "Direction les coulisses pour rencontrer Mickey entre deux spectacles de magie. Vous pourrez même poser en sa compagnie pour une photo souvenir et découvrir certains secrets Disney bien gardés.<br /><br />Pour profiter de cette expérience, vous devez rejoindre une file d’attente virtuelle, disponible notamment via l’Application Mobile Disneyland Paris ou auprès d’un Cast…",
+    "Type": "Rencontre avec un personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland"
+  },
+  {
+    "Code": "heroicWelcome",
+    "UUID Themeparks.wiki": "08e247d6-21c9-4682-91f5-6e0fa6f93ed4",
+    "Nom": "Cérémonie Héroïque",
+    "Description": "Rejoignez les Héros les plus puissants de la Terre pendant qu’ils se rassemblent pour célébrer l’arrivée de nouvelles recrues lors d’un accueil des plus héroïques ! Toits de Spider-Man W.E.B. Adventure et Quinjet des Avengers Les Gardiens de la Galaxie : Dance Challenge !",
+    "Parc": "Disney Adventure World",
+    "Coordonnées GPS (lat)": 48.86530644137726,
+    "Coordonnées GPS (lng)": 2.7792593836784363,
+    "Statut inconnu": "oui",
+    "Type": "Spectacle de rue",
+    "Land": "Avengers Campus"
   }
 ]
