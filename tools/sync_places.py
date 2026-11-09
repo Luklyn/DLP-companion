@@ -104,11 +104,16 @@ def fr_via_english(flat, mt, view, patterns, use_browser, log):
             continue
         for pat in patterns.get(e['kind'], []):
             url = pat.replace('{slug}', api_slug(e['name']))
-            try:
-                html = fetch_html(url, use_browser=False, log=lambda *_: None)
-            except Exception:
-                html = ''
-            if not html or '<h1' not in html.lower():
+            html = ''
+            for browser in (False, True):      # requête simple, puis navigateur intégré (pages en JavaScript)
+                try:
+                    html = fetch_html(url, use_browser=browser, log=lambda *_: None)
+                except Exception:
+                    html = ''
+                if html and '<h1' in html.lower() and 'hreflang' in html.lower():
+                    break
+            else:
+                log(f'   (page anglaise introuvable : {url})')
                 continue
             soup = BeautifulSoup(html, 'html.parser')
             fr = next((urljoin(url, l['href']) for l in soup.find_all('link', hreflang=True, href=True)

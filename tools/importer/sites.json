@@ -10,15 +10,21 @@
     "en_patterns": {
       "shows": [
         "https://www.disneylandparis.com/en-gb/entertainment/disneyland-park/{slug}",
-        "https://www.disneylandparis.com/en-gb/entertainment/disney-adventure-world/{slug}"
+        "https://www.disneylandparis.com/en-gb/entertainment/disney-adventure-world/{slug}",
+        "https://www.disneylandparis.com/en-int/entertainment/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-int/entertainment/disney-adventure-world/{slug}"
       ],
       "attractions": [
         "https://www.disneylandparis.com/en-gb/attractions/disneyland-park/{slug}",
-        "https://www.disneylandparis.com/en-gb/attractions/disney-adventure-world/{slug}"
+        "https://www.disneylandparis.com/en-gb/attractions/disney-adventure-world/{slug}",
+        "https://www.disneylandparis.com/en-int/attractions/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-int/attractions/disney-adventure-world/{slug}"
       ],
       "restaurants": [
         "https://www.disneylandparis.com/en-gb/dining/disneyland-park/{slug}",
-        "https://www.disneylandparis.com/en-gb/dining/disney-adventure-world/{slug}"
+        "https://www.disneylandparis.com/en-gb/dining/disney-adventure-world/{slug}",
+        "https://www.disneylandparis.com/en-int/dining/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-int/dining/disney-adventure-world/{slug}"
       ]
     }
   },
