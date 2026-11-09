@@ -107,13 +107,59 @@ def find_new(resort, ents, existing, ignored):
     return out
 
 
-def collect_fiches(site, list_urls, use_browser, log):
+def sitemap_urls(origin, cap=30000):
+    """Toutes les adresses du sitemap du site (utile quand les pages de liste sont chargées en JavaScript)."""
+    robots = discover._get_text(origin + '/robots.txt')
+    queue = re.findall(r'(?im)^\s*sitemap:\s*(\S+)', robots) or [origin + '/sitemap.xml']
+    urls, seen = [], set()
+    while queue and len(urls) < cap and len(seen) < 12:
+        sm = queue.pop(0)
+        if sm in seen:
+            continue
+        seen.add(sm)
+        txt = discover._get_text(sm)
+        locs = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', txt)
+        if '<sitemapindex' in txt:
+            queue += locs[:12]
+        else:
+            urls += locs
+    return urls
+
+
+def lists_from_sitemap(site, prefixes, kinds, log):
+    """{kind: [fiches]} d'après les adresses du sitemap placées sous un dossier donné (ex. /fr-fr/divertissements/ → /parc-x/nom-du-spectacle)."""
+    from urllib.parse import urlparse
+    pu = urlparse(site)
+    urls = sitemap_urls(f'{pu.scheme}://{pu.netloc}')
+    log(f'  Sitemap : {len(urls)} adresses')
+    lists = {}
+    for kind, prefix in prefixes.items():
+        if kind not in kinds:
+            continue
+        seen, fiches = set(), []
+        for u in urls:
+            path = urlparse(u).path
+            rest = path[len(prefix):].strip('/') if path.startswith(prefix) else ''
+            if rest.count('/') >= 1 and u not in seen:     # un niveau de dossier (parc) puis la fiche
+                seen.add(u)
+                fiches.append(dict(url=u, name=slug_name(u), card_lines=[], menu_only=False))
+        lists[kind] = fiches
+        log(f'  [{kind}] {len(fiches)} fiche(s) dans le sitemap sous {prefix}')
+    return lists
+
+
+def collect_fiches(site, cfg, kinds, use_browser, log):
     """Fiches détaillées du site officiel : [{url, name, kinds, names, card_*}]."""
+    list_urls = cfg.get('list_urls')
+    lists = {}
     if list_urls and any((v or '').strip() for v in list_urls.values()):
         lists = discover.lists_from_urls(list_urls, use_browser, log, fetch_html)
-    elif site:
+    elif site and not cfg.get('sitemap_prefixes'):
         lists, _ = discover.discover_lists(site, use_browser, log, fetch_html, discover._get_text)
-    else:
+    if cfg.get('sitemap_prefixes') and site:
+        for kind, fiches in lists_from_sitemap(site, cfg['sitemap_prefixes'], kinds, log).items():
+            lists[kind] = lists.get(kind, []) + fiches
+    if not lists:
         return []
     pool = {}
     for kind, fiches in lists.items():
@@ -245,11 +291,12 @@ def sync_resort(resort, site_cfg, args, log):
             if r.get(UUID) and str(r[UUID]).lower() not in api_ids]
     result = dict(resort=resort, added=[], renames=[], gone=gone, skipped=[], web=False)
     site = (site_cfg or {}).get('site')
-    list_urls = (site_cfg or {}).get('list_urls')
+    cfg = site_cfg or {}
+    list_urls = cfg.get('list_urls')
     fiches, mt, pages, view = [], {}, {}, []
     if (flat or args.check_names) and not args.no_web and (site or list_urls):
         try:
-            fiches = collect_fiches(site, list_urls, args.browser, log)
+            fiches = collect_fiches(site, cfg, {e['kind'] for e in flat} or set(KINDS), args.browser, log)
             result['web'] = bool(fiches)
         except Exception as ex:   # un site en panne ne doit pas empêcher d'ajouter les lieux avec les seules données de l'API
             log(f'! Site inaccessible ou illisible : {ex}')

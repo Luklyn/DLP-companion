@@ -2,10 +2,10 @@
   "_aide": "Site officiel (version française quand elle existe) de chaque destination, pour retrouver les noms français et les fiches. 'list_urls' (facultatif) force les pages de liste : {\"attractions\": url, \"restaurants\": url, \"shows\": url}. Mettre null pour ne pas chercher sur le web (les lieux sont alors ajoutés avec les données de l'API seules).",
   "disneyland-paris": {
     "site": "https://www.disneylandparis.com/fr-fr/",
-    "list_urls": {
-      "attractions": "https://www.disneylandparis.com/fr-fr/attractions/",
-      "restaurants": "https://www.disneylandparis.com/fr-fr/restaurants/",
-      "shows": "https://www.disneylandparis.com/fr-fr/divertissements/"
+    "sitemap_prefixes": {
+      "attractions": "/fr-fr/attractions/",
+      "restaurants": "/fr-fr/restaurants/",
+      "shows": "/fr-fr/divertissements/"
     }
   },
   "parc-asterix": {
