@@ -1,0 +1,18 @@
+{
+  "_aide": "Traductions utilisées pour remplir la colonne « Type » (clé = texte du site en minuscules). Ajoute tes lignes ; le programme les relit à chaque lancement.",
+  "types": {
+    "thrills": "Sensations fortes",
+    "laughs & frights": "Rires et frissons",
+    "young fun & imagination": "Jeunes enfants et imagination",
+    "fast food": "Restauration rapide",
+    "snacks": "À emporter",
+    "table service": "Service à table",
+    "restaurant": "Service à table",
+    "buffet": "Buffet à volonté",
+    "bar": "Bar",
+    "coffee": "Café"
+  },
+  "lands": {
+    "cbeebies land": "CBeebies Land"
+  }
+}

@@ -13,7 +13,7 @@ const ICON = new URL('icon.png', self.registration.scope).href;
 const DATA_CACHE = 'dlp-data-v2';
 const SCOPE_URL = new URL(self.registration.scope);
 const DATA_PATH = new RegExp('^' + SCOPE_URL.pathname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
-    '(parks\\.json|data/[^/]+/(attractions|restaurants|shows)\\.json)$');
+    '(parks\\.json|data/[^/]+/(attractions|restaurants|shows|ignored)\\.json)$');
 const isDataRequest = (request) => {
     const url = new URL(request.url);
     return request.method === 'GET' && url.origin === SCOPE_URL.origin && DATA_PATH.test(url.pathname);

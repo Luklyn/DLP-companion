@@ -570,6 +570,8 @@
         .pills { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill { padding: 6px 12px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); font-size: 12.5px; font-weight: 700; }
         .pill.is-warning { color: #A3121F; }
+        .pill { display: inline-flex; align-items: center; gap: 6px; }
+        .pill .icon { width: 15px; height: 15px; }
         .d-desc { max-width: 60ch; font-size: 16px; line-height: 1.6; color: var(--mut); }
 
         .cta {
@@ -1670,6 +1672,13 @@
             return data;
         }
 
+        // Lieux de l'API volontairement absents de l'appli (fichier facultatif, tenu à jour par tools/sync_places.py)
+        let ignoredApiIds = new Set();
+        try {
+            const res = await fetch(DATA_DIR + 'ignored.json', { cache: 'no-cache' });
+            if (res.ok) ignoredApiIds = new Set((await res.json()).map((id) => String(id).toLowerCase()));
+        } catch { /* fichier absent ou illisible : aucun lieu ignoré */ }
+
         let attractionsRaw, restaurantsRaw, showsRaw;
         try {
             [attractionsRaw, restaurantsRaw, showsRaw] = await Promise.all(DATA_FILES.map(loadList));
@@ -2233,12 +2242,41 @@
         const usualLabel = ({ kind, gap }) => kind === 'low' ? L(`${-gap} min de moins que d’habitude`, `${-gap} min less than usual`)
             : kind === 'high' ? L(`${gap} min de plus que d’habitude`, `${gap} min more than usual`) : L('Attente habituelle', 'Usual wait');
 
+        /**
+         * Lieu renvoyé par l'API mais absent des données (ouverture récente) : on l'affiche tout de suite avec ce que l'API donne
+         * (nom, statut, attente, horaires de spectacles), marqué « Nouveau ». Il disparaît dès que sa fiche complète est publiée
+         * dans data/ (même UUID). Les lieux listés dans data/<parc>/ignored.json ne sont jamais affichés.
+         */
+        const NEW_KINDS = { ATTRACTION: 'attraction', SHOW: 'spectacle', RESTAURANT: 'restaurant', DINING: 'restaurant' };
+        const newPlaces = new Set();
+        function addNewPlaces(byId) {
+            const known = new Set(db.map((item) => item.apiId).filter(Boolean));
+            for (const [id, entry] of byId) {
+                const category = NEW_KINDS[String(entry.entityType ?? '').toUpperCase()];
+                if (!category || known.has(id) || newPlaces.has(id) || ignoredApiIds.has(id) || !entry.name || !entry.status) continue;
+                if (Array.isArray(resort.noLiveData) && resort.noLiveData.includes(category)) continue;
+                const park = CONFIG.PARKS.find((p) => p.themeparksParkId && p.themeparksParkId === entry.parkId)?.value
+                    ?? (CONFIG.PARKS.length === 1 ? CONFIG.PARKS[0].value : null);
+                if (!park) continue;   // parc inconnu : on préfère ne rien afficher que le mettre au mauvais endroit
+                const item = {
+                    id: `api:${id}`, apiId: id, name: String(entry.name).trim(), category, type: '', park, event: '', halloween: false,
+                    land: 'Autre', isNew: true, minHeight: '', menuUrl: '', price: '', lat: null, lng: null, live: null,
+                    description: L('Lieu récemment détecté sur le parc : sa fiche complète (description, zone, taille minimale…) sera ajoutée prochainement.',
+                        'Recently detected at the park: its full details will be added soon.'),
+                };
+                db.push(item);
+                dbById.set(item.id, item);
+                newPlaces.add(id);
+            }
+        }
+
         function applyLive(liveData) {
             const byId = new Map();
             for (const entry of liveData) {
                 if (entry?.id) byId.set(String(entry.id).toLowerCase(), entry);
             }
 
+            addNewPlaces(byId);
             let matches = 0;
             for (const item of db) {
                 const live = item.apiId && byId.get(item.apiId);
@@ -2473,6 +2511,7 @@
         }
 
         function renderFavDetailButton(item) {
+            els.btnFav.hidden = Boolean(item.isNew);   // lieu provisoire : pas encore de fiche à mettre en favori
             const fav = favorites.has(item.id);
             const label = fav ? L('Retirer des favoris', 'Remove from favorites') : L('Ajouter aux favoris', 'Add to favorites');
             els.btnFav.setAttribute('aria-pressed', String(fav));
@@ -2794,7 +2833,7 @@
         }
 
         function renderAlertBox(item) {
-            const supported = item.category === 'attraction' || item.category === 'spectacle';
+            const supported = !item.isNew && (item.category === 'attraction' || item.category === 'spectacle');
             els.alertBox.hidden = !supported;
             if (!supported) return;
 
@@ -3076,8 +3115,9 @@
             return genericTypes.has(`${item.category}|${item.type}`);
         }
 
-        const eventHtml = (item) => item.event
-            ? `<span class="evt"><svg class="icon" aria-hidden="true"><use href="#i-ghost"/></svg>${esc(item.event)}</span>` : '';
+        const eventHtml = (item) => item.isNew
+            ? `<span class="evt"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>${L('Nouveau', 'New')}</span>`
+            : item.event ? `<span class="evt"><svg class="icon" aria-hidden="true"><use href="#i-ghost"/></svg>${esc(item.event)}</span>` : '';
 
         // Badge « Halloween » : affiché si le Type du lieu contient ce mot (et si l'événement ne le dit pas déjà)
         const hwHtml = (item) => (item.halloween && !/halloween/i.test(item.event))
@@ -3117,10 +3157,10 @@
                             ${(m.single != null || m.vq || m.dining) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}${diningHtml(m)}</span>` : ''}
                         </span>
                     </button>
-                    <button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
+                    ${item.isNew ? '' : `<button type="button" class="heart" data-fav-id="${esc(item.id)}" aria-pressed="${fav}"
                             aria-label="${esc(fav ? L(`Retirer ${item.name} des favoris`, `Remove ${item.name} from favorites`) : L(`Ajouter ${item.name} aux favoris`, `Add ${item.name} to favorites`))}">
                         <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#i-heart"/></svg>
-                    </button>
+                    </button>`}
                 </div>`;
         }
 
@@ -3348,6 +3388,7 @@
                 .join('');
 
             const badges = [
+                item.isNew ? { text: L('Nouveau', 'New'), kind: 'event', icon: 'i-info' } : null,
                 item.event ? { text: item.event, kind: 'event', icon: 'i-ghost' } : null,
                 state.showFavorites || state.nearby ? { text: item.park, kind: 'park' } : null,
                 item.halloween && !/halloween/i.test(item.event) ? { text: 'Halloween', kind: 'event', icon: 'i-pumpkin' } : null,

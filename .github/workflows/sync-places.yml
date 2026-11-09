@@ -1,0 +1,75 @@
+name: Synchronisation des lieux
+
+# Chaque jour : compare l'API themeparks.wiki avec data/*, ajoute les nouveaux lieux
+# (attractions, restaurants, spectacles) avec les infos de la page française du parc,
+# et ouvre une pull request à relire. Rien n'est publié tant qu'elle n'est pas fusionnée.
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+    inputs:
+      check_names:
+        description: "Comparer aussi les noms des lieux déjà connus avec ceux du site (informatif)"
+        type: boolean
+        default: false
+      baseline:
+        description: "À lancer UNE fois : les lieux actuels de l'API absents de l'appli sont considérés comme volontairement exclus"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-places
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: auto/sync-places
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/importer/requirements.txt
+
+      - name: Installer les dépendances
+        run: |
+          pip install -r tools/importer/requirements.txt playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Chercher les nouveaux lieux
+        run: |
+          rm -f sync_report.md
+          ARGS=""
+          if [ "${{ inputs.check_names }}" = "true" ]; then ARGS="--check-names"; fi
+          if [ "${{ inputs.baseline }}" = "true" ]; then ARGS="--baseline"; fi
+          python tools/sync_places.py $ARGS --report sync_report.md
+
+      - name: Ouvrir ou mettre à jour la pull request
+        run: |
+          if [ -z "$(git status --porcelain -- data)" ]; then
+            echo "Aucun nouveau lieu."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data
+          git commit -m "Nouveaux lieux (synchronisation automatique de l'API)"
+          git push --force origin "$BRANCH"
+          if [ "$(gh pr list --head "$BRANCH" --state open --json number -q length)" = "0" ]; then
+            gh pr create --base main --head "$BRANCH" \
+              --title "Nouveaux lieux détectés par l'API" --body-file sync_report.md || \
+              { echo "::error::Création de la pull request refusée : activez Settings > Actions > General > Allow GitHub Actions to create and approve pull requests"; exit 1; }
+          else
+            gh pr edit "$BRANCH" --body-file sync_report.md
+          fi
+          cat sync_report.md >> "$GITHUB_STEP_SUMMARY"
