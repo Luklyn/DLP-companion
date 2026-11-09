@@ -6,6 +6,20 @@
       "attractions": "/fr-fr/attractions/",
       "restaurants": "/fr-fr/restaurants/",
       "shows": "/fr-fr/divertissements/"
+    },
+    "en_patterns": {
+      "shows": [
+        "https://www.disneylandparis.com/en-gb/entertainment/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-gb/entertainment/disney-adventure-world/{slug}"
+      ],
+      "attractions": [
+        "https://www.disneylandparis.com/en-gb/attractions/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-gb/attractions/disney-adventure-world/{slug}"
+      ],
+      "restaurants": [
+        "https://www.disneylandparis.com/en-gb/dining/disneyland-park/{slug}",
+        "https://www.disneylandparis.com/en-gb/dining/disney-adventure-world/{slug}"
+      ]
     }
   },
   "parc-asterix": {

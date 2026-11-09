@@ -80,7 +80,45 @@ def park_value(resort, ent, parent_names):
 
 
 def clean_name(s):
-    return re.sub(r'\s+', ' ', (s or '').replace(' ', ' ')).strip()
+    return re.sub(r'\s+', ' ', re.sub('[\u200b\u200c\u200d\ufeff\u00a0]', ' ', (s or ''))).strip()
+
+
+AUDIENCE = re.compile(r'^(?:(?:Adultes?|Jeunes adolescents?|Adolescents?|Enfants?|Tout[- ]petits?|Bébés?|Tout âge|All ages)[,\s]*)+', re.I)
+
+
+def api_slug(name):
+    """« Let’s Sing Christmas! » → « lets-sing-christmas » (forme des adresses anglaises du site)."""
+    import unicodedata
+    t = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode().lower()
+    t = re.sub(r"['’`]", '', t)
+    return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
+
+
+def fr_via_english(flat, mt, view, patterns, use_browser, log):
+    """Dernier recours : l'adresse anglaise d'un lieu se devine à partir du nom de l'API (patrons de sites.json, `{slug}`) ;
+    cette page indique l'adresse de sa version française (<link rel="alternate" hreflang="fr…">), qu'on ajoute aux fiches."""
+    from bs4 import BeautifulSoup
+    from urllib.parse import urljoin
+    for ei, e in enumerate(flat):
+        if ei in mt:
+            continue
+        for pat in patterns.get(e['kind'], []):
+            url = pat.replace('{slug}', api_slug(e['name']))
+            try:
+                html = fetch_html(url, use_browser=False, log=lambda *_: None)
+            except Exception:
+                html = ''
+            if not html or '<h1' not in html.lower():
+                continue
+            soup = BeautifulSoup(html, 'html.parser')
+            fr = next((urljoin(url, l['href']) for l in soup.find_all('link', hreflang=True, href=True)
+                       if l['hreflang'].lower().startswith('fr') and 'alternate' in (l.get('rel') or [])), None)
+            if not fr:
+                continue
+            view.append(dict(url=fr, name=slug_name(fr), kinds={e['kind']}, names=[slug_name(fr), e['name']], card_lines=[], menu_only=False, slug_only=True))
+            mt[ei] = (len(view) - 1, 0.95)
+            log(f'   {e["name"]} → {fr} (via la page anglaise)')
+            break
 
 
 def next_code(base, used):
@@ -142,7 +180,7 @@ def lists_from_sitemap(site, prefixes, kinds, log):
             rest = path[len(prefix):].strip('/') if path.startswith(prefix) else ''
             if rest.count('/') >= 1 and u not in seen:     # un niveau de dossier (parc) puis la fiche
                 seen.add(u)
-                fiches.append(dict(url=u, name=slug_name(u), card_lines=[], menu_only=False))
+                fiches.append(dict(url=u, name=slug_name(u), card_lines=[], menu_only=False, slug_only=True))
         lists[kind] = fiches
         log(f'  [{kind}] {len(fiches)} fiche(s) dans le sitemap sous {prefix}')
     return lists
@@ -165,7 +203,7 @@ def collect_fiches(site, cfg, kinds, use_browser, log):
     for kind, fiches in lists.items():
         for f in fiches:
             e = pool.setdefault(f['url'], dict(url=f['url'], name=f['name'], card_lines=f['card_lines'], kinds=set(), names=[],
-                                               menu_only=bool(f.get('menu_only'))))
+                                               menu_only=bool(f.get('menu_only')), slug_only=bool(f.get('slug_only'))))
             if not f.get('menu_only'):
                 e['menu_only'] = False
             e['kinds'].add(kind)
@@ -254,7 +292,7 @@ def build_entry(kind, e, park, pg, mappings, notes):
         if kind == 'restaurants' and pg.get('menu'):
             row['Menu'] = pg['menu']
         if pg.get('description'):
-            row['Description'] = pg['description']
+            row['Description'] = AUDIENCE.sub('', pg['description']).strip() or pg['description']
             if pg.get('desc_is_en'):
                 notes.append('description en anglais sur la page du site (non traduite)')
     for col in ('Land', 'Type', 'Description') + (('Taille mini',) if kind == 'attractions' else ()):
@@ -307,7 +345,7 @@ def sync_resort(resort, site_cfg, args, log):
             for f in fiches:
                 best = max((similarity(r.get('Nom', ''), n) for n in f['names'] if n), default=0)
                 name = f['names'][0] if f['names'] else ''
-                if best >= CLAIM_SCORE and name and clean_name(name) != clean_name(r.get('Nom', '')) and not f.get('menu_only'):
+                if best >= CLAIM_SCORE and name and clean_name(name) != clean_name(r.get('Nom', '')) and not f.get('menu_only') and not f.get('slug_only'):
                     result['renames'].append((k, r.get('Nom', ''), name, f['url']))
                     break
     if not flat:
@@ -319,6 +357,7 @@ def sync_resort(resort, site_cfg, args, log):
         add_english_alternates(view, claimed, {e['kind'] for e in flat}, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), log, args.browser)
         mt = match(flat, view, 0.8)
         builder.guess_missing(flat, mt, view, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), fetch_html, lambda: False, log, 0.8)
+        fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log)
         used = {fi for fi, _ in mt.values()}
         mt.update(pair_by_elimination(flat, mt, view, claimed, used))
         elim = {ei for ei, (fi, s) in mt.items() if s == 0.0}
