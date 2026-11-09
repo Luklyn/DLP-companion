@@ -94,13 +94,19 @@ def api_slug(name):
     return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
 
 
-def fr_via_english(flat, mt, view, patterns, use_browser, log):
+def fr_via_english(flat, mt, view, patterns, use_browser, log, overrides=None):
     """Dernier recours : l'adresse anglaise d'un lieu se devine à partir du nom de l'API (patrons de sites.json, `{slug}`) ;
     cette page indique l'adresse de sa version française (<link rel="alternate" hreflang="fr…">), qu'on ajoute aux fiches."""
     from bs4 import BeautifulSoup
     from urllib.parse import urljoin
     for ei, e in enumerate(flat):
         if ei in mt:
+            continue
+        forced = (overrides or {}).get(e['id'].lower())
+        if forced:      # adresse française indiquée à la main dans sites.json (« url_overrides »)
+            view.append(dict(url=forced, name=slug_name(forced), kinds={e['kind']}, names=[slug_name(forced), e['name']], card_lines=[], menu_only=False, slug_only=True))
+            mt[ei] = (len(view) - 1, 0.95)
+            log(f'   {e["name"]} → {forced} (adresse indiquée dans sites.json)')
             continue
         for pat in patterns.get(e['kind'], []):
             url = pat.replace('{slug}', api_slug(e['name']))
@@ -116,8 +122,9 @@ def fr_via_english(flat, mt, view, patterns, use_browser, log):
                 log(f'   (page anglaise introuvable : {url})')
                 continue
             soup = BeautifulSoup(html, 'html.parser')
-            fr = next((urljoin(url, l['href']) for l in soup.find_all('link', hreflang=True, href=True)
-                       if l['hreflang'].lower().startswith('fr') and 'alternate' in (l.get('rel') or [])), None)
+            frs = {l['hreflang'].lower(): urljoin(url, l['href']) for l in soup.find_all('link', hreflang=True, href=True)
+                   if l['hreflang'].lower().startswith('fr') and 'alternate' in (l.get('rel') or [])}
+            fr = frs.get('fr-fr') or frs.get('fr') or next(iter(frs.values()), None)    # France d'abord (pas fr-be / fr-ch)
             if not fr:
                 continue
             view.append(dict(url=fr, name=slug_name(fr), kinds={e['kind']}, names=[slug_name(fr), e['name']], card_lines=[], menu_only=False, slug_only=True))
@@ -362,7 +369,7 @@ def sync_resort(resort, site_cfg, args, log):
         add_english_alternates(view, claimed, {e['kind'] for e in flat}, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), log, args.browser)
         mt = match(flat, view, 0.8)
         builder.guess_missing(flat, mt, view, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), fetch_html, lambda: False, log, 0.8)
-        fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log)
+        fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log, {k.lower(): v for k, v in (cfg.get('url_overrides') or {}).items()})
         used = {fi for fi, _ in mt.values()}
         mt.update(pair_by_elimination(flat, mt, view, claimed, used))
         elim = {ei for ei, (fi, s) in mt.items() if s == 0.0}

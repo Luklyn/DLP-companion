@@ -26,6 +26,9 @@
         "https://www.disneylandparis.com/en-int/dining/disneyland-park/{slug}",
         "https://www.disneylandparis.com/en-int/dining/disney-adventure-world/{slug}"
       ]
+    },
+    "url_overrides": {
+      "00e5085b-f054-4d69-ade7-b38aa0fd1baa": "https://www.disneylandparis.com/fr-fr/divertissements/parc-disneyland/spectacle-chantons-noel"
     }
   },
   "parc-asterix": {
