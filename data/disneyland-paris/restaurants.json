@@ -412,7 +412,8 @@
     "Coordonnées GPS (lng)": 2.7781,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Discoveryland"
+    "Land": "Discoveryland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1DR02_cool-station.pdf"
   },
   {
     "Code": "P1NR00",
@@ -424,7 +425,8 @@
     "Coordonnées GPS (lng)": 2.775522,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Fantasyland"
+    "Land": "Fantasyland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1NR00_l-arbre-enchante.pdf"
   },
   {
     "Code": "P1NR04",
@@ -436,7 +438,8 @@
     "Coordonnées GPS (lng)": 2.77489,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Fantasyland"
+    "Land": "Fantasyland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1NR04_march-hare-refreshments.pdf"
   },
   {
     "Code": "P1DR03",
@@ -448,7 +451,8 @@
     "Land": "Discoveryland",
     "Coordonnées GPS (lat)": 48.87435811100483,
     "Coordonnées GPS (lng)": 2.7796104146805023,
-    "Statut inconnu": "oui"
+    "Statut inconnu": "oui",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1DR03_rocket-caf%C3%A9.pdf"
   },
   {
     "Code": "P1RR05",
@@ -460,7 +464,8 @@
     "Coordonnées GPS (lng)": 2.7722850000000108,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Frontierland"
+    "Land": "Frontierland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1RR05_critter-corral.pdf"
   },
   {
     "Code": "P1GR46",
@@ -472,7 +477,8 @@
     "Coordonnées GPS (lng)": 2.774965,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Frontierland"
+    "Land": "Frontierland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1GR46_overland-trail-cafe.pdf"
   },
   {
     "Code": "P1NR05",
@@ -484,7 +490,8 @@
     "Coordonnées GPS (lng)": 2.775106,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Fantasyland"
+    "Land": "Fantasyland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1NR05_the-old-mill.pdf"
   },
   {
     "Code": "P2PR05",
@@ -496,7 +503,8 @@
     "Coordonnées GPS (lng)": 2.778975069522857,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Avengers Campus"
+    "Land": "Avengers Campus",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2BR02_web-truck.pdf"
   },
   {
     "Code": "P2TR00",
@@ -508,7 +516,8 @@
     "Coordonnées GPS (lng)": 2.779329,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "World Premiere"
+    "Land": "World Premiere",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2TR00_ice-cream-creations.pdf"
   },
   {
     "Code": "P2DR03",
@@ -520,7 +529,8 @@
     "Coordonnées GPS (lng)": 2.776632,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventure Way"
+    "Land": "Adventure Way",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2DR03_cafe-luminosity.pdf"
   },
   {
     "Code": "P2DR02",
@@ -532,7 +542,8 @@
     "Coordonnées GPS (lng)": 2.773667,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventure Way"
+    "Land": "Adventure Way",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2DR02_la-terrasse-panoramique.pdf"
   },
   {
     "Code": "P2VK00",
@@ -544,7 +555,8 @@
     "Coordonnées GPS (lng)": 2.775209,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Worlds of Pixar"
+    "Land": "Worlds of Pixar",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2VK00_laugh-n-go.pdf"
   },
   {
     "Code": "P2FR02",
@@ -556,7 +568,8 @@
     "Coordonnées GPS (lng)": 2.779616,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "World Premiere"
+    "Land": "World Premiere",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2FR02_searchlight.pdf"
   },
   {
     "Code": "P1AR01",
@@ -568,7 +581,8 @@
     "Coordonnées GPS (lng)": 2.77452,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventureland"
+    "Land": "Adventureland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1AR01_cafe-de-la-brousse.pdf"
   },
   {
     "Code": "P1AR05",
@@ -580,7 +594,8 @@
     "Coordonnées GPS (lng)": 2.773866,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventureland"
+    "Land": "Adventureland",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P1AR05_cool-post.pdf"
   },
   {
     "Code": "P2BR02",
@@ -592,7 +607,8 @@
     "Coordonnées GPS (lng)": 2.778419852256775,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Avengers Campus"
+    "Land": "Avengers Campus",
+    "Menu": "https://media.disneylandparis.com/d4th/en-gb/images/P2PR05_fan-tastic-food-truck.pdf"
   },
   {
     "Code": "P2DR06",
@@ -604,7 +620,8 @@
     "Coordonnées GPS (lng)": 2.774056,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventure Way"
+    "Land": "Adventure Way",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2DR06_chez-marie.pdf"
   },
   {
     "Code": "P2DR05",
@@ -616,7 +633,8 @@
     "Coordonnées GPS (lng)": 2.774238,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventure Way"
+    "Land": "Adventure Way",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2DR05_chez-berlioz.pdf"
   },
   {
     "Code": "P2DR04",
@@ -628,6 +646,7 @@
     "Coordonnées GPS (lng)": 2.774413,
     "Statut inconnu": "oui",
     "Type": "A emporter",
-    "Land": "Adventure Way"
+    "Land": "Adventure Way",
+    "Menu": "https://media.disneylandparis.com/d4th/fr-fr/images/P2DR04_chez-toulouse.pdf"
   }
 ]
