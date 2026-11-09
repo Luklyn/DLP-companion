@@ -144,6 +144,32 @@ def claimed_fiches(fiches, existing):
     return claimed
 
 
+def add_english_alternates(view, claimed, kinds, cache_dir, log, use_browser):
+    """Le nom français n'a souvent rien à voir avec le nom de l'API (« Let's Sing Christmas! » / « Chantons Noël ! »).
+    Les pages françaises indiquent leur équivalent anglais (<link rel="alternate" hreflang="en-…">) : l'adresse de cette page
+    reprend en général le nom anglais, qu'on ajoute aux noms de la fiche pour l'appariement avec l'API."""
+    from bs4 import BeautifulSoup
+    targets = [i for i, f in enumerate(view) if i not in claimed and (f['kinds'] & kinds) and not f.get('menu_only')]
+    if not targets:
+        return
+    got = builder.download([view[i] for i in targets], cache_dir, log, lambda: False, lambda *_: None, fetch_html, use_browser)
+    found = 0
+    for i in targets:
+        path = got.get(view[i]['url'])
+        if not path:
+            continue
+        with open(path, encoding='utf-8', errors='ignore') as fh:
+            soup = BeautifulSoup(fh.read(), 'html.parser')
+        for link in soup.find_all('link', rel=lambda r: r and 'alternate' in ([r] if isinstance(r, str) else r)):
+            lang = (link.get('hreflang') or '').lower()
+            if lang.startswith('en') and link.get('href'):
+                name = slug_name(link['href'])
+                if name and name not in view[i]['names']:
+                    view[i]['names'].append(name)
+                    found += 1
+    log(f'   {found} équivalent(s) anglais relevé(s) sur {len(targets)} fiche(s) du site')
+
+
 def pair_by_elimination(new_ents, mt, fiches, claimed, used_fi):
     """Un seul lieu sans fiche et une seule fiche libre dans la même catégorie : le nom peut être totalement différent
     (« Pirate Battle » / « La bataille des pirates »), on les associe, avec un avertissement."""
@@ -243,6 +269,7 @@ def sync_resort(resort, site_cfg, args, log):
     log(f'   {len(flat)} nouveau(x) lieu(x) : ' + ', '.join(e['name'] for e in flat))
     if fiches:
         view = [dict(f, names=[] if i in claimed else f['names']) for i, f in enumerate(fiches)]   # fiches déjà prises : invisibles pour l'appariement
+        add_english_alternates(view, claimed, {e['kind'] for e in flat}, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), log, args.browser)
         mt = match(flat, view, 0.8)
         builder.guess_missing(flat, mt, view, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), fetch_html, lambda: False, log, 0.8)
         used = {fi for fi, _ in mt.values()}
