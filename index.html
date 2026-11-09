@@ -1737,6 +1737,8 @@
                 price: f.price ? str(raw[f.price]) : '',
                 lat: toCoord(raw['Coordonnées GPS (lat)']),
                 lng: toCoord(raw['Coordonnées GPS (lng)']),
+                noStatus: /^(oui|true|1)$/i.test(str(raw['Statut inconnu'])),   // lieu absent du flux live de l'API : affiché sans état
+                meet: /rencontre/i.test(type),   // rencontre avec un personnage : pas de séances, mais un statut d'ouverture
                 live: null,   // { status, wait, single, showtimes } une fois synchronisé
             };
         }
@@ -1970,7 +1972,7 @@
          */
         // Catégories absentes de l'API pour ce resort (parks.json : "noLiveData": ["restaurant", "spectacle"]) :
         // les lieux restent affichés, avec la mention que l'état d'ouverture / les horaires ne sont pas connus.
-        const noLive = (item) => Array.isArray(resort.noLiveData) && resort.noLiveData.includes(item.category);
+        const noLive = (item) => (Array.isArray(resort.noLiveData) && resort.noLiveData.includes(item.category)) || (item.noStatus && statusOf(item) == null);
 
         function statusModel(item) {
             const status = statusOf(item);
@@ -2022,6 +2024,7 @@
                         m.icon = 'i-show';
                         return m;
                     }
+                    if (item.meet && status === 'OPERATING') return mk('open', L('Ouvert', 'Open'), '', L('Rencontre ouverte', 'Meet & greet open'));
                     if (status === 'OPERATING') return mk('show', L('En cours', 'Now'), '', L('En cours', 'In progress'));
                     return mk('off', '--', '', '');
                 }
@@ -3016,7 +3019,7 @@
                 // Une fois synchronisé, on ne garde que les lieux dont l'API fournit des données (statut), tous parcs confondus
                 if (!state.showFavorites && state.lastSync && resort.themeparksId && !noLive(item) && statusOf(item) == null) continue;
                 // Spectacles : uniquement ceux qui ont au moins une séance prévue aujourd'hui (passée ou à venir)
-                if (!state.showFavorites && item.category === 'spectacle' && state.lastSync && !noLive(item) && !todayShowtimes(item).length) continue;
+                if (!state.showFavorites && item.category === 'spectacle' && !item.meet && state.lastSync && !noLive(item) && !todayShowtimes(item).length) continue;
                 if (query && !searchKey(item.name).includes(query)) continue;
 
                 let dist = null;

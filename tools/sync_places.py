@@ -38,10 +38,11 @@ KINDS = ('attractions', 'restaurants', 'shows')
 CATEGORY_TO_KIND = {'attraction': 'attractions', 'restaurant': 'restaurants', 'spectacle': 'shows'}
 UUID = 'UUID Themeparks.wiki'
 LAT, LNG = 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)'
+NOSTATUS = 'Statut inconnu'     # « oui » : lieu absent du flux live de l'API (l'appli l'affiche avec « état d'ouverture non connu »)
 ORDER = {
-    'attractions': ['Code', UUID, 'Nom', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', LAT, LNG],
-    'restaurants': ['Code', UUID, 'Nom', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', LAT, LNG],
-    'shows': ['Code', UUID, 'Nom', 'Description', 'Type', 'Parc', 'Land', LAT, LNG],
+    'attractions': ['Code', UUID, 'Nom', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', LAT, LNG, NOSTATUS],
+    'restaurants': ['Code', UUID, 'Nom', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', LAT, LNG, NOSTATUS],
+    'shows': ['Code', UUID, 'Nom', 'Description', 'Type', 'Parc', 'Land', LAT, LNG, NOSTATUS],
 }
 LABEL = {'attractions': 'Attractions', 'restaurants': 'Restaurants', 'shows': 'Spectacles'}
 CLAIM_SCORE = 0.9      # une fiche du site « appartient » déjà à un lieu connu au-delà de ce score de ressemblance
@@ -142,7 +143,7 @@ def next_code(base, used):
     return code
 
 
-def find_new(resort, ents, existing, ignored):
+def find_new(resort, ents, existing, ignored, allow_no_live=()):
     """Lieux de l'API absents des données : {kind: [entités]} (uniquement les catégories suivies et ceux qui ont des données live)."""
     known = {k: {str(r.get(UUID, '')).lower() for r in existing[k]} for k in KINDS}
     every = set().union(*known.values())
@@ -151,7 +152,7 @@ def find_new(resort, ents, existing, ignored):
     for e in ents:
         if e['kind'] not in kinds or e['id'].lower() in every or e['id'].lower() in ignored:
             continue
-        if not e['live']:        # l'appli masque les lieux sans statut dans l'API : inutile de les ajouter
+        if not e['live'] and e['kind'] not in allow_no_live:    # l'appli masque les lieux sans statut dans l'API, sauf s'ils sont marqués « Statut inconnu »
             continue
         out[e['kind']].append(e)
     return out
@@ -176,7 +177,7 @@ def sitemap_urls(origin, cap=30000):
     return urls
 
 
-def lists_from_sitemap(site, prefixes, kinds, log):
+def lists_from_sitemap(site, prefixes, kinds, log, keep_folders=None):
     """{kind: [fiches]} d'après les adresses du sitemap placées sous un dossier donné (ex. /fr-fr/divertissements/ → /parc-x/nom-du-spectacle)."""
     from urllib.parse import urlparse
     pu = urlparse(site)
@@ -190,6 +191,9 @@ def lists_from_sitemap(site, prefixes, kinds, log):
         for u in urls:
             path = urlparse(u).path
             rest = path[len(prefix):].strip('/') if path.startswith(prefix) else ''
+            keep = (keep_folders or {}).get(kind)
+            if keep and rest.split('/')[0] not in keep:      # ex. restaurants d'hôtels ou de Disney Village : exclus
+                continue
             if rest.count('/') >= 1 and u not in seen:     # un niveau de dossier (parc) puis la fiche
                 seen.add(u)
                 fiches.append(dict(url=u, name=slug_name(u), card_lines=[], menu_only=False, slug_only=True))
@@ -207,7 +211,7 @@ def collect_fiches(site, cfg, kinds, use_browser, log):
     elif site and not cfg.get('sitemap_prefixes'):
         lists, _ = discover.discover_lists(site, use_browser, log, fetch_html, discover._get_text)
     if cfg.get('sitemap_prefixes') and site:
-        for kind, fiches in lists_from_sitemap(site, cfg['sitemap_prefixes'], kinds, log).items():
+        for kind, fiches in lists_from_sitemap(site, cfg['sitemap_prefixes'], kinds, log, cfg.get('keep_folders')).items():
             lists[kind] = lists.get(kind, []) + fiches
     if not lists:
         return []
@@ -310,6 +314,10 @@ def build_entry(kind, e, park, pg, mappings, notes):
     for col in ('Land', 'Type', 'Description') + (('Taille mini',) if kind == 'attractions' else ()):
         if col in ORDER[kind] and not row.get(col):
             missing.append(col)
+    if not e['live']:
+        row[NOSTATUS] = 'oui'
+    if kind == 'shows' and not row.get('Type') and (re.match(r'(?i)(meet|rencontre)', e['name']) or re.match(r'P\dMG', str(e['externalId']))):
+        row['Type'] = 'Rencontre avec un personnage'
     out = {k: row[k] for k in ORDER[kind] if row.get(k) not in (None, '')}
     return out, missing
 
@@ -358,7 +366,9 @@ def sync_resort(resort, site_cfg, args, log):
     if args.inspect:
         inspect_resort(resort, ents, existing, parent_names, site_cfg, log)
         return None
-    new = find_new(resort, ents, existing, ignored if not args.include_ignored else set())
+    cfg0 = site_cfg or {}
+    allow_no_live = set(cfg0.get('add_without_live') or [])
+    new = find_new(resort, ents, existing, ignored if not args.include_ignored else set(), allow_no_live)
     if args.kinds:
         new = {k: (v if k in args.kinds else []) for k, v in new.items()}
     flat = [e for k in KINDS for e in new[k]]
@@ -403,7 +413,9 @@ def sync_resort(resort, site_cfg, args, log):
         builder.guess_missing(flat, mt, view, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), fetch_html, lambda: False, log, 0.8)
         fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log, {k.lower(): v for k, v in (cfg.get('url_overrides') or {}).items()})
         used = {fi for fi, _ in mt.values()}
-        mt.update(pair_by_elimination(flat, mt, view, claimed, used))
+        strict = set(cfg.get('only_site_matched') or [])
+        if len(strict) < len(KINDS):
+            mt.update({ei: v for ei, v in pair_by_elimination(flat, mt, view, claimed, used).items() if flat[ei]['kind'] not in strict})
         elim = {ei for ei, (fi, s) in mt.items() if s == 0.0}
         need = sorted({fi for fi, _ in mt.values() if not view[fi].get('menu_only')})
         got = builder.download([view[i] for i in need], os.path.join(tempfile.gettempdir(), f'sync_{rid}'), log, lambda: False,
@@ -423,6 +435,7 @@ def sync_resort(resort, site_cfg, args, log):
         close_browser()
     else:
         elim = set()
+    strict = set(cfg.get('only_site_matched') or [])
     mappings = builder.load_mappings()
     used_codes = {str(r.get('Code')) for k in KINDS for r in existing[k]}
     for ei, e in enumerate(flat):
@@ -433,6 +446,9 @@ def sync_resort(resort, site_cfg, args, log):
             continue
         pg = None
         notes = []
+        if kind in strict and not (ei in mt and mt[ei][0] in pages):
+            result['skipped'].append((kind, e['name'], 'aucune page correspondante dans la liste du site (parcs uniquement)'))
+            continue
         if ei in mt and mt[ei][0] in pages:
             pg = pages[mt[ei][0]]
             score = mt[ei][1]
