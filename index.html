@@ -3298,8 +3298,9 @@
             els.title.textContent = item.name;
             els.eyebrow.textContent = [item.land, item.park].filter((v, i, a) => v && a.indexOf(v) === i && v !== 'Autre').join(' · ');
             renderFavDetailButton(item);
-            els.desc.textContent = item.description;
-            els.desc.hidden = !item.description;
+            // Descriptions retirées de l'affichage (données conservées dans les fichiers)
+            els.desc.textContent = '';
+            els.desc.hidden = true;
 
             const m = statusModel(item);
             const cat = item.category;
