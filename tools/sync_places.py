@@ -103,7 +103,7 @@ def fr_via_english(flat, mt, view, patterns, use_browser, log, overrides=None):
     for ei, e in enumerate(flat):
         if ei in mt:
             continue
-        forced = (overrides or {}).get(e['id'].lower())
+        forced = (overrides or {}).get(e['id'].lower()) or (overrides or {}).get(str(e.get('externalId') or '').lower())
         if forced:      # adresse française indiquée à la main dans sites.json (« url_overrides »)
             view.append(dict(url=forced, name=slug_name(forced), kinds={e['kind']}, names=[slug_name(forced), e['name']], card_lines=[], menu_only=False, slug_only=True))
             mt[ei] = (len(view) - 1, 0.95)
