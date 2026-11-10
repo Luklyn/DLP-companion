@@ -29,7 +29,9 @@ import api_client  # noqa: E402
 import builder  # noqa: E402
 import discover  # noqa: E402
 from common import Log, norm_name  # noqa: E402
+import detail  # noqa: E402
 from detail import analyse  # noqa: E402
+import siteprofile  # noqa: E402
 from links import annotate_cards  # noqa: E402
 from matching import match, similarity, slug_name  # noqa: E402
 from net import close_browser, fetch_html  # noqa: E402
@@ -226,12 +228,36 @@ def collect_fiches(site, cfg, kinds, use_browser, log):
             if f['name'] and f['name'] not in e['names']:
                 e['names'].append(f['name'])
     mp = builder.load_mappings()
-    fiches = annotate_cards(list(pool.values()), type_keys=(mp.get('types') or {}).keys())
+    fiches = annotate_cards(list(pool.values()), type_keys=(mp.get('types') or {}).keys(), log=log)
     for f in fiches:
         s = '' if f.get('menu_only') else slug_name(f['url'])
         if s and s not in f['names']:
             f['names'].append(s)
     return fiches
+
+
+def learn_structure(fiches, rid, log, use_browser, sample=8):
+    """Avant l'import : télécharge quelques fiches du site et en déduit où lire le land (phrase-modèle qui ne change que d'un mot)."""
+    detail.PROFILE.clear()
+    pool = [f for f in fiches if not f.get('menu_only') and not f.get('slug_only')]
+    if len(pool) < 4:
+        return
+    step = max(1, len(pool) // sample)
+    picks = pool[::step][:sample]
+    log(f'   Analyse de la structure du site ({len(picks)} fiches échantillon)…')
+    got = builder.download(picks, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), log, lambda: False, lambda *_: None, fetch_html, use_browser)
+    pages = []
+    for f in picks:
+        p = got.get(f['url'])
+        if p:
+            with open(p, encoding='utf-8', errors='ignore') as fh:
+                pages.append(detail._lines(detail._main_scope(detail.soup_of(fh.read()))))
+    rx, examples = siteprofile.mine_land_template(pages)
+    if rx:
+        detail.PROFILE['land_rx'] = rx
+        log(f'   Structure des fiches : land lu dans la phrase « {rx.pattern.split("(")[0].replace(chr(92) + "s+", " ").replace(chr(92), "").strip("^ ")} … » (exemples : {", ".join(examples[:4])})')
+    else:
+        log('   Structure des fiches : aucun modèle de phrase pour le land (lecture classique)')
 
 
 def claimed_fiches(fiches, existing):
@@ -444,6 +470,8 @@ def sync_resort(resort, site_cfg, args, log):
         try:
             fiches = collect_fiches(site, cfg, {e['kind'] for e in flat} or set(KINDS), args.browser, log)
             result['web'] = bool(fiches)
+            if fiches:
+                learn_structure(fiches, rid, log, args.browser)
         except Exception as ex:   # un site en panne ne doit pas empêcher d'ajouter les lieux avec les seules données de l'API
             log(f'! Site inaccessible ou illisible : {ex}')
     claimed = claimed_fiches(fiches, existing) if fiches else set()

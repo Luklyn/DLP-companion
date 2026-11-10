@@ -3,6 +3,7 @@ import re
 from collections import Counter
 from urllib.parse import urljoin, urlparse, urldefrag
 
+import siteprofile as profile
 from common import clean, norm_name
 from net import soup_of
 
@@ -124,50 +125,31 @@ def extract_links(html, base_url='', log=print):
     return fiches, menus
 
 
-NOISE_LINES = re.compile(r'^(retiré des favoris|ajouter aux favoris|ajouter|nouveau|new|favoris|voir la page|en savoir plus)$', re.I)
-H_ALONE = re.compile(r'^hauteur minimum seul', re.I)
-H_ACC = re.compile(r'^hauteur minimum accompagn', re.I)
-H_MAX = re.compile(r'^hauteur maxim', re.I)
+NOISE_LINES = profile.NOISE
 
 
-def card_height_text(lines):
-    """Cartes du type « HAUTEUR MINIMUM SEUL » / « 130 » (valeur sur la ligne suivante) -> texte lisible par detail.parse_height."""
-    vals = {}
-    for i, l in enumerate(lines[:-1]):
-        key = 'alone' if H_ALONE.match(l) else 'acc' if H_ACC.match(l) else 'max' if H_MAX.match(l) else None
-        m = re.fullmatch(r'(\d{2,3})(?:\s*cm)?', lines[i + 1].strip()) if key else None
-        if m:
-            vals[key] = int(m.group(1))
-    if not vals:
-        return ''
-    out = []
-    if 'alone' in vals and 'acc' in vals and vals['acc'] != vals['alone']:
-        out.append(f"Minimum {vals['acc']} cm with an adult, {vals['alone']} cm without an adult.")
-    elif 'alone' in vals:
-        out.append(f"Minimum {vals['alone']} cm.")
-    elif 'acc' in vals:
-        out.append(f"Minimum {vals['acc']} cm with an adult.")
-    if 'max' in vals:
-        out.append(f"Maximum {vals['max'] / 100:.2f} m.")
-    return ' '.join(out)
-
-
-def annotate_cards(fiches, type_keys=()):
-    """Déduit de chaque carte : taille (lignes évoquant une hauteur), catégorie (lignes connues de type_keys) et land (ligne courte répétée sur plusieurs cartes)."""
+def annotate_cards(fiches, type_keys=(), log=None):
+    """Déduit de chaque carte : taille, catégorie et land. La structure des cartes est d'abord analysée (profile.analyse_cards) :
+    catégories = étiquettes courtes répétées près du nom, tailles = couples « HAUTEUR MINIMUM SEUL / 130 »."""
+    prof = profile.analyse_cards(fiches)
+    if log and (prof['facets'] or prof['height']):
+        log('   Structure des cartes : catégories ' + (', '.join(prof['facets']) or 'aucune') +
+            (' ; tailles lues d’après « ' + ' », « '.join(prof['height']) + ' »' if prof['height'] else ''))
     cnt = Counter(l for f in fiches for l in set(f['card_lines']))
     tk = {k.lower() for k in type_keys}
+    facets = {x.lower() for x in prof['facets']}
     common = 0.6 * len(fiches) if len(fiches) >= 5 else 10 ** 9      # une ligne présente sur presque toutes les cartes est une étiquette de page, pas un land
     for f in fiches:
         height = cat = land = ''
         for l in f['card_lines']:
             if l == f['name'] or len(l) > 80 or NOISE_LINES.match(l):
                 continue
-            if l.lower() in tk:
+            if l.lower() in tk or l.lower() in facets:
                 cat = cat or l
             elif HEIGHT_LINE.match(l):
                 height = height or l
             elif cnt[l] >= 2 and cnt[l] < common and len(l) <= 40 and not land and not re.fullmatch(r'\d{2,3}', l) and not re.search(r'ferm|pendant|closed|ouvert| / ', l, re.I):
                 land = re.sub(r'^Theme Park,\s*', '', l)
-        height = card_height_text(f['card_lines']) or height
+        height = profile.card_height_text(f['card_lines'], prof['height']) or height
         f.update(card_height=height, card_category=cat, card_land=land)
     return fiches

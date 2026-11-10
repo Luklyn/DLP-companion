@@ -17,6 +17,9 @@ TYPE_WORDS = ['fast food', 'snacks', 'table service', 'buffet', 'restaurant', 'b
 NOISE_BLOCKS = re.compile(r'cookie|consent|onetrust|privacy|gdpr|modal|dialog|popup|newsletter|breadcrumb|search|megamenu|navigation', re.I)
 
 
+PROFILE = {}      # structure apprise avant l'import (siteprofile) : {'land_rx': regex}
+
+
 def _fmt_height(cm):
     if cm < 100:
         return f'{cm} cm'
@@ -170,9 +173,12 @@ def analyse(html, url='', max_chars=380, list_info=None):
         desc = cut_description(meta_desc, max_chars) or desc
     # land
     land = ''
-    zone = re.search(r'D[ée]couvrez sans tarder (.{2,40}?) avec (?:ses|son|sa|leurs?)\b', ' '.join(lines), re.I)   # « Découvrez sans tarder Exotic World avec ses attractions… » (Walibi)
-    if zone:
-        land = re.sub(r'^(?:la|le|les)\s+zones?\s+', '', clean(zone.group(1)), flags=re.I)
+    rx = PROFILE.get('land_rx')
+    for l in (lines if rx else []):
+        m = rx.match(l)
+        if m:
+            land = re.sub(r'^(?:la|le|les)\s+zones?\s+', '', clean(m.group(1)), flags=re.I)
+            break
     for i, l in enumerate(lines if not land else []):
         for rx in LAND_LINES:
             m = rx.match(l)
