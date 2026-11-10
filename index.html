@@ -86,6 +86,13 @@
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
         }
+        /* iPhone (Safari et appli ajoutée à l'écran d'accueil) : « 100% / dvh » s'arrêtent avant le bas réel de l'écran
+           (zone de la barre Safari / indicateur d'accueil), ce qui laissait un vide sous le dock.
+           Une boîte fixe collée aux 4 bords couvre toujours l'écran visible ; le dock réserve lui-même la safe area. */
+        @supports (-webkit-touch-callout: none) {
+            html, body { height: 100%; }
+            body { position: fixed; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: auto; }
+        }
 
         button, input, select { font: inherit; color: inherit; }
         button { cursor: pointer; border: 0; background: none; padding: 0; }
