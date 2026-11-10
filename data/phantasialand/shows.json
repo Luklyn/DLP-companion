@@ -1,1 +1,152 @@
-[]
+[
+  {
+    "Code": "30",
+    "UUID Themeparks.wiki": "96e0dbab-fcc5-44f9-9b47-daf9010b8e6e",
+    "Nom": "BATTLE of the BEST",
+    "Type": "Spectacle sur scène",
+    "Parc": "Phantasialand",
+    "Land": "Mexico",
+    "Coordonnées GPS (lat)": 50.798563565437064,
+    "Coordonnées GPS (lng)": 6.881870403885841
+  },
+  {
+    "Code": "95",
+    "UUID Themeparks.wiki": "6fdba07b-b8b7-4ef3-8428-db2680a12cb2",
+    "Nom": "Dragon Drago",
+    "Type": "Rencontre personnage",
+    "Parc": "Phantasialand",
+    "Land": "Berlin",
+    "Coordonnées GPS (lat)": 50.79926858751814,
+    "Coordonnées GPS (lng)": 6.8795171007514
+  },
+  {
+    "Code": "81",
+    "UUID Themeparks.wiki": "5f1201f1-47f0-4a47-bb4f-0096d63d8018",
+    "Nom": "Dragon Phenie",
+    "Type": "Rencontre personnage",
+    "Parc": "Phantasialand",
+    "Land": "Fantasy",
+    "Coordonnées GPS (lat)": 50.80045673862568,
+    "Coordonnées GPS (lng)": 6.87908124178648
+  },
+  {
+    "Code": "44",
+    "UUID Themeparks.wiki": "2ec823da-fa3b-483c-9695-250807d7bf80",
+    "Nom": "Dragon Wang",
+    "Type": "Rencontre personnage",
+    "Parc": "Phantasialand",
+    "Land": "China Town",
+    "Coordonnées GPS (lat)": 50.798747927513254,
+    "Coordonnées GPS (lng)": 6.883858256042004
+  },
+  {
+    "Code": "78",
+    "UUID Themeparks.wiki": "066d062c-f0ea-43ca-ba4c-3db831a3cb8b",
+    "Nom": "Hack & Buddl",
+    "Type": "Spectacle sur scène",
+    "Parc": "Phantasialand",
+    "Land": "Fantasy",
+    "Coordonnées GPS (lat)": 50.80038214896869,
+    "Coordonnées GPS (lng)": 6.878834143280983
+  },
+  {
+    "Code": "221",
+    "UUID Themeparks.wiki": "f6c9071f-f523-4139-85d4-05624ec6a9ba",
+    "Nom": "Kaiserplatz Illumination",
+    "Type": "Spectacle nocturne",
+    "Parc": "Phantasialand",
+    "Land": "Berlin",
+    "Coordonnées GPS (lat)": 50.79998482989759,
+    "Coordonnées GPS (lng)": 6.881106644868852
+  },
+  {
+    "Code": "219",
+    "UUID Themeparks.wiki": "acc7c8de-7380-45f5-8084-03f7aac476a0",
+    "Nom": "Kroka's Lodge",
+    "Type": "Rencontre personnage",
+    "Parc": "Phantasialand",
+    "Land": "Deep in Africa",
+    "Coordonnées GPS (lat)": 50.798738179651565,
+    "Coordonnées GPS (lng)": 6.879960671067237
+  },
+  {
+    "Code": "222",
+    "UUID Themeparks.wiki": "75adabe1-20f0-4bb3-98d5-fc962f281df0",
+    "Nom": "Magic Symphony",
+    "Type": "Spectacle nocturne",
+    "Parc": "Phantasialand",
+    "Land": "Berlin",
+    "Coordonnées GPS (lat)": 50.79971104860373,
+    "Coordonnées GPS (lng)": 6.8806446343660355
+  },
+  {
+    "Code": "54",
+    "UUID Themeparks.wiki": "2b63e85a-484f-4824-8433-6ec4ad230e3f",
+    "Nom": "Miji African Dancers",
+    "Type": "Spectacle exterieur",
+    "Parc": "Phantasialand",
+    "Land": "Deep in Africa",
+    "Coordonnées GPS (lat)": 50.7986048880346,
+    "Coordonnées GPS (lng)": 6.881182081997395
+  },
+  {
+    "Code": "223",
+    "UUID Themeparks.wiki": "e9e58123-c683-4323-b086-5757de877526",
+    "Nom": "Mystic Winter Castle",
+    "Type": "Spectacle exterieur",
+    "Parc": "Phantasialand",
+    "Land": "Mystery",
+    "Coordonnées GPS (lat)": 50.8001422746056,
+    "Coordonnées GPS (lng)": 6.883976608514786
+  },
+  {
+    "Code": "226",
+    "UUID Themeparks.wiki": "c33362ee-e495-4f43-9fa5-f9235d5e64bf",
+    "Nom": "Nobis Vol. 2",
+    "Type": "Spectacle sur scène",
+    "Parc": "Phantasialand",
+    "Land": "Berlin",
+    "Coordonnées GPS (lat)": 50.799609121876365,
+    "Coordonnées GPS (lng)": 6.880637928843498
+  },
+  {
+    "Code": "220",
+    "UUID Themeparks.wiki": "04500382-a7e8-4402-a140-829f8366c2c4",
+    "Nom": "Pulse of Rookburgh",
+    "Type": "Spectacle exterieur",
+    "Parc": "Phantasialand",
+    "Land": "Rookburgh",
+    "Coordonnées GPS (lat)": 50.79962226005329,
+    "Coordonnées GPS (lng)": 6.879092305898666
+  },
+  {
+    "Code": "29",
+    "UUID Themeparks.wiki": "4a3c042e-9fc6-4d88-9cf9-dfec1f442c40",
+    "Nom": "Rock on Ice",
+    "Type": "Spectacle sur scène",
+    "Parc": "Phantasialand",
+    "Land": "Mexico",
+    "Coordonnées GPS (lat)": 50.799449132490054,
+    "Coordonnées GPS (lng)": 6.881378218531609
+  },
+  {
+    "Code": "176",
+    "UUID Themeparks.wiki": "484c351f-9326-4d6e-aa64-49dc9eeef1b1",
+    "Nom": "Tiempo de Fuego",
+    "Type": "Spectacle exterieur",
+    "Parc": "Phantasialand",
+    "Land": "Mexico",
+    "Coordonnées GPS (lat)": 50.79946311833906,
+    "Coordonnées GPS (lng)": 6.881843917071819
+  },
+  {
+    "Code": "187",
+    "UUID Themeparks.wiki": "0f49f65f-985d-4b8f-89f0-da057a331d1b",
+    "Nom": "Water. Music. Light.",
+    "Type": "Spectacle nocturne",
+    "Parc": "Phantasialand",
+    "Land": "Berlin",
+    "Coordonnées GPS (lat)": 50.79978945362735,
+    "Coordonnées GPS (lng)": 6.880966834723949
+  }
+]
