@@ -26,6 +26,9 @@
     <script>
         // Hauteur réelle de la zone visible (mobile : barre d'URL, mode PWA, vieux WebView sans « dvh »)
         (function () {
+            // iOS Safari : « dvh » suit la barre d'outils qui se réduit ; innerHeight, lui, reste figé et laissait un vide sous le dock.
+            // On ne s'appuie donc sur innerHeight que si le navigateur ne connaît pas « dvh » (vieux WebView).
+            if (window.CSS && CSS.supports && CSS.supports('height', '100dvh')) return;
             var set = function () { document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px'); };
             set();
             window.addEventListener('resize', set);
@@ -73,7 +76,8 @@
         [hidden] { display: none !important; }
 
         html, body { height: 100%; }
-        html { background: var(--bg); }
+        /* En bas, la même couleur que le dock : si Safari laisse un liseré sous l'appli, il se fond dans la barre */
+        html { background: linear-gradient(to bottom, var(--bg) calc(100% - 160px), var(--navy) calc(100% - 160px)); }
         body {
             margin: 0; display: flex;
             height: 100vh; height: 100dvh; height: var(--app-h, 100dvh); overflow: hidden;
