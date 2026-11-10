@@ -81,5 +81,12 @@
       "shows": "https://www.nigloland.fr/attractions-et-spectacles/spectacles",
       "restaurants": "https://www.nigloland.fr/restaurants/tous-les-restaurants"
     }
+  },
+  "walibi-belgium": {
+    "site": "https://www.walibi.be/",
+    "list_urls": {
+      "attractions": "https://www.walibi.be/fr/explorer-le-parc/attractions",
+      "restaurants": "https://www.walibi.be/fr/explorer-le-parc/restaurants"
+    }
   }
 }

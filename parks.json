@@ -353,6 +353,34 @@
       "noLiveData": [
         "restaurant"
       ]
+    },
+    {
+      "id": "walibi-belgium",
+      "name": "Walibi Belgium",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "locale": "fr-FR",
+      "themeparksId": "8d8a8cc7-4523-4437-8bb6-5c87a26ba5ce",
+      "dataPath": "data/walibi-belgium/",
+      "parks": [
+        {
+          "value": "Walibi Belgium",
+          "label": "Walibi Belgium",
+          "themeparksParkId": "21897ba2-cc63-460e-99b0-fcd4ca7c18ef"
+        }
+      ],
+      "info": {
+        "address": "Walibi Belgium",
+        "lat": 50.701895,
+        "lng": 4.5914887
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
