@@ -349,7 +349,10 @@
         "g1": "#2B59D9",
         "g2": "#2B59D9"
       },
-      "iconImage": "icons/nigloland.png"
+      "iconImage": "icons/nigloland.png",
+      "noLiveData": [
+        "restaurant"
+      ]
     }
   ],
   "events": [

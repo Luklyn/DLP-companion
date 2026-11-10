@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "Code": "NIGR01",
+    "Nom": "Confiserie de Niglotte",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR02",
+    "Nom": "Le Terrier",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR03",
+    "Nom": "Taverne",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR04",
+    "Nom": "Crêperie Canadienne",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR05",
+    "Nom": "NigloGrill",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR06",
+    "Nom": "Pizza Factory",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR07",
+    "Nom": "Lara Clette",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR08",
+    "Nom": "Canada Bar",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR09",
+    "Nom": "Délices du Carrousel",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR10",
+    "Nom": "Snack de l'Espace",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "NIGR11",
+    "Nom": "ERIZO – Restaurant des Hôtels",
+    "Parc": "Nigloland"
+  }
+]
