@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Administration – Theme Parks Companion</title>
+<link rel="icon" href="../icon.png">
+<style>
+:root{--bg:#F4F5F8;--ink:#161A22;--mut:#5B6475;--line:#E3E6EC;--acc:#2B59D9;--accd:#2249B5;--ok:#0B6140;--okbg:#E7F5EE;--warn:#7A4B00;--warnbg:#FFF1D6;--err:#9B1C1C;--errbg:#FDE8E8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.shell{display:flex;flex-wrap:wrap;min-height:100vh}
+aside{flex:0 0 244px;max-width:100%;padding:20px 14px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+main{flex:999 1 560px;min-width:0;padding:28px 32px 56px;display:flex;flex-direction:column;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.nav{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:transparent;color:#3A4254;font-weight:500;text-align:left}
+.nav:hover{background:#EEF0F5}
+.nav.on{background:#E8EEFD;color:#1D45B8;font-weight:600}
+.nav .sp{margin-left:auto}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px}
+.pad{padding:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid #CDD2DC;background:#fff;color:var(--ink);font-weight:600}
+.btn:hover{background:var(--bg)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.pri:hover{background:var(--accd)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn.sm{min-height:36px;padding:0 12px;font-size:13px}
+.inp,.cell{width:100%;border:1px solid #CDD2DC;border-radius:10px;background:#fff;color:var(--ink)}
+.inp{min-height:44px;padding:0 12px}
+.cell{min-height:36px;padding:0 8px;border-color:#D5D9E1;border-radius:8px;font-size:13px}
+.cell.todo{border-color:#E08A1E}
+.lbl{display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:#4A5366;letter-spacing:.02em}
+.hint{font-size:12px;color:var(--mut);margin-top:4px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;background:#ECEEF3;color:#3A4254}
+.chip.ok{background:var(--okbg);color:var(--ok)}.chip.warn{background:var(--warnbg);color:var(--warn)}.chip.err{background:var(--errbg);color:var(--err)}.chip.blue{background:#E8EEFD;color:#1D45B8}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid #D5D9E1;background:#fff;color:#3A4254;font-weight:600}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+h1{margin:0;font-size:26px;letter-spacing:-.01em}h2{margin:0;font-size:17px}h3{margin:0;font-size:15px}
+.sub{margin:4px 0 0;color:var(--mut)}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sc{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse}
+th{padding:10px 8px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#4A5366;background:var(--bg);white-space:nowrap}
+td{padding:8px;border-top:1px solid #ECEEF3;vertical-align:middle}
+.note{padding:12px 14px;border-radius:10px;font-size:13px}
+.note.warn{background:var(--warnbg);color:#6B4200}.note.err{background:var(--errbg);color:var(--err)}.note.ok{background:var(--okbg);color:var(--ok)}.note.info{background:#ECEEF3;color:#3A4254}
+.bars{display:flex;align-items:flex-end;gap:3px;height:180px}.bars i{flex:1 1 0;min-width:2px;border-radius:3px 3px 0 0;background:var(--acc)}
+.meter{height:10px;border-radius:6px;background:#ECEEF3}.meter i{display:block;height:10px;border-radius:6px}
+.tl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.tl li{display:flex;gap:12px;align-items:center}
+.dot{width:26px;height:26px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 26px}
+.spin{width:18px;height:18px;border-radius:50%;border:3px solid #CDD2DC;border-top-color:var(--acc);display:inline-block;animation:r 1s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{padding:12px 0;border-top:1px solid #ECEEF3;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+ul.plain li:first-child{border-top:0}
+.toast{position:fixed;right:20px;bottom:20px;max-width:380px;padding:12px 16px;border-radius:12px;background:var(--ink);color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:20}
+.toast.err{background:var(--err)}
+@media (prefers-color-scheme:dark){:root{color-scheme:light}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside id="side"></aside>
+  <main id="main"></main>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+'use strict';
+/* =====================================================================
+   Administration Theme Parks Companion – page statique (GitHub Pages)
+   Tout passe par l'API GitHub avec un jeton personnel stocké dans ce navigateur.
+   ===================================================================== */
+const REPO = 'Luklyn/DLP-companion';
+const BRANCH = 'main';
+const SYNC_BRANCH = 'auto/sync-places';
+const WORKFLOW = 'sync-places.yml';
+const GH = 'https://api.github.com';
+const TP = 'https://api.themeparks.wiki/v1';
+const KINDS = ['attractions', 'restaurants', 'shows'];
+const KIND_LABEL = { attractions: 'Attraction', restaurants: 'Restaurant', shows: 'Spectacle / rencontre' };
+const TP_KIND = { ATTRACTION: 'attractions', SHOW: 'shows', DINING: 'restaurants', RESTAURANT: 'restaurants' };
+const ORDER = {
+  attractions: ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Parc', 'Land', 'Type', 'Taille mini', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)', 'Statut inconnu'],
+  restaurants: ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Menu', 'Tarif', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)', 'Statut inconnu'],
+  shows: ['Code', 'UUID Themeparks.wiki', 'Nom', 'Description', 'Type', 'Parc', 'Land', 'Coordonnées GPS (lat)', 'Coordonnées GPS (lng)', 'Statut inconnu']
+};
+
+/* ---------- stockage (jamais bloquant) ---------- */
+const store = {
+  get(k, s) { try { return (s ? sessionStorage : localStorage).getItem(k); } catch (e) { return null; } },
+  set(k, v, s) { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch (e) { /* ignoré */ } },
+  del(k) { try { localStorage.removeItem(k); sessionStorage.removeItem(k); } catch (e) { /* ignoré */ } }
+};
+let token = store.get('tpc_admin_token') || store.get('tpc_admin_token', true) || '';
+
+/* ---------- état ---------- */
+const S = {
+  view: 'dash', period: '30', conn: null /* {login, push} */, connErr: '', busy: {},
+  parks: null, sites: {}, counts: {}, releases: null,
+  park: null, checked: false, checkErr: '', rows: [], skippedPark: 0, knownCount: 0,
+  urls: { attractions: '', shows: '', restaurants: '' }, run: null /* {id,status,since,url} */, fetchMsg: '', enriched: false,
+  pending: JSON.parse(store.get('tpc_admin_pending') || '{}'),
+  mode: 'direct', msg: '', pub: null /* {steps, step, url, err} */, prs: null, history: null,
+  np: { name: '', id: '', idTouched: false, country: 'FR', api1: '', api2: '', s1: '', s2: '', s3: '', color: '#2B59D9' }, npTest: null
+};
+function savePending() { store.set('tpc_admin_pending', JSON.stringify(S.pending)); }
+
+/* ---------- utilitaires ---------- */
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const slug = (s) => String(s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const fmt = (n) => new Intl.NumberFormat('fr-FR').format(n);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+function toast(msg, err) { const t = $('#toast'); t.textContent = msg; t.className = 'toast' + (err ? ' err' : ''); t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, err ? 7000 : 3500); }
+function b64dec(b) { const bin = atob(String(b).replace(/\s/g, '')); const u = Uint8Array.from(bin, (c) => c.charCodeAt(0)); return new TextDecoder().decode(u); }
+function ago(iso) { const d = (Date.now() - new Date(iso).getTime()) / 60000; if (d < 1) return 'à l’instant'; if (d < 60) return `il y a ${Math.round(d)} min`; if (d < 1440) return `il y a ${Math.round(d / 60)} h`; return `il y a ${Math.round(d / 1440)} j`; }
+
+/* ---------- API GitHub ---------- */
+async function gh(path, opt = {}) {
+  const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+  if (token) headers.Authorization = 'Bearer ' + token;
+  if (opt.body) headers['Content-Type'] = 'application/json';
+  const r = await fetch(GH + path, { method: opt.method || 'GET', headers, body: opt.body ? JSON.stringify(opt.body) : undefined });
+  if (!r.ok) {
+    let m = ''; try { m = (await r.json()).message; } catch (e) { /* ignoré */ }
+    const e = new Error(`GitHub ${r.status}${m ? ' : ' + m : ''}`); e.status = r.status; throw e;
+  }
+  return r.status === 204 ? null : r.json();
+}
+const needToken = () => { if (!token) { toast('Connectez-vous avec un jeton GitHub pour cette action.', true); return true; } return false; };
+async function readFile(path, ref = BRANCH) {
+  if (token) {
+    try { const j = await gh(`/repos/${REPO}/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(ref)}`); return b64dec(j.content); }
+    catch (e) { if (e.status === 404) return null; throw e; }
+  }
+  if (ref !== BRANCH) throw new Error('Connexion GitHub requise');
+  const r = await fetch('../' + path + '?t=' + Date.now()); return r.ok ? r.text() : null;
+}
+async function readJson(path, fallback, ref) { const t = await readFile(path, ref); if (t == null) return fallback; try { return JSON.parse(t); } catch (e) { return fallback; } }
+async function tp(path) { const r = await fetch(TP + path); if (!r.ok) throw new Error(`themeparks.wiki ${r.status}`); return r.json(); }
+function entityId(v) {
+  v = String(v || '').trim(); const m = v.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+  if (m) return m[0].toLowerCase(); const m2 = v.match(/\/entity\/([^/?#]+)/); return m2 ? m2[1] : v;
+}
+
+/* ---------- données ---------- */
+async function loadBase() {
+  S.parks = await readJson('parks.json', { resorts: [] });
+  S.sites = await readJson('tools/importer/sites.json', {});
+  if (!S.park || !S.parks.resorts.find((r) => r.id === S.park)) S.park = S.parks.resorts[0]?.id;
+  await Promise.all(S.parks.resorts.map(async (r) => {
+    const c = {};
+    await Promise.all([...KINDS, 'ignored'].map(async (k) => { const d = await readJson(r.dataPath + k + '.json', []).catch(() => []); c[k] = Array.isArray(d) ? d.length : 0; }));
+    S.counts[r.id] = c;
+  }));
+  try { S.releases = await gh(`/repos/${REPO}/releases?per_page=30`); } catch (e) { S.releases = null; }
+}
+async function connect(tok, remember) {
+  S.connErr = '';
+  try {
+    const old = token; token = tok.trim();
+    const repo = await gh(`/repos/${REPO}`);
+    const me = await gh('/user');
+    S.conn = { login: me.login, push: !!(repo.permissions && repo.permissions.push) };
+    if (!S.conn.push) { S.connErr = 'Ce jeton n’a pas le droit d’écrire dans le dépôt.'; token = old; S.conn = null; return false; }
+    store.del('tpc_admin_token'); store.set('tpc_admin_token', token, !remember);
+    return true;
+  } catch (e) { token = ''; S.conn = null; S.connErr = e.status === 401 ? 'Jeton refusé par GitHub.' : e.message; return false; }
+}
+function disconnect() { store.del('tpc_admin_token'); token = ''; S.conn = null; render(); }
+
+/* ---------- pending (modifications en attente) ---------- */
+async function currentContent(path) {
+  if (S.pending[path]) return S.pending[path].content;
+  return (await readFile(path)) ?? '[]';
+}
+async function stage(path, content, note) {
+  const prev = S.pending[path];
+  const orig = prev ? prev.orig : ((await readFile(path)) ?? null);
+  S.pending[path] = { path, content, orig, note: (prev && prev.note ? prev.note + ' ; ' : '') + note };
+  savePending();
+}
+const jsonText = (v) => JSON.stringify(v, null, 2) + '\n';
+
+/* ============================== VUES ============================== */
+function sideHtml() {
+  const n = Object.keys(S.pending).length;
+  const nav = (v, label, ico, extra) => `<button class="nav ${S.view === v ? 'on' : ''}" data-go="${v}">${ico}${label}${extra || ''}</button>`;
+  const I = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  return `<div class="brand"><div class="logo">TP</div><div><div style="font-weight:700;font-size:15px">Theme Parks</div><div style="font-size:12px;color:var(--mut)">Administration</div></div></div>
+  ${nav('dash', 'Tableau de bord', I('<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>'))}
+  ${nav('parks', 'Parcs et lieux', I('<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'))}
+  ${nav('newpark', 'Ajouter un parc', I('<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'))}
+  ${nav('deploy', 'Déploiement', I('<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-3 3.5-8 5"/>'), n ? `<span class="sp chip blue">${n}</span>` : '')}
+  <div style="margin-top:auto;padding:14px 10px;border-top:1px solid var(--line);font-size:12px;color:var(--mut)">
+    <div style="font-weight:600;color:var(--ink)">${REPO}</div>
+    ${S.conn ? `<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:#0F7B4F"></span>Connecté : ${esc(S.conn.login)}</div><button class="btn sm" style="margin-top:8px" data-act="disconnect">Se déconnecter</button>`
+      : `<div style="margin-top:4px">Lecture seule</div>`}
+  </div>`;
+}
+
+function loginCard() {
+  if (S.conn) return '';
+  return `<section class="card pad" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+    <div><h2>Connexion à GitHub</h2><p class="sub">Un jeton personnel est nécessaire pour lancer les synchronisations et publier. Il reste dans ce navigateur et n’est envoyé qu’à GitHub.</p></div>
+    <div><label class="lbl" for="tok">Jeton d’accès personnel (fine-grained)</label><input id="tok" class="inp mono" type="password" autocomplete="off" placeholder="github_pat_…"><div class="hint">Dépôt ${REPO} · droits : Contents (lecture/écriture), Pull requests (lecture/écriture), Actions (lecture/écriture), Metadata (lecture).</div></div>
+    <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="rem"> Se souvenir de moi sur cet appareil</label>
+    ${S.connErr ? `<div class="note err" role="alert">${esc(S.connErr)}</div>` : ''}
+    <div><button class="btn pri" data-act="connect">Se connecter</button></div>
+  </section>`;
+}
+
+/* ---------- tableau de bord ---------- */
+function dashView() {
+  const ex = { '7': [48210, 6.2, 1126, 11.8, 7], '30': [196540, 12.4, 4312, 15.3, 30], '90': [544800, 21.9, 10980, 27.0, 30] }[S.period];
+  const seed = [52, 61, 58, 66, 71, 64, 79, 84, 76, 70, 68, 82, 91, 96, 88, 84, 79, 86, 94, 101, 97, 90, 85, 92, 104, 112, 108, 99, 95, 118];
+  const bars = seed.slice(seed.length - ex[4]).map((h) => `<i style="height:${Math.round(h * 1.4)}px"></i>`).join('');
+  let apk = null, rel = '';
+  if (S.releases) {
+    apk = 0; S.releases.forEach((r) => (r.assets || []).forEach((a) => { if (/\.apk$/i.test(a.name)) apk += a.download_count; }));
+    const last = S.releases[0]; rel = last ? `Dernière version : ${esc(last.name || last.tag_name)}` : '';
+  }
+  const kpi = (label, value, note, tag) => `<div class="card pad" style="display:flex;flex-direction:column;gap:6px"><div style="font-size:13px;color:#4A5366;font-weight:600">${label}</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em">${value}</div><div style="font-size:12px;color:var(--mut)">${note}</div>${tag}</div>`;
+  const exTag = '<span class="chip warn" style="align-self:flex-start">Exemple</span>';
+  const parkRows = (S.parks?.resorts || []).map((r) => {
+    const c = S.counts[r.id] || {}; const n = (c.attractions || 0) + (c.restaurants || 0) + (c.shows || 0);
+    return `<tr><td style="font-weight:600">${esc(r.name)}</td><td>${esc(r.country || '')}</td><td>${(r.parks || []).length}</td><td>${n}</td><td>${c.ignored || 0}</td></tr>`;
+  }).join('');
+  return `<div><h1>Tableau de bord</h1><p class="sub">Vue d’ensemble de l’application.</p></div>
+  <div class="note warn">Le flux du site et les ajouts à l’écran d’accueil iOS sont des chiffres d’exemple : aucune source de statistiques n’est encore branchée. Les téléchargements de l’APK viennent de GitHub.</div>
+  <div class="tabs" role="group" aria-label="Période">${[['7', '7 jours'], ['30', '30 jours'], ['90', '90 jours']].map(([k, l]) => `<button class="tab ${S.period === k ? 'on' : ''}" data-period="${k}">${l}</button>`).join('')}</div>
+  <div class="grid g3">
+    ${kpi('Flux global du site', fmt(ex[0]), 'Visites uniques', exTag)}
+    ${kpi('Téléchargements de l’application', apk == null ? '—' : fmt(apk), apk == null ? 'Indisponible' : `APK Android, toutes versions · ${rel}`, apk == null ? '' : '<span class="chip ok" style="align-self:flex-start">Données réelles</span>')}
+    ${kpi('Ajouts à l’écran d’accueil iOS', fmt(ex[2]), 'Safari, mode application', exTag)}
+  </div>
+  <div class="card pad"><div class="row" style="justify-content:space-between;margin-bottom:14px"><h2>Fréquentation du site</h2><span class="chip warn">Exemple</span></div><div class="bars" role="img" aria-label="Histogramme d’exemple">${bars}</div></div>
+  <div class="card pad"><h2 style="margin-bottom:12px">Parcs dans l’application</h2><div class="sc"><table style="min-width:480px"><thead><tr><th>Destination</th><th>Pays</th><th>Parcs</th><th>Lieux</th><th>Ignorés</th></tr></thead><tbody>${parkRows}</tbody></table></div></div>`;
+}
+
+/* ---------- parcs et lieux ---------- */
+const resortById = (id) => S.parks?.resorts.find((r) => r.id === id);
+function parksView() {
+  const r = resortById(S.park); if (!r) return '<p>Aucun parc.</p>';
+  const c = S.counts[r.id] || {};
+  const cfg = S.sites[r.id] || {};
+  const run = S.run;
+  const busyCheck = !!S.busy.check;
+  const countCard = (l, v) => `<div class="card" style="padding:16px 18px"><div style="font-size:12px;color:#4A5366;font-weight:600">${l}</div><div style="font-size:28px;font-weight:700">${v}</div></div>`;
+  let rowsHtml = '';
+  if (S.checked && S.rows.length) {
+    rowsHtml = S.rows.map((x, i) => {
+      const miss = { land: !x.land, type: !x.type, height: x.kind === 'attractions' && !x.height, menu: x.kind === 'restaurants' && !x.menu };
+      const incomplete = S.enriched && (miss.land || miss.type || miss.height || miss.menu);
+      const state = !S.enriched ? ['Non enrichi', ''] : (x.rec ? (incomplete ? ['À compléter', 'warn'] : ['Complet', 'ok']) : ['Aucune fiche trouvée', 'warn']);
+      const cell = (f, m, extra = '') => `<input class="cell ${S.enriched && m ? 'todo' : ''}" data-row="${i}" data-f="${f}" value="${esc(x[f])}" aria-label="${f} de ${esc(x.api)}" ${extra}>`;
+      return `<tr>
+        <td><input type="checkbox" data-row="${i}" data-f="selected" ${x.selected ? 'checked' : ''} aria-label="Sélectionner ${esc(x.api)}" style="width:20px;height:20px"></td>
+        <td class="mono">${esc(x.code)}</td><td class="mono" style="color:var(--mut)" title="${esc(x.uuid)}">${esc(x.uuid.slice(0, 8))}…</td>
+        <td>${cell('nom', S.enriched && x.nom === x.api && !x.rec)}</td>
+        <td style="color:#4A5366">${esc(x.api)}<div class="hint">${KIND_LABEL[x.kind]}</div></td>
+        <td style="white-space:nowrap">${esc(x.park)}</td>
+        <td>${cell('land', miss.land)}</td><td>${cell('type', miss.type)}</td>
+        <td>${x.kind === 'attractions' ? cell('height', miss.height) : '<span style="color:#8A93A5">—</span>'}</td>
+        <td>${x.kind === 'restaurants' ? cell('menu', miss.menu) : '<span style="color:#8A93A5">—</span>'}</td>
+        <td><span class="chip ${state[1]}">${state[0]}</span></td></tr>`;
+    }).join('');
+  }
+  const sel = S.rows.filter((x) => x.selected).length;
+  const runHtml = run ? `<div class="note ${run.status === 'completed' && run.conclusion !== 'success' ? 'err' : 'info'}" role="status" style="display:flex;gap:12px;align-items:center">${run.status !== 'completed' ? '<span class="spin"></span>' : ''}<span>${esc(S.fetchMsg)} ${run.url ? `<a href="${esc(run.url)}" target="_blank" rel="noopener">Voir l’exécution</a>` : ''}</span></div>` : (S.fetchMsg ? `<div class="note info" role="status">${esc(S.fetchMsg)}</div>` : '');
+  return `<div><h1>Parcs et lieux</h1><p class="sub">Données de chaque parc et détection des nouveaux lieux de l’API.</p></div>
+  <div class="tabs" role="tablist" aria-label="Parcs">${S.parks.resorts.map((p) => `<button class="tab ${p.id === S.park ? 'on' : ''}" role="tab" data-park="${p.id}">${esc(p.name)}</button>`).join('')}</div>
+  <div class="grid g4">${countCard('Attractions', c.attractions ?? '…')}${countCard('Restaurants', c.restaurants ?? '…')}${countCard('Spectacles et rencontres', c.shows ?? '…')}${countCard('Lieux ignorés', c.ignored ?? '…')}</div>
+  <section class="card pad" style="display:flex;flex-direction:column;gap:18px">
+    <div class="row" style="justify-content:space-between"><div style="flex:1 1 320px"><h2>Synchronisation avec l’API</h2><p class="sub">Compare les lieux renvoyés par themeparks.wiki avec ceux de l’application (par UUID). Les lieux « ignorés » ne sont pas proposés.</p></div>
+      <button class="btn pri" data-act="check" ${busyCheck ? 'disabled' : ''}>${busyCheck ? 'Vérification…' : (S.checked ? 'Vérifier à nouveau' : 'Vérifier l’API')}</button></div>
+    ${busyCheck ? '<div class="note info" role="status" style="display:flex;gap:12px;align-items:center"><span class="spin"></span>Lecture de l’API et comparaison avec la base…</div>' : ''}
+    ${S.checkErr ? `<div class="note err" role="alert">${esc(S.checkErr)}</div>` : ''}
+    ${S.checked && !S.checkErr ? `
+      <div class="row"><span class="chip ${S.rows.length ? 'warn' : 'ok'}">${S.rows.length} lieu${S.rows.length > 1 ? 'x' : ''} dans l’API, absent${S.rows.length > 1 ? 's' : ''} de l’appli</span><span class="chip">${S.knownCount} déjà connus</span>${S.skippedPark ? `<span class="chip">${S.skippedPark} hors parcs (hôtels, boutiques…) ignorés</span>` : ''}</div>
+      ${S.rows.length ? `
+      <div style="border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:#FAFBFD">
+        <div><h3>Récupération automatique des informations</h3><p class="sub" style="font-size:13px">Indiquez les pages de liste du site du parc (laissez vide pour utiliser la configuration existante). Les noms, lands, types, tailles et menus sont lus sur les fiches, sans traduction.</p></div>
+        <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="u-${k}">${l}</label><input id="u-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
+        <div class="row"><button class="btn pri" data-act="enrich" ${S.busy.enrich ? 'disabled' : ''}>${S.busy.enrich ? 'Récupération…' : 'Récupérer les informations'}</button><span class="hint">Lance l’action GitHub « Synchronisation des lieux » (de quelques minutes à 25 min pour les grands parcs).</span></div>
+        ${runHtml}
+      </div>
+      <div class="sc"><table style="min-width:1260px"><thead><tr><th style="width:44px"></th><th>Code</th><th>UUID Themeparks</th><th style="min-width:200px">Nom</th><th style="min-width:170px">Nom dans l’API</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>État</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
+      <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les cases encadrées en orange sont à compléter à la main. Les lieux non cochés peuvent être ajoutés à la liste « ignorés » pour ne plus être proposés.</p>
+        <div class="row"><button class="btn" data-act="ignore">Ignorer les lieux non cochés</button><button class="btn pri" data-act="validate" ${sel ? '' : 'disabled'}>Valider ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div></div>` : '<div class="note ok">L’application est à jour avec l’API pour ce parc.</div>'}` : ''}
+  </section>`;
+}
+
+async function doCheck() {
+  const r = resortById(S.park); const cfg = S.sites[r.id] || {};
+  S.busy.check = true; S.checkErr = ''; S.checked = false; S.rows = []; S.enriched = false; S.run = null; S.fetchMsg = ''; render();
+  try {
+    const cid = entityId(r.themeparksId);
+    const [children, live] = await Promise.all([tp(`/entity/${cid}/children`), tp(`/entity/${cid}/live`).catch(() => null)]);
+    const liveSet = new Set(((live && live.liveData) || []).map((x) => x.id));
+    const data = {}; for (const k of KINDS) data[k] = await readJson(r.dataPath + k + '.json', []);
+    const ignored = new Set((await readJson(r.dataPath + 'ignored.json', [])).map((u) => String(u).toLowerCase()));
+    const known = new Set(); KINDS.forEach((k) => data[k].forEach((x) => known.add(String(x['UUID Themeparks.wiki'] || '').toLowerCase())));
+    const allowNoLive = new Set(cfg.add_without_live || []);
+    const parkOf = {}; (r.parks || []).forEach((p) => { parkOf[p.themeparksParkId] = p.value; });
+    let skipped = 0; const rows = [];
+    for (const c of children.children || []) {
+      const kind = TP_KIND[c.entityType]; if (!kind) continue;
+      const id = String(c.id).toLowerCase();
+      if (known.has(id) || ignored.has(id)) continue;
+      if (!liveSet.has(c.id) && !allowNoLive.has(kind)) continue;
+      const park = parkOf[c.parentId];
+      if (!park) { skipped++; continue; }
+      const loc = c.location || {};
+      rows.push({ id: c.id, uuid: id, code: c.externalId || ('api-' + id.slice(0, 8)), api: c.name || '', kind, park, lat: loc.latitude ?? '', lng: loc.longitude ?? '', live: liveSet.has(c.id), nom: c.name || '', land: '', type: '', height: '', menu: '', selected: true, rec: null });
+    }
+    rows.sort((a, b) => a.kind.localeCompare(b.kind) || a.api.localeCompare(b.api));
+    S.rows = rows; S.skippedPark = skipped; S.knownCount = known.size; S.checked = true;
+    S.urls = { attractions: '', shows: '', restaurants: '' };
+  } catch (e) { S.checkErr = 'Vérification impossible : ' + e.message; }
+  S.busy.check = false; render();
+}
+
+async function doEnrich() {
+  if (needToken()) return;
+  const r = resortById(S.park);
+  S.busy.enrich = true; S.fetchMsg = 'Lancement de la synchronisation…'; S.run = { status: 'queued' }; render();
+  const since = Date.now() - 5000;
+  try {
+    const inputs = { resort: r.id, list_attractions: S.urls.attractions.trim(), list_shows: S.urls.shows.trim(), list_restaurants: S.urls.restaurants.trim() };
+    await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { method: 'POST', body: { ref: BRANCH, inputs } });
+    await pollRun(since, r.id);
+  } catch (e) { S.fetchMsg = 'Échec : ' + e.message; S.run = null; }
+  S.busy.enrich = false; render();
+}
+async function pollRun(since, resortId) {
+  let run = null;
+  for (let i = 0; i < 160 && S.park === resortId; i++) {
+    await sleep(i === 0 ? 6000 : 15000);
+    const list = await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=5`);
+    run = (list.workflow_runs || []).filter((x) => new Date(x.created_at).getTime() >= since).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+    if (run) {
+      S.run = { id: run.id, status: run.status, conclusion: run.conclusion, url: run.html_url };
+      S.fetchMsg = run.status === 'completed' ? '' : (run.status === 'queued' ? 'En file d’attente chez GitHub…' : 'Lecture des fiches du site en cours…');
+      render();
+      if (run.status === 'completed') break;
+    }
+  }
+  if (!run || run.status !== 'completed') { S.fetchMsg = 'La synchronisation est toujours en cours chez GitHub. Réessayez « Récupérer les informations » dans quelques minutes.'; return; }
+  if (run.conclusion !== 'success') { S.fetchMsg = 'La synchronisation a échoué. Ouvrez l’exécution pour voir le détail.'; return; }
+  await applyBranch(since, resortId);
+}
+async function applyBranch(since, resortId) {
+  const r = resortById(resortId);
+  let b = null; try { b = await gh(`/repos/${REPO}/branches/${encodeURIComponent(SYNC_BRANCH)}`); } catch (e) { /* absente */ }
+  const when = b ? new Date(b.commit.commit.committer.date).getTime() : 0;
+  if (!b || when < since) { S.enriched = true; S.fetchMsg = 'La synchronisation n’a trouvé aucune fiche à enrichir : les noms de l’API sont conservés, complétez à la main.'; S.run = null; return; }
+  let hit = 0;
+  for (const k of KINDS) {
+    const list = await readJson(r.dataPath + k + '.json', [], SYNC_BRANCH);
+    const by = {}; list.forEach((x) => { by[String(x['UUID Themeparks.wiki'] || '').toLowerCase()] = x; });
+    S.rows.forEach((row) => {
+      const rec = row.kind === k ? by[row.uuid] : null; if (!rec) return;
+      row.rec = rec; hit++;
+      row.nom = rec.Nom || row.nom; row.land = rec.Land || ''; row.type = rec.Type || ''; row.height = rec['Taille mini'] || ''; row.menu = rec.Menu || '';
+    });
+  }
+  S.enriched = true; S.run = null;
+  S.fetchMsg = `Terminé : ${hit} lieu${hit > 1 ? 'x' : ''} enrichi${hit > 1 ? 's' : ''} depuis le site, ${S.rows.length - hit} sans fiche trouvée (à compléter).`;
+}
+
+function buildRecord(x, existingCodes) {
+  const rec = {};
+  const base = Object.assign({}, x.rec || {});
+  base.Code = base.Code || x.code; base['UUID Themeparks.wiki'] = x.uuid;
+  base.Nom = x.nom || x.api; base.Parc = base.Parc || x.park;
+  if (x.land) base.Land = x.land; else delete base.Land;
+  if (x.type) base.Type = x.type; else delete base.Type;
+  if (x.kind === 'attractions') { if (x.height) base['Taille mini'] = x.height; else delete base['Taille mini']; }
+  if (x.kind === 'restaurants') { if (x.menu) base.Menu = x.menu; else delete base.Menu; }
+  if (base['Coordonnées GPS (lat)'] == null && x.lat !== '') base['Coordonnées GPS (lat)'] = x.lat;
+  if (base['Coordonnées GPS (lng)'] == null && x.lng !== '') base['Coordonnées GPS (lng)'] = x.lng;
+  if (!x.live) base['Statut inconnu'] = 'oui';
+  let code = String(base.Code), n = 2; while (existingCodes.has(code)) code = base.Code + '-' + n++;
+  base.Code = code; existingCodes.add(code);
+  ORDER[x.kind].forEach((k) => { if (base[k] !== undefined && base[k] !== null && base[k] !== '') rec[k] = base[k]; });
+  return rec;
+}
+async function doValidate() {
+  const r = resortById(S.park); const chosen = S.rows.filter((x) => x.selected);
+  if (!chosen.length) return;
+  S.busy.validate = true; render();
+  try {
+    for (const k of KINDS) {
+      const items = chosen.filter((x) => x.kind === k); if (!items.length) continue;
+      const path = r.dataPath + k + '.json';
+      const cur = JSON.parse(await currentContent(path));
+      const codes = new Set(cur.map((x) => String(x.Code)));
+      items.forEach((x) => cur.push(buildRecord(x, codes)));
+      await stage(path, jsonText(cur), `+${items.length} lieu${items.length > 1 ? 'x' : ''}`);
+    }
+    S.msg = S.msg || `Nouveaux lieux ${r.name}`;
+    S.rows = S.rows.filter((x) => !x.selected); S.checked = S.rows.length > 0; S.view = 'deploy'; S.pub = null;
+    toast(`${chosen.length} lieu(x) prêts à être publiés.`);
+  } catch (e) { toast('Impossible de préparer les modifications : ' + e.message, true); }
+  S.busy.validate = false; render();
+}
+async function doIgnore() {
+  const r = resortById(S.park); const out = S.rows.filter((x) => !x.selected);
+  if (!out.length) { toast('Aucun lieu décoché.'); return; }
+  const path = r.dataPath + 'ignored.json';
+  try {
+    const cur = JSON.parse(await currentContent(path));
+    out.forEach((x) => { if (!cur.includes(x.uuid)) cur.push(x.uuid); });
+    cur.sort();
+    await stage(path, jsonText(cur), `+${out.length} ignoré${out.length > 1 ? 's' : ''}`);
+    S.rows = S.rows.filter((x) => x.selected);
+    S.msg = S.msg || `Lieux ignorés ${r.name}`;
+    toast(`${out.length} lieu(x) ajouté(s) à la liste des ignorés (à publier).`);
+  } catch (e) { toast(e.message, true); }
+  render();
+}
+
+/* ---------- nouveau parc ---------- */
+function newparkView() {
+  const n = S.np, t = S.npTest;
+  const ready = n.name && n.id && n.api1 && n.api2 && n.country;
+  const step = S.busy.np ? 3 : (t && t.ok ? 2 : (ready ? 1 : 0));
+  const steps = ['Informations', 'Liens testés', 'Parc préparé'].map((l, i) => `<li class="chip ${i <= step ? 'blue' : ''}" style="padding:8px 14px;font-size:13px">${i + 1}. ${l}</li>`).join('');
+  const inp = (id, l, key, extra = '', hint = '') => `<div><label class="lbl" for="${id}">${l}</label><input id="${id}" class="inp ${extra}" data-np="${key}" value="${esc(n[key])}">${hint ? `<div class="hint">${hint}</div>` : ''}</div>`;
+  const res = t ? `<ul class="plain" role="status">${t.items.map((i) => `<li style="padding:6px 0;border:0"><span class="chip ${i.cls}" style="min-width:84px;justify-content:center">${i.s}</span><span style="flex:1 1 300px">${esc(i.text)}</span></li>`).join('')}</ul>` : '';
+  return `<div><h1>Ajouter un parc</h1><p class="sub">Renseignez les sources du nouveau parc. La configuration est générée et préparée pour le déploiement.</p></div>
+  <ol class="row" style="margin:0;padding:0;list-style:none;gap:10px">${steps}</ol>
+  <section class="card pad" style="display:flex;flex-direction:column;gap:18px;max-width:940px">
+    <h2>1. Identité du parc</h2>
+    <div class="grid g2">${inp('np-name', 'Nom affiché', 'name')}${inp('np-id', 'Identifiant (dossier de données)', 'id', 'mono', 'Généré à partir du nom : minuscules, tirets, sans accents. Ne change plus ensuite.')}${inp('np-country', 'Pays (code à 2 lettres)', 'country', '', 'Sert à classer le parc par continent dans l’appli (FR, DE, NL, GB, US…).')}</div>
+    <h2>2. Liens de l’API themeparks.wiki</h2>
+    <div class="grid g2">${inp('np-a1', 'Destination (liste des lieux)', 'api1', 'mono', 'Lien …/entity/&lt;id&gt;/children ou simplement l’identifiant.')}${inp('np-a2', 'Données en direct (live)', 'api2', 'mono', 'Lien …/entity/&lt;id&gt;/live ou l’identifiant.')}</div>
+    <h2>3. Pages sources du parc</h2>
+    <div class="grid g3">${inp('np-s1', 'Liste des attractions', 's1')}${inp('np-s2', 'Liste des spectacles', 's2')}${inp('np-s3', 'Liste des restaurants', 's3')}</div>
+    <div class="row"><button class="btn" data-act="testlinks" ${S.busy.test ? 'disabled' : ''}>${S.busy.test ? 'Test en cours…' : 'Tester les liens'}</button><button class="btn pri" data-act="createpark" ${t && t.ok && !S.busy.np ? '' : 'disabled'}>Préparer le nouveau parc</button></div>
+    ${res}
+  </section>`;
+}
+async function testLinks() {
+  const n = S.np; S.busy.test = true; S.npTest = null; render();
+  const items = []; let ok = true; let info = null;
+  try {
+    const cid = entityId(n.api1), lid = entityId(n.api2);
+    const ch = await tp(`/entity/${cid}/children`);
+    const parks = (ch.children || []).filter((c) => c.entityType === 'PARK');
+    const cnt = {}; (ch.children || []).forEach((c) => { const k = TP_KIND[c.entityType]; if (k) cnt[k] = (cnt[k] || 0) + 1; });
+    items.push({ s: 'OK', cls: 'ok', text: `API destination « ${ch.name} » : ${parks.length} parc${parks.length > 1 ? 's' : ''}, ${cnt.attractions || 0} attractions, ${cnt.restaurants || 0} restaurants, ${cnt.shows || 0} spectacles` });
+    if (!parks.length) { ok = false; items.push({ s: 'Erreur', cls: 'err', text: 'Aucun parc trouvé sous cette destination : vérifiez le lien.' }); }
+    info = { id: ch.id, name: ch.name, timezone: ch.timezone, parks, lat: (parks[0]?.location || ch.location || {}).latitude, lng: (parks[0]?.location || ch.location || {}).longitude };
+    try { const lv = await tp(`/entity/${lid}/live`); items.push({ s: 'OK', cls: 'ok', text: `API live : ${(lv.liveData || []).length} lieux avec données en direct` }); }
+    catch (e) { ok = false; items.push({ s: 'Erreur', cls: 'err', text: 'API live injoignable : ' + e.message }); }
+  } catch (e) { ok = false; items.push({ s: 'Erreur', cls: 'err', text: 'API destination injoignable : ' + e.message }); }
+  [['s1', 'attractions'], ['s2', 'spectacles'], ['s3', 'restaurants']].forEach(([k, l]) => {
+    const v = n[k].trim();
+    if (!v) items.push({ s: 'Facultatif', cls: 'warn', text: `Page des ${l} non renseignée : les lieux seront ajoutés avec les données de l’API seules.` });
+    else if (!/^https?:\/\//i.test(v)) { ok = false; items.push({ s: 'Erreur', cls: 'err', text: `Page des ${l} : adresse invalide.` }); }
+    else items.push({ s: 'Adresse OK', cls: 'ok', text: `Page des ${l} : adresse valide (le contenu sera lu par la synchronisation GitHub, pas depuis cette page).` });
+  });
+  if (resortById(n.id)) { ok = false; items.push({ s: 'Erreur', cls: 'err', text: `L’identifiant « ${n.id} » existe déjà.` }); }
+  S.npTest = { ok, items, info }; S.busy.test = false; render();
+}
+async function createPark() {
+  if (!S.npTest || !S.npTest.ok) return;
+  const n = S.np, info = S.npTest.info; S.busy.np = true; render();
+  try {
+    const tpl = S.parks.resorts[S.parks.resorts.length - 1];
+    const resort = {
+      id: n.id, name: n.name, country: n.country.toUpperCase(), timezone: info.timezone || 'Europe/Paris', locale: 'fr-FR',
+      themeparksId: info.id, dataPath: `data/${n.id}/`,
+      parks: info.parks.map((p) => ({ value: p.name, label: p.name, themeparksParkId: p.id })),
+      info: { address: info.name || n.name, lat: info.lat ?? tpl.info.lat, lng: info.lng ?? tpl.info.lng },
+      icon: 'castle', color: n.color, theme: { acc: n.color, g1: n.color, g2: n.color }
+    };
+    const pk = JSON.parse(await currentContent('parks.json')); pk.resorts.push(resort);
+    await stage('parks.json', jsonText(pk), `parc « ${n.name} » ajouté`);
+    const sites = JSON.parse(await currentContent('tools/importer/sites.json'));
+    const lu = {}; if (n.s1.trim()) lu.attractions = n.s1.trim(); if (n.s2.trim()) lu.shows = n.s2.trim(); if (n.s3.trim()) lu.restaurants = n.s3.trim();
+    let site = null; try { site = new URL(n.s1 || n.s2 || n.s3).origin + '/'; } catch (e) { /* ignoré */ }
+    sites[n.id] = { site, list_urls: Object.keys(lu).length ? lu : undefined }; if (sites[n.id].list_urls === undefined) delete sites[n.id].list_urls;
+    await stage('tools/importer/sites.json', jsonText(sites), 'sources du parc');
+    for (const k of [...KINDS, 'ignored']) await stage(`data/${n.id}/${k}.json`, '[]\n', 'fichier créé');
+    S.msg = `Ajout du parc ${n.name}`; S.view = 'deploy'; S.pub = null; S.npTest = null;
+    S.np = { name: '', id: '', idTouched: false, country: 'FR', api1: '', api2: '', s1: '', s2: '', s3: '', color: '#2B59D9' };
+    toast('Parc préparé. Publiez-le, puis lancez « Vérifier l’API » pour récupérer ses lieux.');
+  } catch (e) { toast('Impossible de préparer le parc : ' + e.message, true); }
+  S.busy.np = false; render();
+}
+
+/* ---------- déploiement ---------- */
+function deployView() {
+  const files = Object.values(S.pending);
+  const pub = S.pub;
+  const stepLabels = S.mode === 'direct' ? ['Commit envoyé sur main', 'Construction du site (GitHub Pages)', 'Site mis à jour'] : ['Branche et commit créés', 'Pull request ouverte'];
+  const tl = pub ? `<ol class="tl" role="status">${stepLabels.map((l, i) => { const done = pub.step > i, cur = pub.step === i && !pub.err; return `<li><span class="dot" style="background:${done ? '#0F7B4F' : cur ? '#2B59D9' : '#B5BCCB'}">${done ? '✓' : i + 1}</span><span style="font-weight:${cur ? 600 : 500}">${l}</span></li>`; }).join('')}</ol>${pub.err ? `<div class="note err" role="alert">${esc(pub.err)}</div>` : ''}${pub.url ? `<div><a href="${esc(pub.url)}" target="_blank" rel="noopener">Voir sur GitHub</a></div>` : ''}` : '';
+  const prs = S.prs ? (S.prs.length ? `<ul class="plain">${S.prs.map((p) => `<li><span style="flex:1 1 300px"><strong>${esc(p.title)}</strong><br><span class="mono" style="color:var(--mut)">#${p.number} · ${esc(p.head.ref)} · ${ago(p.created_at)}</span></span><span class="row"><a href="${esc(p.html_url)}" target="_blank" rel="noopener">Ouvrir</a><button class="btn sm pri" data-merge="${p.number}">Fusionner</button></span></li>`).join('')}</ul>` : '<p class="sub">Aucune pull request ouverte.</p>') : '<p class="sub">Chargement…</p>';
+  const hist = S.history ? `<ul class="plain">${S.history.map((c) => `<li><span style="flex:1 1 300px;min-width:0"><strong>${esc(c.commit.message.split('\n')[0])}</strong><br><span class="mono" style="color:var(--mut)">${c.sha.slice(0, 7)} · ${ago(c.commit.committer.date)}</span></span></li>`).join('')}</ul>` : '<p class="sub">Chargement…</p>';
+  return `<div><h1>Déploiement</h1><p class="sub">Les modifications validées sont envoyées sur GitHub, puis le site se met à jour.</p></div>
+  <div class="card pad row" style="justify-content:space-between"><div><div style="font-weight:700">${REPO}</div><div style="font-size:13px;color:var(--mut)">Branche <span class="mono">${BRANCH}</span> · publication via GitHub Pages</div></div>${S.conn ? `<span class="chip ok">Connecté : ${esc(S.conn.login)}</span>` : '<span class="chip warn">Non connecté</span>'}</div>
+  ${loginCard()}
+  <section class="card pad" style="display:flex;flex-direction:column;gap:16px;max-width:1000px">
+    <h2>Modifications en attente</h2>
+    ${files.length ? `
+      <ul class="plain" style="border:1px solid var(--line);border-radius:12px;padding:0 14px">${files.map((f) => `<li><span class="mono" style="word-break:break-all">${esc(f.path)}</span><span style="font-size:13px;color:var(--mut)">${esc(f.note)}</span></li>`).join('')}</ul>
+      <div class="grid g2"><div><span class="lbl">Mode de publication</span>
+        <label style="display:flex;gap:10px;padding:12px;border:1px solid #CDD2DC;border-radius:10px;margin-bottom:8px"><input type="radio" name="mode" value="direct" ${S.mode === 'direct' ? 'checked' : ''}><span><strong>Commit direct sur main</strong><br><span class="hint">Le site est mis à jour dans la minute.</span></span></label>
+        <label style="display:flex;gap:10px;padding:12px;border:1px solid #CDD2DC;border-radius:10px"><input type="radio" name="mode" value="pr" ${S.mode === 'pr' ? 'checked' : ''}><span><strong>Pull request à relire</strong><br><span class="hint">Rien n’est publié avant la fusion.</span></span></label></div>
+        <div><label class="lbl" for="cm">Message du commit</label><input id="cm" class="inp" data-msg value="${esc(S.msg)}"><div class="hint">${files.length} fichier${files.length > 1 ? 's' : ''}</div></div></div>
+      <div class="row"><button class="btn pri" data-act="publish" ${S.busy.pub ? 'disabled' : ''}>${S.busy.pub ? 'Publication…' : (S.mode === 'direct' ? 'Commit et publier' : 'Ouvrir la pull request')}</button><button class="btn" data-act="discard" ${S.busy.pub ? 'disabled' : ''}>Annuler les modifications</button></div>`
+    : '<div class="note info" style="text-align:center;padding:22px">Aucune modification en attente. Validez des lieux depuis « Parcs et lieux » ou préparez un parc pour les voir ici.</div>'}
+    ${tl}
+  </section>
+  <section class="card pad" style="max-width:1000px"><h2 style="margin-bottom:8px">Pull requests ouvertes</h2>${prs}</section>
+  <section class="card pad" style="max-width:1000px"><h2 style="margin-bottom:8px">Derniers commits sur ${BRANCH}</h2>${hist}</section>`;
+}
+async function loadDeployExtras() {
+  try { S.prs = await gh(`/repos/${REPO}/pulls?state=open&per_page=10`); } catch (e) { S.prs = []; }
+  try { S.history = await gh(`/repos/${REPO}/commits?sha=${BRANCH}&per_page=8`); } catch (e) { S.history = []; }
+  if (S.view === 'deploy') render();
+}
+async function doPublish() {
+  if (needToken()) return;
+  const files = Object.values(S.pending); if (!files.length) return;
+  S.busy.pub = true; S.pub = { step: 0, err: '' }; render();
+  try {
+    // refuse d'écraser un fichier modifié entre-temps sur main
+    for (const f of files) {
+      const now = await readFile(f.path);
+      if ((now ?? null) !== (f.orig ?? null)) throw new Error(`« ${f.path} » a changé sur GitHub depuis la préparation. Annulez les modifications et refaites la vérification.`);
+    }
+    const ref = await gh(`/repos/${REPO}/git/ref/heads/${BRANCH}`); const head = ref.object.sha;
+    const commit = await gh(`/repos/${REPO}/git/commits/${head}`);
+    const tree = await gh(`/repos/${REPO}/git/trees`, { method: 'POST', body: { base_tree: commit.tree.sha, tree: files.map((f) => ({ path: f.path, mode: '100644', type: 'blob', content: f.content })) } });
+    const msg = (S.msg || 'Mise à jour des données').trim();
+    const nc = await gh(`/repos/${REPO}/git/commits`, { method: 'POST', body: { message: msg, tree: tree.sha, parents: [head] } });
+    if (S.mode === 'direct') {
+      await gh(`/repos/${REPO}/git/refs/heads/${BRANCH}`, { method: 'PATCH', body: { sha: nc.sha } });
+      S.pub = { step: 1, err: '', url: `https://github.com/${REPO}/commit/${nc.sha}` }; render();
+      await waitPages(nc.sha);
+    } else {
+      const branch = 'admin/maj-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
+      await gh(`/repos/${REPO}/git/refs`, { method: 'POST', body: { ref: 'refs/heads/' + branch, sha: nc.sha } });
+      const pr = await gh(`/repos/${REPO}/pulls`, { method: 'POST', body: { title: msg, head: branch, base: BRANCH, body: 'Modifications préparées depuis la page d’administration.\n\n' + files.map((f) => `- \`${f.path}\` : ${f.note}`).join('\n') } });
+      S.pub = { step: 2, err: '', url: pr.html_url };
+    }
+    S.pending = {}; savePending(); S.msg = '';
+    loadDeployExtras();
+  } catch (e) { S.pub = { step: S.pub ? S.pub.step : 0, err: e.message }; }
+  S.busy.pub = false; render();
+}
+async function waitPages(sha) {
+  for (let i = 0; i < 24; i++) {
+    await sleep(5000);
+    try { const b = await gh(`/repos/${REPO}/pages/builds/latest`); if (b.status === 'built') { S.pub.step = 3; render(); return; } if (b.status === 'errored') { S.pub.err = 'La construction du site a échoué côté GitHub Pages.'; render(); return; } }
+    catch (e) { S.pub.step = 3; render(); return; }
+    S.pub.step = 1; render();
+  }
+  S.pub.step = 3;
+}
+
+/* ============================== rendu et événements ============================== */
+function render() {
+  $('#side').innerHTML = sideHtml();
+  let html = '';
+  if (!S.parks) html = '<p>Chargement…</p>';
+  else if (S.view === 'dash') html = (S.conn ? '' : loginCard()) + dashView();
+  else if (S.view === 'parks') html = (S.conn ? '' : loginCard()) + parksView();
+  else if (S.view === 'newpark') html = (S.conn ? '' : loginCard()) + newparkView();
+  else html = deployView();
+  const keep = document.activeElement && document.activeElement.id;
+  $('#main').innerHTML = html;
+  if (keep && $('#' + keep)) { const el = $('#' + keep); if (el.focus) el.focus(); }
+}
+document.addEventListener('click', async (e) => {
+  const t = e.target.closest('button, a'); if (!t) return;
+  if (t.dataset.go) { S.view = t.dataset.go; render(); if (S.view === 'deploy') loadDeployExtras(); return; }
+  if (t.dataset.period) { S.period = t.dataset.period; render(); return; }
+  if (t.dataset.park) { S.park = t.dataset.park; S.checked = false; S.rows = []; S.run = null; S.fetchMsg = ''; S.checkErr = ''; render(); return; }
+  if (t.dataset.merge) {
+    if (needToken()) return;
+    try { await gh(`/repos/${REPO}/pulls/${t.dataset.merge}/merge`, { method: 'PUT', body: { merge_method: 'squash' } }); toast('Pull request fusionnée : le site se met à jour.'); loadDeployExtras(); }
+    catch (err) { toast('Fusion impossible : ' + err.message, true); }
+    return;
+  }
+  const a = t.dataset.act; if (!a) return;
+  if (a === 'connect') { const v = $('#tok').value; if (!v.trim()) return; const ok = await connect(v, $('#rem').checked); if (ok) { toast('Connecté.'); loadBase().then(render); } render(); }
+  else if (a === 'disconnect') disconnect();
+  else if (a === 'check') doCheck();
+  else if (a === 'enrich') doEnrich();
+  else if (a === 'validate') doValidate();
+  else if (a === 'ignore') doIgnore();
+  else if (a === 'testlinks') testLinks();
+  else if (a === 'createpark') createPark();
+  else if (a === 'publish') doPublish();
+  else if (a === 'discard') { S.pending = {}; savePending(); S.pub = null; render(); }
+});
+document.addEventListener('input', (e) => {
+  const t = e.target;
+  if (t.dataset.row !== undefined && t.dataset.f !== 'selected') { S.rows[+t.dataset.row][t.dataset.f] = t.value; }
+  else if (t.dataset.url) S.urls[t.dataset.url] = t.value;
+  else if (t.dataset.np) {
+    S.np[t.dataset.np] = t.value;
+    if (t.dataset.np === 'name' && !S.np.idTouched) { S.np.id = slug(t.value); const idEl = $('#np-id'); if (idEl) idEl.value = S.np.id; }
+    if (t.dataset.np === 'id') S.np.idTouched = true;
+    S.npTest = null;
+  }
+  else if (t.dataset.msg !== undefined) S.msg = t.value;
+});
+document.addEventListener('change', (e) => {
+  const t = e.target;
+  if (t.dataset.row !== undefined && t.dataset.f === 'selected') { S.rows[+t.dataset.row].selected = t.checked; render(); }
+  else if (t.name === 'mode') { S.mode = t.value; render(); }
+});
+
+(async function init() {
+  render();
+  if (token) await connect(token, !!store.get('tpc_admin_token'));
+  try { await loadBase(); } catch (e) { toast('Chargement impossible : ' + e.message, true); }
+  render();
+  loadDeployExtras();
+})();
+</script>
+</body>
+</html>

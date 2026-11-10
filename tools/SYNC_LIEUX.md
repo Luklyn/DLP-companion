@@ -22,3 +22,12 @@ En attendant la fusion, l'appli affiche le lieu tout de suite avec un badge « N
 - Cases ⚠ de la PR : à compléter à la main dans le JSON avant de fusionner.
 - *Run workflow* avec **check_names** : liste aussi les lieux connus dont le nom diffère de celui du site (informatif).
 - En local : `python tools/sync_places.py --dry-run [--resort toverland]`.
+
+## Page d'administration (`/admin/`)
+Page statique (même site GitHub Pages) : https://dlp-companion.fr/admin/
+
+- **Connexion** : jeton GitHub « fine-grained » limité au dépôt, droits *Contents*, *Pull requests*, *Actions* (lecture/écriture) et *Metadata* (lecture). Il reste dans le navigateur (option « Se souvenir de moi »), jamais dans le dépôt.
+- **Parcs et lieux** : « Vérifier l'API » compare themeparks.wiki et `data/<parc>/` (par UUID, hors lieux ignorés) directement dans le navigateur. « Récupérer les informations » lance le workflow *Synchronisation des lieux* (avec les 3 pages de liste saisies) puis relit la branche `auto/sync-places` pour remplir le tableau ; le reste se complète à la main.
+- **Ajouter un parc** : teste les liens de l'API, puis prépare `parks.json`, `tools/importer/sites.json` et `data/<id>/*.json`.
+- **Déploiement** : les modifications validées sont envoyées en un seul commit sur `main` (ou en pull request). La publication refuse d'écraser un fichier modifié entre-temps.
+- Statistiques : seuls les téléchargements de l'APK sont réels (releases GitHub) ; le flux du site et les ajouts iOS sont des chiffres d'exemple.
