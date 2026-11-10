@@ -1737,6 +1737,7 @@
                 price: f.price ? str(raw[f.price]) : '',
                 lat: toCoord(raw['Coordonnées GPS (lat)']),
                 lng: toCoord(raw['Coordonnées GPS (lng)']),
+                fixedTimes: (String(raw['Horaires'] ?? '').match(/\b([01]?\d|2[0-3])\s*[:hH]\s*[0-5]\d\b/g) || []).map((t) => { const [h, m] = t.split(/[:hH]/); return `${String(h.trim()).padStart(2, '0')}:${m.trim()}`; }),   // horaires quotidiens fixes (lieux absents du flux live)
                 noStatus: /^(oui|true|1)$/i.test(str(raw['Statut inconnu'])),   // lieu absent du flux live de l'API : affiché sans état
                 meet: /rencontre/i.test(type),   // rencontre avec un personnage : pas de séances, mais un statut d'ouverture
                 live: null,   // { status, wait, single, showtimes } une fois synchronisé
@@ -1937,7 +1938,7 @@
            ====================================================================== */
         const parkOpen = new Map();   // park.value -> true | false (absent : inconnu)
         // Parc fermé d'après son planning du jour : tous ses lieux sont considérés comme fermés, même si l'API temps réel les annonce ouverts
-        const statusOf = (item) => (parkOpen.get(item.park) === false ? 'CLOSED' : (item.live?.status ?? null));
+        const statusOf = (item) => (parkOpen.get(item.park) === false ? 'CLOSED' : (item.live?.status ?? (item.fixedTimes?.length ? 'OPERATING' : null)));
         const isHiddenByDefault = (item) => HIDDEN_BY_DEFAULT.has(statusOf(item));
 
         const waitKind = (wait) => {
@@ -1949,9 +1950,25 @@
 
         // Séances du jour uniquement (jour calendaire du parc)
         const showDayFmt = new Intl.DateTimeFormat('en-CA', { timeZone: CONFIG.TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit' });
+        // Heure locale du parc (jour « YYYY-MM-DD », « HH:MM ») -> Date
+        const zoneFmt = new Intl.DateTimeFormat('en-US', { timeZone: CONFIG.TIMEZONE, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        function zonedDate(day, hhmm) {
+            const [y, mo, d] = day.split('-').map(Number), [h, mi] = hhmm.split(':').map(Number);
+            const guess = Date.UTC(y, mo - 1, d, h, mi);
+            const p = Object.fromEntries(zoneFmt.formatToParts(new Date(guess)).map((x) => [x.type, x.value]));
+            const seen = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute);
+            return new Date(guess - (seen - guess));
+        }
+        // Séances connues : celles de l'API, sinon les horaires fixes saisis dans les données (champ « Horaires »)
+        function showtimesOf(item) {
+            if (item.live?.showtimes?.length) return item.live.showtimes;
+            if (!item.fixedTimes?.length) return [];
+            const today = showDayFmt.format(new Date());
+            return item.fixedTimes.map((t) => ({ startTime: zonedDate(today, t).toISOString() }));
+        }
         function todayShowtimes(item) {
             const today = showDayFmt.format(new Date());
-            return (item.live?.showtimes ?? [])
+            return showtimesOf(item)
                 .map((s) => new Date(s.startTime))
                 .filter((d) => !Number.isNaN(d.getTime()) && showDayFmt.format(d) === today);
         }
@@ -2684,7 +2701,7 @@
             try { new Notification(title, options); } catch { /* indisponible */ }
         }
 
-        const futureSessions = (item, now) => (item.live?.showtimes ?? [])
+        const futureSessions = (item, now) => showtimesOf(item)
             .map((s) => ({ key: s.startTime, start: Date.parse(s.startTime) }))
             .filter((s) => Number.isFinite(s.start) && s.start > now)
             .sort((a, b) => a.start - b.start);
