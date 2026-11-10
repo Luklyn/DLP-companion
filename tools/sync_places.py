@@ -244,7 +244,7 @@ def claimed_fiches(fiches, existing):
     return claimed
 
 
-def site_candidates(resort, fiches, claimed, ents, matched, args, log):
+def site_candidates(resort, fiches, claimed, ents, matched, args, log):   # ents : seulement les NOUVEAUX lieux de l'API (ceux déjà connus sont dans `claimed`)
     """Fiches du site qui n'existent ni dans les données ni dans l'API : lieux à ajouter « à la main » (sans UUID)."""
     api_names = [clean_name(e['name']) for e in ents]
     pick = []
@@ -458,7 +458,7 @@ def sync_resort(resort, site_cfg, args, log):
                     break
     if not flat:
         if args.site_candidates:
-            result['candidates'] = site_candidates(resort, fiches, claimed, ents, set(), args, log)
+            result['candidates'] = site_candidates(resort, fiches, claimed, [], set(), args, log)
         log('   Aucun nouveau lieu.')
         return result
     log(f'   {len(flat)} nouveau(x) lieu(x) : ' + ', '.join(e['name'] for e in flat))
@@ -470,7 +470,7 @@ def sync_resort(resort, site_cfg, args, log):
         fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log, {k.lower(): v for k, v in (cfg.get('url_overrides') or {}).items()})
         used = {fi for fi, _ in mt.values()}
         if args.site_candidates:       # fiches rattachées à un nouveau lieu de l'API (par nom, nom anglais ou adresse indiquée) : exclues
-            result['candidates'] = site_candidates(resort, fiches, claimed, ents, set(used), args, log)
+            result['candidates'] = site_candidates(resort, fiches, claimed, [e for e in flat], set(used), args, log)
         strict = set(cfg.get('only_site_matched') or [])
         if len(strict) < len(KINDS):
             mt.update({ei: v for ei, v in pair_by_elimination(flat, mt, view, claimed, used).items() if flat[ei]['kind'] not in strict})
@@ -597,8 +597,8 @@ def main(argv=None):
             continue
         try:
             cfg = dict(sites.get(resort['id']) or {})
-            if list_urls:
-                cfg['list_urls'] = list_urls
+            if list_urls:      # les adresses passées à l'exécution complètent (ou remplacent catégorie par catégorie) celles de sites.json
+                cfg['list_urls'] = {**(cfg.get('list_urls') or {}), **list_urls}
             r = sync_resort(resort, cfg or None, args, log)
         except Exception as ex:
             log(f'! {resort["id"]} : {ex}')

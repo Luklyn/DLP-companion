@@ -168,7 +168,10 @@ def analyse(html, url='', max_chars=380, list_info=None):
         desc = cut_description(meta_desc, max_chars) or desc
     # land
     land = ''
-    for i, l in enumerate(lines):
+    zone = re.search(r'D[ée]couvrez sans tarder (.{2,40}?) avec (?:ses|son|sa|leurs?)\b', ' '.join(lines), re.I)   # « Découvrez sans tarder Exotic World avec ses attractions… » (Walibi)
+    if zone:
+        land = clean(zone.group(1))
+    for i, l in enumerate(lines if not land else []):
         for rx in LAND_LINES:
             m = rx.match(l)
             if m:
@@ -193,6 +196,19 @@ def analyse(html, url='', max_chars=380, list_info=None):
     height = parse_height(hbox) if hbox else ''
     if not height:
         height = parse_height(list_info.get('card_height', ''))
+    if not height:       # fiche « Caractéristiques » : « 120 cm / Autorisé / … / 100 cm / Obligatoirement accompagné d'un adulte / … » (Walibi)
+        ci = next((i for i, l in enumerate(lines) if re.fullmatch(r'caract[ée]ristiques', l, re.I)), None)
+        if ci is not None:
+            seg = lines[ci + 1:ci + 16]
+            alone = next((int(m.group(1)) for l in seg for m in [re.fullmatch(r'(\d{2,3})\s*cm', l)] if m), None)
+            acc = None
+            for j, l in enumerate(seg):
+                if re.match(r'obligatoirement accompagn', l, re.I):
+                    acc = int(''.join(x for x in ' '.join(seg[max(0, j - 2):j]) if x.isdigit()) or 0) or None
+            if alone and acc and acc != alone:
+                height = parse_height(f'Minimum {acc} cm with an adult, {alone} cm without an adult.')
+            elif alone:
+                height = parse_height(f'Minimum {alone} cm.')
     # type (restaurants) : mots-clés de la ligne « Theme Park, Land  Fast Food  Vegetarian… »
     cat = ''
     blob = ' '.join(l for l in lines if re.match(r'^(theme park|parc),', l, re.I)) + ' ' + ' '.join(lines[max(0, start):start + 14])

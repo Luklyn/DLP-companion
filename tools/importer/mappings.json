@@ -10,7 +10,13 @@
     "restaurant": "Service à table",
     "buffet": "Buffet à volonté",
     "bar": "Bar",
-    "coffee": "Café"
+    "coffee": "Café",
+    "frissons": "Sensations fortes",
+    "familles": "Pour toute la famille",
+    "enfants": "Pour les enfants",
+    "restaurants": "Service à table",
+    "snack & boissons": "À emporter",
+    "barbecue": "Restauration rapide"
   },
   "lands": {
     "cbeebies land": "CBeebies Land"

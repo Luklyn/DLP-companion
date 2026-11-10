@@ -101,11 +101,22 @@ def extract_links(html, base_url='', log=print):
         folder, n = bp, parents[bp]
     log(f'  Dossier des fiches détecté : {folder or "/"}  ({n} liens)')
     base_path = base and urlparse(base).path.rstrip('/')
+    # Dossiers « frères » : une page « /attractions » dont les fiches sont rangées par thème (attractions-famille, attractions-enfants,
+    # attractions-frissons…) doit toutes les reprendre, pas seulement la plus fournie.
+    folders = {folder}
+    if bp:
+        stem, par = bp.rsplit('/', 1)[-1], bp.rsplit('/', 1)[0]
+        if folder == bp or (folder.rsplit('/', 1)[0] == par and folder.rsplit('/', 1)[-1].startswith(stem + '-')):
+            for f2, n2 in parents.items():
+                if f2 != folder and n2 >= 2 and f2.rsplit('/', 1)[0] == par and (f2 == bp or f2.rsplit('/', 1)[-1].startswith(stem + '-')):
+                    folders.add(f2)
+            if len(folders) > 1:
+                log(f'  Dossiers voisins repris : {", ".join(sorted(folders - {folder}))}')
     fiches, menus = [], []
     for i in items:
         parent = '/'.join(i['_path'].rstrip('/').split('/')[:-1])
         entry = dict(url=i['url'], name=i['name'] or _slug_name(i['url']), card_lines=i['card_lines'])
-        if i['_host'] == host and parent == folder and i['_path'].rstrip('/') != base_path:
+        if i['_host'] == host and parent in folders and i['_path'].rstrip('/') != base_path:
             entry['name'] = entry['name'] or _slug_name(i['url'])
             fiches.append(entry)
         elif i['name'] and len(i['card_lines']) >= 2:
@@ -113,20 +124,50 @@ def extract_links(html, base_url='', log=print):
     return fiches, menus
 
 
+NOISE_LINES = re.compile(r'^(retiré des favoris|ajouter aux favoris|ajouter|nouveau|new|favoris|voir la page|en savoir plus)$', re.I)
+H_ALONE = re.compile(r'^hauteur minimum seul', re.I)
+H_ACC = re.compile(r'^hauteur minimum accompagn', re.I)
+H_MAX = re.compile(r'^hauteur maxim', re.I)
+
+
+def card_height_text(lines):
+    """Cartes du type « HAUTEUR MINIMUM SEUL » / « 130 » (valeur sur la ligne suivante) -> texte lisible par detail.parse_height."""
+    vals = {}
+    for i, l in enumerate(lines[:-1]):
+        key = 'alone' if H_ALONE.match(l) else 'acc' if H_ACC.match(l) else 'max' if H_MAX.match(l) else None
+        m = re.fullmatch(r'(\d{2,3})(?:\s*cm)?', lines[i + 1].strip()) if key else None
+        if m:
+            vals[key] = int(m.group(1))
+    if not vals:
+        return ''
+    out = []
+    if 'alone' in vals and 'acc' in vals and vals['acc'] != vals['alone']:
+        out.append(f"Minimum {vals['acc']} cm with an adult, {vals['alone']} cm without an adult.")
+    elif 'alone' in vals:
+        out.append(f"Minimum {vals['alone']} cm.")
+    elif 'acc' in vals:
+        out.append(f"Minimum {vals['acc']} cm with an adult.")
+    if 'max' in vals:
+        out.append(f"Maximum {vals['max'] / 100:.2f} m.")
+    return ' '.join(out)
+
+
 def annotate_cards(fiches, type_keys=()):
     """Déduit de chaque carte : taille (lignes évoquant une hauteur), catégorie (lignes connues de type_keys) et land (ligne courte répétée sur plusieurs cartes)."""
     cnt = Counter(l for f in fiches for l in set(f['card_lines']))
     tk = {k.lower() for k in type_keys}
+    common = 0.6 * len(fiches) if len(fiches) >= 5 else 10 ** 9      # une ligne présente sur presque toutes les cartes est une étiquette de page, pas un land
     for f in fiches:
         height = cat = land = ''
         for l in f['card_lines']:
-            if l == f['name'] or len(l) > 80:
+            if l == f['name'] or len(l) > 80 or NOISE_LINES.match(l):
                 continue
             if l.lower() in tk:
                 cat = cat or l
             elif HEIGHT_LINE.match(l):
                 height = height or l
-            elif cnt[l] >= 2 and len(l) <= 40 and not land:
+            elif cnt[l] >= 2 and cnt[l] < common and len(l) <= 40 and not land and not re.fullmatch(r'\d{2,3}', l) and not re.search(r'ferm|pendant|closed|ouvert| / ', l, re.I):
                 land = re.sub(r'^Theme Park,\s*', '', l)
+        height = card_height_text(f['card_lines']) or height
         f.update(card_height=height, card_category=cat, card_land=land)
     return fiches
