@@ -471,5 +471,15 @@
     "Description": "Chasse au trésor interactive : les Vikings doivent reprendre la puissance du soleil volée par des gobelins de l'ombre. 30 min.",
     "Coordonnées GPS (lat)": 48.2602352,
     "Coordonnées GPS (lng)": 7.74030151
+  },
+  {
+    "Code": "shows_58",
+    "UUID Themeparks.wiki": "63df0c25-f11e-4815-b804-846d4f532bc3",
+    "Nom": "Crazy Christmas – des cadeaux de Noël magiques",
+    "Type": "Spectacle",
+    "Parc": "Europa Park",
+    "Land": "Angleterre ",
+    "Coordonnées GPS (lat)": 48.265243,
+    "Coordonnées GPS (lng)": 7.72161
   }
 ]
