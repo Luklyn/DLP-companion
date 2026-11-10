@@ -375,11 +375,11 @@
         "lng": 4.5914887
       },
       "icon": "castle",
-      "color": "#2B59D9",
+      "color": "#6A4FD0",
       "theme": {
-        "acc": "#2B59D9",
-        "g1": "#2B59D9",
-        "g2": "#2B59D9"
+        "acc": "#6A4FD0",
+        "g1": "#7B4FD0",
+        "g2": "#3FB7A0"
       },
       "iconImage": "icons/walibi-belgium.png"
     }
