@@ -31,3 +31,6 @@ Page statique (même site GitHub Pages) : https://dlp-companion.fr/admin/
 - **Ajouter un parc** : teste les liens de l'API, puis prépare `parks.json`, `tools/importer/sites.json` et `data/<id>/*.json`.
 - **Déploiement** : les modifications validées sont envoyées en un seul commit sur `main` (ou en pull request). La publication refuse d'écraser un fichier modifié entre-temps.
 - Statistiques : seuls les téléchargements de l'APK sont réels (releases GitHub) ; le flux du site et les ajouts iOS sont des chiffres d'exemple.
+
+### Lieux du site absents de l'API
+Dans « Parcs et lieux », la carte **Lieux du site absents de l'API** lance le workflow avec `site_candidates` (option `--site-candidates` du script) : il liste dans `site-candidates/<parc>.json` (branche `auto/sync-places`) les fiches des pages de liste qui ne sont ni dans les données ni dans l'API (ex. restaurants de Nigloland). Ils sont ajoutés sans UUID, avec `Statut inconnu: oui` (état d'ouverture non connu dans l'appli), un code généré (`NIGR11`…) et le nom exact de la page du site.

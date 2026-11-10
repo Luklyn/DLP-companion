@@ -244,6 +244,47 @@ def claimed_fiches(fiches, existing):
     return claimed
 
 
+def site_candidates(resort, fiches, claimed, ents, matched, args, log):
+    """Fiches du site qui n'existent ni dans les données ni dans l'API : lieux à ajouter « à la main » (sans UUID)."""
+    api_names = [clean_name(e['name']) for e in ents]
+    pick = []
+    for i, f in enumerate(fiches):
+        if i in claimed or i in matched or f.get('menu_only'):
+            continue
+        if any(similarity(n, an) >= CLAIM_SCORE for n in f['names'] if n for an in api_names):
+            continue        # présent dans l'API : traité par la détection normale
+        pick.append(i)
+    log(f'   {len(pick)} fiche(s) du site absente(s) de l’API et des données')
+    out = []
+    if pick:
+        cache = os.path.join(tempfile.gettempdir(), f'sync_{resort["id"]}_cand')
+        got = builder.download([fiches[i] for i in pick], cache, log, lambda: False, lambda *_: None, fetch_html, args.browser)
+        mappings = builder.load_mappings()
+        types = {k.lower(): v for k, v in (mappings.get('types') or {}).items()}
+        lands = {k.lower(): v for k, v in (mappings.get('lands') or {}).items()}
+        for i in pick:
+            f = fiches[i]
+            path = got.get(f['url'])
+            pg = {}
+            if path:
+                with open(path, encoding='utf-8', errors='ignore') as fh:
+                    pg = analyse(fh.read(), f['url'], 380, list_info=dict(name=f['name'], card_height=f.get('card_height', ''),
+                                                                         card_category=f.get('card_category', ''), card_land=f.get('card_land', '')))
+            name = clean_name(pg.get('name')) or (f['names'][0] if f['names'] else '')
+            if not name or GENERIC_NAME.search(name):
+                name = (f['names'][0] if f['names'] else name)
+            land = clean_name(pg.get('land'))
+            cat = clean_name(pg.get('category'))
+            kinds = [k for k in KINDS if k in f['kinds']]
+            out.append(dict(kind=kinds[0] if kinds else '', kinds=kinds, nom=name, url=f['url'], land=lands.get(land.lower(), land) if land else '',
+                            type=types.get(cat.lower(), '') if cat else '', category=cat, height=pg.get('height') or '', menu=pg.get('menu') or '',
+                            description=AUDIENCE.sub('', pg.get('description') or '').strip()))
+    if not args.dry_run:
+        os.makedirs(os.path.join(ROOT, 'site-candidates'), exist_ok=True)
+        write_json(os.path.join(ROOT, 'site-candidates', f'{resort["id"]}.json'), out)
+    return out
+
+
 def add_english_alternates(view, claimed, kinds, cache_dir, log, use_browser):
     """Le nom français n'a souvent rien à voir avec le nom de l'API (« Let's Sing Christmas! » / « Chantons Noël ! »).
     Les pages françaises indiquent leur équivalent anglais (<link rel="alternate" hreflang="en-…">) : l'adresse de cette page
@@ -399,7 +440,7 @@ def sync_resort(resort, site_cfg, args, log):
     cfg = site_cfg or {}
     list_urls = cfg.get('list_urls')
     fiches, mt, pages, view = [], {}, {}, []
-    if (flat or args.check_names) and not args.no_web and (site or list_urls):
+    if (flat or args.check_names or args.site_candidates) and not args.no_web and (site or list_urls):
         try:
             fiches = collect_fiches(site, cfg, {e['kind'] for e in flat} or set(KINDS), args.browser, log)
             result['web'] = bool(fiches)
@@ -416,6 +457,8 @@ def sync_resort(resort, site_cfg, args, log):
                     result['renames'].append((k, r.get('Nom', ''), name, f['url']))
                     break
     if not flat:
+        if args.site_candidates:
+            result['candidates'] = site_candidates(resort, fiches, claimed, ents, set(), args, log)
         log('   Aucun nouveau lieu.')
         return result
     log(f'   {len(flat)} nouveau(x) lieu(x) : ' + ', '.join(e['name'] for e in flat))
@@ -426,6 +469,8 @@ def sync_resort(resort, site_cfg, args, log):
         builder.guess_missing(flat, mt, view, os.path.join(tempfile.gettempdir(), f'sync_{rid}'), fetch_html, lambda: False, log, 0.8)
         fr_via_english(flat, mt, view, cfg.get('en_patterns') or {}, args.browser, log, {k.lower(): v for k, v in (cfg.get('url_overrides') or {}).items()})
         used = {fi for fi, _ in mt.values()}
+        if args.site_candidates:       # fiches rattachées à un nouveau lieu de l'API (par nom, nom anglais ou adresse indiquée) : exclues
+            result['candidates'] = site_candidates(resort, fiches, claimed, ents, set(used), args, log)
         strict = set(cfg.get('only_site_matched') or [])
         if len(strict) < len(KINDS):
             mt.update({ei: v for ei, v in pair_by_elimination(flat, mt, view, claimed, used).items() if flat[ei]['kind'] not in strict})
@@ -533,6 +578,7 @@ def main(argv=None):
     ap.add_argument('--baseline', action='store_true', help='à lancer une fois : enregistre les lieux actuels de l’API absents des données comme « ignorés » (data/<parc>/ignored.json)')
     ap.add_argument('--check-names', action='store_true', help='comparer aussi les noms des lieux connus avec ceux du site (même sans nouveau lieu)')
     ap.add_argument('--list-url', action='append', default=[], metavar='CATEGORIE=URL', help='page de liste du site pour une catégorie (attractions, restaurants ou shows), répétable ; remplace sites.json pour cette exécution')
+    ap.add_argument('--site-candidates', action='store_true', help='écrit site-candidates/<destination>.json : fiches du site absentes de l’API ET des données (ex. restaurants sans fiche dans themeparks.wiki)')
     ap.add_argument('--browser', action='store_true', help='utiliser le navigateur intégré (sites en JavaScript)')
     ap.add_argument('--report', default='sync_report.md', help='fichier du rapport (écrit seulement s’il y a des ajouts)')
     args = ap.parse_args(argv)

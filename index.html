@@ -2007,6 +2007,11 @@
             const mk = (kind, big, unit = '', text = '') => ({ kind, big, unit, text });
 
             if (noLive(item)) {
+                if (item.category === 'attraction') {
+                    const m = mk('off', '--', '', L('État d’ouverture non connu', 'Opening status unknown'));
+                    m.note = m.text;
+                    return m;
+                }
                 if (item.category === 'restaurant') {
                     const booking = RESERVATION_TYPES.has(searchKey(item.type));
                     const m = mk('off', '', '', L('État d’ouverture non connu', 'Opening status unknown'));
@@ -3043,7 +3048,7 @@
                 // Parc fermé : restaurants et spectacles masqués (visibles avec « Lieux fermés »)
                 if (!state.showClosed && !state.showFavorites && item.category !== 'attraction' && isParkClosed(item.park)) continue;
                 // Attractions : uniquement celles dont l'API fournit un statut (sinon aucune donnée exploitable)
-                if (!state.showFavorites && item.category === 'attraction' && state.lastSync && CONFIG.API_LIVE_URL && !statusOf(item)) continue;
+                if (!state.showFavorites && item.category === 'attraction' && state.lastSync && CONFIG.API_LIVE_URL && !statusOf(item) && !noLive(item)) continue;
                 // Une fois synchronisé, on ne garde que les lieux dont l'API fournit des données (statut), tous parcs confondus
                 if (!state.showFavorites && state.lastSync && resort.themeparksId && !noLive(item) && statusOf(item) == null) continue;
                 // Spectacles : uniquement ceux qui ont au moins une séance prévue aujourd'hui (passée ou à venir)

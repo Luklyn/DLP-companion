@@ -36,6 +36,10 @@ on:
         description: "Page de liste des restaurants du site du parc (facultatif)"
         type: string
         default: ''
+      site_candidates:
+        description: "Lister aussi les lieux du site absents de l'API et de l'appli (page d'administration)"
+        type: boolean
+        default: false
       baseline:
         description: "À lancer UNE fois : les lieux actuels de l'API absents de l'appli sont considérés comme volontairement exclus"
         type: boolean
@@ -77,6 +81,7 @@ jobs:
           if [ "${{ inputs.baseline }}" = "true" ]; then ARGS="--baseline"; fi
           if [ -n "${{ inputs.resort }}" ]; then ARGS="$ARGS --resort ${{ inputs.resort }}"; fi
           if [ -n "${{ inputs.kinds }}" ]; then ARGS="$ARGS --kinds ${{ inputs.kinds }}"; fi
+          if [ "${{ inputs.site_candidates }}" = "true" ]; then ARGS="$ARGS --site-candidates"; fi
           if [ -n "${{ inputs.extra }}" ]; then ARGS="$ARGS ${{ inputs.extra }}"; fi
           if [ -n "${{ inputs.list_attractions }}" ]; then ARGS="$ARGS --list-url attractions=${{ inputs.list_attractions }}"; fi
           if [ -n "${{ inputs.list_shows }}" ]; then ARGS="$ARGS --list-url shows=${{ inputs.list_shows }}"; fi
@@ -85,7 +90,7 @@ jobs:
 
       - name: Ouvrir ou mettre à jour la pull request
         run: |
-          if [ -z "$(git status --porcelain -- data)" ]; then
+          if [ -z "$(git status --porcelain -- data site-candidates)" ]; then
             echo "Aucun nouveau lieu."
             exit 0
           fi
@@ -93,6 +98,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
           git add data
+          if [ -d site-candidates ]; then git add site-candidates; fi
           git commit -m "Nouveaux lieux (synchronisation automatique de l'API)"
           git push --force origin "$BRANCH"
           if [ "$(gh pr list --head "$BRANCH" --state open --json number -q length)" = "0" ]; then

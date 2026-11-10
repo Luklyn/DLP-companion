@@ -108,7 +108,7 @@ let token = '';   // jamais écrit en clair : seul le coffre chiffré (mot de pa
 const S = {
   unlocked: false, gateErr: '', gateBusy: false, view: 'dash', period: '30', conn: null /* {login, push} */, connErr: '', busy: {},
   parks: null, sites: {}, counts: {}, releases: null,
-  park: null, checked: false, checkErr: '', rows: [], skippedPark: 0, knownCount: 0,
+  park: null, cands: null, cRun: null, cMsg: '', checked: false, checkErr: '', rows: [], skippedPark: 0, knownCount: 0,
   urls: { attractions: '', shows: '', restaurants: '' }, run: null /* {id,status,since,url} */, fetchMsg: '', enriched: false,
   pending: JSON.parse(store.get('tpc_admin_pending') || '{}'),
   mode: 'direct', msg: '', pub: null /* {steps, step, url, err} */, prs: null, history: null,
@@ -352,7 +352,87 @@ function parksView() {
       <div class="sc"><table style="min-width:1260px"><thead><tr><th style="width:44px"></th><th>Code</th><th>UUID Themeparks</th><th style="min-width:200px">Nom</th><th style="min-width:170px">Nom dans l’API</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>État</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
       <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les cases encadrées en orange sont à compléter à la main. Les lieux non cochés peuvent être ajoutés à la liste « ignorés » pour ne plus être proposés.</p>
         <div class="row"><button class="btn" data-act="ignore">Ignorer les lieux non cochés</button><button class="btn pri" data-act="validate" ${sel ? '' : 'disabled'}>Valider ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div></div>` : '<div class="note ok">L’application est à jour avec l’API pour ce parc.</div>'}` : ''}
+  </section>
+  ${siteCard(r, cfg)}`;
+}
+
+/* ---------- lieux du site absents de l'API ---------- */
+const NORM = (x) => String(x || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+function siteCard(r, cfg) {
+  const busy = !!S.busy.cand, cs = S.cands, run = S.cRun;
+  const kindSel = (i, v) => `<select class="cell" data-cand="${i}" data-f="kind" aria-label="Catégorie">${KINDS.map((k) => `<option value="${k}" ${v === k ? 'selected' : ''}>${KIND_LABEL[k]}</option>`).join('')}</select>`;
+  const parkSel = (i, v) => (r.parks || []).length > 1 ? `<select class="cell" data-cand="${i}" data-f="park" aria-label="Parc">${r.parks.map((p) => `<option ${v === p.value ? 'selected' : ''}>${esc(p.value)}</option>`).join('')}</select>` : esc(v);
+  const rows = (cs || []).map((x, i) => `<tr>
+      <td><input type="checkbox" data-cand="${i}" data-f="selected" ${x.selected ? 'checked' : ''} aria-label="Sélectionner ${esc(x.nom)}" style="width:20px;height:20px"></td>
+      <td>${kindSel(i, x.kind)}</td>
+      <td><input class="cell" data-cand="${i}" data-f="nom" value="${esc(x.nom)}" aria-label="Nom"></td>
+      <td style="white-space:nowrap">${parkSel(i, x.park)}</td>
+      <td><input class="cell" data-cand="${i}" data-f="land" value="${esc(x.land)}" aria-label="Land"></td>
+      <td><input class="cell ${x.type ? '' : 'todo'}" data-cand="${i}" data-f="type" value="${esc(x.type)}" aria-label="Type"></td>
+      <td>${x.kind === 'attractions' ? `<input class="cell" data-cand="${i}" data-f="height" value="${esc(x.height)}" aria-label="Taille mini">` : '<span style="color:#8A93A5">—</span>'}</td>
+      <td>${x.kind === 'restaurants' ? `<input class="cell" data-cand="${i}" data-f="menu" value="${esc(x.menu)}" aria-label="Menu">` : '<span style="color:#8A93A5">—</span>'}</td>
+      <td><a href="${esc(x.url)}" target="_blank" rel="noopener">Fiche</a></td></tr>`).join('');
+  const sel = (cs || []).filter((x) => x.selected).length;
+  const runHtml = run ? `<div class="note ${run.status === 'completed' && run.conclusion !== 'success' ? 'err' : 'info'}" role="status" style="display:flex;gap:12px;align-items:center">${run.status !== 'completed' ? '<span class="spin"></span>' : ''}<span>${esc(S.cMsg)} ${run.url ? `<a href="${esc(run.url)}" target="_blank" rel="noopener">Voir l’exécution</a>` : ''}</span></div>` : (S.cMsg ? `<div class="note info" role="status">${esc(S.cMsg)}</div>` : '');
+  return `<section class="card pad" style="display:flex;flex-direction:column;gap:16px">
+    <div class="row" style="justify-content:space-between"><div style="flex:1 1 320px"><h2>Lieux du site absents de l’API</h2><p class="sub">Lieux présents sur les pages du parc mais ni dans l’application ni dans themeparks.wiki (restaurants, souvent). Ils sont ajoutés sans UUID, avec « état d’ouverture non connu ».</p></div>
+      <button class="btn pri" data-act="cands" ${busy ? 'disabled' : ''}>${busy ? 'Recherche…' : (cs ? 'Chercher à nouveau' : 'Chercher sur le site')}</button></div>
+    <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="c-${k}">${l}</label><input id="c-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
+    <div class="hint">Laissez vide pour utiliser les pages déjà configurées pour ce parc. La recherche passe par l’action GitHub (quelques minutes).</div>
+    ${runHtml}
+    ${cs && !cs.length ? '<div class="note ok">Aucun lieu du site manquant : tout ce que le site liste est déjà dans l’application ou dans l’API.</div>' : ''}
+    ${cs && cs.length ? `
+      <div class="sc"><table style="min-width:1180px"><thead><tr><th style="width:44px"></th><th style="min-width:150px">Catégorie</th><th style="min-width:200px">Nom</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>Site</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les noms sont ceux des pages du site, sans traduction. Décochez ce qui n’est pas un lieu (hôtel, boutique…). Les attractions n’ont pas d’état en direct : elles s’affichent avec « état non connu ».</p>
+        <button class="btn pri" data-act="addcands" ${sel ? '' : 'disabled'}>Ajouter ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div>` : ''}
   </section>`;
+}
+async function doCands() {
+  if (needToken()) return;
+  const r = resortById(S.park); S.busy.cand = true; S.cands = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
+  const since = Date.now() - 5000;
+  try {
+    const inputs = { resort: r.id, site_candidates: 'true', list_attractions: S.urls.attractions.trim(), list_shows: S.urls.shows.trim(), list_restaurants: S.urls.restaurants.trim() };
+    await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { method: 'POST', body: { ref: BRANCH, inputs } });
+    const run = await watchRun(since, r.id, (x, msg) => { S.cRun = x; S.cMsg = msg; render(); });
+    if (!run) S.cMsg = 'La recherche est toujours en cours chez GitHub. Réessayez dans quelques minutes.';
+    else if (run.conclusion !== 'success') S.cMsg = 'La recherche a échoué. Ouvrez l’exécution pour voir le détail.';
+    else await loadCands(since, r);
+  } catch (e) { S.cMsg = 'Échec : ' + e.message; S.cRun = null; }
+  S.busy.cand = false; render();
+}
+async function loadCands(since, r) {
+  let b = null; try { b = await gh(`/repos/${REPO}/branches/${encodeURIComponent(SYNC_BRANCH)}`); } catch (e) { /* absente */ }
+  if (!b || new Date(b.commit.commit.committer.date).getTime() < since) { S.cands = []; S.cMsg = 'La recherche n’a produit aucun résultat.'; S.cRun = null; return; }
+  const list = await readJson(`site-candidates/${r.id}.json`, [], SYNC_BRANCH);
+  const park = (r.parks || [])[0]?.value || '';
+  S.cands = list.filter((x) => x.nom).map((x) => ({ kind: KINDS.includes(x.kind) ? x.kind : 'restaurants', nom: x.nom, url: x.url, land: x.land || '', type: x.type || '', height: x.height || '', menu: x.menu || '', park, selected: true }));
+  S.cRun = null; S.cMsg = `${S.cands.length} lieu${S.cands.length > 1 ? 'x' : ''} trouvé${S.cands.length > 1 ? 's' : ''} sur le site.`;
+}
+async function doAddCands() {
+  const r = resortById(S.park); const chosen = S.cands.filter((x) => x.selected); if (!chosen.length) return;
+  S.busy.addc = true; render();
+  try {
+    const prefix = (r.id.replace(/[^a-z]/g, '').slice(0, 3) || 'NEW').toUpperCase(), letter = { attractions: 'A', restaurants: 'R', shows: 'S' };
+    for (const k of KINDS) {
+      const items = chosen.filter((x) => x.kind === k); if (!items.length) continue;
+      const path = r.dataPath + k + '.json'; const cur = JSON.parse(await currentContent(path));
+      const names = new Set(cur.map((x) => NORM(x.Nom))), codes = new Set(cur.map((x) => String(x.Code)));
+      let n = 1, added = 0;
+      for (const x of items) {
+        if (names.has(NORM(x.nom))) continue;
+        let code; do { code = `${prefix}${letter[k]}${String(n++).padStart(2, '0')}`; } while (codes.has(code)); codes.add(code);
+        const rec = { Code: code, Nom: x.nom.trim() };
+        if (x.type) rec.Type = x.type; rec.Parc = x.park || (r.parks[0] && r.parks[0].value);
+        if (x.land) rec.Land = x.land; if (k === 'attractions' && x.height) rec['Taille mini'] = x.height; if (k === 'restaurants' && x.menu) rec.Menu = x.menu;
+        rec['Statut inconnu'] = 'oui'; cur.push(rec); added++;
+      }
+      if (added) await stage(path, jsonText(cur), `+${added} lieu${added > 1 ? 'x' : ''} (site)`);
+    }
+    S.msg = S.msg || `Lieux du site ${r.name}`; S.cands = null; S.cMsg = ''; S.view = 'deploy'; S.pub = null;
+    toast(`${chosen.length} lieu(x) prêts à être publiés.`);
+  } catch (e) { toast('Impossible de préparer les modifications : ' + e.message, true); }
+  S.busy.addc = false; render();
 }
 
 async function doCheck() {
@@ -396,6 +476,19 @@ async function doEnrich() {
     await pollRun(since, r.id);
   } catch (e) { S.fetchMsg = 'Échec : ' + e.message; S.run = null; }
   S.busy.enrich = false; render();
+}
+async function watchRun(since, resortId, report) {
+  let run = null;
+  for (let i = 0; i < 160 && S.park === resortId; i++) {
+    await sleep(i === 0 ? 6000 : 15000);
+    const list = await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=5`);
+    run = (list.workflow_runs || []).filter((x) => new Date(x.created_at).getTime() >= since).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+    if (run) {
+      report({ id: run.id, status: run.status, conclusion: run.conclusion, url: run.html_url }, run.status === 'completed' ? '' : (run.status === 'queued' ? 'En file d’attente chez GitHub…' : 'Lecture des pages du site en cours…'));
+      if (run.status === 'completed') return run;
+    }
+  }
+  return null;
 }
 async function pollRun(since, resortId) {
   let run = null;
@@ -653,7 +746,7 @@ document.addEventListener('click', async (e) => {
   const t = e.target.closest('button, a'); if (!t) return;
   if (t.dataset.go) { S.view = t.dataset.go; render(); if (S.view === 'deploy') loadDeployExtras(); return; }
   if (t.dataset.period) { S.period = t.dataset.period; render(); return; }
-  if (t.dataset.park) { S.park = t.dataset.park; S.checked = false; S.rows = []; S.run = null; S.fetchMsg = ''; S.checkErr = ''; render(); return; }
+  if (t.dataset.park) { S.park = t.dataset.park; S.cands = null; S.cRun = null; S.cMsg = ''; S.checked = false; S.rows = []; S.run = null; S.fetchMsg = ''; S.checkErr = ''; render(); return; }
   if (t.dataset.merge) {
     if (needToken()) return;
     try { await gh(`/repos/${REPO}/pulls/${t.dataset.merge}/merge`, { method: 'PUT', body: { merge_method: 'squash' } }); toast('Pull request fusionnée : le site se met à jour.'); loadDeployExtras(); }
@@ -666,6 +759,8 @@ document.addEventListener('click', async (e) => {
   else if (a === 'forget') { if (confirm('Supprimer le jeton chiffré enregistré sur cet appareil ?')) forgetDevice(); }
   else if (a === 'lock') lock();
   else if (a === 'check') doCheck();
+  else if (a === 'cands') doCands();
+  else if (a === 'addcands') doAddCands();
   else if (a === 'enrich') doEnrich();
   else if (a === 'validate') doValidate();
   else if (a === 'ignore') doIgnore();
@@ -681,6 +776,7 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('input', (e) => {
   const t = e.target;
   if (t.dataset.row !== undefined && t.dataset.f !== 'selected') { S.rows[+t.dataset.row][t.dataset.f] = t.value; }
+  else if (t.dataset.cand !== undefined && t.dataset.f !== 'selected' && t.dataset.f !== 'kind' && t.dataset.f !== 'park') S.cands[+t.dataset.cand][t.dataset.f] = t.value;
   else if (t.dataset.url) S.urls[t.dataset.url] = t.value;
   else if (t.dataset.np) {
     S.np[t.dataset.np] = t.value;
@@ -693,6 +789,7 @@ document.addEventListener('input', (e) => {
 document.addEventListener('change', (e) => {
   const t = e.target;
   if (t.dataset.row !== undefined && t.dataset.f === 'selected') { S.rows[+t.dataset.row].selected = t.checked; render(); }
+  else if (t.dataset.cand !== undefined) { const c = S.cands[+t.dataset.cand]; c[t.dataset.f] = t.dataset.f === 'selected' ? t.checked : t.value; if (t.dataset.f === 'selected' || t.dataset.f === 'kind') render(); }
   else if (t.name === 'mode') { S.mode = t.value; render(); }
 });
 
