@@ -101,6 +101,7 @@ jobs:
           if [ -d site-candidates ]; then git add site-candidates; fi
           git commit -m "Nouveaux lieux (synchronisation automatique de l'API)"
           git push --force origin "$BRANCH"
+          [ -f sync_report.md ] || echo "Recherche des lieux du site (aucun nouveau lieu de l'API)." > sync_report.md
           if [ "$(gh pr list --head "$BRANCH" --state open --json number -q length)" = "0" ]; then
             gh pr create --base main --head "$BRANCH" \
               --title "Nouveaux lieux détectés par l'API" --body-file sync_report.md || \
