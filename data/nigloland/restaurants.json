@@ -2,56 +2,71 @@
   {
     "Code": "NIGR01",
     "Nom": "Confiserie de Niglotte",
-    "Parc": "Nigloland"
+    "Type": "À emporter",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
   },
   {
     "Code": "NIGR02",
     "Nom": "Le Terrier",
-    "Parc": "Nigloland"
+    "Type": "Restauration rapide",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
   },
   {
     "Code": "NIGR03",
     "Nom": "Taverne",
-    "Parc": "Nigloland"
+    "Type": "Restauration rapide",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
   },
   {
     "Code": "NIGR04",
     "Nom": "Crêperie Canadienne",
-    "Parc": "Nigloland"
+    "Type": "À emporter",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien"
   },
   {
     "Code": "NIGR05",
     "Nom": "NigloGrill",
-    "Parc": "Nigloland"
+    "Type": "Restauration rapide",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
   },
   {
     "Code": "NIGR06",
     "Nom": "Pizza Factory",
-    "Parc": "Nigloland"
+    "Type": "Restauration rapide",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll"
   },
   {
     "Code": "NIGR07",
     "Nom": "Lara Clette",
-    "Parc": "Nigloland"
+    "Type": "Service à table",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse"
   },
   {
     "Code": "NIGR08",
     "Nom": "Canada Bar",
-    "Parc": "Nigloland"
+    "Type": "Bar",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien"
   },
   {
     "Code": "NIGR09",
     "Nom": "Délices du Carrousel",
-    "Parc": "Nigloland"
+    "Type": "À emporter",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
   },
   {
     "Code": "NIGR10",
     "Nom": "Snack de l'Espace",
-    "Parc": "Nigloland"
-  },
-  {
-    "Code": "NIGR11",
-    "Nom": "ERIZO – Restaurant des Hôtels",
-    "Parc": "Nigloland"
+    "Type": "À emporter",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll"
   }
 ]
