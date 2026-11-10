@@ -26,7 +26,7 @@ En attendant la fusion, l'appli affiche le lieu tout de suite avec un badge « N
 ## Page d'administration (`/admin/`)
 Page statique (même site GitHub Pages) : https://dlp-companion.fr/admin/
 
-- **Connexion** : jeton GitHub « fine-grained » limité au dépôt, droits *Contents*, *Pull requests*, *Actions* (lecture/écriture) et *Metadata* (lecture). Il reste dans le navigateur (option « Se souvenir de moi »), jamais dans le dépôt.
+- **Accès** : au premier passage sur un appareil, coller un jeton GitHub « fine-grained » (dépôt seul ; *Contents*, *Pull requests*, *Actions* en lecture/écriture) et choisir un mot de passe (10 caractères minimum). Le jeton est chiffré (AES-GCM, clé PBKDF2) dans le navigateur, jamais écrit en clair ni dans le dépôt. Ensuite, seul le mot de passe est demandé ; la page se verrouille après 30 min d'inactivité ou avec « Verrouiller ». « Oublier cet appareil » supprime le jeton chiffré. Mot de passe oublié : « Oublier cet appareil » puis nouvelle configuration.
 - **Parcs et lieux** : « Vérifier l'API » compare themeparks.wiki et `data/<parc>/` (par UUID, hors lieux ignorés) directement dans le navigateur. « Récupérer les informations » lance le workflow *Synchronisation des lieux* (avec les 3 pages de liste saisies) puis relit la branche `auto/sync-places` pour remplir le tableau ; le reste se complète à la main.
 - **Ajouter un parc** : teste les liens de l'API, puis prépare `parks.json`, `tools/importer/sites.json` et `data/<id>/*.json`.
 - **Déploiement** : les modifications validées sont envoyées en un seul commit sur `main` (ou en pull request). La publication refuse d'écraser un fichier modifié entre-temps.
