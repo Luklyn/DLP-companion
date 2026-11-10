@@ -24,6 +24,18 @@ on:
         description: "Options supplémentaires de tools/sync_places.py (ex. --inspect)"
         type: string
         default: ''
+      list_attractions:
+        description: "Page de liste des attractions du site du parc (facultatif)"
+        type: string
+        default: ''
+      list_shows:
+        description: "Page de liste des spectacles du site du parc (facultatif)"
+        type: string
+        default: ''
+      list_restaurants:
+        description: "Page de liste des restaurants du site du parc (facultatif)"
+        type: string
+        default: ''
       baseline:
         description: "À lancer UNE fois : les lieux actuels de l'API absents de l'appli sont considérés comme volontairement exclus"
         type: boolean
@@ -66,6 +78,9 @@ jobs:
           if [ -n "${{ inputs.resort }}" ]; then ARGS="$ARGS --resort ${{ inputs.resort }}"; fi
           if [ -n "${{ inputs.kinds }}" ]; then ARGS="$ARGS --kinds ${{ inputs.kinds }}"; fi
           if [ -n "${{ inputs.extra }}" ]; then ARGS="$ARGS ${{ inputs.extra }}"; fi
+          if [ -n "${{ inputs.list_attractions }}" ]; then ARGS="$ARGS --list-url attractions=${{ inputs.list_attractions }}"; fi
+          if [ -n "${{ inputs.list_shows }}" ]; then ARGS="$ARGS --list-url shows=${{ inputs.list_shows }}"; fi
+          if [ -n "${{ inputs.list_restaurants }}" ]; then ARGS="$ARGS --list-url restaurants=${{ inputs.list_restaurants }}"; fi
           python tools/sync_places.py $ARGS --report sync_report.md
 
       - name: Ouvrir ou mettre à jour la pull request
@@ -83,7 +98,7 @@ jobs:
           if [ "$(gh pr list --head "$BRANCH" --state open --json number -q length)" = "0" ]; then
             gh pr create --base main --head "$BRANCH" \
               --title "Nouveaux lieux détectés par l'API" --body-file sync_report.md || \
-              { echo "::error::Création de la pull request refusée : activez Settings > Actions > General > Allow GitHub Actions to create and approve pull requests"; exit 1; }
+              echo "::warning::Pull request non créée par l'action (réglage « Allow GitHub Actions to create and approve pull requests » désactivé) : la branche $BRANCH est à jour, la page d'administration la lit directement."
           else
             gh pr edit "$BRANCH" --body-file sync_report.md
           fi

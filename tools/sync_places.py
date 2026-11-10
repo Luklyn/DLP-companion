@@ -532,6 +532,7 @@ def main(argv=None):
     ap.add_argument('--kinds', default='', help='limiter à certaines catégories : attractions,restaurants,shows')
     ap.add_argument('--baseline', action='store_true', help='à lancer une fois : enregistre les lieux actuels de l’API absents des données comme « ignorés » (data/<parc>/ignored.json)')
     ap.add_argument('--check-names', action='store_true', help='comparer aussi les noms des lieux connus avec ceux du site (même sans nouveau lieu)')
+    ap.add_argument('--list-url', action='append', default=[], metavar='CATEGORIE=URL', help='page de liste du site pour une catégorie (attractions, restaurants ou shows), répétable ; remplace sites.json pour cette exécution')
     ap.add_argument('--browser', action='store_true', help='utiliser le navigateur intégré (sites en JavaScript)')
     ap.add_argument('--report', default='sync_report.md', help='fichier du rapport (écrit seulement s’il y a des ajouts)')
     args = ap.parse_args(argv)
@@ -539,12 +540,20 @@ def main(argv=None):
     log = Log(print)
     parks = read_json(os.path.join(ROOT, 'parks.json'))
     sites = read_json(os.path.join(IMP, 'sites.json'), {})
+    list_urls = {}
+    for item in args.list_url:
+        k, _, u = item.partition('=')
+        if k.strip() in KINDS and u.strip():
+            list_urls[k.strip()] = u.strip()
     results = []
     for resort in parks['resorts']:
         if args.resort and resort['id'] != args.resort:
             continue
         try:
-            r = sync_resort(resort, sites.get(resort['id']), args, log)
+            cfg = dict(sites.get(resort['id']) or {})
+            if list_urls:
+                cfg['list_urls'] = list_urls
+            r = sync_resort(resort, cfg or None, args, log)
         except Exception as ex:
             log(f'! {resort["id"]} : {ex}')
             continue
