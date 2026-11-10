@@ -88,5 +88,13 @@
       "attractions": "https://www.walibi.be/fr/explorer-le-parc/attractions",
       "restaurants": "https://www.walibi.be/fr/explorer-le-parc/restaurants"
     }
+  },
+  "phantasialand": {
+    "site": "https://www.phantasialand.de/",
+    "list_urls": {
+      "attractions": "https://www.phantasialand.de/fr/parc/attractions/apercu-des-attractions-ete/",
+      "shows": "https://www.phantasialand.de/fr/parc/spectacles/",
+      "restaurants": "https://www.phantasialand.de/fr/gastronomie/restauration-parc/"
+    }
   }
 }

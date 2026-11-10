@@ -382,6 +382,34 @@
         "g2": "#3FB7A0"
       },
       "iconImage": "icons/walibi-belgium.png"
+    },
+    {
+      "id": "phantasialand",
+      "name": "Phantasialand",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "locale": "fr-FR",
+      "themeparksId": "0257ff9f-c73c-4855-b5b4-774755c4d146",
+      "dataPath": "data/phantasialand/",
+      "parks": [
+        {
+          "value": "Phantasialand",
+          "label": "Phantasialand",
+          "themeparksParkId": "abb67808-61e3-49ef-996c-1b97ed64fac6"
+        }
+      ],
+      "info": {
+        "address": "Phantasialand",
+        "lat": 50.798995255201866,
+        "lng": 6.879291227409914
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
