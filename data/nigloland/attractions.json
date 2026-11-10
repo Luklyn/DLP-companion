@@ -1,1 +1,355 @@
-[]
+[
+  {
+    "Code": "13",
+    "UUID Themeparks.wiki": "749be818-e892-44ba-b45f-0367b9d6b613",
+    "Nom": "Africa Cruise",
+    "Description": "Dans une forêt dense et exotique peuplée d’animaux sauvages, naviguez à bord de barques et côtoyez des félins ou encore des singes. Mais ne vous penchez pas en dehors de la barque, vous pourriez être surpris… Les enfants vivent une vraie aventure avec cette attraction.",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "39",
+    "UUID Themeparks.wiki": "043d7421-c122-44e9-bd31-7a96f7896699",
+    "Nom": "Air Meeting",
+    "Description": "Poussée d’adrénaline, rythme cardiaque qui s’accélère, venez prendre les commandes du AIR MEETING ! Loopings 360° à volonté ou bien conduite tout en souplesse, c’est vous qui choisissez et maîtrisez votre trajectoire ! Le grand-huit aquatique unique en France La plus haute tour de chute libre rotative du monde Préparez-vous à découvrir de nouvelles sensations",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,40 m"
+  },
+  {
+    "Code": "40",
+    "UUID Themeparks.wiki": "e0e1671a-72a9-4e75-ba07-de8098130af9",
+    "Nom": "Alpina Blitz",
+    "Description": "Un voyage spectaculaire à la découverte de falaises abruptes et de paysages époustouflants vous attend !",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,30 m"
+  },
+  {
+    "Code": "37",
+    "UUID Themeparks.wiki": "38974170-916c-490e-b336-2dce77fe8f8f",
+    "Nom": "Apple Flight",
+    "Description": "Envolez-vous dans les airs et laissez-vous promener par l’Apple Flight ! Confortablement installé dans une pomme volante, à vous les sensations fortes et les vues extraordinaires sur le parc !",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Sensations modérées",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "23",
+    "UUID Themeparks.wiki": "760431be-7225-4808-82c0-7a0878aba865",
+    "Nom": "Balade des Hérissons",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "18",
+    "UUID Themeparks.wiki": "afff89a7-caa1-4a4c-be37-690cbc448c7a",
+    "Nom": "Bumper Cars",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Pour les enfants",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "8",
+    "UUID Themeparks.wiki": "1d82d2d0-e385-4236-91bc-d7d915aa45b5",
+    "Nom": "Caravelles de Jacques Cartier",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Pour toute la famille",
+    "Taille mini": "90 cm"
+  },
+  {
+    "Code": "2",
+    "UUID Themeparks.wiki": "13d561e2-02d2-4209-af0f-e5807647eb04",
+    "Nom": "Carrousel Eden Palais",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "1",
+    "UUID Themeparks.wiki": "3a4c1978-ccc6-485a-80fb-4c8875fb312c",
+    "Nom": "Chemin de Fer",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "3",
+    "UUID Themeparks.wiki": "11dd6260-ac7b-4322-b054-6e3287b5e128",
+    "Nom": "Chevauchée Fantastique",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "9",
+    "UUID Themeparks.wiki": "5e237f45-afff-4f70-a86b-b7f763a56b2c",
+    "Nom": "Circuit de Nigloland",
+    "Description": "Les plus jeunes adorent la course automobile Choisissez votre bolide et pilotez comme un champion ! Attention ! Il faut rester maître de votre véhicule pour passer la ligne d’arrivée…",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "34",
+    "UUID Themeparks.wiki": "919f9627-acae-4d9d-9f9a-8114a3d4e5cf",
+    "Nom": "Descente en Schlitt'",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Sensations modérées",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "29",
+    "UUID Themeparks.wiki": "9a97aa62-bf5a-467e-a0dc-86470fcaf336",
+    "Nom": "Dinosaures Aventure",
+    "Description": "Des procédés de haute-technologie ont été mis en oeuvre pour faire revivre ces monstres issus du passé… Venez observer des Brontosaures, Stégosaures, Triceratops et le fameux Tyrannosaure Rex !",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "42",
+    "UUID Themeparks.wiki": "95c7989d-5c40-4d1c-b180-8df9093f7cd2",
+    "Nom": "Donjon de l'Extrême",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,40 m"
+  },
+  {
+    "Code": "35",
+    "UUID Themeparks.wiki": "978e0c1c-8f45-47e5-b038-cfa45fbf4fea",
+    "Nom": "Ferme d'Antonin",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "4",
+    "UUID Themeparks.wiki": "d2a14c7e-5c4d-4f16-96fe-767f02ae062d",
+    "Nom": "Galion Pirate",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Sensations fortes",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "6",
+    "UUID Themeparks.wiki": "0939b858-cc88-40ad-bef7-36f933674761",
+    "Nom": "GoldMine Train",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Sensations modérées",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "36",
+    "UUID Themeparks.wiki": "5923a93c-b5e9-4a42-8910-049d6827f93e",
+    "Nom": "Grande Roue",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "33",
+    "UUID Themeparks.wiki": "cbdde5fa-b8d4-481a-a7a1-4002ed642aad",
+    "Nom": "Grizzli",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,20 m"
+  },
+  {
+    "Code": "27",
+    "UUID Themeparks.wiki": "37331526-2564-404f-8223-b488dde7796e",
+    "Nom": "Hollywood Boulevard",
+    "Description": "Retrouvez tous les mythes de l’Amérique dans un building type des années 50… et laissez-vous tenter par l’univers du jeu : SKEEBALL, DERBY, HOT FLASH, FIRE BALL, etc… sont là pour vous faire vibrer !",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Jeux payantx",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "21",
+    "UUID Themeparks.wiki": "1d330876-5ef1-4511-afc2-bf69a7ec663f",
+    "Nom": "Juke Box",
+    "Description": "1,2,3 O’Clock… 5 O’Clock… ROCK ! Revivez la folle époque du Rock’N’Roll avec sa musique et ses voitures de légende aux chromes étincelants. Le grand-huit aquatique unique en France La plus haute tour de chute libre rotative du monde Poussée d’adrénaline, rythme cardiaque qui s’accélère, venez prendre les commandes du AIR MEETING !",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Sensations modérées",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "32",
+    "UUID Themeparks.wiki": "52b64a78-10c9-468e-9059-ee0bede77859",
+    "Nom": "King Of Mississippi",
+    "Description": "Embarquez en famille pour une croisière romantique au cœur de la Louisiane éternelle à bord du King of Mississippi… Prenez place à bord d’un véritable et luxueux bateau à roue avec sa machine à vapeur étincelante, au son d’un Jazz band! Le grand-huit aquatique unique en France",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "43",
+    "UUID Themeparks.wiki": "97649b85-23dc-49c8-9599-9b849f258958",
+    "Nom": "KRAMPUS EXPÉDITION",
+    "Description": "Nigloland fait renaître une légende oubliée des Alpes avec Krampus Expédition. Explorez le monde de la haute-montagne, des rivières sauvages avec des canyons et des cascades incroyables pour enfin accéder à la grotte qui abrite cette bête mystérieuse. Les explorateurs devront faire preuve de courage pour affronter le Krampus, ce monstre rocailleux et sauvage.",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,10 m"
+  },
+  {
+    "Code": "24",
+    "UUID Themeparks.wiki": "9cc52488-e701-4f88-9e20-d04f200930ea",
+    "Nom": "L'Envol des Papillons",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "12",
+    "UUID Themeparks.wiki": "ecf5c6c1-14f6-4c0e-aaf5-869b85be4d16",
+    "Nom": "Le Voyage en Montgolfières",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "38",
+    "UUID Themeparks.wiki": "470ce6ee-33f5-4f74-b207-8dc6d86831ca",
+    "Nom": "Maison de Niglo - Rencontre avec les personnages",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux"
+  },
+  {
+    "Code": "11",
+    "UUID Themeparks.wiki": "e447cfee-b9f7-4c6d-aae2-df87eb2701f2",
+    "Nom": "Manoir Hanté",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Sensations modérées",
+    "Taille mini": "1,20 m"
+  },
+  {
+    "Code": "28",
+    "UUID Themeparks.wiki": "a0b37d73-08bd-4acc-a3d1-9d52fcf0852d",
+    "Nom": "Noisette Express",
+    "Description": "Un nouvel ami de Niglo et Niglotte fait son apparition : un écureuil, savant et inventeur, loufoque mais surtout visionnaire ! C’est lui qui a inventé ce moyen de transport pour aller de forêt en forêt et qui s’appelle : Noisette Express. Toute la famille vivra une folle aventure dans ce nouveau grand-huit au cœur d’une forêt luxuriante.",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "90 cm"
+  },
+  {
+    "Code": "30",
+    "UUID Themeparks.wiki": "70f98317-13e6-4c23-97f5-2fdbdd175bef",
+    "Nom": "Oil Company",
+    "Description": "Une seule balle dans le pot et vous repartez avec la peluche géante de votre choix !",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Jeux payants",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "16",
+    "UUID Themeparks.wiki": "b2de288a-8cfd-4ea7-a83f-51aa4a9a5841",
+    "Nom": "P’tit Poucet",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "90 cm"
+  },
+  {
+    "Code": "7",
+    "UUID Themeparks.wiki": "99dcaea1-bde1-4e3f-a684-0cf766a3e855",
+    "Nom": "Rivière Canadienne",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien",
+    "Type": "Sensations modérées",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "15",
+    "UUID Themeparks.wiki": "d83a75bb-4b8c-4a71-89fc-a2d0c515d3fc",
+    "Nom": "Rivière des Fées",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "26",
+    "UUID Themeparks.wiki": "92e85f53-2c7f-41d3-a3d2-e4f95b14b9c9",
+    "Nom": "Ronde des Canards",
+    "Parc": "Nigloland",
+    "Land": "Village Suisse",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "17",
+    "UUID Themeparks.wiki": "dc436ca8-1c2a-498a-97f7-1f2f09f44175",
+    "Nom": "Route 66",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "19",
+    "UUID Themeparks.wiki": "1f39b7ec-c26b-41e0-8e95-7d63edf65801",
+    "Nom": "Spatiale Experience - Grand-Huit",
+    "Parc": "Nigloland",
+    "Land": "Village Rock’N Roll",
+    "Type": "Sensations fortes",
+    "Taille mini": "1,20 m"
+  },
+  {
+    "Code": "10",
+    "UUID Themeparks.wiki": "cedf051c-6706-4f1b-a1b3-f9d666f1252e",
+    "Nom": "Tacots 1900",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "Pas de restriction"
+  },
+  {
+    "Code": "41",
+    "UUID Themeparks.wiki": "dce61815-d21e-434b-9bec-43f81e3fa553",
+    "Nom": "Tour des Petits Fantômes",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "1 m"
+  },
+  {
+    "Code": "25",
+    "UUID Themeparks.wiki": "150be90b-26f6-49f8-9812-706fe3bf42c1",
+    "Nom": "Zabeilles",
+    "Description": "Les décors gigantesques permettent de se sentir tout petit et de vivre une belle aventure au cœur du royaume des géants. Toute la famille se lance dans une course effrénée sur le dos des Zabeilles et prend les commandes en survolant un univers merveilleux à Nigloland.",
+    "Parc": "Nigloland",
+    "Land": "Village Merveilleux",
+    "Type": "Pour toute la famille",
+    "Taille mini": "95 cm"
+  }
+]

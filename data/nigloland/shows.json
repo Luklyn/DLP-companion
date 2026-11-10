@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "Code": "22",
+    "UUID Themeparks.wiki": "bc1c3793-9e10-4368-bd32-da2bd193ec87",
+    "Nom": "Cosmos",
+    "Type": "Spectacle nocturne",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "14",
+    "UUID Themeparks.wiki": "e8b31d5e-ede9-4885-8b10-9a648877c2e9",
+    "Nom": "La Métamorphose du Loup Garou",
+    "Type": "Spectacle extérieur",
+    "Parc": "Nigloland"
+  },
+  {
+    "Code": "5",
+    "UUID Themeparks.wiki": "61c1eed3-34ad-47a2-bd60-396647d4dbab",
+    "Nom": "Nigloween Party",
+    "Type": "Spectacle sur scène",
+    "Parc": "Nigloland",
+    "Land": "Village Canadien"
+  },
+  {
+    "Code": "20",
+    "UUID Themeparks.wiki": "6a943447-0538-442f-aec2-89ab1e46cdc0",
+    "Nom": "Rocktober Fest",
+    "Type": "Spectacle extérieur",
+    "Parc": "Nigloland"
+  }
+]
