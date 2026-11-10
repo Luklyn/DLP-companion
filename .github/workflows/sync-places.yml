@@ -59,6 +59,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       BRANCH: auto/sync-places
+      PROGRESS_PUSH: '1'   # la recherche des lieux du site publie sa progression (tableau en direct dans l'admin)
     steps:
       - uses: actions/checkout@v4
 

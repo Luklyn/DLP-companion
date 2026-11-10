@@ -18,8 +18,10 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMP = os.path.join(ROOT, 'tools', 'importer')
@@ -270,6 +272,25 @@ def claimed_fiches(fiches, existing):
     return claimed
 
 
+def publish_progress(resort_id, out, done, total, started, log, final=False):
+    """Écrit site-candidates/<id>.json (+ .progress.json) et, dans l'action GitHub (PROGRESS_PUSH=1), pousse la branche
+    pour que la page d'administration voie le tableau se remplir pendant la lecture des fiches."""
+    d = os.path.join(ROOT, 'site-candidates')
+    os.makedirs(d, exist_ok=True)
+    write_json(os.path.join(d, f'{resort_id}.json'), out)
+    write_json(os.path.join(d, f'{resort_id}.progress.json'), dict(started=started, done=done, total=total, final=final, items=out))
+    if os.environ.get('PROGRESS_PUSH') != '1':
+        return
+    try:
+        run = lambda *a: subprocess.run(['git', '-c', 'user.name=github-actions[bot]', '-c', 'user.email=41898282+github-actions[bot]@users.noreply.github.com', *a],
+                                        cwd=ROOT, check=True, capture_output=True, timeout=90)
+        run('add', 'site-candidates')
+        run('commit', '-q', '-m', f'Lieux du site : {done}/{total} fiches lues')
+        run('push', '-q', '--force', 'origin', 'HEAD:refs/heads/auto/sync-places')
+    except Exception as ex:      # la progression en direct est facultative
+        log(f'   (progression non publiée : {ex})')
+
+
 def site_candidates(resort, fiches, claimed, ents, matched, args, log):   # ents : seulement les NOUVEAUX lieux de l'API (ceux déjà connus sont dans `claimed`)
     """Fiches du site qui n'existent ni dans les données ni dans l'API : lieux à ajouter « à la main » (sans UUID)."""
     api_names = [clean_name(e['name']) for e in ents]
@@ -282,14 +303,17 @@ def site_candidates(resort, fiches, claimed, ents, matched, args, log):   # ents
         pick.append(i)
     log(f'   {len(pick)} fiche(s) du site absente(s) de l’API et des données')
     out = []
+    started = int(time.time())
     if pick:
         cache = os.path.join(tempfile.gettempdir(), f'sync_{resort["id"]}_cand')
-        got = builder.download([fiches[i] for i in pick], cache, log, lambda: False, lambda *_: None, fetch_html, args.browser)
         mappings = builder.load_mappings()
         types = {k.lower(): v for k, v in (mappings.get('types') or {}).items()}
         lands = {k.lower(): v for k, v in (mappings.get('lands') or {}).items()}
-        for i in pick:
+        if not args.dry_run:
+            publish_progress(resort['id'], out, 0, len(pick), started, log)
+        for n, i in enumerate(pick, 1):
             f = fiches[i]
+            got = builder.download([f], cache, log, lambda: False, lambda *_: None, fetch_html, args.browser)
             path = got.get(f['url'])
             pg = {}
             if path:
@@ -305,9 +329,10 @@ def site_candidates(resort, fiches, claimed, ents, matched, args, log):   # ents
             out.append(dict(kind=kinds[0] if kinds else '', kinds=kinds, nom=name, url=f['url'], land=lands.get(land.lower(), land) if land else '',
                             type=types.get(cat.lower(), '') if cat else '', category=cat, height=pg.get('height') or '', menu=pg.get('menu') or '',
                             description=AUDIENCE.sub('', pg.get('description') or '').strip()))
-    if not args.dry_run:
-        os.makedirs(os.path.join(ROOT, 'site-candidates'), exist_ok=True)
-        write_json(os.path.join(ROOT, 'site-candidates', f'{resort["id"]}.json'), out)
+            if not args.dry_run and (n % 4 == 0 or n == len(pick)):
+                publish_progress(resort['id'], out, n, len(pick), started, log, final=(n == len(pick)))
+    if not args.dry_run and not pick:
+        publish_progress(resort['id'], out, 0, 0, started, log, final=True)
     return out
 
 

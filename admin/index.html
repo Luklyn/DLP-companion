@@ -373,40 +373,51 @@ function siteCard(r, cfg) {
       <td>${x.kind === 'restaurants' ? `<input class="cell" data-cand="${i}" data-f="menu" value="${esc(x.menu)}" aria-label="Menu">` : '<span style="color:#8A93A5">—</span>'}</td>
       <td><a href="${esc(x.url)}" target="_blank" rel="noopener">Fiche</a></td></tr>`).join('');
   const sel = (cs || []).filter((x) => x.selected).length;
-  const runHtml = run ? `<div class="note ${run.status === 'completed' && run.conclusion !== 'success' ? 'err' : 'info'}" role="status" style="display:flex;gap:12px;align-items:center">${run.status !== 'completed' ? '<span class="spin"></span>' : ''}<span>${esc(S.cMsg)} ${run.url ? `<a href="${esc(run.url)}" target="_blank" rel="noopener">Voir l’exécution</a>` : ''}</span></div>` : (S.cMsg ? `<div class="note info" role="status">${esc(S.cMsg)}</div>` : '');
+  const runHtml = run ? `<div class="note ${run.status === 'completed' && run.conclusion !== 'success' ? 'err' : 'info'}" role="status" style="display:flex;gap:12px;align-items:center">${run.status !== 'completed' ? '<span class="spin"></span>' : ''}<span>${esc(S.cMsg)}${S.cProg && S.cProg.total ? ` — ${S.cProg.done} / ${S.cProg.total} fiches lues` : ''} ${run.url ? `<a href="${esc(run.url)}" target="_blank" rel="noopener">Voir l’exécution</a>` : ''}</span></div>` : (S.cMsg ? `<div class="note info" role="status">${esc(S.cMsg)}</div>` : '');
   return `<section class="card pad" style="display:flex;flex-direction:column;gap:16px">
     <div class="row" style="justify-content:space-between"><div style="flex:1 1 320px"><h2>Lieux du site absents de l’API</h2><p class="sub">Lieux présents sur les pages du parc mais ni dans l’application ni dans themeparks.wiki (restaurants, souvent). Ils sont ajoutés sans UUID, avec « état d’ouverture non connu ».</p></div>
       <button class="btn pri" data-act="cands" ${busy ? 'disabled' : ''}>${busy ? 'Recherche…' : (cs ? 'Chercher à nouveau' : 'Chercher sur le site')}</button></div>
     <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="c-${k}">${l}</label><input id="c-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
     <div class="hint">Laissez vide pour utiliser les pages déjà configurées pour ce parc. La recherche passe par l’action GitHub (quelques minutes).</div>
     ${runHtml}
-    ${cs && !cs.length ? '<div class="note ok">Aucun lieu du site manquant : tout ce que le site liste est déjà dans l’application ou dans l’API.</div>' : ''}
+    ${cs && !cs.length && !busy ? '<div class="note ok">Aucun lieu du site manquant : tout ce que le site liste est déjà dans l’application ou dans l’API.</div>' : ''}
     ${cs && cs.length ? `
       <div class="sc"><table style="min-width:1180px"><thead><tr><th style="width:44px"></th><th style="min-width:150px">Catégorie</th><th style="min-width:200px">Nom</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>Site</th></tr></thead><tbody>${rows}</tbody></table></div>
       <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les noms sont ceux des pages du site, sans traduction. Décochez ce qui n’est pas un lieu (hôtel, boutique…). Les attractions n’ont pas d’état en direct : elles s’affichent avec « état non connu ».</p>
-        <button class="btn pri" data-act="addcands" ${sel ? '' : 'disabled'}>Ajouter ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div>` : ''}
+        <button class="btn pri" data-act="addcands" ${sel && !busy ? '' : 'disabled'}>Ajouter ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div>` : ''}
   </section>`;
 }
 async function doCands() {
   if (needToken()) return;
-  const r = resortById(S.park); S.busy.cand = true; S.cands = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
+  const r = resortById(S.park); S.busy.cand = true; S.cands = null; S.cProg = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
   const since = Date.now() - 5000;
   try {
     const inputs = { resort: r.id, site_candidates: 'true', list_attractions: S.urls.attractions.trim(), list_shows: S.urls.shows.trim(), list_restaurants: S.urls.restaurants.trim() };
     await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { method: 'POST', body: { ref: BRANCH, inputs } });
-    const run = await watchRun(since, r.id, (x, msg) => { S.cRun = x; S.cMsg = msg; render(); });
+    let live = true;
+    (async () => { while (live && S.park === r.id) { await sleep(9000); if (!live) break; try { await pullProgress(r, since); } catch (e) { /* facultatif */ } } })();
+    let run; try { run = await watchRun(since, r.id, (x, msg) => { S.cRun = x; S.cMsg = msg; render(); }); } finally { live = false; }
     if (!run) S.cMsg = 'La recherche est toujours en cours chez GitHub. Réessayez dans quelques minutes.';
     else if (run.conclusion !== 'success') S.cMsg = 'La recherche a échoué. Ouvrez l’exécution pour voir le détail.';
     else await loadCands(since, r);
   } catch (e) { S.cMsg = 'Échec : ' + e.message; S.cRun = null; }
   S.busy.cand = false; render();
 }
+function mapCands(list, r) {
+  const park = (r.parks || [])[0]?.value || '';
+  return list.filter((x) => x.nom).map((x) => ({ kind: KINDS.includes(x.kind) ? x.kind : 'restaurants', nom: x.nom, url: x.url, land: x.land || '', type: x.type || '', height: x.height || '', menu: x.menu || '', park, selected: true }));
+}
+/* pendant la recherche, le workflow publie sa progression : le tableau se remplit au fil des fiches lues */
+async function pullProgress(r, since) {
+  const p = await readJson(`site-candidates/${r.id}.progress.json`, null, SYNC_BRANCH);
+  if (!p || !Array.isArray(p.items) || (p.started || 0) * 1000 < since - 5000) return;
+  S.cProg = { done: p.done || 0, total: p.total || 0 }; S.cands = mapCands(p.items, r); render();
+}
 async function loadCands(since, r) {
   let b = null; try { b = await gh(`/repos/${REPO}/branches/${encodeURIComponent(SYNC_BRANCH)}`); } catch (e) { /* absente */ }
   if (!b || new Date(b.commit.commit.committer.date).getTime() < since) { S.cands = []; S.cMsg = 'La recherche n’a produit aucun résultat.'; S.cRun = null; return; }
   const list = await readJson(`site-candidates/${r.id}.json`, [], SYNC_BRANCH);
-  const park = (r.parks || [])[0]?.value || '';
-  S.cands = list.filter((x) => x.nom).map((x) => ({ kind: KINDS.includes(x.kind) ? x.kind : 'restaurants', nom: x.nom, url: x.url, land: x.land || '', type: x.type || '', height: x.height || '', menu: x.menu || '', park, selected: true }));
+  S.cands = mapCands(list, r); S.cProg = null;
   S.cRun = null; S.cMsg = `${S.cands.length} lieu${S.cands.length > 1 ? 'x' : ''} trouvé${S.cands.length > 1 ? 's' : ''} sur le site.`;
 }
 async function doAddCands() {
