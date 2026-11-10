@@ -1,1 +1,192 @@
-[]
+[
+  {
+    "Code": "WALR01",
+    "Nom": "Dalton Burger",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/dalton-burger/0426-menu-dalton-burger.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR02",
+    "Nom": "Country Cantina",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/country-cantina-files/0426-menu-country-cantina.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR03",
+    "Nom": "Delhi'cious",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Karma World",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/delhicious/0426-menu-delhicious.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR04",
+    "Nom": "Hungry Sharky",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Dock World",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/hungry-sharky1/0426-menu-hungry-sharky.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR05",
+    "Nom": "Pizza Solo",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/pizza-solo-files/0426-menu-pizza-solo.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR06",
+    "Nom": "N'Soso",
+    "Type": "Restauration Rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Menu": "https://www.walibi.be/content/dam/wbe/fr/restaurants/restaurants/n-soso-files/0426-menu-nsoso.pdf",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR07",
+    "Nom": "Pêche & Mignon",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Dock World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR08",
+    "Nom": "Phare Ouest",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Dock World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR09",
+    "Nom": "Donut Saloon",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR10",
+    "Nom": "Cine Chill",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR11",
+    "Nom": "Cook House",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR12",
+    "Nom": "Fun O' Clock",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR13",
+    "Nom": "Costa Coffee Bar",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Walibi Boulevard",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR14",
+    "Nom": "Tiki-Bar",
+    "Type": "Bar",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR15",
+    "Nom": "Shiva's Food Truck",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Karma World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR16",
+    "Nom": "Crêpes Corner",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR17",
+    "Nom": "Sweet Star",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR18",
+    "Nom": "Sweet Africa",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR19",
+    "Nom": "Slush Factory",
+    "Type": "À emporter",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR20",
+    "Nom": "La Terrasse",
+    "Type": "Restauration rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR21",
+    "Nom": "Swing Fries",
+    "Type": "Restauration rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Walibi Boulevard",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR22",
+    "Nom": "Western Fries",
+    "Type": "Restauration rapide",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALR23",
+    "Nom": "Star Saloon",
+    "Type": "Bar",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Statut inconnu": "oui"
+  }
+]

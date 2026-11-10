@@ -190,5 +190,230 @@
     "Taille mini": "1,30 m ",
     "Coordonnées GPS (lat)": 50.702148,
     "Coordonnées GPS (lng)": 4.59188
+  },
+  {
+    "Code": "WALA01",
+    "Nom": "GRAND CARROUSEL",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Taille mini": "1,05 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA02",
+    "Nom": "DRACULA 4D",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA03",
+    "Nom": "TOUS EN BOÎTE",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Dock World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA04",
+    "Nom": "STORMY",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Dock World",
+    "Taille mini": "1,20 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA05",
+    "Nom": "4X4 ADVENTURE",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "1,05 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA06",
+    "Nom": "BUBBLE SWIRL",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "80 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA07",
+    "Nom": "GRAFFITI SHUTTLE",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "80 cm",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA08",
+    "Nom": "FUN RECORDER",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "80 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA09",
+    "Nom": "MINI TOUR",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "1,05 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA10",
+    "Nom": "TREE HOUSE",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Fun World",
+    "Taille mini": "80 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA11",
+    "Nom": "MELODY ROAD",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Taille mini": "1,20 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA12",
+    "Nom": "PONEYS",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "1,05 m ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA13",
+    "Nom": "TAPIS VOLANT",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Karma World",
+    "Taille mini": "90 cm",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA14",
+    "Nom": "OCTOPUS",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Taille mini": "1,05 m ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA15",
+    "Nom": "SILVERTON",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA16",
+    "Nom": "WAVE SWINGER",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Loup Garou",
+    "Taille mini": "1,05 m ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA17",
+    "Nom": "TIKI-TRAIL",
+    "Type": "Pour toute la famille",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Taille mini": "90 cm",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA18",
+    "Nom": "BUZZSAW",
+    "Type": "Sensations fortes",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "1,40 m ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA19",
+    "Nom": "SPINNING VIBE",
+    "Type": "Sensations fortes",
+    "Parc": "Walibi Belgium",
+    "Land": "Pulsar",
+    "Taille mini": "1,20 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA20",
+    "Nom": "KIDS AIRLINES",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA21",
+    "Nom": "TCHOU-TCHOU EXPRESS",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "1,05 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA22",
+    "Nom": "KONDAALA",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Exotic World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA23",
+    "Nom": "SPINNING TAXI",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "1,05 m",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA24",
+    "Nom": "LITTLE SWING",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "WALA25",
+    "Nom": "GUITAR RIFF",
+    "Type": "Pour les enfants",
+    "Parc": "Walibi Belgium",
+    "Land": "Adventure World",
+    "Taille mini": "90 cm ",
+    "Statut inconnu": "oui"
   }
 ]
