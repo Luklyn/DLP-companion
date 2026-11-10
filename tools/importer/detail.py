@@ -152,8 +152,10 @@ def analyse(html, url='', max_chars=380, list_info=None):
     stats_i = next((i for i, l in enumerate(lines) if i >= start and re.match(r'^(ride stats|can (you|i) ride)', l, re.I)), None)
     desc_lines = []
     for l in lines[start:]:
-        if STOP_LINES.match(l):
+        if STOP_LINES.match(l) or re.match(r'^(vous allez aussi aimer|le .{2,40}, comme si vous y étiez)', l, re.I):
             break
+        if re.search(r'd[ée]couvrez sans tarder|your browser does not support|laissez-vous surprendre', l, re.I):
+            continue
         if SKIP_LINES.match(l) or len(l) < 40:
             continue
         if re.search(r'we recommend booking|accessibility information|opens in a new window|all menus and restaurant information|subject to availability', l, re.I):
@@ -170,7 +172,7 @@ def analyse(html, url='', max_chars=380, list_info=None):
     land = ''
     zone = re.search(r'D[ée]couvrez sans tarder (.{2,40}?) avec (?:ses|son|sa|leurs?)\b', ' '.join(lines), re.I)   # « Découvrez sans tarder Exotic World avec ses attractions… » (Walibi)
     if zone:
-        land = clean(zone.group(1))
+        land = re.sub(r'^(?:la|le|les)\s+zones?\s+', '', clean(zone.group(1)), flags=re.I)
     for i, l in enumerate(lines if not land else []):
         for rx in LAND_LINES:
             m = rx.match(l)
