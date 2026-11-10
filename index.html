@@ -823,7 +823,7 @@
         <div class="home-in">
             <div id="home-continents" class="home-chips" role="group" aria-label="Filtrer par continent" hidden></div>
             <div id="home-grid" class="home-grid"></div>
-            <p class="home-foot">Application indépendante, non affiliée aux parcs. Données themeparks.wiki, à titre indicatif.</p>
+            <p class="home-foot">Application indépendante, non affiliée aux parcs. Données : <a href="https://themeparks.wiki" target="_blank" rel="noopener">Powered by ThemeParks.wiki</a>, à titre indicatif.</p>
         </div>
 
         <div class="dock">
@@ -853,7 +853,7 @@
                 <h3>À propos</h3>
                 <p>Theme Parks Companion affiche les temps d’attente, les horaires et les alertes en direct des parcs à thème, pour préparer votre journée.</p>
                 <h3>Données</h3>
-                <p>Temps d’attente et horaires : themeparks.wiki, à titre indicatif. Ils peuvent différer de l’information officielle du parc.</p>
+                <p>Temps d’attente et horaires : <a href="https://themeparks.wiki" target="_blank" rel="noopener">Powered by ThemeParks.wiki</a>, à titre indicatif. Ils peuvent différer de l’information officielle du parc.</p>
                 <h3>Indépendance</h3>
                 <p>Application indépendante, non affiliée aux parcs ni à leurs exploitants.</p>
                 <h3>Billets et pass</h3>
@@ -1550,6 +1550,7 @@
                             const timer = setTimeout(() => ctrl.abort(), 8000);
                             const res = await fetch(SCHEDULE_URL(pk.themeparksParkId), { cache: 'no-store', signal: ctrl.signal });
                             clearTimeout(timer);
+                            if (res.status === 429) apiPauseUntil = Date.now() + (parseInt(res.headers.get('Retry-After') || '', 10) || 60) * 1000;
                             if (!res.ok) return null;
                             const data = await res.json();
                             const list = (data.schedule?.length ? data.schedule : (data.parks ?? []).flatMap((x) => x.schedule ?? []))
@@ -1605,7 +1606,7 @@
                 : null,   // pas d'identifiant themeparks.wiki : fiches statiques, sans temps réel
             API_HISTORY_URL: (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/history`,
             DOWN_RETRY_MS: 300_000,      // nouvel essai si l'heure de panne n'a pas pu être déterminée
-            REFRESH_MS: 60_000,          // actualisation automatique
+            REFRESH_MS: 300_000,         // actualisation automatique
             FETCH_TIMEOUT_MS: 10_000,
             NEARBY_RADIUS_KM: 0.2,       // rayon du filtre « Autour de moi »
             WAIT_THRESHOLDS: { low: 30, medium: 50 },   // minutes : vert / orange / rouge
@@ -2119,11 +2120,18 @@
         /* ======================================================================
            Synchronisation avec l'API temps réel
            ====================================================================== */
+        let apiPauseUntil = 0;   // fin de la pause imposée par un HTTP 429 de l'API
         async function fetchJson(url, timeoutMs) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeoutMs);
+            const isApi = url.startsWith('https://api.themeparks.wiki/');
+            if (isApi && Date.now() < apiPauseUntil) throw new Error('HTTP 429 (pause)');
             try {
                 const res = await fetch(url, { cache: 'no-store', signal: controller.signal });
+                if (res.status === 429 && isApi) {   // limite atteinte : on respecte Retry-After avant tout nouvel appel
+                    const ra = parseInt(res.headers.get('Retry-After') || '', 10);
+                    apiPauseUntil = Date.now() + (Number.isFinite(ra) && ra > 0 ? ra : 60) * 1000;
+                }
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return await res.json();
             } finally {
@@ -2375,7 +2383,7 @@
             els.sync.dataset.state = mode;
             if (mode === 'live') {
                 els.syncLabel.textContent = `${L('Synchro', 'Synced')} ${timeFormat.format(state.lastSync)}`;
-                els.sync.title = L(`${state.matches}/${db.length} lieux synchronisés. Actualisation automatique chaque minute.`, `${state.matches}/${db.length} places synced. Automatic refresh every minute.`);
+                els.sync.title = L(`${state.matches}/${db.length} lieux synchronisés. Actualisation automatique toutes les 5 minutes.`, `${state.matches}/${db.length} places synced. Automatic refresh every 5 minutes.`);
             } else if (mode === 'static') {
                 els.syncLabel.textContent = L('Temps réel indisponible', 'Live data unavailable');
                 els.sync.title = L('Les temps d’attente ne sont pas disponibles pour ce parc.', 'Wait times are not available for this park.');
