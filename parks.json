@@ -321,6 +321,34 @@
         "g2": "#2FA3A0"
       },
       "iconImage": "icons/toverland.png"
+    },
+    {
+      "id": "nigloland",
+      "name": "Nigloland",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "locale": "fr-FR",
+      "themeparksId": "04eef85d-7ca5-4099-b4f3-9a0bcd90cbfc",
+      "dataPath": "data/nigloland/",
+      "parks": [
+        {
+          "value": "Nigloland",
+          "label": "Nigloland",
+          "themeparksParkId": "8d45b0e0-834c-4bef-afa9-a07d92e9f8f3"
+        }
+      ],
+      "info": {
+        "address": "Nigloland",
+        "lat": 48.4761,
+        "lng": 4.7064
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

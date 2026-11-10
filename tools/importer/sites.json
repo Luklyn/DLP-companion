@@ -73,5 +73,13 @@
   },
   "walt-disney-world": {
     "site": null
+  },
+  "nigloland": {
+    "site": "https://www.nigloland.fr/",
+    "list_urls": {
+      "attractions": "https://www.nigloland.fr/attractions-et-spectacles/toutes-les-attractions",
+      "shows": "https://www.nigloland.fr/attractions-et-spectacles/spectacles",
+      "restaurants": "https://www.nigloland.fr/restaurants/tous-les-restaurants"
+    }
   }
 }
