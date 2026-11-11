@@ -422,7 +422,7 @@ def build_entry(kind, e, park, pg, mappings, notes):
     if not e['live']:
         row[NOSTATUS] = 'oui'
     if kind == 'shows' and (MEET_API.match(e['name']) or re.match(r'P\dMG', str(e['externalId']))):
-        row['Type'] = 'Rencontre avec un personnage'
+        row['Type'] = 'Rencontre personnage'
     out = {k: row[k] for k in ORDER[kind] if row.get(k) not in (None, '')}
     return out, missing
 

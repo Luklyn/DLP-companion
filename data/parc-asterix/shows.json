@@ -136,7 +136,7 @@
     "UUID Themeparks.wiki": "902132d7-c4e2-403c-9ae4-945d8cd3927b",
     "Nom": "Rencontres avec les personnages",
     "Description": "Astérix, Obélix, Falbala, Panoramix, … vous avez toujours rêvé de les rencontrer ? Ça tombe bien. Tous vous attendent dans le village gaulois. Ne soyez pas timide. Demandez leur un selfie !",
-    "Type": "Rencontre personnages",
+    "Type": "Rencontre personnage",
     "Parc": "Parc Astérix",
     "Land": "La Gaule",
     "Coordonnées GPS (lat)": "49.133728",

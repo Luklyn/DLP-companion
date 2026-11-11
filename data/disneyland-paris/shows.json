@@ -197,7 +197,7 @@
     "UUID Themeparks.wiki": "71d8eebe-92db-41af-88c9-287709ebb216",
     "Nom": "Rencontre avec Baloo",
     "Description": "Baloo a élu domicile près du Restaurant Hakuna Matata. En voilà un qui sait se satisfaire du nécessaire... Rappelez-vous : un peu d'eau fraîche et de verdure, quelques rayons de miel et de soleil. Joignez-vous à lui pour fredonner « Il en faut peu pour être heureux ! »<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Adventureland"
   },
@@ -206,7 +206,7 @@
     "UUID Themeparks.wiki": "812b20df-4a8e-4e98-a6ba-5e27e33ea156",
     "Nom": "Rencontre avec Tigrou",
     "Description": "Le service PhotoPass peut être modifié, retardé ou supprimé sans préavis, notamment en cas de conditions climatiques défavorables ou conditions de sécurité insuffisantes. Débordant d’énergie, Tigrou fait un bond à Gazebo Garden, prêt pour une nouvelle aventure à Disney Adventure World !",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disney Adventure World",
     "Land": "Adventure Way"
   },
@@ -226,7 +226,7 @@
     "UUID Themeparks.wiki": "45a6e9b4-a8de-4a32-9efb-1eb650e232e5",
     "Nom": "Rencontre avec un Personnage d’Aladdin",
     "Description": "Dirigez-vous vers la Lampe Magique près du Agrabah Café Restaurant et faites un vœu, le temps d'une photo inoubliable avec un Personnage Disney !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Adventureland"
   },
@@ -235,7 +235,7 @@
     "UUID Themeparks.wiki": "308ac872-98a0-4f4e-b730-1d8377487f9e",
     "Nom": "Rencontre avec Monsieur Jack (de L’Étrange Noël de Monsieur Jack de Tim Burton ©Disney)",
     "Description": "Rejoignez Jack Skellington à <em>Critter Coral</em> et célébrez Noël en compagnie du Roi des Citrouilles en personne !<br /><br />Pour profiter de cette expérience, vous devez rejoindre la <a href=\"https://www.disneylandparis.com/fr-fr/faq/parcs-a-theme/file-attente-virtuelle\" target=\"_self\">file d'attente virtuelle</a>, disponible dans l'Application Mobile Disneyland Paris le…",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Statut inconnu": "oui",
     "Land": "Frontierland"
@@ -245,7 +245,7 @@
     "UUID Themeparks.wiki": "f922f2c3-347d-4cfc-a0af-4478a56404cd",
     "Nom": "Rencontre avec Dingo",
     "Description": "Passez un moment adorablement comique avec Dingo : toujours aussi loufoque, il est persuadé d’être… le Père Noël ! Rendez-vous au Big Thunder Mountain Gazebo dans Frontierland !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Frontierland"
   },
@@ -254,7 +254,7 @@
     "UUID Themeparks.wiki": "822617d1-b63f-4a22-9f20-5cd77002eeb6",
     "Nom": "Rencontre avec Winnie l'Ourson",
     "Description": "C’est Noël ! Passez un moment aussi doux que le miel en compagnie de l'adorable Winnie l'Ourson près de <em>Boarding House</em> dans l’atmosphère joyeusement festive de Main Street, U.S.A. !<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.<br />Présence d'un photographe Disney PhotoPass™<br />Sujet à disponibilité",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Main Street U.S.A"
   },
@@ -263,7 +263,7 @@
     "UUID Themeparks.wiki": "6ae88707-01d8-4edc-a214-79dd0ddfe04a",
     "Nom": "Rencontre avec le Père Noël",
     "Description": "Le Père Noël vous ouvre les portes de son atelier à <em>Disney Clothiers</em>, sur Main Street, U.S.A., pour une rencontre chaleureuse et pleine de magie.",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Main Street U.S.A"
   },
@@ -323,7 +323,7 @@
     "UUID Themeparks.wiki": "fb4a3ee7-888e-49eb-869f-26ec176edeed",
     "Nom": "Rencontre avec Stitch",
     "Description": "Consultez la liste des Spectacles, Parades, Feux d'artifice et Rencontres avec les Personnages à ne pas manquer lors de votre visite à Disneyland Paris.",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Discoveryland"
   },
@@ -354,7 +354,7 @@
     "UUID Themeparks.wiki": "72b05d4f-bf6e-48dd-a170-750685271b31",
     "Nom": "Rencontre avec Donald",
     "Description": "Donald a revêtu sa plus belle tenue de fête et vous attend à Casey’s Corner ! Rejoignez-le pour une rencontre joyeuse et chaleureuse, et immortalisez un précieux souvenir de Noël.<br /><br />Cette Rencontre avec les Personnages Disney peut être modifiée, retardée ou supprimée sans préavis.<br /><br />Présence d'un photographe Disney PhotoPass™<br />Sujet à disponibilité",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Main Street U.S.A"
   },
@@ -363,7 +363,7 @@
     "UUID Themeparks.wiki": "44eff9fa-cd05-4a00-89b3-e6cec4682636",
     "Nom": "Rencontre avec Mickey",
     "Description": "Direction les coulisses pour rencontrer Mickey entre deux spectacles de magie. Vous pourrez même poser en sa compagnie pour une photo souvenir et découvrir certains secrets Disney bien gardés.<br /><br />Pour profiter de cette expérience, vous devez rejoindre une file d’attente virtuelle, disponible notamment via l’Application Mobile Disneyland Paris ou auprès d’un Cast…",
-    "Type": "Rencontre avec un personnage",
+    "Type": "Rencontre personnage",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland"
   },
