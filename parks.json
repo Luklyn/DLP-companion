@@ -445,6 +445,39 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/disneyland-resort.png"
+    },
+    {
+      "id": "tokyo-disney-resort",
+      "name": "Tokyo Disney Resort",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "locale": "fr-FR",
+      "themeparksId": "faff60df-c766-4470-8adb-dee78e813f42",
+      "dataPath": "data/tokyo-disney-resort/",
+      "parks": [
+        {
+          "value": "Tokyo Disneyland",
+          "label": "Tokyo Disneyland",
+          "themeparksParkId": "3cc919f1-d16d-43e0-8c3f-1dd269bd1a42"
+        },
+        {
+          "value": "Tokyo DisneySea",
+          "label": "Tokyo DisneySea",
+          "themeparksParkId": "67b290d5-3478-4f23-b601-2f8fb71ba803"
+        }
+      ],
+      "info": {
+        "address": "Tokyo Disney Resort",
+        "lat": 35.632896,
+        "lng": 139.880394
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

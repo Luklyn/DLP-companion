@@ -104,5 +104,13 @@
       "shows": "https://disneyland.disney.go.com/attractions/#/sort=alpha/",
       "restaurants": "https://disneyland.disney.go.com/dining/"
     }
+  },
+  "tokyo-disney-resort": {
+    "site": "https://www.tokyodisneyresort.jp/",
+    "list_urls": {
+      "attractions": "https://www.tokyodisneyresort.jp/en/tdl/attraction/",
+      "shows": "https://www.tokyodisneyresort.jp/en/tdl/show.html",
+      "restaurants": "https://www.tokyodisneyresort.jp/en/tdl/restaurant/list.html"
+    }
   }
 }
