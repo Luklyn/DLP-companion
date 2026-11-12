@@ -478,6 +478,34 @@
         "g1": "#2B59D9",
         "g2": "#2B59D9"
       }
+    },
+    {
+      "id": "shanghai-disney-resort",
+      "name": "Shanghai Disney Resort",
+      "country": "CN-SH",
+      "timezone": "Asia/Shanghai",
+      "locale": "fr-FR",
+      "themeparksId": "6e1464ca-1e9b-49c3-8937-c5c6f6675057",
+      "dataPath": "data/shanghai-disney-resort/",
+      "parks": [
+        {
+          "value": "Shanghai Disneyland",
+          "label": "Shanghai Disneyland",
+          "themeparksParkId": "ddc4357c-c148-4b36-9888-07894fe75e83"
+        }
+      ],
+      "info": {
+        "address": "Shanghai Disney Resort",
+        "lat": 31.143055511471022,
+        "lng": 121.65832045106255
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

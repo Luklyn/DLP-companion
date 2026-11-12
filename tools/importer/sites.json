@@ -112,5 +112,13 @@
       "shows": "https://www.tokyodisneyresort.jp/en/tdl/show.html",
       "restaurants": "https://www.tokyodisneyresort.jp/en/tdl/restaurant/list.html"
     }
+  },
+  "shanghai-disney-resort": {
+    "site": "https://www.shanghaidisneyresort.com/",
+    "list_urls": {
+      "attractions": "https://www.shanghaidisneyresort.com/en/experience?group=attraction",
+      "shows": "https://www.shanghaidisneyresort.com/en/experience?group=entertainment",
+      "restaurants": "https://www.shanghaidisneyresort.com/en/experience?group=restaurant"
+    }
   }
 }
