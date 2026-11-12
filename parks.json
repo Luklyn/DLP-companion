@@ -477,7 +477,8 @@
         "acc": "#2B59D9",
         "g1": "#2B59D9",
         "g2": "#2B59D9"
-      }
+      },
+      "iconImage": "icons/tokyo-disney-resort.png"
     },
     {
       "id": "shanghai-disney-resort",
@@ -505,7 +506,8 @@
         "acc": "#2B59D9",
         "g1": "#2B59D9",
         "g2": "#2B59D9"
-      }
+      },
+      "iconImage": "icons/shanghai-disney-resort.png"
     }
   ],
   "events": [
