@@ -346,7 +346,7 @@ function parksView() {
       <div style="border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:#FAFBFD">
         <div><h3>Récupération automatique des informations</h3><p class="sub" style="font-size:13px">Indiquez les pages de liste du site du parc (laissez vide pour utiliser la configuration existante). Les noms, lands, types, tailles et menus sont lus sur les fiches, sans traduction.</p></div>
         <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="u-${k}">${l}</label><input id="u-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
-        <div class="row"><button class="btn pri" data-act="enrich" ${S.busy.enrich ? 'disabled' : ''}>${S.busy.enrich ? 'Récupération…' : 'Récupérer les informations'}</button><span class="hint">Lance l’action GitHub « Synchronisation des lieux » (de quelques minutes à 25 min pour les grands parcs).</span></div>
+        <div class="row"><button class="btn pri" data-act="enrich" ${S.busy.enrich ? 'disabled' : ''}>${S.busy.enrich ? 'Récupération…' : 'Récupérer les informations'}</button><button class="btn" data-act="export" ${S.rows.length || (S.cands && S.cands.length) ? '' : 'disabled'}>Exporter en Excel</button><span class="hint">Lance l’action GitHub « Synchronisation des lieux » (de quelques minutes à 25 min pour les grands parcs).</span></div>
         ${runHtml}
       </div>
       <div class="sc"><table style="min-width:1260px"><thead><tr><th style="width:44px"></th><th>Code</th><th>UUID Themeparks</th><th style="min-width:200px">Nom</th><th style="min-width:170px">Nom dans l’API</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>État</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
@@ -384,9 +384,52 @@ function siteCard(r, cfg) {
     ${cs && cs.length ? `
       <div class="sc"><table style="min-width:1180px"><thead><tr><th style="width:44px"></th><th style="min-width:150px">Catégorie</th><th style="min-width:200px">Nom</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>Site</th></tr></thead><tbody>${rows}</tbody></table></div>
       <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les noms sont ceux des pages du site, sans traduction. Décochez ce qui n’est pas un lieu (hôtel, boutique…). Les attractions n’ont pas d’état en direct : elles s’affichent avec « état non connu ».</p>
+        <button class="btn" data-act="export">Exporter en Excel</button>
         <button class="btn pri" data-act="addcands" ${sel && !busy ? '' : 'disabled'}>Ajouter ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div>` : ''}
   </section>`;
 }
+/* ---------- export Excel de la récupération automatique ---------- */
+function loadXlsxLib() {
+  if (window.XLSX) return Promise.resolve(window.XLSX);
+  return new Promise((ok, ko) => {
+    const el = document.createElement('script');
+    el.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+    el.onload = () => (window.XLSX ? ok(window.XLSX) : ko(new Error('bibliothèque Excel indisponible')));
+    el.onerror = () => ko(new Error('chargement de la bibliothèque Excel impossible (connexion ?)'));
+    document.head.appendChild(el);
+  });
+}
+async function exportXlsx() {
+  const r = resortById(S.park); if (!r) return;
+  try {
+    const X = await loadXlsxLib();
+    const wb = X.utils.book_new();
+    const sheet = (name, head, rows, widths) => {
+      const ws = X.utils.aoa_to_sheet([head, ...rows]);
+      ws['!cols'] = widths.map((w) => ({ wch: w })); ws['!freeze'] = { xSplit: 0, ySplit: 1 };
+      ws['!autofilter'] = { ref: X.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: rows.length, c: head.length - 1 } }) };
+      X.utils.book_append_sheet(wb, ws, name);
+    };
+    if (S.rows.length) {
+      sheet('Lieux de l’API', ['Catégorie', 'Code', 'UUID Themeparks', 'Nom', 'Nom dans l’API', 'Parc', 'Land', 'Type', 'Taille mini', 'Menu', 'État', 'Informations manquantes', 'Sélectionné'],
+        S.rows.map((x) => {
+          const miss = [!x.land && 'Land', !x.type && 'Type', x.kind === 'attractions' && !x.height && 'Taille mini', x.kind === 'restaurants' && !x.menu && 'Menu'].filter(Boolean);
+          const etat = !S.enriched ? 'Non enrichi' : (x.rec ? (miss.length ? 'À compléter' : 'Complet') : 'Aucune fiche trouvée');
+          return [KIND_LABEL[x.kind] || x.kind, x.code, x.uuid, x.nom, x.api, x.park, x.land, x.type, x.kind === 'attractions' ? x.height : '', x.kind === 'restaurants' ? x.menu : '', etat, S.enriched ? miss.join(', ') : '', x.selected ? 'oui' : 'non'];
+        }), [14, 10, 38, 34, 34, 22, 22, 22, 14, 44, 20, 26, 12]);
+    }
+    if (S.cands && S.cands.length) {
+      sheet('Lieux du site absents de l’API', ['Catégorie', 'Nom', 'Parc', 'Land', 'Type', 'Taille mini', 'Menu', 'Page du site', 'À ajouter'],
+        S.cands.map((x) => [KIND_LABEL[x.kind] || x.kind, x.nom, x.park, x.land, x.type, x.kind === 'attractions' ? x.height : '', x.kind === 'restaurants' ? x.menu : '', x.url, x.selected ? 'oui' : 'non']),
+        [14, 36, 22, 22, 22, 14, 44, 60, 10]);
+    }
+    if (!wb.SheetNames.length) { toast('Rien à exporter : lancez d’abord la vérification ou la recherche.', true); return; }
+    const d = new Date(); const stamp = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    X.writeFile(wb, `recuperation_${r.id}_${stamp}.xlsx`);
+    toast('Export Excel téléchargé.');
+  } catch (e) { toast('Export impossible : ' + e.message, true); }
+}
+
 async function doCands() {
   if (needToken()) return;
   const r = resortById(S.park); S.busy.cand = true; S.cands = null; S.cProg = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
@@ -772,6 +815,7 @@ document.addEventListener('click', async (e) => {
   else if (a === 'check') doCheck();
   else if (a === 'cands') doCands();
   else if (a === 'addcands') doAddCands();
+  else if (a === 'export') exportXlsx();
   else if (a === 'enrich') doEnrich();
   else if (a === 'validate') doValidate();
   else if (a === 'ignore') doIgnore();
