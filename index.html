@@ -324,6 +324,9 @@
             font-size: 12px; font-weight: 800; line-height: 1.5;
         }
         .evt .icon { width: 13px; height: 13px; }
+        .evt { margin-right: 6px; }
+        .evt.is-menu { background: #DDF3E4; border-color: #9ED9B3; color: #14692E; }
+        :root[data-theme="dark"] .evt.is-menu { background: #12301F; border-color: #2F6B45; color: #86E3A6; }
         .evt.is-hw { background: linear-gradient(135deg, #1B1024, #4A1F6E); border-color: #FF7A00; color: #FFA94D; }
 
         /* Menu burger */
@@ -3166,6 +3169,9 @@
         // Badge « Halloween » : affiché si le Type du lieu contient ce mot (et si l'événement ne le dit pas déjà)
         const hwHtml = (item) => (item.halloween && !/halloween/i.test(item.event))
             ? '<span class="evt is-hw"><svg class="icon" aria-hidden="true"><use href="#i-pumpkin"/></svg>Halloween</span>' : '';
+        // Badge « Menu disponible » : restaurants dont la fiche a un lien de menu valide
+        const menuHtml = (item) => (item.category === 'restaurant' && item.menuUrl && safeUrl(item.menuUrl))
+            ? `<span class="evt is-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>${L('Menu disponible', 'Menu available')}</span>` : '';
         // Le Type n'est répété dans le sous-titre que s'il apporte une information en plus du badge
         const typeLabel = (item) => (item.halloween && /^halloween$/i.test(item.type) ? '' : item.type);
 
@@ -3196,7 +3202,7 @@
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
-                            ${eventHtml(item)}${hwHtml(item)}
+                            ${eventHtml(item)}${hwHtml(item)}${menuHtml(item)}
                             ${extra}
                             ${(m.single != null || m.vq || m.dining) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}${diningHtml(m)}</span>` : ''}
                         </span>
