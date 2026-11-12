@@ -371,7 +371,7 @@ function siteCard(r, cfg) {
       <td><input class="cell ${x.type ? '' : 'todo'}" data-cand="${i}" data-f="type" value="${esc(x.type)}" aria-label="Type"></td>
       <td>${x.kind === 'attractions' ? `<input class="cell" data-cand="${i}" data-f="height" value="${esc(x.height)}" aria-label="Taille mini">` : '<span style="color:#8A93A5">—</span>'}</td>
       <td>${x.kind === 'restaurants' ? `<input class="cell" data-cand="${i}" data-f="menu" value="${esc(x.menu)}" aria-label="Menu">` : '<span style="color:#8A93A5">—</span>'}</td>
-      <td><a href="${esc(x.url)}" target="_blank" rel="noopener">Fiche</a></td></tr>`).join('');
+      <td>${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">Fiche</a>` : '<span style="color:#8A93A5">—</span>'}</td></tr>`).join('');
   const sel = (cs || []).filter((x) => x.selected).length;
   const runHtml = run ? `<div class="note ${run.status === 'completed' && run.conclusion !== 'success' ? 'err' : 'info'}" role="status" style="display:flex;gap:12px;align-items:center">${run.status !== 'completed' ? '<span class="spin"></span>' : ''}<span>${esc(S.cMsg)}${S.cProg && S.cProg.total ? ` — ${S.cProg.done} / ${S.cProg.total} fiches lues` : ''} ${run.url ? `<a href="${esc(run.url)}" target="_blank" rel="noopener">Voir l’exécution</a>` : ''}</span></div>` : (S.cMsg ? `<div class="note info" role="status">${esc(S.cMsg)}</div>` : '');
   return `<section class="card pad" style="display:flex;flex-direction:column;gap:16px">
@@ -466,15 +466,15 @@ function importXlsx() {
             x.imp = true; nApi++;
           }
           S.checked = true; S.enriched = true;
-        } else if (cols.has('page du site') || (cols.has('nom') && cols.has('categorie'))) {   // feuille « Lieux du site absents de l'API »
+        } else if (cols.has('page du site') || (cols.has('nom') && (cols.has('categorie') || cols.has('parc') || cols.has('land') || cols.has('type') || cols.has('menu')))) {   // feuille « Lieux du site absents de l'API »
           const park = (r.parks || [])[0]?.value || '';
           const pk = (v) => { const n = NORM(v); if (!n) return park; const ps = r.parks || []; const m = ps.find((q) => NORM(q.value) === n) || ps.find((q) => NORM(q.value).includes(n) || n.includes(NORM(q.value))); return m ? m.value : v; };
-          const list = rows.filter((o) => o.nom).map((o) => ({ kind: kindOf(o.categorie) || 'restaurants', nom: o.nom, url: o['page du site'] || '', land: o.land || '', type: o.type || '', height: o['taille mini'] || '', menu: o.menu || '', park: pk(o.parc), selected: cols.has('a ajouter') ? yes(o['a ajouter']) : true }));
+          const list = rows.filter((o) => o.nom).map((o) => ({ kind: kindOf(o.categorie) || kindOf(name) || 'restaurants', nom: o.nom, url: o['page du site'] || '', land: o.land || '', type: o.type || '', height: o['taille mini'] || '', menu: o.menu || '', park: pk(o.parc), selected: cols.has('a ajouter') ? yes(o['a ajouter']) : true }));
           S.cands = list; nSite += list.length;
         }
       }
       if (nApi || nSite) { S.fetchMsg = `Excel importé : ${nApi} lieu${nApi > 1 ? 'x' : ''} de l’API mis à jour${nMiss ? ` (${nMiss} ligne${nMiss > 1 ? 's' : ''} non reconnue${nMiss > 1 ? 's' : ''})` : ''}, ${nSite} lieu${nSite > 1 ? 'x' : ''} du site chargé${nSite > 1 ? 's' : ''}. Vérifiez puis validez.`; toast(S.fetchMsg); render(); }
-      else toast('Aucune ligne reconnue dans ce fichier (feuilles « Lieux de l’API » ou « Lieux du site absents de l’API » attendues).', true);
+      else toast('Aucune ligne reconnue : le fichier doit avoir au moins une colonne « Nom » (feuille des lieux du site) ou « Code » / « UUID Themeparks » (feuille des lieux de l’API).', true);
     } catch (e) { toast('Import impossible : ' + e.message, true); }
   };
   inp.click();
