@@ -1,1 +1,413 @@
-[]
+[
+  {
+    "Code": "entAPiratesLifeForYou;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "6813700a-dcc6-4a54-9fe5-ecbae073d72f",
+    "Nom": "A Pirate’s Life for You!",
+    "Description": "Are you smart enough, brave enough and strong enough that the Pirate’s Life is the life for you? Don't miss out on this great opportunity to be a pirate captain",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.14719916450486,
+    "Coordonnées GPS (lng)": 121.6588743468211
+  },
+  {
+    "Code": "entAvengersPatrol;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "aa2589d0-5577-42c6-b3fc-e403e08ce0d6",
+    "Nom": "Avengers’ Patrol",
+    "Description": "Live Entertainment, Character Experience Adults, All Ages, Kids, Preschoolers, Teens, Tweens",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 31.144130252846978,
+    "Coordonnées GPS (lng)": 121.65318213708765
+  },
+  {
+    "Code": "charCatchAGlimpseOfKevinBird;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "acb390ea-bdeb-4fcc-b014-87c5e88d4ce2",
+    "Nom": "Catch a Glimpse of Kevin",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Adventure Isle",
+    "Coordonnées GPS (lat)": 31.146313295746182,
+    "Coordonnées GPS (lng)": 121.65942758763495
+  },
+  {
+    "Code": "entClubDestinE;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "f1aa473b-0a6c-467c-97fb-871e8b53a3c0",
+    "Nom": "Club Destin-E",
+    "Description": "Join in the fun of this high-tech, high-energy revue at the Pepsi E-Stage. It's more than a performance; it's a party!",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 31.144266819336323,
+    "Coordonnées GPS (lng)": 121.65315117828112
+  },
+  {
+    "Code": "entDisneyZootopiaComesAlive;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "1beb13b1-21bb-4d5d-ba44-f31b56b3fd93",
+    "Nom": "Disney Zootopia Comes Alive",
+    "Description": "Windows come alive as you witness the daily interactions between our beloved Zootizens! From chatting and taking selfies to meditating, the whole street will be",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Zootopia",
+    "Coordonnées GPS (lat)": 31.148285035363887,
+    "Coordonnées GPS (lng)": 121.65540166418978
+  },
+  {
+    "Code": "entEyeOfStormCaptainJacksSpectacular;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "1744a6ec-d549-43d7-8f4c-68ffa0aff2a9",
+    "Nom": "Eye of the Storm: Captain Jack’s Stunt Spectacular",
+    "Description": "Eye of the Storm: Captain Jack’s Stunt Spectacular Live Entertainment, Stage Shows, Theater Shows All Ages, Adults, Kids, Preschoolers, Teens, Tweens 10:30 | 11:10 | 11:50 | 13:00 | 13:40 | 14:20 | 15:30 | 16:00 | 16:30 | 17:10 Download the official App to buy Disney Premier Services",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.14715701970615,
+    "Coordonnées GPS (lng)": 121.65912479062456
+  },
+  {
+    "Code": "entFantasyFestival;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "335c7384-ab96-4d9b-a7d4-bff1d9c10414",
+    "Nom": "Fantasy Festival",
+    "Description": "Approach the day with wonder and joy in a special dance with our Disney friends and traveling players.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.14711372185431,
+    "Coordonnées GPS (lng)": 121.65447328732726
+  },
+  {
+    "Code": "entBaiLingStorytelling;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "2ce66fae-3542-4910-b862-d92f9e24622e",
+    "Nom": "Fantasy Storytelling",
+    "Description": "One troupe of storytellers will share a beloved Disney Story with humor, songs, and puppetry.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.147191283693378,
+    "Coordonnées GPS (lng)": 121.65423172922559
+  },
+  {
+    "Code": "entFriendshipDuffyandFriendsSpecialPreParade;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "db6bcf14-30b1-440f-afb3-7164668bfe6e",
+    "Nom": "FriendSHIP! Duffy and Friends’ Special Pre-Parade",
+    "Description": "FriendSHIP! Duffy and Friends’ Special Pre-Parade Preschoolers, Kids, Tweens, Teens, Adults, All Ages Classic Characters , Outdoor Entertainment",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Multiple Locations",
+    "Coordonnées GPS (lat)": 31.14422925739451,
+    "Coordonnées GPS (lng)": 121.6540285322176
+  },
+  {
+    "Code": "entFrozenSingAlongCelebration;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "0af07baa-b5d7-4964-b5c5-024ccc0c88fc",
+    "Nom": "Frozen: A Sing-Along Celebration",
+    "Description": "Live Entertainment, Stage Shows, Theater Shows All Ages, Adults, Kids, Preschoolers, Teens, Tweens 10:00 | 10:45 | 11:30 | 12:15 | 13:15 | 14:00 | 14:45 | 15:30 | 16:30 | 17:15 | 18:00 | 18:45 Download the official App to buy Disney Premier Services",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.146944462315467,
+    "Coordonnées GPS (lng)": 121.6534571109582
+  },
+  {
+    "Code": "charCharactersHeroicEncounterAtTheMarvelUniverse;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "4665eb1a-7c57-4bae-9ba8-df2bb7734113",
+    "Nom": "Heroic Encounter at the Marvel Universe",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.144666886275324,
+    "Coordonnées GPS (lng)": 121.65449813057187
+  },
+  {
+    "Code": "entIgniteDreamNighttimeSpectacular;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "3592bffe-4325-4304-b995-6f90b5ab0228",
+    "Nom": "ILLUMINATE! A Nighttime Celebration",
+    "Description": "Live Entertainment, Nighttime Entertainment All Ages, Adults, Kids, Preschoolers, Teens, Tweens Download the official App to buy Disney Premier Services",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.14528289612979,
+    "Coordonnées GPS (lng)": 121.65585682065932
+  },
+  {
+    "Code": "charCharactersMeetPooh;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "6daaa84e-f88f-4ea2-a005-633ec86e14d4",
+    "Nom": "Meet a friend from the Hundred Acre Wood",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.147791502984035,
+    "Coordonnées GPS (lng)": 121.6547937101571
+  },
+  {
+    "Code": "charCharactersMeetChipAndDale;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "94879cb4-a7f8-4f7a-8357-1aef5798a3d6",
+    "Nom": "Meet Chip & Dale at Chip & Dale’s Trading Post",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Adventure Isle",
+    "Coordonnées GPS (lat)": 31.14559060643166,
+    "Coordonnées GPS (lng)": 121.65905423808218
+  },
+  {
+    "Code": "charCharactersDisneyPrincessesStorybookCourt;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "d6c86c1a-3c31-4af3-8bbb-e2c8cd6a1b89",
+    "Nom": "Meet Disney Royalty at Enchanted Storybook Castle",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.14584185759106,
+    "Coordonnées GPS (lng)": 121.65500875106476
+  },
+  {
+    "Code": "charCharactersMeetDonaldFriendsatFantasyland;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "3cc4c82c-9eb8-4f59-9272-650796b59382",
+    "Nom": "Meet Donald and Friends on Fantasyland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.14551173514663,
+    "Coordonnées GPS (lng)": 121.65403236341703
+  },
+  {
+    "Code": "charCharactersSelfieSpotDuffy;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "ba90e6dd-0abb-4ec1-bf76-7350bb34006d",
+    "Nom": "Meet Duffy and Friends on Mickey Avenue",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Mickey Avenue",
+    "Coordonnées GPS (lat)": 31.144909922912547,
+    "Coordonnées GPS (lng)": 121.65770556114906
+  },
+  {
+    "Code": "charCharactersMeetGoofy;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "2f9f1591-56f6-4d8f-8395-7683d6a1b084",
+    "Nom": "Meet Goofy and Friends on Mickey Avenue",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Mickey Avenue",
+    "Coordonnées GPS (lat)": 31.143748150758075,
+    "Coordonnées GPS (lng)": 121.65739907299078
+  },
+  {
+    "Code": "charCharactersJackSparrowTreasureCove;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "c9d7af8d-c056-4303-b9d0-75d2173bf5a7",
+    "Nom": "Meet Jack Sparrow at the Sparrow’s Nest",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.147211533044025,
+    "Coordonnées GPS (lng)": 121.65837537789498
+  },
+  {
+    "Code": "charCharactersMeetJudyNickAtZootopiaPoliceDepartmentRecruitmentCenter;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "44951037-2065-4c16-aacb-7c70bf3b7745",
+    "Nom": "Meet Judy & Nick at Zootopia Police Department Recruitment Center",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Zootopia",
+    "Coordonnées GPS (lat)": 31.148521565399285,
+    "Coordonnées GPS (lng)": 121.65515425804485
+  },
+  {
+    "Code": "charSelfieSpotLinaBell;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "18862bd7-4725-4dd6-8d06-f886f515996e",
+    "Nom": "Meet LinaBell at Friendship Point",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Mickey Avenue",
+    "Coordonnées GPS (lat)": 31.14545569832114,
+    "Coordonnées GPS (lng)": 121.65815735091017
+  },
+  {
+    "Code": "charCharactersMickeyMouseGardensImagination;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "5608e8af-5667-4873-a503-2d75b2ea2b04",
+    "Nom": "Meet Mickey at the Gardens of Imagination",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.144633427949977,
+    "Coordonnées GPS (lng)": 121.65515097733409
+  },
+  {
+    "Code": "charCharactersMeetMinnieFriendsatFantasyland;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "154800e7-2f72-4e3e-8f84-5747ccc027fa",
+    "Nom": "Meet Minnie Mouse and Friends on Fantasyland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.14623164634609,
+    "Coordonnées GPS (lng)": 121.65362325205068
+  },
+  {
+    "Code": "charCharactersMeetPixarCharactersAtTomorrowland;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "4107d6a8-0521-4e5c-8344-701e3be694a5",
+    "Nom": "Meet Pixar Characters at Tomorrowland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 31.14362661996089,
+    "Coordonnées GPS (lng)": 121.65327291964117
+  },
+  {
+    "Code": "charCharactersMarvelUniverseSpiderMan;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "b5645396-c993-4d26-a01d-27121ced9cc4",
+    "Nom": "Meet Spider-Man at the Marvel Universe",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.144703194166755,
+    "Coordonnées GPS (lng)": 121.65453425702054
+  },
+  {
+    "Code": "charMeetTheCharacterFromUPAtHappyCircle;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "2720d086-783a-4137-9d19-adcc7f040cd0",
+    "Nom": "Meet the Character from UP at Happy Circle",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Adventure Isle",
+    "Coordonnées GPS (lat)": 31.14649014225672,
+    "Coordonnées GPS (lng)": 121.65993064247888
+  },
+  {
+    "Code": "charCharactersMeetTheFriendsFromLiloStitchAtGalaxyGathering;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "93aa5ee9-f85e-423a-bd1e-0e2188b33e36",
+    "Nom": "Meet the Friends from Lilo & Stitch at Galaxy Gathering",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 31.143680642673715,
+    "Coordonnées GPS (lng)": 121.65384150078822
+  },
+  {
+    "Code": "charCharactersMeetingPost;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "7932e303-c25a-4a29-beb7-211bf4aff46e",
+    "Nom": "Meet your Favorite Toys at The Meeting Post",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Disney Pixar Toy Story Land",
+    "Coordonnées GPS (lat)": 31.145923109468473,
+    "Coordonnées GPS (lng)": 121.65270445985843
+  },
+  {
+    "Code": "entMickeyStorybookAdventure;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "3a772e1e-4833-44b9-8701-53c6d9a77740",
+    "Nom": "Mickey’s Storybook Adventure",
+    "Description": "Live Entertainment, Character Experience, Theater Shows All Ages, Adults, Kids, Preschoolers, Teens, Tweens Classic Characters , Disney Princesses, Mickey & Friends, Indoor Entertainment 10:45 | 11:45 | 13:00 | 14:00 | 15:10 | 16:30 | 17:35 | 18:55 Download the official App to buy Disney Premier Services Download the official App to get Disney Standby Pass",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Mickey Avenue",
+    "Coordonnées GPS (lat)": 31.14379829983593,
+    "Coordonnées GPS (lng)": 121.65654833361047
+  },
+  {
+    "Code": "entMickeysStorybookExpress;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "636a0798-3714-456e-9c21-87de42fbffd3",
+    "Nom": "Mickey’s Storybook Express",
+    "Description": "Adults, Kids, Preschoolers, Teens, Tweens Classic Characters , Pixar Pals, Mickey & Friends, Outdoor Entertainment Download the official App to buy Disney Premier Services",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Multiple Locations",
+    "Coordonnées GPS (lat)": 31.145227529274475,
+    "Coordonnées GPS (lng)": 121.65280962586475
+  },
+  {
+    "Code": "entPiratesRoaming;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "ff1b5727-52f5-47b4-807f-290287ab8f58",
+    "Nom": "Pirates Roaming",
+    "Description": "In Treasure Cove, you will find frivolity, mayhem and personality as Pirates go about their daily lives.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.147384440616648,
+    "Coordonnées GPS (lng)": 121.65864428765262
+  },
+  {
+    "Code": "entShanghaiDisneylandBand;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "504ee94f-2e63-4d4e-99cf-7e684c94368f",
+    "Nom": "Shanghai Disneyland Band",
+    "Description": "Get in the swing as this lively ensemble welcomes you to Mickey Avenue with a high-spirited mix of music and fun.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Mickey Avenue",
+    "Coordonnées GPS (lat)": 31.143697642984897,
+    "Coordonnées GPS (lng)": 121.65764764336011
+  },
+  {
+    "Code": "entSwabbieFight;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "f65f2e39-3e61-4346-8dfc-a351e1175559",
+    "Nom": "Swabbie Fight",
+    "Description": "Take a glance at sailors' lives at Landlubber’s Landing.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.147196765269182,
+    "Coordonnées GPS (lng)": 121.65883827526186
+  },
+  {
+    "Code": "entTaiChiWithCharacter;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "0209ad82-00f6-4e33-984a-582a1aaf2100",
+    "Nom": "Tai Chi with Character",
+    "Description": "Join Donald Duck and Chip ’n’ Dale to practice balance and harmony in the fun-filled Melody Garden.",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.144158218419683,
+    "Coordonnées GPS (lng)": 121.65615976308459
+  },
+  {
+    "Code": "entTheHeartOfMagic;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "2014b7b2-8c5f-4542-a898-a943756d1cc9",
+    "Nom": "The Heart of Magic",
+    "Description": "Preschoolers, Kids, Tweens, Teens, Adults, All Ages Classic Characters , Disney Princesses, Outdoor Entertainment, Mickey & Friends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Gardens of Imagination",
+    "Coordonnées GPS (lat)": 31.145321266017618,
+    "Coordonnées GPS (lng)": 121.65577693998605
+  },
+  {
+    "Code": "entTheJAMMitors;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "4a1efddf-1564-4c7d-a9c6-a3341cbaec25",
+    "Nom": "The JAMMitors",
+    "Description": "Break time! These talented custodial Cast Members fills the air with cool beats and high energy percussion by banging on recycling bins. Come move and clap alon",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 31.14423166684826,
+    "Coordonnées GPS (lng)": 121.65430625076792
+  },
+  {
+    "Code": "entToySoldiersBucketOFun;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "cf5092e6-211e-469a-9981-3c02ef2f2271",
+    "Nom": "Toy Soldiers Bucket O' Fun",
+    "Description": "Character Experience, Live Entertainment All Ages, Adults, Kids, Preschoolers, Teens, Tweens",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Disney•Pixar Toy Story Land",
+    "Coordonnées GPS (lat)": 31.14527393487883,
+    "Coordonnées GPS (lng)": 121.65272191698244
+  },
+  {
+    "Code": "entTravelingTroubadours;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "7067c9a5-e49f-4b4a-88cf-0fba180f91fb",
+    "Nom": "Traveling Troubadours",
+    "Description": "A delightful group of musicians, the Travelling Troubadours, join a spirited songstress to sing and play Disney tunes. The combination of traditional Chinese in",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 31.147065431904622,
+    "Coordonnées GPS (lng)": 121.65448928546353
+  },
+  {
+    "Code": "entVoodooAlleyFight;entityType=Entertainment;destination=shdr",
+    "UUID Themeparks.wiki": "67af1600-6eb3-4a78-b921-6cce0bcad02a",
+    "Nom": "Voodoo Alley Fight",
+    "Description": "Near Doubloon Market, a disagreement breaks out. With clashing swords, you never know who will become a part of the action in this surprising vignette!",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Shanghai Disneyland",
+    "Land": "Treasure Cove",
+    "Coordonnées GPS (lat)": 31.14751807349745,
+    "Coordonnées GPS (lng)": 121.65798685860973
+  }
+]
