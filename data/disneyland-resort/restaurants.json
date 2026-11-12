@@ -451,7 +451,7 @@
   {
     "Code": "DISR35",
     "Nom": "Maurice's Treats",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Menu": "https://disneyland.disney.go.com/dining/disneyland/maurices-treats/menus/",
@@ -613,7 +613,7 @@
   {
     "Code": "DISR53",
     "Nom": "Terran Treats",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/terran-treats/menus/",
@@ -819,7 +819,7 @@
   {
     "Code": "DISR76",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -827,7 +827,7 @@
   {
     "Code": "DISR77",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -835,7 +835,7 @@
   {
     "Code": "DISR78",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -843,7 +843,7 @@
   {
     "Code": "DISR79",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -851,7 +851,7 @@
   {
     "Code": "DISR80",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -859,7 +859,7 @@
   {
     "Code": "DISR81",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -867,7 +867,7 @@
   {
     "Code": "DISR82",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -875,7 +875,7 @@
   {
     "Code": "DISR83",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -883,7 +883,7 @@
   {
     "Code": "DISR84",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -891,7 +891,7 @@
   {
     "Code": "DISR85",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -899,7 +899,7 @@
   {
     "Code": "DISR86",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -907,7 +907,7 @@
   {
     "Code": "DISR87",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -915,7 +915,7 @@
   {
     "Code": "DISR88",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -923,7 +923,7 @@
   {
     "Code": "DISR89",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -931,7 +931,7 @@
   {
     "Code": "DISR90",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -939,7 +939,7 @@
   {
     "Code": "DISR91",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -947,7 +947,7 @@
   {
     "Code": "DISR92",
     "Nom": "Churro Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"
@@ -955,7 +955,7 @@
   {
     "Code": "DISR93",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -963,7 +963,7 @@
   {
     "Code": "DISR94",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -971,7 +971,7 @@
   {
     "Code": "DISR95",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -979,7 +979,7 @@
   {
     "Code": "DISR96",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -987,7 +987,7 @@
   {
     "Code": "DISR97",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -995,7 +995,7 @@
   {
     "Code": "DISR98",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -1003,7 +1003,7 @@
   {
     "Code": "DISR99",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -1011,7 +1011,7 @@
   {
     "Code": "DISR100",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -1019,7 +1019,7 @@
   {
     "Code": "DISR101",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -1027,7 +1027,7 @@
   {
     "Code": "DISR102",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -1035,7 +1035,7 @@
   {
     "Code": "DISR103",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -1043,7 +1043,7 @@
   {
     "Code": "DISR104",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -1051,7 +1051,7 @@
   {
     "Code": "DISR105",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -1059,7 +1059,7 @@
   {
     "Code": "DISR106",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -1067,7 +1067,7 @@
   {
     "Code": "DISR107",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -1075,7 +1075,7 @@
   {
     "Code": "DISR108",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -1083,7 +1083,7 @@
   {
     "Code": "DISR109",
     "Nom": "Fruit Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"
@@ -1091,7 +1091,7 @@
   {
     "Code": "DISR110",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -1099,7 +1099,7 @@
   {
     "Code": "DISR111",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -1107,7 +1107,7 @@
   {
     "Code": "DISR112",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -1115,7 +1115,7 @@
   {
     "Code": "DISR113",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -1123,7 +1123,7 @@
   {
     "Code": "DISR114",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -1131,7 +1131,7 @@
   {
     "Code": "DISR115",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -1139,7 +1139,7 @@
   {
     "Code": "DISR116",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -1147,7 +1147,7 @@
   {
     "Code": "DISR117",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -1155,7 +1155,7 @@
   {
     "Code": "DISR118",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -1163,7 +1163,7 @@
   {
     "Code": "DISR119",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -1171,7 +1171,7 @@
   {
     "Code": "DISR120",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -1179,7 +1179,7 @@
   {
     "Code": "DISR121",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -1187,7 +1187,7 @@
   {
     "Code": "DISR122",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -1195,7 +1195,7 @@
   {
     "Code": "DISR123",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -1203,7 +1203,7 @@
   {
     "Code": "DISR124",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -1211,7 +1211,7 @@
   {
     "Code": "DISR125",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -1219,7 +1219,7 @@
   {
     "Code": "DISR126",
     "Nom": "Lemonade Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"
@@ -1227,7 +1227,7 @@
   {
     "Code": "DISR127",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -1235,7 +1235,7 @@
   {
     "Code": "DISR128",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -1243,7 +1243,7 @@
   {
     "Code": "DISR129",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -1251,7 +1251,7 @@
   {
     "Code": "DISR130",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -1259,7 +1259,7 @@
   {
     "Code": "DISR131",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -1267,7 +1267,7 @@
   {
     "Code": "DISR132",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -1275,7 +1275,7 @@
   {
     "Code": "DISR133",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -1283,7 +1283,7 @@
   {
     "Code": "DISR134",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -1291,7 +1291,7 @@
   {
     "Code": "DISR135",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -1299,7 +1299,7 @@
   {
     "Code": "DISR136",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -1307,7 +1307,7 @@
   {
     "Code": "DISR137",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -1315,7 +1315,7 @@
   {
     "Code": "DISR138",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -1323,7 +1323,7 @@
   {
     "Code": "DISR139",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -1331,7 +1331,7 @@
   {
     "Code": "DISR140",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -1339,7 +1339,7 @@
   {
     "Code": "DISR141",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -1347,7 +1347,7 @@
   {
     "Code": "DISR142",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -1355,7 +1355,7 @@
   {
     "Code": "DISR143",
     "Nom": "Popcorn Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"
@@ -1363,7 +1363,7 @@
   {
     "Code": "DISR144",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -1371,7 +1371,7 @@
   {
     "Code": "DISR145",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -1379,7 +1379,7 @@
   {
     "Code": "DISR146",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -1387,7 +1387,7 @@
   {
     "Code": "DISR147",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -1395,7 +1395,7 @@
   {
     "Code": "DISR148",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -1403,7 +1403,7 @@
   {
     "Code": "DISR149",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -1411,7 +1411,7 @@
   {
     "Code": "DISR150",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -1419,7 +1419,7 @@
   {
     "Code": "DISR151",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -1427,7 +1427,7 @@
   {
     "Code": "DISR152",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -1435,7 +1435,7 @@
   {
     "Code": "DISR153",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -1443,7 +1443,7 @@
   {
     "Code": "DISR154",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -1451,7 +1451,7 @@
   {
     "Code": "DISR155",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -1459,7 +1459,7 @@
   {
     "Code": "DISR156",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -1467,7 +1467,7 @@
   {
     "Code": "DISR157",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -1475,7 +1475,7 @@
   {
     "Code": "DISR158",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -1483,7 +1483,7 @@
   {
     "Code": "DISR159",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -1491,7 +1491,7 @@
   {
     "Code": "DISR160",
     "Nom": "Pretzel Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"
@@ -1499,7 +1499,7 @@
   {
     "Code": "DISR161",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Main Street, U.S.A.",
     "Statut inconnu": "oui"
@@ -1507,7 +1507,7 @@
   {
     "Code": "DISR162",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Adventureland",
     "Statut inconnu": "oui"
@@ -1515,7 +1515,7 @@
   {
     "Code": "DISR163",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "New Orleans Square",
     "Statut inconnu": "oui"
@@ -1523,7 +1523,7 @@
   {
     "Code": "DISR164",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Critter Country",
     "Statut inconnu": "oui"
@@ -1531,7 +1531,7 @@
   {
     "Code": "DISR165",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Frontierland",
     "Statut inconnu": "oui"
@@ -1539,7 +1539,7 @@
   {
     "Code": "DISR166",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Fantasyland",
     "Statut inconnu": "oui"
@@ -1547,7 +1547,7 @@
   {
     "Code": "DISR167",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Mickey's Toontown",
     "Statut inconnu": "oui"
@@ -1555,7 +1555,7 @@
   {
     "Code": "DISR168",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Tomorrowland",
     "Statut inconnu": "oui"
@@ -1563,7 +1563,7 @@
   {
     "Code": "DISR169",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disneyland Park",
     "Land": "Star Wars: Galaxy's Edge",
     "Statut inconnu": "oui"
@@ -1571,7 +1571,7 @@
   {
     "Code": "DISR170",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Buena Vista Street",
     "Statut inconnu": "oui"
@@ -1579,7 +1579,7 @@
   {
     "Code": "DISR171",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Hollywood Land",
     "Statut inconnu": "oui"
@@ -1587,7 +1587,7 @@
   {
     "Code": "DISR172",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Avengers Campus",
     "Statut inconnu": "oui"
@@ -1595,7 +1595,7 @@
   {
     "Code": "DISR173",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Cars Land",
     "Statut inconnu": "oui"
@@ -1603,7 +1603,7 @@
   {
     "Code": "DISR174",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Pixar Pier",
     "Statut inconnu": "oui"
@@ -1611,7 +1611,7 @@
   {
     "Code": "DISR175",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Paradise Gardens Park",
     "Statut inconnu": "oui"
@@ -1619,7 +1619,7 @@
   {
     "Code": "DISR176",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "Grizzly Peak",
     "Statut inconnu": "oui"
@@ -1627,7 +1627,7 @@
   {
     "Code": "DISR177",
     "Nom": "Turkey Leg Carts",
-    "Type": "A emporter",
+    "Type": "À emporter",
     "Parc": "Disney California Adventure Park",
     "Land": "San Fransokyo Square",
     "Statut inconnu": "oui"

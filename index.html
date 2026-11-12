@@ -325,6 +325,8 @@
         }
         .evt .icon { width: 13px; height: 13px; }
         .evt { margin-right: 6px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 5px 6px; margin-top: 6px; }
+        .chips > .evt, .chips > .access { margin: 0; }
         .evt.is-menu { background: #B4491F; border-color: #B4491F; color: #fff; }
         :root[data-theme="dark"] .evt.is-menu { background: #3D3C9E; border-color: #3D3C9E; color: #fff; }
         .evt.is-hw { background: linear-gradient(135deg, #1B1024, #4A1F6E); border-color: #FF7A00; color: #FFA94D; }
@@ -3190,8 +3192,11 @@
             const uk = m.kind === 'down' ? null : usualKind(item);   // { kind, gap } ou null
             const extra = timesHtml(m)
                 + (uk ? `<span class="usual ${uk.kind}">${usualLabel(uk)}</span>` : '')
-                + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '')
+                + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '');
+            // Pastilles (événement, Halloween, menu, accès) : une seule rangée, toujours après les infos de statut
+            const chipsInner = eventHtml(item) + hwHtml(item) + menuHtml(item)
                 + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
+            const chips = chipsInner ? `<span class="chips">${chipsInner}</span>` : '';
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
                 ? '<svg class="icon card-bell" role="img" aria-label="' + L('Alerte active', 'Alert on') + '"><use href="#i-bell"/></svg>' : '';
 
@@ -3202,8 +3207,8 @@
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
                             ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
-                            ${eventHtml(item)}${hwHtml(item)}${menuHtml(item)}
                             ${extra}
+                            ${chips}
                             ${(m.single != null || m.vq || m.dining) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}${diningHtml(m)}</span>` : ''}
                         </span>
                     </button>
