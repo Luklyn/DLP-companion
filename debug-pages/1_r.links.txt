@@ -1,0 +1,171 @@
+https://disneyland.disney.go.com/dining/
+longueur=2158580
+https://disneyland.disney.go.com/dine-res/availability/	Check | All | Availability
+https://disneyland.disney.go.com/dining/disney-california-adventure/angry-dogs/	Quick | Service | Angry | Dogs | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/award-wieners/	Mobile | Orders, | Quick | Service | Award | Wieners | Quick | Service, | Table | Service | Disney | California | Advent
+https://disneyland.disney.go.com/dining/downtown-disney-district/ballast-point-brewing-company/	Bars | & | Lounges, | Casual | Dining | Ballast | Point® | Brewing | Co. | Table | Service | Downtown | Disney | Distric
+https://disneyland.disney.go.com/dining/downtown-disney-district/black-tap-craft-burgers/	Casual | Dining | Black | Tap | Craft | Burgers | & | Shakes | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/carthay-circle-lounge/	Bars | & | Lounges, | Reservations | Accepted | Carthay | Circle | Lounge | Table | Service | Disney | California | Adve
+https://disneyland.disney.go.com/dine-res/restaurant/carthay-circle-lounge/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/black-tap-crazyshake-counter/	Casual | Dining | CrazyShake™ | Window | by | Black | Tap | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/downtown-disney-district/earl-of-sandwich/	Breakfast, | Quick | Service | Earl | of | Sandwich® | Quick | Service, | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/flos-v8-cafe/	Mobile | Orders, | Quick | Service | Flo's | V8 | Cafe | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/ghirardelli-soda-fountain-and-chocolate-shop/	Quick | Service | Ghirardelli® | Soda | Fountain | and | Chocolate | Shop | Quick | Service | Disney | California | Adve
+https://disneyland.disney.go.com/dining/downtown-disney-district/naples-ristorante-e-bar/	Reservations | Accepted | Naples | Ristorante | e | Bar | Table | Service | Downtown | Disney | District | Check | Avail
+https://disneyland.disney.go.com/dine-res/restaurant/naples-ristorante-e-bar/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/jazz-kitchen-coastal-grill-patio/	Bars | & | Lounges, | Reservations | Accepted | Jazz | Kitchen | Coastal | Grill | & | Patio | Table | Service | Downtow
+https://disneyland.disney.go.com/dine-res/restaurant/jazz-kitchen-coastal-grill-patio/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/jazz-kitchen-beignets-expressed/	Quick | Service | Beignets | Expressed | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/downtown-disney-district/salt-and-straw/	Salt | & | Straw | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/smokejumpers-grill/	Mobile | Orders, | Quick | Service | Smokejumpers | Grill | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/splitsville-restaurant/	Reservations | Accepted, | Unique/Themed | Dining | Splitsville | Luxury | Lanes™ | – | Dining | Table | Service | Downt
+https://disneyland.disney.go.com/dine-res/restaurant/splitsville-restaurant/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/starbucks-coffee/	Quick | Service | Starbucks® | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/downtown-disney-district/wetzels-pretzels/	Quick | Service | Wetzel's | Pretzels | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/adorable-snowman-frosted-treats/	Mobile | Orders, | Quick | Service | Adorable | Snowman | Frosted | Treats | Quick | Service | Disney | California | Adv
+https://disneyland.disney.go.com/dining/disney-california-adventure/bayside-brews/	Mobile | Orders, | Quick | Service | Bayside | Brews | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/cocina-cucamonga-mexican-grill/	Mobile | Orders, | Quick | Service | Cocina | Cucamonga | Mexican | Grill | Quick | Service | Disney | California | Adve
+https://disneyland.disney.go.com/dining/disney-california-adventure/cozy-cone-motel/	Quick | Service | Cozy | Cone | Motel | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/lamplight-lounge/	Bars | & | Lounges, | Reservations | Accepted | Lamplight | Lounge | Table | Service | Disney | California | Adventure |
+https://disneyland.disney.go.com/dine-res/restaurant/lamplight-lounge/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/poultry-palace/	Quick | Service | Poultry | Palace | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/ritas-turbine-blenders/	Mobile | Orders, | Quick | Service | Rita's | Turbine | Blenders | Quick | Service | Disney | California | Adventure | P
+https://disneyland.disney.go.com/dining/disney-california-adventure/sonoma-terrace/	Bars | & | Lounges, | Mobile | Orders | Sonoma | Terrace | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/	Quick | Service | Alien | Pizza | Planet | Quick | Service, | Table | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/aunt-cass-cafe/	Mobile | Orders, | Quick | Service | Aunt | Cass | Café | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/	Mobile | Orders, | Quick | Service | Bengal | Barbecue | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/big-boi-lumpia/	Quick | Service | Big | Boi | Lumpia | Co. | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/	Reservations | Accepted, | Unique/Themed | Dining | Blue | Bayou | Restaurant | Table | Service | Disneyland | Park | Ch
+https://disneyland.disney.go.com/dine-res/restaurant/blue-bayou-restaurant/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/blue-ribbon-corn-dogs/	Quick | Service | Blue | Ribbon | Corn | Dog | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/boardwalk-pizza-pasta/	Mobile | Orders, | Quick | Service | Boardwalk | Pizza | & | Pasta | Quick | Service, | Table | Service | Disney | Calif
+https://disneyland.disney.go.com/dining/downtown-disney-district/bopo-go/	Quick | Service | BOPO | GO! | – | Coming | Soon! | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/bountiful-valley-brews/	Quick | Service | Bountiful | Valley | Brews | - | Coming | Soon! | Quick | Service | Disney | California | Adventure | 
+https://disneyland.disney.go.com/dining/disneyland-hotel/broken-spell-lounge/	Broken | Spell | Lounge | Table | Service | Disneyland | Hotel
+https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/	Mobile | Orders | Café | Daisy | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/	Casual | Dining, | Reservations | Accepted | Cafe | Orleans | Table | Service | Disneyland | Park | Check | Availability
+https://disneyland.disney.go.com/dine-res/restaurant/cafe-orleans/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/	Mobile | Orders | Cappuccino | Cart | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/	Breakfast, | Reservations | Accepted | Carnation | Café | Table | Service | Disneyland | Park | Check | Availability | C
+https://disneyland.disney.go.com/dine-res/restaurant/carnation-cafe/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/carthay-circle-restaurant/	Reservations | Accepted, | Fine/Signature | Dining | Carthay | Circle | Restaurant | Table | Service | Disney | Californ
+https://disneyland.disney.go.com/dine-res/restaurant/carthay-circle-restaurant/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/cathys-cookies/	Quick | Service | Cathy's | Cookies | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/downtown-disney-district/centrico/	Casual | Dining, | Reservations | Accepted | Céntrico | Table | Service | Downtown | Disney | District | Check | Availab
+https://disneyland.disney.go.com/dine-res/restaurant/centrico/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/characters/	Breakfast, | Buffet/Family | Style | Character | Dining | Quick | Service, | Table | Service
+https://disneyland.disney.go.com/dining/churros/	Quick | Service | Churro | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/disney-california-adventure/clarabelles-hand-scooped-ice-cream/	Mobile | Orders, | Quick | Service | Clarabelle's | Hand-Scooped | Ice | Cream | Quick | Service | Disney | California |
+https://disneyland.disney.go.com/dining/disneyland-hotel/coffee-house/	Mobile | Orders, | Quick | Service | The | Coffee | House | Quick | Service | Disneyland | Hotel
+https://disneyland.disney.go.com/dining/disney-california-adventure/corn-dog-castle/	Mobile | Orders, | Quick | Service | Corn | Dog | Castle | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/din-tai-fung/	Casual | Dining | Din | Tai | Fung | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/grand-californian-hotel/disney-princess-breakfast-adventures/	Character | Dining, | Dining | Events | Disney | Princess | Breakfast | Adventures | Table | Service | Disney's | Grand 
+https://disneyland.disney.go.com/dine-res/dining-event/disney-princess-breakfast-adventures/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/sweethearts-nite-dining-packages/	Dining | Events | Disneyland | After | Dark: | Sweethearts’ | Nite | Dining | Table | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/	Mobile | Orders, | Quick | Service | Docking | Bay | 7 | Food | and | Cargo | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/edelweiss-snacks/	Mobile | Orders | Edelweiss | Snacks | Disneyland | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/fairfax-fruit-market/	Fairfax | Market | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/fantasmic-dinner-packages/	Casual | Dining, | Dining | Events | Fantasmic! | Dining | Packages | Table | Service | Disneyland | Park | Check | Avai
+https://disneyland.disney.go.com/dine-res/dining-event/fantasmic-dinner-packages/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/festive-foods-marketplaces/	Quick | Service | Festive | Food | Marketplace | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/fiddler-fifer-and-practical-cafe/	Breakfast, | Quick | Service | Fiddler, | Fifer | & | Practical | Cafe | Quick | Service, | Table | Service | Disney | C
+https://disneyland.disney.go.com/dining/disney-california-adventure/fillmores-taste-in/	Fillmore's | Taste-In | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/food-and-wine-festival-marketplaces/	Food | & | Wine | Festival | Marketplaces | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/fruit/	Quick | Service | Fruit | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/disneyland/galactic-grill/	Mobile | Orders, | Quick | Service | Galactic | Grill | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/grand-californian-hotel/craftsman-bar/	Reservations | Accepted, | Walk-Up | Wait | List | GCH | Craftsman | Bar | Table | Service | Disney's | Grand | Californ
+https://disneyland.disney.go.com/dine-res/restaurant/craftsman-bar/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/grand-californian-hotel/craftsman-grill/	Quick | Service | GCH | Craftsman | Grill | Quick | Service | Disney's | Grand | Californian | Hotel | & | Spa
+https://disneyland.disney.go.com/dining/downtown-disney-district/ggs-chicken-shop/	Casual | Dining, | Quick | Service | GG's | Chicken | Shop | Quick | Service, | Table | Service | Downtown | Disney | Di
+https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/	Mobile | Orders, | Quick | Service | Gibson | Girl | Ice | Cream | Parlor | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/golden-horseshoe-restaurant/	Quick | Service | The | Golden | Horseshoe | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/good-boy-grocers/	Good | Boy! | Grocers | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland-hotel/goofys-kitchen/	Breakfast, | Buffet/Family | Style | Goofy's | Kitchen | Table | Service | Disneyland | Hotel | Check | Availability | C
+https://disneyland.disney.go.com/dine-res/restaurant/goofys-kitchen/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/gordon-ramsay-at-the-carnaby/	Casual | Dining | Gordon | Ramsay | at | The | Carnaby | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/pixar-place-hotel/great-maple-modern-american-eatery/	Reservations | Accepted | Great | Maple | Modern | American | Eatery | Table | Service | Pixar | Place | Hotel | Check |
+https://disneyland.disney.go.com/dine-res/restaurant/great-maple-modern-american-eatery/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/downtown-disney-district/happy-ice/	Happy | Ice | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disneyland/harbour-galley/	Mobile | Orders, | Quick | Service | Harbour | Galley | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/grand-californian-hotel/hearthstone-lounge/	Bars | & | Lounges, | Reservations | Accepted | Hearthstone | Lounge | Table | Service | Disney's | Grand | Californian 
+https://disneyland.disney.go.com/dine-res/restaurant/hearthstone-lounge/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/hollywood-lounge/	Bars | & | Lounges, | Mobile | Orders | Hollywood | Lounge | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/	Mobile | Orders, | Quick | Service | Hungry | Bear | Barbecue | Jamboree | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland-hotel/in-room-dining/	In-Room | Dining | at | Disneyland | Hotel | Disneyland | Hotel
+https://disneyland.disney.go.com/dining/grand-californian-hotel/private-dining/	In-Room | Dining | at | Disney’s | Grand | Californian | Hotel | & | Spa | Disney's | Grand | Californian | Hotel | & | 
+https://disneyland.disney.go.com/dining/disney-california-adventure/jack-jack-cookie-num-nums/	Quick | Service | Jack-Jack | Cookie | Num | Nums | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/	Mobile | Orders, | Quick | Service | Jolly | Holiday | Bakery | Cafe | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/kat-sakas-kettle/	Quick | Service | Kat | Saka's | Kettle | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/kaylas-cake/	Quick | Service | Kayla's | Cake | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/lamplight-lounge-boardwalk-dining/	Bars | & | Lounges, | Reservations | Accepted | Lamplight | Lounge | - | Boardwalk | Dining | Table | Service | Disney |
+https://disneyland.disney.go.com/dine-res/restaurant/lamplight-lounge-boardwalk-dining/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/lemonade/	Quick | Service | Lemonade | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/disney-california-adventure/lucky-fortune-cookery/	Mobile | Orders, | Quick | Service | Lucky | Fortune | Cookery | Quick | Service | Disney | California | Adventure | Par
+https://disneyland.disney.go.com/dining/disney-california-adventure/lunar-new-year-food-marketplaces/	Quick | Service | Lunar | New | Year | Marketplaces | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/magic-key-terrace/	Bars | & | Lounges, | Reservations | Accepted | Magic | Key | Terrace | - | Magic | Key | Holder | Dining | Table | Serv
+https://disneyland.disney.go.com/dine-res/restaurant/magic-key-terrace/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/market-house/	Breakfast, | Quick | Service | Market | House | Quick | Service, | Table | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/maurices-treats/	Quick | Service | Maurice's | Treats | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/mendocino-terrace/	Bars | & | Lounges, | Mobile | Orders | Mendocino | Terrace | Table | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/milk-stand/	Mobile | Orders | Milk | Stand | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/mint-julep-bar/	Mobile | Orders, | Quick | Service | Mint | Julep | Bar | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/grand-californian-hotel/napa-rose/	Fine/Signature | Dining | Napa | Rose | Table | Service | Disney's | Grand | Californian | Hotel | & | Spa
+https://disneyland.disney.go.com/dining/downtown-disney-district/napolini-pizzeria/	Quick | Service | Napolini | Pizzeria | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disneyland/ogas-cantina/	Bars | & | Lounges, | Unique/Themed | Dining | Oga's | Cantina | at | the | Disneyland | Resort | Disneyland | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/oogie-boogie-bash-dessert-party/	Dining | Events, | Reservations | Accepted | Oogie | Boogie | Bash | Dessert | Party | - | Temporarily | Unavailable | T
+https://disneyland.disney.go.com/dine-res/dining-event/oogie-boogie-bash-dessert-party/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland-hotel/palm-breeze-bar/	Bars | & | Lounges, | Casual | Dining | Palm | Breeze | Bar | Table | Service | Disneyland | Hotel | Check | Availabilit
+https://disneyland.disney.go.com/dine-res/restaurant/palm-breeze-bar/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/paradise-garden-grill/	Mobile | Orders, | Quick | Service | Paradise | Garden | Grill | Quick | Service | Disney | California | Adventure | Par
+https://disneyland.disney.go.com/dining/downtown-disney-district/parkside-market-coffee/	Breakfast, | Casual | Dining | Parkside | Market | Coffee | Quick | Service, | Table | Service | Downtown | Disney | Dis
+https://disneyland.disney.go.com/dining/downtown-disney-district/paseo/	Casual | Dining, | Reservations | Accepted | Paseo | Table | Service | Downtown | Disney | District | Check | Availabili
+https://disneyland.disney.go.com/dine-res/restaurant/paseo/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/plaza-inn/	Breakfast, | Buffet/Family | Style | Plaza | Inn | Quick | Service, | Table | Service | Disneyland | Park | Check | Avai
+https://disneyland.disney.go.com/dine-res/restaurant/plaza-inn/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/plaza-inn-dining-package/	Casual | Dining, | Dining | Events | Plaza | Inn | Dining | Package | Table | Service | Disneyland | Park | Check | Avai
+https://disneyland.disney.go.com/dine-res/dining-event/plaza-inn-dining-package/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/popcorn/	Quick | Service | Popcorn | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/disney-california-adventure/port-of-san-fransokyo-cerveceria/	Mobile | Orders | Port | of | San | Fransokyo | Cervecería | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/pretzels/	Quick | Service | Pretzel | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/disney-california-adventure/pym-tasting-lab/	Bars | & | Lounges, | Mobile | Orders | Pym | Tasting | Lab | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/pym-test-kitchen/	Mobile | Orders, | Quick | Service | Pym | Test | Kitchen | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/	Quick | Service | Rancho | del | Zocalo | Restaurante | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/	Mobile | Orders, | Quick | Service | Red | Rose | Taverne | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/	Mobile | Orders, | Quick | Service | Refreshment | Corner | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/	Casual | Dining, | Reservations | Accepted | River | Belle | Terrace | Table | Service | Disneyland | Park | Check | Ava
+https://disneyland.disney.go.com/dine-res/restaurant/river-belle-terrace/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/	Mobile | Orders, | Quick | Service | Ronto | Roasters | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/royal-street-veranda/	Mobile | Orders, | Quick | Service | Royal | Street | Veranda | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/schmoozies-smoothies/	Mobile | Orders, | Quick | Service | Schmoozies! | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/senor-buzz-churros/	Quick | Service | Señor | Buzz | Churros | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/seoul-sister/	Casual | Dining, | Quick | Service | Seoul | Sister | Quick | Service, | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/shawarma-palace/	Quick | Service | Shawarma | Palace | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disney-california-adventure/sip-and-savor/	Quick | Service | Sip | and | Savor | Pass | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/pixar-place-hotel/sketch-pad-cafe/	Breakfast, | Casual | Dining | The | Sketch | Pad | Café | Quick | Service, | Table | Service | Pixar | Place | Hotel
+https://disneyland.disney.go.com/dining/pixar-place-hotel/small-bytes/	Breakfast, | Casual | Dining | Small | Bytes | Quick | Service, | Table | Service | Pixar | Place | Hotel
+https://disneyland.disney.go.com/dining/disneyland/south-seas-traders/	South | Seas | Traders | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/	Mobile | Orders, | Quick | Service | Stage | Door | Café | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/grand-californian-hotel/storytellers-cafe/	Breakfast, | Buffet/Family | Style | Storytellers | Cafe | Table | Service | Disney's | Grand | Californian | Hotel | & 
+https://disneyland.disney.go.com/dine-res/restaurant/storytellers-cafe/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/studio-catering-co/	Mobile | Orders, | Quick | Service | Studio | Catering | Co. | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland-hotel/tangaroa-terrace/	Mobile | Orders, | Quick | Service | Tangaroa | Terrace | Tropical | Bar | & | Grill | Quick | Service | Disneyland | Ho
+https://disneyland.disney.go.com/dining/disney-california-adventure/terran-treats/	Quick | Service | Terran | Treats | Quick | Service | Disney | California | Adventure | Park
+https://disneyland.disney.go.com/dining/disneyland/tianas-palace/	Mobile | Orders, | Quick | Service | Tiana’s | Palace | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/downtown-disney-district/tiendita/	Casual | Dining | Tiendita | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disneyland/tiki-juice-bar/	Mobile | Orders, | Quick | Service | Tiki | Juice | Bar | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/tomorrowland-skyline-terrace/	Dining | Events, | Reservations | Accepted | Tomorrowland | Skyline | Terrace | Table | Service | Disneyland | Park | Ch
+https://disneyland.disney.go.com/dine-res/dining-event/tomorrowland-skyline-terrace/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland-hotel/trader-sams/	Bars | & | Lounges, | Breakfast | Trader | Sam's | Enchanted | Tiki | Bar | Table | Service | Disneyland | Hotel
+https://disneyland.disney.go.com/dining/disneyland-hotel/trader-sams-mixology-seminar/	Dining | Events, | Reservations | Accepted | Trader | Sam's | Mixology | Seminar | Table | Service | Disneyland | Hotel 
+https://disneyland.disney.go.com/dine-res/dining-event/trader-sams-mixology-seminar/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/	Quick | Service | The | Tropical | Hideaway | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/	Mobile | Orders, | Quick | Service | Troubadour | Tavern | Quick | Service | Disneyland | Park
+https://disneyland.disney.go.com/dining/turkey-legs/	Quick | Service | Turkey | Leg | Carts | Quick | Service | Multiple | Locations
+https://disneyland.disney.go.com/dining/downtown-disney-district/vista-parkside-market/	Vista | Parkside | Market | Table | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/downtown-disney-district/wetzels-pretzels-cart/	Quick | Service | Wetzel's | Pretzels | Cart | Quick | Service | Downtown | Disney | District
+https://disneyland.disney.go.com/dining/disney-california-adventure/wine-country-trattoria/	Casual | Dining, | Reservations | Accepted | Wine | Country | Trattoria | Table | Service | Disney | California | Advent
+https://disneyland.disney.go.com/dine-res/restaurant/wine-country-trattoria/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/world-of-color-dessert-party/	Dining | Events, | Reservations | Accepted | World | of | Color | Dessert | Party | Table | Service | Disney | Californi
+https://disneyland.disney.go.com/dine-res/dining-event/world-of-color-dessert-party/	Check | Availability | Calendar
+https://disneyland.disney.go.com/dining/disney-california-adventure/world-of-color-dining/	Casual | Dining, | Dining | Events | World | of | Color | Dining | Package | Table | Service | Multiple | Locations | Ch
+https://disneyland.disney.go.com/dine-res/dining-event/world-of-color-dining/	Check | Availability | Calendar
