@@ -316,12 +316,12 @@ function parksView() {
     rowsHtml = S.rows.map((x, i) => {
       const miss = { land: !x.land, type: !x.type, height: x.kind === 'attractions' && !x.height, menu: x.kind === 'restaurants' && !x.menu };
       const incomplete = S.enriched && (miss.land || miss.type || miss.height || miss.menu);
-      const state = !S.enriched ? ['Non enrichi', ''] : (x.rec ? (incomplete ? ['À compléter', 'warn'] : ['Complet', 'ok']) : ['Aucune fiche trouvée', 'warn']);
+      const state = !S.enriched ? ['Non enrichi', ''] : ((x.rec || x.imp) ? (incomplete ? ['À compléter', 'warn'] : ['Complet', 'ok']) : ['Aucune fiche trouvée', 'warn']);
       const cell = (f, m, extra = '') => `<input class="cell ${S.enriched && m ? 'todo' : ''}" data-row="${i}" data-f="${f}" value="${esc(x[f])}" aria-label="${f} de ${esc(x.api)}" ${extra}>`;
       return `<tr>
         <td><input type="checkbox" data-row="${i}" data-f="selected" ${x.selected ? 'checked' : ''} aria-label="Sélectionner ${esc(x.api)}" style="width:20px;height:20px"></td>
         <td class="mono">${esc(x.code)}</td><td class="mono" style="color:var(--mut)" title="${esc(x.uuid)}">${esc(x.uuid.slice(0, 8))}…</td>
-        <td>${cell('nom', S.enriched && x.nom === x.api && !x.rec)}</td>
+        <td>${cell('nom', S.enriched && x.nom === x.api && !x.rec && !x.imp)}</td>
         <td style="color:#4A5366">${esc(x.api)}<div class="hint">${KIND_LABEL[x.kind]}</div></td>
         <td style="white-space:nowrap">${esc(x.park)}</td>
         <td>${cell('land', miss.land)}</td><td>${cell('type', miss.type)}</td>
@@ -346,7 +346,7 @@ function parksView() {
       <div style="border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:#FAFBFD">
         <div><h3>Récupération automatique des informations</h3><p class="sub" style="font-size:13px">Indiquez les pages de liste du site du parc (laissez vide pour utiliser la configuration existante). Les noms, lands, types, tailles et menus sont lus sur les fiches, sans traduction.</p></div>
         <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="u-${k}">${l}</label><input id="u-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
-        <div class="row"><button class="btn pri" data-act="enrich" ${S.busy.enrich ? 'disabled' : ''}>${S.busy.enrich ? 'Récupération…' : 'Récupérer les informations'}</button><button class="btn" data-act="export" ${S.rows.length || (S.cands && S.cands.length) ? '' : 'disabled'}>Exporter en Excel</button><span class="hint">Lance l’action GitHub « Synchronisation des lieux » (de quelques minutes à 25 min pour les grands parcs).</span></div>
+        <div class="row"><button class="btn pri" data-act="enrich" ${S.busy.enrich ? 'disabled' : ''}>${S.busy.enrich ? 'Récupération…' : 'Récupérer les informations'}</button><button class="btn" data-act="export" ${S.rows.length || (S.cands && S.cands.length) ? '' : 'disabled'}>Exporter en Excel</button><button class="btn" data-act="import">Importer un Excel</button><span class="hint">Lance l’action GitHub « Synchronisation des lieux » (de quelques minutes à 25 min pour les grands parcs).</span></div>
         ${runHtml}
       </div>
       <div class="sc"><table style="min-width:1260px"><thead><tr><th style="width:44px"></th><th>Code</th><th>UUID Themeparks</th><th style="min-width:200px">Nom</th><th style="min-width:170px">Nom dans l’API</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>État</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>
@@ -384,7 +384,7 @@ function siteCard(r, cfg) {
     ${cs && cs.length ? `
       <div class="sc"><table style="min-width:1180px"><thead><tr><th style="width:44px"></th><th style="min-width:150px">Catégorie</th><th style="min-width:200px">Nom</th><th>Parc</th><th style="min-width:140px">Land</th><th style="min-width:160px">Type</th><th style="min-width:100px">Taille mini</th><th style="min-width:200px">Menu</th><th>Site</th></tr></thead><tbody>${rows}</tbody></table></div>
       <div class="row" style="justify-content:space-between"><p class="hint" style="flex:1 1 320px;margin:0">Les noms sont ceux des pages du site, sans traduction. Décochez ce qui n’est pas un lieu (hôtel, boutique…). Les attractions n’ont pas d’état en direct : elles s’affichent avec « état non connu ».</p>
-        <button class="btn" data-act="export">Exporter en Excel</button>
+        <button class="btn" data-act="export">Exporter en Excel</button><button class="btn" data-act="import">Importer un Excel</button>
         <button class="btn pri" data-act="addcands" ${sel && !busy ? '' : 'disabled'}>Ajouter ${sel} lieu${sel > 1 ? 'x' : ''} et préparer le déploiement</button></div>` : ''}
   </section>`;
 }
@@ -414,7 +414,7 @@ async function exportXlsx() {
       sheet('Lieux de l’API', ['Catégorie', 'Code', 'UUID Themeparks', 'Nom', 'Nom dans l’API', 'Parc', 'Land', 'Type', 'Taille mini', 'Menu', 'État', 'Informations manquantes', 'Sélectionné'],
         S.rows.map((x) => {
           const miss = [!x.land && 'Land', !x.type && 'Type', x.kind === 'attractions' && !x.height && 'Taille mini', x.kind === 'restaurants' && !x.menu && 'Menu'].filter(Boolean);
-          const etat = !S.enriched ? 'Non enrichi' : (x.rec ? (miss.length ? 'À compléter' : 'Complet') : 'Aucune fiche trouvée');
+          const etat = !S.enriched ? 'Non enrichi' : ((x.rec || x.imp) ? (miss.length ? 'À compléter' : 'Complet') : 'Aucune fiche trouvée');
           return [KIND_LABEL[x.kind] || x.kind, x.code, x.uuid, x.nom, x.api, x.park, x.land, x.type, x.kind === 'attractions' ? x.height : '', x.kind === 'restaurants' ? x.menu : '', etat, S.enriched ? miss.join(', ') : '', x.selected ? 'oui' : 'non'];
         }), [14, 10, 38, 34, 34, 22, 22, 22, 14, 44, 20, 26, 12]);
     }
@@ -428,6 +428,54 @@ async function exportXlsx() {
     X.writeFile(wb, `recuperation_${r.id}_${stamp}.xlsx`);
     toast('Export Excel téléchargé.');
   } catch (e) { toast('Export impossible : ' + e.message, true); }
+}
+
+/* ---------- import d'un Excel rempli : remplit les tableaux, la validation se fait ensuite avec les boutons habituels ---------- */
+function importXlsx() {
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.xlsx,.xls';
+  inp.onchange = async () => {
+    const file = inp.files && inp.files[0]; if (!file) return;
+    try {
+      const X = await loadXlsxLib();
+      const wb = X.read(await file.arrayBuffer(), { type: 'array' });
+      const r = resortById(S.park);
+      const kindOf = (label) => { const l = String(label || '').toLowerCase(); return l.startsWith('attraction') ? 'attractions' : l.startsWith('restaurant') ? 'restaurants' : l.startsWith('spectacle') ? 'shows' : null; };
+      const yes = (v) => /^(oui|yes|1|true|x|vrai)$/i.test(String(v ?? '').trim());
+      const norm = (h) => String(h || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const table = (ws) => {
+        const a = X.utils.sheet_to_json(ws, { header: 1, defval: '', raw: false }); if (!a.length) return [];
+        const head = a[0].map(norm);
+        return a.slice(1).filter((row) => row.some((c) => String(c).trim())).map((row) => { const o = {}; head.forEach((h, i) => { if (h) o[h] = String(row[i] ?? '').trim(); }); o._cols = new Set(head); return o; });
+      };
+      let nApi = 0, nMiss = 0, nSite = 0;
+      for (const name of wb.SheetNames) {
+        const rows = table(wb.Sheets[name]); if (!rows.length) continue;
+        const cols = rows[0]._cols;
+        if (cols.has('uuid themeparks') || cols.has('code')) {                     // feuille « Lieux de l'API »
+          if (!S.rows.length) { toast('Lancez d’abord « Vérifier l’API » pour ce parc : la feuille des lieux de l’API ne peut pas être importée sans le tableau.', true); continue; }
+          for (const o of rows) {
+            const x = S.rows.find((y) => (o['uuid themeparks'] && y.uuid.toLowerCase() === o['uuid themeparks'].toLowerCase()) || (o.code && String(y.code) === o.code));
+            if (!x) { nMiss++; continue; }
+            if (cols.has('nom') && o.nom) x.nom = o.nom;
+            if (cols.has('land')) x.land = o.land;
+            if (cols.has('type')) x.type = o.type;
+            if (cols.has('taille mini') && x.kind === 'attractions') x.height = o['taille mini'];
+            if (cols.has('menu') && x.kind === 'restaurants') x.menu = o.menu;
+            if (cols.has('selectionne')) x.selected = yes(o.selectionne);
+            x.imp = true; nApi++;
+          }
+          S.checked = true; S.enriched = true;
+        } else if (cols.has('page du site') || (cols.has('nom') && cols.has('categorie'))) {   // feuille « Lieux du site absents de l'API »
+          const park = (r.parks || [])[0]?.value || '';
+          const list = rows.filter((o) => o.nom).map((o) => ({ kind: kindOf(o.categorie) || 'restaurants', nom: o.nom, url: o['page du site'] || '', land: o.land || '', type: o.type || '', height: o['taille mini'] || '', menu: o.menu || '', park: o.parc || park, selected: cols.has('a ajouter') ? yes(o['a ajouter']) : true }));
+          S.cands = list; nSite += list.length;
+        }
+      }
+      if (nApi || nSite) { S.fetchMsg = `Excel importé : ${nApi} lieu${nApi > 1 ? 'x' : ''} de l’API mis à jour${nMiss ? ` (${nMiss} ligne${nMiss > 1 ? 's' : ''} non reconnue${nMiss > 1 ? 's' : ''})` : ''}, ${nSite} lieu${nSite > 1 ? 'x' : ''} du site chargé${nSite > 1 ? 's' : ''}. Vérifiez puis validez.`; toast(S.fetchMsg); render(); }
+      else toast('Aucune ligne reconnue dans ce fichier (feuilles « Lieux de l’API » ou « Lieux du site absents de l’API » attendues).', true);
+    } catch (e) { toast('Import impossible : ' + e.message, true); }
+  };
+  inp.click();
 }
 
 async function doCands() {
@@ -816,6 +864,7 @@ document.addEventListener('click', async (e) => {
   else if (a === 'cands') doCands();
   else if (a === 'addcands') doAddCands();
   else if (a === 'export') exportXlsx();
+  else if (a === 'import') importXlsx();
   else if (a === 'enrich') doEnrich();
   else if (a === 'validate') doValidate();
   else if (a === 'ignore') doIgnore();
