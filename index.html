@@ -1284,7 +1284,7 @@
             addCountries('Asie', 'JP CN HK KR SG TH MY AE SA IN TW ID');
             addCountries('Océanie', 'AU NZ');
             addCountries('Afrique', 'ZA EG MA TN');
-            const continentOf = (r) => (CONTINENTS.includes(r.continent) ? r.continent : COUNTRY_CONTINENT[String(r.country ?? '').toUpperCase()] ?? 'Autres');
+            const continentOf = (r) => (CONTINENTS.includes(r.continent) ? r.continent : COUNTRY_CONTINENT[String(r.country ?? '').toUpperCase().split('-')[0]] ?? 'Autres');
             const SCHEDULE_URL = (id) => `https://api.themeparks.wiki/v1/entity/${encodeURIComponent(id)}/schedule`;
             const hm = (ms, tz, loc) => HSEP(new Intl.DateTimeFormat(LOC(loc), { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(ms)));
             const dayKey = (tz) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
