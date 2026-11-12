@@ -1,1 +1,674 @@
-[]
+[
+  {
+    "Code": "TOKR01",
+    "Nom": "Eastside Cafe",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR02",
+    "Nom": "Center Street Coffeehouse",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR03",
+    "Nom": "Restaurant Hokusai",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR04",
+    "Nom": "Ice Cream Cones",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR05",
+    "Nom": "Sweetheart Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR06",
+    "Nom": "Great American Waffle Co.",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR07",
+    "Nom": "Refreshment Corner",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR08",
+    "Nom": "Club 33",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "World Bazaar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR09",
+    "Nom": "Blue Bayou Restaurant",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR10",
+    "Nom": "Cafe Orleans",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR11",
+    "Nom": "The Gazebo",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR12",
+    "Nom": "Crystal Palace Restaurant",
+    "Type": "Buffet à volonté",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR13",
+    "Nom": "Polynesian Terrace Restaurant",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR14",
+    "Nom": "Boiler Room Bites",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR15",
+    "Nom": "China Voyager",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR16",
+    "Nom": "Squeezer's Tropical Juice Bar",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR17",
+    "Nom": "The Skipper's Galley",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR18",
+    "Nom": "Parkside Wagon",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR19",
+    "Nom": "Fresh Fruit Oasis",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR20",
+    "Nom": "Pecos Bill Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR21",
+    "Nom": "The Diamond Horseshoe",
+    "Type": "Service à table",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR22",
+    "Nom": "Hungry Bear Restaurant",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR23",
+    "Nom": "Camp Woodchuck Kitchen",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR24",
+    "Nom": "Plaza Pavilion Restaurant",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR25",
+    "Nom": "Cowboy Cookhouse",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Westernland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR26",
+    "Nom": "Grandma Sara's Kitchen",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR27",
+    "Nom": "Rackety's Raccoon Saloon",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR28",
+    "Nom": "Captain Hook's Galley",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR29",
+    "Nom": "Queen of Hearts Banquet Hall",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR30",
+    "Nom": "Cleo's",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR31",
+    "Nom": "Village Pastry",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR32",
+    "Nom": "Troubadour Tavern",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR33",
+    "Nom": "La Taverne de Gaston",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR34",
+    "Nom": "LeFou's",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR35",
+    "Nom": "Magical Market",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR36",
+    "Nom": "Huey, Dewey and Louie's Good Time Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR37",
+    "Nom": "Dinghy Drinks",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR38",
+    "Nom": "Toon Pop",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR39",
+    "Nom": "Pop-A-Lot Popcorn",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR40",
+    "Nom": "Mickey's Trailer",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR41",
+    "Nom": "Tomorrowland Terrace",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR42",
+    "Nom": "Plazma Ray's Diner",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR43",
+    "Nom": "Pan Galactic Pizza Port",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR44",
+    "Nom": "Soft Landing",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR45",
+    "Nom": "The Big Pop",
+    "Type": "À emporter",
+    "Parc": "Tokyo Disneyland",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR46",
+    "Nom": "Cafe Portofino",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR47",
+    "Nom": "Zambini Brothers' Ristorante",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR48",
+    "Nom": "Mamma Biscotti's Bakery",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR49",
+    "Nom": "Ristorante di Canaletto",
+    "Type": "Service à table",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR50",
+    "Nom": "Magellan's",
+    "Type": "Service à table",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR51",
+    "Nom": "Magellan's Lounge",
+    "Type": "Bar/Lounge",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR52",
+    "Nom": "Gondolier Snacks",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR53",
+    "Nom": "Refrescos",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mediterranean Harbor",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR54",
+    "Nom": "Dockside Diner",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR55",
+    "Nom": "S.S. Columbia Dining Room",
+    "Type": "Service à table",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR56",
+    "Nom": "The Teddy Roosevelt Lounge",
+    "Type": "Bar/Lounge",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR57",
+    "Nom": "Restaurant Sakura",
+    "Type": "Service à table",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR58",
+    "Nom": "New York Deli",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR59",
+    "Nom": "Liberty Landing Diner",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR60",
+    "Nom": "Barnacle Bill's",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR61",
+    "Nom": "Papadakis Fresh Fruit",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR62",
+    "Nom": "Cape Cod Cook-Off",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR63",
+    "Nom": "Cape Cod Confections",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR64",
+    "Nom": "Hudson River Harvest",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR65",
+    "Nom": "Delancey Catering",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "American Waterfront",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR66",
+    "Nom": "Horizon Bay Restaurant",
+    "Type": "Service à table",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Port Discovery",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR67",
+    "Nom": "Seaside Snacks",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Port Discovery",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR68",
+    "Nom": "Bayside Takeout",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Port Discovery",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR69",
+    "Nom": "Yucatan Base Camp Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Lost River Delta",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR70",
+    "Nom": "Miguel's El Dorado Cantina",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Lost River Delta",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR71",
+    "Nom": "Tropic Al's",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Lost River Delta",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR72",
+    "Nom": "Expedition Eats",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Lost River Delta",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR73",
+    "Nom": "Lost River Cookhouse",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Lost River Delta",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR74",
+    "Nom": "Casbah Food Court",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Arabian Coast",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR75",
+    "Nom": "Sultan's Oasis",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Arabian Coast",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR76",
+    "Nom": "Open Sesame",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Arabian Coast",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR77",
+    "Nom": "Sebastian's Calypso Kitchen",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mermaid Lagoon",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR78",
+    "Nom": "Vulcania Restaurant",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mysterious Island",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR79",
+    "Nom": "Nautilus Galley",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mysterious Island",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR80",
+    "Nom": "Refreshment Station",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Mysterious Island",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR81",
+    "Nom": "Royal Banquet of Arendelle",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Fantasy Springs",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR82",
+    "Nom": "Oaken's OK Foods",
+    "Type": "À emporter",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Fantasy Springs",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR83",
+    "Nom": "The Snuggly Duckling",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Fantasy Springs",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "TOKR84",
+    "Nom": "Lookout Cookout",
+    "Type": "Restauration rapide",
+    "Parc": "Tokyo DisneySea",
+    "Land": "Fantasy Springs",
+    "Statut inconnu": "oui"
+  }
+]
