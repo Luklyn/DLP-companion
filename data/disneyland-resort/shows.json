@@ -1,1 +1,432 @@
-[]
+[
+  {
+    "Code": "17563885;entityType=Entertainment",
+    "UUID Themeparks.wiki": "29be8df3-70fa-478b-a772-098cf643936c",
+    "Nom": "Anna & Elsa's Royal Welcome",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.80755877,
+    "Coordonnées GPS (lng)": -117.917503
+  },
+  {
+    "Code": "19534191;entityType=Entertainment",
+    "UUID Themeparks.wiki": "3ee735b5-68dc-470a-a4a2-6ddd415b9cbd",
+    "Nom": "Avengers Headquarters",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Coordonnées GPS (lat)": 33.806589,
+    "Coordonnées GPS (lng)": -117.917404
+  },
+  {
+    "Code": "412549121;entityType=Entertainment",
+    "UUID Themeparks.wiki": "95a9cde3-ff1f-40a3-8276-2477ded688f8",
+    "Nom": "Bluey's Best Day Ever!",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.814668,
+    "Coordonnées GPS (lng)": -117.918938
+  },
+  {
+    "Code": "16428783;entityType=Entertainment",
+    "UUID Themeparks.wiki": "8d4b6d5f-558f-4210-82b5-02b0570232ea",
+    "Nom": "Citizens of Buena Vista Street",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Coordonnées GPS (lat)": 33.807619,
+    "Coordonnées GPS (lng)": -117.919152
+  },
+  {
+    "Code": "412097697;entityType=Entertainment",
+    "UUID Themeparks.wiki": "2fdd02e8-3835-4ef8-bd07-4c3332fb84fa",
+    "Nom": "Confection Purrfection with the SuperKitties",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.807887,
+    "Coordonnées GPS (lng)": -117.917374
+  },
+  {
+    "Code": "18685747;entityType=Entertainment",
+    "UUID Themeparks.wiki": "4b7f57a0-c841-43d1-8abb-d13a3b7f2597",
+    "Nom": "Cookin' with the Jammin’ Chefs",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.806115,
+    "Coordonnées GPS (lng)": -117.920878
+  },
+  {
+    "Code": "412357973;entityType=Entertainment",
+    "UUID Themeparks.wiki": "8c0a4fdb-69e0-4e4e-ab80-d8247edabe3a",
+    "Nom": "Disney Jr. Mickey Mouse Clubhouse Live!",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.8075887,
+    "Coordonnées GPS (lng)": -117.9183444
+  },
+  {
+    "Code": "412135407;entityType=Entertainment",
+    "UUID Themeparks.wiki": "12180467-471a-4f93-a7b1-7115aab487f2",
+    "Nom": "Disney® Visa® Cardmember Heroic Encounter",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.808194,
+    "Coordonnées GPS (lng)": -117.917943
+  },
+  {
+    "Code": "412054818;entityType=Entertainment",
+    "UUID Themeparks.wiki": "78568c55-6dcb-4893-a14e-ba7ed9bddaff",
+    "Nom": "Disneyland Band at \"it's a small world\" Promenade",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.814016,
+    "Coordonnées GPS (lng)": -117.917863
+  },
+  {
+    "Code": "411713851;entityType=Entertainment",
+    "UUID Themeparks.wiki": "228b9736-f889-469f-92f7-0e89bf150d5c",
+    "Nom": "Disneyland Band at Castle Promenade",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.812523,
+    "Coordonnées GPS (lng)": -117.918969
+  },
+  {
+    "Code": "18154861;entityType=Entertainment",
+    "UUID Themeparks.wiki": "cb84b53c-dbb5-483d-a717-00d9259c6484",
+    "Nom": "Disneyland Band at Frontierland",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Coordonnées GPS (lat)": 33.81207964,
+    "Coordonnées GPS (lng)": -117.9203231
+  },
+  {
+    "Code": "401473;entityType=Entertainment",
+    "UUID Themeparks.wiki": "a6760f7b-3489-47df-9547-d70dd2d8cb76",
+    "Nom": "Disneyland Band at Main Street, U.S.A.",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.81097757,
+    "Coordonnées GPS (lng)": -117.9189609
+  },
+  {
+    "Code": "401483;entityType=Entertainment",
+    "UUID Themeparks.wiki": "8c36ff0b-3a32-4d7b-9388-0516c19277db",
+    "Nom": "Fantasmic!",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Coordonnées GPS (lat)": 33.811687,
+    "Coordonnées GPS (lng)": -117.921151
+  },
+  {
+    "Code": "412107646;entityType=Entertainment",
+    "UUID Themeparks.wiki": "e9ef1443-c735-43b6-81c6-45e53527cf93",
+    "Nom": "Fire of the Rising Moons",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Coordonnées GPS (lat)": 33.814816,
+    "Coordonnées GPS (lng)": -117.921212
+  },
+  {
+    "Code": "16633170;entityType=Entertainment",
+    "UUID Themeparks.wiki": "449e351b-a05a-4a52-8893-0ed5c1f6fc48",
+    "Nom": "Five & Dime",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Coordonnées GPS (lat)": 33.807657,
+    "Coordonnées GPS (lng)": -117.919083
+  },
+  {
+    "Code": "401487;entityType=Entertainment",
+    "UUID Themeparks.wiki": "eeafc865-a4e0-4dc5-9cea-446108bf7d48",
+    "Nom": "Flag Retreat Ceremony",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.81034344,
+    "Coordonnées GPS (lng)": -117.9189595
+  },
+  {
+    "Code": "18691239;entityType=Entertainment",
+    "UUID Themeparks.wiki": "0c6c7664-94f0-48b0-91ce-7cc2108a72c9",
+    "Nom": "Guardians of the Galaxy: Awesome Dance Off!",
+    "Type": "Sensations fortes",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Coordonnées GPS (lat)": 33.806978,
+    "Coordonnées GPS (lng)": -117.917055
+  },
+  {
+    "Code": "18514990;entityType=Entertainment",
+    "UUID Themeparks.wiki": "e9c263c4-80dc-4431-bfc9-581a0ff1f578",
+    "Nom": "Holiday Toy Drummers",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Coordonnées GPS (lat)": 33.806115,
+    "Coordonnées GPS (lng)": -117.920878
+  },
+  {
+    "Code": "401501;entityType=Entertainment",
+    "UUID Themeparks.wiki": "3220fd76-38e4-49a4-afa3-4842c07203fa",
+    "Nom": "Jambalaya Jazz",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Coordonnées GPS (lat)": 33.81136,
+    "Coordonnées GPS (lng)": -117.921742
+  },
+  {
+    "Code": "411992760;entityType=Entertainment",
+    "UUID Themeparks.wiki": "640525ab-75db-4f3c-b917-27ecb7b5ef97",
+    "Nom": "Jambalaya Jazz Band on the Mark Twain Riverboat",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Coordonnées GPS (lat)": 33.811687,
+    "Coordonnées GPS (lng)": -117.921151
+  },
+  {
+    "Code": "401517;entityType=Entertainment",
+    "UUID Themeparks.wiki": "8b12916b-a384-4305-838a-c4b07affbb14",
+    "Nom": "Main Street Piano Player",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.81144329,
+    "Coordonnées GPS (lng)": -117.9192024
+  },
+  {
+    "Code": "401554;entityType=Entertainment",
+    "UUID Themeparks.wiki": "7884bda0-7016-4dea-9626-d97372dff10b",
+    "Nom": "Main Street Straw Hatters",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.81044479,
+    "Coordonnées GPS (lng)": -117.9187268
+  },
+  {
+    "Code": "19514854;entityType=Entertainment",
+    "UUID Themeparks.wiki": "a4374b75-7fa4-4205-9571-02099e08944f",
+    "Nom": "Meet Chef Goofy",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Coordonnées GPS (lat)": 33.807889,
+    "Coordonnées GPS (lng)": -117.917
+  },
+  {
+    "Code": "401471;entityType=Entertainment",
+    "UUID Themeparks.wiki": "4c570f5a-c5da-4388-9804-dd56123d18ce",
+    "Nom": "Meet Disney Pals on Buena Vista Street",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Coordonnées GPS (lat)": 33.807331,
+    "Coordonnées GPS (lng)": -117.919167
+  },
+  {
+    "Code": "18738682;entityType=Entertainment",
+    "UUID Themeparks.wiki": "33cbbd09-6d93-40d7-b758-9d7b7d3fd2eb",
+    "Nom": "Meet Disney Princesses at Royal Hall",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.812669,
+    "Coordonnées GPS (lng)": -117.919419
+  },
+  {
+    "Code": "16578447;entityType=Entertainment",
+    "UUID Themeparks.wiki": "f71bfc6e-2f10-40a1-bf29-a4b98c5350f4",
+    "Nom": "Meet the Residents of Radiator Springs in Cars Land",
+    "Type": "Sensations fortes",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Coordonnées GPS (lat)": 33.805908,
+    "Coordonnées GPS (lng)": -117.918787
+  },
+  {
+    "Code": "401526;entityType=Entertainment",
+    "UUID Themeparks.wiki": "5a107a57-9174-4f3f-9be7-625a5d5bb899",
+    "Nom": "Mickey's House and Meet Mickey Mouse",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Coordonnées GPS (lat)": 33.8154677877,
+    "Coordonnées GPS (lng)": -117.9191226037
+  },
+  {
+    "Code": "19259687;entityType=Entertainment",
+    "UUID Themeparks.wiki": "d252d547-a3e4-4ae4-b6ea-e8e4b0849512",
+    "Nom": "Mickey's Mix Magic with Fireworks",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.8123896,
+    "Coordonnées GPS (lng)": -117.9189732
+  },
+  {
+    "Code": "19263037;entityType=Entertainment",
+    "UUID Themeparks.wiki": "3178251f-4570-4ebf-ae2f-fb28edc7534f",
+    "Nom": "Mickey's Mix Magic with Projection",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.8123896,
+    "Coordonnées GPS (lng)": -117.9189732
+  },
+  {
+    "Code": "17478465;entityType=Entertainment",
+    "UUID Themeparks.wiki": "af195dcb-a69e-499a-b659-6751ee871f79",
+    "Nom": "Operation: Playtime! - featuring the Green Army Patrol",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Coordonnées GPS (lat)": 33.804866,
+    "Coordonnées GPS (lng)": -117.922465
+  },
+  {
+    "Code": "18685748;entityType=Entertainment",
+    "UUID Themeparks.wiki": "19dad87e-2df8-4fe2-9562-c711d464e4b7",
+    "Nom": "Palisades Stage",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Coordonnées GPS (lat)": 33.80564575,
+    "Coordonnées GPS (lng)": -117.9214083
+  },
+  {
+    "Code": "16642243;entityType=Entertainment",
+    "UUID Themeparks.wiki": "dca741a6-3472-4d4f-a9aa-7774aae81754",
+    "Nom": "Paradise Garden Bandstand",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Coordonnées GPS (lat)": 33.8060787798,
+    "Coordonnées GPS (lng)": -117.9232652884
+  },
+  {
+    "Code": "411755028;entityType=Entertainment",
+    "UUID Themeparks.wiki": "9212c98b-3638-4f0b-bf42-2e2848330e1d",
+    "Nom": "Pearly Band at Castle Courtyard",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.813093,
+    "Coordonnées GPS (lng)": -117.918967
+  },
+  {
+    "Code": "401530;entityType=Entertainment",
+    "UUID Themeparks.wiki": "4119dd28-6da8-46a0-9246-bea86e07ac61",
+    "Nom": "Pearly Band near \"it's a small world\"",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.814016,
+    "Coordonnées GPS (lng)": -117.917863
+  },
+  {
+    "Code": "412349422;entityType=Entertainment",
+    "UUID Themeparks.wiki": "fa0ef252-8002-4c39-934b-46c3231d206e",
+    "Nom": "Shadows of Memory: A Skywalker Saga",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Coordonnées GPS (lat)": 33.814988,
+    "Coordonnées GPS (lng)": -117.921242
+  },
+  {
+    "Code": "17346575;entityType=Entertainment",
+    "UUID Themeparks.wiki": "72340a8a-b6d2-474f-aca5-5ea7d2d52335",
+    "Nom": "Storytelling at Royal Theatre",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.812495,
+    "Coordonnées GPS (lng)": -117.919443
+  },
+  {
+    "Code": "412343720;entityType=Entertainment",
+    "UUID Themeparks.wiki": "34f7bd8a-ec8e-41ac-9d63-d94ffc54f1ef",
+    "Nom": "Tapestry of Happiness",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 33.814359,
+    "Coordonnées GPS (lng)": -117.917926
+  },
+  {
+    "Code": "19630108;entityType=Entertainment",
+    "UUID Themeparks.wiki": "bdb0a3ec-eb7a-41c9-918f-ccee7194743e",
+    "Nom": "The Amazing Spider-Man!",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Coordonnées GPS (lat)": 33.806802,
+    "Coordonnées GPS (lng)": -117.918828
+  },
+  {
+    "Code": "15751758;entityType=Entertainment",
+    "UUID Themeparks.wiki": "8160b905-b318-41be-84bf-869fb6a55b14",
+    "Nom": "The Bootstrappers",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Coordonnées GPS (lat)": 33.811384,
+    "Coordonnées GPS (lng)": -117.921011
+  },
+  {
+    "Code": "401463;entityType=Entertainment",
+    "UUID Themeparks.wiki": "fdf0e3b1-2eeb-42b4-9516-5d43463d021e",
+    "Nom": "The Dapper Dans",
+    "Type": "Rencontre personnage",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.810308,
+    "Coordonnées GPS (lng)": -117.918962
+  },
+  {
+    "Code": "412211848;entityType=Entertainment",
+    "UUID Themeparks.wiki": "0ee981af-9e3b-4c36-80a2-a7f00fa4841f",
+    "Nom": "The Storytellers of Plaza de la Familia Celebrate The Musical World of Coco!",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Coordonnées GPS (lat)": 33.806154,
+    "Coordonnées GPS (lng)": -117.922802
+  },
+  {
+    "Code": "19630110;entityType=Entertainment",
+    "UUID Themeparks.wiki": "1b6a816a-337c-431c-8df6-72f993e15e64",
+    "Nom": "Warriors of Wakanda: The Disciplines of the Dora Milaje",
+    "Type": "Rencontre personnage",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Coordonnées GPS (lat)": 33.806476,
+    "Coordonnées GPS (lng)": -117.917839
+  },
+  {
+    "Code": "411805933;entityType=Entertainment",
+    "UUID Themeparks.wiki": "e46d8982-4991-4b9e-8e4a-b519d3ca6060",
+    "Nom": "World of Color – ONE",
+    "Type": "Spectacle extérieur",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Coordonnées GPS (lat)": 33.80564575,
+    "Coordonnées GPS (lng)": -117.9214083
+  }
+]

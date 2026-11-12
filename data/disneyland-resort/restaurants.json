@@ -1,1 +1,145 @@
-[]
+[
+  {
+    "Code": "354099;entityType=restaurant",
+    "UUID Themeparks.wiki": "4784fd0f-9ba3-4a5d-a4b9-ed33b93c4489",
+    "Nom": "Blue Bayou Restaurant",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+    "Type": "Service à table",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Coordonnées GPS (lat)": 33.811049,
+    "Coordonnées GPS (lng)": -117.921126
+  },
+  {
+    "Code": "354117;entityType=restaurant",
+    "UUID Themeparks.wiki": "3665b38e-3e56-4c84-ad20-3e39672079a1",
+    "Nom": "Cafe Orleans",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+    "Type": "Service à table",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Coordonnées GPS (lat)": 33.811205,
+    "Coordonnées GPS (lng)": -117.921262
+  },
+  {
+    "Code": "354129;entityType=restaurant",
+    "UUID Themeparks.wiki": "c7ce633e-1f6b-4699-98c9-6772bb196b16",
+    "Nom": "Carnation Café",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+    "Type": "Service à table",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.81106,
+    "Coordonnées GPS (lng)": -117.919082
+  },
+  {
+    "Code": "16588263;entityType=restaurant",
+    "UUID Themeparks.wiki": "1bef32e2-73b4-4de3-bb07-f71c3f301f22",
+    "Nom": "Carthay Circle Lounge",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/carthay-circle-lounge/menus/",
+    "Type": "Bar/Lounge",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Coordonnées GPS (lat)": 33.807494,
+    "Coordonnées GPS (lng)": -117.919021
+  },
+  {
+    "Code": "16515009;entityType=restaurant",
+    "UUID Themeparks.wiki": "753b558a-ff18-4ed9-a3c2-70e76b421618",
+    "Nom": "Carthay Circle Restaurant",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/carthay-circle-restaurant/menus/",
+    "Type": "Service à table",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Coordonnées GPS (lat)": 33.807494,
+    "Coordonnées GPS (lng)": -117.919021
+  },
+  {
+    "Code": "19013078;entityType=restaurant",
+    "UUID Themeparks.wiki": "1214912c-de6d-4493-9344-c245357f7af6",
+    "Nom": "Lamplight Lounge",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/lamplight-lounge/menus/",
+    "Type": "Service à table",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Coordonnées GPS (lat)": 33.8053994053,
+    "Coordonnées GPS (lng)": -117.9209410699
+  },
+  {
+    "Code": "19629820;entityType=restaurant",
+    "UUID Themeparks.wiki": "2459a357-2b20-4445-8476-6a9a7e5eab54",
+    "Nom": "Lamplight Lounge - Boardwalk Dining",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/lamplight-lounge-boardwalk-dining/menus/",
+    "Type": "Service à table",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Coordonnées GPS (lat)": 33.8053994053,
+    "Coordonnées GPS (lng)": -117.9209410699
+  },
+  {
+    "Code": "15527906;entityType=restaurant",
+    "UUID Themeparks.wiki": "a098bd7c-f1a9-4ffb-97db-e85925509f19",
+    "Nom": "Magic Key Terrace - Magic Key Holder Dining",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/magic-key-terrace/menus/",
+    "Type": "Bar/Lounge",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Coordonnées GPS (lat)": 33.806621,
+    "Coordonnées GPS (lng)": -117.919866
+  },
+  {
+    "Code": "19268344;entityType=restaurant",
+    "UUID Themeparks.wiki": "eb29424b-42ed-41a2-891c-d4c9494eab12",
+    "Nom": "Oga's Cantina at the Disneyland Resort",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/ogas-cantina/menus/",
+    "Type": "Bar/Lounge",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Coordonnées GPS (lat)": 33.814717,
+    "Coordonnées GPS (lng)": -117.920943
+  },
+  {
+    "Code": "354414;entityType=restaurant",
+    "UUID Themeparks.wiki": "8deb6338-b65f-467c-9dd3-56ed8c02c355",
+    "Nom": "Plaza Inn",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 33.8117514713,
+    "Coordonnées GPS (lng)": -117.918622265
+  },
+  {
+    "Code": "354450;entityType=restaurant",
+    "UUID Themeparks.wiki": "057872ed-3f27-496f-80e2-edd3639ba084",
+    "Nom": "River Belle Terrace",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+    "Type": "Service à table",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Coordonnées GPS (lat)": 33.8116150928,
+    "Coordonnées GPS (lng)": -117.9205917872
+  },
+  {
+    "Code": "368880;entityType=restaurant",
+    "UUID Themeparks.wiki": "13bc1b70-3a42-41eb-9cb5-7fa8615af2ca",
+    "Nom": "Sonoma Terrace",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/sonoma-terrace/menus/",
+    "Type": "Bar/Lounge",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Coordonnées GPS (lat)": 33.8063931592,
+    "Coordonnées GPS (lng)": -117.9203394055
+  },
+  {
+    "Code": "354555;entityType=restaurant",
+    "UUID Themeparks.wiki": "048f854a-97d8-4295-8b7f-2575605259c6",
+    "Nom": "Wine Country Trattoria",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/wine-country-trattoria/menus/",
+    "Type": "Service à table",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Coordonnées GPS (lat)": 33.806478,
+    "Coordonnées GPS (lng)": -117.919877
+  }
+]
