@@ -120,5 +120,13 @@
       "shows": "https://www.shanghaidisneyresort.com/en/experience?group=entertainment",
       "restaurants": "https://www.shanghaidisneyresort.com/en/experience?group=restaurant"
     }
+  },
+  "efteling": {
+    "site": "https://www.efteling.com/",
+    "list_urls": {
+      "attractions": "https://www.efteling.com/fr/parc/attractions",
+      "shows": "https://www.efteling.com/fr/parc/spectacles",
+      "restaurants": "https://www.efteling.com/fr/parc/restaurants"
+    }
   }
 }

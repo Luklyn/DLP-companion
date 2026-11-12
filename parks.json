@@ -508,6 +508,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/shanghai-disney-resort.png"
+    },
+    {
+      "id": "efteling",
+      "name": "Efteling",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "locale": "fr-FR",
+      "themeparksId": "21776b5a-1444-4924-8ab2-6c66d9219628",
+      "dataPath": "data/efteling/",
+      "parks": [
+        {
+          "value": "Efteling",
+          "label": "Efteling",
+          "themeparksParkId": "30713cf6-69a9-47c9-a505-52bb965f01be"
+        }
+      ],
+      "info": {
+        "address": "Efteling",
+        "lat": 51.649515,
+        "lng": 5.043776
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
