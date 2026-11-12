@@ -96,5 +96,13 @@
       "shows": "https://www.phantasialand.de/fr/parc/spectacles/",
       "restaurants": "https://www.phantasialand.de/fr/gastronomie/restauration-parc/"
     }
+  },
+  "disneyland-resort": {
+    "site": "https://disneyland.disney.go.com/",
+    "list_urls": {
+      "attractions": "https://disneyland.disney.go.com/attractions/#/sort=alpha/",
+      "shows": "https://disneyland.disney.go.com/attractions/#/sort=alpha/",
+      "restaurants": "https://disneyland.disney.go.com/dining/"
+    }
   }
 }

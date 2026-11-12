@@ -411,6 +411,39 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/phantasialand.png"
+    },
+    {
+      "id": "disneyland-resort",
+      "name": "Disneyland Resort",
+      "country": "US",
+      "timezone": "America/Los_Angeles",
+      "locale": "fr-FR",
+      "themeparksId": "bfc89fd6-314d-44b4-b89e-df1a89cf991e",
+      "dataPath": "data/disneyland-resort/",
+      "parks": [
+        {
+          "value": "Disney California Adventure Park",
+          "label": "Disney California Adventure Park",
+          "themeparksParkId": "832fcd51-ea19-4e77-85c7-75d5843b127c"
+        },
+        {
+          "value": "Disneyland Park",
+          "label": "Disneyland Park",
+          "themeparksParkId": "7340550b-c14d-4def-80bb-acdb51d49a66"
+        }
+      ],
+      "info": {
+        "address": "Disneyland Resort",
+        "lat": 33.8087804896,
+        "lng": -117.9189353206
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
