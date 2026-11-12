@@ -327,26 +327,6 @@
         .evt { margin-right: 6px; }
         .pills { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 5px 6px; margin-top: 6px; }
         .pills > .evt, .pills > .access { margin: 0; }
-        .subrow { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 3px; }
-        .subrow > .sub { margin-top: 0; }
-        .ico-row { display: inline-flex; gap: 5px; }
-        .ic { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 8px; }
-        .ic .icon { width: 15px; height: 15px; }
-        .ic.menu { background: #B4491F; color: #fff; }
-        .ic.resa { background: #FFE9C7; color: #8A4B00; }
-        .ic.free { background: #DDF3E4; color: #14692E; }
-        .ic.evt-i { background: #E6E3FA; color: #44309E; }
-        .ic.hw { background: #FFE2CC; color: #A34A00; }
-        :root[data-theme="dark"] .ic.menu { background: #3D3C9E; }
-        :root[data-theme="dark"] .ic.resa { background: #3A2A0C; color: #F5C26B; }
-        :root[data-theme="dark"] .ic.free { background: #12301F; color: #86E3A6; }
-        :root[data-theme="dark"] .ic.evt-i { background: #2A2660; color: #C9C2FF; }
-        :root[data-theme="dark"] .ic.hw { background: #3A230F; color: #FFB067; }
-        .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 8px 20px 0; padding: 7px 10px; border-radius: 14px; background: var(--card); font-size: 12px; font-weight: 600; color: var(--mut); }
-        .legend[hidden] { display: none; }
-        .legend > span { display: inline-flex; align-items: center; gap: 5px; }
-        .legend .ic { width: 20px; height: 20px; border-radius: 6px; }
-        .legend .ic .icon { width: 13px; height: 13px; }
         .evt.is-menu { background: #B4491F; border-color: #B4491F; color: #fff; }
         :root[data-theme="dark"] .evt.is-menu { background: #3D3C9E; border-color: #3D3C9E; color: #fff; }
         .evt.is-hw { background: linear-gradient(135deg, #1B1024, #4A1F6E); border-color: #FF7A00; color: #FFA94D; }
@@ -809,8 +789,6 @@
         <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a3 3 0 0 0 0 6v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a3 3 0 0 0 0-6z"/><path d="M14 5v2M14 11v2M14 17v2"/></symbol>
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
         <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
-        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
-        <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 21V4.5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1V21M3.5 21h17"/><path d="M13.5 12.5h.01" stroke-width="3"/></symbol>
         <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
         <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
         <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
@@ -928,7 +906,6 @@
             <div id="sort-pop" class="sort-pop" role="menu" aria-label="Trier par" hidden></div>
         </div>
 
-        <div id="legend" class="legend" aria-label="Légende" hidden></div>
         <main id="list" class="list" aria-live="polite"></main>
 
         <div class="dock">
@@ -1833,7 +1810,6 @@
             chipFav: $('#chip-fav'),
             sortLabel: $('#sort-label'),
             sortPop: $('#sort-pop'),
-            legend: $('#legend'),
             btnHome: $('#tab-home'),
             alertToggle: $('#alert-toggle'),
             alertBody: $('#alert-body'),
@@ -3151,7 +3127,6 @@
             els.chipSort.dataset.active = String(!locked && mode !== 'zone');
             els.sortLabel.textContent = !locked && mode !== 'zone' ? `${L('Tri', 'Sort')} : ${SORTS[mode].short}` : L('Trier', 'Sort');
             if (locked) closeSortPop();
-            syncLegend();
         }
         function renderSortPop() {
             const mode = sortMode();
@@ -3199,28 +3174,6 @@
         // Badge « Menu disponible » : restaurants dont la fiche a un lien de menu valide
         const menuHtml = (item) => (item.category === 'restaurant' && item.menuUrl && safeUrl(item.menuUrl))
             ? `<span class="evt is-menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>${L('Menu disponible', 'Menu available')}</span>` : '';
-        const RESTO_LEGEND = () => [
-            ['menu', 'i-menu', L('Menu disponible', 'Menu available')],
-            ['resa', 'i-calendar', L('Réservation recommandée', 'Reservation recommended')],
-            ['free', 'i-door', L('Entrée libre', 'Walk-ins welcome')],
-            ['evt-i', 'i-ghost', L('Événement / nouveauté', 'Event / new')],
-            ['hw', 'i-pumpkin', 'Halloween'],
-        ];
-        const icHtml = (cls, icon, label) => `<span class="ic ${cls}" role="img" aria-label="${esc(label)}" title="${esc(label)}"><svg class="icon" aria-hidden="true"><use href="#${icon}"/></svg></span>`;
-        function restoIcons(item, m) {
-            const out = [];
-            const L2 = Object.fromEntries(RESTO_LEGEND().map(([c, i, t]) => [c, [i, t]]));
-            if (item.menuUrl && safeUrl(item.menuUrl)) out.push(icHtml('menu', ...L2.menu));
-            if (m.access) out.push(icHtml(m.access.kind, ...L2[m.access.kind]));
-            if (item.isNew || item.event) out.push(icHtml('evt-i', L2['evt-i'][0], item.isNew ? L('Nouveau', 'New') : item.event));
-            if (item.halloween && !/halloween/i.test(item.event)) out.push(icHtml('hw', ...L2.hw));
-            return out.length ? `<span class="ico-row">${out.join('')}</span>` : '';
-        }
-        function syncLegend() {
-            const on = state.tab === 'restaurant';
-            els.legend.hidden = !on;
-            if (on) els.legend.innerHTML = RESTO_LEGEND().map(([c, i, t]) => `<span><span class="ic ${c}"><svg class="icon" aria-hidden="true"><use href="#${i}"/></svg></span>${esc(t)}</span>`).join('');
-        }
         // Le Type n'est répété dans le sous-titre que s'il apporte une information en plus du badge
         const typeLabel = (item) => (item.halloween && /^halloween$/i.test(item.type) ? '' : item.type);
 
@@ -3241,15 +3194,9 @@
                 + (uk ? `<span class="usual ${uk.kind}">${usualLabel(uk)}</span>` : '')
                 + (m.note ? `<span class="sub">${esc(m.note)}</span>` : '');
             // Pastilles (événement, Halloween, menu, accès) : une seule rangée, toujours après les infos de statut
-            const isResto = item.category === 'restaurant';
-            const chipsInner = isResto ? '' : eventHtml(item) + hwHtml(item) + menuHtml(item)
+            const chipsInner = eventHtml(item) + hwHtml(item) + menuHtml(item)
                 + (m.access ? `<span class="access ${m.access.kind}">${esc(m.access.text)}</span>` : '');
             const chips = chipsInner ? `<span class="pills">${chipsInner}</span>` : '';
-            // Restaurants : petites icônes à la place des pastilles (la légende est affichée au-dessus de la liste)
-            const icons = isResto ? restoIcons(item, m) : '';
-            const subHtml = isResto && icons
-                ? `<span class="subrow">${sub ? `<span class="sub">${esc(sub)}</span>` : ''}${icons}</span>`
-                : (sub ? `<span class="sub">${esc(sub)}</span>` : '');
             const bell = (alerts.has(item.id) || alerts.has(item.id + '#status'))
                 ? '<svg class="icon card-bell" role="img" aria-label="' + L('Alerte active', 'Alert on') + '"><use href="#i-bell"/></svg>' : '';
 
@@ -3259,7 +3206,7 @@
                         ${badgeHtml(m)}
                         <span class="txt">
                             <span class="ttl">${esc(item.name)}${bell}</span>
-                            ${subHtml}
+                            ${sub ? `<span class="sub">${esc(sub)}</span>` : ''}
                             ${extra}
                             ${chips}
                             ${(m.single != null || m.vq || m.dining) ? `<span class="srs">${singleHtml(m)}${vqHtml(m)}${diningHtml(m)}</span>` : ''}
