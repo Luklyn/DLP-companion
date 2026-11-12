@@ -1,6 +1,6 @@
 # Synchronisation automatique des lieux
 
-Chaque jour (≈ 5 h, heure de Paris), l'action **Synchronisation des lieux** (`.github/workflows/sync-places.yml`) :
+À la demande (page d'administration ou lancement manuel), l'action **Synchronisation des lieux** (`.github/workflows/sync-places.yml`) :
 
 1. lit l'API themeparks.wiki (attractions, restaurants, spectacles seulement, et uniquement les lieux qui ont des données live) ;
 2. repère ceux qui ne sont pas dans `data/<parc>/*.json` (comparaison par UUID) ;

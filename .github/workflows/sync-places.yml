@@ -1,11 +1,9 @@
 name: Synchronisation des lieux
 
-# Chaque jour : compare l'API themeparks.wiki avec data/*, ajoute les nouveaux lieux
+# À la demande (bouton de la page d'administration ou lancement manuel) : compare l'API themeparks.wiki avec data/*, ajoute les nouveaux lieux
 # (attractions, restaurants, spectacles) avec les infos de la page française du parc,
 # et ouvre une pull request à relire. Rien n'est publié tant qu'elle n'est pas fusionnée.
 on:
-  schedule:
-    - cron: '17 4 * * *'
   workflow_dispatch:
     inputs:
       check_names:
