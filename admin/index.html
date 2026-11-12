@@ -361,7 +361,7 @@ const NORM = (x) => String(x || '').normalize('NFKD').replace(/[\u0300-\u036f]/g
 function siteCard(r, cfg) {
   const busy = !!S.busy.cand, cs = S.cands, run = S.cRun;
   const kindSel = (i, v) => `<select class="cell" data-cand="${i}" data-f="kind" aria-label="Catégorie">${KINDS.map((k) => `<option value="${k}" ${v === k ? 'selected' : ''}>${KIND_LABEL[k]}</option>`).join('')}</select>`;
-  const parkSel = (i, v) => (r.parks || []).length > 1 ? `<select class="cell" data-cand="${i}" data-f="park" aria-label="Parc">${r.parks.map((p) => `<option ${v === p.value ? 'selected' : ''}>${esc(p.value)}</option>`).join('')}</select>` : esc(v);
+  const parkSel = (i, v) => (r.parks || []).length > 1 ? `<select class="cell" data-cand="${i}" data-f="park" aria-label="Parc">${(r.parks.some((p) => p.value === v) || !v ? r.parks : [...r.parks, { value: v }]).map((p) => `<option ${v === p.value ? 'selected' : ''}>${esc(p.value)}</option>`).join('')}</select>` : esc(v);
   const rows = (cs || []).map((x, i) => `<tr>
       <td><input type="checkbox" data-cand="${i}" data-f="selected" ${x.selected ? 'checked' : ''} aria-label="Sélectionner ${esc(x.nom)}" style="width:20px;height:20px"></td>
       <td>${kindSel(i, x.kind)}</td>
@@ -468,7 +468,8 @@ function importXlsx() {
           S.checked = true; S.enriched = true;
         } else if (cols.has('page du site') || (cols.has('nom') && cols.has('categorie'))) {   // feuille « Lieux du site absents de l'API »
           const park = (r.parks || [])[0]?.value || '';
-          const list = rows.filter((o) => o.nom).map((o) => ({ kind: kindOf(o.categorie) || 'restaurants', nom: o.nom, url: o['page du site'] || '', land: o.land || '', type: o.type || '', height: o['taille mini'] || '', menu: o.menu || '', park: o.parc || park, selected: cols.has('a ajouter') ? yes(o['a ajouter']) : true }));
+          const pk = (v) => { const n = NORM(v); if (!n) return park; const ps = r.parks || []; const m = ps.find((q) => NORM(q.value) === n) || ps.find((q) => NORM(q.value).includes(n) || n.includes(NORM(q.value))); return m ? m.value : v; };
+          const list = rows.filter((o) => o.nom).map((o) => ({ kind: kindOf(o.categorie) || 'restaurants', nom: o.nom, url: o['page du site'] || '', land: o.land || '', type: o.type || '', height: o['taille mini'] || '', menu: o.menu || '', park: pk(o.parc), selected: cols.has('a ajouter') ? yes(o['a ajouter']) : true }));
           S.cands = list; nSite += list.length;
         }
       }
@@ -852,7 +853,7 @@ document.addEventListener('click', async (e) => {
   const t = e.target.closest('button, a'); if (!t) return;
   if (t.dataset.go) { S.view = t.dataset.go; render(); if (S.view === 'deploy') loadDeployExtras(); return; }
   if (t.dataset.period) { S.period = t.dataset.period; render(); return; }
-  if (t.dataset.park) { S.park = t.dataset.park; S.cands = null; S.cRun = null; S.cMsg = ''; S.checked = false; S.rows = []; S.run = null; S.fetchMsg = ''; S.checkErr = ''; render(); return; }
+  if (t.dataset.park) { S.park = t.dataset.park; S.cands = null; S.cKeep = []; S.cProg = null; S.cRun = null; S.cMsg = ''; S.checked = false; S.rows = []; S.run = null; S.fetchMsg = ''; S.checkErr = ''; render(); return; }
   if (t.dataset.merge) {
     if (needToken()) return;
     try { await gh(`/repos/${REPO}/pulls/${t.dataset.merge}/merge`, { method: 'PUT', body: { merge_method: 'squash' } }); toast('Pull request fusionnée : le site se met à jour.'); loadDeployExtras(); }
