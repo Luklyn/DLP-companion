@@ -107,6 +107,9 @@ def extract_links(html, base_url='', log=print):
     folders = {folder}
     if bp:
         stem, par = bp.rsplit('/', 1)[-1], bp.rsplit('/', 1)[0]
+        for f2, n2 in parents.items():      # sous-dossiers de la page de liste (ex. /attractions/disneyland/, /attractions/disney-california-adventure/)
+            if f2 != folder and n2 >= 2 and f2.startswith(bp + '/') and (folder == bp or folder.startswith(bp + '/')) and not NON_PARK_FOLDER.search(f2.rsplit('/', 1)[-1]):
+                folders.add(f2)
         if folder == bp or (folder.rsplit('/', 1)[0] == par and folder.rsplit('/', 1)[-1].startswith(stem + '-')):
             for f2, n2 in parents.items():
                 if f2 != folder and n2 >= 2 and f2.rsplit('/', 1)[0] == par and (f2 == bp or f2.rsplit('/', 1)[-1].startswith(stem + '-')):
@@ -125,6 +128,8 @@ def extract_links(html, base_url='', log=print):
     return fiches, menus
 
 
+# sous-dossiers qui ne concernent pas les parcs (hôtels, quartier commerçant…) : non repris automatiquement
+NON_PARK_FOLDER = re.compile(r'hotel|resort|village|downtown|spa|golf|shopping|store|boutique|marina|cruise', re.I)
 NOISE_LINES = profile.NOISE
 
 
