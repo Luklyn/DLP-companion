@@ -141,5 +141,1495 @@
     "Land": "San Fransokyo Square",
     "Coordonnées GPS (lat)": 33.806478,
     "Coordonnées GPS (lng)": -117.919877
+  },
+  {
+    "Code": "DISR01",
+    "Nom": "Angry Dogs",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/angry-dogs/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR02",
+    "Nom": "Award Wieners",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/award-wieners/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR03",
+    "Nom": "Flo's V8 Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/flos-v8-cafe/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR04",
+    "Nom": "Ghirardelli® Soda Fountain and Chocolate Shop",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/ghirardelli-soda-fountain-and-chocolate-shop/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR05",
+    "Nom": "Smokejumpers Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/smokejumpers-grill/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR06",
+    "Nom": "Adorable Snowman Frosted Treats",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/adorable-snowman-frosted-treats/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR07",
+    "Nom": "Bayside Brews",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/bayside-brews/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR08",
+    "Nom": "Cocina Cucamonga Mexican Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cocina-cucamonga-mexican-grill/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR09",
+    "Nom": "Cozy Cone Motel",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cozy-cone-motel/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR10",
+    "Nom": "Poultry Palace",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/poultry-palace/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR11",
+    "Nom": "Rita's Turbine Blenders",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/ritas-turbine-blenders/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR12",
+    "Nom": "Alien Pizza Planet",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR13",
+    "Nom": "Aunt Cass Café",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/aunt-cass-cafe/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR14",
+    "Nom": "Bengal Barbecue",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR15",
+    "Nom": "Boardwalk Pizza & Pasta",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/boardwalk-pizza-pasta/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR16",
+    "Nom": "Bountiful Valley Brews - Coming Soon!",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/bountiful-valley-brews/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR17",
+    "Nom": "Café Daisy",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR18",
+    "Nom": "Clarabelle's Hand-Scooped Ice Cream",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/clarabelles-hand-scooped-ice-cream/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR19",
+    "Nom": "Corn Dog Castle",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/corn-dog-castle/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR20",
+    "Nom": "Docking Bay 7 Food and Cargo",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR21",
+    "Nom": "Edelweiss Snacks",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/edelweiss-snacks/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR22",
+    "Nom": "Fairfax Market",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/fairfax-fruit-market/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR23",
+    "Nom": "Fiddler, Fifer & Practical Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/fiddler-fifer-and-practical-cafe/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR24",
+    "Nom": "Fillmore's Taste-In",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/fillmores-taste-in/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR25",
+    "Nom": "Galactic Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR26",
+    "Nom": "The Golden Horseshoe",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/golden-horseshoe-restaurant/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR27",
+    "Nom": "Good Boy! Grocers",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/good-boy-grocers/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR28",
+    "Nom": "Harbour Galley",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/harbour-galley/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR29",
+    "Nom": "Hollywood Lounge",
+    "Type": "Bar/Lounge",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/hollywood-lounge/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR30",
+    "Nom": "Hungry Bear Barbecue Jamboree",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR31",
+    "Nom": "Jack-Jack Cookie Num Nums",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/jack-jack-cookie-num-nums/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR32",
+    "Nom": "Jolly Holiday Bakery Cafe",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR33",
+    "Nom": "Kat Saka's Kettle",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/kat-sakas-kettle/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR34",
+    "Nom": "Lucky Fortune Cookery",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/lucky-fortune-cookery/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR35",
+    "Nom": "Maurice's Treats",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/maurices-treats/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR36",
+    "Nom": "Mendocino Terrace",
+    "Type": "Bar/Lounge",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/mendocino-terrace/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR37",
+    "Nom": "Milk Stand",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/milk-stand/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR38",
+    "Nom": "Mint Julep Bar",
+    "Type": "Bar/Lounge",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/mint-julep-bar/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR39",
+    "Nom": "Paradise Garden Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/paradise-garden-grill/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR40",
+    "Nom": "Port of San Fransokyo Cervecería",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/port-of-san-fransokyo-cerveceria/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR41",
+    "Nom": "Pym Tasting Lab",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/pym-tasting-lab/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR42",
+    "Nom": "Rancho del Zocalo Restaurante",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR43",
+    "Nom": "Red Rose Taverne",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR44",
+    "Nom": "Refreshment Corner",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR45",
+    "Nom": "Ronto Roasters",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR46",
+    "Nom": "Royal Street Veranda",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/royal-street-veranda/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR47",
+    "Nom": "Schmoozies!",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/schmoozies-smoothies/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR48",
+    "Nom": "Señor Buzz Churros",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/senor-buzz-churros/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR49",
+    "Nom": "Shawarma Palace",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/shawarma-palace/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR50",
+    "Nom": "South Seas Traders",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/south-seas-traders/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR51",
+    "Nom": "Stage Door Café",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR52",
+    "Nom": "Studio Catering Co.",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/studio-catering-co/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR53",
+    "Nom": "Terran Treats",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/terran-treats/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR54",
+    "Nom": "Tiana’s Palace",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR55",
+    "Nom": "Tiki Juice Bar",
+    "Type": "Bar/Lounge",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/tiki-juice-bar/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR56",
+    "Nom": "Tomorrowland Skyline Terrace",
+    "Type": "Bar/Lounge",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR57",
+    "Nom": "The Tropical Hideaway",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR58",
+    "Nom": "Troubadour Tavern",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Menu": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR59",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR60",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR61",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR62",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR63",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR64",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR65",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR66",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR67",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR68",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR69",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR70",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR71",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR72",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR73",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR74",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR75",
+    "Nom": "Cappuccino Cart",
+    "Type": "Restauration rapide",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Menu": "https://disneyland.disney.go.com/dining/disney-california-adventure/cappuccino-cart/menus/",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR76",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR77",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR78",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR79",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR80",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR81",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR82",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR83",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR84",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR85",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR86",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR87",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR88",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR89",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR90",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR91",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR92",
+    "Nom": "Churro Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR93",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR94",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR95",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR96",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR97",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR98",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR99",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR100",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR101",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR102",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR103",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR104",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR105",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR106",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR107",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR108",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR109",
+    "Nom": "Fruit Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR110",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR111",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR112",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR113",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR114",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR115",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR116",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR117",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR118",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR119",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR120",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR121",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR122",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR123",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR124",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR125",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR126",
+    "Nom": "Lemonade Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR127",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR128",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR129",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR130",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR131",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR132",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR133",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR134",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR135",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR136",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR137",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR138",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR139",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR140",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR141",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR142",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR143",
+    "Nom": "Popcorn Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR144",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR145",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR146",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR147",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR148",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR149",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR150",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR151",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR152",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR153",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR154",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR155",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR156",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR157",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR158",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR159",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR160",
+    "Nom": "Pretzel Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR161",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR162",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Adventureland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR163",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "New Orleans Square",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR164",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Critter Country",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR165",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Frontierland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR166",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR167",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Mickey's Toontown",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR168",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Tomorrowland",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR169",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disneyland Park",
+    "Land": "Star Wars: Galaxy's Edge",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR170",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Buena Vista Street",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR171",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Hollywood Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR172",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Avengers Campus",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR173",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Cars Land",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR174",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Pixar Pier",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR175",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Paradise Gardens Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR176",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "Grizzly Peak",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "DISR177",
+    "Nom": "Turkey Leg Carts",
+    "Type": "A emporter",
+    "Parc": "Disney California Adventure Park",
+    "Land": "San Fransokyo Square",
+    "Statut inconnu": "oui"
   }
 ]
