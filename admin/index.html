@@ -109,7 +109,7 @@ const S = {
   unlocked: false, gateErr: '', gateBusy: false, view: 'dash', period: '30', conn: null /* {login, push} */, connErr: '', busy: {},
   parks: null, sites: {}, counts: {}, releases: null,
   park: null, cands: null, cRun: null, cMsg: '', checked: false, checkErr: '', rows: [], skippedPark: 0, knownCount: 0,
-  urls: { attractions: '', shows: '', restaurants: '' }, run: null /* {id,status,since,url} */, fetchMsg: '', enriched: false,
+  urls: { attractions: '', shows: '', restaurants: '' }, cKinds: { attractions: true, shows: true, restaurants: true }, cKeep: [], run: null /* {id,status,since,url} */, fetchMsg: '', enriched: false,
   pending: JSON.parse(store.get('tpc_admin_pending') || '{}'),
   mode: 'direct', msg: '', pub: null /* {steps, step, url, err} */, prs: null, history: null,
   np: { name: '', id: '', idTouched: false, country: 'FR', api1: '', api2: '', s1: '', s2: '', s3: '', color: '#2B59D9' }, npTest: null
@@ -377,6 +377,7 @@ function siteCard(r, cfg) {
   return `<section class="card pad" style="display:flex;flex-direction:column;gap:16px">
     <div class="row" style="justify-content:space-between"><div style="flex:1 1 320px"><h2>Lieux du site absents de l’API</h2><p class="sub">Lieux présents sur les pages du parc mais ni dans l’application ni dans themeparks.wiki (restaurants, souvent). Ils sont ajoutés sans UUID, avec « état d’ouverture non connu ».</p></div>
       <button class="btn pri" data-act="cands" ${busy ? 'disabled' : ''}>${busy ? 'Recherche…' : (cs ? 'Chercher à nouveau' : 'Chercher sur le site')}</button></div>
+    <div class="row" role="group" aria-label="Types de lieux à chercher" style="gap:18px"><span class="lbl" style="margin:0">Chercher :</span>${[['attractions', 'Attractions'], ['shows', 'Spectacles et rencontres'], ['restaurants', 'Restaurants']].map(([k, l]) => `<label style="display:flex;align-items:center;gap:6px;font-size:14px"><input type="checkbox" data-ckind="${k}" ${S.cKinds[k] ? 'checked' : ''} ${busy ? 'disabled' : ''} style="width:18px;height:18px"> ${l}</label>`).join('')}</div>
     <div class="grid g3">${[['attractions', 'Liste des attractions'], ['shows', 'Liste des spectacles'], ['restaurants', 'Liste des restaurants']].map(([k, l]) => `<div><label class="lbl" for="c-${k}">${l}</label><input id="c-${k}" class="inp" type="url" data-url="${k}" value="${esc(S.urls[k])}" placeholder="${esc((cfg.list_urls || {})[k] || 'https://…')}"></div>`).join('')}</div>
     <div class="hint">Laissez vide pour utiliser les pages déjà configurées pour ce parc. La recherche passe par l’action GitHub (quelques minutes).</div>
     ${runHtml}
@@ -480,10 +481,13 @@ function importXlsx() {
 
 async function doCands() {
   if (needToken()) return;
-  const r = resortById(S.park); S.busy.cand = true; S.cands = null; S.cProg = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
+  const r = resortById(S.park); const wantedK = KINDS.filter((k) => S.cKinds[k]); S.cKeep = wantedK.length < KINDS.length ? (S.cands || []).filter((x) => !wantedK.includes(x.kind)) : [];
+  S.busy.cand = true; S.cands = null; S.cProg = null; S.cMsg = 'Lancement de la recherche…'; S.cRun = { status: 'queued' }; render();
   const since = Date.now() - 5000;
   try {
+    const wanted = KINDS.filter((k) => S.cKinds[k]);
     const inputs = { resort: r.id, site_candidates: 'true', list_attractions: S.urls.attractions.trim(), list_shows: S.urls.shows.trim(), list_restaurants: S.urls.restaurants.trim() };
+    if (wanted.length < KINDS.length) inputs.kinds = wanted.join(',');
     await gh(`/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, { method: 'POST', body: { ref: BRANCH, inputs } });
     let live = true;
     (async () => { while (live && S.park === r.id) { await sleep(9000); if (!live) break; try { await pullProgress(r, since); } catch (e) { /* facultatif */ } } })();
@@ -496,7 +500,7 @@ async function doCands() {
 }
 function mapCands(list, r) {
   const park = (r.parks || [])[0]?.value || '';
-  return list.filter((x) => x.nom).map((x) => ({ kind: KINDS.includes(x.kind) ? x.kind : 'restaurants', nom: x.nom, url: x.url, land: x.land || '', type: x.type || '', height: x.height || '', menu: x.menu || '', park, selected: true }));
+  return (S.cKeep || []).concat(list.filter((x) => x.nom).map((x) => ({ kind: KINDS.includes(x.kind) ? x.kind : 'restaurants', nom: x.nom, url: x.url, land: x.land || '', type: x.type || '', height: x.height || '', menu: x.menu || '', park, selected: true })));
 }
 /* pendant la recherche, le workflow publie sa progression : le tableau se remplit au fil des fiches lues */
 async function pullProgress(r, since) {
@@ -894,6 +898,7 @@ document.addEventListener('change', (e) => {
   const t = e.target;
   if (t.dataset.row !== undefined && t.dataset.f === 'selected') { S.rows[+t.dataset.row].selected = t.checked; render(); }
   else if (t.dataset.cand !== undefined) { const c = S.cands[+t.dataset.cand]; c[t.dataset.f] = t.dataset.f === 'selected' ? t.checked : t.value; if (t.dataset.f === 'selected' || t.dataset.f === 'kind') render(); }
+  else if (t.dataset.ckind) { S.cKinds[t.dataset.ckind] = t.checked; if (!KINDS.some((k) => S.cKinds[k])) { S.cKinds[t.dataset.ckind] = true; toast('Gardez au moins un type de lieu.', true); } render(); }
   else if (t.name === 'mode') { S.mode = t.value; render(); }
 });
 

@@ -206,9 +206,11 @@ def lists_from_sitemap(site, prefixes, kinds, log, keep_folders=None):
     return lists
 
 
-def collect_fiches(site, cfg, kinds, use_browser, log):
-    """Fiches détaillées du site officiel : [{url, name, kinds, names, card_*}]."""
+def collect_fiches(site, cfg, kinds, use_browser, log, only=None):
+    """Fiches détaillées du site officiel : [{url, name, kinds, names, card_*}]. `only` : limiter à certaines catégories (attractions, shows, restaurants)."""
     list_urls = cfg.get('list_urls')
+    if only and list_urls:
+        list_urls = {k: v for k, v in list_urls.items() if k in only}
     lists = {}
     if list_urls and any((v or '').strip() for v in list_urls.values()):
         lists = discover.lists_from_urls(list_urls, use_browser, log, fetch_html)
@@ -217,6 +219,8 @@ def collect_fiches(site, cfg, kinds, use_browser, log):
     if cfg.get('sitemap_prefixes') and site:
         for kind, fiches in lists_from_sitemap(site, cfg['sitemap_prefixes'], kinds, log, cfg.get('keep_folders')).items():
             lists[kind] = lists.get(kind, []) + fiches
+    if only:
+        lists = {k: v for k, v in lists.items() if k in only}
     if not lists:
         return []
     pool = {}
@@ -493,7 +497,7 @@ def sync_resort(resort, site_cfg, args, log):
     fiches, mt, pages, view = [], {}, {}, []
     if (flat or args.check_names or args.site_candidates) and not args.no_web and (site or list_urls):
         try:
-            fiches = collect_fiches(site, cfg, {e['kind'] for e in flat} or set(KINDS), args.browser, log)
+            fiches = collect_fiches(site, cfg, (set(args.kinds) if args.kinds else ({e['kind'] for e in flat} or set(KINDS))), args.browser, log, only=set(args.kinds) if args.kinds else None)
             result['web'] = bool(fiches)
             if fiches:
                 learn_structure(fiches, rid, log, args.browser)
