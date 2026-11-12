@@ -36,6 +36,47 @@ def close_browser():
     _BROWSER['pw'] = _BROWSER['b'] = None
 
 
+LOAD_MORE_JS = """() => {
+  const rx = /^(voir|afficher|charger|chargez|load|show|see|montrer|d[ée]couvrir)\\s+(plus|more|tout|tous|all|davantage|d'autres|les suivants)|^(plus|more|davantage)(\\s+(de|d'|of)\\s+\\S+.*)?$|^(plus|more) results|^afficher la suite|^voir la suite|^load more/i;
+  let n = 0;
+  for (const el of document.querySelectorAll('button, a, [role=button]')) {
+    const t = (el.innerText || el.getAttribute('aria-label') || '').trim();
+    if (!t || t.length > 40 || !rx.test(t)) continue;
+    const href = el.getAttribute('href');
+    if (el.tagName === 'A' && href && !href.startsWith('#') && !href.startsWith('javascript')) continue;   // un vrai lien de navigation n'est pas un « voir plus »
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height || el.disabled) continue;
+    el.scrollIntoView({block: 'center'}); el.click(); n++;
+  }
+  return n;
+}"""
+
+
+def _scroll_to_end(page, log=print, max_seconds=90):
+    """Fait défiler la page jusqu'au bout et clique sur les boutons « Voir plus » : charge les contenus qui n'apparaissent qu'au défilement.
+    S'arrête quand ni la hauteur de la page ni le nombre de liens n'évoluent pendant 4 tours (ou après max_seconds)."""
+    t0 = time.time(); last = None; stable = 0; clicks = 0
+    while time.time() - t0 < max_seconds and stable < 4:
+        try:
+            clicked = page.evaluate(LOAD_MORE_JS) or 0
+            clicks += clicked
+            state = page.evaluate("() => [document.documentElement.scrollHeight, document.querySelectorAll('a[href]').length, document.querySelectorAll('img').length]")
+            page.evaluate("() => window.scrollTo(0, document.documentElement.scrollHeight)")
+            page.mouse.wheel(0, 2500)
+            page.keyboard.press('End')
+            page.wait_for_timeout(700 if clicked else 450)
+        except Exception:
+            break
+        stable = stable + 1 if (state == last and not clicked) else 0
+        last = state
+    try:
+        page.evaluate("() => window.scrollTo(0, 0)")
+    except Exception:
+        pass
+    if clicks or (last and last[1] > 0):
+        log(f'   Défilement terminé ({int(time.time() - t0)} s, {last[1] if last else "?"} liens' + (f', {clicks} clic(s) sur « voir plus »' if clicks else '') + ')')
+
+
 def fetch_page(url, use_browser=False, log=print, retries=2, timeout=30, want_json=False):
     """(html, [réponses JSON]) d'une page. Navigateur : défilement (lazy-loading) et capture des réponses JSON (XHR/fetch)."""
     bodies = []
@@ -57,10 +98,7 @@ def fetch_page(url, use_browser=False, log=print, retries=2, timeout=30, want_js
                 page.wait_for_load_state('networkidle', timeout=15000)
             except Exception:
                 pass
-            for _ in range(10):                       # défilement : déclenche le chargement paresseux des cartes
-                page.mouse.wheel(0, 3500)
-                page.wait_for_timeout(350)
-            for sel in ('button:has-text("Accepter")', 'button:has-text("Accept")', '#onetrust-accept-btn-handler'):   # bandeau cookies
+            for sel in ('button:has-text("Accepter")', 'button:has-text("Accept")', '#onetrust-accept-btn-handler'):   # bandeau cookies (avant le défilement : il peut le bloquer)
                 try:
                     if page.locator(sel).count():
                         page.locator(sel).first.click(timeout=1500)
@@ -68,6 +106,7 @@ def fetch_page(url, use_browser=False, log=print, retries=2, timeout=30, want_js
                         break
                 except Exception:
                     pass
+            _scroll_to_end(page, log)
             html = page.content()
             ctx.close()
             return html, bodies

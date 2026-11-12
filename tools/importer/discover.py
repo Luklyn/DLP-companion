@@ -175,18 +175,63 @@ def discover_lists(site_url, use_browser=False, log=print, fetch=fetch_html, get
     return lists, chosen
 
 
-def lists_from_urls(urls, use_browser=False, log=print, fetch=fetch_html):
-    """Mode manuel : {kind: url de liste} -> {kind: [fiches]}."""
+NEXT_TXT = re.compile(r'^(suivant|next|page suivante|next page|›|»|>|→)$', re.I)
+
+
+def _next_url(html, base):
+    """Adresse de la page suivante d'une liste paginée (lien rel=next ou « Suivant »), ou ''."""
+    soup = soup_of(html)
+    cands = soup.find_all('a', rel=lambda v: v and 'next' in (v if isinstance(v, list) else [v]))
+    cands += [a for a in soup.find_all('a', href=True) if NEXT_TXT.match(a.get_text(' ', strip=True)) or NEXT_TXT.match((a.get('aria-label') or '').strip())]
+    for a in cands:
+        href = (a.get('href') or '').strip()
+        if href and not href.startswith(('#', 'javascript')):
+            u = urljoin(base, href)
+            if u.rstrip('/') != base.rstrip('/'):
+                return u
+    return ''
+
+
+def lists_from_urls(urls, use_browser=False, log=print, fetch=fetch_html, max_pages=25):
+    """Mode manuel : {kind: url de liste} -> {kind: [fiches]}.
+    Chaque liste est lue deux fois : HTML simple, puis navigateur qui fait défiler la page et clique sur « voir plus » (contenus chargés au
+    défilement) ; on garde l'union. Les listes paginées (lien « Suivant ») sont parcourues jusqu'au bout."""
     lists = {}
     for kind, url in urls.items():
         if not (url or '').strip():
             continue
-        page = fetch(url.strip(), use_browser=use_browser, log=log)
-        fiches, menus = extract_links(page, url.strip(), log) if page else ([], [])
-        if len(fiches) < MIN_FICHES and not use_browser and page:
-            f2, m2 = extract_links(fetch(url.strip(), use_browser=True, log=log), url.strip(), lambda *_: None)
-            if len(f2) > len(fiches):
-                fiches, menus = f2, m2
+        url = url.strip()
+        seen, fiches, menus = set(), [], []
+
+        def merge(f2, m2):
+            new = 0
+            for f in f2:
+                if f['url'] not in seen:
+                    seen.add(f['url']); fiches.append(f); new += 1
+            menus.extend(x for x in m2 if x not in menus)
+            return new
+        page = fetch(url, use_browser=use_browser, log=log)
+        if page:
+            merge(*extract_links(page, url, log))
+        html_for_next = page
+        if not use_browser:
+            html2 = fetch(url, use_browser=True, log=log)
+            if html2:
+                gain = merge(*extract_links(html2, url, lambda *_: None))
+                if gain:
+                    log(f'  Le navigateur (défilement) a trouvé {gain} fiche(s) de plus que la page simple')
+                html_for_next = html2
+        cur, visited = url, {url.rstrip('/')}
+        for _ in range(max_pages):
+            nxt = _next_url(html_for_next, cur)
+            if not nxt or nxt.rstrip('/') in visited:
+                break
+            visited.add(nxt.rstrip('/'))
+            html_for_next = fetch(nxt, use_browser=True, log=lambda *_: None) or fetch(nxt, use_browser=False, log=lambda *_: None)
+            if not html_for_next or not merge(*extract_links(html_for_next, nxt, lambda *_: None)):
+                break
+            cur = nxt
+            log(f'  Page suivante lue : {nxt}')
         fiches = _with_menus(kind, fiches, menus)
         lists[kind] = fiches
         log(f'  [{kind}] {len(fiches)} fiches dans {url}')
