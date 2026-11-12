@@ -1337,7 +1337,7 @@
                     const parks = document.createElement('span');
                     parks.className = 'ht-parks';
                     // Destination à un seul parc du même nom : son état se place en face du nom, aligné sur ceux des autres cartes
-                    const single = (r.parks ?? []).length === 1 && r.parks[0].label === r.name;
+                    const single = false;
                     const rows = (r.parks ?? []).map((pk) => {
                         const row = document.createElement('span');
                         row.className = 'ht-p';

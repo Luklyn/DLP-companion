@@ -422,14 +422,14 @@
       "dataPath": "data/disneyland-resort/",
       "parks": [
         {
-          "value": "Disney California Adventure Park",
-          "label": "Disney California Adventure Park",
-          "themeparksParkId": "832fcd51-ea19-4e77-85c7-75d5843b127c"
-        },
-        {
           "value": "Disneyland Park",
           "label": "Disneyland Park",
           "themeparksParkId": "7340550b-c14d-4def-80bb-acdb51d49a66"
+        },
+        {
+          "value": "Disney California Adventure Park",
+          "label": "Disney California Adventure Park",
+          "themeparksParkId": "832fcd51-ea19-4e77-85c7-75d5843b127c"
         }
       ],
       "info": {
