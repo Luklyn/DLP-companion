@@ -552,7 +552,7 @@ async function doCheck() {
     const data = {}; for (const k of KINDS) data[k] = await readJson(r.dataPath + k + '.json', []);
     const ignored = new Set((await readJson(r.dataPath + 'ignored.json', [])).map((u) => String(u).toLowerCase()));
     const known = new Set(); KINDS.forEach((k) => data[k].forEach((x) => known.add(String(x['UUID Themeparks.wiki'] || '').toLowerCase())));
-    const allowNoLive = new Set(cfg.add_without_live || []);
+    const allowNoLive = new Set(['restaurants', ...(cfg.add_without_live || [])]);   // les restaurants sans statut live remontent toujours (ajoutés avec « état non connu »)
     const parkOf = {}; (r.parks || []).forEach((p) => { parkOf[p.themeparksParkId] = p.value; });
     let skipped = 0; const rows = [];
     for (const c of children.children || []) {

@@ -476,7 +476,7 @@ def sync_resort(resort, site_cfg, args, log):
         inspect_resort(resort, ents, existing, parent_names, site_cfg, log)
         return None
     cfg0 = site_cfg or {}
-    allow_no_live = set(cfg0.get('add_without_live') or [])
+    allow_no_live = {'restaurants'} | set(cfg0.get('add_without_live') or [])   # restaurants sans statut live : toujours remontés (« Statut inconnu »)
     new = find_new(resort, ents, existing, ignored if not args.include_ignored else set(), allow_no_live)
     if args.kinds:
         new = {k: (v if k in args.kinds else []) for k, v in new.items()}
