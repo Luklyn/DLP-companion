@@ -537,6 +537,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/efteling.png"
+    },
+    {
+      "id": "walibi-holland",
+      "name": "Walibi Holland",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "locale": "fr-FR",
+      "themeparksId": "9c6a0987-e519-4d6e-b011-e6c47a60641b",
+      "dataPath": "data/walibi-holland/",
+      "parks": [
+        {
+          "value": "Walibi Holland",
+          "label": "Walibi Holland",
+          "themeparksParkId": "18635b3e-fa23-4284-89dd-9fcd0aaa9c9c"
+        }
+      ],
+      "info": {
+        "address": "Walibi Holland",
+        "lat": 52.44014,
+        "lng": 5.76749
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

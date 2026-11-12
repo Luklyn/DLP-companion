@@ -128,5 +128,12 @@
       "shows": "https://www.efteling.com/fr/parc/spectacles",
       "restaurants": "https://www.efteling.com/fr/parc/restaurants"
     }
+  },
+  "walibi-holland": {
+    "site": "https://www.walibi.nl/",
+    "list_urls": {
+      "attractions": "https://www.walibi.nl/en/park/attractions",
+      "restaurants": "https://www.walibi.nl/en/park/restaurants"
+    }
   }
 }
