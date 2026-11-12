@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "Code": "aquanura",
+    "UUID Themeparks.wiki": "47784759-d88d-439f-9f14-6bf0206aa722",
+    "Nom": "Aquanura",
+    "Description": "Laissez-vous émerveiller par ce spectacle musical Terminez votre journée à Efteling avec Aquanura - Efteling Symphonica. Ce spectaculaire show Aquanura vous emmène pendant quatorze minutes dans un voyage musical à travers le temps, tandis que les impressionnantes Balises de Lumière font apparaître de magnifiques images sur l’étang Meer van Fantasie.",
+    "Type": "Show Aquatique",
+    "Parc": "Efteling",
+    "Land": "Fantasierijk",
+    "Coordonnées GPS (lat)": 51.648014,
+    "Coordonnées GPS (lng)": 5.045388
+  },
+  {
+    "Code": "caro",
+    "UUID Themeparks.wiki": "d724c3ae-c4a1-4116-9ae6-4cf0407a28f1",
+    "Nom": "CARO, a wonderful Efteling show",
+    "Type": "Spectacle ",
+    "Parc": "Efteling",
+    "Land": "Efteling Theater",
+    "Coordonnées GPS (lat)": 51.648588,
+    "Coordonnées GPS (lng)": 5.04361
+  },
+  {
+    "Code": "drcharlatanscabaretmacabre",
+    "UUID Themeparks.wiki": "9cdd5d03-4567-4039-b5b0-a1827c4dfd22",
+    "Nom": "Dr. Charlatan’s Cabaret Macabre",
+    "Description": "À la lisière de la forêt sinistre Huyverwoud, la famille Charlatan fait la démonstration de ses arts magiques et obscurs ! Laissez-vous émerveiller par ce spectacle musical rempli d’expériences extraordinaires et d’illusions insolites.",
+    "Type": "Spectacle ",
+    "Parc": "Efteling",
+    "Land": "Anderrijk",
+    "Coordonnées GPS (lat)": 51.64829424,
+    "Coordonnées GPS (lng)": 5.04881612
+  },
+  {
+    "Code": "ontmoeteftelingbewoners",
+    "UUID Themeparks.wiki": "36fcb29f-04f6-42c6-b385-5c12bf18becc",
+    "Nom": "Efteling inhabitants",
+    "Type": "Rencontre",
+    "Parc": "Efteling",
+    "Land": "Marerijk",
+    "Coordonnées GPS (lat)": 51.64945035,
+    "Coordonnées GPS (lng)": 5.04463363
+  },
+  {
+    "Code": "jokieenjet",
+    "UUID Themeparks.wiki": "12be9d94-0982-4f1f-9310-d9f37fe5cd3e",
+    "Nom": "Jokie en Jet",
+    "Description": "Jokie et Jet font la fête, et qui dit fête, dit danse ! Mais Jokie ne sait pas encore très bien comment danser. Aiderez-vous Jokie à apprendre sa plus belle danse ? (spectacle en néerlandais)",
+    "Type": "Spectacle ",
+    "Parc": "Efteling",
+    "Land": "Reizenrijk",
+    "Coordonnées GPS (lat)": 51.65205107,
+    "Coordonnées GPS (lng)": 5.05209838
+  },
+  {
+    "Code": "pardoesdetovernar",
+    "UUID Themeparks.wiki": "9722740b-0cba-45e5-bb00-b495acf816f8",
+    "Nom": "Pardoes the magic Jester",
+    "Description": "Rencontrez Pardoes le Magicien de Symbolica. Cet habitant plein de bonne humeur se fera un plaisir de prendre une photo féerique avec vous !",
+    "Type": "Rencontre",
+    "Parc": "Efteling",
+    "Land": "Fantasierijk",
+    "Coordonnées GPS (lat)": 51.65023969,
+    "Coordonnées GPS (lng)": 5.04947249
+  },
+  {
+    "Code": "sprookjesboomerwaseens",
+    "UUID Themeparks.wiki": "12c481c0-5f00-445d-b237-e5888b79be51",
+    "Nom": "Sprookjesboomshow",
+    "Description": "Cendrillon attend et espère depuis si longtemps l’arrivée d’un nouveau Prince. Et au moment où tout semble devenir trop lourd pour elle, Le Petit Chaperon rouge vient à son secours.",
+    "Type": "Spectacle",
+    "Parc": "Efteling",
+    "Land": "Marerijk",
+    "Coordonnées GPS (lat)": 51.65095475,
+    "Coordonnées GPS (lng)": 5.04659649
+  },
+  {
+    "Code": "sprookjessprokkelaar",
+    "UUID Themeparks.wiki": "0faaaa06-fe59-440d-91a0-7745893a5448",
+    "Nom": "The Fairytale Collector",
+    "Type": "Spectacle",
+    "Parc": "Efteling",
+    "Land": "Marerijk",
+    "Coordonnées GPS (lat)": 51.6513432,
+    "Coordonnées GPS (lng)": 5.04805661
+  },
+  {
+    "Code": "dehuyveraars",
+    "UUID Themeparks.wiki": "2ae1b572-222a-4266-bfcf-1948fc43248c",
+    "Nom": "The Huyveraars",
+    "Description": "Osez-vous entrer dans la forêt sinistre Huyverwoud ? Aux abords de Danse Macabre, vous pourriez bien croiser les Huyveraars. Ces âmes mystérieuses semblent protéger l’ancienne abbaye contre l’Innommable. Ou n’est-ce qu’une tromperie de Charlatan ?",
+    "Type": "Rencontre",
+    "Parc": "Efteling",
+    "Land": "Anderrijk",
+    "Coordonnées GPS (lat)": 51.6485422,
+    "Coordonnées GPS (lng)": 5.04836334
+  }
+]
