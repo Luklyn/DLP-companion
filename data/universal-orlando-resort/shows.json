@@ -1,1 +1,302 @@
-[]
+[
+  {
+    "Code": "uor.usf.shows.vamos_bailalo",
+    "UUID Themeparks.wiki": "fa701040-b46a-4291-afb9-b8dc2c8e9a16",
+    "Nom": "¡Vamos! – Báilalo",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.477172,
+    "Coordonnées GPS (lng)": -81.469199
+  },
+  {
+    "Code": "uor.usf.shows.beat_builders",
+    "UUID Themeparks.wiki": "41d282f8-2015-4caa-9591-9faa948e263e",
+    "Nom": "Beat Builders",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.477544,
+    "Coordonnées GPS (lng)": -81.46916
+  },
+  {
+    "Code": "uor.usf.shows.celestina_warbeck_and_the_banshees",
+    "UUID Themeparks.wiki": "1524b67b-4984-4a80-9d9f-753b8482c6f0",
+    "Nom": "Celestina Warbeck and the Banshees",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.479902,
+    "Coordonnées GPS (lng)": -81.469456
+  },
+  {
+    "Code": "uor.ioa.shows.classic_comic_book_characters",
+    "UUID Themeparks.wiki": "ea72aa9c-3d89-4593-9fe8-ff25c88289a8",
+    "Nom": "Classic Comic Book Characters",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "Marvel Super Hero Island",
+    "Coordonnées GPS (lat)": 28.46989,
+    "Coordonnées GPS (lng)": -81.47104
+  },
+  {
+    "Code": "uor.usf.show.dreamworks_character_zone",
+    "UUID Themeparks.wiki": "a54b961b-06d3-492c-88b5-201cb32399c2",
+    "Nom": "DreamWorks Character Zone",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "DreamWorks Land",
+    "Coordonnées GPS (lat)": 28.4781716,
+    "Coordonnées GPS (lng)": -81.4672004
+  },
+  {
+    "Code": "uor.usf.show.dreamWorks_imagination_celebration",
+    "UUID Themeparks.wiki": "c85d936f-c5b7-490b-880b-6f0bf44ba557",
+    "Nom": "DreamWorks Imagination Celebration",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "DreamWorks Land",
+    "Coordonnées GPS (lat)": 28.4789917,
+    "Coordonnées GPS (lng)": -81.4668949
+  },
+  {
+    "Code": "uor.ioa.shows.frog_choir",
+    "UUID Themeparks.wiki": "97b25fe9-eb81-46bd-b57f-8b2fbbe85249",
+    "Nom": "Frog Choir",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "The Wizarding World of Harry Potter - Hogsmeade",
+    "Coordonnées GPS (lat)": 28.472635,
+    "Coordonnées GPS (lng)": -81.473392
+  },
+  {
+    "Code": "uor.ioa.shows.hogwartsalways",
+    "UUID Themeparks.wiki": "fa63f462-74b4-4b1e-96fe-0b6e7e0b31c2",
+    "Nom": "Hogwarts™ Always",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "The Wizarding World of Harry Potter - Hogsmeade",
+    "Coordonnées GPS (lat)": 28.47231,
+    "Coordonnées GPS (lng)": -81.47375
+  },
+  {
+    "Code": "uor.usf.shows.hollywood_character_zone",
+    "UUID Themeparks.wiki": "55222885-493c-4280-b295-6fd7c609f12d",
+    "Nom": "Hollywood Character Zone",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Hollywood",
+    "Coordonnées GPS (lat)": 28.475461,
+    "Coordonnées GPS (lng)": -81.467616
+  },
+  {
+    "Code": "uor.usf.shows.illumination_theater",
+    "UUID Themeparks.wiki": "17dd3a01-3127-4e22-8d73-35680fa8b034",
+    "Nom": "Illumination Theater",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Minion Land",
+    "Coordonnées GPS (lat)": 28.475880741323994,
+    "Coordonnées GPS (lng)": -81.4683399259803
+  },
+  {
+    "Code": "uor.ueu.show.le_cirque_arcanus",
+    "UUID Themeparks.wiki": "9c409ec9-a805-456c-96fc-d867cc5bc81b",
+    "Nom": "Le Cirque Arcanus™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
+    "Coordonnées GPS (lat)": 28.44284,
+    "Coordonnées GPS (lng)": -81.44758
+  },
+  {
+    "Code": "uor.usf.shows.marilyn_and_the_diamond_bellas",
+    "UUID Themeparks.wiki": "bf89766b-1d19-428f-9e68-71e12f25287b",
+    "Nom": "Marilyn and the Diamond Bellas",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.476759192506524,
+    "Coordonnées GPS (lng)": -81.46773453566455
+  },
+  {
+    "Code": "uor.ueu.show.meet_mario_and_luigi",
+    "UUID Themeparks.wiki": "4cd6ac88-3945-49bb-ad20-2ce04a3f9628",
+    "Nom": "Meet Mario and Luigi",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "Super Nintendo World",
+    "Coordonnées GPS (lat)": 28.43913,
+    "Coordonnées GPS (lng)": -81.44807
+  },
+  {
+    "Code": "uor.ueu.show.meet_princess_peach",
+    "UUID Themeparks.wiki": "f6dc44e3-02f4-414d-9adc-c3c342efa275",
+    "Nom": "Meet Princess Peach",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "Super Nintendo World",
+    "Coordonnées GPS (lat)": 28.439343,
+    "Coordonnées GPS (lng)": -81.447997
+  },
+  {
+    "Code": "uor.ioa.shows.meet_spider_man_and_the_marvel_super_heroes",
+    "UUID Themeparks.wiki": "c6c26dd9-bb82-49de-9fca-9245be6a8081",
+    "Nom": "Meet Spider-Man and the Marvel® Super Heroes",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "Marvel Super Hero Island",
+    "Coordonnées GPS (lat)": 28.470814,
+    "Coordonnées GPS (lng)": -81.46975
+  },
+  {
+    "Code": "uor.usf.shows.meet_spongeBob_squarepants",
+    "UUID Themeparks.wiki": "14af192d-dfce-4bdb-bf5c-1c1957499a6a",
+    "Nom": "Meet SpongeBob SquarePants and Friends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "DreamWorks Land",
+    "Coordonnées GPS (lat)": 28.477885,
+    "Coordonnées GPS (lng)": -81.467342
+  },
+  {
+    "Code": "uor.usf.shows.meet_the_transformers",
+    "UUID Themeparks.wiki": "a492aa01-6f29-43f0-9aec-8adcb8da4674",
+    "Nom": "Meet The TRANSFORMERS™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "San Francisco",
+    "Coordonnées GPS (lat)": 28.476183,
+    "Coordonnées GPS (lng)": -81.468079
+  },
+  {
+    "Code": "uor.ueu.show.meet_toothless",
+    "UUID Themeparks.wiki": "9d47d7fe-ff0d-4a52-bf9d-1e07436aa22c",
+    "Nom": "Meet Toothless and Friends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "How to Train Your Dragon - Isle of Berk",
+    "Coordonnées GPS (lat)": 28.44,
+    "Coordonnées GPS (lng)": -81.44511
+  },
+  {
+    "Code": "uor.ioa.shows.oh_.the.stories.youll.hear_",
+    "UUID Themeparks.wiki": "9ad98d6a-e81a-4408-b5df-1ea832fe0b19",
+    "Nom": "Oh! The Stories You'll Hear!™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "Seuss Landing",
+    "Coordonnées GPS (lat)": 28.473174,
+    "Coordonnées GPS (lng)": -81.469966
+  },
+  {
+    "Code": "uor.usf.shows.ollivanders",
+    "UUID Themeparks.wiki": "e99b72a6-37d0-46df-ab11-e9ff6603f259",
+    "Nom": "Ollivanders™ Experience in Diagon Alley™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "The Wizarding World of Harry Potter - Diagon Alley",
+    "Coordonnées GPS (lat)": 28.47964,
+    "Coordonnées GPS (lng)": -81.46973
+  },
+  {
+    "Code": "uor.ioa.shows.ollivanders",
+    "UUID Themeparks.wiki": "d7310719-f158-4d92-a476-13202c7162cd",
+    "Nom": "Ollivanders™ Experience in Hogsmeade™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "The Wizarding World of Harry Potter - Hogsmeade",
+    "Coordonnées GPS (lat)": 28.472809,
+    "Coordonnées GPS (lng)": -81.473077
+  },
+  {
+    "Code": "uor.ioa.shows.raptor_encounter",
+    "UUID Themeparks.wiki": "28f411b9-dacc-47b1-9596-bd1383ce730d",
+    "Nom": "Raptor Encounter",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "Jurassic Park",
+    "Coordonnées GPS (lat)": 28.47096275899029,
+    "Coordonnées GPS (lng)": -81.47335915429483
+  },
+  {
+    "Code": "uor.ioa.shows.seuss_character_zone",
+    "UUID Themeparks.wiki": "f6d4294c-8825-4712-a891-36d45b5eb0f4",
+    "Nom": "Seuss Character Zone",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "Seuss Landing",
+    "Coordonnées GPS (lat)": 28.473045,
+    "Coordonnées GPS (lng)": -81.47006
+  },
+  {
+    "Code": "uor.usf.show.shreks.swamp.meet",
+    "UUID Themeparks.wiki": "333c6657-2a9f-4423-a7a2-bf0230bf669a",
+    "Nom": "Shrek’s Swamp Meet",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "DreamWorks Land",
+    "Coordonnées GPS (lat)": 28.4781559,
+    "Coordonnées GPS (lng)": -81.4669
+  },
+  {
+    "Code": "uor.usf.shows.blues_brothers",
+    "UUID Themeparks.wiki": "2f4690b4-72b0-4845-bcce-9e735397d60b",
+    "Nom": "The Blues Brothers® Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.47684,
+    "Coordonnées GPS (lng)": -81.46916
+  },
+  {
+    "Code": "uor.usf.shows.the_bourne_stuntacular",
+    "UUID Themeparks.wiki": "2436bad1-f319-44d5-98ac-a283b81956c6",
+    "Nom": "The Bourne Stuntacular",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Hollywood",
+    "Coordonnées GPS (lat)": 28.475976,
+    "Coordonnées GPS (lng)": -81.466979
+  },
+  {
+    "Code": "uor.usf.shows.thetalesofbeedlethebard",
+    "UUID Themeparks.wiki": "ec4c8603-5ccd-4af2-a7b1-0684664c0bc1",
+    "Nom": "The Tales of Beedle the Bard",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Florida",
+    "Land": "Production Central",
+    "Coordonnées GPS (lat)": 28.479921,
+    "Coordonnées GPS (lng)": -81.469499
+  },
+  {
+    "Code": "uor.ueu.shows.the_untrainable_dragon",
+    "UUID Themeparks.wiki": "e3dd1ecd-f674-4aa7-83d9-9c7b4a8c886d",
+    "Nom": "The Untrainable Dragon",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "How to Train Your Dragon - Isle of Berk",
+    "Coordonnées GPS (lat)": 28.44004,
+    "Coordonnées GPS (lng)": -81.44463
+  },
+  {
+    "Code": "uor.ioa.shows.triwizard_spirit_rally",
+    "UUID Themeparks.wiki": "cc2f2601-09d2-43b8-83ef-2a367b929761",
+    "Nom": "Triwizard Spirit Rally",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Islands of Adventure",
+    "Land": "The Wizarding World of Harry Potter - Hogsmeade",
+    "Coordonnées GPS (lat)": 28.4725985,
+    "Coordonnées GPS (lng)": -81.473455
+  },
+  {
+    "Code": "uor.ueu.shows.celestialgoodnight",
+    "UUID Themeparks.wiki": "a872883d-761b-4dda-a124-5dadcfa9e5ae",
+    "Nom": "Universal Celestial Goodnight",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Epic Universe",
+    "Land": "Celestial Park",
+    "Coordonnées GPS (lat)": 28.44085,
+    "Coordonnées GPS (lng)": -81.448057
+  }
+]
