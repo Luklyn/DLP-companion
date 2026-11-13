@@ -1,1 +1,732 @@
-[]
+[
+  {
+    "Code": "entFriendtasticParade;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "8629bca5-6690-4877-b741-e0d8ffd660c4",
+    "Nom": "“Friendtastic!” Parade",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Divers",
+    "Coordonnées GPS (lat)": 22.31354228058916,
+    "Coordonnées GPS (lng)": 114.04090840216234
+  },
+  {
+    "Code": "entMomentousNighttimeSpectacular;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "edb01f9f-b3ef-4929-b342-4f151622ae16",
+    "Nom": "“Momentous” Nighttime Spectacular",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312581254235926,
+    "Coordonnées GPS (lng)": 114.04123940400545
+  },
+  {
+    "Code": "entStreetEntertainmentAtAdventureland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "aa40711e-d322-41ee-9460-92fedb7b5612",
+    "Nom": "Atmosphere Entertainment at Adventureland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.31171420413192,
+    "Coordonnées GPS (lng)": 114.04206441669785
+  },
+  {
+    "Code": "charRoamingCruella;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "3780539f-caae-47e2-9c5f-ce94c3acfb69",
+    "Nom": "Cruella De Vil Unleashed! at Main Street U.S.A",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31286718323439,
+    "Coordonnées GPS (lng)": 114.04268943931059
+  },
+  {
+    "Code": "charGoofyAA;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "d8257272-4182-453b-86e3-1ac927d1d806",
+    "Nom": "Draw & Meet with Goofy at Animation Academy",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31338611800014,
+    "Coordonnées GPS (lng)": 114.04383147071749
+  },
+  {
+    "Code": "charMickeyAA;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "7f4245ed-1b38-4fd3-9323-1a253d9808fe",
+    "Nom": "Draw & Meet with Mickey Mouse at Animation Academy",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31338611800014,
+    "Coordonnées GPS (lng)": 114.04383147071749
+  },
+  {
+    "Code": "charMinnieAA;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "aa880f4e-588c-4ee7-b096-4edecb88df05",
+    "Nom": "Draw & Meet with Minnie Mouse at Animation Academy",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31338611800014,
+    "Coordonnées GPS (lng)": 114.04383147071749
+  },
+  {
+    "Code": "charPlutoAA;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "e19ac003-5865-4cab-9447-d7c40a573d4c",
+    "Nom": "Draw & Meet with Pluto at Animation Academy",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31338611800014,
+    "Coordonnées GPS (lng)": 114.04383147071749
+  },
+  {
+    "Code": "entEmbarkOnEpicDaytimeMissions;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "a8b7d6e5-ea95-492d-897c-ce118041a288",
+    "Nom": "Embark on Epic Daytime Missions",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Divers",
+    "Coordonnées GPS (lat)": 22.31395520294397,
+    "Coordonnées GPS (lng)": 114.0425614429089
+  },
+  {
+    "Code": "entFestivalOfTheLionKing;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "5b0ed7a9-4bb5-40d1-ac2d-597213d1f205",
+    "Nom": "Festival of The Lion King",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311737140803057,
+    "Coordonnées GPS (lng)": 114.04319644324418
+  },
+  {
+    "Code": "charRoamGastonBelle;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "0445cd37-41e3-4d98-83f4-ba61281b5438",
+    "Nom": "Get into Gaston and Belle’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.311838286400825,
+    "Coordonnées GPS (lng)": 114.04022037737394
+  },
+  {
+    "Code": "charRoamingJafarJasmine;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "74ccf181-7aaa-4038-980e-e2ddf783cecf",
+    "Nom": "Get into Jafar and Jasmine’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.311236261241277,
+    "Coordonnées GPS (lng)": 114.04068938315146
+  },
+  {
+    "Code": "charRoamingTremaine;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "1a859ef7-66ab-4efd-8220-ab9bae67ac4d",
+    "Nom": "Get into Lady Tremaine and her daughters' Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312472269795304,
+    "Coordonnées GPS (lng)": 114.04085039475838
+  },
+  {
+    "Code": "charRoamingLokiThor;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "6442249e-ac00-403c-a423-bd36c8928eb4",
+    "Nom": "Get into Loki and Thor’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.313708214062867,
+    "Coordonnées GPS (lng)": 114.04231143549866
+  },
+  {
+    "Code": "charRoamingMaleficentAurora;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "2251ba11-06d5-4997-b0c8-a947a9a816ce",
+    "Nom": "Get into Maleficent and Aurora’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312472269795304,
+    "Coordonnées GPS (lng)": 114.04085039475838
+  },
+  {
+    "Code": "charRoamingQueenOfHeartsAlice;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "921d0aee-bdb0-43e0-aacc-c482d7de26c6",
+    "Nom": "Get into Queen of Hearts and Alice’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312670294091237,
+    "Coordonnées GPS (lng)": 114.04029638399986
+  },
+  {
+    "Code": "charRoamingTheQueenSnowWhite;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "d0f4c2eb-59cc-4b0e-af94-d5d577578dfa",
+    "Nom": "Get into The Queen and Snow White’s Story",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312731255465323,
+    "Coordonnées GPS (lng)": 114.04125240522177
+  },
+  {
+    "Code": "charBlkPantherTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "fc4c91e5-dea1-4f6c-b3c3-a5b58fc5078e",
+    "Nom": "Heroic Encounter with Black Panther at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charBlkWidowTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "0ac74266-9aaa-4dce-ab68-31c05761911c",
+    "Nom": "Heroic Encounter with Black Widow at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charCapAmericaTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "1d11955e-60e3-4b52-a29d-535fceb9449c",
+    "Nom": "Heroic Encounter with Captain America at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charCapMarvelTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "977004f5-cd57-402e-b69d-4f065a3daa4f",
+    "Nom": "Heroic Encounter with Captain Marvel at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charDrStrangeTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "02f33cb9-6d77-43df-ba2f-d7fcef3c5ee8",
+    "Nom": "Heroic Encounter with Doctor Strange at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31403123837492,
+    "Coordonnées GPS (lng)": 114.04192642815104
+  },
+  {
+    "Code": "charGamoraTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "93896829-ad4e-464e-ae90-dac4172fc19a",
+    "Nom": "Heroic Encounter with Gamora at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charIronMan;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "c38e44b8-d82b-489d-ab6a-f04dc59b1b8c",
+    "Nom": "Heroic Encounter with Iron Man at the Iron Man Tech Showcase",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.314107210753477,
+    "Coordonnées GPS (lng)": 114.04245444116653
+  },
+  {
+    "Code": "charSpidermanTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "14bbfef3-00b6-4bc0-8f0e-0d521f8149cc",
+    "Nom": "Heroic Encounter with Spider-Man at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charThorTland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "e408b1f8-ec43-425d-9b16-8a6106f859ca",
+    "Nom": "Heroic Encounter with Thor at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "entLetsGetWicked;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "28575b79-2227-4ff0-bddd-687d2cd483ff",
+    "Nom": "Let’s Get Wicked",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.311737140803057,
+    "Coordonnées GPS (lng)": 114.04319644324418
+  },
+  {
+    "Code": "charOluMelPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "25517d07-b28b-4199-8696-8ae6cb33307c",
+    "Nom": "Meet ‘Olu Mel at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "entAlbertCharlotte;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "b545375e-6cd8-4b5e-beec-d1ea819d8712",
+    "Nom": "Meet Albert and Charlotte",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Mystic Point",
+    "Coordonnées GPS (lat)": 22.31010383873836,
+    "Coordonnées GPS (lng)": 114.04053765252186
+  },
+  {
+    "Code": "charMickeyFriendsHalloween;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "2e074553-455d-4a9e-b2e4-c5150cf76c82",
+    "Nom": "Meet and Greet with Mickey and pals at Town Square Gazebo and Main Street U.S.A",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31297012204461,
+    "Coordonnées GPS (lng)": 114.04370346469405
+  },
+  {
+    "Code": "charBoPeep;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "10e7f0d2-cec2-4975-a2d2-9d9d71bda9c7",
+    "Nom": "Meet Bo Peep at Barrel of Fun",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310889299082994,
+    "Coordonnées GPS (lng)": 114.03946135590459
+  },
+  {
+    "Code": "charBuzzLightyearNew;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "f0156a7e-8fa3-4f04-b2c9-d01a1c6549d2",
+    "Nom": "Meet Buzz Lightyear at Barrel of Fun",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310889299082994,
+    "Coordonnées GPS (lng)": 114.03946135590459
+  },
+  {
+    "Code": "charCookieAnnPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "ff05c779-6f14-4578-8a5d-a58940881e0d",
+    "Nom": "Meet CookieAnn at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "charDisneyFriendsKaribuni;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "21e0b878-b30b-4105-8dd8-0bd89b0855dd",
+    "Nom": "Meet Disney Friends at Adventureland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311521175897777,
+    "Coordonnées GPS (lng)": 114.04255142641708
+  },
+  {
+    "Code": "charDuffyPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "fd915f65-63af-4585-8235-a40c7bbf534f",
+    "Nom": "Meet Duffy at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "charElsa;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "ad80fcbe-e039-416d-a8ac-154bc4f0a4f6",
+    "Nom": "Meet Elsa at World of Frozen",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.312486318289857,
+    "Coordonnées GPS (lng)": 114.03950536652393
+  },
+  {
+    "Code": "charGelatoniPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "bd940037-82ba-4e5a-9c92-cd4a55cfb022",
+    "Nom": "Meet Gelatoni at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "entMeetDisneyPush;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "3d4bebe8-e579-4f32-a1d3-4a63e64aae03",
+    "Nom": "Meet Halloween Disney PUSH in the Park",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Parc entier",
+    "Coordonnées GPS (lat)": 22.31354228058916,
+    "Coordonnées GPS (lng)": 114.04090840216234
+  },
+  {
+    "Code": "charJessieNew;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "c9760c15-312c-47a3-8560-0feb69f0b858",
+    "Nom": "Meet Jessie at Barrel of Fun",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310889299082994,
+    "Coordonnées GPS (lng)": 114.03946135590459
+  },
+  {
+    "Code": "charKristoff;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "a1019f43-9107-4489-be50-f3aba3800675",
+    "Nom": "Meet Kristoff at World of Frozen",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.312767328282,
+    "Coordonnées GPS (lng)": 114.03928936365641
+  },
+  {
+    "Code": "charTremaineDaughters;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "e2b95043-44e1-4b4c-a077-113be6a6e0d1",
+    "Nom": "Meet Lady Tremaine, Anastasia and Drizella",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.31300624722217,
+    "Coordonnées GPS (lng)": 114.0415014125014
+  },
+  {
+    "Code": "charLinaBellPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "57a0a3b6-f6f0-4641-9bbc-5749d0a30dfa",
+    "Nom": "Meet LinaBell at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "charLoki;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "4febd330-9004-468b-904c-08e416f5cd82",
+    "Nom": "Meet Loki at Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charLordHenryMystic;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "7a9dd96b-8149-4e68-8b5e-d7d991e24b80",
+    "Nom": "Meet Lord Henry Mystic",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Mystic Point",
+    "Coordonnées GPS (lat)": 22.310217040547922,
+    "Coordonnées GPS (lng)": 114.04111912172976
+  },
+  {
+    "Code": "charLotso;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "f703150a-7200-4baf-a7fd-d8b35e7dd025",
+    "Nom": "Meet Lotso at Toy Story Land",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310889299082994,
+    "Coordonnées GPS (lng)": 114.03946135590459
+  },
+  {
+    "Code": "charMoanaAdventureland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "77377bf3-e9db-4769-8576-0139fd6cbd4f",
+    "Nom": "Meet Moana at Adventureland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.31192523586659,
+    "Coordonnées GPS (lng)": 114.04146840479993
+  },
+  {
+    "Code": "charNickJudyKMP;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "732a0276-2889-46bd-8f6f-d4c671167042",
+    "Nom": "Meet Nick and Judy at Karibuni Marketplace",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311521175897777,
+    "Coordonnées GPS (lng)": 114.04255142641708
+  },
+  {
+    "Code": "charNickJudyAdventureland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "366726b0-9c8b-43a7-95b8-62d96f90ca8e",
+    "Nom": "Meet Nick and Judy in Adventureland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311512710359736,
+    "Coordonnées GPS (lng)": 114.04036805986091
+  },
+  {
+    "Code": "charOaken;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "19f08b26-cb51-4290-ad6c-18c934977235",
+    "Nom": "Meet Oaken at World of Frozen",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.312767328282,
+    "Coordonnées GPS (lng)": 114.03928936365641
+  },
+  {
+    "Code": "charPocahontasAdventureland;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "c3f8bd05-2a24-4ff2-b6d2-2d649bd41840",
+    "Nom": "Meet Pocahontas at Adventureland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311521175897777,
+    "Coordonnées GPS (lng)": 114.04255142641708
+  },
+  {
+    "Code": "charPrincessQueenCA;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "2fa83cdc-f1fa-4aac-91f3-d89f704641e5",
+    "Nom": "Meet Princesses & Queens at the Castle Aisle",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.313082351268704,
+    "Coordonnées GPS (lng)": 114.04148873779508
+  },
+  {
+    "Code": "charPrincessQueen;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "12985ba4-4329-41e6-bddc-b70b6827f72a",
+    "Nom": "Meet Princesses & Queens at The Royal Reception Hall",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312626254871056,
+    "Coordonnées GPS (lng)": 114.04123740424058
+  },
+  {
+    "Code": "charAnna;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "13f0098b-3d4e-43fb-bc9d-bd46d6369a48",
+    "Nom": "Meet Queen Anna at World of Frozen",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.312486318289857,
+    "Coordonnées GPS (lng)": 114.03950536652393
+  },
+  {
+    "Code": "charScarletWitch;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "0ccf3f67-f6fe-4993-a477-6d54ad756c25",
+    "Nom": "Meet Scarlet Witch at the Tomorrowland Station",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.31374168379805,
+    "Coordonnées GPS (lng)": 114.04126510305062
+  },
+  {
+    "Code": "charShellieMayPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "8aca0f2e-f201-4c09-a922-483ae642694e",
+    "Nom": "Meet ShellieMay at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "charStellaLouPlayHouse;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "42d071a0-6795-4db6-90fb-ed0380cddcf3",
+    "Nom": "Meet StellaLou at Duffy and Friends Play House",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312158194258235,
+    "Coordonnées GPS (lng)": 114.04234742639824
+  },
+  {
+    "Code": "charTinkerBellNew;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "8be56179-7c26-429b-9de9-d3e1abb3b7c6",
+    "Nom": "Meet Tinker Bell at Fairy Tale Forest",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312087300995483,
+    "Coordonnées GPS (lng)": 114.03988937206906
+  },
+  {
+    "Code": "charWinnieFriendsHalloween;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "4dd05c86-0097-40b7-ad27-fb2a2d8a4cdb",
+    "Nom": "Meet Winnie the Pooh and Friends at Halloween Time Festival Gardens",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312766359540902,
+    "Coordonnées GPS (lng)": 114.03991763528748
+  },
+  {
+    "Code": "charWoodyNew;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "5b9b133a-cbfa-4e52-85ac-73893f9259b2",
+    "Nom": "Meet Woody at Barrel of Fun",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310889299082994,
+    "Coordonnées GPS (lng)": 114.03946135590459
+  },
+  {
+    "Code": "entMickeyAndTheWondrousBook;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "bc3fea10-4d26-4bda-aa39-e2503a05cd59",
+    "Nom": "Mickey and the Wondrous Book",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.31400232802486,
+    "Coordonnées GPS (lng)": 114.03982238068114
+  },
+  {
+    "Code": "entMickeyHappyHalloweenAdventure;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "77fcbfac-e1eb-4a3d-ba1c-0e95ad3c430a",
+    "Nom": "Mickey’s Happy Halloween Adventure",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Parc entier",
+    "Coordonnées GPS (lat)": 22.312626254871056,
+    "Coordonnées GPS (lng)": 114.04123740424058
+  },
+  {
+    "Code": "entMoanaHomecomingCelebration;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "2f3d0809-8344-4af1-8b5a-b0f44a1774e7",
+    "Nom": "Moana: A Homecoming Celebration",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.31181122157542,
+    "Coordonnées GPS (lng)": 114.04173941005516
+  },
+  {
+    "Code": "entNutsforNuggets;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "acf42dc5-af1e-4bd9-9af7-4d08f060b851",
+    "Nom": "Nuts for Nuggets",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Mystic Point",
+    "Coordonnées GPS (lat)": 22.310021673854152,
+    "Coordonnées GPS (lng)": 114.04160081390816
+  },
+  {
+    "Code": "entPlayhouseInTheWoods;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "e3cb0140-b173-4101-8bc6-3e875fbcb08e",
+    "Nom": "Playhouse in the Woods",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Divers",
+    "Coordonnées GPS (lat)": 22.313027337317408,
+    "Coordonnées GPS (lng)": 114.03908636088386
+  },
+  {
+    "Code": "entTheRoyalArendellianConjuror;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "fd6a31ef-76c0-40e1-820c-524cc6e3defa",
+    "Nom": "The Royal Arendellian Conjuror",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.31252932108338,
+    "Coordonnées GPS (lng)": 114.03943036524005
+  },
+  {
+    "Code": "entTheRoyalArendellianTroubadours;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "3dbdfaba-3d5b-4860-9069-1df89e913ade",
+    "Nom": "The Royal Arendellian Troubadours",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.312364325180738,
+    "Coordonnées GPS (lng)": 114.03921035992998
+  },
+  {
+    "Code": "entToySoldierBootCamp;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "a00784e7-ae1c-49b6-b6b9-d65bdf861718",
+    "Nom": "Toy Soldier Boot Camp",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310560293663038,
+    "Coordonnées GPS (lng)": 114.03950535451146
+  },
+  {
+    "Code": "entUninvited;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "ef5f7427-cab7-446d-b613-af25de5d3b6f",
+    "Nom": "Uninvited! A Villains Takeover Party",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Divers",
+    "Coordonnées GPS (lat)": 22.31285016857108,
+    "Coordonnées GPS (lng)": 114.04293744514143
+  },
+  {
+    "Code": "entTrickOrTreatFL;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "719b95dc-f56d-4a15-91bd-2749920be506",
+    "Nom": "Wickedly Fun Trick-or-Treating at Fantasyland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.31185828690268,
+    "Coordonnées GPS (lng)": 114.04021337735514
+  },
+  {
+    "Code": "entTrickOrTreatMP;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "33ce9223-ac18-4339-985b-29fed7823aa9",
+    "Nom": "Wickedly Fun Trick-or-Treating at Mystic Point",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Mystic Point",
+    "Coordonnées GPS (lat)": 22.31002626469186,
+    "Coordonnées GPS (lng)": 114.040204364286
+  },
+  {
+    "Code": "entTrickOrTreatTL;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "a9f84e72-5f84-4c7e-85f7-9426fa8b24a6",
+    "Nom": "Wickedly Fun Trick-or-Treating at Tomorrowland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.313953203831918,
+    "Coordonnées GPS (lng)": 114.04254544251079
+  },
+  {
+    "Code": "entTrickOrTreatTSL;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "e2f4f7e7-c86a-4093-a3ab-c8aceeb50486",
+    "Nom": "Wickedly Fun Trick-or-Treating at Toy Story Land",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.311445296721217,
+    "Coordonnées GPS (lng)": 114.03977036566145
+  },
+  {
+    "Code": "entTrickOrTreatFG;entityType=Entertainment;destination=hkdl",
+    "UUID Themeparks.wiki": "f4efe743-31df-4684-9834-40bf08c49df5",
+    "Nom": "Wickedly Fun Trick-or-Treating in Fantasy Gardens",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.31295630430869,
+    "Coordonnées GPS (lng)": 114.04011538174943
+  }
+]

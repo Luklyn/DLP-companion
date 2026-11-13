@@ -1,1 +1,173 @@
-[]
+[
+  {
+    "Code": "dineClopinsFestivalofFoods;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "180436c3-8e3a-463e-973c-9b153ca43054",
+    "Nom": "Clopin's Festival of Foods",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/clopins-festival-of-foods.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.31323203830804,
+    "Coordonnées GPS (lng)": 114.0406121504822
+  },
+  {
+    "Code": "dineCometCafe;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "73a4fe71-3dfb-4377-bd9b-8732b9d03400",
+    "Nom": "Comet Cafe",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/comet-cafe.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.313403243855365,
+    "Coordonnées GPS (lng)": 114.04166941868051
+  },
+  {
+    "Code": "dineExplorersClubRestaurant;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "aa85fb12-11e2-4668-bfa7-345465759390",
+    "Nom": "Explorer's Club Restaurant",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/explorers-club-restaurant.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Mystic Point",
+    "Coordonnées GPS (lat)": 22.30994325384521,
+    "Coordonnées GPS (lng)": 114.04047736909585
+  },
+  {
+    "Code": "dineGoldenCrocusInn;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "9a606c4c-12e6-4f33-b69d-0c48347b9951",
+    "Nom": "Golden Crocus Inn",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/golden-crocus-inn.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "World of Frozen",
+    "Coordonnées GPS (lat)": 22.31232632432433,
+    "Coordonnées GPS (lng)": 114.0392233599805
+  },
+  {
+    "Code": "dineJessiesSnackRoundup;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "77447876-1602-47e2-aadb-751d57ef2f7d",
+    "Nom": "Jessie's Snack Roundup",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/jessies-snack-roundup.pdf",
+    "Type": "A emporter",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Toy Story Land",
+    "Coordonnées GPS (lat)": 22.310203281313516,
+    "Coordonnées GPS (lng)": 114.03976735703294,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dineKaribuniMarketplaceCartAdventureland;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "efd6bf33-d10c-493c-89a0-8968b328ae3c",
+    "Nom": "Karibuni Grill",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/karibuni-grill.pdf",
+    "Type": "A emporter",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311496180845886,
+    "Coordonnées GPS (lng)": 114.0424564240322,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dineMarketHouseBakery;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "ae5cbedd-1f71-46b0-a171-535b37bb789f",
+    "Nom": "Main Street Bakery",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/main-street-bakery.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31297316020714,
+    "Coordonnées GPS (lng)": 114.04309944988672,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dineMainStreetCornerCafeHostedbyCocaCola;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "5be497d6-7d52-4a4d-bbba-54707eaf6b24",
+    "Nom": "Main Street Corner Cafe Hosted by Coca-Cola®",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/main-street-corner-cafe-hosted-by-coca-cola.pdf",
+    "Type": "Service à table",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31286319254186,
+    "Coordonnées GPS (lng)": 114.04252443536082
+  },
+  {
+    "Code": "dineMarketHouse;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "e692d161-b180-4135-a6f4-d4a28bd5ffd4",
+    "Nom": "Market House",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/market-house.pdf",
+    "Type": "A emporter",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31297316020714,
+    "Coordonnées GPS (lng)": 114.04309944988672,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dineMidtownDelights;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "6121e123-f648-4f72-b625-ca2c50ed41c2",
+    "Nom": "Midtown Delights",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/midtown-delights.pdf",
+    "Type": "A emporter",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.31287118167026,
+    "Coordonnées GPS (lng)": 114.04271744000552,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dinePlazaInn;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "9c1961f2-f009-4c1a-9046-8507839fb4f4",
+    "Nom": "Plaza Inn",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/plaza-inn.pdf",
+    "Type": "Service à table",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Main Street, U.S.A.",
+    "Coordonnées GPS (lat)": 22.312463191660633,
+    "Coordonnées GPS (lng)": 114.04245843111717,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dineRiverViewCafe;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "6a82a386-9229-4d30-b621-dec8393de5a6",
+    "Nom": "River View Cafe",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/river-view-cafe.pdf",
+    "Type": "Service à table",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.31146323983733,
+    "Coordonnées GPS (lng)": 114.04126139700774
+  },
+  {
+    "Code": "dineRoyalBanquetHall;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "00b9c3b3-7458-4334-8e64-697c995a364a",
+    "Nom": "Royal Banquet Hall",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/royal-banquet-hall.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Fantasyland",
+    "Coordonnées GPS (lat)": 22.312243267605876,
+    "Coordonnées GPS (lng)": 114.04083539300476
+  },
+  {
+    "Code": "dineStarlineDiner;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "d8c70785-10c0-4288-b095-a0ed03071fa0",
+    "Nom": "Starliner Diner",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/starliner-diner.pdf",
+    "Type": "Restauration rapide",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Tomorrowland",
+    "Coordonnées GPS (lat)": 22.313343213681208,
+    "Coordonnées GPS (lng)": 114.04224043166326
+  },
+  {
+    "Code": "dineWayfindersTable;entityType=restaurant;destination=hkdl",
+    "UUID Themeparks.wiki": "e80ab806-4d44-4334-ad36-4f5418b84824",
+    "Nom": "Wayfinders' Table",
+    "Menu": "https://www.hongkongdisneyland.com/restaurant-menu/wayfinders-table.pdf",
+    "Type": "A emporter",
+    "Parc": "Hong Kong Disneyland Park",
+    "Land": "Adventureland",
+    "Coordonnées GPS (lat)": 22.311873205701573,
+    "Coordonnées GPS (lng)": 114.04206941796559
+  }
+]
