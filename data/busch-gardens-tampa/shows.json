@@ -1,1 +1,372 @@
-[]
+[
+  {
+    "Code": "68d57484-125b-46a8-9a00-c14c2ade5159",
+    "UUID Themeparks.wiki": "f93069bf-ce72-45e3-8646-8de8b2721f63",
+    "Nom": "Animal Enrichment Presentation",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0366307,
+    "Coordonnées GPS (lng)": -82.4214835
+  },
+  {
+    "Code": "22836b95-600f-4825-824a-df3092cfc3fe",
+    "UUID Themeparks.wiki": "817ba087-425d-4519-896e-3321a530bbe6",
+    "Nom": "Animal Meet and Greet",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0366307,
+    "Coordonnées GPS (lng)": -82.4214835
+  },
+  {
+    "Code": "0557be34-c30e-4441-884d-db6bf398850c",
+    "UUID Themeparks.wiki": "0acf3cee-db12-4278-8597-1500aea53a3e",
+    "Nom": "Animal Nutrition Demonstration",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Nairobi",
+    "Coordonnées GPS (lat)": 28.0366307,
+    "Coordonnées GPS (lng)": -82.4214835
+  },
+  {
+    "Code": "b3154925-08f6-4cf0-8760-f7da964a6ddb",
+    "UUID Themeparks.wiki": "c38732d5-9ee9-45ae-b873-65216954f17a",
+    "Nom": "Animal Tales",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0383593299109,
+    "Coordonnées GPS (lng)": -82.4230609264492
+  },
+  {
+    "Code": "edf05870-5872-4ef0-9593-1d2efbecd9cb",
+    "UUID Themeparks.wiki": "55c55166-b86d-4e39-a7a5-92a673e1259b",
+    "Nom": "Animal Wellness Exam",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Nairobi",
+    "Coordonnées GPS (lat)": 28.0366307,
+    "Coordonnées GPS (lng)": -82.4214835
+  },
+  {
+    "Code": "921e4697-80ec-4102-a8c9-24b15b235b16",
+    "UUID Themeparks.wiki": "2bd775b3-ad86-42ff-aacc-1fcf1db9fd1b",
+    "Nom": "Cirque X-Scream",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.0373534,
+    "Coordonnées GPS (lng)": -82.4248118
+  },
+  {
+    "Code": "f3860941-7e2f-466f-8696-062f445a3b45",
+    "UUID Themeparks.wiki": "470f4ac0-2f97-4ddd-be4c-7aa96cd29192",
+    "Nom": "Conservation Connection",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Bird Gardens",
+    "Coordonnées GPS (lat)": 28.0383593299109,
+    "Coordonnées GPS (lng)": -82.4230609264492
+  },
+  {
+    "Code": "25518e37-f704-471e-a7b3-9665f35e619c",
+    "UUID Themeparks.wiki": "2923eac1-3ddb-4c2d-808f-f1ec8cb00f8d",
+    "Nom": "Costume Parade",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0341862099169,
+    "Coordonnées GPS (lng)": -82.4240708353692
+  },
+  {
+    "Code": "9769d659-b632-4756-9cc0-71983446d498",
+    "UUID Themeparks.wiki": "f820f01b-a2bd-4910-b1f5-91ea88152650",
+    "Nom": "Elmo and the Bookaneers",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0345701,
+    "Coordonnées GPS (lng)": -82.4257666
+  },
+  {
+    "Code": "2464e791-2900-405c-b82a-ac3e4e5d697d",
+    "UUID Themeparks.wiki": "28a64e84-dcd6-4152-924e-fa4ad1940a08",
+    "Nom": "Fiends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.0373437657439,
+    "Coordonnées GPS (lng)": -82.4229741324389
+  },
+  {
+    "Code": "18f624c6-ee6a-47a0-9fdf-2ef0ca875e43",
+    "UUID Themeparks.wiki": "3dd9a935-186e-4e10-9d7f-16d37c644de2",
+    "Nom": "Giraffe Talks",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0366406166858,
+    "Coordonnées GPS (lng)": -82.4215544780199
+  },
+  {
+    "Code": "11d6a181-beda-43db-b0bf-9afe90d65e26",
+    "UUID Themeparks.wiki": "de6878a4-623a-4212-afe6-a5536f034bda",
+    "Nom": "Halloween Dance Party with Sesame Street® Friends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.0352240427137,
+    "Coordonnées GPS (lng)": -82.4252295776489
+  },
+  {
+    "Code": "fec72df2-61dd-4ddb-8395-55b23068e8be",
+    "UUID Themeparks.wiki": "3edad692-3e65-4452-9598-71c450ea34d7",
+    "Nom": "Happy Happenings",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0345701,
+    "Coordonnées GPS (lng)": -82.4257666
+  },
+  {
+    "Code": "3a26bbe6-eb2f-40fb-92c6-096fcb544e36",
+    "UUID Themeparks.wiki": "bd80a12f-edb2-4224-8a7e-5a6de89f6c5e",
+    "Nom": "Kandy's Spooktacular Celebration Storytime",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.0340866116157,
+    "Coordonnées GPS (lng)": -82.4240520626031
+  },
+  {
+    "Code": "9f28785c-a11a-47b9-9e31-35f4719d2f90",
+    "UUID Themeparks.wiki": "eb86af8b-854f-4c3c-9312-1abc76ddeeaf",
+    "Nom": "Keeper Talk: Alligators",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0339842956579,
+    "Coordonnées GPS (lng)": -82.4218342915301
+  },
+  {
+    "Code": "e8f73457-477a-4faf-af58-ded2b2965f04",
+    "UUID Themeparks.wiki": "cee16760-b10f-423e-98cf-69af0d90e0c8",
+    "Nom": "Keeper Talk: Animal Connections",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.035200555674,
+    "Coordonnées GPS (lng)": -82.4219394465415
+  },
+  {
+    "Code": "a34c9557-32c8-4494-bd03-0d7f2a3f59c1",
+    "UUID Themeparks.wiki": "f45ee904-182a-46b9-b911-98f8ff88c3b4",
+    "Nom": "Keeper Talk: Cheetahs",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Cheetah Hunt Plaza",
+    "Coordonnées GPS (lat)": 28.0339561980815,
+    "Coordonnées GPS (lng)": -82.4202434338505
+  },
+  {
+    "Code": "52630126-a2a7-4cf6-a59a-2c5ca1b2db86",
+    "UUID Themeparks.wiki": "b1efcf34-5606-4398-9cb1-c6b505be1fca",
+    "Nom": "Keeper Talk: Chimpanzees",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Myombe Reserve",
+    "Coordonnées GPS (lat)": 28.034477066643,
+    "Coordonnées GPS (lng)": -82.4215842103139
+  },
+  {
+    "Code": "7cebf502-1376-41f1-8c20-3dc79dcdedb2",
+    "UUID Themeparks.wiki": "4e00aa1b-b58d-40fb-bbe9-31665f74af09",
+    "Nom": "Keeper Talk: Elephant",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Nairobi",
+    "Coordonnées GPS (lat)": 28.0370023497473,
+    "Coordonnées GPS (lng)": -82.4217229824793
+  },
+  {
+    "Code": "67be3ce0-cc35-4b2c-9652-ab68d3c93cde",
+    "UUID Themeparks.wiki": "4a1e1bbe-a027-4b90-8feb-8573cb6dd8c9",
+    "Nom": "Keeper Talk: Gorillas",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Myombe Reserve",
+    "Coordonnées GPS (lat)": 28.034477066643,
+    "Coordonnées GPS (lng)": -82.4215842103139
+  },
+  {
+    "Code": "1c83615c-1372-4ac4-aab6-a154b59868b2",
+    "UUID Themeparks.wiki": "e4d968d5-4303-40cb-83d2-3c5ca83ee39c",
+    "Nom": "Keeper Talk: Hippos",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Edge of Africa",
+    "Coordonnées GPS (lat)": 28.0352837833738,
+    "Coordonnées GPS (lng)": -82.4202905519397
+  },
+  {
+    "Code": "23b23ec1-296a-48fe-8809-a5289034d02a",
+    "UUID Themeparks.wiki": "128ffafd-d9bd-4df1-9ae9-0370cf7f07c6",
+    "Nom": "Keeper Talk: Penguin",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Nairobi",
+    "Coordonnées GPS (lat)": 28.0350324,
+    "Coordonnées GPS (lng)": -82.4211613
+  },
+  {
+    "Code": "f5256182-3fcd-4394-b32a-19e3cbcdf4a5",
+    "UUID Themeparks.wiki": "84d4f3d8-616f-45a8-99ab-88209c2c9d60",
+    "Nom": "Keeper Talk: Red-Knobbed Hornbill",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.034861,
+    "Coordonnées GPS (lng)": -82.421639
+  },
+  {
+    "Code": "d2caa4d8-8ed0-4e6a-a65b-ce378bc0f7d6",
+    "UUID Themeparks.wiki": "ae70bdb1-2f3f-4ae4-b8fa-196b396e12ea",
+    "Nom": "Keeper Talk: Ring-Tailed Lemur",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0348719989139,
+    "Coordonnées GPS (lng)": -82.4203849081109
+  },
+  {
+    "Code": "34e07f8c-a14a-47b8-b961-bdd621f3c960",
+    "UUID Themeparks.wiki": "261d6b27-6a1d-4a5b-844f-bf617e97ea78",
+    "Nom": "Keeper Talk: Slender-Snouted Crocodile",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Edge of Africa",
+    "Coordonnées GPS (lat)": 28.034944,
+    "Coordonnées GPS (lng)": -82.421417
+  },
+  {
+    "Code": "e52c60ac-9958-4392-a50f-5820f377d0e0",
+    "UUID Themeparks.wiki": "4a039911-ad90-4307-9d1c-a8d5443628d5",
+    "Nom": "Keeper Talk: Tiger or Orangutan",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Jungala",
+    "Coordonnées GPS (lat)": 28.038806,
+    "Coordonnées GPS (lng)": -82.424528
+  },
+  {
+    "Code": "3dec2bbc-b285-47e8-93c6-eb0aa45bc4d5",
+    "UUID Themeparks.wiki": "17043767-a055-4f4e-996e-51c8aa42b1cc",
+    "Nom": "Kit and Kat's Black Cat Dance Party",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0340866116157,
+    "Coordonnées GPS (lng)": -82.4240520626031
+  },
+  {
+    "Code": "438e66da-20c5-4510-b345-d60b9146d7a8",
+    "UUID Themeparks.wiki": "658d04b4-d3db-48e4-93a7-760f658e5e2f",
+    "Nom": "Live Music in the Grill",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Pantopia",
+    "Coordonnées GPS (lat)": 28.0374228400084,
+    "Coordonnées GPS (lng)": -82.4229782838327
+  },
+  {
+    "Code": "a94731bd-e46d-4026-864e-51aa40400676",
+    "UUID Themeparks.wiki": "a02c84cc-ec4f-4ac6-9158-82bc3dbd374d",
+    "Nom": "Mr. Skelly the Violin Player",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.034333,
+    "Coordonnées GPS (lng)": -82.424361
+  },
+  {
+    "Code": "f27595bb-b881-4e7c-9c89-7f4a4551b56f",
+    "UUID Themeparks.wiki": "15ac1712-be07-4029-87b3-9c38eb5727e9",
+    "Nom": "Rhythm of Nature",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Animal Exhibits",
+    "Coordonnées GPS (lat)": 28.0340123,
+    "Coordonnées GPS (lng)": -82.4212146
+  },
+  {
+    "Code": "dcc026d8-275a-4e60-8cde-6e250cfad344",
+    "UUID Themeparks.wiki": "e355eced-0cfa-4834-83cf-b5c8a84cdcd1",
+    "Nom": "Rising Tide Conservation Talk",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Bird Gardens",
+    "Coordonnées GPS (lat)": 28.035306,
+    "Coordonnées GPS (lng)": -82.421917
+  },
+  {
+    "Code": "8af22898-6fac-41ba-9cd7-0caffbda572a",
+    "UUID Themeparks.wiki": "88fbd56f-5c62-466a-8eb1-d92aace243de",
+    "Nom": "Sesame Street® Safari of Fun Meet & Greets",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0346179474902,
+    "Coordonnées GPS (lng)": -82.4258286221324
+  },
+  {
+    "Code": "a47fc109-c197-443d-acb6-8c0e5af00453",
+    "UUID Themeparks.wiki": "457fba95-5edf-4bd3-9009-8e0c94610203",
+    "Nom": "Spooky Kooky Science",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 28.0341173566044,
+    "Coordonnées GPS (lng)": -82.4241516770773
+  },
+  {
+    "Code": "2d17cb75-bc77-4e52-95e0-46aaf306af89",
+    "UUID Themeparks.wiki": "7c0ff37a-4d9c-4926-9a90-a2e4aae6f227",
+    "Nom": "Storytime at Sesame Street Safari of Fun",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0346220905954,
+    "Coordonnées GPS (lng)": -82.425728709848
+  },
+  {
+    "Code": "15fbb114-cbd6-43cb-bdb0-cd0af92673d6",
+    "UUID Themeparks.wiki": "0012ca59-2305-43c1-90ea-0250abd7be70",
+    "Nom": "The Count’s Not-Too-Spooky Howl-O-Ween Radio Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0345701,
+    "Coordonnées GPS (lng)": -82.4257666
+  },
+  {
+    "Code": "2e38b128-2840-409c-acfd-2a04ebbb8bb0",
+    "UUID Themeparks.wiki": "8f0b5a38-0ca9-40a2-894d-9f8bfd681e76",
+    "Nom": "Welcome to our Street",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0345701,
+    "Coordonnées GPS (lng)": -82.4257666
+  },
+  {
+    "Code": "68740afc-f69f-4cc5-83a2-2191d70c415f",
+    "UUID Themeparks.wiki": "2946b7cb-e145-4df3-a2bd-14aaa96a9df9",
+    "Nom": "Welcome To Our Street Sensory-Friendly Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Busch Gardens Tampa",
+    "Land": "Sesame Street Safari of Fun",
+    "Coordonnées GPS (lat)": 28.0345701,
+    "Coordonnées GPS (lng)": -82.4257666
+  }
+]
