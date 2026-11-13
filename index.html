@@ -415,7 +415,6 @@
         .globe-msg { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; font-weight: 700; color: var(--mut); }
         .globe-msg[hidden] { display: none; }
         .globe-panel { margin-top: 14px; }
-        .globe-panel .gp-hint { margin: 0; padding: 14px; text-align: center; font-size: 14px; color: var(--mut); }
         .globe-panel h2 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--acc); }
         .globe-row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 64px; margin-bottom: 8px; padding: 8px 14px 8px 10px; border-radius: 18px; background: var(--card); border: 1.5px solid var(--line); text-align: left; font-weight: 800; font-size: 15px; }
         .globe-row .app-ico { flex: none; width: 46px; height: 46px; }
@@ -1409,7 +1408,7 @@
                 }
                 draw();
             }
-            const hint = () => { panel.innerHTML = '<p class="gp-hint">Touchez un pays en surbrillance pour voir ses parcs.</p>'; };
+            const hint = () => { panel.replaceChildren(); };
 
             // Gestes : glisser pour tourner, toucher pour choisir
             let drag = null;
@@ -1485,8 +1484,7 @@
                 off.hidden = true; on.hidden = false;
                 on.classList.remove('in-r', 'in-l'); void on.offsetWidth; on.classList.add(dir || (toGlobe ? 'in-r' : 'in-l'));
                 if (toGlobe) {
-                    if (!panel.firstChild) hint();
-                    load().then(() => { if (tab === 'globe') { resize(); kick(); } }).catch(() => {});
+                                        load().then(() => { if (tab === 'globe') { resize(); kick(); } }).catch(() => {});
                 } else cancelAnimationFrame(raf), raf = 0;
             }
             btnList.addEventListener('click', () => show('list'));
