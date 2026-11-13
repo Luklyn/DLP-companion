@@ -32,7 +32,7 @@
   {
     "Code": "ush.upper.lot.shows.meet_the_simpsons",
     "UUID Themeparks.wiki": "8ff6892f-b1d8-46f1-b3cf-706dee85c105",
-    "Nom": "Meet Characters from The Simpsons™",
+    "Nom": "Meet Characters from The Simpsons",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Studios Hollywood",
     "Land": "Springfield, U.S.A.",
@@ -92,7 +92,7 @@
   {
     "Code": "ush.upper.lot.shows.meet_hello_kitty",
     "UUID Themeparks.wiki": "8c30efb2-9dba-4ec3-ab8c-309b20acf190",
-    "Nom": "Meet Hello Kitty®",
+    "Nom": "Meet Hello Kitty",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Studios Hollywood",
     "Land": "Upper Lot",

@@ -13,7 +13,7 @@
   {
     "Code": "uor.ioa.rides.caro-seuss-el",
     "UUID Themeparks.wiki": "3cb52134-e9d6-4212-83c8-3ce1321dcb05",
-    "Nom": "Caro-Seuss-el™",
+    "Nom": "Caro-Seuss-el",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
     "Type": "Pour toute la famille",
@@ -46,7 +46,7 @@
   {
     "Code": "uor.usf.rides.despicable_me_minion_mayhem",
     "UUID Themeparks.wiki": "7288f24a-396e-4eeb-bb3b-4a90e65269f2",
-    "Nom": "Despicable Me Minion Mayhem™",
+    "Nom": "Despicable Me Minion Mayhem",
     "Parc": "Universal Studios Florida",
     "Land": "Minion Land",
     "Type": "Pour toute la famille",
@@ -57,7 +57,7 @@
   {
     "Code": "uor.ioa.rides.doctor_dooms_fearfall",
     "UUID Themeparks.wiki": "2f95b213-daaa-4370-8349-c2cd57be470e",
-    "Nom": "Doctor Doom's Fearfall®",
+    "Nom": "Doctor Doom's Fearfall",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
     "Type": "Sensations fortes",
@@ -79,7 +79,7 @@
   {
     "Code": "uor.ioa.rides.dudley_do_rights_ripsaw_falls",
     "UUID Themeparks.wiki": "905d7888-b866-4e74-90d1-07fc6ef6706f",
-    "Nom": "Dudley Do-Right's Ripsaw Falls®",
+    "Nom": "Dudley Do-Right's Ripsaw Falls",
     "Parc": "Universal Islands of Adventure",
     "Land": "Toon Lagoon",
     "Type": "Sensations modérées",
@@ -101,7 +101,7 @@
   {
     "Code": "uor.ioa.rides.flight_of_the_hippogriff",
     "UUID Themeparks.wiki": "23b613e0-ae83-455b-9163-231bdbd5c427",
-    "Nom": "Flight of the Hippogriff™",
+    "Nom": "Flight of the Hippogriff",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
     "Type": "Sensations modérées",
@@ -123,7 +123,7 @@
   {
     "Code": "uor.ioa.rides.hagrids_magical_motorcycle_adventure",
     "UUID Themeparks.wiki": "578bbd12-1975-4ec3-9879-ea641c780342",
-    "Nom": "Hagrid's Magical Creatures Motorbike Adventure™",
+    "Nom": "Hagrid's Magical Creatures Motorbike Adventure",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
     "Type": "Sensations fortes",
@@ -134,7 +134,7 @@
   {
     "Code": "uor.ueu.rides.harry_potter_and_the_battle_at_the_ministry",
     "UUID Themeparks.wiki": "dbc4f0d8-fdef-4dfc-a1c2-33917f742f40",
-    "Nom": "Harry Potter and the Battle at the Ministry™",
+    "Nom": "Harry Potter and the Battle at the Ministry",
     "Parc": "Universal Epic Universe",
     "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
     "Type": "Sensations fortes",
@@ -145,7 +145,7 @@
   {
     "Code": "uor.usf.rides.harry_potter_and_the_escape_from_gringotts",
     "UUID Themeparks.wiki": "70ac72a3-9675-4c41-a1b1-e4801072927a",
-    "Nom": "Harry Potter and the Escape from Gringotts™",
+    "Nom": "Harry Potter and the Escape from Gringotts",
     "Parc": "Universal Studios Florida",
     "Land": "The Wizarding World of Harry Potter - Diagon Alley",
     "Type": "Sensations fortes",
@@ -156,7 +156,7 @@
   {
     "Code": "uor.ioa.rides.harry_potter_and_the_forbidden_journey",
     "UUID Themeparks.wiki": "6af80308-647d-4d8b-bcf6-37517a93bdbc",
-    "Nom": "Harry Potter and the Forbidden Journey™",
+    "Nom": "Harry Potter and the Forbidden Journey",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
     "Type": "Sensations fortes",
@@ -178,7 +178,7 @@
   {
     "Code": "uor.ioa.rides.hogwarts_express_-_hogsmeade_station",
     "UUID Themeparks.wiki": "144450b9-4574-46be-abdf-4b1ca8974d9d",
-    "Nom": "Hogwarts Express™ - Hogsmeade™ Station",
+    "Nom": "Hogwarts Express - Hogsmeade Station",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
     "Type": "Pour toute la famille",
@@ -189,7 +189,7 @@
   {
     "Code": "uor.usf.rides.hogwarts_express_-_kings_cross_station",
     "UUID Themeparks.wiki": "f0750e5e-7629-4c53-99d2-e0924a8afeed",
-    "Nom": "Hogwarts Express™ - King's Cross Station",
+    "Nom": "Hogwarts Express - King's Cross Station",
     "Parc": "Universal Studios Florida",
     "Land": "The Wizarding World of Harry Potter - Diagon Alley",
     "Type": "Pour toute la famille",
@@ -200,7 +200,7 @@
   {
     "Code": "uor.usf.rides.hogwarts_express_first_train",
     "UUID Themeparks.wiki": "f44a531c-09cf-40c4-b2d4-236e8a9285dc",
-    "Nom": "Hogwarts™ Express - First Train",
+    "Nom": "Hogwarts Express - First Train",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
     "Type": "Pour toute la famille",
@@ -211,7 +211,7 @@
   {
     "Code": "uor.usf.rides.hogwarts_express_last_train",
     "UUID Themeparks.wiki": "2122adff-52a3-49ca-9d20-5a6faafc8c77",
-    "Nom": "Hogwarts™ Express - Last Train",
+    "Nom": "Hogwarts Express - Last Train",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
     "Type": "Pour toute la famille",
@@ -266,7 +266,7 @@
   {
     "Code": "uor.ueu.rides.mario_cart_bowsers_challenge",
     "UUID Themeparks.wiki": "43df71bf-aa7c-46c0-925c-46f69d8bf23f",
-    "Nom": "Mario Kart™: Bowser's Challenge",
+    "Nom": "Mario Kart: Bowser's Challenge",
     "Parc": "Universal Epic Universe",
     "Land": "Super Nintendo World",
     "Type": "Sensations modérées",
@@ -277,7 +277,7 @@
   {
     "Code": "uor.usf.rides.men_in_black_alien_attack",
     "UUID Themeparks.wiki": "91cae293-64f8-48b6-88ec-02dcfcdd1f91",
-    "Nom": "MEN IN BLACK™ Alien Attack!",
+    "Nom": "MEN IN BLACK Alien Attack!",
     "Parc": "Universal Studios Florida",
     "Land": "Springfield: Home of the Simpsons",
     "Type": "Sensations modérées",
@@ -288,7 +288,7 @@
   {
     "Code": "uor.ueu.rides.mine-cart_madness",
     "UUID Themeparks.wiki": "dd8c015d-511f-47d4-b98b-18ce15735588",
-    "Nom": "Mine-Cart Madness™",
+    "Nom": "Mine-Cart Madness",
     "Parc": "Universal Epic Universe",
     "Land": "Super Nintendo World",
     "Type": "Sensations modérées",
@@ -310,7 +310,7 @@
   {
     "Code": "uor.ioa.rides.one_fish_two_fish_red_fish_blue_fish",
     "UUID Themeparks.wiki": "b1e94e05-b360-4e3f-be8a-2a3744a97f97",
-    "Nom": "One Fish, Two Fish, Red Fish, Blue Fish™",
+    "Nom": "One Fish, Two Fish, Red Fish, Blue Fish",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
     "Type": "Pour toute la famille",
@@ -321,7 +321,7 @@
   {
     "Code": "uor.ioa.rides.popeye_blutos_bilge_rat_barges",
     "UUID Themeparks.wiki": "b4445a1c-4d5c-4fca-a04a-f8867f1b6619",
-    "Nom": "Popeye & Bluto's Bilge-Rat Barges®",
+    "Nom": "Popeye & Bluto's Bilge-Rat Barges",
     "Parc": "Universal Islands of Adventure",
     "Land": "Toon Lagoon",
     "Type": "Sensations modérées",
@@ -387,7 +387,7 @@
   {
     "Code": "uor.ioa.rides.storm_force_accelatron",
     "UUID Themeparks.wiki": "b694d5a5-155e-4796-af7e-5dbdcf3deba4",
-    "Nom": "Storm Force Accelatron®",
+    "Nom": "Storm Force Accelatron",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
     "Type": "Pour toute la famille",
@@ -398,7 +398,7 @@
   {
     "Code": "uor.ioa.rides.the_amazing_adventures_of_spider_man",
     "UUID Themeparks.wiki": "6be23178-7d00-4884-9e88-76787da1df86",
-    "Nom": "The Amazing Adventures of Spider-Man®",
+    "Nom": "The Amazing Adventures of Spider-Man",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
     "Type": "Sensations modérées",
@@ -409,7 +409,7 @@
   {
     "Code": "uor.ioa.rides.the_cat_in_the_hat",
     "UUID Themeparks.wiki": "2365495a-790b-4a41-831e-65592c8a4359",
-    "Nom": "The Cat in The Hat™",
+    "Nom": "The Cat in The Hat",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
     "Type": "Sensations modérées",
@@ -420,7 +420,7 @@
   {
     "Code": "uor.ioa.rides.the_high_in_the_sky_seuss_trolley_train_ride_",
     "UUID Themeparks.wiki": "b73e3256-9ee0-439e-9a3b-ffed287e10bb",
-    "Nom": "The High in the Sky Seuss Trolley Train Ride!™",
+    "Nom": "The High in the Sky Seuss Trolley Train Ride!",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
     "Type": "Pour toute la famille",
@@ -431,7 +431,7 @@
   {
     "Code": "uor.ioa.rides.the_incredible_hulk_coaster",
     "UUID Themeparks.wiki": "fa743143-281b-4b5b-b87b-d49fcb006772",
-    "Nom": "The Incredible Hulk Coaster®",
+    "Nom": "The Incredible Hulk Coaster",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
     "Type": "Sensations fortes",
@@ -442,7 +442,7 @@
   {
     "Code": "uor.usf.rides.the_simpsons_ride",
     "UUID Themeparks.wiki": "7e70bc9e-7dce-4dd2-8823-57b8d6ec7570",
-    "Nom": "The Simpsons Ride™",
+    "Nom": "The Simpsons Ride",
     "Parc": "Universal Studios Florida",
     "Land": "Springfield: Home of the Simpsons",
     "Type": "Sensations modérées",
@@ -453,7 +453,7 @@
   {
     "Code": "uor.usf.rides.transformers_the_ride_3d",
     "UUID Themeparks.wiki": "750939c5-a69e-408a-8d55-66c272fa265e",
-    "Nom": "TRANSFORMERS™: The Ride-3D",
+    "Nom": "TRANSFORMERS: The Ride-3D",
     "Parc": "Universal Studios Florida",
     "Land": "San Francisco",
     "Type": "Sensations modérées",
@@ -475,7 +475,7 @@
   {
     "Code": "uor.ueu.rides.yoshis_adventure",
     "UUID Themeparks.wiki": "00feb57b-4fcc-48bc-9490-c9af71f30c1c",
-    "Nom": "Yoshi's Adventure™",
+    "Nom": "Yoshi's Adventure",
     "Parc": "Universal Epic Universe",
     "Land": "Super Nintendo World",
     "Type": "Pour toute la famille",

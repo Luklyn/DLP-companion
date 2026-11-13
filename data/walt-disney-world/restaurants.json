@@ -1107,7 +1107,7 @@
   {
     "Code": "resto_094",
     "UUID Themeparks.wiki": "84f51faa-72a3-4491-9449-20a999e5885c",
-    "Nom": "Yak & Yeti™ Quality Beverages",
+    "Nom": "Yak & Yeti Quality Beverages",
     "Type": "À emporter",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Asia",
@@ -1119,7 +1119,7 @@
   {
     "Code": "resto_095",
     "UUID Themeparks.wiki": "cea213d9-bf4f-408a-ac61-768e7709ab7d",
-    "Nom": "Yak & Yeti™ Restaurant",
+    "Nom": "Yak & Yeti Restaurant",
     "Type": "Service à table",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Asia",
@@ -1214,7 +1214,7 @@
   {
     "Code": "resto_103",
     "UUID Themeparks.wiki": "224d803c-cd7a-45d8-bfab-d843f2030983",
-    "Nom": "Rainforest Cafe® at Disney's Animal Kingdom",
+    "Nom": "Rainforest Cafe at Disney's Animal Kingdom",
     "Type": "Service à table",
     "Parc": "Disney's Animal Kingdom",
     "Land": "Tout le parc",
@@ -1453,7 +1453,7 @@
   {
     "Code": "resto_123",
     "UUID Themeparks.wiki": "4fd47b79-1d70-46b7-b245-93aa6ff05141",
-    "Nom": "House of Blues® Restaurant & Bar",
+    "Nom": "House of Blues Restaurant & Bar",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1465,7 +1465,7 @@
   {
     "Code": "resto_124",
     "UUID Themeparks.wiki": "651211a5-4521-47e8-9f4c-38c470750ab1",
-    "Nom": "Jaleo® by José Andrés",
+    "Nom": "Jaleo by José Andrés",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1488,7 +1488,7 @@
   {
     "Code": "resto_126",
     "UUID Themeparks.wiki": "5117dd93-1fb1-4215-aa2f-af520bb316f2",
-    "Nom": "Lava Lounge at Rainforest Café®",
+    "Nom": "Lava Lounge at Rainforest Café",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1522,7 +1522,7 @@
   {
     "Code": "resto_129",
     "UUID Themeparks.wiki": "5b1f886f-4f27-4dbe-aa05-3e3701046d57",
-    "Nom": "Morimoto Asia™",
+    "Nom": "Morimoto Asia",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1534,7 +1534,7 @@
   {
     "Code": "resto_130",
     "UUID Themeparks.wiki": "682db3a8-1bd3-4ff1-8efb-d3522c52b1cc",
-    "Nom": "Morimoto Asia™ Street Food",
+    "Nom": "Morimoto Asia Street Food",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1570,7 +1570,7 @@
   {
     "Code": "resto_133",
     "UUID Themeparks.wiki": "7ad20d41-f0dd-4f37-aad1-9896a69f03f8",
-    "Nom": "Planet Hollywood®",
+    "Nom": "Planet Hollywood",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1582,7 +1582,7 @@
   {
     "Code": "resto_134",
     "UUID Themeparks.wiki": "e711b7c8-5fd2-4a92-89ae-2b1ad9f9f312",
-    "Nom": "Raglan Road™ Irish Pub and Restaurant",
+    "Nom": "Raglan Road Irish Pub and Restaurant",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1593,7 +1593,7 @@
   {
     "Code": "resto_135",
     "UUID Themeparks.wiki": "05f7fd04-0f74-4311-ab99-87fc46f8d3e2",
-    "Nom": "Rainforest Cafe® at Disney Springs Marketplace",
+    "Nom": "Rainforest Cafe at Disney Springs Marketplace",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1629,7 +1629,7 @@
   {
     "Code": "resto_138",
     "UUID Themeparks.wiki": "8c794f55-b178-4fd5-83fa-d968e6e99621",
-    "Nom": "STK® Steakhouse",
+    "Nom": "STK Steakhouse",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1653,7 +1653,7 @@
   {
     "Code": "resto_140",
     "UUID Themeparks.wiki": "4f4a2520-0f1c-4ca0-b50d-5330f86dac0d",
-    "Nom": "T-REX ™",
+    "Nom": "T-REX",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1689,7 +1689,7 @@
   {
     "Code": "resto_143",
     "UUID Themeparks.wiki": "15bbd788-0124-4da9-b8ab-b8bfb113a07d",
-    "Nom": "The BOATHOUSE®: Great Food, Waterfront Dining, Dream Boats™",
+    "Nom": "The BOATHOUSE: Great Food, Waterfront Dining, Dream Boats",
     "Type": "Service à table",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1736,7 +1736,7 @@
   {
     "Code": "resto_147",
     "UUID Themeparks.wiki": "77f5f20d-b201-4278-8467-229707d6ee3e",
-    "Nom": "The Smokehouse at House of Blues®",
+    "Nom": "The Smokehouse at House of Blues",
     "Type": "Restauration rapide",
     "Parc": "Disney Springs",
     "Land": "Disney Springs",
@@ -1772,7 +1772,7 @@
   {
     "Code": "resto_150",
     "UUID Themeparks.wiki": "32dac17d-c445-4820-b4ab-bee0fadbd360",
-    "Nom": "The Cake Bake Shop® Restaurant by Gwendolyn Rogers",
+    "Nom": "The Cake Bake Shop Restaurant by Gwendolyn Rogers",
     "Type": "Service à table",
     "Parc": "Resorts Disney",
     "Description": "Pâtisserie et restaurant.",

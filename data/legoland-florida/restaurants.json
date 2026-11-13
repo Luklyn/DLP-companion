@@ -55,7 +55,7 @@
   {
     "Code": "5107",
     "UUID Themeparks.wiki": "39f32cdb-e6e6-49d7-9167-f7b40b4c8d13",
-    "Nom": "Coca-Cola® Freestyle Station - Land of Adventure",
+    "Nom": "Coca-Cola Freestyle Station - Land of Adventure",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "Land of Adventure",
@@ -65,7 +65,7 @@
   {
     "Code": "5106",
     "UUID Themeparks.wiki": "716a981e-3f63-4b33-af0e-a4e7b27f5227",
-    "Nom": "Coca-Cola® Freestyle Station - LEGO® NINJAGO® World",
+    "Nom": "Coca-Cola Freestyle Station - LEGO NINJAGO World",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "LEGO NINJAGO World",
@@ -75,7 +75,7 @@
   {
     "Code": "5105",
     "UUID Themeparks.wiki": "2cbce5d4-061e-4b9b-8cc6-5fd055184d13",
-    "Nom": "Coca-Cola® Freestyle Station - The Beginning",
+    "Nom": "Coca-Cola Freestyle Station - The Beginning",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "The Beginning",
@@ -85,7 +85,7 @@
   {
     "Code": "9792",
     "UUID Themeparks.wiki": "3faf6c85-f788-448d-a5c1-a255fd360910",
-    "Nom": "Coca-Cola® Freestyle Station – DUPLO Valley",
+    "Nom": "Coca-Cola Freestyle Station – DUPLO Valley",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "DUPLO Valley",
@@ -176,7 +176,7 @@
   {
     "Code": "12700",
     "UUID Themeparks.wiki": "43fcf5a9-f2e1-4476-b6fe-9d81f5a0ba79",
-    "Nom": "LEGOLAND® Coffee Co.",
+    "Nom": "LEGOLAND Coffee Co.",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "The Beginning",
@@ -206,7 +206,7 @@
   {
     "Code": "52590",
     "UUID Themeparks.wiki": "371e70f9-843a-4af7-98c2-52b85125be13",
-    "Nom": "Pumpkin Pie Apple Fries",
+    "Nom": "Pumpkin Pie Apple Fries",
     "Type": "A emporter",
     "Parc": "LEGOLAND Florida",
     "Land": "Fun Town",

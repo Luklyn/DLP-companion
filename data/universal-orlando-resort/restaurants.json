@@ -68,7 +68,7 @@
   {
     "Code": "uor.ueu.dining.bar_moonshine",
     "UUID Themeparks.wiki": "bd8df82c-ea86-4139-9a47-24fa19151c98",
-    "Nom": "Bar Moonshine™",
+    "Nom": "Bar Moonshine",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
@@ -145,7 +145,7 @@
   {
     "Code": "uor.ioa.dining.cafe_4",
     "UUID Themeparks.wiki": "7321a68a-e61a-4ba5-b301-a12e5a4901ef",
-    "Nom": "Cafe 4™",
+    "Nom": "Cafe 4",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/cafe-4/menu.html",
     "Type": "Service à table",
     "Parc": "Universal Islands of Adventure",
@@ -157,7 +157,7 @@
   {
     "Code": "uor.ueu.dining.cafe_lair_de_la_sirene",
     "UUID Themeparks.wiki": "0060ddaa-0c15-4309-b017-0b1ed9885941",
-    "Nom": "Café L’air De La Sirène™",
+    "Nom": "Café L’air De La Sirène",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
@@ -168,7 +168,7 @@
   {
     "Code": "uor.usf.dining.cafe_la_bamba",
     "UUID Themeparks.wiki": "44114116-77b4-4d66-960d-90a4d9c7d59e",
-    "Nom": "Cafe La Bamba™",
+    "Nom": "Cafe La Bamba",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/cafe-la-bamba/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Florida",
@@ -180,7 +180,7 @@
   {
     "Code": "uor.ioa.dining.captain_america_diner",
     "UUID Themeparks.wiki": "b0a7cb1c-1156-45b8-925e-7ade28343127",
-    "Nom": "Captain America Diner®",
+    "Nom": "Captain America Diner",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
@@ -235,7 +235,7 @@
   {
     "Code": "uor.usf.dining.chez_alcatraz",
     "UUID Themeparks.wiki": "441e9951-559d-480c-9c82-ed417447f884",
-    "Nom": "Chez Alcatraz™",
+    "Nom": "Chez Alcatraz",
     "Type": "A emporter",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
@@ -257,7 +257,7 @@
   {
     "Code": "uor.ioa.dining.cinnabon",
     "UUID Themeparks.wiki": "0b291e49-68d4-49e2-b8d7-a8b68adc144c",
-    "Nom": "Cinnabon®",
+    "Nom": "Cinnabon",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Port of Entry",
@@ -268,7 +268,7 @@
   {
     "Code": "uor.ioa.dining.circus_mcgurkus_cafe_stoo-pendous",
     "UUID Themeparks.wiki": "7d7d0062-2629-4b76-80df-422ffadca153",
-    "Nom": "Circus McGurkus Cafe Stoo-pendous™",
+    "Nom": "Circus McGurkus Cafe Stoo-pendous",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/circus-mcgurkus-cafe-stoo-pendous/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -280,7 +280,7 @@
   {
     "Code": "uor.ioa.dining.circus_mcgurkus_cafe_stoo-pendous_pickup",
     "UUID Themeparks.wiki": "721e26e0-cc64-4333-95a4-8887c00c475f",
-    "Nom": "Circus McGurkus Cafe Stoo-pendous™ Pickup",
+    "Nom": "Circus McGurkus Cafe Stoo-pendous Pickup",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/circus-mcgurkus-cafe-stoo-pendous-pickup/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -348,7 +348,7 @@
   {
     "Code": "uor.ioa.dining.confisco_grille",
     "UUID Themeparks.wiki": "154b59b9-eb01-490d-b643-0b8b58da0611",
-    "Nom": "Confisco Grille™",
+    "Nom": "Confisco Grille",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/confisco-grille/menu.html",
     "Type": "Service à table",
     "Parc": "Universal Islands of Adventure",
@@ -360,7 +360,7 @@
   {
     "Code": "uor.dining.croissant_moon_bakery",
     "UUID Themeparks.wiki": "2f1e7a97-6cdb-470a-9433-ba8621c893f7",
-    "Nom": "Croissant Moon Bakery™",
+    "Nom": "Croissant Moon Bakery",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/croissant-moon-bakery/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -495,7 +495,7 @@
   {
     "Code": "uor.usf.dining.finnegans_bar_and_grill",
     "UUID Themeparks.wiki": "ad77757d-0660-48ee-972a-031d555b71ee",
-    "Nom": "Finnegan's Bar and Grill™",
+    "Nom": "Finnegan's Bar and Grill",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/finnegans-bar-and-grill/menu.html",
     "Type": "Service à table",
     "Parc": "Universal Studios Florida",
@@ -507,7 +507,7 @@
   {
     "Code": "uor.ioa.dining.fire_eaters_grill",
     "UUID Themeparks.wiki": "5e2e3353-bcef-4ca9-8169-731c458a89d6",
-    "Nom": "Fire Eater's Grill™",
+    "Nom": "Fire Eater's Grill",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Lost Continent",
@@ -573,7 +573,7 @@
   {
     "Code": "uor.ioa.dining.green_eggs_and_ham_cafe",
     "UUID Themeparks.wiki": "7ffc5e8a-647a-4de0-820e-4d2ade5a88d3",
-    "Nom": "Green Eggs and Ham™ Cafe",
+    "Nom": "Green Eggs and Ham Cafe",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/green-eggs-and-ham-cafe/menu.html",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
@@ -585,7 +585,7 @@
   {
     "Code": "uor.usf.dining.haagen_dazs",
     "UUID Themeparks.wiki": "50d25d95-f9f8-4e80-914d-43f36f26e255",
-    "Nom": "Häagen-Dazs®",
+    "Nom": "Häagen-Dazs",
     "Type": "A emporter",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
@@ -618,7 +618,7 @@
   {
     "Code": "uor.ioa.dining.hogs_head",
     "UUID Themeparks.wiki": "7863937e-bb65-408b-9652-c9700c923c9c",
-    "Nom": "Hog's Head™",
+    "Nom": "Hog's Head",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
@@ -640,7 +640,7 @@
   {
     "Code": "uor.ioa.dining.hop_on_pop_ice_cream_shop",
     "UUID Themeparks.wiki": "c7eb11cb-410f-4de9-83d5-83708302e33c",
-    "Nom": "Hop on Pop™ Ice Cream Shop",
+    "Nom": "Hop on Pop Ice Cream Shop",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
@@ -730,7 +730,7 @@
   {
     "Code": "uor.ueu.dining.le_gobelet_noir",
     "UUID Themeparks.wiki": "42ecc12b-030e-42dd-996b-93eac856287b",
-    "Nom": "Le Gobelet Noir™",
+    "Nom": "Le Gobelet Noir",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
@@ -741,7 +741,7 @@
   {
     "Code": "uor.usf.dining.leaky_cauldron",
     "UUID Themeparks.wiki": "36372cec-7971-4c91-bd1e-86317273ff7f",
-    "Nom": "Leaky Cauldron™",
+    "Nom": "Leaky Cauldron",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/leaky-cauldron/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Florida",
@@ -764,7 +764,7 @@
   {
     "Code": "uor.usf.dining.lombards_seafood_grille",
     "UUID Themeparks.wiki": "cfa3227c-259d-40ff-93b3-edc9efc3ebca",
-    "Nom": "Lombard's Seafood Grille™",
+    "Nom": "Lombard's Seafood Grille",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/lombards-seafood-grille/menu.html",
     "Type": "Service à table",
     "Parc": "Universal Studios Florida",
@@ -776,7 +776,7 @@
   {
     "Code": "uor.usf.dining.louies_italian_restaurant",
     "UUID Themeparks.wiki": "175a559d-bd35-4840-babc-3c2a86b3d878",
-    "Nom": "Louie's Italian Restaurant™",
+    "Nom": "Louie's Italian Restaurant",
     "Type": "A emporter",
     "Parc": "Universal Studios Florida",
     "Land": "New York",
@@ -842,7 +842,7 @@
   {
     "Code": "uor.usf.dining.mels_drive-in",
     "UUID Themeparks.wiki": "fcc78e23-f8b5-4007-aedf-17264d8ffd48",
-    "Nom": "Mel's Drive-In™",
+    "Nom": "Mel's Drive-In",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/mels-drive-in/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Florida",
@@ -909,7 +909,7 @@
   {
     "Code": "uor.ioa.dining.mythos_restaurant",
     "UUID Themeparks.wiki": "36afb7ad-1b9c-46a6-98a8-5b4ed0c865b0",
-    "Nom": "Mythos Restaurant™",
+    "Nom": "Mythos Restaurant",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/mythos-restaurant/menu.html",
     "Type": "Service à table",
     "Parc": "Universal Islands of Adventure",
@@ -987,7 +987,7 @@
   {
     "Code": "uor.ioa.dining.pizza_predattoria",
     "UUID Themeparks.wiki": "eae7190b-d78e-4ec3-b012-6ee14d32d6ad",
-    "Nom": "Pizza Predattoria™",
+    "Nom": "Pizza Predattoria",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Jurassic Park",
@@ -1020,7 +1020,7 @@
   {
     "Code": "uo.usf.dining.richters_burger_co.",
     "UUID Themeparks.wiki": "37c2afe6-c598-4077-9c20-30f5af685937",
-    "Nom": "Richter's Burger Co.™",
+    "Nom": "Richter's Burger Co.",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/richters-burger-co/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Florida",
@@ -1043,7 +1043,7 @@
   {
     "Code": "uor.usf.dining.san_francisco_pastry_company",
     "UUID Themeparks.wiki": "fb1f6bbe-de29-4c2c-b23e-7f63e2bdb7de",
-    "Nom": "San Francisco Pastry Company™",
+    "Nom": "San Francisco Pastry Company",
     "Type": "A emporter",
     "Parc": "Universal Studios Florida",
     "Land": "San Francisco",
@@ -1120,7 +1120,7 @@
   {
     "Code": "uor.ioa.dining.starbucks",
     "UUID Themeparks.wiki": "b790a0b3-0b2e-4983-95c2-c84b6852e46c",
-    "Nom": "Starbucks® Coffee",
+    "Nom": "Starbucks Coffee",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Port of Entry",
@@ -1131,7 +1131,7 @@
   {
     "Code": "uor.ueu.dining.starbucks_coffee_2",
     "UUID Themeparks.wiki": "d0a904c4-1818-468c-a253-ff8d3d945aa0",
-    "Nom": "Starbucks® Coffee",
+    "Nom": "Starbucks Coffee",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "Celestial Park",
@@ -1142,7 +1142,7 @@
   {
     "Code": "uor.usf.dining.starbucks",
     "UUID Themeparks.wiki": "66249592-1cfa-429d-a862-bbe4b83e1ba8",
-    "Nom": "Starbucks® Coffee",
+    "Nom": "Starbucks Coffee",
     "Type": "A emporter",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
@@ -1208,7 +1208,7 @@
   {
     "Code": "uor.ioa.dining.the_burger_digs",
     "UUID Themeparks.wiki": "8ce0157c-fbf6-4676-8a0c-ec49dd98fa64",
-    "Nom": "The Burger Digs™",
+    "Nom": "The Burger Digs",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/the-burger-digs/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -1297,7 +1297,7 @@
   {
     "Code": "uor.ioa.dining.the_watering_hole",
     "UUID Themeparks.wiki": "ec8dca53-2e8a-4cc5-bc10-17e456659e8a",
-    "Nom": "The Watering Hole™",
+    "Nom": "The Watering Hole",
     "Type": "A emporter",
     "Parc": "Universal Islands of Adventure",
     "Land": "Jurassic Park",
@@ -1308,7 +1308,7 @@
   {
     "Code": "uor.ioa.dinings.three_broomsticks",
     "UUID Themeparks.wiki": "c19ff123-d06f-420b-ac38-6e96ccbc3d28",
-    "Nom": "Three Broomsticks™",
+    "Nom": "Three Broomsticks",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/three-broomsticks/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -1320,7 +1320,7 @@
   {
     "Code": "uor.ioa.dining.thunder_falls_terrace",
     "UUID Themeparks.wiki": "45a7c5ea-903c-4612-b00a-31df6ab799cd",
-    "Nom": "Thunder Falls Terrace™",
+    "Nom": "Thunder Falls Terrace",
     "Menu": "https://www.universalorlando.com/web/en/us/things-to-do/dining/thunder-falls-terrace/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Islands of Adventure",
@@ -1332,7 +1332,7 @@
   {
     "Code": "uor.ueu.dining.toadstool_cafe",
     "UUID Themeparks.wiki": "9476066a-fb0e-4cc9-b99d-9411f7cdee86",
-    "Nom": "Toadstool Cafe™",
+    "Nom": "Toadstool Cafe",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "Super Nintendo World",
@@ -1399,7 +1399,7 @@
   {
     "Code": "uor.ueu.dining.yoshis_snack_island",
     "UUID Themeparks.wiki": "0208b42f-a89d-43bb-8eef-b9c18c120c87",
-    "Nom": "Yoshi's Snack Island™",
+    "Nom": "Yoshi's Snack Island",
     "Type": "A emporter",
     "Parc": "Universal Epic Universe",
     "Land": "Super Nintendo World",

@@ -529,7 +529,7 @@ async function doAddCands() {
       for (const x of items) {
         if (names.has(NORM(x.nom))) continue;
         let code; do { code = `${prefix}${letter[k]}${String(n++).padStart(2, '0')}`; } while (codes.has(code)); codes.add(code);
-        const rec = { Code: code, Nom: x.nom.trim() };
+        const rec = { Code: code, Nom: x.nom.replace(/\s*(?:[™®©℠℗]|\((?:tm|r|c|sm)\)|ᵀᴹ)/gi, '').replace(/\s+/g, ' ').trim() };
         if (x.type) rec.Type = x.type; rec.Parc = x.park || (r.parks[0] && r.parks[0].value);
         if (x.land) rec.Land = x.land; if (k === 'attractions' && x.height) rec['Taille mini'] = x.height; if (k === 'restaurants' && x.menu) rec.Menu = x.menu;
         rec['Statut inconnu'] = 'oui'; cur.push(rec); added++;

@@ -35,7 +35,7 @@
   {
     "Code": "ush.upper_lot.rides.flight_of_the_hippogriff",
     "UUID Themeparks.wiki": "e7c69919-d73f-4418-9059-5b30495f3af1",
-    "Nom": "Flight of the Hippogriff™",
+    "Nom": "Flight of the Hippogriff",
     "Parc": "Universal Studios Hollywood",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Sensations modérées",
@@ -46,7 +46,7 @@
   {
     "Code": "ush.upper_lot.rides.harry_potter_and_the_forbidden_journey",
     "UUID Themeparks.wiki": "9a706e7e-1e52-4603-b170-86c9b8243fc6",
-    "Nom": "Harry Potter and the Forbidden Journey™",
+    "Nom": "Harry Potter and the Forbidden Journey",
     "Parc": "Universal Studios Hollywood",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Sensations fortes",
@@ -79,7 +79,7 @@
   {
     "Code": "ush.upper_lot.rides.mario_kart_bowsers_challenge",
     "UUID Themeparks.wiki": "da1191d8-63b0-45eb-bccf-968b0ea4c5d8",
-    "Nom": "Mario Kart™: Bowser’s Challenge",
+    "Nom": "Mario Kart: Bowser’s Challenge",
     "Parc": "Universal Studios Hollywood",
     "Land": "Super Nintendo World",
     "Type": "Sensations modérées",
@@ -90,7 +90,7 @@
   {
     "Code": "ush.upper_lot.rides.ollivanders",
     "UUID Themeparks.wiki": "6a04b16b-7d9f-4a92-bcef-b8e17b800a34",
-    "Nom": "Ollivanders™",
+    "Nom": "Ollivanders",
     "Parc": "Universal Studios Hollywood",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Pour toute la famille",
@@ -145,7 +145,7 @@
   {
     "Code": "ush.upper_lot.rides.the.simpsons_ride",
     "UUID Themeparks.wiki": "225f5fbf-3e7e-4fca-a94a-4a3a747c5103",
-    "Nom": "The Simpsons Ride™",
+    "Nom": "The Simpsons Ride",
     "Parc": "Universal Studios Hollywood",
     "Land": "Springfield, U.S.A.",
     "Type": "Sensations modérées",
@@ -156,7 +156,7 @@
   {
     "Code": "ush.lower_lot.rides.transformers_the_ride_3d",
     "UUID Themeparks.wiki": "2f6f1b8f-d420-4096-8975-fcccfd7fc74c",
-    "Nom": "TRANSFORMERS™: The Ride-3D",
+    "Nom": "TRANSFORMERS: The Ride-3D",
     "Parc": "Universal Studios Hollywood",
     "Land": "Lower Lot",
     "Type": "Sensations modérées",

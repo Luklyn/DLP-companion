@@ -2,7 +2,7 @@
   {
     "Code": "PAEGRA01",
     "UUID Themeparks.wiki": "bdfe704b-4ec1-4276-a25f-f85416cf7842",
-    "Nom": "P’oz Kebab",
+    "Nom": "P’oz Kebab",
     "Description": "Afin de préparer au mieux ses cobayes pour son expérience de lévitation collective au Parc, Iris a fait construire P’OZ Kebab, juste en face de son temple. ",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-10/pozkebab-menu-26.pdf",
     "Tarif": "€",
@@ -15,7 +15,7 @@
   {
     "Code": "PAEGRA02",
     "UUID Themeparks.wiki": "9635f8a6-bcd4-4252-95ad-6fac7172c240",
-    "Nom": "Les Fastes du Nil",
+    "Nom": "Les Fastes du Nil",
     "Description": "Dans un décor inspiré de l’Egypte antique, savourez burgers et wraps revisités, comme notre délicieux burger merguez. Pour une note sucrée, laissez-vous tenter par nos douceurs aux arômes de fleur d’oranger et de pistache.",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-10/fdn3-26-pslp-ext-menu-635x1030h-demi-hd.pdf",
     "Tarif": "€",
@@ -80,7 +80,7 @@
   {
     "Code": "PAGARA01",
     "UUID Themeparks.wiki": "5a95a87d-2ea4-47f7-a9a1-657ce49f706b",
-    "Nom": "Le Restaurant du Lac",
+    "Nom": "Le Restaurant du Lac",
     "Description": "Avec sa vue imprenable sur le Grand Lac, Le Restaurant du Lac est l’adresse idéale pour une pause déjeuner gourmande et vitaminée.",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-09/menu-restaurant-lac-2026.pdf",
     "Tarif": "€€",
@@ -93,7 +93,7 @@
   {
     "Code": "PAGARA02",
     "UUID Themeparks.wiki": "18d8c1d4-6ea3-467b-afb1-f3bb39fced98",
-    "Nom": "Le Petit Chaudron",
+    "Nom": "Le Petit Chaudron",
     "Description": "Ce kiosque convivial propose une sélection de burgers savoureux et généreux, parfaits pour satisfaire petits et grands gourmands.",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-09/menu-petit-chaudron-2026.pdf",
     "Tarif": "€",
@@ -106,7 +106,7 @@
   {
     "Code": "PAGARA03",
     "UUID Themeparks.wiki": "a200805f-f334-4c5a-b404-bd69a2adf6fe",
-    "Nom": "Au Dolmen Gourmand",
+    "Nom": "Au Dolmen Gourmand",
     "Description": "Parce que rendre gloire à Toutatis ça creuse, Au Dolmen Gourmand accueille les aventuriers en quête d’une pause gourmande.",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-10/dolg-1-26-pslp-carte-1300x1000-hd-2.pdf",
     "Tarif": "€",
@@ -119,7 +119,7 @@
   {
     "Code": "PAGARA04",
     "UUID Themeparks.wiki": "48a5f971-6693-4bc8-a2f5-3b4b8b65d1a4",
-    "Nom": "Chez EnCasdePanix",
+    "Nom": "Chez EnCasdePanix",
     "Description": "Ici, il y en a pour tous les goûts, sucré comme salé : sandwichs variés, croque-maroilles, focaccia jambon cru et une sélection de desserts pour satisfaire petits et grands gourmands. Accompagnez votre repas d’une boisson fraîche et reprenez des forces avant de repartir à l’aventure.",
     "Menu": null,
     "Tarif": "€",
@@ -132,7 +132,7 @@
   {
     "Code": "PAGARA05",
     "UUID Themeparks.wiki": "17b36603-2985-412e-964a-b05af3dd0ed1",
-    "Nom": "Le Relais Gaulois",
+    "Nom": "Le Relais Gaulois",
     "Description": "Dans ce relais aux allures de hutte Gauloise, profitez d’une pause sacrée et bien gourmande. Le Relais Gaulois propose un large choix de plats pour tous les goûts : crudités fraîches, charcuteries généreuses et plats chauds savoureux. ",
     "Menu": "https://www.parcasterix.fr/sites/default/files/2026-09/menu-relai-gaulois-2026.pdf",
     "Tarif": "€€",

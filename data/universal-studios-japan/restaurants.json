@@ -211,7 +211,7 @@
   {
     "Code": "usj.usj.dining.happiness_cafe",
     "UUID Themeparks.wiki": "2f16630f-f37f-48ab-a095-1ff6ac00e56d",
-    "Nom": "HAPPINESS CAFE®",
+    "Nom": "HAPPINESS CAFE",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Japan",
     "Land": "San Francisco",
@@ -255,7 +255,7 @@
   {
     "Code": "usj.usj.dining.kinopios_cafe",
     "UUID Themeparks.wiki": "8c4f836f-0bba-4e3a-bd8f-22c200512264",
-    "Nom": "Kinopio's Café™",
+    "Nom": "Kinopio's Café",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",
@@ -266,7 +266,7 @@
   {
     "Code": "usj.usj.dining.lombards_landing",
     "UUID Themeparks.wiki": "76a6e29d-6bf2-4184-b15e-f7e5b67ab39a",
-    "Nom": "Lombard’s Landing™",
+    "Nom": "Lombard’s Landing",
     "Type": "Service à table",
     "Parc": "Universal Studios Japan",
     "Land": "San Francisco",
@@ -277,7 +277,7 @@
   {
     "Code": "usj.usj.dining.lombards_landing_front_terrace_conan_2026",
     "UUID Themeparks.wiki": "0d50dad3-ff4b-4098-89ca-ab447484ea14",
-    "Nom": "Lombard's Landing™ Front Terrace",
+    "Nom": "Lombard's Landing Front Terrace",
     "Type": "Service à table",
     "Parc": "Universal Studios Japan",
     "Land": "San Francisco",
@@ -288,7 +288,7 @@
   {
     "Code": "usj.usj.dining.lombards_landing_front_terrace_one_piece_2026",
     "UUID Themeparks.wiki": "02b6d2bf-42b3-4df6-b3c0-694c21ffec90",
-    "Nom": "Lombard's Landing™ Front Terrace",
+    "Nom": "Lombard's Landing Front Terrace",
     "Type": "Service à table",
     "Parc": "Universal Studios Japan",
     "Land": "San Francisco",
@@ -321,7 +321,7 @@
   {
     "Code": "usj.usj.dining.mario_cafe_and_store",
     "UUID Themeparks.wiki": "bbe6fa3b-b768-44c9-8e6e-38a75ea870c4",
-    "Nom": "Mario Cafe & Store™",
+    "Nom": "Mario Cafe & Store",
     "Type": "A emporter",
     "Parc": "Universal Studios Japan",
     "Land": "Hollywood",
@@ -420,7 +420,7 @@
   {
     "Code": "usj.usj.dining.snoopys_backlot_cafe",
     "UUID Themeparks.wiki": "c9f60514-0341-4db3-b8b2-251b6aca91e7",
-    "Nom": "Snoopy’s™ Backlot Café",
+    "Nom": "Snoopy’s Backlot Café",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Japan",
     "Land": "Universal Wonderland",
@@ -464,7 +464,7 @@
   {
     "Code": "usj.usj.dining.magic_neep_cart",
     "UUID Themeparks.wiki": "1dfcaaaa-be77-4717-9019-9c3a9c204532",
-    "Nom": "The Magic Neep™ Cart",
+    "Nom": "The Magic Neep Cart",
     "Type": "A emporter",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
@@ -475,7 +475,7 @@
   {
     "Code": "usj.usj.dining.three_broomsticks",
     "UUID Themeparks.wiki": "38ee34b7-b492-4c19-bc98-0793f07b17d7",
-    "Nom": "Three Broomsticks™",
+    "Nom": "Three Broomsticks",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
@@ -508,7 +508,7 @@
   {
     "Code": "usj.usj.dining.yoshis_snack_island",
     "UUID Themeparks.wiki": "fb35b9d3-10fb-4945-89ce-e890ba6f1569",
-    "Nom": "Yoshi's Snack Island™",
+    "Nom": "Yoshi's Snack Island",
     "Type": "A emporter",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",

@@ -57,7 +57,7 @@
   {
     "Code": "usj.usj.rides.flight_of_the_hippogriff",
     "UUID Themeparks.wiki": "7c98a4dd-cc2a-4c0b-8d70-e825a33dc55b",
-    "Nom": "Flight of the Hippogriff™",
+    "Nom": "Flight of the Hippogriff",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Sensations modérées",
@@ -90,7 +90,7 @@
   {
     "Code": "usj.usj.rides.harry_potter_forbidden_journey",
     "UUID Themeparks.wiki": "7fb500a9-0716-4b1b-b905-0b3b0e3b174a",
-    "Nom": "Harry Potter and the Forbidden Journey™",
+    "Nom": "Harry Potter and the Forbidden Journey",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Sensations fortes",
@@ -123,7 +123,7 @@
   {
     "Code": "usj.usj.shows.hogwarts_castle_walk_2026",
     "UUID Themeparks.wiki": "b2e5384d-bcc6-4767-94f3-ecc6baf0d4d7",
-    "Nom": "Hogwarts™ Castle Walk",
+    "Nom": "Hogwarts Castle Walk",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Pour toute la famille",
@@ -200,7 +200,7 @@
   {
     "Code": "usj.usj.rides.mario_kart_koopas_challenge",
     "UUID Themeparks.wiki": "50b48b8f-975f-480e-9c77-0cb8d8d85dda",
-    "Nom": "Mario Kart: Koopa's Challenge™",
+    "Nom": "Mario Kart: Koopa's Challenge",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",
     "Type": "Sensations modérées",
@@ -211,7 +211,7 @@
   {
     "Code": "usj.usj.rides.donkey_kong_country_ride",
     "UUID Themeparks.wiki": "e1bee688-c11a-477a-bec3-866037d2601d",
-    "Nom": "Mine Cart Madness™",
+    "Nom": "Mine Cart Madness",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",
     "Type": "Sensations modérées",
@@ -222,7 +222,7 @@
   {
     "Code": "usj.usj.show.ollivanders",
     "UUID Themeparks.wiki": "8a917001-0510-4fab-93bb-908997efe8f5",
-    "Nom": "Ollivanders™",
+    "Nom": "Ollivanders",
     "Parc": "Universal Studios Japan",
     "Land": "The Wizarding World of Harry Potter",
     "Type": "Pour toute la famille",
@@ -233,7 +233,7 @@
   {
     "Code": "usj.usj.shows.playing_with_curious_george",
     "UUID Themeparks.wiki": "515ead6c-5ed1-4d51-8187-593ee1fdec30",
-    "Nom": "Playing with Curious George™",
+    "Nom": "Playing with Curious George",
     "Parc": "Universal Studios Japan",
     "Land": "Hollywood",
     "Type": "Pour toute la famille",
@@ -244,7 +244,7 @@
   {
     "Code": "usj.usj.rides.power-up_band_key_challenges",
     "UUID Themeparks.wiki": "32124c04-0910-4da5-8068-84106593d872",
-    "Nom": "Power-Up Band™ Key Challenges",
+    "Nom": "Power-Up Band Key Challenges",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",
     "Type": "Pour toute la famille",
@@ -343,7 +343,7 @@
   {
     "Code": "usj.usj.rides.yoshis_adventure",
     "UUID Themeparks.wiki": "dfce9bc6-a057-4589-b694-8015a858e9a8",
-    "Nom": "Yoshi's Adventure™",
+    "Nom": "Yoshi's Adventure",
     "Parc": "Universal Studios Japan",
     "Land": "Super Nintendo World",
     "Type": "Pour toute la famille",

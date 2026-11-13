@@ -128,7 +128,7 @@
   {
     "Code": "ush.dining.hogs_head",
     "UUID Themeparks.wiki": "a7e266ea-f54a-4b15-9548-f4735c67bf08",
-    "Nom": "Hog's Head™",
+    "Nom": "Hog's Head",
     "Type": "Bar/Lounge",
     "Parc": "Universal Studios Hollywood",
     "Land": "The Wizarding World of Harry Potter",
@@ -379,7 +379,7 @@
   {
     "Code": "ush.dining.snw_popcorn_drink_cart",
     "UUID Themeparks.wiki": "30449b4c-693f-48b9-935f-785c4fc6707e",
-    "Nom": "SUPER NINTENDO WORLD™ Popcorn and Drink Cart",
+    "Nom": "SUPER NINTENDO WORLD Popcorn and Drink Cart",
     "Type": "A emporter",
     "Parc": "Universal Studios Hollywood",
     "Land": "Super Nintendo World",
@@ -390,7 +390,7 @@
   {
     "Code": "ush.dining.three_broomsticks",
     "UUID Themeparks.wiki": "e34b1ac3-79c9-41d8-aeb7-6ee93df4532f",
-    "Nom": "Three Broomsticks™",
+    "Nom": "Three Broomsticks",
     "Menu": "https://www.universalstudioshollywood.com/web/en/us/things-to-do/dining/three-broomsticks/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Hollywood",
@@ -402,7 +402,7 @@
   {
     "Code": "ush.snw.dining.toadstoolcafe",
     "UUID Themeparks.wiki": "78a6fe7a-921f-444e-9b3d-833efd084c6f",
-    "Nom": "Toadstool Cafe™",
+    "Nom": "Toadstool Cafe",
     "Menu": "https://www.universalstudioshollywood.com/web/en/us/things-to-do/dining/toadstool-cafe/menu.html",
     "Type": "Restauration rapide",
     "Parc": "Universal Studios Hollywood",

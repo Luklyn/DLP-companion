@@ -85,7 +85,8 @@ def park_value(resort, ent, parent_names):
 
 
 def clean_name(s):
-    return re.sub(r'\s+', ' ', re.sub('[\u200b\u200c\u200d\ufeff\u00a0]', ' ', (s or ''))).strip()
+    s = re.sub(r'\s*(?:[™®©℠℗]|\((?:tm|r|c|sm)\)|ᵀᴹ)', '', s or '', flags=re.I)
+    return re.sub(r'\s+', ' ', re.sub('[\u200b\u200c\u200d\ufeff\u00a0]', ' ', s)).strip()
 
 
 AUDIENCE = re.compile(r'^(?:(?:Adultes?|Jeunes adolescents?|Adolescents?|Enfants?|Tout[- ]petits?|Bébés?|Tout âge|All ages)[,\s]*)+', re.I)

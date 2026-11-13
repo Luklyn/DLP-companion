@@ -72,7 +72,7 @@
   {
     "Code": "uor.ioa.shows.hogwartsalways",
     "UUID Themeparks.wiki": "fa63f462-74b4-4b1e-96fe-0b6e7e0b31c2",
-    "Nom": "Hogwarts™ Always",
+    "Nom": "Hogwarts Always",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
@@ -102,7 +102,7 @@
   {
     "Code": "uor.ueu.show.le_cirque_arcanus",
     "UUID Themeparks.wiki": "9c409ec9-a805-456c-96fc-d867cc5bc81b",
-    "Nom": "Le Cirque Arcanus™",
+    "Nom": "Le Cirque Arcanus",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Epic Universe",
     "Land": "The Wizarding World of Harry Potter - Ministry of Magic",
@@ -142,7 +142,7 @@
   {
     "Code": "uor.ioa.shows.meet_spider_man_and_the_marvel_super_heroes",
     "UUID Themeparks.wiki": "c6c26dd9-bb82-49de-9fca-9245be6a8081",
-    "Nom": "Meet Spider-Man and the Marvel® Super Heroes",
+    "Nom": "Meet Spider-Man and the Marvel Super Heroes",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Islands of Adventure",
     "Land": "Marvel Super Hero Island",
@@ -162,7 +162,7 @@
   {
     "Code": "uor.usf.shows.meet_the_transformers",
     "UUID Themeparks.wiki": "a492aa01-6f29-43f0-9aec-8adcb8da4674",
-    "Nom": "Meet The TRANSFORMERS™",
+    "Nom": "Meet The TRANSFORMERS",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Studios Florida",
     "Land": "San Francisco",
@@ -182,7 +182,7 @@
   {
     "Code": "uor.ioa.shows.oh_.the.stories.youll.hear_",
     "UUID Themeparks.wiki": "9ad98d6a-e81a-4408-b5df-1ea832fe0b19",
-    "Nom": "Oh! The Stories You'll Hear!™",
+    "Nom": "Oh! The Stories You'll Hear!",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Islands of Adventure",
     "Land": "Seuss Landing",
@@ -192,7 +192,7 @@
   {
     "Code": "uor.usf.shows.ollivanders",
     "UUID Themeparks.wiki": "e99b72a6-37d0-46df-ab11-e9ff6603f259",
-    "Nom": "Ollivanders™ Experience in Diagon Alley™",
+    "Nom": "Ollivanders Experience in Diagon Alley",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Studios Florida",
     "Land": "The Wizarding World of Harry Potter - Diagon Alley",
@@ -202,7 +202,7 @@
   {
     "Code": "uor.ioa.shows.ollivanders",
     "UUID Themeparks.wiki": "d7310719-f158-4d92-a476-13202c7162cd",
-    "Nom": "Ollivanders™ Experience in Hogsmeade™",
+    "Nom": "Ollivanders Experience in Hogsmeade",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Islands of Adventure",
     "Land": "The Wizarding World of Harry Potter - Hogsmeade",
@@ -242,7 +242,7 @@
   {
     "Code": "uor.usf.shows.blues_brothers",
     "UUID Themeparks.wiki": "2f4690b4-72b0-4845-bcce-9e735397d60b",
-    "Nom": "The Blues Brothers® Show",
+    "Nom": "The Blues Brothers Show",
     "Type": "Spectacle / Rencontre",
     "Parc": "Universal Studios Florida",
     "Land": "Production Central",
