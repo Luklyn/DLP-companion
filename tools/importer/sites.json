@@ -135,5 +135,13 @@
       "attractions": "https://www.walibi.nl/en/park/attractions",
       "restaurants": "https://www.walibi.nl/en/park/restaurants"
     }
+  },
+  "hong-kong-disneyland": {
+    "site": "https://www.hongkongdisneyland.com/",
+    "list_urls": {
+      "attractions": "https://www.hongkongdisneyland.com/attractions/",
+      "shows": "https://www.hongkongdisneyland.com/entertainment/#/live-entertainment/sort=alpha/",
+      "restaurants": "https://www.hongkongdisneyland.com/dining/#/sort=alpha/"
+    }
   }
 }

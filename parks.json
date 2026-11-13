@@ -566,6 +566,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/walibi-holland.png"
+    },
+    {
+      "id": "hong-kong-disneyland",
+      "name": "Hong Kong Disneyland",
+      "country": "HK",
+      "timezone": "Asia/Hong_Kong",
+      "locale": "fr-FR",
+      "themeparksId": "abcfffe7-01f2-4f92-ae61-5093346f5a68",
+      "dataPath": "data/hong-kong-disneyland/",
+      "parks": [
+        {
+          "value": "Hong Kong Disneyland Park",
+          "label": "Hong Kong Disneyland Park",
+          "themeparksParkId": "bd0eb47b-2f02-4d4d-90fa-cb3a68988e3b"
+        }
+      ],
+      "info": {
+        "address": "Hong Kong Disneyland Parks",
+        "lat": 22.313084062509425,
+        "lng": 114.04458448769783
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
