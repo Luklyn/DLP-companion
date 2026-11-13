@@ -1,1 +1,288 @@
-[]
+[
+  {
+    "Code": "5076",
+    "UUID Themeparks.wiki": "0e495045-954e-496f-a212-ab5f42a4f451",
+    "Nom": "Beach Bar (Water Park)",
+    "Type": "Bar/Lounge",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGOLAND Water Park",
+    "Coordonnées GPS (lat)": 27.995795789893,
+    "Coordonnées GPS (lng)": -81.691303238098,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "5237",
+    "UUID Themeparks.wiki": "de64386d-54e4-46a7-a337-d0950bbb9ac8",
+    "Nom": "Beach Street Bites",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGOLAND Water Park",
+    "Coordonnées GPS (lat)": 27.996493413634,
+    "Coordonnées GPS (lng)": -81.691812857811,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "5078",
+    "UUID Themeparks.wiki": "69eaccd5-1c0c-45ab-8138-5d874076f400",
+    "Nom": "Beach-N-Bricks Grill (Water Park)",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGOLAND Water Park",
+    "Coordonnées GPS (lat)": 27.995729685438,
+    "Coordonnées GPS (lng)": -81.691206678574,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "4928",
+    "UUID Themeparks.wiki": "6cfdd571-1b0e-4b1b-af32-7e8e60bdead8",
+    "Nom": "Brickolini's Pizza and Pasta",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.990512162918,
+    "Coordonnées GPS (lng)": -81.691184847885
+  },
+  {
+    "Code": "5505",
+    "UUID Themeparks.wiki": "590005de-56ce-4f6c-8ada-537de3707cc2",
+    "Nom": "Bricks Family Restaurant (LEGOLAND Hotel)",
+    "Type": "Service à table",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGOLAND Hotel",
+    "Coordonnées GPS (lat)": 27.988233616543,
+    "Coordonnées GPS (lng)": -81.691850408737
+  },
+  {
+    "Code": "5107",
+    "UUID Themeparks.wiki": "39f32cdb-e6e6-49d7-9167-f7b40b4c8d13",
+    "Nom": "Coca-Cola® Freestyle Station - Land of Adventure",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Land of Adventure",
+    "Coordonnées GPS (lat)": 27.990794409208,
+    "Coordonnées GPS (lng)": -81.690253941341
+  },
+  {
+    "Code": "5106",
+    "UUID Themeparks.wiki": "716a981e-3f63-4b33-af0e-a4e7b27f5227",
+    "Nom": "Coca-Cola® Freestyle Station - LEGO® NINJAGO® World",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO NINJAGO World",
+    "Coordonnées GPS (lat)": 27.993366934192,
+    "Coordonnées GPS (lng)": -81.690361782734
+  },
+  {
+    "Code": "5105",
+    "UUID Themeparks.wiki": "2cbce5d4-061e-4b9b-8cc6-5fd055184d13",
+    "Nom": "Coca-Cola® Freestyle Station - The Beginning",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "The Beginning",
+    "Coordonnées GPS (lat)": 27.989396335896,
+    "Coordonnées GPS (lng)": -81.691641196434
+  },
+  {
+    "Code": "9792",
+    "UUID Themeparks.wiki": "3faf6c85-f788-448d-a5c1-a255fd360910",
+    "Nom": "Coca-Cola® Freestyle Station – DUPLO Valley",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "DUPLO Valley",
+    "Coordonnées GPS (lat)": 27.989289966176,
+    "Coordonnées GPS (lng)": -81.690587088291,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "49507",
+    "UUID Themeparks.wiki": "6b26a8ae-c95a-41d1-a99a-46fe629d10bd",
+    "Nom": "Deli Takeover",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Heartlake City",
+    "Coordonnées GPS (lat)": 27.99350578763,
+    "Coordonnées GPS (lng)": -81.691791400139
+  },
+  {
+    "Code": "4952",
+    "UUID Themeparks.wiki": "c3a22bbd-4eec-4e98-8114-239dc3d05670",
+    "Nom": "Dragon’s Den",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO Kingdoms",
+    "Coordonnées GPS (lat)": 27.990116629626,
+    "Coordonnées GPS (lng)": -81.690079777771
+  },
+  {
+    "Code": "4967",
+    "UUID Themeparks.wiki": "9a7faf22-0881-4f6f-bc37-e6240feae2fc",
+    "Nom": "Firehouse Ice Cream",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO City",
+    "Coordonnées GPS (lat)": 27.994173737541,
+    "Coordonnées GPS (lng)": -81.691477208668
+  },
+  {
+    "Code": "4929",
+    "UUID Themeparks.wiki": "a1687062-590b-4ae4-b957-6427afa8e9bb",
+    "Nom": "Fun Town Treats",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.990038470181,
+    "Coordonnées GPS (lng)": -81.691136568123
+  },
+  {
+    "Code": "5113",
+    "UUID Themeparks.wiki": "bcb56e59-5050-4a6d-931b-a0df4fcb2c93",
+    "Nom": "Funnel Cake Factory",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.992560794798,
+    "Coordonnées GPS (lng)": -81.69121740741
+  },
+  {
+    "Code": "4927",
+    "UUID Themeparks.wiki": "0c585074-6424-4776-80fb-613b5a7732c9",
+    "Nom": "Granny's Apple Fries",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.989749516589,
+    "Coordonnées GPS (lng)": -81.691270678574
+  },
+  {
+    "Code": "5111",
+    "UUID Themeparks.wiki": "8b99a73e-cc04-4ab6-b766-14374fbd9820",
+    "Nom": "Kick'n Chicken Co.",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO City",
+    "Coordonnées GPS (lat)": 27.99444613488,
+    "Coordonnées GPS (lng)": -81.691429301922
+  },
+  {
+    "Code": "5008",
+    "UUID Themeparks.wiki": "02c30053-d12b-4460-b20a-559aceff5c8b",
+    "Nom": "Kingdom Cones",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO Kingdoms",
+    "Coordonnées GPS (lat)": 27.99025163217,
+    "Coordonnées GPS (lng)": -81.690267532402
+  },
+  {
+    "Code": "12700",
+    "UUID Themeparks.wiki": "43fcf5a9-f2e1-4476-b6fe-9d81f5a0ba79",
+    "Nom": "LEGOLAND® Coffee Co.",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "The Beginning",
+    "Coordonnées GPS (lat)": 27.989199963695,
+    "Coordonnées GPS (lng)": -81.691332742398
+  },
+  {
+    "Code": "9790",
+    "UUID Themeparks.wiki": "c81fa3bd-424e-4349-ae43-1e23a94f3cf5",
+    "Nom": "Loop & Kernel",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.991843163128,
+    "Coordonnées GPS (lng)": -81.690517350857
+  },
+  {
+    "Code": "5007",
+    "UUID Themeparks.wiki": "93ced6dd-0c2c-4a01-a8ff-410de1ae9093",
+    "Nom": "Pepper & Roni's Pizza Stop",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "The Beginning",
+    "Coordonnées GPS (lat)": 27.989396613202,
+    "Coordonnées GPS (lng)": -81.691386013561
+  },
+  {
+    "Code": "52590",
+    "UUID Themeparks.wiki": "371e70f9-843a-4af7-98c2-52b85125be13",
+    "Nom": "Pumpkin Pie Apple Fries",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Fun Town",
+    "Coordonnées GPS (lat)": 27.989758925251,
+    "Coordonnées GPS (lng)": -81.691265687172,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "5080",
+    "UUID Themeparks.wiki": "b87f0a71-1c8e-4382-b4cd-cd301a4748a1",
+    "Nom": "River Raft ICEE",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO City",
+    "Coordonnées GPS (lat)": 27.995883627704,
+    "Coordonnées GPS (lng)": -81.691659971897,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "11550",
+    "UUID Themeparks.wiki": "9e1a5fe8-07f2-4e34-9177-528ce8918e94",
+    "Nom": "Shipwreck Restaurant",
+    "Type": "Service à table",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Pirate Island Hotel",
+    "Coordonnées GPS (lat)": 27.988025187589,
+    "Coordonnées GPS (lng)": -81.691791400139
+  },
+  {
+    "Code": "5506",
+    "UUID Themeparks.wiki": "237a0c57-f408-44af-85ae-36b1c42e2466",
+    "Nom": "Skyline Lounge (LEGOLAND Hotel)",
+    "Type": "Bar/Lounge",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGOLAND Hotel",
+    "Coordonnées GPS (lat)": 27.988330725349,
+    "Coordonnées GPS (lng)": -81.691523179237
+  },
+  {
+    "Code": "6258",
+    "UUID Themeparks.wiki": "e321b24f-a5c2-4bea-a705-ac757fefd675",
+    "Nom": "Taco Everyday",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "THE LEGO MOVIE WORLD",
+    "Coordonnées GPS (lat)": 27.988818636564,
+    "Coordonnées GPS (lng)": -81.690434202377
+  },
+  {
+    "Code": "4966",
+    "UUID Themeparks.wiki": "c6707728-15a3-4c16-b078-492e8d02246e",
+    "Nom": "The Burger Kitchen",
+    "Type": "Restauration rapide",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO City",
+    "Coordonnées GPS (lat)": 27.993099672752,
+    "Coordonnées GPS (lng)": -81.690960883432
+  },
+  {
+    "Code": "31343",
+    "UUID Themeparks.wiki": "8ebd5507-8925-46b4-ba8b-d7e11c936e10",
+    "Nom": "The Grove",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "Cypress Gardens",
+    "Coordonnées GPS (lat)": 27.992802372701,
+    "Coordonnées GPS (lng)": -81.69061659259
+  },
+  {
+    "Code": "9791",
+    "UUID Themeparks.wiki": "4e8de557-3fc8-4235-8a89-6dce31714acd",
+    "Nom": "Traffic Cart",
+    "Type": "A emporter",
+    "Parc": "LEGOLAND Florida",
+    "Land": "LEGO City",
+    "Coordonnées GPS (lat)": 27.993522366378,
+    "Coordonnées GPS (lng)": -81.691316649143
+  }
+]
