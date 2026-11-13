@@ -409,9 +409,15 @@
         @keyframes slideL { from { opacity: 0; transform: translateX(-26px); } to { opacity: 1; transform: none; } }
         @media (prefers-reduced-motion: reduce) { .home-slide.in-r, .home-slide.in-l { animation: none; } }
         .globe-wrap { position: relative; width: min(100%, 420px); aspect-ratio: 1; margin: 0 auto; }
-        #globe { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; border-radius: 50%; }
+        #globe { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; border-radius: 28px; }
         #globe:active { cursor: grabbing; }
         #globe:focus-visible { outline: 3px solid var(--acc); outline-offset: 4px; }
+        .globe-ctl { position: absolute; right: 2px; bottom: 6px; display: flex; flex-direction: column; gap: 8px; }
+        .globe-ctl button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--line); box-shadow: 0 2px 8px rgb(18 22 58 / .18); color: var(--ink); }
+        .globe-ctl button:disabled { opacity: .4; }
+        .globe-ctl button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--gold); }
+        :root[data-theme="dark"] .globe-ctl button[aria-pressed="true"] { background: #3D3C9E; border-color: #3D3C9E; }
+        .globe-ctl .icon { width: 22px; height: 22px; stroke-width: 2.4; }
         .globe-msg { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; font-weight: 700; color: var(--mut); }
         .globe-msg[hidden] { display: none; }
         .globe-panel { margin-top: 14px; }
@@ -857,7 +863,12 @@
                 <div id="home-grid" class="home-grid"></div>
             </div>
             <div id="home-slide-globe" class="home-slide" role="tabpanel" aria-labelledby="hv-globe" hidden>
-                <div class="globe-wrap"><canvas id="globe" role="img" aria-label="Globe terrestre : touchez un pays en surbrillance pour voir ses parcs"></canvas><p id="globe-msg" class="globe-msg" hidden></p></div>
+                <div class="globe-wrap"><canvas id="globe" role="img" aria-label="Globe terrestre : touchez un pays en surbrillance pour voir ses parcs"></canvas><p id="globe-msg" class="globe-msg" hidden></p>
+                    <div class="globe-ctl" role="group" aria-label="Commandes du globe">
+                        <button type="button" id="globe-in" aria-label="Zoom avant"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                        <button type="button" id="globe-out" aria-label="Zoom arrière"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                        <button type="button" id="globe-sun" aria-label="Afficher le jour et la nuit" aria-pressed="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg></button>
+                    </div></div>
                 <div id="globe-panel" class="globe-panel" aria-live="polite"></div>
             </div>
             <p class="home-foot">Application indépendante, non affiliée aux parcs. Données : <a href="https://themeparks.wiki" target="_blank" rel="noopener">Powered by ThemeParks.wiki</a>, à titre indicatif.</p>
@@ -1306,17 +1317,20 @@
         setInterval(paintClocks, 30_000);
 
 
-        // Accueil : globe interactif (pays en surbrillance = pays avec au moins une destination). Chargé à la demande (vendor/).
+        // Accueil : globe interactif (pays en surbrillance = pays avec au moins une destination), zoom et jour / nuit. Chargé à la demande (vendor/).
         function initHomeGlobe(getTile) {
             const NUM = { FR: 250, DE: 276, ES: 724, GB: 826, UK: 826, NL: 528, BE: 56, CH: 756, AT: 40, IT: 380, DK: 208, SE: 752, NO: 578, FI: 246, PL: 616, CZ: 203, PT: 620, IE: 372, HU: 348, GR: 300, TR: 792,
                 US: 840, CA: 124, MX: 484, BR: 76, AR: 32, CL: 152, CO: 170, PE: 604, JP: 392, CN: 156, HK: 156, KR: 410, SG: 702, TH: 764, MY: 458, AE: 784, SA: 682, IN: 356, TW: 158, ID: 360,
                 AU: 36, NZ: 554, ZA: 710, EG: 818, MA: 504, TN: 788 };
+            const numOf = (r) => NUM[String(r.country ?? '').toUpperCase().split('-')[0]];
             const btnList = document.querySelector('#hv-list'), btnGlobe = document.querySelector('#hv-globe');
             const slideList = document.querySelector('#home-slide-list'), slideGlobe = document.querySelector('#home-slide-globe');
             const canvas = document.querySelector('#globe'), msg = document.querySelector('#globe-msg'), panel = document.querySelector('#globe-panel');
+            const ctlIn = document.querySelector('#globe-in'), ctlOut = document.querySelector('#globe-out'), ctlSun = document.querySelector('#globe-sun');
             const ctx = canvas.getContext('2d');
             const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
             const regionName = (code) => { try { return new Intl.DisplayNames([LOC()], { type: 'region' }).of(code) || code; } catch (e) { return code; } };
+            const ZMIN = 1, ZMAX = 9;
 
             // Destinations regroupées par pays (HK est rattaché à la Chine, absente à part du fond de carte)
             const byNum = new Map();
@@ -1327,47 +1341,85 @@
                 if (!byNum.has(n)) byNum.set(n, []);
                 byNum.get(n).push({ r, code });
             }
-            const dots = registry.resorts.filter((r) => Number.isFinite(r.info?.lat) && Number.isFinite(r.info?.lng) && byNum.has(NUM[String(r.country ?? '').toUpperCase().split('-')[0]]));
-
-            let G = null, features = [], hot = [], projection, path, sphere, graticule, size = 0, dpr = 1;
-            let rot = [-8, -38, 0], selected = null, auto = !reduced, raf = 0, anim = null, tab = 'list';
+            const dots = registry.resorts.filter((r) => Number.isFinite(r.info?.lat) && Number.isFinite(r.info?.lng) && byNum.has(numOf(r)));
             const hotSet = new Set(byNum.keys());
 
+            let G = null, features = [], hot = [], borders = null, coast = null, projection, path, sphere, graticule, size = 0, dpr = 1, base = 0;
+            let nightCache = null, rot = [-8, -38, 0], zoom = 1, selected = null, auto = !reduced, raf = 0, anim = null, tab = 'list', night = true, drag = null;
+            const pointers = new Map(); let pinch = null;
+
+            // Position du soleil (UTC) : longitude du point subsolaire et déclinaison
+            function sunPoint() {
+                const d = new Date(), n = (Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - Date.UTC(d.getUTCFullYear(), 0, 0)) / 864e5;
+                const hours = d.getUTCHours() + d.getUTCMinutes() / 60 + d.getUTCSeconds() / 3600;
+                const decl = -23.44 * Math.cos((2 * Math.PI / 365) * (n + 10));
+                const eq = 9.87 * Math.sin(2 * (2 * Math.PI * (n - 81) / 364)) - 7.53 * Math.cos(2 * Math.PI * (n - 81) / 364) - 1.5 * Math.sin(2 * Math.PI * (n - 81) / 364);   // équation du temps (min)
+                return [(12 - hours - eq / 60) * 15, decl];
+            }
             const colors = () => {
                 const dark = document.documentElement.dataset.theme === 'dark';
                 const probe = document.createElement('span'); probe.style.color = 'var(--acc)'; document.body.append(probe);
                 const acc = getComputedStyle(probe).color; probe.remove();
                 return dark
-                    ? { ocean: '#0F1230', land: '#2A2F63', line: 'rgb(255 255 255 / .07)', edge: 'rgb(255 255 255 / .22)', acc, sel: '#F2B33D', stroke: '#0B0D1F' }
-                    : { ocean: '#DDE3FA', land: '#B9BFE3', line: 'rgb(18 22 58 / .08)', edge: 'rgb(18 22 58 / .25)', acc, sel: '#F2B33D', stroke: '#fff' };
+                    ? { o1: '#1B2766', o2: '#0A1038', land: '#3B4A8C', land2: '#2B376F', border: 'rgb(255 255 255 / .16)', coast: 'rgb(150 175 255 / .45)', line: 'rgb(255 255 255 / .05)', glow: 'rgb(110 130 255 / .35)', acc, sel: '#F2B33D', night: '3 5 22' }
+                    : { o1: '#9FC4F4', o2: '#5E8DDA', land: '#EFEBDD', land2: '#D9D3BE', border: 'rgb(60 60 90 / .20)', coast: 'rgb(40 70 130 / .45)', line: 'rgb(255 255 255 / .22)', glow: 'rgb(106 63 208 / .30)', acc, sel: '#F2B33D', night: '8 12 45' };
             };
             function resize() {
                 const w = Math.round(canvas.clientWidth);
                 if (!w || !G) return;
                 dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-                size = w;
+                size = w; base = w / 2 - 14;
                 canvas.width = canvas.height = Math.round(w * dpr);
-                projection = G.geoOrthographic().clipAngle(90).precision(0.6).scale(w / 2 - 4).translate([w / 2, w / 2]);
+                projection = G.geoOrthographic().clipAngle(90).precision(0.5).translate([w / 2, w / 2]).scale(base * zoom);
                 path = G.geoPath(projection, ctx);
                 draw();
             }
             function draw() {
                 if (!G || !size) return;
-                const c = colors();
-                projection.rotate(rot);
+                const c = colors(), R = base * zoom, mid = size / 2;
+                projection.rotate(rot).scale(R);
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                 ctx.clearRect(0, 0, size, size);
-                ctx.beginPath(); path(sphere); ctx.fillStyle = c.ocean; ctx.fill();
-                ctx.beginPath(); path(graticule); ctx.strokeStyle = c.line; ctx.lineWidth = 1; ctx.stroke();
-                ctx.beginPath(); for (const f of features) if (!hotSet.has(+f.id)) path(f); ctx.fillStyle = c.land; ctx.fill();
-                ctx.lineWidth = .8; ctx.strokeStyle = c.stroke;
-                for (const f of hot) { ctx.beginPath(); path(f); ctx.fillStyle = +f.id === selected ? c.sel : c.acc; ctx.fill(); ctx.stroke(); }
+                // halo atmosphérique
+                const halo = ctx.createRadialGradient(mid, mid, R * .98, mid, mid, R * 1.1);
+                halo.addColorStop(0, c.glow); halo.addColorStop(1, 'rgb(0 0 0 / 0)');
+                ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(mid, mid, R * 1.1, 0, 7); ctx.fill();
+                // océan
+                const oc = ctx.createRadialGradient(mid - R * .35, mid - R * .4, R * .1, mid, mid, R);
+                oc.addColorStop(0, c.o1); oc.addColorStop(1, c.o2);
+                ctx.beginPath(); path(sphere); ctx.fillStyle = oc; ctx.fill();
+                ctx.beginPath(); path(graticule); ctx.strokeStyle = c.line; ctx.lineWidth = .7; ctx.stroke();
+                // terres
+                const ld = ctx.createLinearGradient(mid - R, mid - R, mid + R, mid + R);
+                ld.addColorStop(0, c.land); ld.addColorStop(1, c.land2);
+                ctx.beginPath(); for (const f of features) if (!hotSet.has(+f.id)) path(f); ctx.fillStyle = ld; ctx.fill();
+                for (const f of hot) { ctx.beginPath(); path(f); ctx.fillStyle = +f.id === selected ? c.sel : c.acc; ctx.fill(); }
+                ctx.beginPath(); path(borders); ctx.strokeStyle = c.border; ctx.lineWidth = .6; ctx.stroke();
+                ctx.beginPath(); path(coast); ctx.strokeStyle = c.coast; ctx.lineWidth = .9; ctx.stroke();
+                // nuit : hémisphère opposé au soleil, avec un crépuscule progressif
+                if (night) {
+                    const key = Math.floor(Date.now() / 30000);
+                    if (!nightCache || nightCache.key !== key) {
+                        const sp = sunPoint(), anti = [sp[0] + 180, -sp[1]], gc = G.geoCircle().center(anti).precision(3);
+                        const rings = []; for (let rad = 105; rad >= 63; rad -= 3) rings.push(gc.radius(rad)());
+                        nightCache = { key, rings, core: gc.radius(90)() };
+                    }
+                    for (const g of nightCache.rings) { ctx.beginPath(); path(g); ctx.fillStyle = `rgb(${c.night} / .02)`; ctx.fill(); }
+                    ctx.beginPath(); path(nightCache.core); ctx.fillStyle = `rgb(${c.night} / .10)`; ctx.fill();
+                }
+                // relief de la sphère (bord plus sombre)
+                const limb = ctx.createRadialGradient(mid - R * .25, mid - R * .3, R * .45, mid, mid, R);
+                limb.addColorStop(0, 'rgb(255 255 255 / .10)'); limb.addColorStop(.7, 'rgb(0 0 0 / 0)'); limb.addColorStop(1, 'rgb(0 0 20 / .35)');
+                ctx.beginPath(); path(sphere); ctx.fillStyle = limb; ctx.fill();
+                // destinations
                 for (const r of dots) {
                     const p = projection([r.info.lng, r.info.lat]);
                     if (!p || G.geoDistance([r.info.lng, r.info.lat], [-rot[0], -rot[1]]) > Math.PI / 2 - .02) continue;
-                    ctx.beginPath(); ctx.arc(p[0], p[1], 3.2, 0, 7); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 1.4; ctx.strokeStyle = '#12163A'; ctx.stroke();
+                    const on = numOf(r) === selected;
+                    ctx.beginPath(); ctx.arc(p[0], p[1], on ? 9 : 7, 0, 7); ctx.fillStyle = on ? 'rgb(242 179 61 / .35)' : 'rgb(255 255 255 / .22)'; ctx.fill();
+                    ctx.beginPath(); ctx.arc(p[0], p[1], 3.4, 0, 7); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#12163A'; ctx.stroke();
                 }
-                ctx.beginPath(); path(sphere); ctx.lineWidth = 1.5; ctx.strokeStyle = c.edge; ctx.stroke();
+                ctlIn.disabled = zoom >= ZMAX - .01; ctlOut.disabled = zoom <= ZMIN + .01;
             }
             function loop() {
                 raf = 0;
@@ -1375,17 +1427,24 @@
                 if (anim) {
                     const t = Math.min(1, (performance.now() - anim.t0) / anim.ms), e = 1 - Math.pow(1 - t, 3);
                     rot = [anim.from[0] + (anim.to[0] - anim.from[0]) * e, anim.from[1] + (anim.to[1] - anim.from[1]) * e, 0];
+                    zoom = anim.z0 + (anim.z1 - anim.z0) * e;
                     if (t >= 1) anim = null;
-                } else if (auto && !drag) rot = [rot[0] + .12, rot[1], 0];
+                } else if (auto && !drag && pointers.size === 0) rot = [rot[0] + .1 / Math.max(1, zoom), rot[1], 0];
                 draw();
-                if (anim || (auto && !drag)) raf = requestAnimationFrame(loop);
+                if (anim || (auto && !drag && pointers.size === 0)) raf = requestAnimationFrame(loop);
             }
             const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
-            function rotateTo(lng, lat) {
-                let to0 = -lng, d = ((to0 - rot[0] + 540) % 360) - 180;
-                anim = { from: rot.slice(), to: [rot[0] + d, Math.max(-70, Math.min(70, -lat)), 0], t0: performance.now(), ms: reduced ? 1 : 750 };
+            const clampZ = (z) => Math.max(ZMIN, Math.min(ZMAX, z));
+            function flyTo(lng, lat, z) {
+                const d = ((-lng - rot[0] + 540) % 360) - 180;
+                anim = { from: rot.slice(), to: [rot[0] + d, Math.max(-70, Math.min(70, -lat)), 0], z0: zoom, z1: clampZ(z ?? zoom), t0: performance.now(), ms: reduced ? 1 : 750 };
                 kick();
             }
+            function zoomBy(f) { auto = false; anim = { from: rot.slice(), to: rot.slice(), z0: zoom, z1: clampZ(zoom * f), t0: performance.now(), ms: reduced ? 1 : 260 }; kick(); }
+            ctlIn.addEventListener('click', () => zoomBy(1.7));
+            ctlOut.addEventListener('click', () => zoomBy(1 / 1.7));
+            ctlSun.addEventListener('click', () => { night = !night; ctlSun.setAttribute('aria-pressed', String(night)); draw(); });
+            canvas.addEventListener('wheel', (e) => { e.preventDefault(); auto = false; anim = null; zoom = clampZ(zoom * Math.exp(-e.deltaY * .0018)); draw(); }, { passive: false });
 
             // Fiche du pays : une ligne par destination, qui ouvre la tuile correspondante
             function showCountry(n) {
@@ -1399,7 +1458,8 @@
                     const row = document.createElement('button'); row.type = 'button'; row.className = 'globe-row';
                     const ico = tile.querySelector('.app-ico'); if (ico) row.append(ico.cloneNode(true));
                     const t = document.createElement('span'); t.textContent = r.name;
-                    const sub = document.createElement('span'); sub.className = 'gr-sub'; sub.textContent = (r.parks || []).length > 1 || (r.parks || [])[0]?.label !== r.name ? (r.parks || []).map((p) => p.label).join(' · ') : '';
+                    const sub = document.createElement('span'); sub.className = 'gr-sub';
+                    sub.textContent = (r.parks || []).length > 1 || (r.parks || [])[0]?.label !== r.name ? (r.parks || []).map((p) => p.label).join(' · ') : '';
                     if (sub.textContent) t.append(sub);
                     row.append(t);
                     row.insertAdjacentHTML('beforeend', '<svg class="icon gr-go" aria-hidden="true"><use href="#i-next"/></svg>');
@@ -1410,49 +1470,60 @@
             }
             const hint = () => { panel.replaceChildren(); };
 
-            // Gestes : glisser pour tourner, toucher pour choisir
-            let drag = null;
+            // Gestes : glisser pour tourner, pincer / molette / boutons pour zoomer, toucher pour choisir
             canvas.addEventListener('pointerdown', (e) => {
                 canvas.setPointerCapture(e.pointerId);
-                drag = { x: e.clientX, y: e.clientY, x0: e.clientX, y0: e.clientY, rot: rot.slice(), t: performance.now(), moved: false };
+                pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
                 anim = null; auto = false;
+                if (pointers.size === 2) { const [a, b] = [...pointers.values()]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), z: zoom }; drag = null; return; }
+                drag = { x0: e.clientX, y0: e.clientY, rot: rot.slice(), moved: false };
             });
             canvas.addEventListener('pointermove', (e) => {
+                if (!pointers.has(e.pointerId)) return;
+                pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+                if (pinch && pointers.size >= 2) {
+                    const [a, b] = [...pointers.values()];
+                    zoom = clampZ(pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d); draw(); return;
+                }
                 if (!drag) return;
                 if (Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) > 5) drag.moved = true;
                 if (!drag.moved) return;
-                const k = 180 / (size * 1.1);
+                const k = (180 / Math.PI) / (base * zoom);
                 rot = [drag.rot[0] + (e.clientX - drag.x0) * k, Math.max(-75, Math.min(75, drag.rot[1] - (e.clientY - drag.y0) * k)), 0];
                 draw();
             });
             const endDrag = (e) => {
+                pointers.delete(e.pointerId);
+                if (pinch) { if (pointers.size < 2) { pinch = null; drag = null; } return; }
                 const d = drag; drag = null;
                 if (!d || d.moved || e.type === 'pointercancel') return;
                 const rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
                 const pt = projection.invert([x, y]);
                 let hit = null;
                 if (pt) { const f = hot.find((g) => G.geoContains(g, pt)); if (f) hit = +f.id; }
-                if (hit == null) {   // petits pays : point de destination le plus proche (22 px)
-                    let best = 22;
+                if (hit == null) {   // petits pays : point de destination le plus proche (24 px)
+                    let best = 24;
                     for (const r of dots) {
                         const p = projection([r.info.lng, r.info.lat]);
                         if (!p || G.geoDistance([r.info.lng, r.info.lat], [-rot[0], -rot[1]]) > Math.PI / 2 - .02) continue;
                         const dd = Math.hypot(p[0] - x, p[1] - y);
-                        if (dd < best) { best = dd; hit = NUM[String(r.country ?? '').toUpperCase().split('-')[0]]; }
+                        if (dd < best) { best = dd; hit = numOf(r); }
                     }
                 }
                 if (hit == null) { selected = null; hint(); draw(); return; }
                 showCountry(hit);
                 const r0 = byNum.get(hit).find((x) => Number.isFinite(x.r.info?.lng))?.r;
-                if (r0) rotateTo(r0.info.lng, r0.info.lat);
+                if (r0) flyTo(r0.info.lng, r0.info.lat);
             };
             canvas.addEventListener('pointerup', endDrag);
             canvas.addEventListener('pointercancel', endDrag);
             canvas.tabIndex = 0;
             canvas.addEventListener('keydown', (e) => {
+                if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomBy(1.4); return; }
+                if (e.key === '-') { e.preventDefault(); zoomBy(1 / 1.4); return; }
                 const step = { ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, 10], ArrowDown: [0, -10] }[e.key];
                 if (!step) return;
-                e.preventDefault(); auto = false; rot = [rot[0] + step[0], Math.max(-75, Math.min(75, rot[1] + step[1])), 0]; draw();
+                e.preventDefault(); auto = false; rot = [rot[0] + step[0] / zoom, Math.max(-75, Math.min(75, rot[1] + step[1] / zoom)), 0]; draw();
             });
 
             // Chargement à la demande
@@ -1468,6 +1539,8 @@
                     G = window.TPCGeo;
                     features = G.feature(topo, topo.objects.countries).features;
                     hot = features.filter((f) => hotSet.has(+f.id));
+                    borders = G.mesh(topo, topo.objects.countries, (a, b) => a !== b);
+                    coast = G.mesh(topo, topo.objects.land);
                     sphere = { type: 'Sphere' }; graticule = G.geoGraticule10();
                     msg.hidden = true;
                 }).catch(() => { loading = null; msg.hidden = false; msg.textContent = 'Le globe n’est pas disponible hors connexion. Utilisez la liste.'; throw new Error('globe'); });
@@ -1483,9 +1556,8 @@
                 const [on, off] = toGlobe ? [slideGlobe, slideList] : [slideList, slideGlobe];
                 off.hidden = true; on.hidden = false;
                 on.classList.remove('in-r', 'in-l'); void on.offsetWidth; on.classList.add(dir || (toGlobe ? 'in-r' : 'in-l'));
-                if (toGlobe) {
-                                        load().then(() => { if (tab === 'globe') { resize(); kick(); } }).catch(() => {});
-                } else cancelAnimationFrame(raf), raf = 0;
+                if (toGlobe) load().then(() => { if (tab === 'globe') { resize(); kick(); } }).catch(() => {});
+                else { cancelAnimationFrame(raf); raf = 0; }
             }
             btnList.addEventListener('click', () => show('list'));
             btnGlobe.addEventListener('click', () => show('globe'));
@@ -1497,6 +1569,7 @@
             }, { passive: true });
             new ResizeObserver(() => { if (tab === 'globe') resize(); }).observe(canvas);
             new MutationObserver(() => { if (tab === 'globe') draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            setInterval(() => { if (tab === 'globe' && night && !raf) draw(); }, 60000);   // le terminateur avance avec l'heure
         }
 
         // Page d'accueil : une carte par resort, avec l'état ouvert / fermé de chacun de ses parcs (planning du jour).
