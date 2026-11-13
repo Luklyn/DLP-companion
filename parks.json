@@ -692,6 +692,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/universal-studios-japan.png"
+    },
+    {
+      "id": "plopsaland-deutschland",
+      "name": "Plopsaland Deutschland",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "locale": "fr-FR",
+      "themeparksId": "22489737-c1f7-4ac9-b79b-b664e5efd866",
+      "dataPath": "data/plopsaland-deutschland/",
+      "parks": [
+        {
+          "value": "Plopsaland Deutschland",
+          "label": "Plopsaland Deutschland",
+          "themeparksParkId": "3ad67aac-0b97-4961-8aa8-c3b8d2350873"
+        }
+      ],
+      "info": {
+        "address": "Plopsaland Deutschland",
+        "lat": 49.317914992075146,
+        "lng": 8.300217955490842
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

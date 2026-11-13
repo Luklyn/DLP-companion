@@ -167,5 +167,13 @@
       "shows": "https://www.usj.co.jp/web/en/us/search-results/filtered?attraction_experience=rides-attractions&filters=usj.place_types;show",
       "restaurants": "https://www.usj.co.jp/web/en/us/search-results/filtered?attraction_experience=rides-attractions&filters=usj.place_types;dining"
     }
+  },
+  "plopsaland-deutschland": {
+    "site": "https://www.plopsa.com/",
+    "list_urls": {
+      "attractions": "https://www.plopsa.com/fr/plopsaland-deutschland/attractions",
+      "shows": "https://www.plopsa.com/fr/plopsaland-deutschland/spectacles-evenements",
+      "restaurants": "https://www.plopsa.com/fr/plopsaland-deutschland/repas-et-boissons"
+    }
   }
 }
