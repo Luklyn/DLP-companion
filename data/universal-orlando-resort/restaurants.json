@@ -66,17 +66,6 @@
     "Statut inconnu": "oui"
   },
   {
-    "Code": "uor.vb.dining.bambu",
-    "UUID Themeparks.wiki": "89e100cf-b0a5-402a-9c9c-00fa6996a5df",
-    "Nom": "Bambu",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Rainforest Village",
-    "Coordonnées GPS (lat)": 28.460584,
-    "Coordonnées GPS (lng)": -81.473193,
-    "Statut inconnu": "oui"
-  },
-  {
     "Code": "uor.ueu.dining.bar_moonshine",
     "UUID Themeparks.wiki": "bd8df82c-ea86-4139-9a47-24fa19151c98",
     "Nom": "Bar Moonshine™",
@@ -389,17 +378,6 @@
     "Land": "Production Central",
     "Coordonnées GPS (lat)": 28.477,
     "Coordonnées GPS (lng)": -81.468861,
-    "Statut inconnu": "oui"
-  },
-  {
-    "Code": "uor.vb.dining.dancing_dragons_boat_bar",
-    "UUID Themeparks.wiki": "db53e3a2-fe1c-46ae-a6ad-89bd17e035e8",
-    "Nom": "Dancing Dragons Boat Bar",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Wave Village",
-    "Coordonnées GPS (lat)": 28.462623,
-    "Coordonnées GPS (lng)": -81.472999,
     "Statut inconnu": "oui"
   },
   {
@@ -717,17 +695,6 @@
     "Statut inconnu": "oui"
   },
   {
-    "Code": "uor.vb.dining.kohola_reef_restaurant",
-    "UUID Themeparks.wiki": "e4a1b677-9067-4c98-aabb-ce70b560e06a",
-    "Nom": "Kohola Reef Restaurant & Social Club™",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Wave Village",
-    "Coordonnées GPS (lat)": 28.462664,
-    "Coordonnées GPS (lng)": -81.472436,
-    "Statut inconnu": "oui"
-  },
-  {
     "Code": "uor.usf.dining.krusty_burger",
     "UUID Themeparks.wiki": "843e8552-2a6f-4e33-b290-222ac9def9b9",
     "Nom": "Krusty Burger",
@@ -736,17 +703,6 @@
     "Land": "Springfield: Home of the Simpsons",
     "Coordonnées GPS (lat)": 28.4788238,
     "Coordonnées GPS (lng)": -81.4679088,
-    "Statut inconnu": "oui"
-  },
-  {
-    "Code": "uor.vb.dining.kunuku_boat_bar",
-    "UUID Themeparks.wiki": "8bab113e-bd98-4484-8287-d38ec4729534",
-    "Nom": "Kunuku Boat Bar",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Rainforest Village",
-    "Coordonnées GPS (lat)": 28.460971,
-    "Coordonnées GPS (lng)": -81.473772,
     "Statut inconnu": "oui"
   },
   {
@@ -1284,17 +1240,6 @@
     "Statut inconnu": "oui"
   },
   {
-    "Code": "uor.vb.dining.the_feasting_frog",
-    "UUID Themeparks.wiki": "ad3bab45-3a33-49ac-affc-bef4b79e6528",
-    "Nom": "The Feasting Frog™",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Rainforest Village",
-    "Coordonnées GPS (lat)": 28.46076,
-    "Coordonnées GPS (lng)": -81.473781,
-    "Statut inconnu": "oui"
-  },
-  {
     "Code": "uor.usf.dining.the_fountain_of_fair_fortune",
     "UUID Themeparks.wiki": "c6cc242d-cce0-45e1-86cf-d032625afe7e",
     "Nom": "The Fountain of Fair Fortune",
@@ -1427,28 +1372,6 @@
     "Land": "Super Nintendo World",
     "Coordonnées GPS (lat)": 28.438835,
     "Coordonnées GPS (lng)": -81.448083,
-    "Statut inconnu": "oui"
-  },
-  {
-    "Code": "uor.vb.dining.premium_seating",
-    "UUID Themeparks.wiki": "27891f28-4b9c-482b-8d43-7392dea8dd42",
-    "Nom": "Volcano Bay Premium Seating",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "Wave Village",
-    "Coordonnées GPS (lat)": 28.462308,
-    "Coordonnées GPS (lng)": -81.472579,
-    "Statut inconnu": "oui"
-  },
-  {
-    "Code": "uor.vb.dining.whakawaiwai_eats",
-    "UUID Themeparks.wiki": "437a5966-6597-404f-93cb-0cd233696a80",
-    "Nom": "Whakawaiwai Eats",
-    "Type": "A emporter",
-    "Parc": "Universal Volcano Bay",
-    "Land": "River Village",
-    "Coordonnées GPS (lat)": 28.461401,
-    "Coordonnées GPS (lng)": -81.47431,
     "Statut inconnu": "oui"
   },
   {
