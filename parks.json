@@ -605,22 +605,22 @@
       "themeparksId": "89db5d43-c434-4097-b71f-f6869f495a22",
       "dataPath": "data/universal-orlando-resort/",
       "parks": [
-          {
+        {
           "value": "Universal Studios Florida",
           "label": "Universal Studios Florida",
           "themeparksParkId": "eb3f4560-2383-4a36-9152-6b3e5ed6bc57"
         },
-          {
+        {
           "value": "Universal Islands of Adventure",
           "label": "Universal Islands of Adventure",
           "themeparksParkId": "267615cc-8943-4c2a-ae2c-5da728ca591f"
         },
-          {
+        {
           "value": "Universal Epic Universe",
           "label": "Universal Epic Universe",
           "themeparksParkId": "12dbb85b-265f-44e6-bccf-f1faa17211fc"
         }
-        ],
+      ],
       "info": {
         "address": "Universal Orlando Resort",
         "lat": 28.461355,
@@ -634,6 +634,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/universal-orlando-resort.png"
+    },
+    {
+      "id": "universal-studios-hollywood",
+      "name": "Universal Studios Hollywood",
+      "country": "US",
+      "timezone": "America/Los_Angeles",
+      "locale": "fr-FR",
+      "themeparksId": "9fc68f1c-3f5e-4f09-89f2-aab2cf1a0741",
+      "dataPath": "data/universal-studios-hollywood/",
+      "parks": [
+        {
+          "value": "Universal Studios Hollywood",
+          "label": "Universal Studios Hollywood",
+          "themeparksParkId": "bc4005c5-8c7e-41d7-b349-cdddf1796427"
+        }
+      ],
+      "info": {
+        "address": "Universal Studios Hollywood",
+        "lat": 34.13814279796987,
+        "lng": -118.35329508393052
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

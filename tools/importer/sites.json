@@ -151,5 +151,13 @@
       "shows": "https://www.universalorlando.com/web/en/us/search-results/filtered?filters=uor.venues;uor.ioa,uor.venues;uor.usf,uor.venues;uor.vb,uor.venues;uor.eu,uor.place_types;show",
       "restaurants": "https://www.universalorlando.com/web/en/us/search-results/filtered?filters=uor.venues;uor.ioa,uor.venues;uor.usf,uor.venues;uor.vb,uor.venues;uor.eu,uor.place_types;dining"
     }
+  },
+  "universal-studios-hollywood": {
+    "site": "https://www.universalstudioshollywood.com/",
+    "list_urls": {
+      "attractions": "https://www.universalstudioshollywood.com/web/en/us/search-results/filtered?filters=ush.place_types;ride",
+      "shows": "https://www.universalstudioshollywood.com/web/en/us/search-results/filtered?filters=ush.place_types;show",
+      "restaurants": "https://www.universalstudioshollywood.com/web/en/us/search-results/filtered?filters=ush.place_types;dining"
+    }
   }
 }
