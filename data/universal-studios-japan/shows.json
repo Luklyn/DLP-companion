@@ -1,1 +1,172 @@
-[]
+[
+  {
+    "Code": "usj.usj.shows.discover_u_time_2026",
+    "UUID Themeparks.wiki": "f7c75601-becc-4552-bbbd-95bc67fca3d5",
+    "Nom": "Discover U!!! Time",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 34.666745,
+    "Coordonnées GPS (lng)": 135.435049
+  },
+  {
+    "Code": "usj.usj.show.frog_choir",
+    "UUID Themeparks.wiki": "633e5c6c-768c-4895-8aad-446b373401fc",
+    "Nom": "Frog Choir",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "The Wizarding World of Harry Potter",
+    "Coordonnées GPS (lat)": 34.6681406,
+    "Coordonnées GPS (lng)": 135.4319426
+  },
+  {
+    "Code": "usj.usj.show.hippogriff_wonder_lesson_2023",
+    "UUID Themeparks.wiki": "90307384-9721-458a-8887-ad07cc2f1a71",
+    "Nom": "Hippogriff Magical Lesson",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "The Wizarding World of Harry Potter",
+    "Coordonnées GPS (lat)": 34.6682062,
+    "Coordonnées GPS (lng)": 135.4319641
+  },
+  {
+    "Code": "usj.usj.show.jurassic_park_dinosaur_meet_greet_2026",
+    "UUID Themeparks.wiki": "ac705a51-88f6-4974-93ed-90925adc1af3",
+    "Nom": "Jurassic Park Dinosaur Meet & Greet",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Jurassic Park",
+    "Coordonnées GPS (lat)": 34.66553,
+    "Coordonnées GPS (lng)": 135.43048
+  },
+  {
+    "Code": "usj.usj.shows.kuromi_live_discover_me_discover_u_2026",
+    "UUID Themeparks.wiki": "ebaf2bd3-2f69-43c0-9d94-77b701d9aded",
+    "Nom": "Kuromi Live: Discover Me, Discover U!!!",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 34.66501,
+    "Coordonnées GPS (lng)": 135.4338
+  },
+  {
+    "Code": "usj.usj.show.little_creatures_wonder_meet",
+    "UUID Themeparks.wiki": "27790def-5c8b-4c65-9533-44a7931ce3f9",
+    "Nom": "Meet the Hogsmeade Magical Creatures",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "The Wizarding World of Harry Potter",
+    "Coordonnées GPS (lat)": 34.66740175,
+    "Coordonnées GPS (lng)": 135.4313099
+  },
+  {
+    "Code": "usj.usj.show.minions_greeting",
+    "UUID Themeparks.wiki": "ff61e69e-7d17-430c-824a-e5718a7f76a1",
+    "Nom": "Minions Greeting",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Minion Park",
+    "Coordonnées GPS (lat)": 34.66388,
+    "Coordonnées GPS (lng)": 135.432517
+  },
+  {
+    "Code": "usj.usj.show.no_limit_parade_25th_anniversary_discover_u_2026",
+    "UUID Themeparks.wiki": "6435ea33-9166-459d-a1ef-57b577db024b",
+    "Nom": "NO LIMIT! Parade: Discover U!!! Version",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 34.664456,
+    "Coordonnées GPS (lng)": 135.434551
+  },
+  {
+    "Code": "usj.usj.shows.onepiece_premier_show_2026",
+    "UUID Themeparks.wiki": "f68a9161-be69-4908-a984-d0e2a1f2c3be",
+    "Nom": "ONE PIECE PREMIER SHOW 2026",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 34.667106,
+    "Coordonnées GPS (lng)": 135.429988
+  },
+  {
+    "Code": "usj.usj.show.peanuts_photo_opportunity",
+    "UUID Themeparks.wiki": "2701c63a-aa77-4825-8a7b-579d05f1ecbd",
+    "Nom": "Snoopy Photo Opportunity",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Universal Wonderland",
+    "Coordonnées GPS (lat)": 34.66699,
+    "Coordonnées GPS (lng)": 135.432285
+  },
+  {
+    "Code": "usj.usj.shows.the_power_of_rock_u_rock_2026",
+    "UUID Themeparks.wiki": "ac42b377-ff01-4651-9f24-289ccc74a3f0",
+    "Nom": "The Power of Rock: U Rock!",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "New York",
+    "Coordonnées GPS (lat)": 34.66575,
+    "Coordonnées GPS (lng)": 135.43321
+  },
+  {
+    "Code": "usj.usj.shows.the_ultimate_blues_bash_2026",
+    "UUID Themeparks.wiki": "1ddf10c6-762c-4a72-8e52-7442f9ecca8f",
+    "Nom": "The Ultimate Blues Bash",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "New York",
+    "Coordonnées GPS (lat)": 34.664932,
+    "Coordonnées GPS (lng)": 135.433901
+  },
+  {
+    "Code": "usj.usj.show.triwizard_spirit_rally",
+    "UUID Themeparks.wiki": "f7e5a273-cbcd-40cd-aeed-cd8314762b24",
+    "Nom": "Triwizard Spirit Rally",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "The Wizarding World of Harry Potter",
+    "Coordonnées GPS (lat)": 34.668114,
+    "Coordonnées GPS (lng)": 135.432001
+  },
+  {
+    "Code": "usj.usj.shows.universal_monster_live_rock_roll_show",
+    "UUID Themeparks.wiki": "abe7f4a3-28d3-4db4-b26e-27727ce7d98e",
+    "Nom": "Universal Monsters Live: Rock and Roll Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Hollywood",
+    "Coordonnées GPS (lat)": 34.666281,
+    "Coordonnées GPS (lng)": 135.43313
+  },
+  {
+    "Code": "usj.usj.show.universal_wonderland_lets_smile_together_2026",
+    "UUID Themeparks.wiki": "6fb62a41-554c-46fd-b9c5-4bb7338b6b1a",
+    "Nom": "Universal Wonderland: Let's Smile Together!",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Universal Wonderland",
+    "Coordonnées GPS (lat)": 34.667274,
+    "Coordonnées GPS (lng)": 135.432917
+  },
+  {
+    "Code": "usj.usj.show.waterworld",
+    "UUID Themeparks.wiki": "49a7108b-83e6-4283-b20e-711ed9960f40",
+    "Nom": "WaterWorld",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "WaterWorld",
+    "Coordonnées GPS (lat)": 34.667232,
+    "Coordonnées GPS (lng)": 135.429906
+  },
+  {
+    "Code": "usj.usj.show.wicked_the_witches_of_oz_2026",
+    "UUID Themeparks.wiki": "7b6d803a-fc2f-4714-ae6e-74f85a7459f7",
+    "Nom": "Wicked: The Witches of Oz",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Japan",
+    "Land": "Events / Limited Time",
+    "Coordonnées GPS (lat)": 34.666422,
+    "Coordonnées GPS (lng)": 135.433873
+  }
+]
