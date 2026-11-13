@@ -750,6 +750,39 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/legoland-florida.png"
+    },
+    {
+      "id": "busch-gardens-tampa",
+      "name": "Busch Gardens Tampa",
+      "country": "US",
+      "timezone": "America/New_York",
+      "locale": "fr-FR",
+      "themeparksId": "1d92560c-474f-4425-906d-e9dd2f2da6ca",
+      "dataPath": "data/busch-gardens-tampa/",
+      "parks": [
+        {
+          "value": "Busch Gardens Tampa",
+          "label": "Busch Gardens Tampa",
+          "themeparksParkId": "fc40c99a-be0a-42f4-a483-1e939db275c2"
+        },
+        {
+          "value": "Adventure Island Tampa",
+          "label": "Adventure Island Tampa",
+          "themeparksParkId": "7d6c4a8b-f12b-4735-827c-26235198aed2"
+        }
+      ],
+      "info": {
+        "address": "Busch Gardens Tampa",
+        "lat": 28.0374,
+        "lng": -82.42144
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

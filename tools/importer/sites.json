@@ -183,5 +183,13 @@
       "shows": "https://www.legoland.com/florida/things-to-do/theme-park/shows-activities/",
       "restaurants": "https://www.legoland.com/florida/things-to-do/theme-park/dining/"
     }
+  },
+  "busch-gardens-tampa": {
+    "site": "https://buschgardens.com/",
+    "list_urls": {
+      "attractions": "https://buschgardens.com/tampa/rides/",
+      "shows": "https://buschgardens.com/tampa/shows/",
+      "restaurants": "https://buschgardens.com/tampa/dining/"
+    }
   }
 }
