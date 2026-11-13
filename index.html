@@ -414,8 +414,6 @@
         #globe:focus-visible { outline: 3px solid var(--acc); outline-offset: 4px; }
         .globe-msg { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; font-weight: 700; color: var(--mut); }
         .globe-msg[hidden] { display: none; }
-        .globe-legend { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 10px 0 0; font-size: 12.5px; font-weight: 600; color: var(--mut); text-align: center; }
-        .globe-legend i { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--acc); }
         .globe-panel { margin-top: 14px; }
         .globe-panel .gp-hint { margin: 0; padding: 14px; text-align: center; font-size: 14px; color: var(--mut); }
         .globe-panel h2 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--acc); }
@@ -861,7 +859,6 @@
             </div>
             <div id="home-slide-globe" class="home-slide" role="tabpanel" aria-labelledby="hv-globe" hidden>
                 <div class="globe-wrap"><canvas id="globe" role="img" aria-label="Globe terrestre : touchez un pays en surbrillance pour voir ses parcs"></canvas><p id="globe-msg" class="globe-msg" hidden></p></div>
-                <p class="globe-legend"><i></i>Pays avec au moins une destination · faites glisser pour tourner</p>
                 <div id="globe-panel" class="globe-panel" aria-live="polite"></div>
             </div>
             <p class="home-foot">Application indépendante, non affiliée aux parcs. Données : <a href="https://themeparks.wiki" target="_blank" rel="noopener">Powered by ThemeParks.wiki</a>, à titre indicatif.</p>
