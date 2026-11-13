@@ -1,0 +1,37 @@
+name: api-check
+on:
+  push:
+    branches: [debug/api-check]
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Interroger ThemeParks.wiki
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, time, collections
+          def get(u):
+              for i in range(3):
+                  try:
+                      r = urllib.request.Request('https://api.themeparks.wiki/v1'+u, headers={'User-Agent':'tpc-check'})
+                      return json.load(urllib.request.urlopen(r, timeout=40))
+                  except Exception as e:
+                      err = str(e); time.sleep(3)
+              return {'error': err}
+          out = {}
+          for r in json.load(open('parks.json'))['resorts']:
+              d = get('/entity/%s/children' % r['themeparksId'])
+              ch = d.get('children') or []
+              c = collections.Counter(x.get('entityType') for x in ch)
+              out[r['id']] = {'error': d.get('error'), 'types': dict(c),
+                  'restaurants': [{'name': x['name'], 'id': x['id'], 'parentId': x.get('parentId')} for x in ch if x.get('entityType') == 'RESTAURANT']}
+              time.sleep(1)
+          json.dump(out, open('api_check.json', 'w'), ensure_ascii=False, indent=1)
+          PY
+      - name: Publier
+        run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add -f api_check.json; git commit -qm "résultat api-check"; git push
