@@ -1,0 +1,2 @@
+geo.min.js : d3-geo (ISC, Mike Bostock / Observable) et topojson-client (ISC), regroupés en un seul fichier.
+countries-110m.json : world-atlas (ISC), d'après Natural Earth (domaine public).

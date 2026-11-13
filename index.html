@@ -398,6 +398,31 @@
         .home-cont .cnt { font-weight: 700; color: var(--mut); letter-spacing: 0; }
         .home-cont .chev { margin-left: auto; width: 18px; height: 18px; transition: transform .18s ease; transform: rotate(90deg); }
         .home-cont button[aria-expanded="false"] .chev { transform: none; }
+        .home-view { display: flex; gap: 4px; padding: 4px; margin: 0 0 14px; border-radius: 999px; background: var(--card); border: 1.5px solid var(--line); }
+        .home-view button { flex: 1; min-height: 40px; border-radius: 999px; font-weight: 700; font-size: 14px; color: var(--mut); }
+        .home-view button[aria-selected="true"] { background: var(--navy); color: #fff; }
+        :root[data-theme="dark"] .home-view button[aria-selected="true"] { background: #3D3C9E; }
+        .home-slide[hidden] { display: none; }
+        .home-slide.in-r { animation: slideR .28s ease both; }
+        .home-slide.in-l { animation: slideL .28s ease both; }
+        @keyframes slideR { from { opacity: 0; transform: translateX(26px); } to { opacity: 1; transform: none; } }
+        @keyframes slideL { from { opacity: 0; transform: translateX(-26px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .home-slide.in-r, .home-slide.in-l { animation: none; } }
+        .globe-wrap { position: relative; width: min(100%, 420px); aspect-ratio: 1; margin: 0 auto; }
+        #globe { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; border-radius: 50%; }
+        #globe:active { cursor: grabbing; }
+        #globe:focus-visible { outline: 3px solid var(--acc); outline-offset: 4px; }
+        .globe-msg { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; font-weight: 700; color: var(--mut); }
+        .globe-msg[hidden] { display: none; }
+        .globe-legend { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 10px 0 0; font-size: 12.5px; font-weight: 600; color: var(--mut); text-align: center; }
+        .globe-legend i { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--acc); }
+        .globe-panel { margin-top: 14px; }
+        .globe-panel .gp-hint { margin: 0; padding: 14px; text-align: center; font-size: 14px; color: var(--mut); }
+        .globe-panel h2 { margin: 0 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--acc); }
+        .globe-row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 64px; margin-bottom: 8px; padding: 8px 14px 8px 10px; border-radius: 18px; background: var(--card); border: 1.5px solid var(--line); text-align: left; font-weight: 800; font-size: 15px; }
+        .globe-row .app-ico { flex: none; width: 46px; height: 46px; }
+        .globe-row .gr-sub { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 600; color: var(--mut); }
+        .globe-row .icon.gr-go { flex: none; margin-left: auto; width: 18px; height: 18px; color: var(--mut); }
         .home-grid { display: flex; flex-direction: column; gap: 12px; }
         .home-tile {
             position: relative; isolation: isolate; display: flex; align-items: center; gap: 14px; width: 100%; padding: 15.5px; text-align: left; color: var(--ink);
@@ -826,8 +851,19 @@
             </div>
         </div>
         <div class="home-in">
-            <div id="home-continents" class="home-chips" role="group" aria-label="Filtrer par continent" hidden></div>
-            <div id="home-grid" class="home-grid"></div>
+            <div class="home-view" role="tablist" aria-label="Chercher un parc">
+                <button type="button" role="tab" id="hv-list" aria-selected="true" aria-controls="home-slide-list">Liste</button>
+                <button type="button" role="tab" id="hv-globe" aria-selected="false" aria-controls="home-slide-globe">Globe</button>
+            </div>
+            <div id="home-slide-list" class="home-slide" role="tabpanel" aria-labelledby="hv-list">
+                <div id="home-continents" class="home-chips" role="group" aria-label="Filtrer par continent" hidden></div>
+                <div id="home-grid" class="home-grid"></div>
+            </div>
+            <div id="home-slide-globe" class="home-slide" role="tabpanel" aria-labelledby="hv-globe" hidden>
+                <div class="globe-wrap"><canvas id="globe" role="img" aria-label="Globe terrestre : touchez un pays en surbrillance pour voir ses parcs"></canvas><p id="globe-msg" class="globe-msg" hidden></p></div>
+                <p class="globe-legend"><i></i>Pays avec au moins une destination · faites glisser pour tourner</p>
+                <div id="globe-panel" class="globe-panel" aria-live="polite"></div>
+            </div>
             <p class="home-foot">Application indépendante, non affiliée aux parcs. Données : <a href="https://themeparks.wiki" target="_blank" rel="noopener">Powered by ThemeParks.wiki</a>, à titre indicatif.</p>
         </div>
 
@@ -1273,6 +1309,201 @@
         }
         setInterval(paintClocks, 30_000);
 
+
+        // Accueil : globe interactif (pays en surbrillance = pays avec au moins une destination). Chargé à la demande (vendor/).
+        function initHomeGlobe(getTile) {
+            const NUM = { FR: 250, DE: 276, ES: 724, GB: 826, UK: 826, NL: 528, BE: 56, CH: 756, AT: 40, IT: 380, DK: 208, SE: 752, NO: 578, FI: 246, PL: 616, CZ: 203, PT: 620, IE: 372, HU: 348, GR: 300, TR: 792,
+                US: 840, CA: 124, MX: 484, BR: 76, AR: 32, CL: 152, CO: 170, PE: 604, JP: 392, CN: 156, HK: 156, KR: 410, SG: 702, TH: 764, MY: 458, AE: 784, SA: 682, IN: 356, TW: 158, ID: 360,
+                AU: 36, NZ: 554, ZA: 710, EG: 818, MA: 504, TN: 788 };
+            const btnList = document.querySelector('#hv-list'), btnGlobe = document.querySelector('#hv-globe');
+            const slideList = document.querySelector('#home-slide-list'), slideGlobe = document.querySelector('#home-slide-globe');
+            const canvas = document.querySelector('#globe'), msg = document.querySelector('#globe-msg'), panel = document.querySelector('#globe-panel');
+            const ctx = canvas.getContext('2d');
+            const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const regionName = (code) => { try { return new Intl.DisplayNames([LOC()], { type: 'region' }).of(code) || code; } catch (e) { return code; } };
+
+            // Destinations regroupées par pays (HK est rattaché à la Chine, absente à part du fond de carte)
+            const byNum = new Map();
+            for (const r of registry.resorts) {
+                const code = String(r.country ?? '').toUpperCase().split('-')[0];
+                const n = NUM[code];
+                if (!n) continue;
+                if (!byNum.has(n)) byNum.set(n, []);
+                byNum.get(n).push({ r, code });
+            }
+            const dots = registry.resorts.filter((r) => Number.isFinite(r.info?.lat) && Number.isFinite(r.info?.lng) && byNum.has(NUM[String(r.country ?? '').toUpperCase().split('-')[0]]));
+
+            let G = null, features = [], hot = [], projection, path, sphere, graticule, size = 0, dpr = 1;
+            let rot = [-8, -38, 0], selected = null, auto = !reduced, raf = 0, anim = null, tab = 'list';
+            const hotSet = new Set(byNum.keys());
+
+            const colors = () => {
+                const dark = document.documentElement.dataset.theme === 'dark';
+                const probe = document.createElement('span'); probe.style.color = 'var(--acc)'; document.body.append(probe);
+                const acc = getComputedStyle(probe).color; probe.remove();
+                return dark
+                    ? { ocean: '#0F1230', land: '#2A2F63', line: 'rgb(255 255 255 / .07)', edge: 'rgb(255 255 255 / .22)', acc, sel: '#F2B33D', stroke: '#0B0D1F' }
+                    : { ocean: '#DDE3FA', land: '#B9BFE3', line: 'rgb(18 22 58 / .08)', edge: 'rgb(18 22 58 / .25)', acc, sel: '#F2B33D', stroke: '#fff' };
+            };
+            function resize() {
+                const w = Math.round(canvas.clientWidth);
+                if (!w || !G) return;
+                dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                size = w;
+                canvas.width = canvas.height = Math.round(w * dpr);
+                projection = G.geoOrthographic().clipAngle(90).precision(0.6).scale(w / 2 - 4).translate([w / 2, w / 2]);
+                path = G.geoPath(projection, ctx);
+                draw();
+            }
+            function draw() {
+                if (!G || !size) return;
+                const c = colors();
+                projection.rotate(rot);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.clearRect(0, 0, size, size);
+                ctx.beginPath(); path(sphere); ctx.fillStyle = c.ocean; ctx.fill();
+                ctx.beginPath(); path(graticule); ctx.strokeStyle = c.line; ctx.lineWidth = 1; ctx.stroke();
+                ctx.beginPath(); for (const f of features) if (!hotSet.has(+f.id)) path(f); ctx.fillStyle = c.land; ctx.fill();
+                ctx.lineWidth = .8; ctx.strokeStyle = c.stroke;
+                for (const f of hot) { ctx.beginPath(); path(f); ctx.fillStyle = +f.id === selected ? c.sel : c.acc; ctx.fill(); ctx.stroke(); }
+                for (const r of dots) {
+                    const p = projection([r.info.lng, r.info.lat]);
+                    if (!p || G.geoDistance([r.info.lng, r.info.lat], [-rot[0], -rot[1]]) > Math.PI / 2 - .02) continue;
+                    ctx.beginPath(); ctx.arc(p[0], p[1], 3.2, 0, 7); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 1.4; ctx.strokeStyle = '#12163A'; ctx.stroke();
+                }
+                ctx.beginPath(); path(sphere); ctx.lineWidth = 1.5; ctx.strokeStyle = c.edge; ctx.stroke();
+            }
+            function loop() {
+                raf = 0;
+                if (tab !== 'globe' || !G) return;
+                if (anim) {
+                    const t = Math.min(1, (performance.now() - anim.t0) / anim.ms), e = 1 - Math.pow(1 - t, 3);
+                    rot = [anim.from[0] + (anim.to[0] - anim.from[0]) * e, anim.from[1] + (anim.to[1] - anim.from[1]) * e, 0];
+                    if (t >= 1) anim = null;
+                } else if (auto && !drag) rot = [rot[0] + .12, rot[1], 0];
+                draw();
+                if (anim || (auto && !drag)) raf = requestAnimationFrame(loop);
+            }
+            const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+            function rotateTo(lng, lat) {
+                let to0 = -lng, d = ((to0 - rot[0] + 540) % 360) - 180;
+                anim = { from: rot.slice(), to: [rot[0] + d, Math.max(-70, Math.min(70, -lat)), 0], t0: performance.now(), ms: reduced ? 1 : 750 };
+                kick();
+            }
+
+            // Fiche du pays : une ligne par destination, qui ouvre la tuile correspondante
+            function showCountry(n) {
+                selected = n;
+                const list = byNum.get(n) || [];
+                const names = [...new Set(list.map((x) => regionName(x.code)))].join(' · ');
+                panel.replaceChildren();
+                const h = document.createElement('h2'); h.textContent = `${names} (${list.length})`; panel.append(h);
+                for (const { r } of list) {
+                    const tile = getTile(r.id); if (!tile) continue;
+                    const row = document.createElement('button'); row.type = 'button'; row.className = 'globe-row';
+                    const ico = tile.querySelector('.app-ico'); if (ico) row.append(ico.cloneNode(true));
+                    const t = document.createElement('span'); t.textContent = r.name;
+                    const sub = document.createElement('span'); sub.className = 'gr-sub'; sub.textContent = (r.parks || []).length > 1 || (r.parks || [])[0]?.label !== r.name ? (r.parks || []).map((p) => p.label).join(' · ') : '';
+                    if (sub.textContent) t.append(sub);
+                    row.append(t);
+                    row.insertAdjacentHTML('beforeend', '<svg class="icon gr-go" aria-hidden="true"><use href="#i-next"/></svg>');
+                    row.addEventListener('click', () => tile.click());
+                    panel.append(row);
+                }
+                draw();
+            }
+            const hint = () => { panel.innerHTML = '<p class="gp-hint">Touchez un pays en surbrillance pour voir ses parcs.</p>'; };
+
+            // Gestes : glisser pour tourner, toucher pour choisir
+            let drag = null;
+            canvas.addEventListener('pointerdown', (e) => {
+                canvas.setPointerCapture(e.pointerId);
+                drag = { x: e.clientX, y: e.clientY, x0: e.clientX, y0: e.clientY, rot: rot.slice(), t: performance.now(), moved: false };
+                anim = null; auto = false;
+            });
+            canvas.addEventListener('pointermove', (e) => {
+                if (!drag) return;
+                if (Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) > 5) drag.moved = true;
+                if (!drag.moved) return;
+                const k = 180 / (size * 1.1);
+                rot = [drag.rot[0] + (e.clientX - drag.x0) * k, Math.max(-75, Math.min(75, drag.rot[1] - (e.clientY - drag.y0) * k)), 0];
+                draw();
+            });
+            const endDrag = (e) => {
+                const d = drag; drag = null;
+                if (!d || d.moved || e.type === 'pointercancel') return;
+                const rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
+                const pt = projection.invert([x, y]);
+                let hit = null;
+                if (pt) { const f = hot.find((g) => G.geoContains(g, pt)); if (f) hit = +f.id; }
+                if (hit == null) {   // petits pays : point de destination le plus proche (22 px)
+                    let best = 22;
+                    for (const r of dots) {
+                        const p = projection([r.info.lng, r.info.lat]);
+                        if (!p || G.geoDistance([r.info.lng, r.info.lat], [-rot[0], -rot[1]]) > Math.PI / 2 - .02) continue;
+                        const dd = Math.hypot(p[0] - x, p[1] - y);
+                        if (dd < best) { best = dd; hit = NUM[String(r.country ?? '').toUpperCase().split('-')[0]]; }
+                    }
+                }
+                if (hit == null) { selected = null; hint(); draw(); return; }
+                showCountry(hit);
+                const r0 = byNum.get(hit).find((x) => Number.isFinite(x.r.info?.lng))?.r;
+                if (r0) rotateTo(r0.info.lng, r0.info.lat);
+            };
+            canvas.addEventListener('pointerup', endDrag);
+            canvas.addEventListener('pointercancel', endDrag);
+            canvas.tabIndex = 0;
+            canvas.addEventListener('keydown', (e) => {
+                const step = { ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, 10], ArrowDown: [0, -10] }[e.key];
+                if (!step) return;
+                e.preventDefault(); auto = false; rot = [rot[0] + step[0], Math.max(-75, Math.min(75, rot[1] + step[1])), 0]; draw();
+            });
+
+            // Chargement à la demande
+            let loading = null;
+            function load() {
+                if (G) return Promise.resolve();
+                if (loading) return loading;
+                msg.hidden = false; msg.textContent = 'Chargement du globe…';
+                loading = Promise.all([
+                    new Promise((ok, ko) => { if (window.TPCGeo) return ok(); const sc = document.createElement('script'); sc.src = 'vendor/geo.min.js'; sc.onload = ok; sc.onerror = ko; document.head.append(sc); }),
+                    fetch('vendor/countries-110m.json').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+                ]).then(([, topo]) => {
+                    G = window.TPCGeo;
+                    features = G.feature(topo, topo.objects.countries).features;
+                    hot = features.filter((f) => hotSet.has(+f.id));
+                    sphere = { type: 'Sphere' }; graticule = G.geoGraticule10();
+                    msg.hidden = true;
+                }).catch(() => { loading = null; msg.hidden = false; msg.textContent = 'Le globe n’est pas disponible hors connexion. Utilisez la liste.'; throw new Error('globe'); });
+                return loading;
+            }
+
+            // Bascule Liste / Globe (boutons ou balayage horizontal sur la liste)
+            function show(which, dir) {
+                if (which === tab) return;
+                tab = which;
+                const toGlobe = which === 'globe';
+                btnList.setAttribute('aria-selected', String(!toGlobe)); btnGlobe.setAttribute('aria-selected', String(toGlobe));
+                const [on, off] = toGlobe ? [slideGlobe, slideList] : [slideList, slideGlobe];
+                off.hidden = true; on.hidden = false;
+                on.classList.remove('in-r', 'in-l'); void on.offsetWidth; on.classList.add(dir || (toGlobe ? 'in-r' : 'in-l'));
+                if (toGlobe) {
+                    if (!panel.firstChild) hint();
+                    load().then(() => { if (tab === 'globe') { resize(); kick(); } }).catch(() => {});
+                } else cancelAnimationFrame(raf), raf = 0;
+            }
+            btnList.addEventListener('click', () => show('list'));
+            btnGlobe.addEventListener('click', () => show('globe'));
+            let sw = null;
+            slideList.addEventListener('touchstart', (e) => { sw = e.target.closest('.home-chips') ? null : { x: e.touches[0].clientX, y: e.touches[0].clientY }; }, { passive: true });
+            slideList.addEventListener('touchend', (e) => {
+                if (!sw) return; const t = e.changedTouches[0], dx = t.clientX - sw.x, dy = t.clientY - sw.y; sw = null;
+                if (dx < -70 && Math.abs(dy) < 45) show('globe');
+            }, { passive: true });
+            new ResizeObserver(() => { if (tab === 'globe') resize(); }).observe(canvas);
+            new MutationObserver(() => { if (tab === 'globe') draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        }
+
         // Page d'accueil : une carte par resort, avec l'état ouvert / fermé de chacun de ses parcs (planning du jour).
         // Renvoie le resort choisi.
         function chooseResortOnHome() {
@@ -1393,6 +1624,7 @@
                 home.hidden = false;
                 home.scrollTop = 0;
                 placeAllBumps();
+                initHomeGlobe((id) => tiles.get(id)?.tile);
 
                 // Footer de l'accueil : Billets ouvre le portefeuille (dans le dernier parc visité), Infos une fiche générale
                 const infoLayer = document.querySelector('#home-info-layer');
