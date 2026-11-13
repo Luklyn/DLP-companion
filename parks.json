@@ -721,6 +721,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/plopsaland-deutschland.png"
+    },
+    {
+      "id": "legoland-florida",
+      "name": "LEGOLAND Florida",
+      "country": "US",
+      "timezone": "America/New_York",
+      "locale": "fr-FR",
+      "themeparksId": "7a4adf8d-8c3f-4300-b277-19707e4f8e12",
+      "dataPath": "data/legoland-florida/",
+      "parks": [
+        {
+          "value": "LEGOLAND Florida",
+          "label": "LEGOLAND Florida",
+          "themeparksParkId": "bb285952-7e52-4a07-a312-d0a1ed91a9ac"
+        }
+      ],
+      "info": {
+        "address": "LEGOLAND Florida",
+        "lat": 27.989351,
+        "lng": -81.688977
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

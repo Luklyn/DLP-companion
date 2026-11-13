@@ -175,5 +175,13 @@
       "shows": "https://www.plopsa.com/fr/plopsaland-deutschland/spectacles-evenements",
       "restaurants": "https://www.plopsa.com/fr/plopsaland-deutschland/repas-et-boissons"
     }
+  },
+  "legoland-florida": {
+    "site": "https://www.legoland.com/",
+    "list_urls": {
+      "attractions": "https://www.legoland.com/florida/things-to-do/theme-park/rides-attractions/",
+      "shows": "https://www.legoland.com/florida/things-to-do/theme-park/shows-activities/",
+      "restaurants": "https://www.legoland.com/florida/things-to-do/theme-park/dining/"
+    }
   }
 }
