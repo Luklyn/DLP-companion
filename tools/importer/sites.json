@@ -159,5 +159,13 @@
       "shows": "https://www.universalstudioshollywood.com/web/en/us/search-results/filtered?filters=ush.place_types;show",
       "restaurants": "https://www.universalstudioshollywood.com/web/en/us/search-results/filtered?filters=ush.place_types;dining"
     }
+  },
+  "universal-studios-japan": {
+    "site": "https://www.usj.co.jp/",
+    "list_urls": {
+      "attractions": "https://www.usj.co.jp/web/en/us/search-results/filtered?attraction_experience=rides-attractions&filters=usj.place_types;ride",
+      "shows": "https://www.usj.co.jp/web/en/us/search-results/filtered?attraction_experience=rides-attractions&filters=usj.place_types;show",
+      "restaurants": "https://www.usj.co.jp/web/en/us/search-results/filtered?attraction_experience=rides-attractions&filters=usj.place_types;dining"
+    }
   }
 }
