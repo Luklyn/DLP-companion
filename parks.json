@@ -595,6 +595,49 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/hong-kong-disneyland.png"
+    },
+    {
+      "id": "universal-orlando-resort",
+      "name": "Universal Orlando Resort",
+      "country": "US",
+      "timezone": "America/New_York",
+      "locale": "fr-FR",
+      "themeparksId": "89db5d43-c434-4097-b71f-f6869f495a22",
+      "dataPath": "data/universal-orlando-resort/",
+      "parks": [
+        {
+          "value": "Universal Volcano Bay",
+          "label": "Universal Volcano Bay",
+          "themeparksParkId": "fe78a026-b91b-470c-b906-9d2266b692da"
+        },
+        {
+          "value": "Universal Studios Florida",
+          "label": "Universal Studios Florida",
+          "themeparksParkId": "eb3f4560-2383-4a36-9152-6b3e5ed6bc57"
+        },
+        {
+          "value": "Universal Epic Universe",
+          "label": "Universal Epic Universe",
+          "themeparksParkId": "12dbb85b-265f-44e6-bccf-f1faa17211fc"
+        },
+        {
+          "value": "Universal Islands of Adventure",
+          "label": "Universal Islands of Adventure",
+          "themeparksParkId": "267615cc-8943-4c2a-ae2c-5da728ca591f"
+        }
+      ],
+      "info": {
+        "address": "Universal Orlando Resort",
+        "lat": 28.461355,
+        "lng": -81.472286
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

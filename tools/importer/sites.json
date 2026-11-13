@@ -143,5 +143,13 @@
       "shows": "https://www.hongkongdisneyland.com/entertainment/#/live-entertainment/sort=alpha/",
       "restaurants": "https://www.hongkongdisneyland.com/dining/#/sort=alpha/"
     }
+  },
+  "universal-orlando-resort": {
+    "site": "https://www.universalorlando.com/",
+    "list_urls": {
+      "attractions": "https://www.universalorlando.com/web/en/us/search-results/filtered?filters=uor.venues;uor.ioa,uor.venues;uor.usf,uor.venues;uor.vb,uor.venues;uor.eu,uor.place_types;ride",
+      "shows": "https://www.universalorlando.com/web/en/us/search-results/filtered?filters=uor.venues;uor.ioa,uor.venues;uor.usf,uor.venues;uor.vb,uor.venues;uor.eu,uor.place_types;show",
+      "restaurants": "https://www.universalorlando.com/web/en/us/search-results/filtered?filters=uor.venues;uor.ioa,uor.venues;uor.usf,uor.venues;uor.vb,uor.venues;uor.eu,uor.place_types;dining"
+    }
   }
 }
