@@ -784,6 +784,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/busch-gardens-tampa.png"
+    },
+    {
+      "id": "dollywood",
+      "name": "Dollywood",
+      "country": "US",
+      "timezone": "America/New_York",
+      "locale": "fr-FR",
+      "themeparksId": "6c3cd0cc-57b5-431b-926c-2658e8104057",
+      "dataPath": "data/dollywood/",
+      "parks": [
+        {
+          "value": "Dollywood",
+          "label": "Dollywood",
+          "themeparksParkId": "7502308a-de08-41a3-b997-961f8275ab3c"
+        }
+      ],
+      "info": {
+        "address": "Dollywood",
+        "lat": 35.794496,
+        "lng": -83.530368
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
