@@ -1,1 +1,244 @@
-[]
+[
+  {
+    "Code": "ce5280b3-9860-44cc-be04-1954b93d8df4",
+    "UUID Themeparks.wiki": "82a1f1b7-ecc5-4cf3-903f-99b16c4461de",
+    "Nom": "100% Wolf Snack",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "100% Wolf Area",
+    "Coordonnées GPS (lat)": 49.31844951197611,
+    "Coordonnées GPS (lng)": 8.293214095590525,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "525",
+    "UUID Themeparks.wiki": "d5cf6850-96f2-47d0-8fd6-c9ab7e2762d1",
+    "Nom": "Alpine Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Base Camp",
+    "Coordonnées GPS (lat)": 49.319009460675815,
+    "Coordonnées GPS (lng)": 8.298861470678258,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "527",
+    "UUID Themeparks.wiki": "55d9848a-119a-4a71-8aa8-58955f14768c",
+    "Nom": "BBQ Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "DinoSplash",
+    "Coordonnées GPS (lat)": 49.31862737603898,
+    "Coordonnées GPS (lng)": 8.298289078807217,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "513",
+    "UUID Themeparks.wiki": "67c41b6f-5660-49c2-a754-3fbb5747566f",
+    "Nom": "Beach Bar",
+    "Type": "Bar/Lounge",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "The Beach",
+    "Coordonnées GPS (lat)": 49.318673858734286,
+    "Coordonnées GPS (lng)": 8.291941530906877,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "3251",
+    "UUID Themeparks.wiki": "ce91c0a8-0a13-4dd1-b582-69d05f5a5211",
+    "Nom": "Dunkin' Parkcafé",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.31843293426293,
+    "Coordonnées GPS (lng)": 8.299011429455577,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "516",
+    "UUID Themeparks.wiki": "959c6181-76ef-45a8-a8be-f1b313b9caaf",
+    "Nom": "Fear Slush",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Airshow '71",
+    "Coordonnées GPS (lat)": 49.31926593396984,
+    "Coordonnées GPS (lng)": 8.29309770604493,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "517",
+    "UUID Themeparks.wiki": "2d600d23-9854-4e68-80f2-f354b5db77a3",
+    "Nom": "Fear Snack",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Airshow '71",
+    "Coordonnées GPS (lat)": 49.319194990192116,
+    "Coordonnées GPS (lng)": 8.292285425056004,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "526",
+    "UUID Themeparks.wiki": "ca96de10-1299-4d06-b357-34ea96f6e170",
+    "Nom": "Flammkuchen",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.31863072419412,
+    "Coordonnées GPS (lng)": 8.298409253787929,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "2503",
+    "UUID Themeparks.wiki": "b7be24d4-26e6-4c4b-87d8-b969486038ca",
+    "Nom": "Flying Churros",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Base Camp",
+    "Coordonnées GPS (lat)": 49.318481713018656,
+    "Coordonnées GPS (lng)": 8.293740849196313,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "518",
+    "UUID Themeparks.wiki": "cebb0ad7-e4b3-4e2e-ad3e-b605c8274641",
+    "Nom": "Fontänen-Snack",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.31861034852202,
+    "Coordonnées GPS (lng)": 8.299003985777718,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "4138",
+    "UUID Themeparks.wiki": "273f2535-cd4f-48b3-b7d7-f4738f1807a0",
+    "Nom": "Koala Joe's Roadhouse",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Blinky Bill Area",
+    "Coordonnées GPS (lat)": 49.318045646769406,
+    "Coordonnées GPS (lng)": 8.296407689272765,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "6cdc52af-25c9-4e1c-8163-27028971fa58",
+    "UUID Themeparks.wiki": "aebf1424-a456-41dc-98cf-017d31f56c83",
+    "Nom": "Pasta Point",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.31926972419403,
+    "Coordonnées GPS (lng)": 8.296251416213508,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "a5c13abe-5544-4a3b-a0ba-6bb52d82de88",
+    "UUID Themeparks.wiki": "60bb01cf-c238-4875-b0cb-abdc9cb41b3e",
+    "Nom": "Pfälzer Wein- & Biergarten",
+    "Type": "Service à table",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.31913451116498,
+    "Coordonnées GPS (lng)": 8.29645601083272,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "441",
+    "UUID Themeparks.wiki": "870fd3cb-07ec-40e1-ac52-026bd6bce3e3",
+    "Nom": "Restaurant Kürbisgraf (Pfalzgraf)",
+    "Type": "Service à table",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.3192383770608,
+    "Coordonnées GPS (lng)": 8.297463907034555,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "510",
+    "UUID Themeparks.wiki": "a57d3b27-2c16-4d4c-9f90-4b5bece77f24",
+    "Nom": "Restaurant Maja-Burger",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Majaland",
+    "Coordonnées GPS (lat)": 49.31883834564604,
+    "Coordonnées GPS (lng)": 8.300633597614095,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "3881",
+    "UUID Themeparks.wiki": "04c123e1-704b-4e1d-9545-e8698822e545",
+    "Nom": "Spirello Cabin",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Base Camp",
+    "Coordonnées GPS (lat)": 49.31906404599948,
+    "Coordonnées GPS (lng)": 8.297318500931546,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dad2b70d-50d2-4565-bb76-e14039eea954",
+    "UUID Themeparks.wiki": "7018f491-1365-431f-89b5-16409fa7379a",
+    "Nom": "Super Wings Fuel Station",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Super Wings Area",
+    "Coordonnées GPS (lat)": 49.319236911705495,
+    "Coordonnées GPS (lng)": 8.291979508700253,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "2a9ecc51-7663-44ff-9eca-71fed077b973",
+    "UUID Themeparks.wiki": "cccf5e70-4291-4141-a166-5a75d0a471cf",
+    "Nom": "Super Wings Ice Bar",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Super Wings Area",
+    "Coordonnées GPS (lat)": 49.31916735877638,
+    "Coordonnées GPS (lng)": 8.29163367249016,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "522",
+    "UUID Themeparks.wiki": "68876530-fd38-4114-ab44-b9d3afea630a",
+    "Nom": "Süsser Stein",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Pfälzer Dorf",
+    "Coordonnées GPS (lat)": 49.31810258790088,
+    "Coordonnées GPS (lng)": 8.300729598187075,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "523",
+    "UUID Themeparks.wiki": "fe2c6a42-bf36-4ec7-bdd5-5ec20ec1bd69",
+    "Nom": "Waffelhaus",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Majaland",
+    "Coordonnées GPS (lat)": 49.31938161821152,
+    "Coordonnées GPS (lng)": 8.297045937013504,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "524",
+    "UUID Themeparks.wiki": "1bbc36b0-e8f7-43ad-b8e6-18c21b79bace",
+    "Nom": "Wickie-Snack",
+    "Type": "A emporter",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Wickieland",
+    "Coordonnées GPS (lat)": 49.318672718793884,
+    "Coordonnées GPS (lng)": 8.295385809231949,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "3333",
+    "UUID Themeparks.wiki": "02a3f036-3adc-417d-a104-14849efd52e8",
+    "Nom": "Wikinger Grill",
+    "Type": "Restauration rapide",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Wickieland",
+    "Coordonnées GPS (lat)": 49.319159522525695,
+    "Coordonnées GPS (lng)": 8.29483760085381,
+    "Statut inconnu": "oui"
+  }
+]

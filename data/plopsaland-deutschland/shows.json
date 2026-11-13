@@ -1,1 +1,152 @@
-[]
+[
+  {
+    "Code": "4196",
+    "UUID Themeparks.wiki": "b27d8dd8-767d-4cbc-8435-3b4ebcfc8786",
+    "Nom": "Learn the Plopsa Dance",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "1575",
+    "UUID Themeparks.wiki": "217c2e56-5ea7-44ff-bc41-a98279598cb6",
+    "Nom": "Maya Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Majaland",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4264",
+    "UUID Themeparks.wiki": "996c6668-a73d-48fb-b0ae-5ffe0ce1837a",
+    "Nom": "Meet Arnie & Barney",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "3812",
+    "UUID Themeparks.wiki": "ebe39c82-14a4-47dc-8269-4d813197ebd2",
+    "Nom": "Meet Blinky Bill",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Blinky Bill Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4245",
+    "UUID Themeparks.wiki": "bb253264-62bf-42fe-ac85-d94c39f8f017",
+    "Nom": "Meet Freddy Lupin (100% Wolf)",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "100% Wolf Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "550",
+    "UUID Themeparks.wiki": "90cf44f7-c3ed-426b-8f34-62b5bbdd5ccc",
+    "Nom": "Meet Heidi & Peter",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Holiday Indoor",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "543",
+    "UUID Themeparks.wiki": "287ab0ce-087e-4f96-a887-a2bb28430817",
+    "Nom": "Meet Holly",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "540",
+    "UUID Themeparks.wiki": "2da1de1c-e618-4d53-8c2c-c15c1286b802",
+    "Nom": "Meet Maya & friends",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Majaland",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "545",
+    "UUID Themeparks.wiki": "b15bea20-44e4-4f9d-9ce6-407874f2bbd4",
+    "Nom": "Meet Tabaluga",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Holiday Indoor",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "3640",
+    "UUID Themeparks.wiki": "0b33e642-4808-4190-b0d4-b41402ae415a",
+    "Nom": "Meet the Easter Bunny Happy",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4161",
+    "UUID Themeparks.wiki": "0b899bc7-a09a-4332-a0ac-3624f31a2552",
+    "Nom": "Meet The Smurfs",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "The Smurfs Village",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "547",
+    "UUID Themeparks.wiki": "15e5ee62-f18c-4a16-8355-f8ddab49ca63",
+    "Nom": "Meet Vic & Halvar",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Wickieland",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4182",
+    "UUID Themeparks.wiki": "9f30716a-44e5-42b9-8e18-91ef5a484eb0",
+    "Nom": "Plopsa Heroes Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4183",
+    "UUID Themeparks.wiki": "3da98e5a-0f1f-47ea-afe3-06fd3d3d4152",
+    "Nom": "The Magical Key to Plopsaland",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "Entrance Area",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  },
+  {
+    "Code": "4162",
+    "UUID Themeparks.wiki": "0bb0226c-c39e-44d2-9f64-d882a701c5fd",
+    "Nom": "The Smurfs' Show",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Plopsaland Deutschland",
+    "Land": "The Smurfs Village",
+    "Coordonnées GPS (lat)": 49.317914992075146,
+    "Coordonnées GPS (lng)": 8.300217955490842
+  }
+]
