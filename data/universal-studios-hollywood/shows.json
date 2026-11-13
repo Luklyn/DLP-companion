@@ -1,1 +1,232 @@
-[]
+[
+  {
+    "Code": "ush.lower.lot.shows.meet_bumblebee",
+    "UUID Themeparks.wiki": "24984d0f-ee6d-4e60-a91c-3d1af9fcf973",
+    "Nom": "Meet Bumblebee",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Lower Lot",
+    "Coordonnées GPS (lat)": 34.14102732703631,
+    "Coordonnées GPS (lng)": -118.3567810241876
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet.bttf",
+    "UUID Themeparks.wiki": "785793f0-2777-4b3e-bb03-e5b8a2ccc273",
+    "Nom": "Meet Characters from Back to the Future",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13756439790754,
+    "Coordonnées GPS (lng)": -118.35527140017427
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_despicable_me",
+    "UUID Themeparks.wiki": "79862432-f1ce-44e8-acc9-597114ce834e",
+    "Nom": "Meet Characters from Illumination's Despicable Me",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Minion Land",
+    "Coordonnées GPS (lat)": 34.138458053856205,
+    "Coordonnées GPS (lng)": -118.35622003160904
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_the_simpsons",
+    "UUID Themeparks.wiki": "8ff6892f-b1d8-46f1-b3cf-706dee85c105",
+    "Nom": "Meet Characters from The Simpsons™",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Springfield, U.S.A.",
+    "Coordonnées GPS (lat)": 34.139358054657016,
+    "Coordonnées GPS (lng)": -118.35391138348709
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_donkey",
+    "UUID Themeparks.wiki": "482f8aa5-10b7-493a-92f8-d384427a0deb",
+    "Nom": "Meet Donkey",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13857337238463,
+    "Coordonnées GPS (lng)": -118.35471663363347
+  },
+  {
+    "Code": "ush.upper_lot.shows.meet_dracula",
+    "UUID Themeparks.wiki": "97995a5c-3932-497e-a1d9-700b190d1763",
+    "Nom": "Meet Dracula",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13802226170721,
+    "Coordonnées GPS (lng)": -118.35494958533558
+  },
+  {
+    "Code": "ush.upper_lot.shows.celebrate_dreamworks_trolls",
+    "UUID Themeparks.wiki": "349505aa-0c4f-4226-8b50-153923669e5d",
+    "Nom": "Meet DreamWorks Trolls",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.138548537995035,
+    "Coordonnées GPS (lng)": -118.35488711752498
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet-frankenstein-and-bride",
+    "UUID Themeparks.wiki": "05066355-a4d7-4edf-8ee3-9f1289225c01",
+    "Nom": "Meet Frankenstein's Monster and His Bride",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13802226170721,
+    "Coordonnées GPS (lng)": -118.354958533558
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet-gabby",
+    "UUID Themeparks.wiki": "a80d5b97-2da1-47f9-9c88-5b7648ed8900",
+    "Nom": "Meet Gabby",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13828759512451,
+    "Coordonnées GPS (lng)": -118.3547524208377
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_hello_kitty",
+    "UUID Themeparks.wiki": "8c30efb2-9dba-4ec3-ab8c-309b20acf190",
+    "Nom": "Meet Hello Kitty®",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.137887821741955,
+    "Coordonnées GPS (lng)": -118.35497674710355
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet-king-julien",
+    "UUID Themeparks.wiki": "26efceb4-64e1-4084-9f78-94e191636e60",
+    "Nom": "Meet King Julien",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13858594896454,
+    "Coordonnées GPS (lng)": -118.35486394735494
+  },
+  {
+    "Code": "ush.upper_lot.shows.marilyn.monroe",
+    "UUID Themeparks.wiki": "829cdfa4-94bf-4ea9-b4ad-cb3080441cb6",
+    "Nom": "Meet Marilyn",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.137651367430486,
+    "Coordonnées GPS (lng)": -118.35520845157305
+  },
+  {
+    "Code": "ush.upper_lot.shows.meet_mario_and_luigi",
+    "UUID Themeparks.wiki": "bf4b4ea2-68da-435d-accb-69371bf44def",
+    "Nom": "Meet Mario and Luigi",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Super Nintendo World",
+    "Coordonnées GPS (lat)": 34.1410142,
+    "Coordonnées GPS (lng)": -118.3578013
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_megatron",
+    "UUID Themeparks.wiki": "0963f0db-cee8-4ec2-b523-0f8cddd1366d",
+    "Nom": "Meet Megatron",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Lower Lot",
+    "Coordonnées GPS (lat)": 34.14102732703631,
+    "Coordonnées GPS (lng)": -118.3567810241876
+  },
+  {
+    "Code": "ush.upper.lot.shows.meet_optimus.prime",
+    "UUID Themeparks.wiki": "1dbbdd0e-e39d-4782-91a8-412307ee0727",
+    "Nom": "Meet Optimus Prime",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Lower Lot",
+    "Coordonnées GPS (lat)": 34.14102732703631,
+    "Coordonnées GPS (lng)": -118.3567810241876
+  },
+  {
+    "Code": "ush.upper_lot.shows.meet_princess_peach",
+    "UUID Themeparks.wiki": "a0ebecdf-2760-437f-830e-8ca0accd6865",
+    "Nom": "Meet Princess Peach",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.1411918,
+    "Coordonnées GPS (lng)": -118.3576072
+  },
+  {
+    "Code": "ush.upper_lot.shows.scooby.mystery.gang",
+    "UUID Themeparks.wiki": "dc47fba8-19ed-4015-b2d7-3af958d82cc9",
+    "Nom": "Meet Scooby-Doo and the Mystery Gang",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13807593963227,
+    "Coordonnées GPS (lng)": -118.35514998836337
+  },
+  {
+    "Code": "ush.upper_lot.shows.shrek.fiona",
+    "UUID Themeparks.wiki": "ce037d55-3d5a-40d9-9b13-a88c51d0c5fb",
+    "Nom": "Meet Shrek and Fiona",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.13856101855887,
+    "Coordonnées GPS (lng)": -118.35489639997266
+  },
+  {
+    "Code": "ush.upper_lot.shows.meet_snowball",
+    "UUID Themeparks.wiki": "4cc20f4e-35c7-419e-afc9-28d548020bdf",
+    "Nom": "Meet Snowball",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Minion Land",
+    "Coordonnées GPS (lat)": 34.13838028801793,
+    "Coordonnées GPS (lng)": -118.35576706478426
+  },
+  {
+    "Code": "ush.upper_lot.shows.meet_toad",
+    "UUID Themeparks.wiki": "f7c231cc-53fa-4a9e-a010-a7fe21133462",
+    "Nom": "Meet Toad",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Super Nintendo World",
+    "Coordonnées GPS (lat)": 34.141204,
+    "Coordonnées GPS (lng)": -118.357554
+  },
+  {
+    "Code": "ush.shows.raptor_encounter",
+    "UUID Themeparks.wiki": "01b6ad76-93a5-46f2-b3d9-6121ab024326",
+    "Nom": "Raptor Encounter",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Jurassic World",
+    "Coordonnées GPS (lat)": 34.14023745618051,
+    "Coordonnées GPS (lng)": -118.35654465814534
+  },
+  {
+    "Code": "ush.upper_lot.shows.triwizard_spirit_rally",
+    "UUID Themeparks.wiki": "31733d97-622a-418c-bdf4-04558419f6ab",
+    "Nom": "Triwizard Spirit Rally",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "The Wizarding World of Harry Potter",
+    "Coordonnées GPS (lat)": 34.13815835394636,
+    "Coordonnées GPS (lng)": -118.35399471529436
+  },
+  {
+    "Code": "ush.upper_lot.shows.waterworld",
+    "UUID Themeparks.wiki": "3ee11862-1f2b-4a4f-8abd-9b96bc9e3787",
+    "Nom": "WaterWorld",
+    "Type": "Spectacle / Rencontre",
+    "Parc": "Universal Studios Hollywood",
+    "Land": "Upper Lot",
+    "Coordonnées GPS (lat)": 34.137142,
+    "Coordonnées GPS (lng)": -118.354626
+  }
+]
