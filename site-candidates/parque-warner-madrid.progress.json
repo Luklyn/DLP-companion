@@ -1,6 +1,6 @@
 {
   "started": 1794658100,
-  "done": 4,
+  "done": 8,
   "total": 32,
   "final": false,
   "items": [
@@ -59,6 +59,62 @@
       "height": "",
       "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
       "description": "Read the Parque Warner Madrid blog for news, events, tips and updates about the park and its experiences."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Privacy Policy and Information About the AI-Powered Virtual Assistant",
+      "url": "https://www.parquewarner.com/en/politica-privacidad",
+      "land": "Get your discount here.",
+      "type": "",
+      "category": "",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "I. Who are the Data Controllers of your data processing? The data controllers responsible for processing your personal data are Madrid Theme Park Management, S.L.U."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Click&Collect has arrived to Parque Warner",
+      "url": "https://www.parquewarner.com/en/click-and-collect",
+      "land": "Get your discount here.",
+      "type": "Service à table",
+      "category": "restaurant",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "service arrives at Parque Warner Madrid, with which you can book your menu before going to eat. What are the advantages? You can order your menu when you want in the restaurant of your choice, without waiting! Enjoy the Park to the fullest and save waiting time! Step 1: Access the Click&Collect website. Select the hour you would like to pick up your meal."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Old West Fresh Market",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/old-west-fresh-market1",
+      "land": "Get your discount here.",
+      "type": "Café",
+      "category": "coffee",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "The best place to get your strength back in the Old West Territory Take a break in our 100% vegan point. Get your energy back with our healthy and balanced way with our wide range of products, choose between hot dogs, hamburgers, nachos or salads. Come and try it in the Old West Territory area!"
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "La Cantina de los Forajidos",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/la-cantina-de-los-forajidos-DO-NOT-PUBLISH",
+      "land": "Get your discount here.",
+      "type": "",
+      "category": "",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "The best XXL food you can find in the Wild West! The bandits from the Old West Territory have fled from Parque Warner Madrid, and they’ve done so for good reason. They heard talk of a dangerous and fast gunslinger, so they jumped on their horses and headed for the hills. Now they are looking for new ways to rob any unfortunate people they encounter."
     }
   ]
 }
