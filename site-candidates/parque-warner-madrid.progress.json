@@ -1,6 +1,6 @@
 {
   "started": 1794658100,
-  "done": 16,
+  "done": 20,
   "total": 32,
   "final": false,
   "items": [
@@ -227,6 +227,62 @@
       "height": "",
       "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
       "description": "An authentic Western Saloon for cowboys to get their strength back Riding towards the horizon, without rest, feeling like this journey is never going to end… You’re in the Wild West, and you feel like taking a break after a day of riding incredible attractions like the Coaster-Express rollercoaster and traversing desolate canyons and valleys."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Jack's Fish Market",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/jacks-fish-market",
+      "land": "Get your discount here.",
+      "type": "",
+      "category": "",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "Try our incredible freshly-made sandwiches at Movie World Studios Jack’s Fish Market is located in Movie World Studios, very close to Stunt Fall (the most spectacular rollercoaster at Parque Warner)."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Vaca y Pollo Helados",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/helados-vaca-y-pollo",
+      "land": "Get your discount here.",
+      "type": "Café",
+      "category": "coffee",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "The sweetest stop during your visit to Cartoon Village Helados Vaca y Pollo is located right in the middle of Cartoon Village, and it’ll be the sweetest stop during your visit to Parque Warner. You can enjoy waffles with cream, a wide range of delicious ice cream cones, super refreshing slushies and much more."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Hollywood Hot Dogs",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/hollywood-hot-dogs",
+      "land": "Get your discount here.",
+      "type": "Service à table",
+      "category": "restaurant",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "An unbeatable selection of hot dogs at the best price on Hollywood Boulevard You’ll find us on Hollywood Boulevard, at Parque Warner. The perfect way to begin or end your trip through the park is with a stop at our classic restaurant: Hollywood Hot Dogs. The name says it all: how would you like to try one of our unbeatable range of hot dogs?"
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Empire",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/empire",
+      "land": "Get your discount here.",
+      "type": "Café",
+      "category": "coffee",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "Enjoy the best Ben & Jerry’s ice creams in Metropolis You will find Empire in the middle of the city of Metropolis in DC Superheroes World, an ideal place for real superheroes to refuel with the best Ben & Jerry’s ice creams. They’re delicious! You can also choose from a wide range of pastries and coffees specially designed for the occasion."
     }
   ]
 }
