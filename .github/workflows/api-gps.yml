@@ -1,0 +1,38 @@
+name: api-gps
+on:
+  push:
+    branches: [debug/api-gps]
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Interroger ThemeParks.wiki
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, time
+          def get(u):
+              err = ''
+              for i in range(3):
+                  try:
+                      r = urllib.request.Request('https://api.themeparks.wiki/v1'+u, headers={'User-Agent':'tpc-check'})
+                      return json.load(urllib.request.urlopen(r, timeout=40))
+                  except Exception as e:
+                      err = str(e); time.sleep(3)
+              return {'error': err}
+          shows = json.load(open('data/disneyland-paris/shows.json'))
+          out = {}
+          for s in shows:
+              if s.get('Coordonnées GPS (lat)') in (None, ''):
+                  u = s['UUID Themeparks.wiki']
+                  e = get('/entity/' + u)
+                  out[u] = {'nom': s['Nom'], 'api_name': e.get('name'), 'type': e.get('entityType'), 'location': e.get('location'), 'error': e.get('error')}
+                  time.sleep(0.5)
+          json.dump(out, open('api_gps.json', 'w'), ensure_ascii=False, indent=1)
+          PY
+      - name: Publier
+        run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add -f api_gps.json; git commit -qm "résultat api-gps"; git push
