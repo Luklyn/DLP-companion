@@ -827,6 +827,10 @@
           "value": "Futuroscope",
           "label": "Futuroscope",
           "themeparksParkId": "f111046c-f6e0-48f4-a1d2-bd9de612b980"
+        },
+        {
+          "value": "Aquascope",
+          "label": "Aquascope"
         }
       ],
       "info": {
