@@ -199,5 +199,13 @@
       "shows": "https://www.dollywood.com/themepark/entertainment/",
       "restaurants": "https://www.dollywood.com/themepark/dining/"
     }
+  },
+  "futuroscope": {
+    "site": "https://www.futuroscope.com/",
+    "list_urls": {
+      "attractions": "https://www.futuroscope.com/fr/xperiences/futuroscope",
+      "shows": "https://www.futuroscope.com/fr/xperiences/futuroscope",
+      "restaurants": "https://www.futuroscope.com/fr/xperiences/theme/manger-selon-ses-envies"
+    }
   }
 }

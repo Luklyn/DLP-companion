@@ -813,6 +813,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/dollywood.png"
+    },
+    {
+      "id": "futuroscope",
+      "name": "Futuroscope",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "locale": "fr-FR",
+      "themeparksId": "46ad6ab4-90db-4c39-b9a4-be833266c210",
+      "dataPath": "data/futuroscope/",
+      "parks": [
+        {
+          "value": "Futuroscope",
+          "label": "Futuroscope",
+          "themeparksParkId": "f111046c-f6e0-48f4-a1d2-bd9de612b980"
+        }
+      ],
+      "info": {
+        "address": "Futuroscope",
+        "lat": 46.667013,
+        "lng": 0.367956
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
