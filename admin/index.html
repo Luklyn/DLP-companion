@@ -138,7 +138,15 @@ async function gh(path, opt = {}) {
   }
   return r.status === 204 ? null : r.json();
 }
-const needToken = () => { if (!token) { toast('Connectez-vous avec un jeton GitHub pour cette action.', true); return true; } return false; };
+const needToken = () => {
+  if (token) return false;
+  if (NO_PASSWORD) {   // pas de page de connexion : le jeton n'est demandé qu'au moment d'une action qui écrit
+    const t = (window.prompt('Cette action nécessite votre jeton GitHub (il sera mémorisé sur cet appareil) :') || '').trim();
+    if (t) connect(t).then((ok) => { if (ok) { store.set(PLAIN_KEY, token); render(); toast('Jeton enregistré, relancez l’action.'); } else toast(S.connErr || 'Jeton refusé.', true); });
+    return true;
+  }
+  toast('Connectez-vous avec un jeton GitHub pour cette action.', true); return true;
+};
 async function readFile(path, ref = BRANCH) {
   if (token) {
     try { const j = await gh(`/repos/${REPO}/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(ref)}`); return b64dec(j.content); }
@@ -927,8 +935,17 @@ document.addEventListener('change', (e) => {
 (function init() {
   // anciennes versions : jeton en clair supprimé
   store.del('tpc_admin_token');
+  if (NO_PASSWORD) {   // accès direct, sans écran de connexion ; le jeton mémorisé (s'il existe) est repris
+    S.unlocked = true; render();
+    (async () => {
+      const tok = store.get(PLAIN_KEY);
+      if (tok && !(await connect(tok))) store.del(PLAIN_KEY);
+      try { await loadBase(); } catch (e) { toast('Chargement impossible : ' + e.message, true); }
+      render(); loadDeployExtras();
+    })();
+    return;
+  }
   render();
-  if (NO_PASSWORD) autoUnlock();
 })();
 </script>
 </body>
