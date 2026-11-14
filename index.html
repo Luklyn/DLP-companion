@@ -282,6 +282,8 @@
 
         .skeleton { height: 90px; margin-bottom: 10px; border-radius: 18px; background: var(--card); opacity: .7; animation: pulse 1.4s ease-in-out infinite; }
         @keyframes pulse { 50% { opacity: .35; } }
+        .list-note { margin: 4px 18px 28px; font-size: 13px; line-height: 1.45; color: var(--mut); text-align: center; }
+        .list-note[hidden] { display: none; }
         .empty { padding: 40px 10px; text-align: center; color: var(--mut); line-height: 1.5; }
 
         /* Dock du bas : mini-tuile de parc + onglets.
@@ -950,6 +952,7 @@
         </div>
 
         <main id="list" class="list" aria-live="polite"></main>
+        <p id="list-note" class="list-note" hidden></p>
 
         <div class="dock">
         <i class="dock-bump" aria-hidden="true"></i>
@@ -3549,10 +3552,20 @@
                 return;
             }
 
+            // Mention sous la liste : aucune donnée pour cette catégorie dans ce parc, ou données possiblement incomplètes
+            const noData = !state.showFavorites && !state.nearby && !db.some((it) => it.category === state.tab && it.park === state.park);
+            const noteEl = document.getElementById('list-note');
+            if (noteEl) {
+                noteEl.hidden = state.showFavorites || state.nearby || noData;
+                noteEl.textContent = L('Des données peuvent être manquantes, consultez l’application officielle.', 'Some data may be missing, please check the official app.');
+            }
+
             let entries = getVisibleEntries();
             if (!entries.length) {
                 const closedPark = !state.query && !state.showFavorites && !state.nearby && !state.showClosed && isParkClosed(state.park);
-                const hint = closedPark
+                const hint = noData && !state.query
+                    ? L('Pas de données disponibles, consultez l’application officielle.', 'No data available, please check the official app.')
+                    : closedPark
                     ? L('Le parc est actuellement fermé.<br>Touchez « Lieux fermés » pour afficher tous les lieux.', 'The park is currently closed.<br>Tap “Closed places” to show every place.')
                     : state.query
                     ? L('Aucun résultat pour cette recherche.', 'No results for this search.')
