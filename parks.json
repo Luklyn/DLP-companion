@@ -846,6 +846,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/futuroscope.png"
+    },
+    {
+      "id": "parque-de-atracciones-de-madrid",
+      "name": "Parque de Atracciones de Madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "locale": "fr-FR",
+      "themeparksId": "17058277-57f8-43f1-91c8-0af2c2fe50bc",
+      "dataPath": "data/parque-de-atracciones-de-madrid/",
+      "parks": [
+        {
+          "value": "Parque de Atracciones de Madrid",
+          "label": "Parque de Atracciones de Madrid",
+          "themeparksParkId": "1ea86991-e2c2-4771-8a32-c6e14c8298a9"
+        }
+      ],
+      "info": {
+        "address": "Parque de Atracciones de Madrid",
+        "lat": 40.41350422,
+        "lng": -3.75146359
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [
