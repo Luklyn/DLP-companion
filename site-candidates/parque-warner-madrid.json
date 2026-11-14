@@ -390,5 +390,61 @@
     "height": "",
     "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
     "description": "A rest stop right in the middle of the movie set on our New York street At Movie World Studios, right in the middle of the movie set on our New York street, we recommend you take a break and try our fantastic sandwiches with Iberian ham and pork loin, which comes with the Navidul guarantee, and don’t forget to accompany it with something from our fantastic range of pastries."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Helados Old West",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/helados-old-west",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Enjoy a sweeter version of the Wild West. That’s what you’ll find here, partner. At our ice cream shop to the south of the Old West Territory you can enjoy loads of different ice creams and delicious slushies. It’s the perfect place to stop by after lunch at El Rancho, or after an exhilarating ride on the barges at Río Bravo."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Starbucks",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/starbucks",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Coffee lovers are in luck because they can enjoy all the very best renowned Starbucks products at our park. It is the perfect excuse to take a break from your visit to Parque Warner and taste one of the best coffees, luxury teas, delicious pastries and other tasty options to please your palate. But don’t take our word for it, come and try them for yourselves!"
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Gotham City Grill",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/gotham-city-grill",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Even the bravest superheroes need to get their strength back sometimes. Located in SUPER HEROES WORLD, at Gotham City Grill you can recharge your batteries after LEX LUTHOR's madness: delicious grilled burgers, chicken or beef, whichever you prefer. We also offer tasty chicken pops and strips, Caesar salads, onion rings and hot dogs."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Don Gonzales Taquería",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/don-gonsales-taqueria",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Are you visiting the park and have celiac disease? We’ve got great news… They say the fastest mouse in all of Mexico has stopped by to make his mark… Don Gonzales Taquería is a Mexican restaurant on Hollywood Boulevard, perfect for enjoying gluten-free Mexican food inside the park."
   }
 ]
