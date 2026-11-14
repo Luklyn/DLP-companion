@@ -875,6 +875,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/parque-de-atracciones-de-madrid.png"
+    },
+    {
+      "id": "liseberg",
+      "name": "Liseberg",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "locale": "fr-FR",
+      "themeparksId": "b1387675-bb84-4eb4-aae6-af96d586c3d6",
+      "dataPath": "data/liseberg/",
+      "parks": [
+        {
+          "value": "Liseberg",
+          "label": "Liseberg",
+          "themeparksParkId": "93142d7e-024a-4877-9c72-f8e904a37c0c"
+        }
+      ],
+      "info": {
+        "address": "Liseberg",
+        "lat": 57.6945173,
+        "lng": 11.9936954
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

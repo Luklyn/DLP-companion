@@ -210,5 +210,11 @@
   },
   "parque-de-atracciones-de-madrid": {
     "site": null
+  },
+  "liseberg": {
+    "site": "https://www.liseberg.se/",
+    "list_urls": {
+      "restaurants": "https://www.liseberg.se/en/food-drinks"
+    }
   }
 }
