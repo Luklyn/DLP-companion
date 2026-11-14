@@ -278,5 +278,61 @@
     "height": "",
     "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
     "description": "Enjoy the best Ben & Jerry’s ice creams in Metropolis You will find Empire in the middle of the city of Metropolis in DC Superheroes World, an ideal place for real superheroes to refuel with the best Ben & Jerry’s ice creams. They’re delicious! You can also choose from a wide range of pastries and coffees specially designed for the occasion."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "TNT Coffee",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/tnt-coffee",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Take a break to get your energy back at Cartoon Village Take a break to get your energy back at Cartoon Village before you continue your adventure. TNT Coffee is the perfect place for the little ones to get their strength back without missing out on one minute of fun. They can choose from a wide variety of sandwiches to suit all tastes."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Casa del Sol",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/casa-del-sol",
+    "land": "Get your discount here.",
+    "type": "Buffet à volonté",
+    "category": "buffet",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "La Casa del Sol is a buffet restaurant located opposite the Police Academy, next to the lake. There you will find the best selection of Mediterranean cuisine. Choose from rice, pasta, salads, meat, fish, side dishes and a variety of desserts to satisfy your appetite."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Foster's Hollywood",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/fosters-hollywood",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Enjoy the food fit for true superstars at our à la carte restaurant Hollywood Boulevard at Parque Warner is inspired by the glamour of the magical movie industry, so it is the perfect home for Foster's Hollywood, where you can taste the flavours of American food: burgers, ribs and more."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Cartoon Café",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/cartoon-cafe",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Our most lively self-service restaurant for the little ones in Cartoon Village If you’ve just visited El Camerino de Pato Lucas, before you continue you should get your strength back at our most entertaining self-service restaurant. Come and enjoy our incredible Mediterranean salad, our irresistible Italian pasta or one of our unbeatable rice dishes from the Looney Tunes."
   }
 ]
