@@ -110,5 +110,61 @@
     "height": "",
     "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
     "description": "The best XXL food you can find in the Wild West! The bandits from the Old West Territory have fled from Parque Warner Madrid, and they’ve done so for good reason. They heard talk of a dangerous and fast gunslinger, so they jumped on their horses and headed for the hills. Now they are looking for new ways to rob any unfortunate people they encounter."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Robinson Park Pantry",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/robinson-park-pantry",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "At this kiosk in the heart of Gotham City, you can enjoy some of the delicacies that exist in the world's darkest city. Take a ride on the Batman: Gotham City Escape attraction and, on the way out, get your food at the Robinson Park Pantry. Don't forget to try the star product, the Batgofre, which will make you feel like a real hero or villain."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Beverly Hills Bakery",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/beverly-hills-bakery",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Enjoy a wide range of different homemade pastries on Hollywood Boulevard Located on Hollywood Boulevard, Beverly Hills Bakery is one of those special places that you can only find at Parque Warner. Its extraordinary façade captivates all our visitors, even more so at night. Try our famous Iberian ham sandwich with natural tomato and enjoy a huge selection of homemade pastries."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "El Rancho",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/el-rancho",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Authentic food for cowboys in the Old West Territory You’ve just gotten off the stagecoach and you’re feeling some midday fatigue. You’re hungry and the journey has been long and rough: the Old West Territory is not a peaceful place and there are dangers around every corner."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "La Cantina de los Forajidos",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/la-cantina-de-los-forajidos",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "The best XXL food you can find in the Wild West! The bandits from the Old West Territory have fled from Parque Warner Madrid, and they’ve done so for good reason. They heard talk of a dangerous and fast gunslinger, so they jumped on their horses and headed for the hills. Now they are looking for new ways to rob any unfortunate people they encounter."
   }
 ]
