@@ -166,5 +166,61 @@
     "height": "",
     "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
     "description": "The best XXL food you can find in the Wild West! The bandits from the Old West Territory have fled from Parque Warner Madrid, and they’ve done so for good reason. They heard talk of a dangerous and fast gunslinger, so they jumped on their horses and headed for the hills. Now they are looking for new ways to rob any unfortunate people they encounter."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Carrito Llao Llao",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/carrito-llao-llao",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "The best frozen yogurt with the most natural toppings Enjoy llaollao frozen yogurt and live the most natural experience with the most delicious toppings, all the sauces you can imagine, the freshest fruit and, of course, the most nutritious and refreshing frozen yogurt."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "The Penguin Helados",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/the-penguin-helados",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Try our irresistible artisanal ice creams right in the heart of Gotham City The Penguin is a tough villain, and you’ll find it hard to give him the slip in DC Super Heroes World."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Daily Planet",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/daily-planet",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Try the food enjoyed by the most intrepid journalists If you manage to sneak into the Daily Planet editorial office you will have the privilege of tasting our wide range of homemade pizzas and of course don't forget our famous salchipapas and our exclusive waffles and crepes."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "El Coyote Solitario Saloon",
+    "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/el-coyote-solitario-saloon",
+    "land": "Get your discount here.",
+    "type": "Café",
+    "category": "coffee",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "An authentic Western Saloon for cowboys to get their strength back Riding towards the horizon, without rest, feeling like this journey is never going to end… You’re in the Wild West, and you feel like taking a break after a day of riding incredible attractions like the Coaster-Express rollercoaster and traversing desolate canyons and valleys."
   }
 ]
