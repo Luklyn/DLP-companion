@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "Code": "95f031ef",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Bar'Lab",
+    "Type": "Bar'Lab",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.669808,
+    "Coordonnées GPS (lng)": 0.371181
+  },
+  {
+    "Code": "a96a1a98",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Bermuda Bar & Food",
+    "Type": "Restauration rapide",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.66821,
+    "Coordonnées GPS (lng)": 0.367104
+  },
+  {
+    "Code": "f3702dd8",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Comptoirs du Monde",
+    "Type": "Restauration rapide",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.670956,
+    "Coordonnées GPS (lng)": 0.368874
+  },
+  {
+    "Code": "b64ea548",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Food Court Festival",
+    "Type": "Restauration rapide",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.670742,
+    "Coordonnées GPS (lng)": 0.369384
+  },
+  {
+    "Code": "5ecd3279",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Kobalt",
+    "Type": "Restauration rapide",
+    "Parc": "Aquascope",
+    "Coordonnées GPS (lat)": 46.665879,
+    "Coordonnées GPS (lng)": 0.364201
+  },
+  {
+    "Code": "aeb1b3ca",
+    "UUID Themeparks.wiki": null,
+    "Nom": "L'Atelier des Saveurs",
+    "Type": "Service à table",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.671029,
+    "Coordonnées GPS (lng)": 0.370274
+  },
+  {
+    "Code": "59f2d883",
+    "UUID Themeparks.wiki": null,
+    "Nom": "L'Atelier sur le pouce",
+    "Type": "Restauration à emporter",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.671029,
+    "Coordonnées GPS (lng)": 0.370274
+  },
+  {
+    "Code": "98771869",
+    "UUID Themeparks.wiki": null,
+    "Nom": "La Cabane Perchée",
+    "Type": "Restauration rapide",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.66834,
+    "Coordonnées GPS (lng)": 0.365547
+  },
+  {
+    "Code": "329e8f71",
+    "UUID Themeparks.wiki": null,
+    "Nom": "La Crêpe Volante",
+    "Type": "Self-service",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.670335,
+    "Coordonnées GPS (lng)": 0.370035
+  },
+  {
+    "Code": "3f52e615",
+    "UUID Themeparks.wiki": null,
+    "Nom": "La Table d'Arthur",
+    "Type": "Buffet à volonté",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.671075,
+    "Coordonnées GPS (lng)": 0.371932
+  },
+  {
+    "Code": "68e92eb4",
+    "UUID Themeparks.wiki": null,
+    "Nom": "Le Quai Gourmand",
+    "Type": "Self-service",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.669164,
+    "Coordonnées GPS (lng)": 0.366639
+  },
+  {
+    "Code": "66b65be5",
+    "UUID Themeparks.wiki": null,
+    "Nom": "MIAM !",
+    "Type": "Self-service",
+    "Parc": "Futuroscope",
+    "Coordonnées GPS (lat)": 46.671029,
+    "Coordonnées GPS (lng)": 0.370274
+  }
+]
