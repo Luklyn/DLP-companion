@@ -1,0 +1,163 @@
+{
+ "527ffe57-4dfe-4e04-86ea-cbce360d5b21": {
+  "nom": "Rencontre avec un Personnage de Zootopie",
+  "api_name": "Meet a Character from Zootropolis",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "7e06d0ca-d0b2-46ab-a2c0-081ba2e4f6d5": {
+  "nom": "Rencontre avec un Personnage de Toy Story",
+  "api_name": "Meet a Toy Story Character",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "91d21453-03cc-4567-ac68-f5ef988d21db": {
+  "nom": "Rencontre Mystérieuse",
+  "api_name": "Mysterious Meeting",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "6d70e95a-12a4-4eae-ba41-82669245a536": {
+  "nom": "Meet Mickey",
+  "api_name": "Meet Mickey",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "968f5038-37d2-4fa4-9f34-9364c137bd2b": {
+  "nom": "MARVEL Super Hero Heroic Encounter",
+  "api_name": "MARVEL Super Hero Heroic Encounter",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "9d20895f-b80c-48c1-8e74-0e153b762b37": {
+  "nom": "Rencontre Royale",
+  "api_name": "Rencontre Royale",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "14924bd7-ffbf-47ee-a96e-2d5bd3fb5f25": {
+  "nom": "Pavillon Des Princesses : Une Invitation Royale",
+  "api_name": "Princess Pavilion: A Royal Invitation",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "fd060f6e-9f6c-4d8b-9730-245dbd6a097a": {
+  "nom": "Meet Jessie",
+  "api_name": "Meet Jessie",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "71d8eebe-92db-41af-88c9-287709ebb216": {
+  "nom": "Rencontre avec Baloo",
+  "api_name": "Meet Baloo",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "812b20df-4a8e-4e98-a6ba-5e27e33ea156": {
+  "nom": "Rencontre avec Tigrou",
+  "api_name": "Meet Tigger",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "45a6e9b4-a8de-4a32-9efb-1eb650e232e5": {
+  "nom": "Rencontre avec un Personnage d’Aladdin",
+  "api_name": "Meet a Character from Aladdin",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "308ac872-98a0-4f4e-b730-1d8377487f9e": {
+  "nom": "Rencontre avec Monsieur Jack (de L’Étrange Noël de Monsieur Jack de Tim BurtonDisney)",
+  "api_name": "Meet Jack Skellington (from Tim Burton’s The Nightmare Before Christmas ©Disney)",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "f922f2c3-347d-4cfc-a0af-4478a56404cd": {
+  "nom": "Rencontre avec Dingo",
+  "api_name": "Meet Goofy",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "822617d1-b63f-4a22-9f20-5cd77002eeb6": {
+  "nom": "Rencontre avec Winnie l'Ourson",
+  "api_name": "Meet Winnie The Pooh",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "6ae88707-01d8-4edc-a214-79dd0ddfe04a": {
+  "nom": "Rencontre avec le Père Noël",
+  "api_name": "Meet Santa Claus",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "fac316ef-3349-452c-b69e-775d8cb90d42": {
+  "nom": "La Chorale de Noël d’Arendelle",
+  "api_name": "The Arendelle Carollers",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "fd48752c-80dc-4993-aff2-3d6ea33593e4": {
+  "nom": "Libérez la Féérie de Noël avec Elsa et Anna",
+  "api_name": "Ring in the Season with Elsa and Anna",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "fb4a3ee7-888e-49eb-869f-26ec176edeed": {
+  "nom": "Rencontre avec Stitch",
+  "api_name": "Meet Stitch",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "f536a088-893e-46a4-be13-8a7e80fd4c29": {
+  "nom": "La Magie de l’Illumination du Sapin de Noël",
+  "api_name": "Magical Christmas Tree Lighting",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "72b05d4f-bf6e-48dd-a170-750685271b31": {
+  "nom": "Rencontre avec Donald",
+  "api_name": "Meet Donald Duck or his friends",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "44eff9fa-cd05-4a00-89b3-e6cec4682636": {
+  "nom": "Rencontre avec Mickey",
+  "api_name": "Meet Mickey Mouse",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "f636057b-8a08-4a39-a49b-c52c91c9d87b": {
+  "nom": "L’Orchestre Imaginaire de Dingo",
+  "api_name": "Goofy's Imaginary Orchestra",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ },
+ "b2a96c09-dfd1-4f67-a923-f138535e3687": {
+  "nom": "Sauvez la Magie de Noël avec Minnie et la Mère Noël",
+  "api_name": "Let's Save Christmas with Minnie and Mrs. Claus",
+  "type": "SHOW",
+  "location": null,
+  "error": null
+ }
+}
