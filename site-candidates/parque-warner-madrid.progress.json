@@ -1,6 +1,6 @@
 {
   "started": 1794658100,
-  "done": 24,
+  "done": 28,
   "total": 32,
   "final": false,
   "items": [
@@ -339,6 +339,62 @@
       "height": "",
       "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
       "description": "Our most lively self-service restaurant for the little ones in Cartoon Village If you’ve just visited El Camerino de Pato Lucas, before you continue you should get your strength back at our most entertaining self-service restaurant. Come and enjoy our incredible Mediterranean salad, our irresistible Italian pasta or one of our unbeatable rice dishes from the Looney Tunes."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Porky Pig Diner",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/porky-pig-diner",
+      "land": "Get your discount here.",
+      "type": "",
+      "category": "",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "Come and enjoy the best grilled beef burgers with Porky. They’re delicious! A relaxed, colourful and friendly environment in the style of a classic American diner, this is what it’s like every dat at Porky Pig Diner, in Parque Warner Madrid, a restaurant themed after Porky Pig himself. This laid-back stammering little pig starred in the Looney Tunes and Merrie Melodies."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Studio Café",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/studio-cafe",
+      "land": "Get your discount here.",
+      "type": "Buffet à volonté",
+      "category": "buffet",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "Enjoy the best food the world has to offer at this buffet in a movie studio You will find the best food in the world at this buffet, located in the Movie World Studios area, in the amazing setting of a real movie studio. All year long we offer various different menus that change according to the seasons."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "Ristorante Piolini",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/ristorante-piolini",
+      "land": "Get your discount here.",
+      "type": "Service à table",
+      "category": "restaurant",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "Enjoy delicious Italian food right in the middle of Cartoon Village This restaurant in Cartoon Village has a charming sign on top of it with Tweety dressed as a gondolier, and it offers the best pizzas baked to order and our vegetable focaccia, which you can enjoy while relaxing on the large terrace. Or if you’d prefer, we also offerhot dogs, in regular or XXL size."
+    },
+    {
+      "kind": "restaurants",
+      "kinds": [
+        "restaurants"
+      ],
+      "nom": "DockSide Drinks",
+      "url": "https://www.parquewarner.com/en/donde-comer/restaurantes/dockside-drinks",
+      "land": "Get your discount here.",
+      "type": "Café",
+      "category": "coffee",
+      "height": "",
+      "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+      "description": "A rest stop right in the middle of the movie set on our New York street At Movie World Studios, right in the middle of the movie set on our New York street, we recommend you take a break and try our fantastic sandwiches with Iberian ham and pork loin, which comes with the Navidul guarantee, and don’t forget to accompany it with something from our fantastic range of pastries."
     }
   ]
 }
