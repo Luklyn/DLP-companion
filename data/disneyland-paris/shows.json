@@ -376,5 +376,29 @@
     "Statut inconnu": "oui",
     "Type": "Spectacle de rue",
     "Land": "Avengers Campus"
+  },
+  {
+    "Code": "P2GS81",
+    "UUID Themeparks.wiki": "f636057b-8a08-4a39-a49b-c52c91c9d87b",
+    "Nom": "L’Orchestre Imaginaire de Dingo",
+    "Type": "Spectacle de rue",
+    "Parc": "Disney Adventure World",
+    "Land": "Adventure Way"
+  },
+  {
+    "Code": "P1M135",
+    "UUID Themeparks.wiki": "b2a96c09-dfd1-4f67-a923-f138535e3687",
+    "Nom": "Sauvez la Magie de Noël avec Minnie et la Mère Noël",
+    "Type": "Spectacle de rue",
+    "Parc": "Disneyland Park",
+    "Land": "Fantasyland"
+  },
+  {
+    "Code": "P1G121",
+    "UUID Themeparks.wiki": "f536a088-893e-46a4-be13-8a7e80fd4c29",
+    "Nom": "La Magie de l’Illumination du Sapin de Noël",
+    "Type": "Spectacle de rue",
+    "Parc": "Disneyland Park",
+    "Land": "Main Street U.S.A"
   }
 ]
