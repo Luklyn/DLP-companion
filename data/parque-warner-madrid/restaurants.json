@@ -1,1 +1,265 @@
-[]
+[
+  {
+    "Code": "beverly-hills-bakery",
+    "Nom": "Beverly Hills Bakery",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/beverly-hills-bakery/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Hollywood Boulevard",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "carrito-llao-llao",
+    "Nom": "Carrito Llao Llao",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/carrito-llao-llao/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Hollywood Boulevard",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "cartoon-cafe",
+    "Nom": "Cartoon Café",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/cartoon-cafe/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Cartoon Village",
+    "Coordonnées GPS (lat)": 40.2301898,
+    "Coordonnées GPS (lng)": -3.5954446,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "casa-del-sol",
+    "Nom": "Casa del Sol",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/casa-del-sol/carta",
+    "Type": "Buffet à volonté",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Movie World Studios",
+    "Coordonnées GPS (lat)": 40.2302995,
+    "Coordonnées GPS (lng)": -3.5916827,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "daily-planet",
+    "Nom": "Daily Planet",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/daily-planet/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "DC Super Heroes World",
+    "Coordonnées GPS (lat)": 40.2292071,
+    "Coordonnées GPS (lng)": -3.5914464,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "dockside-drinks",
+    "Nom": "DockSide Drinks",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/dockside-drinks/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Movie World Studios",
+    "Coordonnées GPS (lat)": 40.2308211,
+    "Coordonnées GPS (lng)": -3.592014,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "don-gonzales-taqueria",
+    "Nom": "Don Gonzales Taquería",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/don-gonzales-taqueria/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Coordonnées GPS (lat)": 40.2305224,
+    "Coordonnées GPS (lng)": -3.5940491,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "el-coyote-solitario-saloon",
+    "Nom": "El Coyote Solitario Saloon",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/el-coyote-solitario-saloon/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Coordonnées GPS (lat)": 40.2291645,
+    "Coordonnées GPS (lng)": -3.5952285,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "el-rancho",
+    "Nom": "El Rancho",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/el-rancho/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Coordonnées GPS (lat)": 40.2293048,
+    "Coordonnées GPS (lng)": -3.5953033,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "empire",
+    "Nom": "Empire",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/empire/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "DC Super Heroes World",
+    "Coordonnées GPS (lat)": 40.2294844,
+    "Coordonnées GPS (lng)": -3.5908764,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "foster-s-hollywood",
+    "Nom": "Foster's Hollywood",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/fosters-hollywood/carta",
+    "Type": "Service à table",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Hollywood Boulevard",
+    "Coordonnées GPS (lat)": 40.230632,
+    "Coordonnées GPS (lng)": -3.593842,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "gotham-city-grill",
+    "Nom": "Gotham City Grill",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/gotham-city-grill/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "DC Super Heroes World",
+    "Coordonnées GPS (lat)": 40.2289137,
+    "Coordonnées GPS (lng)": -3.5927779,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "helados-old-west",
+    "Nom": "Helados Old West",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/helados-old-west/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Coordonnées GPS (lat)": 40.2291811,
+    "Coordonnées GPS (lng)": -3.5955111,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "hollywood-hot-dogs",
+    "Nom": "Hollywood Hot Dogs",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/hollywood-hot-dogs/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Hollywood Boulevard",
+    "Coordonnées GPS (lat)": 40.2304783,
+    "Coordonnées GPS (lng)": -3.5944248,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "jack-s-fish-market",
+    "Nom": "Jack's Fish Market",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/jacks-fish-market/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Movie World Studios",
+    "Coordonnées GPS (lat)": 40.2312462,
+    "Coordonnées GPS (lng)": -3.5928702,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "la-cantina-de-los-forajidos",
+    "Nom": "La Cantina de los Forajidos",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/la-cantina-de-los-forajidos/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "old-west-fresh-market",
+    "Nom": "Old West Fresh Market",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/old-west-fresh-market/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Old West Territory",
+    "Coordonnées GPS (lat)": 40.2288585,
+    "Coordonnées GPS (lng)": -3.5946375,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "porky-pig-diner",
+    "Nom": "Porky Pig Diner",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/porky-pig-diner/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Cartoon Village",
+    "Coordonnées GPS (lat)": 40.2309995,
+    "Coordonnées GPS (lng)": -3.5962941,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "ristorante-piolini",
+    "Nom": "Ristorante Piolini",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/ristorante-piolini/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Cartoon Village",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "robinson-park-pantry",
+    "Nom": "Robinson Park Pantry",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/robinson-park-pantry/carta",
+    "Type": "Restauration rapide",
+    "Parc": "Parque Warner Madrid",
+    "Land": "DC Super Heroes World",
+    "Coordonnées GPS (lat)": 40.2294463,
+    "Coordonnées GPS (lng)": -3.5940069,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "starbucks",
+    "Nom": "Starbucks",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/starbucks/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Hollywood Boulevard",
+    "Coordonnées GPS (lat)": 40.2306342,
+    "Coordonnées GPS (lng)": -3.59419,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "studio-cafe",
+    "Nom": "Studio Café",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/studio-cafe/carta",
+    "Type": "Buffet à volonté",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Movie World Studios",
+    "Coordonnées GPS (lat)": 40.2313396,
+    "Coordonnées GPS (lng)": -3.5926544,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "the-penguin-helados",
+    "Nom": "The Penguin Helados",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/the-penguin-helados/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "DC Super Heroes World",
+    "Coordonnées GPS (lat)": 40.2289312,
+    "Coordonnées GPS (lng)": -3.592637,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "tnt-coffee",
+    "Nom": "TNT Coffee",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/tnt-coffee/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Cartoon Village",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "vaca-y-pollo-helados",
+    "Nom": "Vaca y Pollo Helados",
+    "Menu": "https://www.parquewarner.com/en/restaurantes/vaca-y-pollo-helados/carta",
+    "Type": "À emporter",
+    "Parc": "Parque Warner Madrid",
+    "Land": "Cartoon Village",
+    "Statut inconnu": "oui"
+  }
+]
