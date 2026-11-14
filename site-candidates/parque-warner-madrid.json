@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Parque Warner y Parque Warner Beach",
+    "url": "https://www.parquewarner.com/en/combinadas-parque-warner-beach",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "💦 The heatwave is here… and we’ve got the perfect plan Enjoy the complete experience with access to Parque Warner Madrid and Parque Warner Beach: thrills, fun and splash-filled adventures all in one ticket."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Parque Warner Madrid",
+    "url": "https://www.parquewarner.com/en/home",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Starting November 21st. Don't miss our latest updates! Everything included for your Christmas getaway: We are sorry, we are performing maintenance work on our website and ticket sales are temporarily disabled. Please try again in a few minutes."
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Searches",
+    "url": "https://www.parquewarner.com/en/busquedas",
+    "land": "",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": ""
+  },
+  {
+    "kind": "restaurants",
+    "kinds": [
+      "restaurants"
+    ],
+    "nom": "Welcome to our Blog",
+    "url": "https://www.parquewarner.com/en/blog",
+    "land": "Get your discount here.",
+    "type": "",
+    "category": "",
+    "height": "",
+    "menu": "https://www.parquewarner.com/en/extras/extras-standalone/select-month",
+    "description": "Read the Parque Warner Madrid blog for news, events, tips and updates about the park and its experiences."
+  }
+]
