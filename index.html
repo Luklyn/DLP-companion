@@ -3556,7 +3556,7 @@
             const noData = !state.showFavorites && !state.nearby && !db.some((it) => it.category === state.tab && it.park === state.park);
             const noteEl = document.getElementById('list-note');
             if (noteEl) {
-                noteEl.hidden = state.showFavorites || state.nearby || noData;
+                noteEl.hidden = state.showFavorites || state.nearby || noData || state.tab === 'attraction';
                 noteEl.textContent = L('Des données peuvent être manquantes, consultez l’application officielle.', 'Some data may be missing, please check the official app.');
             }
 
