@@ -329,13 +329,11 @@
   },
   {
     "Code": "P1GS84",
-    "UUID Themeparks.wiki": "3a9a0b6f-e83c-458d-b376-49898759d44e",
+    "UUID Themeparks.wiki": "f536a088-893e-46a4-be13-8a7e80fd4c29",
     "Nom": "La Magie de l’Illumination du Sapin de Noël",
     "Description": "Mickey et ses amis vous donnent rendez-vous à la nuit tombée pour un moment enchanteur au son du chœur de Noël. Le spectacle peut être modifié, retardé ou supprimé sans préavis, notamment en cas de conditions climatiques défavorables ou conditions de sécurité insuffisantes.",
     "Parc": "Disneyland Park",
-    "Statut inconnu": "oui",
     "Type": "Spectacle de rue",
-    "Horaires": "19:25",
     "Land": "Main Street U.S.A"
   },
   {
