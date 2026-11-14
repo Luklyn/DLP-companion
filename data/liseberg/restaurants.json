@@ -1,1 +1,194 @@
-[]
+[
+  {
+    "Code": "1923-grill-bar",
+    "Nom": "1923 Grill & Bar",
+    "Type": "Service à table",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "al-parco",
+    "Nom": "Al Parco",
+    "Type": "Service à table",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "asiatiska",
+    "Nom": "Asiatiska",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "bengtas-bubbelvaffla",
+    "Nom": "Bengtas Bubbelvåffla",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Kaninlandet",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "bergs-bistro",
+    "Nom": "Bergs Bistro",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Luna Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "cafe-lussekatten",
+    "Nom": "Café Lussekatten",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "falafel",
+    "Nom": "Falafel",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "froken-ellens-cafe",
+    "Nom": "Fröken Ellens Café",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "gelato",
+    "Nom": "Gelato",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "hamnkrogen",
+    "Nom": "Hamnkrogen",
+    "Type": "Service à table",
+    "Parc": "Liseberg",
+    "Land": "Hamnkvarteret",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "jarnvagsrestaurangen",
+    "Nom": "Järnvägsrestaurangen",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Kaninlandet",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "korvhallen",
+    "Nom": "Korvhallen",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "lisebergs-wardshus",
+    "Nom": "Lisebergs Wärdshus",
+    "Type": "Service à table",
+    "Parc": "Liseberg",
+    "Land": "Lisebergs Trädgårdar",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "lattlagat",
+    "Nom": "Lättlagat",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "mattorget",
+    "Nom": "Mattorget",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "max-hamburgare",
+    "Nom": "Max Hamburgare",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "miniburgaren",
+    "Nom": "Miniburgaren",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Kaninlandet",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "popcornberget",
+    "Nom": "Popcornberget",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Hill",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "skeppsmagasinet",
+    "Nom": "Skeppsmagasinet",
+    "Type": "Restauration rapide",
+    "Parc": "Liseberg",
+    "Land": "Hamnkvarteret",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "spokbaren-gasten",
+    "Nom": "Spökbaren Gasten",
+    "Type": "Bar/Lounge",
+    "Parc": "Liseberg",
+    "Land": "Hamnkvarteret",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "systrarna-olsons-vaffelbageri",
+    "Nom": "Systrarna Olsons Våffelbageri",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "tomtens-teatercafe",
+    "Nom": "Tomtens teatercafé",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Kaninlandet",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "tornets-glasscafe",
+    "Nom": "Tornets Glasscafé",
+    "Type": "À emporter",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Hill",
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "tyrolen",
+    "Nom": "Tyrolen",
+    "Type": "Service à table",
+    "Parc": "Liseberg",
+    "Land": "Liseberg Park",
+    "Statut inconnu": "oui"
+  }
+]
