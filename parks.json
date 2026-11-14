@@ -904,6 +904,34 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/liseberg.png"
+    },
+    {
+      "id": "parque-warner-madrid",
+      "name": "Parque Warner Madrid",
+      "country": "ES",
+      "timezone": "Europe/Madrid",
+      "locale": "fr-FR",
+      "themeparksId": "df686841-3a46-4ac7-a1c7-8f3cac840a2b",
+      "dataPath": "data/parque-warner-madrid/",
+      "parks": [
+        {
+          "value": "Parque Warner Madrid",
+          "label": "Parque Warner Madrid",
+          "themeparksParkId": "5adbd2f7-3694-4d23-aaec-4037a056573f"
+        }
+      ],
+      "info": {
+        "address": "Parque Warner Madrid",
+        "lat": 40.232655,
+        "lng": -3.59289
+      },
+      "icon": "castle",
+      "color": "#2B59D9",
+      "theme": {
+        "acc": "#2B59D9",
+        "g1": "#2B59D9",
+        "g2": "#2B59D9"
+      }
     }
   ],
   "events": [

@@ -216,5 +216,11 @@
     "list_urls": {
       "restaurants": "https://www.liseberg.se/en/food-drinks"
     }
+  },
+  "parque-warner-madrid": {
+    "site": "https://www.parquewarner.com/",
+    "list_urls": {
+      "restaurants": "https://www.parquewarner.com/en/planea-tu-visita/donde-comer/restaurantes"
+    }
   }
 }
