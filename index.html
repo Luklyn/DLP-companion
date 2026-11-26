@@ -801,6 +801,70 @@
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
         }
+        /* ==========================================================================
+           6. Refonte ordinateur (≥ 1100 px) : le site se présente comme un vrai site web.
+              Le mobile et l'appli Android (largeur < 1100 px) ne sont pas touchés.
+           ========================================================================== */
+        @media (min-width: 1100px) {
+            /* --- Accueil : barre de navigation en haut, grand bandeau, grille 3 colonnes --- */
+            .home-hero { border-radius: 0; background: linear-gradient(135deg, var(--navy) 0%, #2A3BB5 62%, #5A38BE 100%); }
+            .home-hero-in { max-width: 1280px; padding: 120px 32px 80px; }
+            .home-hero-in > * { max-width: 700px; }
+            .home-hero-in > .home-brand { position: absolute; top: 0; left: 32px; right: 32px; max-width: none; height: 72px; font-size: 19px; }
+            .home-logo { width: 36px; height: 36px; }
+            .home h1 { margin-top: 0; font-size: 58px; line-height: 1.06; }
+            .home-lead { font-size: 19px; max-width: 580px; }
+            .home-summary { font-size: 15px; padding: 10px 18px; }
+            .home > .dock { position: absolute; top: 0; right: calc(max(0px, (100% - 1280px) / 2) + 32px + 80px); z-index: 6; width: auto; height: 72px; margin: 0; padding: 0; background: none; box-shadow: none; display: flex; align-items: center; }
+            .home > .dock .dock-bump { display: none; }
+            .home .tabs { max-width: none; margin: 0; gap: 6px; }
+            .home .tabs button, .master-pane > .dock .tabs button { flex: none; flex-direction: row; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; font-size: 15px; }
+            .home-in { max-width: 1280px; padding: 48px 32px 40px; }
+            .home-view { display: inline-flex; width: 280px; margin-bottom: 24px; }
+            .home-chips { margin: 0 0 18px; padding: 0 0 6px; flex-wrap: wrap; overflow: visible; position: static; background: none; }
+            .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+            .home-tile { padding: 20px; border-radius: 24px; }
+            .app-ico { width: 68px; height: 68px; border-radius: 20px; }
+            #home-slide-globe:not([hidden]) { display: grid; grid-template-columns: minmax(0, 600px) minmax(0, 1fr); gap: 40px; align-items: start; }
+            .globe-wrap { width: min(100%, 600px); }
+            .globe-panel { margin-top: 0; }
+            .home-foot { margin-top: 48px; }
+
+            /* --- Page d'un parc : bannière, onglets en haut, liste en grille, fiche à droite --- */
+            .master-pane { flex: 1 1 auto; width: auto; border-right: 0; overflow-y: auto; overflow-x: hidden; }
+            .hero { order: 0; padding: 36px 40px 8px; border-radius: 0; }
+            .park-switch { grid-template-columns: minmax(0, 1fr) 44px 44px; gap: 10px; }
+            .park-switch .ps-mid { grid-column: 1; grid-row: 1; text-align: left; }
+            #park-prev { grid-column: 2; grid-row: 1; width: 44px; height: 44px; border-radius: 22px; }
+            #park-next { grid-column: 3; grid-row: 1; width: 44px; height: 44px; border-radius: 22px; }
+            .hero-park { font-size: 40px; text-wrap: pretty; }
+            .ps-dots { justify-content: flex-start; }
+            .sync { justify-content: flex-start; }
+            .master-pane > .dock { order: 1; position: sticky; top: 0; z-index: 20; padding: 0 40px; background: var(--navy); box-shadow: 0 6px 14px rgb(18 22 58 / .18); }
+            .master-pane > .dock .dock-bump { display: none; }
+            .master-pane > .dock .tabs { max-width: none; margin: 0; gap: 6px; justify-content: flex-start; }
+            .master-pane > .dock .tabs button { min-height: 56px; border-radius: 0; box-shadow: inset 0 -3px 0 transparent; }
+            .master-pane > .dock .tabs button[aria-current="true"] { box-shadow: inset 0 -3px 0 var(--gold); }
+            .chips-wrap { order: 2; }
+            .chips { padding: 24px 40px 8px; flex-wrap: wrap; overflow: visible; }
+            .sort-pop { left: 40px; }
+            .list { order: 3; flex: none; overflow: visible; padding: 8px 40px 32px; }
+            .list > section { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; align-content: start; margin-bottom: 12px; }
+            .list > section > :not(.card) { grid-column: 1 / -1; }
+            .list .card { margin-bottom: 0; }
+            .list .land { margin: 14px 0 0; font-size: 15px; }
+            .list-note { order: 4; margin: 0 40px 40px; text-align: left; }
+            .detail-pane { flex: 0 0 480px; width: 480px; padding: 24px; border-left: 1px solid var(--line); }
+            .detail-content { max-width: none; align-self: flex-start; }
+            .d-hero { height: 240px; }
+            .d-intro .d-title { font-size: 30px; }
+            .detail-placeholder { margin: auto; }
+        }
+        @media (min-width: 1500px) {
+            .home-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .home-hero-in, .home-in { max-width: 1400px; }
+            .detail-pane { flex-basis: 560px; width: 560px; }
+        }
     </style>
 </head>
 <body>
