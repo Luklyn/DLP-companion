@@ -933,6 +933,35 @@
         "g2": "#2B59D9"
       },
       "iconImage": "icons/parque-warner-madrid.png"
+    },
+    {
+      "id": "heide-park-resort",
+      "name": "Heide Park Resort",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "locale": "fr-FR",
+      "themeparksId": "0976f1b8-5782-4cda-887f-dc1d537d8d6e",
+      "dataPath": "data/heide-park-resort/",
+      "parks": [
+        {
+          "value": "Heide Park",
+          "label": "Heide Park",
+          "themeparksParkId": "66e12a41-3a09-40cd-8f55-8d335d9d7d93"
+        }
+      ],
+      "info": {
+        "address": "Heide-Park-Straße 1, 29614 Soltau, Allemagne",
+        "lat": 53.022268,
+        "lng": 9.872393
+      },
+      "icon": "castle",
+      "color": "#1F7A8C",
+      "theme": {
+        "acc": "#1F7A8C",
+        "g1": "#1F7A8C",
+        "g2": "#1F7A8C"
+      },
+      "iconImage": "icons/heide-park-resort.png"
     }
   ],
   "events": [

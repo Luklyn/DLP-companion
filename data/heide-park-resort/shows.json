@@ -1,0 +1,123 @@
+[
+  {
+    "Code": "15557",
+    "UUID Themeparks.wiki": "538e2982-3449-45d2-8de2-08c489a7bb46",
+    "Nom": "Ghostbusters Meet & Greet",
+    "Parc": "Heide Park",
+    "Land": "Wild Wild West",
+    "Type": "Rencontre personnage",
+    "Coordonnées GPS (lat)": 53.022285,
+    "Coordonnées GPS (lng)": 9.877679,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "19725",
+    "UUID Themeparks.wiki": "42d70602-918a-4570-b610-1441c167afaf",
+    "Nom": "Großes Feuerwerk",
+    "Parc": "Heide Park",
+    "Land": "Parc entier",
+    "Type": "Spectacle extérieur",
+    "Coordonnées GPS (lat)": 53.024145,
+    "Coordonnées GPS (lng)": 9.880968,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "47786",
+    "UUID Themeparks.wiki": "c0e4553a-10e4-45ea-ad42-d2eced86df7b",
+    "Nom": "Kinderanimation: AYE AYE Käpt'n!",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Animation",
+    "Coordonnées GPS (lat)": 53.024824,
+    "Coordonnées GPS (lng)": 9.876383,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "19358",
+    "UUID Themeparks.wiki": "4d019aa6-ee03-412a-a998-f6ed0740e98c",
+    "Nom": "Magic Forest",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Spectacle extérieur",
+    "Coordonnées GPS (lat)": 53.024261,
+    "Coordonnées GPS (lng)": 9.875603,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "24498",
+    "UUID Themeparks.wiki": "5f231682-0726-4e6a-93d9-9c5ae401a569",
+    "Nom": "Mission Meeresgrund",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Spectacle sur scène",
+    "Coordonnées GPS (lat)": 53.024999,
+    "Coordonnées GPS (lng)": 9.877762,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "25841",
+    "UUID Themeparks.wiki": "0a9df370-e1eb-4929-8c5e-44b0478c27bb",
+    "Nom": "Mission Meeresgrund Halloween-Special",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Halloween",
+    "Coordonnées GPS (lat)": 53.02495,
+    "Coordonnées GPS (lng)": 9.87759,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "15555",
+    "UUID Themeparks.wiki": "c8b4a35e-afb1-4998-8bdb-9502ce12bcb1",
+    "Nom": "Peppa Meet & Greet",
+    "Parc": "Heide Park",
+    "Land": "Peppa Pig Land",
+    "Type": "Rencontre personnage",
+    "Coordonnées GPS (lat)": 53.023458,
+    "Coordonnées GPS (lng)": 9.87652,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "21612",
+    "UUID Themeparks.wiki": "a92d2300-aa41-4dd1-84b1-74345245e581",
+    "Nom": "Show: Smile…it's magic",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Spectacle sur scène",
+    "Coordonnées GPS (lat)": 53.024809,
+    "Coordonnées GPS (lng)": 9.876389,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "15554",
+    "UUID Themeparks.wiki": "1b44c035-1402-47b6-9a5f-99bd19e6299f",
+    "Nom": "Show: The Movie Maker",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Spectacle sur scène",
+    "Coordonnées GPS (lat)": 53.024868,
+    "Coordonnées GPS (lng)": 9.876456,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "21611",
+    "UUID Themeparks.wiki": "4787c380-ab8c-4530-ba43-a3e702932a3f",
+    "Nom": "Show: Time",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Spectacle sur scène",
+    "Coordonnées GPS (lat)": 53.024842,
+    "Coordonnées GPS (lng)": 9.876386,
+    "Statut inconnu": "oui"
+  },
+  {
+    "Code": "15556",
+    "UUID Themeparks.wiki": "73059b0b-a91d-4d75-af3f-faf586c78fb8",
+    "Nom": "Toothless Meet & Greet",
+    "Parc": "Heide Park",
+    "Land": "Drachenzähmen - Die Insel",
+    "Type": "Rencontre personnage",
+    "Coordonnées GPS (lat)": 53.023535,
+    "Coordonnées GPS (lng)": 9.878747,
+    "Statut inconnu": "oui"
+  }
+]

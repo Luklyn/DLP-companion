@@ -1,0 +1,212 @@
+[
+  {
+    "Code": "14797",
+    "UUID Themeparks.wiki": "ec91e2ae-66de-48d0-8f72-1e2461eb4174",
+    "Nom": "Abenteurer Coffee Lounge",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "À emporter",
+    "Coordonnées GPS (lat)": 53.022546,
+    "Coordonnées GPS (lng)": 9.873138
+  },
+  {
+    "Code": "14815",
+    "UUID Themeparks.wiki": "0236cda2-bb54-459c-b340-42ed5a7c6d84",
+    "Nom": "Adventure Fries",
+    "Parc": "Heide Park",
+    "Land": "Transsilvanien",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.025887,
+    "Coordonnées GPS (lng)": 9.881461
+  },
+  {
+    "Code": "14806",
+    "UUID Themeparks.wiki": "c6c19aca-a501-448d-8b47-6680142a24bc",
+    "Nom": "Biergarten Rafting",
+    "Parc": "Heide Park",
+    "Land": "Wild Wild West",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.02258,
+    "Coordonnées GPS (lng)": 9.880082
+  },
+  {
+    "Code": "48159",
+    "UUID Themeparks.wiki": "4d1762a2-c3e0-4994-b3fc-fe49072f6573",
+    "Nom": "Bulls & Bandits",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.025496,
+    "Coordonnées GPS (lng)": 9.876013
+  },
+  {
+    "Code": "15977",
+    "UUID Themeparks.wiki": "c3d2b771-ef2b-4e1b-a883-7e3210d4d05e",
+    "Nom": "Café Transsilvania",
+    "Parc": "Heide Park",
+    "Land": "Transsilvanien",
+    "Type": "À emporter",
+    "Coordonnées GPS (lat)": 53.027107,
+    "Coordonnées GPS (lng)": 9.879905
+  },
+  {
+    "Code": "14808",
+    "UUID Themeparks.wiki": "30a6e880-163c-4f3b-b5f8-ce04b77f19a8",
+    "Nom": "Colossos Snack",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023087,
+    "Coordonnées GPS (lng)": 9.882266
+  },
+  {
+    "Code": "15987",
+    "UUID Themeparks.wiki": "95c85441-fe9b-43e8-a65d-6ce768be6a9d",
+    "Nom": "Desert Oase",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.022232,
+    "Coordonnées GPS (lng)": 9.881273
+  },
+  {
+    "Code": "15990",
+    "UUID Themeparks.wiki": "7826dffc-5e84-42af-98f7-dae98fea67f2",
+    "Nom": "Exploria Kiosk",
+    "Parc": "Heide Park",
+    "Land": "Wild Wild West",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023587,
+    "Coordonnées GPS (lng)": 9.877644
+  },
+  {
+    "Code": "21279",
+    "UUID Themeparks.wiki": "b1d3e659-2060-446f-bb17-598e21bfc13b",
+    "Nom": "Flammkuchen Factory",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.024803,
+    "Coordonnées GPS (lng)": 9.882502
+  },
+  {
+    "Code": "14796",
+    "UUID Themeparks.wiki": "9b427ce0-2d11-4c5e-8931-5c2fe316f233",
+    "Nom": "Frau Mümmels Kiosk",
+    "Parc": "Heide Park",
+    "Land": "Peppa Pig Land",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023655,
+    "Coordonnées GPS (lng)": 9.87652
+  },
+  {
+    "Code": "14801",
+    "UUID Themeparks.wiki": "d6d18c3b-7223-4903-a167-8d64a44b862f",
+    "Nom": "Heide Park Grill",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.022735,
+    "Coordonnées GPS (lng)": 9.87386
+  },
+  {
+    "Code": "14803",
+    "UUID Themeparks.wiki": "444b3eaa-4909-4b37-8ecb-3a6e2866b545",
+    "Nom": "Hot Dog \"Freestyle\"",
+    "Parc": "Heide Park",
+    "Land": "Transsilvanien",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.025036,
+    "Coordonnées GPS (lng)": 9.879036
+  },
+  {
+    "Code": "15582",
+    "UUID Themeparks.wiki": "2093f31e-0f83-4340-ad0b-3fbcadcd30d2",
+    "Nom": "Hot Dog Colossos",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023518,
+    "Coordonnées GPS (lng)": 9.883467
+  },
+  {
+    "Code": "14807",
+    "UUID Themeparks.wiki": "1ed55270-4da2-4f42-a324-eabd6cc146c6",
+    "Nom": "Knusperhaus",
+    "Parc": "Heide Park",
+    "Land": "Wild Wild West",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023464,
+    "Coordonnées GPS (lng)": 9.881373
+  },
+  {
+    "Code": "14804",
+    "UUID Themeparks.wiki": "47c8b909-3f73-4088-a0e8-eb332e0fdf93",
+    "Nom": "Krakenkiosk (Bubble Waffel)",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.024813,
+    "Coordonnées GPS (lng)": 9.877057
+  },
+  {
+    "Code": "14805",
+    "UUID Themeparks.wiki": "1e1c1720-1d6a-4d64-b5b1-9fa30afc9e96",
+    "Nom": "Lucky Churros",
+    "Parc": "Heide Park",
+    "Land": "Wild Wild West",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.022948,
+    "Coordonnées GPS (lng)": 9.877738
+  },
+  {
+    "Code": "14809",
+    "UUID Themeparks.wiki": "ac50b859-395f-42d7-9b18-814686e0cbd4",
+    "Nom": "Mucho Pollo",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.024281,
+    "Coordonnées GPS (lng)": 9.883306
+  },
+  {
+    "Code": "14802",
+    "UUID Themeparks.wiki": "a5e904d8-1a89-452c-a9e1-c6654f5ff334",
+    "Nom": "Piraten Burger",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.024729,
+    "Coordonnées GPS (lng)": 9.880168
+  },
+  {
+    "Code": "14811",
+    "UUID Themeparks.wiki": "2edc3900-9b51-4667-8474-1f5109c87bdd",
+    "Nom": "Pizza Scream",
+    "Parc": "Heide Park",
+    "Land": "Transsilvanien",
+    "Type": "Restauration rapide",
+    "Coordonnées GPS (lat)": 53.026719,
+    "Coordonnées GPS (lng)": 9.878765
+  },
+  {
+    "Code": "47986",
+    "UUID Themeparks.wiki": "81846e48-4bb5-42f7-9507-beb478ac2b15",
+    "Nom": "Schmalzkuchen-Schmiede",
+    "Parc": "Heide Park",
+    "Land": "Land der Vergessenen",
+    "Type": "Kiosque",
+    "Coordonnées GPS (lat)": 53.023285,
+    "Coordonnées GPS (lng)": 9.882826
+  },
+  {
+    "Code": "14799",
+    "UUID Themeparks.wiki": "24a14f60-b3f8-43b8-9ae4-25177ddb49e3",
+    "Nom": "Wirtshaus des Admirals",
+    "Parc": "Heide Park",
+    "Land": "Bucht der Piraten",
+    "Type": "Self-service",
+    "Coordonnées GPS (lat)": 53.024487,
+    "Coordonnées GPS (lng)": 9.877572
+  }
+]
